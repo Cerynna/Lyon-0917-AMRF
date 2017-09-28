@@ -12,7 +12,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <!-- Compiled and minified CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
-    <link rel="stylesheet" href="contact.css">
+    <link rel="stylesheet" href="../css/contact.css">
     <!--Import Google Icon Font-->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <title>Document</title>
@@ -60,7 +60,7 @@
             <div class="row">
                 <h2>Fonction</h2>
                 <form action="#">
-                    <p>
+                    <p class="test">
                         <input name="groupe1" type="radio" id="maire" />
                         <label for="maire">Maire</label>
                         <input name="groupe1" type="radio" id="partnaire" />
