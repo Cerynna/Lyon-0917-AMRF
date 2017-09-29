@@ -1,4 +1,4 @@
-<h2>Contactez nous</h2>
+<h2 class="center-align">Contactez nous</h2>
 <form>
     <!--first name/ second name -->
     <div class="row">
@@ -34,9 +34,9 @@
 
     <!--Choice of fonction -->
     <div class="row">
-        <h2>Fonction</h2>
+        <h2 class="center-align">Fonction</h2>
         <form action="#">
-            <p>
+            <p class="center-align">
                 <input name="groupe1" type="radio" id="maire"/>
                 <label for="maire">Maire</label>
                 <input name="groupe1" type="radio" id="partnaire"/>
