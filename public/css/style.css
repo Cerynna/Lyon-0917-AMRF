@@ -2,18 +2,13 @@ html, body {
     margin: 0;
     font-size: 1.0em;
     background: #e0e0e0;
-    height: 200vh;
 }
-section{
-
-}
-
 #navbar {
     color: white;
     width: 100%;
-    margin-top: 0px;
+    margin-top: 0;
+    z-index: 10000;
 }
-
 #header {
     height: 400px;
     background: url("http://lorempixel.com/output/cats-q-c-1920-400-8.jpg");
@@ -27,8 +22,10 @@ section{
     margin-top: 50px;
     margin-bottom: 50px;
     background-color: #fff;
-    padding:1%;
+    padding:30px;
     min-height:100vh;
+    z-index: 1;
+
 
 }
 .connect {
@@ -37,4 +34,38 @@ section{
     position: relative;
     text-align: right;
     padding-right: 1%;
+}
+
+
+/* label color */
+.input-field label {
+    color: #000000;
+}
+
+/* label focus color */
+.input-field input[type=text]:focus + label {
+    color: #000;
+}
+/* label underline focus color */
+.input-field input[type=text]:focus {
+    border-bottom: 1px solid #000000;
+    box-shadow: 0 1px 0 0 #000;
+}
+/* valid color */
+.input-field input[type=text].valid {
+    border-bottom: 1px solid #000;
+    box-shadow: 0 1px 0 0 #000;
+}
+/* invalid color */
+.input-field input[type=text].invalid {
+    border-bottom: 1px solid #000;
+    box-shadow: 0 1px 0 0 #000;
+}
+/* icon prefix focus color */
+.input-field .prefix.active {
+    color: #000;
+}
+
+.form p{
+    text-align: center;
 }
