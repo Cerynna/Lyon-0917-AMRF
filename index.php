@@ -12,7 +12,7 @@
 </head>
 
 <body>
-<div id="modal1" class="modal modal-fixed-footer">
+<div id="formConnect" class="modal modal-fixed-footer">
     <div class="modal-content">
         <h4>Connection</h4>
         <p>Formulaire de connection</p>
@@ -23,37 +23,58 @@
 </div>
 <header>
     <div id="header">
-        <div class="connect"><a class="waves-effect waves-light btn modal-trigger blue darken-3" href="#modal1">Connection</a></div>
-        Le Wiki des Maires
+        <div class="connect"><a class="waves-effect waves-light btn modal-trigger blue darken-3" href="#formConnect">Connection</a>
+        </div>
+        <h1>Le Wiki des Maires</h1>
     </div>
-    <div id="navbar" class="">
-        <nav class="blue darken-3">
-            <div class="nav-wrapper container">
-                <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
-                <ul class="right hide-on-med-and-down">
-                    <li><a href="#">Acceuil</a></li>
-                    <li><a href="#">AMRF</a></li>
-                    <li><a href="#">Contact</a></li>
-                </ul>
-                <ul class="side-nav" id="mobile-demo">
-                    <li><a href="#">Acceuil</a></li>
-                    <li><a href="#">AMRF</a></li>
-                    <li><a href="#">Contact</a></li>
-                </ul>
-            </div>
-        </nav>
 
-    </div>
 </header>
+<div id="navbar">
+    <nav class="blue darken-3">
+        <div class="nav-wrapper container">
+            <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+            <ul class="right hide-on-med-and-down">
+                <li><a href="#">Acceuil</a></li>
+                <li><a href="#">AMRF</a></li>
+                <li><a href="?page=contact">Contact</a></li>
+            </ul>
+            <ul class="side-nav" id="mobile-demo">
+                <li><a href="#">Acceuil</a></li>
+                <li><a href="#">AMRF</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+</div>
 <section>
     <div class="container content z-depth-4">
         <div class="row">
             <div class="col s12">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-                dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
-                deserunt mollit anim id est laborum.
+                <?php
+                if (isset($_GET['page'])) {
+                    $page = $_GET['page'];
+                }
+                else {
+                    $page = "home";
+                }
+
+                switch ($page) {
+                    case 'home':
+                        $linkPage = "home.php";
+                        break;
+                    case 'contact':
+                        $linkPage = "formContact.php";
+                        break;
+                    default:
+                        $linkPage = "home.php";
+                        break;
+                }
+
+                include("public/pages/$linkPage");
+
+
+                ?>
             </div>
         </div>
     </div>
@@ -97,7 +118,7 @@
         // the "href" attribute of the modal trigger must specify the modal ID that wants to be triggered
         $('.modal').modal();
         $('.button-collapse').sideNav();
-        $("#navbar").sticky({topSpacing: 0});
+        $("#navbar").sticky({topSpacing: 0, zIndex:1000});
     });
 </script>
 </body>
