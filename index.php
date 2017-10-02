@@ -71,6 +71,9 @@
                     case 'search':
                         $linkPage = "formSearch.php";
                         break;
+                    case 'legales':
+                        $linkPage = "legales.php";
+                        break;
                     default:
                         $linkPage = "home.php";
                         break;
@@ -95,7 +98,7 @@
             <div class="col l4 offset-l2 s12">
                 <h5 class="white-text">Links</h5>
                 <ul>
-                    <li><a class="grey-text text-lighten-3" href="#!">Link 1</a></li>
+                    <li><a class="grey-text text-lighten-3" href="?page=legales">Déclaration de confidentialité</a></li>
                     <li><a class="grey-text text-lighten-3" href="#!">Link 2</a></li>
                     <li><a class="grey-text text-lighten-3" href="#!">Link 3</a></li>
                     <li><a class="grey-text text-lighten-3" href="#!">Link 4</a></li>
@@ -239,6 +242,11 @@
 
             }); // end of autocomplete function
     }); //end of document.ready
+
+    // mentions legales
+    $(document).ready(function(){
+        $('.collapsible').collapsible();
+    });
 
 </script>
 </body>
