@@ -55,18 +55,18 @@
             <label for="textarea1">Votre message</label>
         </div>
     </div>
+    <!--submit button -->
     <button data-target="verif" class="btn waves-effect waves-light btn modal-trigger" type="submit" name="action">Submit
         <i class="material-icons right">send</i>
     </button>
 </form><!--end of contact form -->
 
-<!-- Modal Structure -->
-<div id="verif" class="modal">
-    <div class="modal-content">
-        <h4>Modal Header</h4>
-        <p>A bunch of text</p>
+    <!-- Modal Structure -->
+    <div id="verif" class="modal">
+        <div class="modal-content">
+            <h4>Modal Header</h4>
+            <p>A bunch of text</p>
+        </div>
     </div>
-</div>
 
-<!--submit button -->
 

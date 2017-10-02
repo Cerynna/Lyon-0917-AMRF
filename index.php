@@ -37,11 +37,13 @@
                 <li><a href="#">Acceuil</a></li>
                 <li><a href="#">AMRF</a></li>
                 <li><a href="?page=contact">Contact</a></li>
+                <li><a href="?page=search">Recherche</a></li>
             </ul>
             <ul class="side-nav" id="mobile-demo">
                 <li><a href="#">Acceuil</a></li>
                 <li><a href="#">AMRF</a></li>
                 <li><a href="#">Contact</a></li>
+                <li><a href="?page=search">Recherche</a></li>
             </ul>
         </div>
     </nav>
@@ -65,6 +67,9 @@
                         break;
                     case 'contact':
                         $linkPage = "formContact.php";
+                        break;
+                    case 'search':
+                        $linkPage = "formSearch.php";
                         break;
                     default:
                         $linkPage = "home.php";
