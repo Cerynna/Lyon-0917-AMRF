@@ -14,7 +14,7 @@
 </div> <!--end of row-->
 
 <div class="row">
-    <form class="col s12">
+    <form class="col s12" action="?page=#">
         <div class="input-field col s12">
             <select multiple>
                 <option value="" disabled selected>Choisir un thematique</option>
