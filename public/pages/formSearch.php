@@ -36,9 +36,11 @@
                         <label for="codep">Code Postal</label>
                     </div>
                 </div>
-                <button class=" center-align btn waves-effect waves-light" type="submit" name="action">Recherche
-                    <i class="material-icons right">search</i>
-                </button>
+                <div class="row center-align">
+                    <button class="btn waves-effect waves-light" type="submit" name="action">Recherche
+                        <i class="material-icons right">search</i>
+                    </button>
+                </div>
             </div>
         </div>
     </form>
