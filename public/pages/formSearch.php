@@ -13,45 +13,30 @@
 </nav>
 </div> <!--end of row-->
 
-<!-- Switch -->
-<div class="switch">
-    <label>
-        Off
-        <input type="checkbox">
-        <span class="lever"></span>
-        On
-    </label>
-</div>
 <div class="row">
     <form class="col s12">
-        <div class="row">
-            <div class="input-field col s6">
-                <input placeholder="Placeholder" id="first_name" type="text" class="validate">
-                <label for="first_name">First Name</label>
-            </div>
-            <div class="input-field col s6">
-                <input id="last_name" type="text" class="validate">
-                <label for="last_name">Last Name</label>
-            </div>
-        </div>
-        <div class="row">
         <div class="input-field col s12">
-            <label>Materialize Multiple Select</label>
             <select multiple>
-                <option value="" disabled selected>Choose your option</option>
-                <option value="1">Option 1</option>
-                <option value="2">Option 2</option>
-                <option value="3">Option 3</option>
+                <option value="" disabled selected>Choisir un thematique</option>
+                <option value="1">Sociale</option>
+                <option value="2">Sante</option>
+                <option value="3">Education</option>
             </select>
-
         </div>
+        <div class="row">
+            <div class="col s12">
+                <div class="row">
+                    <div class="input-field col s6">
+                        <i class="material-icons prefix">map</i>
+                        <input type="text" id="autocomplete-input" class="autocomplete">
+                        <label for="autocomplete-input">Departement</label>
+                    </div>
+                    <div class="input-field col s6">
+                        <input id="codep" type="number" class="validate">
+                        <label for="codep">Code Postal</label>
+                    </div>
+                </div>
+            </div>
         </div>
     </form>
 </div>
-
-<script>
-    $(document).ready(function() {
-        $('select').material_select();
-    });
-    $('select').material_select('destroy');
-</script>
