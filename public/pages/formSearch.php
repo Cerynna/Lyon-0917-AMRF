@@ -13,6 +13,7 @@
 </nav>
 </div> <!--end of row-->
 
+<!--multiple choice option-->
 <div class="row">
     <form class="col s12" action="?page=#">
         <div class="input-field col s12">
@@ -23,6 +24,7 @@
                 <option value="3">Education</option>
             </select>
         </div>
+        <!--auto complete form for departements-->
         <div class="row">
             <div class="col s12">
                 <div class="row">
@@ -35,7 +37,7 @@
                         <input id="codep" type="number" class="validate">
                         <label for="codep">Code Postal</label>
                     </div>
-                </div>
+                </div><!--end auto complete-->
                 <div class="row center-align">
                     <button class="btn waves-effect waves-light" type="submit" name="action">Recherche
                         <i class="material-icons right">search</i>
@@ -43,5 +45,5 @@
                 </div>
             </div>
         </div>
-    </form>
-</div>
+    </form><!--end of form-->
+</div><!--end of main div-->
