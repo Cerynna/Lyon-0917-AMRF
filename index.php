@@ -66,6 +66,9 @@
                     case 'contact':
                         $linkPage = "formContact.php";
                         break;
+                    case 'profil':
+                        $linkPage = "profil.php";
+                        break;
                     default:
                         $linkPage = "home.php";
                         break;
