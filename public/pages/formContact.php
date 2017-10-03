@@ -34,12 +34,12 @@
     <!--first name/ second name -->
     <div class="row">
         <div class="input-field col s12">
-            <input id="first_name" type="text" class="validate">
-            <label for="first_name">Nom</label>
+            <input id="firstName" type="text" class="validate">
+            <label for="firstName">Nom</label>
         </div>
         <div class="input-field col s12">
-            <input id="last_name" type="text" class="validate">
-            <label for="last_name">Prenom</label>
+            <input id="lastName" type="text" class="validate">
+            <label for="lastName">Prenom</label>
         </div>
     </div>
 
@@ -106,7 +106,6 @@
     <!--text area -->
     <div class="row">
         <div class="input-field col s12">
-            <i class="material-icons prefix">textsms</i>
             <textarea id="textarea1" class="materialize-textarea"></textarea>
             <label for="textarea1">Votre message</label>
         </div>
