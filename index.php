@@ -57,6 +57,7 @@
                         break;
                     case 'amrf':
                         $linkPage = "amrf.php";
+                        break;
                     case 'contact':
                         $linkPage = "formContact.php";
                         break;
