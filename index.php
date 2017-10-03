@@ -14,14 +14,14 @@
 <body>
 <header>
     <div id="header">
-        <div class="connect"><a class="waves-effect waves-light btn modal-trigger blue darken-3" href="#formConnect">Connection</a>
+        <div class="connect"><a class="waves-effect waves-light btn modal-trigger teal darken-3" href="#formConnect">Connection</a>
         </div>
         <h1>Le Wiki des Maires</h1>
     </div>
 
 </header>
 <div id="navbar">
-    <nav class="blue darken-3">
+    <nav class="teal darken-3">
         <div class="nav-wrapper container">
             <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
             <ul class="right hide-on-med-and-down">
@@ -72,7 +72,7 @@
         </div>
     </div>
 </section>
-<footer class="page-footer blue darken-3">
+<footer class="page-footer teal darken-3">
     <div class="container">
         <div class="row">
             <div class="col l6 s12">
