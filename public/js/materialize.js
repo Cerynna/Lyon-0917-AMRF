@@ -4690,7 +4690,7 @@ if (Vel) {
             $autocomplete = $oldAutocomplete;
           }
 
-          // Highlight partial match.
+          // Highlight partials match.
           var highlight = function (string, $el) {
             var img = $el.find('img');
             var matchStart = $el.text().toLowerCase().indexOf("" + string.toLowerCase() + ""),
