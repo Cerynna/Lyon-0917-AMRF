@@ -35,7 +35,7 @@
             <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
             <ul class="right hide-on-med-and-down">
                 <li><a href="#">Acceuil</a></li>
-                <li><a href="#">AMRF</a></li>
+                <li><a href="?page=amrf">AMRF</a></li>
                 <li><a href="?page=contact">Contact</a></li>
             </ul>
             <ul class="side-nav" id="mobile-demo">
@@ -62,6 +62,9 @@
                 switch ($page) {
                     case 'home':
                         $linkPage = "home.php";
+                        break;
+                    case 'amrf':
+                        $linkPage = "amrf.php";
                         break;
                     case 'contact':
                         $linkPage = "formContact.php";
