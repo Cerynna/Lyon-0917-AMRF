@@ -16,8 +16,7 @@
 <ul class="collapsible" data-collapsible="accordion">
     <li>
         <div class="collapsible-header"><i class="material-icons">arrow_drop_down</i>Recherche avancée</div>
-        <div class="collapsible-body">
-            <span>
+            <div class="collapsible-body">
                 <!--multiple choice option-->
             <div class="row">
                 <form class="col s12" action="?page=#">
@@ -43,7 +42,6 @@
                     </div><!--end auto complete-->
                 </form><!--end of form-->
             </div><!--end of main row-->
-        </span>
     </li>
 </ul>
     <div class="row center-align">
