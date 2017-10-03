@@ -1,5 +1,36 @@
+<?php
+    if(isset($_POST["submit"])){
+    // Checking For Blank Fields..
+        if($_POST["first_name"]==""||$_POST["last_name"]==""||$_POST["email"]==""||$_POST["commune"]==""||$_POST["textarea1"]==""){
+            echo "Fill All Fields..";
+        }else{
+    // Check if the "Sender's Email" input field is filled out
+            $email=$_POST['email'];
+    // Sanitize E-mail Address
+            $email =filter_var($email, FILTER_SANITIZE_EMAIL);
+    // Validate E-mail Address
+            $email= filter_var($email, FILTER_VALIDATE_EMAIL);
+            if (!$email){
+                echo "Invalid Sender's Email";
+            }
+            else{
+                $first_name= $_POST['first_name'];
+                $last_name= $_POST['last_name'];
+                $commune = $_POST['commune'];
+                $textarea1 = $_POST['textarea1'];
+                $headers = 'From:'. $email . "\r\n"; // Sender's Email
+    // Message lines should not exceed 70 characters (PHP rule), so wrap it
+                $message = wordwrap($textarea1, 70);
+    // Send Mail By PHP Mail Function
+                mail("severinelab@gmail.com", $first_name,$last_name,$textarea1, $headers);
+                echo "Your mail has been sent successfuly ! Thank you for your feedback";
+            }
+        }
+    }
+?>
+
 <h2 class="center-align">Contactez nous</h2>
-<form>
+<form action="#" id="form" method="post" name="form">
     <!--first name/ second name -->
     <div class="row">
         <div class="input-field col s12">
@@ -61,12 +92,12 @@
     </button>
 </form><!--end of contact form -->
 
-    <!-- Modal Structure -->
+    <!-- Modal Structure
     <div id="verif" class="modal">
         <div class="modal-content">
             <h4>Modal Header</h4>
             <p>A bunch of text</p>
         </div>
-    </div>
+    </div>-->
 
 
