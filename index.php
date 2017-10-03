@@ -45,8 +45,7 @@
                 <?php
                 if (isset($_GET['page'])) {
                     $page = $_GET['page'];
-                }
-                else {
+                } else {
                     $page = "home";
                 }
 
@@ -101,26 +100,42 @@
 </footer>
 <div id="formConnect" class="modal modal-fixed-footer">
     <div class="modal-content">
-        <h4>Connection</h4>
-        <p>Formulaire de connection</p>
+        <div class="container">
+            <h4>Connection</h4>
+            <div class="row">
+                <div class="input-field col s12">
+                    <input id="login" type="text" class="validate">
+                    <label for="login">Login</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
+                    <input id="mdp" type="password" class="validate">
+                    <label for="last_name">Mot de passe</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12 center-align">
+                    <button class="btn waves-effect waves-light btn modal-trigger" type="submit"
+                            name="action">Connection
+                    </button>
+                </div>
+            </div>
+        </div>
     </div>
-    <!--<div class="modal-footer">
-        <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Agree</a>
-    </div>-->
-</div>
 
-<!--Import jQuery before materialize.js-->
-<script src="https://code.jquery.com/jquery-3.2.1.min.js"
-        integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
-<script src="public/js/jquery.sticky.js"></script>
-<script type="text/javascript">
-    $(document).ready(function () {
-        // the "href" attribute of the modal trigger must specify the modal ID that wants to be triggered
-        $('.modal').modal();
-        $('.button-collapse').sideNav();
-        $("#navbar").sticky({topSpacing: 0, zIndex:1000});
-    });
-</script>
+    <!--Import jQuery before materialize.js-->
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"
+            integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+    <script src="public/js/jquery.sticky.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            // the "href" attribute of the modal trigger must specify the modal ID that wants to be triggered
+            $('.modal').modal();
+            $('.button-collapse').sideNav();
+            $("#navbar").sticky({topSpacing: 0, zIndex: 1000});
+        });
+    </script>
 </body>
 </html>

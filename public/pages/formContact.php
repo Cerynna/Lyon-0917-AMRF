@@ -27,7 +27,7 @@
             <label for="commune">Commune</label>
         </div>
         <div class="input-field col s6">
-            <input id="codep" type="number" class="validate">
+            <input id="codep" type="text" class="validate">
             <label for="codep">Code Postal</label>
         </div>
     </div>
