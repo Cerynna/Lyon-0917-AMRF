@@ -25,13 +25,13 @@
         <div class="nav-wrapper container">
             <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
             <ul class="right hide-on-med-and-down">
-                <li><a href="?page=home">Acceuil</a></li>
+                <li><a href="?page=home">Accueil</a></li>
                 <li><a href="#">AMRF</a></li>
                 <li><a href="?page=contact">Contact</a></li>
                 <li><a href="?page=search">Recherche</a></li>
             </ul>
             <ul class="side-nav" id="mobile-demo">
-                <li><a href="?page=home">Acceuil</a></li>
+                <li><a href="?page=home">Accueil</a></li>
                 <li><a href="#">AMRF</a></li>
                 <li><a href="#">Contact</a></li>
                 <li><a href="?page=search">Recherche</a></li>
@@ -61,6 +61,9 @@
                     case 'contact':
                         $linkPage = "formContact.php";
                         break;
+                    case 'pageMaires' :
+                        $linkPage = "pageMaires.php";
+                      break;
                     case 'search':
                         $linkPage = "formSearch.php";
                         break;
