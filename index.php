@@ -26,7 +26,7 @@
             <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
             <ul class="right hide-on-med-and-down">
                 <li><a href="?page=home">Accueil</a></li>
-                <li><a href="#">AMRF</a></li>
+                <li><a href="?page=amrf">AMRF</a></li>
                 <li><a href="?page=contact">Contact</a></li>
                 <li><a href="?page=search">Recherche</a></li>
             </ul>
@@ -55,9 +55,8 @@
                     case 'home':
                         $linkPage = "home.php";
                         break;
-                    case 'monEspace':
-                        $linkPage = "monEspace.php";
-                        break;
+                    case 'amrf':
+                        $linkPage = "amrf.php";
                     case 'contact':
                         $linkPage = "formContact.php";
                         break;
