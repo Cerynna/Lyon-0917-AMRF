@@ -92,12 +92,12 @@
     </button>
 </form><!--end of contact form -->
 
-    <!-- Modal Structure
+    <!-- Modal Structure-->
     <div id="verif" class="modal">
         <div class="modal-content">
             <h4>Modal Header</h4>
             <p>A bunch of text</p>
         </div>
-    </div>-->
+    </div>
 
 
