@@ -119,8 +119,7 @@
     <!-- Modal Structure-->
     <div id="verif" class="modal">
         <div class="modal-content">
-            <h4>Modal Header</h4>
-            <p>A bunch of text</p>
+            <h4 class="center">Votre message a été transmis!</h4>
         </div>
     </div>
 
