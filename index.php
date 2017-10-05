@@ -79,6 +79,9 @@
                     case 'espacePartenaires':
                         $linkPage = "espacePartenaires.php";
                         break;
+                    case 'formFichePartenaire':
+                        $linkPage = "formFichePartenaire.php";
+                        break;
                     case 'fichePartenaire':
                         $linkPage = "fichePartenaire.php";
                         break;
@@ -160,9 +163,6 @@
         $('.modal').modal();
         $('.button-collapse').sideNav();
         $("#navbar").sticky({topSpacing: 0, zIndex:1000});
-    });
-
-    $(document).ready(function() {
         $('select').material_select();
         //multiple select items
 
@@ -273,13 +273,23 @@
             },
             minLength: 1, // The minimum length of the input for the autocomplete to start. Default: 1.
 
-            }); // end of autocomplete function
-    }); //end of document.ready
+        }); // end of autocomplete function
+
+
+    });
+
 
     // mentions legales
-    $(document).ready(function(){
-        $('.collapsible').collapsible();
+
+    //************fiche partenaire****************************
+    // Input Presentation
+
+    $(document).ready(function() {
+        $('textarea#presentation').characterCounter();
     });
+
+
+
 
 </script>
 </body>
