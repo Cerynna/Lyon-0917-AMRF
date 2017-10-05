@@ -1,8 +1,12 @@
 <!doctype html>
 <html lang="fr">
-<?php include "dist/structures/head.php"; ?>
+<head>
+    <?php include "dist/structures/head.php"; ?>
+</head>
 <body>
-<?php include "dist/structures/header.php"; ?>
+<header>
+    <?php include "dist/structures/header.php"; ?>
+</header>
 <?php include "dist/structures/navbar.php"; ?>
 <section>
     <div class="container content z-depth-4">
@@ -13,7 +17,9 @@
         </div>
     </div>
 </section>
-<?php include "dist/structures/footer.php"; ?>
+<footer class="page-footer teal darken-3">
+    <?php include "dist/structures/footer.php"; ?>
+</footer>
 <?php include "dist/structures/connect.php"; ?>
 <?php include "dist/structures/script.php"; ?>
 </body>
