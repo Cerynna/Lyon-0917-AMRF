@@ -17,6 +17,7 @@
 @import 'partials/views/navbar';
 @import 'partials/views/header';
 @import 'partials/views/modalConnect';
+@import 'partials/views/footer';
 /**
 *************************** View *********************
  */
@@ -34,4 +35,5 @@ body {
   .article {
     padding:20px;
   }
+
 }
