@@ -1,9 +1,16 @@
     <div class="container">
         <div class="row">
             <div class="col l6 s12">
-                <h5 class="white-text">Footer Content</h5>
-                <p class="grey-text text-lighten-4">You can use rows and columns here to organize your footer
-                    content.</p>
+                <h5 class="white-text">Partnaires</h5>
+                <div class="row">
+                    <div class="col l6">
+                        <img class="responsive-img" src="dist/img/partnaires/casino.jpg">
+                        <img class="responsive-img" src="dist/img/partnaires/cnas.png">
+                        <img class="responsive-img" src="dist/img/partnaires/edf.jpg">
+                        <img class="responsive-img" src="dist/img/partnaires/educlever.png">
+                    </div>
+                </div>
+
             </div>
             <div class="col l4 offset-l2 s12">
                 <h5 class="white-text">Links</h5>
@@ -11,8 +18,8 @@
                     <li><a class="grey-text text-lighten-3" href="?page=confidentialite">Déclaration de
                             confidentialité</a></li>
                     <li><a class="grey-text text-lighten-3" href="?page=legales">Conditions d'utilisation</a></li>
-                    <li><a class="grey-text text-lighten-3" href="#!">Link 3</a></li>
-                    <li><a class="grey-text text-lighten-3" href="#!">Link 4</a></li>
+                    <li><a class="grey-text text-lighten-3" href="http://www.amrf.fr" target="_blank">www.amrf.fr</a></li>
+                    <li><a class="grey-text text-lighten-3" href="#!">Questionnaire de satisfaction</a></li>
                 </ul>
             </div>
         </div>
