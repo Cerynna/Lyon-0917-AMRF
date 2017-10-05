@@ -76,6 +76,9 @@
                     case 'profil':
                         $linkPage = "profil.php";
                         break;
+                    case 'projet':
+                        $linkPage = "ficheprojet.php";
+                        break;
                     default:
                         $linkPage = "home.php";
                         break;
@@ -142,19 +145,6 @@
     </div>
 
 
-    <!--Import jQuery before materialize.js-->
-    <script src="https://code.jquery.com/jquery-3.2.1.min.js"
-            integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
-    <script src="public/js/jquery.sticky.js"></script>
-    <script type="text/javascript">
-        $(document).ready(function () {
-            // the "href" attribute of the modal trigger must specify the modal ID that wants to be triggered
-            $('.modal').modal();
-            $('.button-collapse').sideNav();
-            $("#navbar").sticky({topSpacing: 0, zIndex: 1000});
-        });
-    </script>
   <!--Import jQuery before materialize.js-->
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"
         integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
