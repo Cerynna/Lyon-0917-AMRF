@@ -6,7 +6,7 @@
     <!--Import materialize.css-->
     <link type="text/css" rel="stylesheet" href="public/css/materialize.min.css" media="screen,projection"/>
     <link type="text/css" rel="stylesheet" href="public/css/style.css" media="screen,projection"/>
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize-autocomplete/1.0.7/jquery.materialize-autocomplete.js">
     <!--Let browser know website is optimized for mobile-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 </head>
@@ -78,6 +78,9 @@
                         break;
                     case 'profil-partenaire':
                         $linkPage = "profil-partenaire.php";
+                        break;
+                    case 'partenairesListe':
+                        $linkPage = "partenairesListe.php";
                         break;
                     default:
                         $linkPage = "home.php";
