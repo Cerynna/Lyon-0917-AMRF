@@ -9,6 +9,10 @@ $(document).ready(function () {
     $("#navbar").sticky({topSpacing: 0, zIndex: 1000});
     $('select').material_select();
 
+
+        $('textarea#presentation').characterCounter();
+
+
     $('input.autocomplete').autocomplete({
         //auto complete for departements
         data: {
