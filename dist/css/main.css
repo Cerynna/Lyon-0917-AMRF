@@ -11,6 +11,7 @@
  * Inspired by Normalize.css: http://necolas.github.com/normalize.css/
  */
 /* HTML5 display definitions */
+@import url("https://fonts.googleapis.com/css?family=Cabin+Condensed|Comfortaa|Francois+One|Josefin+Sans|Play|Poiret+One|Source+Sans+Pro");
 section, nav, article, aside, hgroup,
 header, footer, figure, figcaption, details {
   display: block; }
@@ -256,7 +257,8 @@ div .partlogo {
  */
 body {
   font-size: 1.0em;
-  background: #e0f2f1; }
+  background: #e0f2f1;
+  font-family: 'Source Sans Pro', sans-serif; }
   body .content {
     margin-top: 50px;
     margin-bottom: 50px;
@@ -266,3 +268,13 @@ body {
     z-index: 1; }
   body .article {
     padding: 20px; }
+  body h1 {
+    font-size: 3em; }
+  body h2 {
+    font-size: 2.8em; }
+  body h3 {
+    font-size: 2.6em; }
+  body h4 {
+    font-size: 2.4em; }
+  body h5 {
+    font-size: 2.2em; }

@@ -9,6 +9,7 @@
                     <li><a class="grey-text text-lighten-3" href="http://www.amrf.fr" target="_blank">www.amrf.fr</a></li>
                     <li><a class="grey-text text-lighten-3" href="#!">Questionnaire de satisfaction</a></li>
                 </ul>
+
             </div>
             <div class="col l4 offset-l2 s12">
                 <h5 class="white-text">Links</h5>
