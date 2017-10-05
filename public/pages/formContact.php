@@ -34,70 +34,93 @@
     <!--first name/ second name -->
     <div class="row">
         <div class="input-field col s12">
-            <input id="first_name" type="text" class="validate">
-            <label for="first_name">Nom</label>
+            <input id="firstName" type="text" class="validate">
+            <label for="firstName">Nom</label>
         </div>
         <div class="input-field col s12">
-            <input id="last_name" type="text" class="validate">
-            <label for="last_name">Prenom</label>
+            <input id="lastName" type="text" class="validate">
+            <label for="lastName">Prenom</label>
         </div>
     </div>
 
     <!--email -->
     <div class="row">
-        <div class="input-field col s12">
+        <div class="input-field col s6">
             <input id="email" type="email" class="validate">
             <label for="email">Email</label>
         </div>
-    </div>
-
-    <!--commune/ CP -->
-    <div class="row">
         <div class="input-field col s6">
-            <input id="commune" type="text" class="validate">
-            <label for="commune">Commune</label>
-        </div>
-        <div class="input-field col s6">
-            <input id="codep" type="text" class="validate">
-            <label for="codep">Code Postal</label>
+            <input id="phone" type="number" class="validate">
+            <label for="phone">Téléphone</label>
         </div>
     </div>
 
-    <!--Choice of fonction -->
+    <!--Choice of fonction/ Objet -->
     <div class="row">
-        <h2 class="center-align">Fonction</h2>
-        <form action="#">
-            <p class="center-align">
-                <input name="groupe1" type="radio" id="maire"/>
-                <label for="maire">Maire</label>
-                <input name="groupe1" type="radio" id="partnaire"/>
-                <label for="partnaire">Partenaire</label>
-                <input name="groupe1" type="radio" id="autre"/>
-                <label for="autre">Autre</label>
-            </p>
-        </form>
-    </div>
+        <!--<div class="col s6">
+            <h4 class="center-align">Je suis...</h4>
+            <form action="#">
+                <p class="center-align">
+                    <input name="groupe1" type="radio" id="maire"/>
+                    <label for="maire">Elu</label>
+                    <input name="groupe1" type="radio" id="partnaire"/>
+                    <label for="partnaire">Partenaire</label>
+                    <input name="groupe1" type="radio" id="autre"/>
+                    <label for="autre">Autre</label>
+                </p>
+            </form>
+        </div>
+        <div class="col s6">
+            <h4 class="center-align">Objet</h4>
+            <form action="#">
+                <p class="center-align">
+                    <input name="groupe1" type="radio" id="inscription"/>
+                    <label for="inscription">Inscription</label>
+                    <input name="groupe1" type="radio" id="fiche"/>
+                    <label for="fiche">Fiche</label>
+                    <input name="groupe1" type="radio" id="renseignement"/>
+                    <label for="renseignement">Demande de Renseignements</label>
+                </p>
+            </form>
+        </div> -->
+        <div class="col s6">
+            <h4 class="center-align">Je suis...</h4>
+            <select>
+                <option value="" disabled selected>Choose your option</option>
+                <option value="1">Maire</option>
+                <option value="2">Partenaire</option>
+                <option value="3">Autre</option>
+            </select>
+        </div>
+        <div class="col s6">
+             <h4 class="center-align">Objet</h4>
+                 <select>
+                     <option value="" disabled selected>Choose your option</option>
+                     <option value="1">Inscription</option>
+                     <option value="2">Fiche Projet</option>
+                     <option value="3">Demande de Renseignement</option>
+                 </select>
+         </div>
+    </div> <!--end class row-->
 
     <!--text area -->
     <div class="row">
         <div class="input-field col s12">
-            <i class="material-icons prefix">textsms</i>
             <textarea id="textarea1" class="materialize-textarea"></textarea>
             <label for="textarea1">Votre message</label>
         </div>
     </div>
     <!--submit button -->
-    <button data-target="verif" class="btn waves-effect waves-light btn modal-trigger" type="submit" name="action">Submit
+    <button data-target="verif" class="btn waves-effect waves-light btn modal-trigger" type="submit" name="action">Envoyer
         <i class="material-icons right">send</i>
     </button>
 </form><!--end of contact form -->
 
-    <!-- Modal Structure
+    <!-- Modal Structure-->
     <div id="verif" class="modal">
         <div class="modal-content">
-            <h4>Modal Header</h4>
-            <p>A bunch of text</p>
+            <h4 class="center">Votre message a été transmis!</h4>
         </div>
-    </div>-->
+    </div>
 
 
