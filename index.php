@@ -1,49 +1,18 @@
 <!doctype html>
 <html lang="fr">
 <head>
-    <!--Import Google Icon Font-->
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <!--Import materialize.css-->
-    <link type="text/css" rel="stylesheet" href="public/css/materialize.min.css" media="screen,projection"/>
-    <link type="text/css" rel="stylesheet" href="public/css/style.css" media="screen,projection"/>
-
-    <!--Let browser know website is optimized for mobile-->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <?php include "dist/structures/head.php"; ?>
 </head>
-
 <body>
 <header>
-    <div id="header">
-        <div class="connect"><a class="waves-effect waves-light btn modal-trigger teal darken-3" href="#formConnect">Connection</a>
-        </div>
-        <h1>Le Wiki des Maires</h1>
-    </div>
-
+    <?php include "dist/structures/header.php"; ?>
 </header>
-<div id="navbar">
-    <nav class="teal darken-3">
-        <div class="nav-wrapper container">
-            <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
-            <ul class="right hide-on-med-and-down">
-                <li><a href="?page=home">Accueil</a></li>
-                <li><a href="?page=amrf">AMRF</a></li>
-                <li><a href="?page=contact">Contact</a></li>
-                <li><a href="?page=search">Recherche</a></li>
-            </ul>
-            <ul class="side-nav" id="mobile-demo">
-                <li><a href="?page=home">Accueil</a></li>
-                <li><a href="#">AMRF</a></li>
-                <li><a href="#">Contact</a></li>
-                <li><a href="?page=search">Recherche</a></li>
-            </ul>
-        </div>
-    </nav>
-
-</div>
+<?php include "dist/structures/navbar.php"; ?>
 <section>
     <div class="container content z-depth-4">
         <div class="row">
             <div class="col s12">
+<<<<<<< HEAD
                 <?php
                 if (isset($_GET['page'])) {
                     $page = $_GET['page'];
@@ -88,36 +57,17 @@
 
 
                 ?>
+=======
+                <?php include "dist/structures/rooter.php"; ?>
+>>>>>>> beaabf7f01ed249ae99d5e84a927570f24f3f2af
             </div>
         </div>
     </div>
 </section>
 <footer class="page-footer teal darken-3">
-    <div class="container">
-        <div class="row">
-            <div class="col l6 s12">
-                <h5 class="white-text">Footer Content</h5>
-                <p class="grey-text text-lighten-4">You can use rows and columns here to organize your footer
-                    content.</p>
-            </div>
-            <div class="col l4 offset-l2 s12">
-                <h5 class="white-text">Links</h5>
-                <ul>
-                    <li><a class="grey-text text-lighten-3" href="?page=confidentialite">Déclaration de confidentialité</a></li>
-                    <li><a class="grey-text text-lighten-3" href="?page=legales">Conditions d'utilisation</a></li>
-                    <li><a class="grey-text text-lighten-3" href="#!">Link 3</a></li>
-                    <li><a class="grey-text text-lighten-3" href="#!">Link 4</a></li>
-                </ul>
-            </div>
-        </div>
-    </div>
-    <div class="footer-copyright">
-        <div class="container">
-            © 2014 Copyright Text
-            <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
-        </div>
-    </div>
+    <?php include "dist/structures/footer.php"; ?>
 </footer>
+<<<<<<< HEAD
 <div id="formConnect" class="modal modal-fixed-footer">
     <div class="modal-content">
         <div class="container">
@@ -280,5 +230,9 @@
     });
 
 </script>
+=======
+<?php include "dist/structures/connect.php"; ?>
+<?php include "dist/structures/script.php"; ?>
+>>>>>>> beaabf7f01ed249ae99d5e84a927570f24f3f2af
 </body>
 </html>

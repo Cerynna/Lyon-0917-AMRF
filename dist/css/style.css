@@ -14,7 +14,7 @@ h1 {
 }
 #header {
     height: 400px;
-    background: url("http://lorempixel.com/1920/400/nature/");
+    /**background: url("http://lorempixel.com/1920/400/nature/");*/
     color: #FFFFFF;
     font-size: 3em;
     line-height: 1.6em;
@@ -40,7 +40,19 @@ h1 {
 .article {
     padding:20px;
 }
-
+.containerConnect .card {
+    width:100%;
+    margin:20px;
+    padding:20px;
+}
+.formConnect {
+    width: 100%;
+}
+.containerConnect{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
 
 /* label color */
 .input-field label {
