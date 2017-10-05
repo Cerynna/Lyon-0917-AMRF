@@ -11,55 +11,8 @@
 <section>
     <div class="container content z-depth-4">
         <div class="row">
-            <div class="col s12">
-<<<<<<< HEAD
-                <?php
-                if (isset($_GET['page'])) {
-                    $page = $_GET['page'];
-                } else {
-                    $page = "home";
-                }
-
-                switch ($page) {
-                    case 'home':
-                        $linkPage = "home.php";
-                        break;
-                    case 'amrf':
-                        $linkPage = "amrf.php";
-                        break;
-                    case 'contact':
-                        $linkPage = "formContact.php";
-                        break;
-                    case 'pageMaires' :
-                        $linkPage = "pageMaires.php";
-                      break;
-                    case 'search':
-                        $linkPage = "formSearch.php";
-                        break;
-                    case 'confidentialite':
-                        $linkPage = "confidentialite.php";
-                        break;
-                    case 'legales':
-                        $linkPage = "legales.php";
-                        break;
-                    case 'profil':
-                        $linkPage = "profil.php";
-                        break;
-                    case 'projet':
-                        $linkPage = "ficheprojet.php";
-                        break;
-                    default:
-                        $linkPage = "home.php";
-                        break;
-                }
-
-                include("public/pages/$linkPage");
-
-
-                ?>
-=======
+            <div class="col s12">$
                 <?php include "dist/structures/rooter.php"; ?>
->>>>>>> beaabf7f01ed249ae99d5e84a927570f24f3f2af
             </div>
         </div>
     </div>
@@ -67,7 +20,6 @@
 <footer class="page-footer teal darken-3">
     <?php include "dist/structures/footer.php"; ?>
 </footer>
-<<<<<<< HEAD
 <div id="formConnect" class="modal modal-fixed-footer">
     <div class="modal-content">
         <div class="container">
@@ -230,9 +182,7 @@
     });
 
 </script>
-=======
 <?php include "dist/structures/connect.php"; ?>
 <?php include "dist/structures/script.php"; ?>
->>>>>>> beaabf7f01ed249ae99d5e84a927570f24f3f2af
 </body>
 </html>
