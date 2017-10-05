@@ -1,0 +1,37 @@
+/**
+*************************** RESET *********************
+ */
+@import 'partials/reset';
+/**
+*************************** Variable *********************
+ */
+@import 'partials/variables';
+/**
+/**
+*************************** Fonction *********************
+ */
+@import 'partials/mixins';
+/**
+*************************** Components *********************
+ */
+@import 'partials/views/navbar';
+@import 'partials/views/header';
+@import 'partials/views/modalConnect';
+/**
+*************************** View *********************
+ */
+body {
+  font-size: 1.0em;
+  background: #e0f2f1;
+  .content {
+    margin-top: 50px;
+    margin-bottom: 50px;
+    background-color: #fff;
+    padding:30px;
+    min-height:100vh;
+    z-index: 1;
+  }
+  .article {
+    padding:20px;
+  }
+}
