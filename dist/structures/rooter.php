@@ -30,6 +30,9 @@ switch ($page) {
     case 'profil':
         $linkPage = "profil.php";
         break;
+    case 'exemple':
+        $linkPage = "exemple.php";
+        break;
     default:
         $linkPage = "home.php";
         break;

@@ -4,10 +4,10 @@
                 <h5 class="white-text">Partnaires</h5>
                 <div class="row">
                     <div class="col l6">
-                        <img class="responsive-img" src="../img/partnaires/casino.jpg">
-                        <img class="responsive-img" src="../img/partnaires/cnas.png">
-                        <img class="responsive-img" src="../img/partnaires/edf.jpg">
-                        <img class="responsive-img" src="../img/partnaires/educlever.png">
+                        <img class="responsive-img" src="dist/img/partnaires/casino.jpg">
+                        <img class="responsive-img" src="dist/img/partnaires/cnas.png">
+                        <img class="responsive-img" src="dist/img/partnaires/edf.jpg">
+                        <img class="responsive-img" src="dist/img/partnaires/educlever.png">
                     </div>
                 </div>
 
