@@ -249,6 +249,9 @@ textarea {
   flex-direction: row;
   justify-content: space-around; }
 
+div .partlogo {
+  height: 50px; }
+
 /**
 *************************** View *********************
  */
