@@ -1,0 +1,19 @@
+#header {
+  height: 400px;
+  background: url("http://lorempixel.com/1920/400/nature/");
+  text-align: center;
+  .connect {
+    top: 0;
+    right: 0;
+    position: relative;
+    text-align: right;
+    padding-right: 1%;
+    padding-top: 1%;
+  }
+  h1 {
+  padding-top: 20px;
+  font-size: 3em;
+    color: $primaryColor;
+    text-shadow: 1px 0 0 #FFFFFF, 0 1px 0 #FFFFFF, 0 -1px 0 #FFFFFF, -1px 0 0 #FFFFFF, 1px 1px 0 #FFFFFF, 1px -1px 0 #FFFFFF, -1px 1px 0 #FFFFFF, -1px -1px 0 #FFFFFF;
+  }
+}
