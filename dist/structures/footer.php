@@ -24,7 +24,7 @@
         </div>
         <div class="col l12 s12">
             <h5 class="white-text center">Partenaires</h5>
-            <div >
+            <div class="center-align">
                     <img class="responsive-img partlogo" src="dist/img/partnaires/casino.jpg" >
                     <img class="responsive-img partlogo" src="dist/img/partnaires/cnas.png" >
                     <img class="responsive-img partlogo" src="dist/img/partnaires/edf.jpg" >
