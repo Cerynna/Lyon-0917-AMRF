@@ -1,8 +1,3 @@
-<?php
-
-?>
-
-
 <h2 class="center-align">Mon Espace</h2>
 
 <div class="row">
@@ -45,7 +40,7 @@
                 <img src="https://s20.postimg.org/5psnm98yl/button1.jpg">
             </div>
             <div class="card-content">
-                <p>Gérez votre profil : ajoutez, consultez, modifiez ou supprimez les informations de                         votre compte</p>
+                <p>Gérez votre profil : ajoutez, consultez, modifiez ou supprimez les informations de votre compte</p>
             </div>
             <div class="card-action">
                 <a href="#">ACCEDER A MON PROFIL</a>

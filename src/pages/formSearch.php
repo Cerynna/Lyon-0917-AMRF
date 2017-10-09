@@ -36,7 +36,7 @@
                             <label for="autocomplete-input">Departement</label>
                         </div>
                         <div class="input-field col s6">
-                            <input id="codep" type="number" class="validate">
+                            <input id="codep" type="number"  step="10" class="validate">
                             <label for="codep">Code Postal</label>
                         </div>
                     </div><!--end auto complete-->
