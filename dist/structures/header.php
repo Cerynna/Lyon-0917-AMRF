@@ -5,4 +5,3 @@
         </div>
         <h1>Le Wiki des Maires</h1>
     </div>
-</header>
