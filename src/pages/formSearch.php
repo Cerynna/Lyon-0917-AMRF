@@ -23,10 +23,21 @@
                     <div class="input-field col s12">
                         <select multiple>
                             <option value="" disabled selected>Choisir un thematique</option>
-                            <option value="1">Sociale</option>
-                            <option value="2">Sante</option>
-                            <option value="3">Education</option>
-                        </select>
+							<option value="1">AMENAGEMENT DU TERRITOIRE</option>
+							<option value="2">CULTURE</option>
+							<option value="3">DEMOCRATIE LOCALE</option>
+							<option value="4">EDUCATION</option>
+							<option value="5">ECONOMIE</option>
+							<option value="6">ENVIRONNEMENT</option>
+							<option value="7">EUA ET ASSAINISSEMENT</option>
+							<option value="8">MOBILITE</option>
+							<option value="9">NUMERIQUE</option>
+							<option value="10">RELATIONS INTERNATIONALES</option>
+							<option value="11">SANTE</option>
+							<option value="12">SOCIAL</option>
+							<option value="13">SERVICES DE PROXIMITE</option>
+							<option value="14">TOURISME</option>
+						</select>
                     </div>
                     <!--auto complete form for departements-->
                     <div class="row">
