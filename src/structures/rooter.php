@@ -9,24 +9,31 @@ switch ($page) {
 
     case 'amrf':
         $linkPage = "amrf.php";
+        $titlePage = "A Propos de l'AMRF";
         break;
     case 'confidentialite':
         $linkPage = "confidentialite.php";
+        $titlePage = "Confidentialité";
         break;
     case 'espMaires':
         $linkPage = "espaceMaires.php";
+        $titlePage = "Espace Maires";
         break;
     case 'espPartenaires':
         $linkPage = "espacePartenaires.php";
+        $titlePage = "Espace Partenaires";
         break;
     case 'fichePartenaires':
         $linkPage = "fichePartenaire.php";
+        $titlePage = "Fiches Partenaires";
         break;
-    case 'FicheProjet':
+    case 'ficheProjet':
         $linkPage = "ficheProjet.php";
+        $titlePage = "Fiches Projets";
         break;
     case 'contact':
         $linkPage = "formContact.php";
+        $titlePage = "contact";
         break;
     case 'formFichePart':
         $linkPage = "formFichePartenaire.php";
@@ -39,9 +46,6 @@ switch ($page) {
         break;
     case 'legales':
         $linkPage = "legales.php";
-        break;
-    case 'pageMaires' :
-        $linkPage = "pageMaires.php";
         break;
     case 'listePartenaire' :
         $linkPage = "listePartenaire.php";
@@ -59,5 +63,5 @@ switch ($page) {
         $linkPage = "home.php";
         break;
 }
-include("dist/pages/$linkPage");
+
 ?>

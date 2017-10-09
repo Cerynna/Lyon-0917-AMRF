@@ -1,0 +1,17 @@
+{
+    "name": "hysterias/wiki_maires",
+    "description": "Wiki des Maires Ruraux de france",
+    "type": "project",
+    "authors": [
+        {
+            "name": "hysteriaskiwo",
+            "email": "cerynna@gmail.com"
+        }
+    ],
+    "require": {
+        "twig/twig": "^2.4"
+    },
+    "autoload": {
+        "psr-4": {"hysterias\\": "src/"}
+    }
+}
