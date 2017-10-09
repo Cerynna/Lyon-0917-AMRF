@@ -221,7 +221,7 @@ textarea {
 
 #header {
   height: 400px;
-  background: url("http://lorempixel.com/1920/400/nature/");
+  background: url("/dist/img/header.jpg");
   text-align: center; }
   #header .connect {
     top: 0;
