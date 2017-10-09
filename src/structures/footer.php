@@ -25,27 +25,35 @@
         <div class="col l12 s12">
             <h5 class="white-text center">Partenaires</h5>
             <div class="center-align">
-                    <img class="responsive-img partlogo" src="dist/img/partnaires/casino.png" >
-                    <img class="responsive-img partlogo" src="dist/img/partnaires/cnas.png" >
-                    <img class="responsive-img partlogo" src="dist/img/partnaires/edf.png" >
-                    <img class="responsive-img partlogo" src="dist/img/partnaires/educlever.png" >
+				<img class="responsive-img partlogo" src="dist/img/partnaires/casino.png">
+				<img class="responsive-img partlogo" src="dist/img/partnaires/cnas.png" >
+				<img class="responsive-img partlogo" src="dist/img/partnaires/edf.png" >
+				<img class="responsive-img partlogo" src="dist/img/partnaires/educlever.png">
 
-                    <img class="responsive-img partlogo" src="dist/img/partnaires/groupama.png" >
-                    <img class="responsive-img partlogo" src="dist/img/partnaires/groupe_cdd.png" >
-                    <img class="responsive-img partlogo" src="dist/img/partnaires/la_poste.png" >
-                    <img class="responsive-img partlogo" src="dist/img/partnaires/localnova.gif" >
+				<img class="responsive-img partlogo" src="dist/img/partnaires/groupama.png">
+				<img class="responsive-img partlogo" src="dist/img/partnaires/groupe_cdd.png">
+				<img class="responsive-img partlogo" src="dist/img/partnaires/la_poste.png">
+				<img class="responsive-img partlogo" src="dist/img/partnaires/localnova.gif">
 
-                    <img class="responsive-img partlogo" src="dist/img/partnaires/maif.png" >
-                    <img class="responsive-img partlogo" src="dist/img/partnaires/mnt.png" >
-                    <img class="responsive-img partlogo" src="dist/img/partnaires/orange.png" >
-                    <img class="responsive-img partlogo" src="dist/img/partnaires/primagaz.png" >
+				<img class="responsive-img partlogo" src="dist/img/partnaires/maif.png" >
+				<img class="responsive-img partlogo" src="dist/img/partnaires/mnt.png" >
+				<img class="responsive-img partlogo" src="dist/img/partnaires/orange.png">
+				<img class="responsive-img partlogo" src="dist/img/partnaires/primagaz.png">
 
-                    <img class="responsive-img partlogo" src="dist/img/partnaires/relais.png" >
-                    <img class="responsive-img partlogo" src="dist/img/partnaires/smacl.png" >
-                    <img class="responsive-img partlogo" src="dist/img/partnaires/tdf.png" >
-                    <img class="responsive-img partlogo" src="dist/img/partnaires/unccas.png" >
-                    <img class="responsive-img partlogo" src="dist/img/partnaires/unge.png" >
-            </div>
+				<img class="responsive-img partlogo" src="dist/img/partnaires/relais.png">
+				<img class="responsive-img partlogo" src="dist/img/partnaires/smacl.png">
+				<img class="responsive-img partlogo" src="dist/img/partnaires/tdf.png">
+				<img class="responsive-img partlogo" src="dist/img/partnaires/unccas.png">
+				<img class="responsive-img partlogo" src="dist/img/partnaires/unge.png">
+				<img class="responsive-img partlogo" src="dist/img/partnaires/heineken.png">
+				<img class="responsive-img partlogo" src="dist/img/partnaires/grdf.jpg">
+				<img class="responsive-img partlogo" src="dist/img/partnaires/fdj.png">
+				<img class="responsive-img partlogo" src="dist/img/partnaires/cardiologie.jpg">
+				<img class="responsive-img partlogo" src="dist/img/partnaires/enedis.png">
+				<img class="responsive-img partlogo" src="dist/img/partnaires/edf.png">
+				<img class="responsive-img partlogo" src="dist/img/partnaires/ciwik.png">
+				<img class="responsive-img partlogo" src="dist/img/partnaires/afl.jpg">
+			</div>
         </div>
     </div>
     <div class="footer-copyright">
