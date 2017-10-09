@@ -54,6 +54,9 @@ switch ($page) {
 	case 'profilPartenaire':
 		$linkPage = "profilPartenaire.php";
 		break;
+	case 'planDuSite':
+		$linkPage = "planDuSite.php";
+		break;
 	case 'exemple':
 		$linkPage = "exemple.php";
 		break;

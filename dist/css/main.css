@@ -248,6 +248,10 @@ textarea {
   flex-direction: row;
   justify-content: space-around; }
 
+.planDeSite {
+  font-size: 1.8em;
+  color: #00695c; }
+
 div .partlogo {
   height: 50px; }
 
