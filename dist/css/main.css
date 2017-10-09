@@ -221,7 +221,6 @@ textarea {
 
 #header {
   height: 400px;
-  background: url("/dist/img/header.jpg");
   text-align: center; }
   #header .connect {
     top: 0;
@@ -257,7 +256,11 @@ div .partlogo {
  */
 body {
   font-size: 1.0em;
-  background: #e0f2f1;
+  background: url("../img/header.jpg") no-repeat fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
   font-family: 'Source Sans Pro', sans-serif; }
   body .content {
     margin-top: 50px;
@@ -266,6 +269,9 @@ body {
     padding: 30px;
     min-height: 100vh;
     z-index: 1; }
+  body .body {
+    background-color: rgba(224, 242, 241, 0.6);
+    padding-top: 10px; }
   body .article {
     padding: 20px; }
   body h1 {

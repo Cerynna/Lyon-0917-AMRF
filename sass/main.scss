@@ -22,9 +22,14 @@
 *************************** View *********************
  */
 @import url('https://fonts.googleapis.com/css?family=Cabin+Condensed|Comfortaa|Francois+One|Josefin+Sans|Play|Poiret+One|Source+Sans+Pro');
+
 body {
   font-size: 1.0em;
-  background: #e0f2f1;
+  background: url('../img/header.jpg') no-repeat fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
   font-family: 'Source Sans Pro', sans-serif;
   .content {
     margin-top: 50px;
@@ -33,6 +38,10 @@ body {
     padding: 30px;
     min-height: 100vh;
     z-index: 1;
+  }
+  .body {
+    background-color: rgba(224,242,241,0.6);
+    padding-top: 10px;
   }
   .article {
     padding: 20px;
