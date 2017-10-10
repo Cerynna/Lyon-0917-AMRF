@@ -2,15 +2,23 @@
 <div class="row">
     <div class="col s12 ">
         <form action="">
-            <div class="input-field col s12">
-                <input id="commune" type="text" class="validate">
-                <label for="commune">Commune</label>
-            </div>
-
-            <div class="input-field col s12">
-                <input id="address" type="text" class="validate">
-                <label for="address">Adresse de la Mairie</label>
-            </div>
+			<div class="input-field col s6">
+				<input id="lastName" type="text" class="validate">
+				<label for="lastName">Nom</label>
+			</div>
+			<div class="input-field col s6">
+				<input id="firstName" type="text" class="validate">
+				<label for="firstName">Prénom</label>
+			</div>
+			<div class="input-field col s12">
+				<input id="address" type="text" class="validate">
+				<label for="address">Adresse de la Mairie</label>
+			</div>
+			<div class="input-field col s6">
+				<i class="material-icons prefix">map</i>
+				<input type="text" id="autocomplete-input" class="autocomplete">
+				<label for="autocomplete-input">Departement</label>
+			</div>
             <div class="input-field col s6">
                 <input id="codep" type="number" class="validate">
                 <label for="codep">Code Postal</label>
@@ -19,11 +27,10 @@
                 <input disabled value="NOT EDITABLE" id="insee" type="number" class="validate">
                 <label for="insee">Numéro INSEE</label>
             </div>
-            <div class="input-field col s12">
-                <i class="material-icons prefix">account_circle</i>
-                <input id="last_name" type="text" class="validate">
-                <label for="last_name">Nom du Représentant</label>
-            </div>
+			<div class="input-field col s6">
+				<input id="habitants" type="number" class="validate">
+				<label for="habitants">Nombre d'habitants</label>
+			</div>
             <div class="input-field col s6">
                 <i class="material-icons prefix">phone</i>
                 <input id="tel" type="number" class="validate">
