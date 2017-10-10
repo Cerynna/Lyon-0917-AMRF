@@ -58,9 +58,13 @@
             </div>
 
             <h3>Secteur d'activité *</h3>
-            <div class="input-field col s12">
+            <div class="col s12">
 
-                    <input name="group1" type="radio" id="institution"/>
+                    <input type="radio" name="group1" id="test">
+                <label for="test">test</label>
+
+
+                    <input name="group1" type="radio" id="institution">
                     <label for="institution">Institution</label>
 
 
