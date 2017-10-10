@@ -1,0 +1,17 @@
+{
+    "name": "simont/lyon-0917-amrf",
+    "description": "my first wiki with composer",
+    "type": "project",
+    "authors": [
+        {
+            "name": "syneot",
+            "email": "syneot@gmail.com"
+        }
+    ],
+    "require": {
+        "twig/twig": "^2.4"
+    },
+    "autoload": {
+        "psr-4": {"simont\\": "src/"}
+    }
+}
