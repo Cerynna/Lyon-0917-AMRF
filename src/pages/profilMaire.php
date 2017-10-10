@@ -1,4 +1,4 @@
-<h2>Mon profil</h2>
+<h2 class="center-align">Mon profil</h2>
 <div class="row">
     <div class="col s12 ">
         <form action="">
@@ -42,7 +42,10 @@
                 <input id="email" type="email" class="validate">
                 <label for="email">Email</label>
             </div>
-
+			<div class="input-field col s6">
+				<input id="twitter" type="text" class="validate">
+				<label for="twitter">Compte Twitter</label>
+			</div>
         </form>
     </div>
     <div class="row">
