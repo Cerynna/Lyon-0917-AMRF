@@ -13,10 +13,20 @@
   }
 }
 
-.bck-default{
+.bck-default {
   padding: 10px;
   background: #80CBC4;
-  div>a{
+  div > a {
     color: rgb(61, 98, 91) !important;
+  }
+}
+
+.cardGest{
+  padding: 10px;
+  p{
+    height: 100px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: normal;
   }
 }

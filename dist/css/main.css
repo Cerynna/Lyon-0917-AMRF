@@ -273,6 +273,14 @@ div .partlogo {
   .bck-default div > a {
     color: #3d625b !important; }
 
+.cardGest {
+  padding: 10px; }
+  .cardGest p {
+    height: 100px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: normal; }
+
 /**
 *************************** View *********************
  */
