@@ -19,6 +19,8 @@
 @import 'partials/views/modalConnect';
 @import 'partials/views/planDeSite';
 @import 'partials/views/footer';
+@import 'partials/components/cards';
+
 /**
 *************************** View *********************
  */
@@ -67,17 +69,4 @@ body {
   h5 {
     font-size: 2.2em;
   }
-  .card .card-action a{
-    color: red;
-  }
-  .bck-maire {
-    background: #90caf9;
-  }
-  .bck-part {
-    background: #ef9a9a;
-  }
-  .bck-default {
-    background: #80cbc4;
-  }
-
 }
