@@ -24,6 +24,10 @@
  */
 @import url('https://fonts.googleapis.com/css?family=Cabin+Condensed|Comfortaa|Francois+One|Josefin+Sans|Play|Poiret+One|Source+Sans+Pro');
 
+body::-webkit-scrollbar {
+  display: none;
+}
+
 body {
   font-size: 1.0em;
   background: url('../img/header.jpg') no-repeat fixed;
@@ -41,7 +45,7 @@ body {
     z-index: 1;
   }
   .body {
-    background-color: rgba(224,242,241,0.6);
+    background-color: rgba(224, 242, 241, 0.6);
     padding-top: 10px;
   }
   .article {
@@ -63,4 +67,17 @@ body {
   h5 {
     font-size: 2.2em;
   }
+  .card .card-action a{
+    color: red;
+  }
+  .bck-maire {
+    background: #90caf9;
+  }
+  .bck-part {
+    background: #ef9a9a;
+  }
+  .bck-default {
+    background: #80cbc4;
+  }
+
 }

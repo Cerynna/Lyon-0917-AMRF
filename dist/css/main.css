@@ -258,6 +258,9 @@ div .partlogo {
 /**
 *************************** View *********************
  */
+body::-webkit-scrollbar {
+  display: none; }
+
 body {
   font-size: 1.0em;
   background: url("../img/header.jpg") no-repeat fixed;
@@ -288,3 +291,11 @@ body {
     font-size: 2.4em; }
   body h5 {
     font-size: 2.2em; }
+  body .card .card-action a {
+    color: red; }
+  body .bck-maire {
+    background: #90caf9; }
+  body .bck-part {
+    background: #ef9a9a; }
+  body .bck-default {
+    background: #80cbc4; }
