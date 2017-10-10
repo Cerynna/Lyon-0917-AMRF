@@ -80,7 +80,7 @@ switch ($page) {
     case 'exemple':
         $linkPage = "exemple.php";
         $titlePage = "Page Exemple CSS";
-        $container = false;
+        $container = true;
         break;
     default:
         $linkPage = "home.php";
