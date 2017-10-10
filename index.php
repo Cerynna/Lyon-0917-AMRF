@@ -10,6 +10,7 @@
     <?php include "src/structures/header.php"; ?>
 </header>
 <?php include "src/structures/navbar.php"; ?>
+<div class="body">
 <section>
     <div class="container content z-depth-4">
         <div class="row">
@@ -19,9 +20,11 @@
         </div>
     </div>
 </section>
+
 <footer class="page-footer teal darken-3">
     <?php include "src/structures/footer.php"; ?>
 </footer>
+</div>
 <?php include "src/structures/connect.php"; ?>
 <?php include "src/structures/script.php"; ?>
 </body>
