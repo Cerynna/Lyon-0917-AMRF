@@ -1,3 +1,4 @@
+
 <style>
     .collapsible-header {
 
@@ -20,6 +21,11 @@
             <option value="3">sectuer 3</option>
         </select>
     </div>
+
+    <a class="waves-effect waves-light btn">A</a>
+    <a class="waves-effect waves-light btn">B</a>
+    <a class="waves-effect waves-light btn">C</a>
+
     <div class="input-field col s4 offset-s4">
         <select>
             <option value="" disabled selected>Tri par ordre alaphabétique</option>
