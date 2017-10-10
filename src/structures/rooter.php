@@ -67,8 +67,8 @@ switch ($page) {
         $titlePage = "Liste des Partenaires";
         $container = true;
         break;
-    case 'profil':
-        $linkPage = "profil.php";
+    case 'profilMaire':
+        $linkPage = "profilMaire.php";
         $titlePage = "Mon Profil";
         $container = true;
         break;
@@ -82,6 +82,11 @@ switch ($page) {
         $titlePage = "Page Exemple CSS";
         $container = false;
         break;
+	case 'adminGestion':
+		$linkPage = "adminGestion.php";
+		$titlePage = "Admin Gestion";
+		$container = false;
+		break;
     default:
         $linkPage = "home.php";
         $titlePage = "Home";
