@@ -6,7 +6,7 @@
  * https://gist.github.com/gists/1360380
  *
  * Author:  Takeru Suzuki, http://terkel.jp/
- * License: Public domain
+ * License: public domain
  *
  * Inspired by Normalize.css: http://necolas.github.com/normalize.css/
  */
@@ -248,8 +248,38 @@ textarea {
   flex-direction: row;
   justify-content: space-around; }
 
+.planDeSite {
+  font-size: 1.8em;
+  color: #00695c; }
+
 div .partlogo {
   height: 50px; }
+
+.bck-maire {
+  padding: 10px;
+  background: #90CAF9; }
+  .bck-maire div > a {
+    color: #365069 !important; }
+
+.bck-part {
+  padding: 10px;
+  background: #b3ffb1; }
+  .bck-part div > a {
+    color: #577457 !important; }
+
+.bck-default {
+  padding: 10px;
+  background: #80CBC4; }
+  .bck-default div > a {
+    color: #3d625b !important; }
+
+.cardGest {
+  padding: 10px; }
+  .cardGest p {
+    height: 100px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: normal; }
 
 /**
 *************************** View *********************
@@ -287,11 +317,3 @@ body {
     font-size: 2.4em; }
   body h5 {
     font-size: 2.2em; }
-  body .card .card-action a {
-    color: red; }
-  body .bck-maire {
-    background: #90caf9; }
-  body .bck-part {
-    background: #ef9a9a; }
-  body .bck-default {
-    background: #80cbc4; }

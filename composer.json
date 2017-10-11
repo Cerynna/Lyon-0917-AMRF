@@ -1,13 +1,23 @@
 {
-    "name": "mar/remote",
+    "name": "wilder/amrf",
+    "description": "wiki des maires",
     "type": "project",
     "authors": [
         {
+            "name": "Darin Matev",
+            "email": "mateevd@gmail.com"
+        },
+      {
             "name": "m4rthiz",
             "email": "m4rthiz@gmail.com"
         }
     ],
     "require": {
-        "twig/twig": "^2.2"
+        "twig/twig": "^2.4"
+    },
+
+    "autoload":{
+        "psr-4": {"wilder\\": "src/"}
+
     }
 }
