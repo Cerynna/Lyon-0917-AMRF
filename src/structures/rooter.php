@@ -6,9 +6,22 @@ if (isset($_GET['page'])) {
 }
 
 switch ($page) {
-
+    case 'home':
+        $linkPage = "home.php";
+        break;
     case 'amrf':
         $linkPage = "amrf.php";
+<<<<<<< HEAD
+        break;
+    case 'contact':
+        $linkPage = "formContact.php";
+        break;
+    case 'pageMaires' :
+        $linkPage = "pageMaires.php";
+        break;
+    case 'projet' :
+        $linkPage = "ficheProjet.php";
+=======
         $titlePage = "A Propos de l'AMRF";
         $container = true;
         break;
@@ -46,22 +59,33 @@ switch ($page) {
         $linkPage = "formFichePartenaire.php";
         $titlePage = "Formulaire Fiche Partenaire";
         $container = true;
+>>>>>>> e9776b7d65af3e28315fb5e1ef1fdf0b4d20cbdf
         break;
     case 'search':
         $linkPage = "formSearch.php";
         $titlePage = "Recherche";
         $container = true;
         break;
+<<<<<<< HEAD
+    case 'confidentialite':
+        $linkPage = "confidentialite.php";
+=======
     case 'home':
         $linkPage = "home.php";
         $titlePage = "Home";
         $container = true;
+>>>>>>> e9776b7d65af3e28315fb5e1ef1fdf0b4d20cbdf
         break;
     case 'legales':
         $linkPage = "legales.php";
         $titlePage = "Mention Légales";
         $container = true;
         break;
+<<<<<<< HEAD
+    case 'profil':
+        $linkPage = "profil.php";
+        break;
+=======
     case 'listePartenaire' :
         $linkPage = "listePartenaire.php";
         $titlePage = "Liste des Partenaires";
@@ -77,6 +101,7 @@ switch ($page) {
         $titlePage = "Profil Partenaire";
         $container = true;
         break;
+>>>>>>> e9776b7d65af3e28315fb5e1ef1fdf0b4d20cbdf
     case 'exemple':
         $linkPage = "exemple.php";
         $titlePage = "Page Exemple CSS";
@@ -93,5 +118,4 @@ switch ($page) {
         $container = true;
         break;
 }
-
 ?>
