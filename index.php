@@ -12,13 +12,15 @@
 <?php include "src/structures/navbar.php"; ?>
 <div class="body">
 <section>
-    <div class="container content z-depth-4">
+    <?php echo ($container == true ? "<div class=\"container\">" : "");  ?>
+    <div class="content z-depth-4">
         <div class="row">
             <div class="col s12">
                 <?php include("src/pages/$linkPage"); ?>
             </div>
         </div>
     </div>
+    <?php echo ($container == true ? "</div>" : "");  ?>
 </section>
 
 <footer class="page-footer teal darken-3">
