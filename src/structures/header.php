@@ -3,3 +3,4 @@
 	</div>
 	<a href="?page=home"><h1>Le Wiki des Maires</h1></a>
 </div>
+
