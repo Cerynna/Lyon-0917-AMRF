@@ -1,6 +1,5 @@
 Project Wild Code School for 'Association des Maires Ruraux de France'. 
  
- git diff 20ba2810125a6656a100a67ef1fdb1e8971be247 25559acd729ecd920497ec73914861ab9637467e > 01.patch.
 
     * Instructions :
     -----------------
