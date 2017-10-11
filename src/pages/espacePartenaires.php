@@ -1,8 +1,3 @@
-<?php
-
-?>
-
-
 <h2 class="center-align">Mon Espace</h2>
 
 <div class="row">

@@ -18,6 +18,9 @@ switch ($page) {
     case 'pageMaires' :
         $linkPage = "pageMaires.php";
         break;
+    case 'projet' :
+        $linkPage = "ficheProjet.php";
+        break;
     case 'search':
         $linkPage = "formSearch.php";
         break;
@@ -37,5 +40,4 @@ switch ($page) {
         $linkPage = "home.php";
         break;
 }
-include("dist/pages/$linkPage");
 ?>
