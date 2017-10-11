@@ -1,5 +1,5 @@
 <div class="row">
-    <h3>Mentions Legales</h3>
+    <h2>Mentions Legales</h2>
     <ul class="collapsible" data-collapsible="accordion">
         <li>
             <div class="collapsible-header"><i class="material-icons">filter_list</i>ACCEPTATION DES CONDITIONS INHERENTES À L’UTILISATION</div>

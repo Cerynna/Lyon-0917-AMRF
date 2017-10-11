@@ -1,7 +1,6 @@
-<h2 class="center-align">Plan du Site</h2>
-<br><br><br>
 <div class="row center-align">
-	<div class="col m6">
+    <h2 class="center-align">Plan du Site</h2>
+    <div class="col m6">
 		<ul>
 			<li><a class="planDeSite" href="?page=home">Accueil</a></li>
 		</ul>

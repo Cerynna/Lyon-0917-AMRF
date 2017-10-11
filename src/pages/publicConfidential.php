@@ -1,5 +1,5 @@
 <div class="row">
-    <h3>Déclaration de confidentialité sur le site</h3>
+    <h2>Déclaration de confidentialité sur le site</h2>
     <ul class="collapsible" data-collapsible="accordion">
         <li>
             <div class="collapsible-header"><i class="material-icons">filter_list</i>Collecte de vos informations personnelles</div>

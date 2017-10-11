@@ -32,7 +32,7 @@ switch ($page) {
         $container = true;
         break;
     case 'PlanSite':
-        $linkPage = "PlanSite.php";
+        $linkPage = "publicPlanSite.php";
         $titlePage = "Plan du site";
         $container = true;
         break;

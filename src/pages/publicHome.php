@@ -1,3 +1,4 @@
+<h2>Bienvenue sur le Wiki des Maires</h2>
 <div class="row card-panel grey lighten-4">
     <div class="col m8">
         <h3>Titre de l'article 1</h3>
