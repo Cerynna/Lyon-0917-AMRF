@@ -8,13 +8,13 @@ if (isset($_GET['page'])) {
 switch ($page) {
     case 'amrf':
         $linkPage = "amrf.php";
-		$titlePage = "A Propos de l'AMRF";
-		$container = true;
+        $titlePage = "A Propos de l'AMRF";
+        $container = true;
         break;
     case 'pageMaires' :
         $linkPage = "pageMaires.php";
-		$titlePage = "Page Maire";
-		$container = true;
+        $titlePage = "Page maire";
+        $container = true;
         break;
     case 'projet' :
         $linkPage = "ficheProjet.php";
@@ -46,7 +46,7 @@ switch ($page) {
         $titlePage = "Fiches Projets";
         $container = true;
         break;
-    case 'formContact':
+    case 'contact':
         $linkPage = "formContact.php";
         $titlePage = "contact";
         $container = true;
@@ -59,9 +59,10 @@ switch ($page) {
     case 'search':
         $linkPage = "formSearch.php";
         $titlePage = "Recherche";
-		$container = true;
+        $container = true;
         break;
-	case 'home':
+
+    case 'home':
         $linkPage = "home.php";
         $titlePage = "Home";
         $container = true;
@@ -71,6 +72,13 @@ switch ($page) {
         $titlePage = "Mention Légales";
         $container = true;
         break;
+
+    case 'profil':
+        $linkPage = "profil.php";
+        $titlePage = "Profil";
+        $container = true;
+        break;
+
     case 'listePartenaire' :
         $linkPage = "listePartenaire.php";
         $titlePage = "Liste des Partenaires";
@@ -86,6 +94,7 @@ switch ($page) {
         $titlePage = "Profil Partenaire";
         $container = true;
         break;
+
     case 'exemple':
         $linkPage = "exemple.php";
         $titlePage = "Page Exemple CSS";
