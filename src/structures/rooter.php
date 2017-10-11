@@ -7,7 +7,7 @@ if (isset($_GET['page'])) {
 
 switch ($page) {
     case 'amrf':
-        $linkPage = "amrf.php";
+        $linkPage = "publicAmrf.php";
         $titlePage = "A Propos de l'AMRF";
         $container = true;
         break;
@@ -22,7 +22,7 @@ switch ($page) {
         $container = true;
         break;
     case 'confidentialite':
-        $linkPage = "confidentialite.php";
+        $linkPage = "publicConfidential.php";
         $titlePage = "Confidentialité";
         $container = true;
         break;
@@ -32,7 +32,7 @@ switch ($page) {
         $container = true;
         break;
     case 'espPartenaires':
-        $linkPage = "espacePartenaires.php";
+        $linkPage = "privatePartIndex.php";
         $titlePage = "Espace Partenaires";
         $container = true;
         break;
@@ -47,28 +47,28 @@ switch ($page) {
         $container = true;
         break;
     case 'contact':
-        $linkPage = "formContact.php";
+        $linkPage = "publicFormContact.php";
         $titlePage = "contact";
         $container = true;
         break;
     case 'formFichePart':
-        $linkPage = "formFichePartenaire.php";
+        $linkPage = "privatePartFormFiche.php";
         $titlePage = "Formulaire Fiche Partenaire";
         $container = true;
         break;
     case 'search':
-        $linkPage = "formSearch.php";
+        $linkPage = "publicRechercheProjet.php";
         $titlePage = "Recherche";
         $container = true;
         break;
 
     case 'home':
-        $linkPage = "home.php";
+        $linkPage = "publicHome.php";
         $titlePage = "Home";
         $container = true;
         break;
     case 'legales':
-        $linkPage = "legales.php";
+        $linkPage = "publicMentionsLegales.php";
         $titlePage = "Mention Légales";
         $container = true;
         break;
@@ -90,7 +90,7 @@ switch ($page) {
         $container = true;
         break;
     case 'profilPartenaire':
-        $linkPage = "profilPartenaire.php";
+        $linkPage = "privatePartProfil.php";
         $titlePage = "Profil Partenaire";
         $container = true;
         break;
@@ -106,7 +106,7 @@ switch ($page) {
 		$container = false;
 		break;
     default:
-        $linkPage = "home.php";
+        $linkPage = "publicHome.php";
         $titlePage = "Home";
         $container = true;
         break;
