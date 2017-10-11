@@ -1,3 +1,4 @@
+
 <h2>Mon profil (partenaire)</h2>
 <div class="row">
     <div class="col s12 ">
@@ -14,20 +15,11 @@
                 <input id="societe" type="text" class="validate">
                 <label for="societe">Societe</label>
             </div>
+
             <div class="input-field col s6">
                 <input id="fonction" type="text" class="validate">
                 <label for="fonction">Fonction</label>
             </div>
-			<div class="input-field col s6">
-				<i class="material-icons prefix">phone</i>
-				<input id="tel" type="number" class="validate">
-				<label for="tel">Téléphone</label>
-			</div>
-			<div class="input-field col s6">
-				<i class="material-icons prefix">email</i>
-				<input id="email" type="email" class="validate">
-				<label for="email">Email</label>
-			</div>
         </form>
     </div>
     <div class="row">
