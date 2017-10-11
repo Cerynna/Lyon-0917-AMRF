@@ -57,7 +57,7 @@ switch ($page) {
         $container = true;
         break;
     case 'search':
-        $linkPage = "publicRechercheProjet.php";
+        $linkPage = "privateRechercheProjet.php";
         $titlePage = "Recherche";
         $container = true;
         break;
