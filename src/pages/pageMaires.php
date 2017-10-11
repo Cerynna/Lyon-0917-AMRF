@@ -1,9 +1,4 @@
-<?php
-
-?>
-
-
-    <h2 class="center-align">Espace des Maires</h2>
+<h2 class="center-align">Espace des Maires</h2>
 
 <div class="row">
     <div class="col s12 m4">

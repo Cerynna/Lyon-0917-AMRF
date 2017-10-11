@@ -1,17 +1,18 @@
 {
-    "name": "hysterias/wiki_maires",
-    "description": "Wiki des Maires Ruraux de france",
+    "name": "wilder/amrf",
+    "description": "wiki des maires",
     "type": "project",
     "authors": [
         {
-            "name": "hysteriaskiwo",
-            "email": "cerynna@gmail.com"
+            "name": "Darin Matev",
+            "email": "mateevd@gmail.com"
         }
     ],
     "require": {
         "twig/twig": "^2.4"
     },
-    "autoload": {
-        "psr-4": {"hysterias\\": "src/"}
+
+    "autoload":{
+        "psr-4": {"wilder\\": "src/"}
     }
 }
