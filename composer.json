@@ -6,6 +6,10 @@
         {
             "name": "Darin Matev",
             "email": "mateevd@gmail.com"
+        },
+      {
+            "name": "m4rthiz",
+            "email": "m4rthiz@gmail.com"
         }
     ],
     "require": {
@@ -14,5 +18,6 @@
 
     "autoload":{
         "psr-4": {"wilder\\": "src/"}
+
     }
 }
