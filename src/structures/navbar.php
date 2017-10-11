@@ -3,16 +3,14 @@
         <div class="nav-wrapper container">
             <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
             <ul class="right hide-on-med-and-down">
-                <li><a href="?page=home">Accueil</a></li>
-                <li><a href="?page=amrf">AMRF</a></li>
-                <li><a href="?page=contact">Contact</a></li>
-                <li><a href="?page=search">Recherche</a></li>
+                <li><a href="?page=Home">Accueil</a></li>
+                <li><a href="?page=Amrf">AMRF</a></li>
+                <li><a href="?page=FormContact">Contact</a></li>
             </ul>
             <ul class="side-nav" id="mobile-demo">
-                <li><a href="?page=home">Accueil</a></li>
-                <li><a href="?page=amrf">AMRF</a></li>
-                <li><a href="?page=contact">Contact</a></li>
-                <li><a href="?page=search">Recherche</a></li>
+                <li><a href="?page=Home">Accueil</a></li>
+                <li><a href="?page=Amrf">AMRF</a></li>
+                <li><a href="?page=FormContact">Contact</a></li>
             </ul>
         </div>
     </nav>

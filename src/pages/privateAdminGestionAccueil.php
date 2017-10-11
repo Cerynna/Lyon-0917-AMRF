@@ -1,6 +1,6 @@
 <div class="row card-panel grey lighten-4">
 	<div class="col m12">
-		<h3 class="center-align">Gestion page Accueil</h3>
+		<h2 class="center-align">Gestion "Page Accueil"</h2>
 	</div>
 	<div class="row">
 		<div class="col s4">
@@ -37,7 +37,7 @@
 </div>
 <div class="row card-panel grey lighten-4">
 	<div class="col m12">
-		<h3 class="center-align">Gestion à propos de l'AMRF</h3>
+		<h2 class="center-align">Gestion "A propos de l'AMRF"</h2>
 	</div>
 	<div class="col s12">
 		<div class="bck-maire card">
@@ -65,6 +65,6 @@
 </div>
 <div class="row card-panel grey lighten-4">
 	<div class="col m12">
-		<h3 class="center-align">Footer</h3>
+		<h2 class="center-align">Gestion "footer"</h2>
 	</div>
 </div>

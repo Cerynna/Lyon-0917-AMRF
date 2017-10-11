@@ -1,6 +1,6 @@
 <style>
 
-    h3 {
+    h2 {
         margin: auto;
     }
     p{
@@ -21,7 +21,7 @@ $alphabet = [
 ]; ?>
 <!-- form serach--->
 <section class="row">
-    <h3 class="center-align">Annuaire des partenaires</h3>
+    <h2 class="center-align">Annuaire des partenaires</h2>
     <div class="row">
         <p>Trier par lettres</p>
         <ul class="pagination">
@@ -131,8 +131,6 @@ $alphabet = [
 
                 </div>
                 <div class=" col s8 left">
-                    <button class="waves-effect waves-light btn">Secteur 1</button>
-                    <button class="waves-effect waves-light btn">Secteur 2.</button>
                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorem eaque eos est ex fuga impedit
                         magni odio pariatur repudiandae? Animi aperiam aut eius eos explicabo facere magnam repudiandae
                         sit, tempore.</p>
@@ -143,6 +141,11 @@ $alphabet = [
                         eum excepturi inventore itaque magnam maxime nihil quibusdam quis, tempore voluptatem? Ab at
                         deleniti distinctio earum sequi.</p>
 
+                </div>
+                <div class="row">
+                    <div class=" col s8 left">
+                        <p>Secteur activité / mots clefs</p>
+                    </div>
                 </div>
             </div>
         </li>
@@ -177,8 +180,6 @@ $alphabet = [
 
                 </div>
                 <div class=" col s8 left">
-                    <button class="waves-effect waves-light btn">Secteur 1</button>
-                    <button class="waves-effect waves-light btn">Secteur 2.</button>
                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorem eaque eos est ex fuga impedit
                         magni odio pariatur repudiandae? Animi aperiam aut eius eos explicabo facere magnam repudiandae
                         sit, tempore.</p>
@@ -189,6 +190,11 @@ $alphabet = [
                         eum excepturi inventore itaque magnam maxime nihil quibusdam quis, tempore voluptatem? Ab at
                         deleniti distinctio earum sequi.</p>
 
+                </div>
+                <div class="row">
+                    <div class=" col s8 left">
+                        <p>Secteur activité / mots clefs</p>
+                    </div>
                 </div>
             </div>
         </li>
