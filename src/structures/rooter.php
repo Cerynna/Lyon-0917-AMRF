@@ -2,112 +2,118 @@
 if (isset($_GET['page'])) {
     $page = $_GET['page'];
 } else {
-    $page = "home";
+    $page = "publicHome";
 }
 
 switch ($page) {
-    case 'amrf':
+    case 'Amrf':
         $linkPage = "publicAmrf.php";
-        $titlePage = "A Propos de l'AMRF";
+        $titlePage = "A propos de l'AMRF";
         $container = true;
         break;
-    case 'pageMaires' :
-        $linkPage = "pageMaires.php";
-        $titlePage = "Page maire";
-        $container = true;
-        break;
-    case 'projet' :
-        $linkPage = "ficheProjet.php";
-        $titlePage = "Fiche Projet";
-        $container = true;
-        break;
-    case 'confidentialite':
-        $linkPage = "publicConfidential.php";
-        $titlePage = "Confidentialité";
-        $container = true;
-        break;
-    case 'espMaires':
-        $linkPage = "espaceMaires.php";
-        $titlePage = "Espace Maires";
-        $container = true;
-        break;
-    case 'espPartenaires':
-        $linkPage = "privatePartIndex.php";
-        $titlePage = "Espace Partenaires";
-        $container = true;
-        break;
-    case 'fichePartenaires':
-        $linkPage = "fichePartenaire.php";
-        $titlePage = "Fiches Partenaires";
-        $container = true;
-        break;
-    case 'ficheProjet':
-        $linkPage = "ficheProjet.php";
-        $titlePage = "Fiches Projets";
-        $container = true;
-        break;
-    case 'contact':
+    case 'FormContact':
         $linkPage = "publicFormContact.php";
-        $titlePage = "contact";
+        $titlePage = "Contact";
         $container = true;
         break;
-    case 'formFichePart':
-        $linkPage = "privatePartFormFiche.php";
-        $titlePage = "Formulaire Fiche Partenaire";
-        $container = true;
-        break;
-    case 'search':
-        $linkPage = "publicRechercheProjet.php";
-        $titlePage = "Recherche";
-        $container = true;
-        break;
-
-    case 'home':
-        $linkPage = "publicHome.php";
-        $titlePage = "Home";
-        $container = true;
-        break;
-    case 'legales':
+    case 'MentionsLegales':
         $linkPage = "publicMentionsLegales.php";
-        $titlePage = "Mention Légales";
+        $titlePage = "Mentions légales";
         $container = true;
         break;
-
-    case 'profil':
-        $linkPage = "profil.php";
-        $titlePage = "Profil";
-        $container = true;
-        break;
-
-    case 'listePartenaire' :
-        $linkPage = "listePartenaire.php";
-        $titlePage = "Liste des Partenaires";
-        $container = true;
-        break;
-    case 'profilMaire':
-        $linkPage = "profilMaire.php";
-        $titlePage = "Mon Profil";
-        $container = true;
-        break;
-    case 'profilPartenaire':
-        $linkPage = "privatePartProfil.php";
-        $titlePage = "Profil Partenaire";
-        $container = true;
-        break;
-
-    case 'exemple':
-        $linkPage = "exemple.php";
-        $titlePage = "Page Exemple CSS";
-        $container = true;
-        break;
-	case 'adminGestion':
-		$linkPage = "adminGestion.php";
-		$titlePage = "Admin Gestion";
-		$container = false;
-		break;
-    default:
+    case 'Home':
         $linkPage = "publicHome.php";
-        $titlePage = "Home";
+        $titlePage = "Accueil";
+        $container = true;
+        break;
+    case 'Confidential':
+        $linkPage = "publicConfidential.php";
+        $titlePage = "Confidetialité";
+        $container = true;
+        break;
+    case 'PlanSite':
+        $linkPage = "PlanSite.php";
+        $titlePage = "Plan du site";
+        $container = true;
+        break;
+    case 'MairesIndex':
+        $linkPage = "privateMairesIndex.php";
+        $titlePage = "Mon espace Maire";
+        $container = true;
+        break;
+    case 'MairesProfile':
+        $linkPage = "privateMairesProfil.php";
+        $titlePage = "Mon compte";
+        $container = true;
+        break;
+    case 'MairesFormProjet':
+        $linkPage = "privateMairesFormProjet.php";
+        $titlePage = "Création de projets";
+        $container = true;
+        break;
+    case 'MairesProjets':
+        $linkPage = "privateMairesProjets.php";
+        $titlePage = "Mes projets";
+        $container = true;
+        break;
+    case 'PartIndex':
+        $linkPage = "privatePartIndex.php";
+        $titlePage = "Mon espace Partenaire";
+        $container = true;
+        break;
+    case 'PartProfil':
+        $linkPage = "privatePartProfil.php";
+        $titlePage = "Mon compte";
+        $container = true;
+        break;
+    case 'PartFormFiche':
+        $linkPage = "privatePartFormFiche.php";
+        $titlePage = "Créer ma fiche";
+        $container = true;
+        break;
+    case 'PartListe':
+        $linkPage = "privatePartListe.php";
+        $titlePage = "Trouver des partenaires";
+        $container = true;
+        break;
+    case 'AdminIndex':
+        $linkPage = "privateAdminIndex.php";
+        $titlePage = "Mon espace Administrateur";
+        $container = true;
+        break;
+    case 'AdminGestionAccueil':
+        $linkPage = "privateAdminGestionAccueil.php";
+        $titlePage = "Gérer la page d'accueil";
+        $container = true;
+        break;
+    case 'AdminProjets':
+        $linkPage = "privateAdminProjets.php";
+        $titlePage = "Gérer les fiches projets";
+        $container = true;
+        break;
+    case 'AdminUsers':
+        $linkPage = "privateAdminUsers.php";
+        $titlePage = "Gérer les Utilisateurs";
+        $container = true;
+        break;
+    case 'AdminStat':
+        $linkPage = "privateAdminStat.php";
+        $titlePage = "consulter les statistiques";
+        $container = true;
+        break;
+    case 'RechercheProjet':
+        $linkPage = "privateRechecheProjet.php";
+        $titlePage = "Chercher des projets";
+        $container = true;
+        break;
+    case 'Favoris':
+        $linkPage = "privateFavoris.php";
+        $titlePage = "consulter mes favoris";
+        $container = true;
+        break;
+    case 'Projets':
+        $linkPage = "privateProjets.php";
+        $titlePage = "consulter une fiche projets";
         $container = true;
         break;
 }
