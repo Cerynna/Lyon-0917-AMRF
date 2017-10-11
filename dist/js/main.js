@@ -6,11 +6,13 @@ $(document).ready(function () {
     // Mention Légal
     $('.collapsible').collapsible();
     //
-    $("#navbar").sticky({topSpacing: 0, zIndex: 1000});
+    $("#navbar").sticky({topSpacing: 0, zIndex: 500});
+
+
     $('select').material_select();
 
 
-        $('textarea#presentation').characterCounter();
+    $('textarea#presentation').characterCounter();
 
 
     $('input.autocomplete').autocomplete({

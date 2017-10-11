@@ -1,6 +1,6 @@
 <div class="row card-panel grey lighten-4">
 	<div class="col m12">
-		<h3 class="center-align">Gestion page Accueil</h3>
+		<h2>Gestion page Accueil</h2>
 	</div>
 	<div class="row">
 		<div class="col s4">
