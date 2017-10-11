@@ -37,7 +37,7 @@ switch ($page) {
         $statut = "public";
         break;
     case 'PlanSite':
-        $linkPage = "PlanSite.php";
+        $linkPage = "publicPlanSite.php";
         $titlePage = "Plan du site";
         $container = true;
         $statut = "public";

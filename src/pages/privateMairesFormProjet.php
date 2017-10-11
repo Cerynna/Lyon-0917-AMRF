@@ -48,11 +48,7 @@
             </div>
         </div> -->
 
-
         <!--projet-->
-
-        <h5>Projet</h5>
-
         <div class="row">
             <div class="input-field col s12">
                 <input id="projectName" type="text" class="validate">
@@ -105,13 +101,10 @@
                 </form>
             </div>
 
-
-
             <div class="input-field col s12">
                 <textarea id="description" type="text" class="materialize-textarea validate"></textarea>
                 <label for="description">Description</label>
             </div>
-
 
             <div class="input-field col s12">
                 <input id="objectif" type="text" class="validate">
@@ -180,8 +173,6 @@
             </div>
 
         </div>
-
-
 
     <form action="#">
             <div class="file-field input-field">
