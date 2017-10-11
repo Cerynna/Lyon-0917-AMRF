@@ -108,7 +108,7 @@
 
 
             <div class="input-field col s12">
-                <textarea id="description" type="text" class="materialize-textarea validate"></textarea>
+                <textarea id="description" type="text" class="materialize-textarea validate" row="30"></textarea>
                 <label for="description">Description</label>
             </div>
 

@@ -6,7 +6,7 @@
  * https://gist.github.com/gists/1360380
  *
  * Author:  Takeru Suzuki, http://terkel.jp/
- * License: public domain
+ * License: Public domain
  *
  * Inspired by Normalize.css: http://necolas.github.com/normalize.css/
  */
@@ -220,20 +220,36 @@ textarea {
     margin: 0 18px; }
 
 #header {
-  height: 400px;
-  text-align: center; }
+  height: 350px;
+  text-align: center;
+  width: 100%; }
+  #header .logo {
+    display: inline-block;
+    background-color: rgba(224, 242, 241, 0.6);
+    background-image: url("../img/AMRF.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    z-index: 10000;
+    top: 5px;
+    left: 10px;
+    position: fixed;
+    width: 130px;
+    height: 50px;
+    border-radius: 10px;
+    box-shadow: 5px 5px 0 rgba(0, 0, 0, 0.6); }
   #header .connect {
-    top: 0;
-    right: 0;
-    position: relative;
+    display: inline-block;
+    float: right;
     text-align: right;
     padding-right: 1%;
     padding-top: 1%; }
   #header h1 {
-    padding-top: 20px;
-    font-size: 3em;
-    color: #004d40;
-    text-shadow: 1px 0 0 #FFFFFF, 0 1px 0 #FFFFFF, 0 -1px 0 #FFFFFF, -1px 0 0 #FFFFFF, 1px 1px 0 #FFFFFF, 1px -1px 0 #FFFFFF, -1px 1px 0 #FFFFFF, -1px -1px 0 #FFFFFF; }
+    display: inline-block;
+    margin: auto;
+    color: #FFFFFF;
+    /*text-shadow: 1px 0 0 #000, 0 1px 0 #000, 0 -1px 0 #000, -1px 0 0 #000, 1px 1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, -1px -1px 0 #000, 5px 5px 0px rgba(0, 0, 0, 0.6);*/
+    text-shadow: 5px 5px 0 rgba(0, 0, 0, 0.6); }
 
 .containerConnect .card {
   width: 100%;
@@ -308,12 +324,21 @@ body {
   body .article {
     padding: 20px; }
   body h1 {
-    font-size: 3em; }
+    font-size: 5em;
+    font-family: 'Cabin Condensed', sans-serif; }
   body h2 {
-    font-size: 2.8em; }
+    font-family: 'Cabin Condensed', sans-serif;
+    font-size: 2.8em;
+    line-height: 2em;
+    text-transform: uppercase;
+    text-align: center; }
   body h3 {
-    font-size: 2.6em; }
+    font-family: 'Cabin Condensed', sans-serif;
+    font-size: 2.6em;
+    line-height: 1em; }
   body h4 {
-    font-size: 2.4em; }
+    font-size: 2.4em;
+    line-height: 1em; }
   body h5 {
-    font-size: 2.2em; }
+    font-size: 2.2em;
+    line-height: 1em; }

@@ -10,25 +10,17 @@ switch ($page) {
         $linkPage = "amrf.php";
         $titlePage = "A Propos de l'AMRF";
         $container = true;
+        $acces = "public";
         break;
-    case 'pageMaires' :
+    case 'espMaires' :
         $linkPage = "pageMaires.php";
         $titlePage = "Page maire";
         $container = true;
-        break;
-    case 'projet' :
-        $linkPage = "ficheProjet.php";
-        $titlePage = "Fiche Projet";
-        $container = true;
+        $acces = "private";
         break;
     case 'confidentialite':
         $linkPage = "confidentialite.php";
         $titlePage = "Confidentialité";
-        $container = true;
-        break;
-    case 'espMaires':
-        $linkPage = "espaceMaires.php";
-        $titlePage = "Espace Maires";
         $container = true;
         break;
     case 'espPartenaires':
@@ -44,7 +36,7 @@ switch ($page) {
     case 'ficheProjet':
         $linkPage = "ficheProjet.php";
         $titlePage = "Fiches Projets";
-        $container = true;
+        $container = false;
         break;
     case 'contact':
         $linkPage = "formContact.php";
@@ -54,7 +46,7 @@ switch ($page) {
     case 'formFichePart':
         $linkPage = "formFichePartenaire.php";
         $titlePage = "Formulaire Fiche Partenaire";
-        $container = true;
+        $container = false;
         break;
     case 'search':
         $linkPage = "formSearch.php";
@@ -72,13 +64,6 @@ switch ($page) {
         $titlePage = "Mention Légales";
         $container = true;
         break;
-
-    case 'profil':
-        $linkPage = "profil.php";
-        $titlePage = "Profil";
-        $container = true;
-        break;
-
     case 'listePartenaire' :
         $linkPage = "listePartenaire.php";
         $titlePage = "Liste des Partenaires";
@@ -95,16 +80,16 @@ switch ($page) {
         $container = true;
         break;
 
+    case 'adminGestion':
+        $linkPage = "adminGestion.php";
+        $titlePage = "admin Gestion";
+        $container = false;
+        break;
     case 'exemple':
         $linkPage = "exemple.php";
         $titlePage = "Page Exemple CSS";
-        $container = true;
+        $container = false;
         break;
-	case 'adminGestion':
-		$linkPage = "adminGestion.php";
-		$titlePage = "Admin Gestion";
-		$container = false;
-		break;
     default:
         $linkPage = "home.php";
         $titlePage = "Home";
