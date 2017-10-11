@@ -3,17 +3,16 @@
 <div class="container">
     <section class="validation">
         <div class="row">
-            <div class="col s1 col m10">
+            <div class="col-sm-10">
                 <h3>Projets en attente de validation</h3>
-                    <div class="col s1 m8 offset-m2">
-                        <p>Nom du projet - Auteur - Autre info</p>
-                        <button type="submit" class="">Voir</button>
-                    </div>
-                    <div class="col s1 m8 offset-m2">
-                        <p>Nom du projet - Auteur - Autre info</p>
-                        <button type="submit" class="">Voir</button>
-                    </div>
-
+                <div class="col-sm-10 col-offset-sm2">
+                    <p>Nom du projet - Auteur - Autre info</p>
+                    <button type="submit" class="btn btn-success">Voir</button>
+                </div>
+                <div class="col-sm-10 col-offset-sm2">
+                    <p>Nom du projet - Auteur - Autre info</p>
+                    <button type="submit" class="btn btn-success">Voir</button>
+                </div>
             </div>
         </div>
     </section>
