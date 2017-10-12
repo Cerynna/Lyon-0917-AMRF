@@ -12,13 +12,9 @@
 <?php include "src/structures/navbar.php"; ?>
 <div class="body">
 <section>
-    <?php echo ($container == true ? "<div class=\"container\">" : "");  ?>
+    <?php echo ($container == true ? "<div class=\"container\">" : "<div class=\"container-fluid\">");  ?>
     <div class="content z-depth-4">
-        <div class="row">
-            <div class="col s12">
                 <?php include("src/pages/$linkPage"); ?>
-            </div>
-        </div>
     </div>
     <?php echo ($container == true ? "</div>" : "");  ?>
 </section>

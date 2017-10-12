@@ -33,11 +33,11 @@
 									<label for="contain">Contains the words</label>
 									<input class="form-control" type="text" />
 								</div>
-								<button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
+								<button type="submit" class="btn btn-primary"><i class="glyphicon glyphicon-search">Recherche</i></button>
 							</form>
 						</div>
 					</div>
-					<button type="button" class="btn btn-primary"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
+					<button type="button" class="btn btn-primary"><i class="glyphicon glyphicon-search">Recherche</i></button>
 				</div>
 			</div>
 		</div>
