@@ -1,3 +1,14 @@
+$(window).on('scroll', function () {
+    var scrollTop = $(window).scrollTop();
+    if (scrollTop > 20) {
+        $('#logo').stop().animate({height: "40px", width: "80px"},50);
+    }
+    else {
+        $('#logo').stop().animate({height: "100px", width: "200px"},50);
+    }
+});
+
+
 $(document).ready(function () {
     //modeal de connection
     $('.modal').modal();
@@ -6,13 +17,11 @@ $(document).ready(function () {
     // Mention Légal
     $('.collapsible').collapsible();
     //
-    $("#navbar").sticky({topSpacing: 0, zIndex: 500});
-
-
+    $("#navbar").sticky({topSpacing: 0, zIndex: 1000});
     $('select').material_select();
 
 
-    $('textarea#presentation').characterCounter();
+        $('textarea#presentation').characterCounter();
 
 
     $('input.autocomplete').autocomplete({

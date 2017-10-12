@@ -36,10 +36,10 @@ body {
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
-  font-family: 'Source Sans Pro', sans-serif;
+  font-family: $primaryFont, sans-serif;
   .content {
     margin-top: 50px;
-    margin-bottom: 50px;
+    /*margin-bottom: 50px;*/
     background-color: #fff;
     padding: 30px;
     min-height: 100vh;
@@ -54,20 +54,41 @@ body {
   }
 
   h1 {
-    font-size: 5em;
-    font-family: 'Cabin Condensed', sans-serif;
+    font-size: 4em;
+    font-family: $secondeFont, sans-serif;
   }
   h2 {
-    font-family: 'Cabin Condensed', sans-serif;
+    font-family: $secondeFont, sans-serif;
     font-size: 2.8em;
     line-height: 2em;
     text-transform: uppercase;
     text-align: center;
   }
   h3 {
-    font-family: 'Cabin Condensed', sans-serif;
-    font-size: 2.6em;
+    font-family: $secondeFont, sans-serif;
+    font-size: 2em;
     line-height: 1em;
+    a:link {
+      text-decoration: none;
+      color: $primaryColor;
+    }
+
+    a:visited {
+      text-decoration: none;
+      color: $primaryColor;
+    }
+
+    a:hover {
+      text-decoration: none;
+      font-weight: bold;
+      color: $primaryColor;
+    }
+
+    a:active {
+      text-decoration: none;
+      font-weight: bold;
+      color: $primaryColor;
+    }
   }
   h4 {
     font-size: 2.4em;

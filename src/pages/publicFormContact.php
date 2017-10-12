@@ -58,7 +58,7 @@
     <!--Choice of fonction/ Objet -->
     <div class="row">
         <!--<div class="col s6">
-            <h4 class="center-align">Je suis...</h4>
+            <h3 class="center-align">Je suis...</h3>
             <form action="#">
                 <p class="center-align">
                     <input name="groupe1" type="radio" id="maire"/>
@@ -71,7 +71,7 @@
             </form>
         </div>
         <div class="col s6">
-            <h4 class="center-align">Objet</h4>
+            <h3 class="center-align">Objet</h3>
             <form action="#">
                 <p class="center-align">
                     <input name="groupe1" type="radio" id="inscription"/>
@@ -84,7 +84,7 @@
             </form>
         </div> -->
         <div class="col s6">
-            <h4 class="center-align">Je suis...</h4>
+            <h3 class="center-align">Je suis...</h3>
             <select>
                 <option value="" disabled selected>Choose your option</option>
                 <option value="1">Maire</option>
@@ -93,7 +93,7 @@
             </select>
         </div>
         <div class="col s6">
-             <h4 class="center-align">Objet</h4>
+             <h3 class="center-align">Objet</h3>
                  <select>
                      <option value="" disabled selected>Choose your option</option>
                      <option value="1">Inscription</option>
@@ -119,7 +119,7 @@
     <!-- Modal Structure-->
     <div id="verif" class="modal">
         <div class="modal-content">
-            <h4 class="center">Votre message a été transmis!</h4>
+            <h3 class="center">Votre message a été transmis!</h3>
         </div>
     </div>
 

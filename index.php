@@ -22,11 +22,11 @@
     </div>
     <?php echo ($container == true ? "</div>" : "");  ?>
 </section>
-
+</div>
 <footer class="page-footer teal darken-3">
     <?php include "src/structures/footer.php"; ?>
 </footer>
-</div>
+
 <?php include "src/structures/connect.php"; ?>
 <?php include "src/structures/script.php"; ?>
 </body>
