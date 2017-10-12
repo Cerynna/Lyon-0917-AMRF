@@ -238,7 +238,7 @@ textarea {
       color: #004d40; }
 
 #header {
-  height: 350px;
+  height: 25%;
   text-align: center;
   width: 100%; }
   #header .logo {
@@ -270,7 +270,7 @@ textarea {
     font-family: 'Cabin Condensed', sans-serif; }
   #header h1 {
     display: inline-block;
-    margin: auto;
+    margin: 10% auto;
     color: #FFFFFF;
     /*text-shadow: 1px 0 0 #000, 0 1px 0 #000, 0 -1px 0 #000, -1px 0 0 #000, 1px 1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, -1px -1px 0 #000, 5px 5px 0px rgba(0, 0, 0, 0.6);*/
     text-shadow: 5px 5px 0 rgba(0, 0, 0, 0.6); }
@@ -409,7 +409,7 @@ body {
   body .article {
     padding: 20px; }
   body h1 {
-    font-size: 5em;
+    font-size: 4em;
     font-family: "Cabin Condensed", sans-serif; }
   body h2 {
     font-family: "Cabin Condensed", sans-serif;

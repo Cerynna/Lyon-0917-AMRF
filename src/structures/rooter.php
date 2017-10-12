@@ -138,6 +138,12 @@ switch ($page) {
         $container = true;
         $statut = "private";
         break;
+    case 'exemple':
+        $linkPage = "exemple.php";
+        $titlePage = "Exemple CSS";
+        $container = true;
+        $statut = "public";
+        break;
     default:
         $linkPage = "publicHome.php";
         $titlePage = "Accueil";
