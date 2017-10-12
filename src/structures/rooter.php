@@ -2,7 +2,7 @@
 if (isset($_GET['page'])) {
     $page = $_GET['page'];
 } else {
-    $page = "publicHome";
+    $page = "Home";
 }
 
 switch ($page) {
@@ -137,6 +137,18 @@ switch ($page) {
         $titlePage = "consulter une fiche projets";
         $container = true;
         $statut = "private";
+        break;
+    case 'exemple':
+        $linkPage = "exemple.php";
+        $titlePage = "Exemple CSS";
+        $container = true;
+        $statut = "public";
+        break;
+    default:
+        $linkPage = "publicHome.php";
+        $titlePage = "Accueil";
+        $container = true;
+        $statut = "public";
         break;
 }
 ?>
