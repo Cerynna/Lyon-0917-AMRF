@@ -132,9 +132,9 @@ switch ($page) {
         $container = true;
         $statut = "private";
         break;
-    case 'Projets':
-        $linkPage = "privateProjets.php";
-        $titlePage = "consulter une fiche projets";
+    case 'Projet':
+        $linkPage = "privateProjet.php";
+        $titlePage = "consulter une fiche projet";
         $container = true;
         $statut = "private";
         break;
