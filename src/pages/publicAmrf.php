@@ -1,6 +1,6 @@
-<h2 class="center-align">À propos de l'AMRF</h2>
+<h2>À propos de l'AMRF</h2>
 
-<h3>l'association DES MAIRES ruraux DE FRANCE</h3>
+<h3>L'ASSOCIATION DES MAIRES RURAUX DE FRANCE</h3>
 
 <p>Créée en 1971, l'Association des maires ruraux de France (AMRF) fédère près de 10000 maires
     ruraux au sein d'un réseau solidaire, en toute indépendance des pouvoirs et partis politiques.
