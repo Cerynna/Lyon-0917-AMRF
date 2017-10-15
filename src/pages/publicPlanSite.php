@@ -1,5 +1,5 @@
 <h2>Plan du Site</h2>
-<div class="row center-align">
+<div class="row">
     <div class="col-md-6">
 		<ul>
 			<li><a class="planDeSite" href="?page=Home">Accueil</a></li>
