@@ -57,7 +57,7 @@ switch ($page) {
     case 'MairesFormProjet':
         $linkPage = "privateMairesFormProjet.php";
         $titlePage = "Création de projets";
-        $container = true;
+        $container = false;
         $statut = "private";
         break;
     case 'MairesProjets':
