@@ -1,126 +1,51 @@
-<?php
-    if(isset($_POST["submit"])){
-    // Checking For Blank Fields..
-        if($_POST["first_name"]==""||$_POST["last_name"]==""||$_POST["email"]==""||$_POST["commune"]==""||$_POST["textarea1"]==""){
-            echo "Fill All Fields..";
-        }else{
-    // Check if the "Sender's Email" input field is filled out
-            $email=$_POST['email'];
-    // Sanitize E-mail Address
-            $email =filter_var($email, FILTER_SANITIZE_EMAIL);
-    // Validate E-mail Address
-            $email= filter_var($email, FILTER_VALIDATE_EMAIL);
-            if (!$email){
-                echo "Invalid Sender's Email";
-            }
-            else{
-                $first_name= $_POST['first_name'];
-                $last_name= $_POST['last_name'];
-                $commune = $_POST['commune'];
-                $textarea1 = $_POST['textarea1'];
-                $headers = 'From:'. $email . "\r\n"; // Sender's Email
-    // Message lines should not exceed 70 characters (PHP rule), so wrap it
-                $message = wordwrap($textarea1, 70);
-    // Send Mail By PHP Mail Function
-                mail("severinelab@gmail.com", $first_name,$last_name,$textarea1, $headers);
-                echo "Your mail has been sent successfuly ! Thank you for your feedback";
-            }
-        }
-    }
-?>
-
-<h2 class="center-align">Contactez nous</h2>
-<form action="#" id="form" method="post" name="form">
-    <!--first name/ second name -->
-    <div class="row">
-        <div class="input-field col s12">
-            <input id="firstName" type="text" class="validate">
-            <label for="firstName">Nom</label>
-        </div>
-        <div class="input-field col s12">
-            <input id="lastName" type="text" class="validate">
-            <label for="lastName">Prenom</label>
-        </div>
-    </div>
-
-    <!--email -->
-    <div class="row">
-        <div class="input-field col s6">
-            <input id="email" type="email" class="validate">
-            <label for="email">Email</label>
-        </div>
-        <div class="input-field col s6">
-            <input id="phone" type="number" class="validate">
-            <label for="phone">Téléphone</label>
-        </div>
-    </div>
-
-    <!--Choice of fonction/ Objet -->
-    <div class="row">
-        <!--<div class="col s6">
-            <h3 class="center-align">Je suis...</h3>
-            <form action="#">
-                <p class="center-align">
-                    <input name="groupe1" type="radio" id="maire"/>
-                    <label for="maire">Elu</label>
-                    <input name="groupe1" type="radio" id="partnaire"/>
-                    <label for="partnaire">Partenaire</label>
-                    <input name="groupe1" type="radio" id="autre"/>
-                    <label for="autre">Autre</label>
-                </p>
-            </form>
-        </div>
-        <div class="col s6">
-            <h3 class="center-align">Objet</h3>
-            <form action="#">
-                <p class="center-align">
-                    <input name="groupe1" type="radio" id="inscription"/>
-                    <label for="inscription">Inscription</label>
-                    <input name="groupe1" type="radio" id="fiche"/>
-                    <label for="fiche">Fiche</label>
-                    <input name="groupe1" type="radio" id="renseignement"/>
-                    <label for="renseignement">Demande de Renseignements</label>
-                </p>
-            </form>
-        </div> -->
-        <div class="col s6">
-            <h3 class="center-align">Je suis...</h3>
-            <select>
-                <option value="" disabled selected>Choose your option</option>
-                <option value="1">Maire</option>
-                <option value="2">Partenaire</option>
-                <option value="3">Autre</option>
-            </select>
-        </div>
-        <div class="col s6">
-             <h3 class="center-align">Objet</h3>
-                 <select>
-                     <option value="" disabled selected>Choose your option</option>
-                     <option value="1">Inscription</option>
-                     <option value="2">Fiche Projet</option>
-                     <option value="3">Demande de Renseignement</option>
-                 </select>
-         </div>
-    </div> <!--end class row-->
-
-    <!--text area -->
-    <div class="row">
-        <div class="input-field col s12">
-            <textarea id="textarea1" class="materialize-textarea"></textarea>
-            <label for="textarea1">Votre message</label>
-        </div>
-    </div>
-    <!--submit button -->
-    <button data-target="verif" class="btn waves-effect waves-light btn modal-trigger" type="submit" name="action">Envoyer
-        <i class="material-icons right">send</i>
-    </button>
-</form><!--end of contact form -->
-
-    <!-- Modal Structure-->
-    <div id="verif" class="modal">
-        <div class="modal-content">
-            <h3 class="center">Votre message a été transmis!</h3>
-        </div>
-    </div>
-
-
+<div class="jumbotron">
+	<form role="form">
+		<div class="row">
+			<br style="clear:both">
+			<h3 style="margin-bottom: 25px; text-align: center;">Contactez nous</h3>
+			<div class="form-group col-md-6">
+				<label>Nom</label>
+				<input type="text" class="form-control" id="nom" name="nom" required>
+			</div>
+			<div class="form-group col-md-6">
+				<label>Prenom</label>
+				<input type="text" class="form-control" id="prenom" name="prenom" required>
+			</div>
+			<div class="form-group col-md-6">
+				<label>Email</label>
+				<input type="email" class="form-control" id="email" name="email" required>
+			</div>
+			<div class="form-group col-md-6">
+				<label>Téléphone</label>
+				<input type="text" class="form-control" id="phone" name="phone" required>
+			</div>
+			<div class="col-md-6">
+				<label>Je suis...</label>
+				<select class="form-control" id="subject" name="subject">
+					<option selected value="na">Choisir un option</option>
+					<option value="service">Maire</option>
+					<option value="suggestions">Partenaire</option>
+					<option value="product">Autre</option>
+				</select>
+			</div>
+			<div class="col-md-6">
+				<label>Objet</label>
+				<select class="form-control" id="subject" name="subject">
+					<option selected value="na">Choisir un option</option>
+					<option value="service">Inscription</option>
+					<option value="suggestions">Fiche Projet</option>
+					<option value="product">Demande de Renseignement</option>
+				</select>
+			</div>
+		</div>
+		<br>
+	<div class="row">
+			<div class="form-group">
+				<textarea class="form-control" type="textarea" id="message" placeholder="Message..." maxlength="340" rows="8"></textarea>
+				<span class="help-block"><p id="characterLeft" class="help-block ">Vous avez atteint la limite!</p></span>
+			</div>
+		</div>
+	<button type="button" id="submit" name="submit" class="btn btn-primary pull-right">Envoyer
+		</button>
+	</form>
+</div><!--end of main well-->
