@@ -48,7 +48,7 @@ switch ($page) {
         $container = true;
         $statut = "private";
         break;
-    case 'MairesProfile':
+    case 'MairesProfil':
         $linkPage = "privateMairesProfil.php";
         $titlePage = "Mon compte";
         $container = true;
@@ -81,7 +81,7 @@ switch ($page) {
     case 'PartFormFiche':
         $linkPage = "privatePartFormFiche.php";
         $titlePage = "Créer ma fiche";
-        $container = true;
+        $container = false;
         $statut = "private";
         break;
     case 'PartListe':
@@ -93,35 +93,35 @@ switch ($page) {
     case 'AdminIndex':
         $linkPage = "privateAdminIndex.php";
         $titlePage = "Mon espace Administrateur";
-        $container = true;
+        $container = false;
         $statut = "private";
         break;
     case 'AdminGestionAccueil':
         $linkPage = "privateAdminGestionAccueil.php";
         $titlePage = "Gérer la page d'accueil";
-        $container = true;
+        $container = false;
         $statut = "private";
         break;
     case 'AdminProjets':
         $linkPage = "privateAdminProjets.php";
         $titlePage = "Gérer les fiches projets";
-        $container = true;
+        $container = false;
         $statut = "private";
         break;
     case 'AdminUsers':
         $linkPage = "privateAdminUsers.php";
         $titlePage = "Gérer les Utilisateurs";
-        $container = true;
+        $container = false;
         $statut = "private";
         break;
     case 'AdminStat':
         $linkPage = "privateAdminStat.php";
         $titlePage = "consulter les statistiques";
-        $container = true;
+        $container = false;
         $statut = "private";
         break;
     case 'RechercheProjet':
-        $linkPage = "privateRechecheProjet.php";
+        $linkPage = "privateRechercheProjet.php";
         $titlePage = "Chercher des projets";
         $container = true;
         $statut = "private";
@@ -132,9 +132,9 @@ switch ($page) {
         $container = true;
         $statut = "private";
         break;
-    case 'Projets':
-        $linkPage = "privateProjets.php";
-        $titlePage = "consulter une fiche projets";
+    case 'Projet':
+        $linkPage = "privateProjet.php";
+        $titlePage = "consulter une fiche projet";
         $container = true;
         $statut = "private";
         break;

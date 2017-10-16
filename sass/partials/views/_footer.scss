@@ -45,10 +45,10 @@ footer {
     padding: 5px;
     background-color: #FFFFFF;
     @include borderRadius(5px);
-    box-shadow: 5px 5px 0 rgba(0, 0, 0, 0.6);
+    box-shadow: 5px 5px 0 rgba(255, 0, 0, 0.6);
   }
   .partlogo {
-    height: 100px;
+    height: 70px;
     margin: 25px;
     padding: 5px;
     background-color: #FFFFFF;
