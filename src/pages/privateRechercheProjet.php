@@ -1,5 +1,5 @@
 <h2>Recherche</h2>
-<div class="search">
+<div class="search jumbotron">
 	<div class="col-sm-10 col-sm-offset-1">
 		<div class="input-group" id="adv-search">
 			<input type="text" class="form-control" placeholder="Recherche un projet" />

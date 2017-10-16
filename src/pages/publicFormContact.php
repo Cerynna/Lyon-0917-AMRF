@@ -4,16 +4,20 @@
 			<br style="clear:both">
 			<h3 style="margin-bottom: 25px; text-align: center;">Contactez nous</h3>
 			<div class="form-group col-md-6">
-				<input type="text" class="form-control" id="nom" name="nom" placeholder="Nom" required>
+				<label>Nom</label>
+				<input type="text" class="form-control" id="nom" name="nom" required>
 			</div>
 			<div class="form-group col-md-6">
-				<input type="text" class="form-control" id="prenom" name="prenom" placeholder="Prenom" required>
+				<label>Prenom</label>
+				<input type="text" class="form-control" id="prenom" name="prenom" required>
 			</div>
 			<div class="form-group col-md-6">
-				<input type="email" class="form-control" id="email" name="email" placeholder="Email" required>
+				<label>Email</label>
+				<input type="email" class="form-control" id="email" name="email" required>
 			</div>
 			<div class="form-group col-md-6">
-				<input type="text" class="form-control" id="phone" name="phone" placeholder="Téléphone" required>
+				<label>Téléphone</label>
+				<input type="text" class="form-control" id="phone" name="phone" required>
 			</div>
 			<div class="col-md-6">
 				<label>Je suis...</label>
