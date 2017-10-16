@@ -18,16 +18,16 @@
                 <input id="fonction" type="text" class="validate">
                 <label for="fonction">Fonction</label>
             </div>
-			<div class="input-field col s6">
-				<i class="material-icons prefix">phone</i>
-				<input id="tel" type="number" class="validate">
-				<label for="tel">Téléphone</label>
-			</div>
-			<div class="input-field col s6">
-				<i class="material-icons prefix">email</i>
-				<input id="email" type="email" class="validate">
-				<label for="email">Email</label>
-			</div>
+            <div class="input-field col s6">
+                <i class="material-icons prefix">phone</i>
+                <input id="tel" type="number" class="validate">
+                <label for="tel">Téléphone</label>
+            </div>
+            <div class="input-field col s6">
+                <i class="material-icons prefix">email</i>
+                <input id="email" type="email" class="validate">
+                <label for="email">Email</label>
+            </div>
         </form>
     </div>
     <div class="row">
@@ -36,22 +36,22 @@
 
             <div class="input-field col s6">
 
-            <label for="password">Nouveau mot de passe</label>
-            <input id="password" type="password" class="validate" data-error="wrong"
-                   data-success="right">
+                <label for="password">Nouveau mot de passe</label>
+                <input id="password" type="password" class="validate" data-error="wrong"
+                       data-success="right">
             </div>
-                <div class="input-field col s6">
+            <div class="input-field col s6">
 
                 <label for="password">Confirmation</label>
-            <input id="password" type="password" class="validate" data-error="wrong"
-                   data-success="right">
-                </div>
+                <input id="password" type="password" class="validate" data-error="wrong"
+                       data-success="right">
+            </div>
         </div>
         <div class="row center-align">
-        <p class="col s6">
-            <input type="checkbox" class="filled-in" id="filled-in-box" checked="checked" />
-            <label for="filled-in-box">J'accepte les conditions générales d'utilisation</label>
-        </p>
+            <p class="col s6">
+                <input type="checkbox" class="filled-in" id="filled-in-box" checked="checked" />
+                <label for="filled-in-box">J'accepte les conditions générales d'utilisation</label>
+            </p>
 
             <button data-target="verif" class="btn waves-effect waves-light btn modal-trigger col s3" type="submit"
                     name="action">Valider

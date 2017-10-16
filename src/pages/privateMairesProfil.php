@@ -1,75 +1,99 @@
-<h2 class="center-align">Mon profil</h2>
-<div class="row">
-    <div class="col s12 ">
-        <form action="">
-			<div class="input-field col s6">
-				<input id="lastName" type="text" class="validate">
-				<label for="lastName">Nom</label>
-			</div>
-			<div class="input-field col s6">
-				<input id="firstName" type="text" class="validate">
-				<label for="firstName">Prénom</label>
-			</div>
-			<div class="input-field col s12">
-				<input id="address" type="text" class="validate">
-				<label for="address">Adresse de la Mairie</label>
-			</div>
-			<div class="input-field col s6">
-				<i class="material-icons prefix">map</i>
-				<input type="text" id="autocomplete-input" class="autocomplete">
-				<label for="autocomplete-input">Departement</label>
-			</div>
-            <div class="input-field col s6">
-                <input id="codep" type="number" class="validate">
-                <label for="codep">Code Postal</label>
+<h2 class="center-align">Mon profil (Maire)</h2>
+<div class="container-fluid">
+    <div class="row jumbotron">
+        <h3>Mon profil</h3>
+        <div class="col-lg-6 col-md-6">
+            <div class="form-group">
+                <label for="lastName">Nom</label>
+                <input id="lastName" type="text" class="form-control">
             </div>
-            <div class="input-field col s6">
-                <input disabled value="NOT EDITABLE" id="insee" type="number" class="validate">
-                <label for="insee">Numéro INSEE</label>
+        </div>
+        <div class="col-lg-6 col-md-6">
+            <div class="form-group">
+                <label for="firstName">Prénom</label>
+                <input id="firstName" type="text" class="form-control">
             </div>
-			<div class="input-field col s6">
-				<input id="habitants" type="number" class="validate">
-				<label for="habitants">Nombre d'habitants</label>
-			</div>
-            <div class="input-field col s6">
-                <i class="material-icons prefix">phone</i>
-                <input id="tel" type="number" class="validate">
+        </div>
+        <div class="col-lg-6 col-md-6">
+            <div class="form-group">
                 <label for="tel">Téléphone</label>
+                <input id="tel" type="number" class="form-control">
             </div>
-
-            <div class="input-field col s6">
-                <i class="material-icons prefix">email</i>
-                <input id="email" type="email" class="validate">
+        </div>
+        <div class="col-lg-6 col-md-6">
+            <div class="form-group">
                 <label for="email">Email</label>
+                <input id="email" type="email" class="form-control">
             </div>
-			<div class="input-field col s6">
-				<input id="twitter" type="text" class="validate">
-				<label for="twitter">Compte Twitter</label>
-			</div>
-        </form>
+        </div>
+        <div class="col-lg-6 col-md-6">
+            <div class="form-group">
+                <label for="twitter">Compte Twitter</label>
+                <input id="twitter" type="text" class="form-control">
+            </div>
+        </div>
+        <div class="col-lg-12 col-md-12 center">
+            <button class="btn" type="submit">Sauvegarder</button>
+        </div>
     </div>
-    <div class="row">
-        <div class="col s12 ">
-            <h3 class="center-align">Changer mon mot de passe</h3>
-
-            <div class="input-field col s6">
-
-            <label for="password">Nouveau mot de passe</label>
-            <input id="password" type="password" class="validate" data-error="wrong"
-                   data-success="right">
+    <div class="row jumbotron">
+        <h3>Ma Mairie</h3>
+        <div class="col-lg-6 col-md-6">
+            <div class="form-group">
+                <label for="commune">Commune</label>
+                <input type="text" id="commune" class="form-control">
             </div>
-                <div class="input-field col s6">
+        </div>
+        <div class="col-lg-6 col-md-6">
+            <div class="form-group">
+                <label for="codep">Code Postal</label>
+                <input id="codep" type="number" class="form-control">
+            </div>
+        </div>
+        <div class="col-lg-12 col-md-12">
+            <div class="form-group">
+                <label for="address">Adresse de la Mairie</label>
+                <input id="address" type="text" class="form-control">
+            </div>
+        </div>
+        <div class="col-lg-6 col-md-6">
+            <div class="form-group">
+                <label for="habitants">Nombre d'habitants</label>
+                <input id="habitants" type="number" class="form-control">
+            </div>
+        </div>
+        <div class="col-lg-6 col-md-6">
+            <div class="form-group">
+                <label for="insee">Numéro INSEE</label>
+                <input disabled value="NOT EDITABLE" id="insee" type="number" class="form-control">
+            </div>
+        </div>
+        <div class="col-lg-12 col-md-12 center">
+            <button class="btn" type="submit">Sauvegarder</button>
+        </div>
+    </div>
+    <div class="row jumbotron">
+        <h3>Changer mon mot de passe</h3>
+        <div class="col-lg-6 col-md-6">
+            <div class="form-group">
+                <label for="password">Nouveau mot de passe</label>
+                <input id="password" type="password" class="form-control" data-error="wrong"
+                       data-success="right">
+            </div>
+        </div>
+        <div class="col-lg-6 col-md-6">
+            <div class="form-group">
 
                 <label for="password">Confirmation</label>
-            <input id="password" type="password" class="validate" data-error="wrong"
-                   data-success="right">
-                </div>
+                <input id="password" type="password" class="form-control" data-error="wrong"
+                       data-success="right">
+            </div>
         </div>
-        <div class="row center-align">
-            <button data-target="verif" class="btn waves-effect waves-light btn modal-trigger " type="submit"
-                    name="action">Valider
-            </button>
+
+        <div class="col-lg-12 col-md-12 center">
+            <button class="btn" type="submit">Sauvegarder</button>
         </div>
+
+
     </div>
 </div>
-
