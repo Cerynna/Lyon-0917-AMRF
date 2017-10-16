@@ -1,0 +1,1000 @@
+  510  ls
+  511  cd gittest/
+  512  mkdir gittest
+  513  cd gittest/
+  514  ll
+  515  git status
+  516  ll
+  517  clear
+  518  git init
+  519  ll
+  520  cd .git/
+  521  ll
+  522  cd ..
+  523  git status
+  524  git config
+  525  git
+  526  git config -l
+  527  git config  --local -l
+  528  git config  --global -l
+  529  history
+  530  clear
+  531  git config  --global -l
+  532  history
+  533  git config  --global -l
+  534  git status
+  535  nano firstfile.txt
+  536  git status
+  537  git branch
+  538  git add .
+  539  git status
+  540  git commit -m "add first file to project"
+  541  git status
+  542  git log
+  543  git branch
+  544  git remote add origin git@github.com:HysteriasKiwo/testgit.git
+  545  git config -l
+  546  git status
+  547  git pull origin master
+  548  cd ..
+  549  ll
+  550  ls
+  551  cd gittest/
+  552  cd
+  553  cd .ssh
+  554  ll
+  555  nano id_rsa.pub
+  556  cat id_rsa.pub
+  557  cd
+  558  cd Bureau
+  559  cd gittest/
+  560  ll
+  561  git log
+  562  git push origin master
+  563  cd
+  564  ls
+  565  ll
+  566  cd .ssh
+  567  cat id_rsa.pub
+  568  git push origin master
+  569  cd
+  570  cd Bureau
+  571  cd gittest/
+  572  git push origin master
+  573  git log --oneline
+  574  git log
+  575  git branch
+  576  git branch -a
+  577  git push origin branchtest
+  578  git branch branchtest
+  579  git branch
+  580  git checkout branchtest
+  581  git push origin branchtest
+  582  git branch
+  583  nano secondfile.txt
+  584  git status
+  585  git add .
+  586  git status
+  587  git commit - m "add secondefile because"
+  588  git status
+  589  git push origin branchtest
+  590  git status
+  591  git push origin branchtest
+  592  git commit -m "add secondefile because"
+  593  git push origin branchtest
+  594  git status
+  595  git checkout master
+  596  cd
+  597  clear
+  598  mkdir ExoGit
+  599  cd ExoGit/
+  600  git init
+  601  git remote add origin git@github.com:Banb4n/ExoGit.git
+  602  git status
+  603  git branch jeremy
+  604  git checkout -b Jeremy
+  605  git branch
+  606  git status
+  607  nano jeremy.txt
+  608  git add.
+  609  git add .
+  610  git status
+  611  git commit -m "add jeremy file"
+  612  git status
+  613  git push origin Jeremy
+  614  git pull
+  615  git status
+  616  git branch master
+  617  git status
+  618  git checkout master
+  619  git pull
+  620  git pull master
+  621  git pull origin git@github.com:Banb4n/ExoGit.git
+  622  git clone fatal: Couldn't find remote ref git@github.com
+  623  git clone git@github.com:Banb4n/ExoGit.git
+  624  git pull origin git@github.com:Banb4n/ExoGit.git
+  625  git pull origin master
+  626  git status
+  627  cleat
+  628  clear
+  629  git init
+  630  git clone git@github.com:Banb4n/WCSgit.git
+  631  cd WCSgit
+  632  git init
+  633  git checkout jeremy
+  634  git checkout -b jeremy
+  635  nano jeremy.txt
+  636  git status
+  637  git add .
+  638  git status
+  639  git commit -m "add jeremy file"
+  640  git push origin jeremy
+  641  ll
+  642  cd
+  643  cd /var/
+  644  ll
+  645  cd www
+  646  cd html
+  647  ll
+  648  cd Lyon-project1-FPJ/
+  649  git init
+  650  git remote https://github.com/WildCodeSchool/Lyon-project1-FPJ.git
+  651  git remote -v
+  652  git branch dev
+  653  git branch
+  654  git checkout dev
+  655  git add .
+  656  git status
+  657  git reset HEAD bordel/
+  658  git status
+  659  git commit -m "add all structure of BUG BURGER"
+  660  git push origin dev
+  661  git revert HEAD~1..HEAD
+  662  cd
+  663  d Bureau
+  664  cd Bureau
+  665  ll
+  666  cd WILD
+  667  ll
+  668  cd Quete
+  669  ll
+  670  cd wild
+  671  ll
+  672  git init
+  673  git add wild.php
+  674  git status
+  675  git commit -m "add wild.php"
+  676  git push origin master
+  677  git remote git@github.com:HysteriasKiwo/quete-GIT.git
+  678  git remote origin git@github.com:HysteriasKiwo/quete-GIT.git
+  679  git remote -v
+  680  git remote add origin git@github.com:HysteriasKiwo/quete-GIT.git
+  681  git remote -v
+  682  git push origin master
+  683  git branch
+  684  git checkout -b wcs
+  685  nano wild.php 
+  686  git add wild.php 
+  687  git status
+  688  git commit -m "add new wild.php"
+  689  git push origin wcs
+  690  git checkout master
+  691  git pull origin master
+  692  git merge wcs
+  693  cd
+  694  cd/var/www/html
+  695  cd /var/www/html
+  696  ll
+  697  cd cornac
+  698  git remote origin git@github.com:HysteriasKiwo/cornac.git
+  699  git inti
+  700  git init
+  701  git remote origin git@github.com:HysteriasKiwo/cornac.git
+  702  git remote add  git@github.com:HysteriasKiwo/cornac.git
+  703  git remote add origin  git@github.com:HysteriasKiwo/cornac.git
+  704  git status
+  705  git add '*.php'
+  706  git status
+  707  git commit -m "Upload resultat quete cornac"
+  708  git push origin master
+  709  cd ..
+  710  ll
+  711  cd Lyon-project1-FPJ/
+  712  git init
+  713  git status
+  714  git add index.php
+  715  git status
+  716  git commit -m "correction Bug Menu"
+  717  git push origin master
+  718  php livecoding.php
+  719  php livecoding1.php
+  720  cd Livecondung
+  721  cd Liveconding
+  722  cd Livecoding
+  723  php livecoding1.php
+  724  cd .
+  725  cd ..
+  726  cd FO
+  727  cd Formulaire/
+  728  php index.php
+  729  php form.php
+  730  php -S 127
+  731  ll
+  732  cd Livecoding/
+  733  php -S 127.0.0.1:8000 -t .
+  734  cd Formulaire/
+  735  php form.php
+  736  cd Formulaire/
+  737  git init
+  738  git add *
+  739  git status
+  740  git rm --cached erreur.php
+  741  git status
+  742  git commit -m "Add all file"
+  743  git remote add origin git@github.com:HysteriasKiwo/Quete-Formulaire.git
+  744  git push -u origin master
+  745  cd Gandalf/
+  746  git init
+  747  git add *
+  748  git status
+  749  git commit -m "ADD all files"
+  750  git remote add origin git@github.com:HysteriasKiwo/Quete-Gandalf.git
+  751  git push -u origin master
+  752  git int
+  753  git init
+  754  git status
+  755  git add *
+  756  git status
+  757  git branch
+  758  git checkout master
+  759  git commit -m "UPDATE"
+  760  git reset --hard <HEAD>
+  761  git reset --hard
+  762  git status
+  763  git branch master
+  764  git checkout master
+  765  git status
+  766  git add *
+  767  git status
+  768  git add
+  769  git add .
+  770  git status
+  771  git branch
+  772  git checkout master
+  773  git pull origin master
+  774  git status
+  775  git commit -m "Test"
+  776  git push origin dev
+  777  git status
+  778  git add .
+  779  git status
+  780  git checkout master
+  781  git commit -m "Test"
+  782  git checkout master
+  783  git push origin dev
+  784  git checkout master
+  785  git add .gitignore
+  786  git status
+  787  git add .idea/
+  788  git status
+  789  git commit -m "CONFLI DE LA NIGHT"
+  790  git push origin dev
+  791  git status
+  792  git checkout master
+  793  git pull
+  794  git status
+  795  git init
+  796  git checkout -b Jeremy
+  797  git add .
+  798  git status
+  799  git commit -m "Dernier version"
+  800  git push origin Jeremy
+  801  git status
+  802  git add .php
+  803  git add *.php
+  804  git status
+  805  git add *.jpg
+  806  git add *.css
+  807  git status
+  808  git branch
+  809  git git commit -m "UPLOAD the last minute"
+  810  git status
+  811  git push origin Jeremy
+  812  git status
+  813  git add *.php
+  814  git status
+  815  git add *.css
+  816  git status
+  817  git commit -m "modif dernier minute"
+  818  git push origin Jeremy
+  819  git pull origin Jeremy
+  820  git status
+  821  git commit -m "UPLOAD the last minute"
+  822  git push origin Jeremy
+  823  git push origin master
+  824  git push origin Jeremy
+  825  java -version
+  826  ll
+  827  cd Téléchargements/
+  828  ll
+  829  sudo apt-get update
+  830  sudo apt-get install default-jre
+  831  sudo apt-get install default-jdk
+  832  sudo add-apt-repository ppa:webupd8team/java
+  833  sudo apt-get update
+  834  sudo chmod rwxrwxrwx
+  835  chmod --help
+  836  chmod u+rwx,g+rx-w,o+r-wx 
+  837  cd .
+  838  cd ..
+  839  chmod u+rwx,g+rx-w,o+r-wx upload
+  840  sudo chmod u+rwx,g+rx-w,o+r-wx upload
+  841  sudo su
+  842  sudo service apache2 reload
+  843  sudo apt-get install php7.0-gd
+  844  sudo service apache2 reload
+  845  cd Ressources/
+  846  cd HystéDoc/
+  847  git init
+  848  git branch dev
+  849  git branch
+  850  git git remote add origin git@github.com:HysteriasKiwo/Hyst-Doc.git
+  851  git remote add origin git@github.com:HysteriasKiwo/Hyst-Doc.git
+  852  git status
+  853  git branch dev
+  854  git checkou -b dev
+  855  git checkout -b dev
+  856  git branch
+  857  git add *
+  858  git status
+  859  git commit "ADD colorpicker"
+  860  git commit -m "ADD colorpicker"
+  861  git push -u origin dev
+  862  git status
+  863  git add *
+  864  git status
+  865  git commit -m "Fix Upload iagePicker"
+  866  git push origin dev
+  867  cd Ressource/
+  868  cd Color\ Picker/
+  869  php test.php
+  870  git status
+  871  git add *
+  872  git status
+  873  git commit -m "ADD preview for Image PIcker & FIX upload"
+  874  git push origin dev
+  875  cd ..
+  876  php arbo.php
+  877  git status
+  878  git add *
+  879  git status
+  880  git commit -m "Upload"
+  881  git push origin dev
+  882  git status
+  883  git add *
+  884  git status
+  885  git commit -m "Upload"
+  886  git push origin dev
+  887  git push --help
+  888  git branch
+  889  git checkout -b "dev2.0"
+  890  git status
+  891  git add *
+  892  git commit -m "Upload"
+  893  git push origin dev2.0
+  894  git branch
+  895  git branch dev
+  896  git checkout -b "dev"
+  897  git branch
+  898  sudo pat-get install mysql
+  899  sudo apt-get install mysql
+  900  mysql
+  901  mysql -u root -p
+  902  mysql -u eleve > eleve.sql
+  903  mysql -u root -p eleve > eleve.sql
+  904  mysql -u root -p to_delete > eleve.sql
+  905  ll
+  906  cd Ressources/
+  907  git HysteDoc/
+  908  cd HysteDoc/
+  909  cd myDossier/
+  910  cd Wild/
+  911  cd Quete/
+  912  cd bootstrapsauron/
+  913  git init
+  914  git add *
+  915  git status
+  916  git commit -m "EYE OF SAURON"
+  917  git remote add origin git@github.com:HysteriasKiwo/EyeSauron.git
+  918  git push -u origin master
+  919  sudo rm -v /var/crash/*
+  920  reboot
+  921  git init
+  922  git status
+  923  git branch
+  924  git add *
+  925  git status
+  926  git reset HEAD archive.php
+  927  git status
+  928  git commit -m "upload 19-07-2017"
+  929  git push origin Jeremy [A
+  930  git pull
+  931  git banch
+  932  git branches
+  933  git branch
+  934  git status
+  935  git push origin Jeremy
+  936  git log
+  937  git pull origin Jeremy
+  938  git push origin Jeremy
+  939  git status
+  940  git branch -a
+  941  git chekout master
+  942  git checkout master
+  943  git checkout -- .idea/*
+  944  git checkout -- .idea/
+  945  git checkout -- .idea/modules.xml
+  946  git status
+  947  git checkout -- .idea/workspace.xml
+  948  git checkout -- .idea/vcs.xml
+  949  git checkout -- .idea/Lyon-project1-FPJ.iml
+  950  git status
+  951  git checkout master
+  952  git pull
+  953  git branch
+  954  git branch -d Jeremy
+  955  git branch -D Jeremy
+  956  git branch -D dev
+  957  git branch
+  958  git chekout -b dev
+  959  git checkout -b dev
+  960  git status
+  961  git add include/
+  962  git status
+  963  git commit -m "Upload 19-07-2017"
+  964  git push origin dev
+  965  git status
+  966  git add *
+  967  git branch
+  968  git add include/
+  969  git status
+  970  git commit -m "Upload 19-07-2017"
+  971  git push origin dev
+  972  git pull origin dev
+  973  git status
+  974  git add mentions.php
+  975  git status
+  976  git add *
+  977  git status
+  978  git commit -m "Mentions Legales & fix bug"
+  979  git push origin dev
+  980  git status
+  981  git add *
+  982  git status
+  983  git commit -m "Modif"
+  984  git push origin dev
+  985  git checkout -b dev2
+  986  git commit -m "Modif"
+  987  git status
+  988  git push origin dev2
+  989  git branch -a
+  990  git fetch --help
+  991  git branch -D dev
+  992  git branch -a
+  993  git checkout master
+  994  git branch -D dev2
+  995  git branch -D Jeremy
+  996  git branch
+  997  git status
+  998  git branch dev
+  999  git branch
+ 1000  git checkout dev
+ 1001  git status
+ 1002  git pull 
+ 1003  git branch
+ 1004  git checkout correction
+ 1005  git pull
+ 1006  reboot
+ 1007  git status
+ 1008  git init
+ 1009  git status
+ 1010  git checkout -b Jeremy
+ 1011  git add *
+ 1012  git status
+ 1013  git commit -m "modif style.css and carte.php"
+ 1014  git push origin Jeremy
+ 1015  git status
+ 1016  git add *
+ 1017  git branch
+ 1018  git commit -m "modif"
+ 1019  git push origin Jeremy
+ 1020  mysql -u root -p
+ 1021  ll
+ 1022  cd Ressources/
+ 1023  cd HysteDoc/
+ 1024  cd myDossier/
+ 1025  cd Wild/
+ 1026  cd Cours/
+ 1027  cd PHP_BDD/
+ 1028  php index.php
+ 1029  ll
+ 1030  cd ressource
+ 1031  cd Ressources/
+ 1032  cd Wil
+ 1033  ll
+ 1034  cd HysteDoc/
+ 1035  cd myDossier/
+ 1036  cd Wild/
+ 1037  cd Cours/
+ 1038  cd PHP_BDD/
+ 1039  php index.php
+ 1040  test index.php
+ 1041  cd Ressources/HysteDoc/myDossier/Wild/DOJO/dojo
+ 1042  php index.php
+ 1043  clear
+ 1044  php index.php
+ 1045  cd ..
+ 1046  cd Quete
+ 1047  ll
+ 1048  cd objetPHP/
+ 1049  php index.php
+ 1050  mysql -u root -p
+ 1051  xinput list
+ 1052  xinput text <identifiant> | grep "button press"
+ 1053  xinput text <identifiant> && grep "button press"
+ 1054  xinput text <identifiant>
+ 1055  xinput text 13 && grep "button press"
+ 1056  cd Install/
+ 1057  git clone https://github.com/powerline/fonts.git fonts
+ 1058  cd fonts
+ 1059  install.sh
+ 1060  ll
+ 1061  ls
+ 1062  install.sh
+ 1063  sudo sh install.sh
+ 1064  cd $HOME
+ 1065  mkdir -p .bash/themes/agnoster-bash
+ 1066  git clone https://github.com/speedenator/agnoster-bash.git .bash/themes/agnoster-bash
+ 1067  ll
+ 1068  ls
+ 1069  clear
+ 1070  xinput --help
+ 1071  xinput test 13
+ 1072  ll
+ 1073  ls
+ 1074  cd Bureau
+ 1075  ls
+ 1076  mkdir test
+ 1077  ls
+ 1078  cd tes
+ 1079  xinput test 13 | grep "button press"
+ 1080  xinput set-button-map --help
+ 1081  xinput set-button-map 13 1 2 3 4 5 6 7 10 11
+ 1082  cd $HOME
+ 1083  ll
+ 1084  ls
+ 1085  cd ..
+ 1086  ls
+ 1087  cd hysterias/
+ 1088  ls
+ 1089  cd Install
+ 1090  ls
+ 1091  cd xinput-ui-master/
+ 1092  ls
+ 1093  xinput-ui.py
+ 1094  sudo sh xinput-ui.py
+ 1095  sudo python xinput-ui.py install
+ 1096  sudo nano /etc/apache2/apache2.conf
+ 1097  sudo service apache2 restart
+ 1098  service apache2 restart
+ 1099  sudo nano /etc/apache2/apache2.conf
+ 1100  service apache2 restart
+ 1101  a2enmod rewrite
+ 1102  sudo a2enmod rewrite
+ 1103  sudo service apache2 restart
+ 1104  sudo a2enmod rewrite
+ 1105  sudo service apache2 restart
+ 1106  sudo gedit /etc/apache2/httpd.conf
+ 1107  a2enmod rewrite
+ 1108  /etc/init.d/apache2 restart
+ 1109  systemctl restart apache2
+ 1110  apache2 status
+ 1111  apache -V
+ 1112  apache2 -V
+ 1113  apache2 -l
+ 1114  $ ps -ef | grep apache
+ 1115  $ /usr/sbin/apache2 -V | grep SERVER_CONFIG_FILE
+ 1116  -D SERVER_CONFIG_FILE="/etc/apache2/apache2.conf"
+ 1117  ps -ef | grep apache
+ 1118  /usr/sbin/apache2 -V | grep SERVER_CONFIG_FILE
+ 1119  apache 2 --help
+ 1120  apache2 --help
+ 1121  sudo service apache2 status
+ 1122  sudo service apache2 restart
+ 1123  systemctl restart apache2
+ 1124  ls -l /usr/lib/apache2/modules/
+ 1125  sudo a2enmod rewrite
+ 1126  sudo gedit /etc/apache2/apache2.conf
+ 1127  sudo /etc/init.d/apache2 restart
+ 1128  systemctl restart apache2
+ 1129  php arbo.php
+ 1130  cd pages
+ 1131  php arbo.php
+ 1132  cd ..
+ 1133  cd myDossier/Wild/Cours/POO_PHP/
+ 1134  php index.php
+ 1135  php -v
+ 1136  ll
+ 1137  cd Bureau/
+ 1138  ls
+ 1139  cd Bootstrap/
+ 1140  ls
+ 1141  cd wcs
+ 1142  cd $HOME
+ 1143  cd ~
+ 1144  cd myDossier/Wild/DOJO/DOJOOBJET
+ 1145  php index.php
+ 1146  cd myDossier/Wild/DOJO/DOJOOBJET
+ 1147  php index.php
+ 1148  git init
+ 1149  git remote origin https://github.com/WildCodeSchool/Lyon-0917-AMRF.git
+ 1150  git remote add origin https://github.com/WildCodeSchool/Lyon-0917-AMRF.git
+ 1151  git branch
+ 1152  git checkout devMaster
+ 1153  git pull
+ 1154  git checkout devMaster
+ 1155  git commit -m ""
+ 1156  git status
+ 1157  git add *
+ 1158  git status
+ 1159  git commit -m "Add arboresence"
+ 1160  git push origin devMaster
+ 1161  git add *
+ 1162  git status
+ 1163  git add *
+ 1164  git status
+ 1165  git reset HEAD .gitignore
+ 1166  git reset HEAD .idea/vcs.xml
+ 1167  git status
+ 1168  git commit -m "Add dir pages"
+ 1169  git push origin devMaster
+ 1170  git add pages/
+ 1171  git add public/pages/
+ 1172  git status
+ 1173  git commit -m "Add dir pages"
+ 1174  git push origin devMaster
+ 1175  git pull
+ 1176  cd myDossier/Wild/Cours/TODELTE-POO-DATETIME
+ 1177  php index.php
+ 1178  git add *
+ 1179  git status
+ 1180  git commit -m "dev"
+ 1181  git push origin devMaster
+ 1182  git init
+ 1183  git clone https://github.com/WildCodeSchool/Lyon-0917-checkpoint-1.git
+ 1184  git checkout -b jeremy
+ 1185  git commit -m "Etape 1"
+ 1186  echo > ~/.mysql_history 
+ 1187  mysql -u root -p
+ 1188  git commit -m "Etape 3"
+ 1189  mysql -u root -p
+ 1190  php index.php
+ 1191  mysql -u root -p
+ 1192  php index.php
+ 1193  1
+ 1194  php index.php
+ 1195  mysql -u root -p
+ 1196  git add *
+ 1197  git commit -m "Final"
+ 1198  git push origin jeremy
+ 1199  git status
+ 1200  git add .gitignore
+ 1201  git status
+ 1202  git commit -m "Final"
+ 1203  git push origin jeremy
+ 1204  git status
+ 1205  git branch -a
+ 1206  git remote -v
+ 1207  git remote origin git@github.com:WildCodeSchool/Lyon-0917-checkpoint-1.git
+ 1208  git status
+ 1209  git add *
+ 1210  git status
+ 1211  git remote add  origin git@github.com:WildCodeSchool/Lyon-0917-checkpoint-1.git
+ 1212  git remote -v
+ 1213  git status
+ 1214  git add *
+ 1215  git commit -m "Final"
+ 1216  git push origin jeremy
+ 1217  git init
+ 1218  git add *
+ 1219  git commit - m "Frist Commit"
+ 1220  git commit -m "Frist Commit"
+ 1221  git remote add origin git@github.com:HysteriasKiwo/All-Quete.git
+ 1222  git status
+ 1223  git remote add origin git@github.com:HysteriasKiwo/All-Quete.git
+ 1224  git remote add master git@github.com:HysteriasKiwo/All-Quete.git
+ 1225  git branch -a
+ 1226  git push -u master master
+ 1227  git add BackToFutur/
+ 1228  git commit -m "Second Commit"
+ 1229  git add *
+ 1230  git status
+ 1231  git commit -a
+ 1232  ll
+ 1233  ls
+ 1234  cd Téléchargements/
+ 1235  ls
+ 1236  ll
+ 1237  ls
+ 1238  mkdir lol
+ 1239  ls
+ 1240  cd lol
+ 1241  nano lol.txt
+ 1242  ls
+ 1243  hitory
+ 1244  history
+ 1245  git status
+ 1246  git add *
+ 1247  git commit -m "petite modif du weeek end"
+ 1248  git pull origin devMaster
+ 1249  git push origin devMaster
+ 1250  cd myDossier/Wild/Cours/POO_HERITAGE
+ 1251  php index.php
+ 1252  cd myDossier/Wild/Cours/POO_HERITAGE
+ 1253  php index.php
+ 1254  node -v
+ 1255  npm -v
+ 1256  npm i -g n
+ 1257  sudo npm i -g n
+ 1258  n latest
+ 1259  sudo n latest
+ 1260  node -v
+ 1261  npm -v
+ 1262  npm update npm
+ 1263  npm -v
+ 1264  cd pages
+ 1265  php adminArbo.php 
+ 1266  php arbo.php 
+ 1267  git checkout -b devJeremy
+ 1268  git branch -a
+ 1269  git status
+ 1270  git add *
+ 1271  git commit -m "UPload"
+ 1272  git push origin devJeremy
+ 1273  git status
+ 1274  git add *
+ 1275  git commit -m "upload"
+ 1276  git push origin devJeremy
+ 1277  git add *
+ 1278  git commit -m "upload"
+ 1279  git push origin devJeremy
+ 1280  git pull origin devMaster
+ 1281  git branch devMaster
+ 1282  git checkout  devMaster
+ 1283  git add *
+ 1284  git commit -m "Change Index"
+ 1285  git push origin devMaster
+ 1286  git push origin devJeremy
+ 1287  git pull origin devMaster
+ 1288  git add *
+ 1289  git status
+ 1290  git commit -m "WIP"
+ 1291  git push origin devJeremy
+ 1292  cd myDossier/WILD/QUETE/PHP_OBJET
+ 1293  php index.php
+ 1294  cd ..
+ 1295  cd BACKTOFUTUR/œ
+ 1296  php index.php
+ 1297  cd BACKTOFUTUR/
+ 1298  php index.php
+ 1299  git init
+ 1300  git status
+ 1301  git add *
+ 1302  git status
+ 1303  git commit -m "First Work"
+ 1304  git remote add origin git@github.com:HysteriasKiwo/Dashboard-LocalHost.git
+ 1305  git push -u origin master
+ 1306  git status
+ 1307  git add*
+ 1308  git add *
+ 1309  git status
+ 1310  git add *
+ 1311  git status
+ 1312  git push origin master
+ 1313  git commit -m "Merge Front Banb4n"
+ 1314  git push origin master
+ 1315  git add *
+ 1316  git commit -m "Add Front Banb4n"
+ 1317  git push origin master
+ 1318  git add *
+ 1319  git commit -m "FIX BUG"
+ 1320  git push origin master
+ 1321  apt-get upgrade
+ 1322  ll
+ 1323  cd Téléchargements/
+ 1324  ll
+ 1325  ls
+ 1326  sudo apt install code_1.16.1-1505406497_amd64.deb
+ 1327  sudo apt-get install code_1.16.1-1505406497_amd64.deb
+ 1328  cd /var/www/html/myDossier/WILD/DOJO/MATRIX
+ 1329  php index.php
+ 1330  git status
+ 1331  git add *
+ 1332  git status
+ 1333  git commit -m "New Arborescence"
+ 1334  git push origin devJeremy
+ 1335  git branch -D master
+ 1336  git brach
+ 1337  git branch
+ 1338  git branch -a
+ 1339  git fetch
+ 1340  git checkout master
+ 1341  git add *
+ 1342  git commt -m "Fix syntax"
+ 1343  git commit -m "Fix syntax"
+ 1344  git push origin devJeremy
+ 1345  pull origin devMaster
+ 1346  git pull origin devMaster
+ 1347  git status
+ 1348  git stash
+ 1349  git pull origin devMaster
+ 1350  git add *
+ 1351  git commit -m "modif gitignore"
+ 1352  git push origin devJeremy
+ 1353  git pull origin devMaster
+ 1354  git add *
+ 1355  git commit -m "Upload"
+ 1356  git push origin devJeremy
+ 1357  git pull origin master
+ 1358  git branch master
+ 1359  git checkout master
+ 1360  git add *
+ 1361  git status
+ 1362  git commit -m "Fix bug"
+ 1363  git push origin master
+ 1364  git status
+ 1365  git pull origin devDarin
+ 1366  node-sass --watch sass/main.scss dist/css/main.css
+ 1367  git add *
+ 1368  git commit - m "FIX BUG"
+ 1369  git push origin master
+ 1370  git status
+ 1371  git add *
+ 1372  git status
+ 1373  git commit -m "FIX BUG"
+ 1374  git push origin master
+ 1375  cd /var/www/html/myDossier/WILD/QUETE/PHP_COOKIES
+ 1376  php index.php
+ 1377  cd inc
+ 1378  php head.php
+ 1379  composer init
+ 1380  composer require twig/twig
+ 1381  composer dump-autoload
+ 1382  git add *
+ 1383  git commit -m "NEW Structure for Composer and Symphony"
+ 1384  git push origin master
+ 1385  git init
+ 1386  git commit -m "first commit"
+ 1387  git add *
+ 1388  git commit -m "first commit"
+ 1389  git remote add origin git@github.com:Cerynna/Quete---COOKIES.git
+ 1390  git push -u origin master
+ 1391  sudo apt install curl php-cli php-mbstring git unzip
+ 1392  cd ~
+ 1393  curl -sS https://getcomposer.org/installer -o composer-setup.php
+ 1394  sudo php composer-setup.php --install-dir=/usr/local/bin --filename=composer
+ 1395  composer -v
+ 1396  cd /etc/apache2/sites-available/
+ 1397  ll
+ 1398  cat 000-default.conf 
+ 1399  cd ..
+ 1400  cd mods-available/
+ 1401  ll
+ 1402  cd ..*ll
+ 1403  cd ..
+ 1404  ll
+ 1405  cd mods-enabled/
+ 1406  ll
+ 1407  cat rewrite.load 
+ 1408  cd /var/www/html/
+ 1409  ll
+ 1410  sudo chown www-data:hysterias .htaccess 
+ 1411  ll
+ 1412  cd /etc/apache2/sites-available/
+ 1413  ll
+ 1414  nano 000-default.conf 
+ 1415  sudo nano 000-default.conf 
+ 1416  sudo service apache reload
+ 1417  sudo service apache2 reload
+ 1418  cd /etc/apache2/
+ 1419  ll
+ 1420  sudo nano apache2.conf 
+ 1421  sudo service apache2 restart
+ 1422  cd /var/www/html/
+ 1423  ll
+ 1424  cat .htaccess 
+ 1425  cd /var/log
+ 1426  cd apache2/
+ 1427  ll
+ 1428  tail error.log
+ 1429  ll
+ 1430  tail other_vhosts_access.log
+ 1431  ll
+ 1432  cd
+ 1433  cd -
+ 1434  cd /var/www/html/
+ 1435  nano .htaccess 
+ 1436  ll
+ 1437  php -S 127.0.0.1:8080 -t .
+ 1438  cd /etc
+ 1439  cat hosts
+ 1440  sudo nano hosts
+ 1441  sudo apt install php-xdebug
+ 1442  cd /var/www/html/myDossier/WILD/QUETE/PHP_XDEBUG
+ 1443  git clone https://github.com/romaincoeur/student_age.git
+ 1444  php 
+ 1445  php index.php
+ 1446  cd /var/www/html/myDossier/WILD/QUETE/PHP_FILE
+ 1447  php upload.php
+ 1448  git status
+ 1449  git add *
+ 1450  git status
+ 1451  git commit -m "Fix CSS"
+ 1452  git push origin master
+ 1453  git add *
+ 1454  git commit -m "modif footer"
+ 1455  git push origin master
+ 1456  git init
+ 1457  git commit -m "first commit"
+ 1458  git remote add origin git@github.com:Cerynna/Quete---FILES.git
+ 1459  git status
+ 1460  git add *
+ 1461  git push -u origin master
+ 1462  git status
+ 1463  git commit -m "First Commit"
+ 1464  git push -u origin master
+ 1465  git checkout devJeremy
+ 1466  git add *
+ 1467  git commit -m "modif rooter"
+ 1468  git checkout devJeremy
+ 1469  git checkout master
+ 1470  git status
+ 1471  git log
+ 1472  git push origin master
+ 1473  git checkout master
+ 1474  git checkout devJeremy
+ 1475  git pull origin master
+ 1476  sudo apt install php-xdebug
+ 1477  cd /var/www/html/myDossier/
+ 1478  chmod -R 777
+ 1479  cd ..
+ 1480  chmod -R 777 myDossier/
+ 1481  sudo chmod -R 777 myDossier/
+ 1482  ll
+ 1483  git pull origin devMaster
+ 1484  git stash
+ 1485  git pull origin devMaster
+ 1486  git add *
+ 1487  git commit -m "modif SCSS"
+ 1488  git push origin devJeremy
+ 1489  checkout -b devSCSS
+ 1490  git checkout -b devSCSS
+ 1491  git push
+ 1492  git push --set-upstream origin devSCSS
+ 1493  npm install -g vue-cli
+ 1494  sudo npm install -g vue-cli
+ 1495  vue
+ 1496  vue -v
+ 1497  vue
+ 1498  vue -V
+ 1499  vue
+ 1500  vur init webpack my-project
+ 1501  vue init webpack my-project
+ 1502  cd my-project
+ 1503  npm install
+ 1504  npm run dev
+ 1505  git branch -a
+ 1506  git pull origin restart
+ 1507  hystory
+ 1508  history
+ 1509  history > log.txt
