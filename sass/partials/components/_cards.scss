@@ -24,15 +24,11 @@
   }
 }
 
-.jumbCard {
-  margin:5px;
-  padding:5px;
-}
+
   .cardGest {
     .card-title {
       text-align: center;
       .fa {
-        margin: 5px;
         text-align: center;
         font-size: 58px
       }
@@ -40,14 +36,14 @@
     .card-body {
       height: 250px;
       padding: 10px;
-    }
-    p {
-      font-size: 0.9em;
-      display: inline-block;
-      height: 110px;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: normal;
+      p {
+        font-size: 0.9em;
+        display: inline-block;
+        height: 110px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: normal;
+      }
     }
   }
 
