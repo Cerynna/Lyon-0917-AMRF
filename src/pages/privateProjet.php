@@ -43,10 +43,10 @@ h2 {
 }
 </style>
 
+<h2>Partenariat Application Mobile Court-voiturage</h2> <!-- insertion php-->
 <div class="row">
-    <h2>Partenariat Application Mobile Court-voiturage</h2> <!-- insertion php-->
     <div class="theme-city">
-        <div class="col-md-8  col-md-offset-1"> <!-- handle the labels' return if too long or too many-->
+        <div class="col-md-10"> <!-- handle the labels' return if too long or too many-->
             <div class="label">
                 <div class="main-theme">
                 <span class="label label-default">Mobilité</span>
