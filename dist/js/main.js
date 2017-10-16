@@ -9,7 +9,7 @@ $(window).on('scroll', function () {
 });
 
 $(document).ready(function(){
-  $('textarea#presentation').characterCounter();
+
     $("#navbar").sticky({topSpacing: 0, zIndex: 1000});
     $('#characterLeft').text('340 caractères restants');
     $('#message').keydown(function () {
