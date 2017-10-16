@@ -1,12 +1,14 @@
 .bck-maire{
-  padding: 10px;
+  margin:3px;
+  padding: 5px;
   background: #90CAF9;
   div>a{
     color: rgb(54, 80, 105) !important;
   }
 }
 .bck-part{
-  padding: 10px;
+  margin:3px;
+  padding: 5px;
   background: #b3ffb1;
   div>a{
     color: rgb(87, 116, 87) !important;
@@ -14,19 +16,38 @@
 }
 
 .bck-default {
-  padding: 10px;
+  margin:3px;
+  padding: 5px;
   background: #80CBC4;
   div > a {
     color: rgb(61, 98, 91) !important;
   }
 }
 
-.cardGest{
-  padding: 10px;
-  p{
-    height: 100px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: normal;
-  }
+.jumbCard {
+  margin:5px;
+  padding:5px;
 }
+  .cardGest {
+    .card-title {
+      text-align: center;
+      .fa {
+        margin: 5px;
+        text-align: center;
+        font-size: 58px
+      }
+    }
+    .card-body {
+      height: 250px;
+      padding: 10px;
+    }
+    p {
+      font-size: 0.9em;
+      display: inline-block;
+      height: 110px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: normal;
+    }
+  }
+

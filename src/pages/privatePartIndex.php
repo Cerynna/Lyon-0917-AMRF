@@ -1,50 +1,46 @@
 <h2 class="center-align">Mon Espace</h2>
 
 <div class="row">
-    <div class="col s12 m4">
-        <div class="card blue lighten-5">
-            <div class="card-image">
-                <h3 class="card_title">MA FICHE</h3>
-                <img src="https://s20.postimg.org/5psnm98yl/button1.jpg">
+    <div class="card cardGest col-xs-12 col-md-4">
+        <div class="card-body bck-part">
+            <div class="card-title">
+                <h3>MA FICHE</h3>
+                <i class="fa fa-id-card"></i>
             </div>
-            <div class="card-content">
+            <div class="card-text">
                 <p>Créer ou mettre à jour sa fiche partenaire</p>
             </div>
-            <div class="card-action">
+            <div class="card-block">
                 <a href="#">ACCEDER</a>
             </div>
         </div>
     </div>
-    <div class="col s12 m4">
-        <div class="card blue lighten-5">
-            <div class="card-image">
-                <h3 class="card_title">MES FAVORIS</h3>
-                <img src="https://s20.postimg.org/5psnm98yl/button1.jpg">
+    <div class="card cardGest col-xs-12 col-md-4">
+        <div class="card-body bck-part">
+            <div class="card-title">
+                <h3>MES FAVORIS</h3>
+                <i class="fa fa-tags"></i>
             </div>
-            <div class="card-content">
+            <div class="card-text">
                 <p>Consulter mes projets et mes partenaires favoris</p>
             </div>
-            <div class="card-action">
+            <div class="card-block">
                 <a href="#">CONSULTER</a>
             </div>
         </div>
     </div>
-    <div class="col s12 m4">
-        <div class="card blue lighten-5">
-            <div class="card-image">
-                <h3 class="card_title">MON COMPTE</h3>
-                <img src="https://s20.postimg.org/5psnm98yl/button1.jpg">
+    <div class="card cardGest col-xs-12 col-md-4">
+        <div class="card-body bck-part">
+            <div class="card-title">
+                <h3>MON PROFIL</h3>
+                <i class="fa fa-user" ></i>
             </div>
-            <div class="card-content">
+            <div class="card-text">
                 <p>Gérez votre profil : ajoutez, consultez, modifiez ou supprimez les informations de                         votre compte</p>
             </div>
-            <div class="card-action">
+            <div class="card-block">
                 <a href="#">ACCEDER A MON PROFIL</a>
             </div>
         </div>
     </div>
 </div>
-
-
-<a class="waves-effect waves-light btn">SE DECONNECTER</a>
-

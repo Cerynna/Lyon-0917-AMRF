@@ -332,7 +332,7 @@ footer {
     border-radius: 5px;
     box-shadow: 5px 5px 0 rgba(0, 0, 0, 0.6); }
   footer .partlogo {
-    height: 100px;
+    height: 70px;
     margin: 25px;
     padding: 5px;
     background-color: #FFFFFF;
@@ -393,30 +393,48 @@ footer {
     min-width: 500px; } }
 
 .bck-maire {
-  padding: 10px;
+  margin: 3px;
+  padding: 5px;
   background: #90CAF9; }
   .bck-maire div > a {
     color: #365069 !important; }
 
 .bck-part {
-  padding: 10px;
+  margin: 3px;
+  padding: 5px;
   background: #b3ffb1; }
   .bck-part div > a {
     color: #577457 !important; }
 
 .bck-default {
-  padding: 10px;
+  margin: 3px;
+  padding: 5px;
   background: #80CBC4; }
   .bck-default div > a {
     color: #3d625b !important; }
 
-.cardGest {
+.jumbCard {
+  margin: 5px;
+  padding: 5px; }
+
+.cardGest .card-title {
+  text-align: center; }
+  .cardGest .card-title .fa {
+    margin: 5px;
+    text-align: center;
+    font-size: 58px; }
+
+.cardGest .card-body {
+  height: 250px;
   padding: 10px; }
-  .cardGest p {
-    height: 100px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: normal; }
+
+.cardGest p {
+  font-size: 0.9em;
+  display: inline-block;
+  height: 110px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: normal; }
 
 /**
 *************************** View *********************
