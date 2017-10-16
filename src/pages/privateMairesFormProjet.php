@@ -1,9 +1,9 @@
 <h2>Déposez une fiche projet</h2>
 
 <form action="#" id="form" method="post" name="form">
+<div class="container-fluid">
 
-
-    <div class="container col-sm-6">
+    <div class="col-sm-6">
 
     <form>
             <div class="form-group col-sm-12">
@@ -144,5 +144,7 @@
     </div>
 
 
-<div class="container col-sm-6" align="center"> Prévisualisation
+<div class="col-sm-6" align="center"> Prévisualisation
 </div>
+</div>
+

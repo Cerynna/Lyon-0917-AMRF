@@ -28,4 +28,3 @@ $(window).on('scroll', function () {
         $('#logo').stop().animate({height: "100px", width: "200px"},50);
     }
 });
-
