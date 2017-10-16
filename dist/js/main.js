@@ -1,7 +1,5 @@
 $(document).ready(function(){
-
     $("#navbar").sticky({topSpacing: 0, zIndex: 1000});
-
     $('#characterLeft').text('340 caractères restants');
     $('#message').keydown(function () {
         var max = 340;
@@ -19,6 +17,7 @@ $(document).ready(function(){
         }
     });
 });
+
 
 $(window).on('scroll', function () {
     var scrollTop = $(window).scrollTop();
