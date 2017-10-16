@@ -1,15 +1,4 @@
-$(window).on('scroll', function () {
-    var scrollTop = $(window).scrollTop();
-    if (scrollTop > 20) {
-        $('#logo').stop().animate({height: "40px", width: "80px"},50);
-    }
-    else {
-        $('#logo').stop().animate({height: "100px", width: "200px"},50);
-    }
-});
-
 $(document).ready(function(){
-  $('textarea#presentation').characterCounter();
     $("#navbar").sticky({topSpacing: 0, zIndex: 1000});
     $('#characterLeft').text('340 caractères restants');
     $('#message').keydown(function () {
@@ -28,3 +17,15 @@ $(document).ready(function(){
         }
     });
 });
+
+
+$(window).on('scroll', function () {
+    var scrollTop = $(window).scrollTop();
+    if (scrollTop > 20) {
+        $('#logo').stop().animate({height: "40px", width: "80px"},50);
+    }
+    else {
+        $('#logo').stop().animate({height: "100px", width: "200px"},50);
+    }
+});
+
