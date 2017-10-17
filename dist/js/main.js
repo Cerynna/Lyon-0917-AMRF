@@ -2,6 +2,10 @@ $(document).ready(function(){
 
     $("#navbar").sticky({topSpacing: 0, zIndex: 1000});
 
+
+}); // end of doc.ready
+
+
     $('#formConnect').on('shown.bs.modal', function () {
         $('#myInput').focus()
     })
@@ -16,3 +20,5 @@ $(window).on('scroll', function () {
         $('#logo').stop().animate({height: "100px", width: "200px"},50);
     }
 });
+
+
