@@ -1,8 +1,7 @@
+<h2>Contactez nous</h2>
 <div class="jumbotron">
 	<form role="form">
 		<div class="row">
-			<br style="clear:both">
-			<h3 style="margin-bottom: 25px; text-align: center;">Contactez nous</h3>
 			<div class="form-group col-md-6">
 				<label>Nom</label>
 				<input type="text" class="form-control" id="nom" name="nom" required>

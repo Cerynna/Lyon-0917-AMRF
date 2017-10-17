@@ -330,7 +330,7 @@ footer {
     -moz-border-radius: 5px;
     -ms-border-radius: 5px;
     border-radius: 5px;
-    box-shadow: 5px 5px 0 rgba(255, 0, 0, 0.6); }
+    box-shadow: 5px 5px 0 rgba(0, 0, 0, 0.6); }
   footer .partlogo {
     height: 70px;
     margin: 25px;
@@ -484,8 +484,8 @@ body {
       font-weight: bold;
       color: #004d40; }
   body h4 {
-    font-size: 2.4em;
+    font-size: 1.8em;
     line-height: 1em; }
   body h5 {
-    font-size: 2.2em;
+    font-size: 1.6em;
     line-height: 1em; }
