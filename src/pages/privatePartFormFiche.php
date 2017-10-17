@@ -91,8 +91,10 @@
             <h5>Présentation</h5>
 
             <div class="form-group col-sm-12">
+
                 <label for="presentation">Présentez votre activité *</label>
                 <textarea id="presentation" class="form-control" rows="6" data-length="1200"></textarea>
+
             </div>
 
 

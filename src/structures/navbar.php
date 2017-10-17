@@ -5,6 +5,8 @@
                 <li><a href="?page=Home">Accueil</a></li>
                 <li><a href="?page=Amrf">AMRF</a></li>
                 <li><a href="?page=FormContact">Contact</a></li>
+
+
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                        aria-expanded="false">Mon Profil <span class="caret"></span></a>
@@ -16,6 +18,8 @@
                         <li><a href="#">Separated link</a></li>
                     </ul>
                 </li>
+
+
             </ul>
         </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->

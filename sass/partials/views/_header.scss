@@ -26,6 +26,13 @@
     text-align: right;
     padding-right: 1%;
     padding-top: 1%;
+    button {
+      padding:20px;
+    }
+    .btn {
+      font-size: 1.5em;
+
+    }
   }
   .btn {
     background-color: $primaryColor;
