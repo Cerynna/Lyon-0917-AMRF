@@ -3,5 +3,6 @@
 <script src="./dist/js/bootstrap.min.js"></script>
 <script src="./dist/js/jquery.sticky.js"></script>
 <script src="./dist/js/autoComp.js"></script>
+<script src="./dist/js/motsClefs.js"></script>
 <script src="./dist/js/main.js"></script>
 
