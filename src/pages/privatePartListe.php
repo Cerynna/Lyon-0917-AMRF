@@ -1,7 +1,4 @@
 <?php
-$secteurs = [
-    'Education ', 'Santé ', 'Service ', 'Environement ', 'Aménagement du territoire ', 'Tourisme ', 'Social ', 'Economie ', 'Culture ', 'Numérique ',
-];
 $alphabet = [
     'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z',
 ]; ?>
