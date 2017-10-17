@@ -1,21 +1,22 @@
 <style>
 
-h2 {
-    color: #3c763d;
-}
+
 
 .theme-city span
 {
-    font-size: 1vw;
+    font-size: 15px;
 }
 
 .panel-default
 {
     margin-top: 30px;
 }
-
+.main-theme {
+    margin-left: 20px;
+}
 .second-theme {
     margin-top: 20px;
+    margin-left: 20px;
 }
 
 #cityName .collapsed {
@@ -34,27 +35,31 @@ h2 {
 
 .description-title {
     margin: 30px 20px 10px 10px;
-    color: #3c763d;
+
 }
 .description-body {
     margin: 10px 20px 10px 20px;
     padding-bottom: 10px;
-    border-bottom: 1px solid #3c763d;
+    border-bottom: 1px solid #000;
 }
 </style>
 
 <h2>Partenariat Application Mobile Court-voiturage</h2> <!-- insertion php-->
 <div class="row">
     <div class="theme-city">
+
         <div class="col-md-10"> <!-- handle the labels' return if too long or too many-->
+
+        <div class="col-md-10 "> <!-- handle the labels' return if too long or too many-->
+
             <div class="label">
-                <div class="main-theme">
+                <div class="main-theme text-left">
                 <span class="label label-default">Mobilité</span>
                 <span class="label label-default">Numérique</span>
                 <span class="label label-default">Aménagement du territoire</span>
                 <span class="label label-default">Amenagement du territoire</span>
                 </div>
-                <div class="second-theme">
+                <div class="second-theme text-left">
                 <span class="label label-warning">covoiturage</span>
                 <span class="label label-warning">court-voiturage</span>
                 <span class="label label-warning">transports</span>

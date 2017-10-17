@@ -2,7 +2,6 @@
 <div class="jumbotron">
 	<form role="form">
 		<div class="row">
-			<br style="clear:both">
 			<div class="form-group col-md-6">
 				<label>Nom</label>
 				<input type="text" class="form-control" id="nom" name="nom" required>
