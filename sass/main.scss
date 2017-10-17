@@ -19,13 +19,17 @@
 @import 'partials/views/modalConnect';
 @import 'partials/views/planDeSite';
 @import 'partials/views/footer';
-@import "partials/views/search";
+@import 'partials/views/search';
+@import 'partials/views/multiSelect';
 @import 'partials/components/cards';
 
 /**
 *************************** View *********************
  */
 @import url('https://fonts.googleapis.com/css?family=Cabin+Condensed|Comfortaa|Francois+One|Josefin+Sans|Play|Poiret+One|Source+Sans+Pro');
+@import url('https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.0/css/bootstrap.min.css');
+
+
 
 body::-webkit-scrollbar {
   display: none;

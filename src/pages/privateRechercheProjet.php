@@ -1,45 +1,98 @@
 <h2>Recherche</h2>
 <div class="search jumbotron">
-	<div class="col-sm-10 col-sm-offset-1">
-		<div class="input-group" id="adv-search">
-			<input type="text" class="form-control" placeholder="Recherche un projet" />
-			<div class="input-group-btn">
-				<div class="btn-group" role="group">
-					<div class="dropdown dropdown-lg">
-						<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><span class="caret"></span></button>
-						<div class="dropdown-menu dropdown-menu-right" role="menu">
-							<form class="form-horizontal" role="form">
-								<div class="form-group">
-									<label for="filter">Recherche avancée</label>
-									<select multiple class="form-control">
-										<option value="" disabled selected>Choisir un thematique</option>
-										<option value="1">AMENAGEMENT DU TERRITOIRE</option>
-										<option value="2">CULTURE</option>
-										<option value="3">DEMOCRATIE LOCALE</option>
-										<option value="4">EDUCATION</option>
-										<option value="5">ECONOMIE</option>
-										<option value="6">ENVIRONNEMENT</option>
-										<option value="7">EUA ET ASSAINISSEMENT</option>
-										<option value="8">MOBILITE</option>
-										<option value="9">NUMERIQUE</option>
-										<option value="10">RELATIONS INTERNATIONALES</option>
-										<option value="11">SANTE</option>
-										<option value="12">SOCIAL</option>
-										<option value="13">SERVICES DE PROXIMITE</option>
-										<option value="14">TOURISME</option>
-									</select>
-								</div>
-								<div class="form-group">
-									<label for="contain">Contains the words</label>
-									<input class="form-control" type="text" />
-								</div>
-								<button type="submit" class="btn btn-primary"><i class="fa fa-search"></i> Recherche</button>
-							</form>
-						</div>
-					</div>
-					<button type="button" class="btn btn-primary"><i class="fa fa-search"></i> Recherche</button>
-				</div>
-			</div>
+	<div id="custom-search-input">
+		<div class="input-group col-md-12">
+			<input type="text" class="  search-query form-control" placeholder="Recherche une fiche projet" />
+			<span class="input-group-btn">
+				<button type="submit" class="btn btn-primary"><i class="fa fa-search"></i> Recherche</button>
+			</span>
 		</div>
 	</div>
-</div>
+</div><!--end jumbotron-->
+<h2>Recherche Avancée</h2>
+<div class="jumbotron">
+	<h3 class="control-label text-center">Choisir un thematique</h3><br>
+	<div class="form-group row">
+		<div class="funkyradio">
+			<div class="col-md-4">
+				<div class="funkyradio-success">
+					<input type="checkbox" name="checkbox" id="checkbox1" />
+					<label for="checkbox1">AMENAGEMENT DU TERRITOIRE</label>
+				</div>
+				<div class="funkyradio-success">
+					<input type="checkbox" name="checkbox" id="checkbox2" />
+					<label for="checkbox2">CULTURE</label>
+				</div>
+				<div class="funkyradio-success">
+					<input type="checkbox" name="checkbox" id="checkbox3" />
+					<label for="checkbox3">DEMOCRATIE LOCALE</label>
+				</div>
+				<div class="funkyradio-success">
+					<input type="checkbox" name="checkbox" id="checkbox4" />
+					<label for="checkbox4">EDUCATION</label>
+				</div>
+				<div class="funkyradio-success">
+					<input type="checkbox" name="checkbox" id="checkbox5" />
+					<label for="checkbox5">ECONOMIE</label>
+				</div>
+			</div><!--end of col1-->
+			<div class="col-md-4">
+				<div class="funkyradio-success">
+					<input type="checkbox" name="checkbox" id="checkbox6" />
+					<label for="checkbox6">ENVIRONNEMENT</label>
+				</div>
+				<div class="funkyradio-success">
+					<input type="checkbox" name="checkbox" id="checkbox7" />
+					<label for="checkbox7">EUA ET ASSAINISSEMENT</label>
+				</div>
+				<div class="funkyradio-success">
+					<input type="checkbox" name="checkbox" id="checkbox8" />
+					<label for="checkbox8">MOBILITE</label>
+				</div>
+				<div class="funkyradio-success">
+					<input type="checkbox" name="checkbox" id="checkbox9" />
+					<label for="checkbox9">NUMERIQUE</label>
+				</div>
+				<div class="funkyradio-success">
+					<input type="checkbox" name="checkbox" id="checkbox10" />
+					<label for="checkbox10">RELATIONS INTERNATIONALES</label>
+				</div>
+			</div><!--end of col2-->
+			<div class="col-md-4">
+				<div class="funkyradio-success">
+					<input type="checkbox" name="checkbox" id="checkbox11" />
+					<label for="checkbox11">SANTE</label>
+				</div>
+				<div class="funkyradio-success">
+					<input type="checkbox" name="checkbox" id="checkbox12" />
+					<label for="checkbox12">SOCIAL</label>
+				</div>
+				<div class="funkyradio-success">
+					<input type="checkbox" name="checkbox" id="checkbox13" />
+					<label for="checkbox13">SERVICES DE PROXIMITE</label>
+				</div>
+				<div class="funkyradio-success">
+					<input type="checkbox" name="checkbox" id="checkbox14" />
+					<label for="checkbox14">TOURISME</label>
+				</div>
+			</div><!--end of col3-->
+		</div><!--end of funkyradio-->
+	</div><!--end row/ form-group multi choice-->
+	<div class="row">
+		<div class="col-md-4 col-md-offset-1 text-center">
+			<form>
+				<label for="query">Departement</label>
+				<fieldset>
+					<div class="form-group">
+						<input type="text" class="form-control" name="query" id="query">
+					</div>
+				</fieldset>
+			</form>
+		</div>
+		<div class="col-md-4 col-md-offset-2 form-group text-center">
+			<label for="codep">Code Postal</label>
+			<input class="form-control" id="codep" type="text" />
+		</div>
+		<button type="submit" class="btn btn-primary"><i class="fa fa-search"></i> Recherche</button>
+	</div>
+</div><!--end jumbotron-->
