@@ -421,6 +421,9 @@ footer {
       font-size: 80px; }
   .cardGest .card-body {
     height: 300px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
     border-radius: 5px;
     box-shadow: 6px 6px 4px rgba(31, 31, 31, 0.71); }
     .cardGest .card-body p {
@@ -441,6 +444,17 @@ footer {
         .cardGest .card-body .card-block .btn a {
           text-decoration: none;
           color: #ffffff; }
+
+.pagination li.active {
+  background-color: #004d40; }
+
+.panel-group {
+  margin: 50px; }
+  .panel-group .panel-title {
+    margin-top: 20px;
+    font-size: 1.7em; }
+  .panel-group .plus {
+    margin-top: 50px; }
 
 /**
 *************************** View *********************
