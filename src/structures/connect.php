@@ -8,50 +8,43 @@
             </div>
             <div class="modal-body containerConnect">
 
-                        <div class="formConnect bck-maire">
-                            <h5 class="center-align">Maire</h5>
-                            <div class="form-group">
-                                <label for="login">n° INSEE</label>
-                                <input id="login" type="text" class="form-control">
-                            </div>
-                            <div class="form-group">
-                                <label for="last_name">Mot de passe</label>
-                                <input id="mdp" type="password" class="form-control">
-                            </div>
-                            <div class="containerConnect">
-                                <div class="text-left">
-                                    <a href="#">Créer mon compte</a>
-                                </div>
-                                <div class="text-right">
-                                    <button class="btn" type="submit"
-                                            name="action">Connection
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
+                <div class="formConnect bck-maire">
+                    <h5 class="center-align">Maire</h5>
+                    <div class="form-group">
+                        <label for="login">n° INSEE</label>
+                        <input id="login" type="text" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="last_name">Mot de passe</label>
+                        <input id="mdp" type="password" class="form-control">
+                    </div>
+                    <div class="containerConnect">
+                        <button class="btn" type="submit" name="action">Connection</button>
+                    </div>
+                    <div class="containerConnect">
+                        <a href="#">Créer mon compte</a>
+                    </div>
+                </div>
 
 
-                        <div class="formConnect bck-part">
-                            <h5 class="center-align">Partenaire</h5>
-                            <div class="form-group">
-                                <label for="login">n° SIRET</label>
-                                <input id="login" type="text" class="form-control">
-                            </div>
-                            <div class="form-group">
-                                <label for="last_name">Mot de passe</label>
-                                <input id="mdp" type="password" class="form-control">
-                            </div>
-                            <div class="containerConnect">
-                                <div class="text-left">
-                                    <a href="#">Créer mon compte</a>
-                                </div>
-                                <div class="text-right">
-                                    <button class="btn" type="submit"
-                                            name="action">Connection
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
+                <div class="formConnect bck-part">
+                    <h5 class="center-align">Partenaire</h5>
+                    <div class="form-group">
+                        <label for="login">n° SIRET</label>
+                        <input id="login" type="text" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="last_name">Mot de passe</label>
+                        <input id="mdp" type="password" class="form-control">
+                    </div>
+                    <div class="containerConnect">
+                        <button class="btn" type="submit" name="action">Connection </button>
+                    </div>
+                    <div class="containerConnect">
+                        <a href="#">Créer mon compte</a>
+                    </div>
+
+                </div>
 
             </div>
             <!--<div class="modal-footer">

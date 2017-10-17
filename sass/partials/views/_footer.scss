@@ -27,6 +27,7 @@ footer {
   }
   .bck {
     background: linear-gradient(to bottom, rgba(224, 242, 241, 0.6), rgba(224, 242, 241, 0));
+    height:30vh;
   }
   .bck-copy {
     background-color: $primaryColor;
@@ -49,7 +50,7 @@ footer {
   }
   .partlogo {
     height: 70px;
-    margin: 25px;
+    margin: 5px;
     padding: 5px;
     background-color: #FFFFFF;
     @include borderRadius(5px);

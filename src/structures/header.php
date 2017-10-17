@@ -11,10 +11,8 @@
             </div>
             <div class="col-lg-2 col-md-2">
                 <div class="connect ">
-                    <a class="btn btn-default" href="#formConnect">Espace Connexion</a>
-
                     <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#formConnect">
-                        Launch demo modal
+                        Espace Connexion
                     </button>
 
                 </div>
