@@ -3,9 +3,7 @@
 <form action="#" id="form" method="post" name="form">
 <div class="container-fluid">
 
-    <div class="col-sm-6">
-
-    <form>
+    <div class="row jumbotron">
             <div class="form-group col-sm-12">
                 <label for="projectName" class="col-sm-12 control-label">Nom du Projet</label>
                 <input id="projectName" type="text" class="form-control"  placeholder="Nom du projet">
@@ -58,36 +56,48 @@
                     <label for="">restauration scolaire</label>
                 </p>
             </div>
+        <div class="form-group col-sm-12">
+            <label for="exampleInputFile">Joindre un fichier</label>
+            <input type="file" id="exampleInputFile">
+            <p class="help-block">Téléchargez une illustration du projet</p>
+        </div>
+    </div>
+    <div class="row jumbotron">
 
-    <div class="form-group col-sm-12">
-        <label for="description">Description</label>
-        <textarea id="description" type="text" class="form-control" placeholder="" rows="3"></textarea>
+        <div class="form-group col-sm-6">
+            <label for="year">Année de réalisation</label>
+            <input id="year" type="text" class="form-control" placeholder="">
+        </div>
+
+        <div class="form-group col-sm-6">
+            <label for="time">Durée de réalisation</label>
+            <input id="time" type="text" class="form-control" placeholder="">
+        </div>
+
+        <div class="form-group col-sm-6">
+            <label for="cost">Coût global</label>
+            <input id="cost" type="text" class="form-control" placeholder="">
+        </div>
+
+        <div class="form-group col-sm-6">
+            <label for="dollars">Cofinancements</label>
+            <input id="dollars" type="text" class="form-control" placeholder="">
+        </div>
+
+
     </div>
 
-    <div class="form-group col-sm-12">
-        <label for="objectif">Objectifs</label>
-        <textarea id="objectif" type="text" class="form-control" placeholder="" rows="2"></textarea>
-    </div>
+    <div class="row jumbotron">
 
-    <div class="form-group col-sm-6">
-        <label for="year">Année de réalisation</label>
-        <input id="year" type="text" class="form-control" placeholder="">
-    </div>
+        <div class="form-group col-sm-12">
+            <label for="description">Description</label>
+            <textarea id="description" type="text" class="form-control" placeholder="" rows="3"></textarea>
+        </div>
 
-    <div class="form-group col-sm-6">
-        <label for="time">Durée de réalisation</label>
-        <input id="time" type="text" class="form-control" placeholder="">
-    </div>
-
-    <div class="form-group col-sm-6">
-        <label for="cost">Coût global</label>
-        <input id="cost" type="text" class="form-control" placeholder="">
-    </div>
-
-    <div class="form-group col-sm-12">
-        <label for="dollars">Financements</label>
-        <input id="dollars" type="text" class="form-control" placeholder="">
-    </div>
+        <div class="form-group col-sm-12">
+            <label for="objectif">Objectifs</label>
+            <textarea id="objectif" type="text" class="form-control" placeholder="" rows="2"></textarea>
+        </div>
 
     <div class="form-group col-sm-12">
         <label for="partenaires">Partenaires mobilisés</label>
@@ -108,7 +118,9 @@
         <label for="difficults">Conseils</label>
         <textarea id="difficults" type="text" class="form-control" placeholder="" rows="2"></textarea>
     </div>
-
+    </div>
+        <div class="row jumbotron">
+            <h5>Pour plus d'informations</h5>
     <div class="form-group col-sm-6">
         <label for="responsable">Personne en charge du Projet</label>
         <input id="responsable" type="text" class="form-control" placeholder="">
@@ -128,23 +140,27 @@
         <label for="tel">Téléphone</label>
         <input id="tel" type="tel" class="form-control" placeholder="">
     </div>
+        </div>
 
-        <div class="form-group col-sm-12">
+    <div class="row jumbotron">
+    <div class="form-group col-sm-12">
             <label for="exampleInputFile">Joindre un fichier</label>
             <input type="file" id="exampleInputFile">
             <p class="help-block">Téléchargez un fichier en JPEG, PDF...</p>
         </div>
 
+        <h5>Liens Youtube</h5>
+        <div class="form-group col-sm-12">
+            <label for="url"></label>
+            <input id="url" type="url" class="form-control">
+        </div>
+    </div>
         <div class="form-group col-sm-12" align="center">
 
-            <button type="button" class="btn btn-primary">Envoyer votre fiche projet</button>
+            <button type="button" class="btn">Envoyer votre fiche projet</button>
 
         </div>
-    </form>
-    </div>
 
 
-<div class="col-sm-6" align="center"> Prévisualisation
-</div>
 </div>
 

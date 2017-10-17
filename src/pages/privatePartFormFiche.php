@@ -1,10 +1,9 @@
-<h2>Ma fiche Partenaire</h2>
-<div class="row">
+<h2 class="center-align">Ma fiche Partenaire</h2>
+<div class="container-fluid">
 
-    <div class="container col-sm-6">
-        <form action="#">
+    <div class="row jumbotron">
+        <h3>Partenaire</h3>
 
-            <h3>Partenaire *</h3>
             <div class="form-group col-sm-12">
                 <label for="company">Nom de la société *</label>
                 <input id="company" type="text" class="form-control">
@@ -21,8 +20,10 @@
                 <label for="city">Ville *</label>
                 <input id="city" type="text" class="form-control">
             </div>
+        </div>
 
-            <h3>Contact *</h3>
+    <div class="row jumbotron">
+            <h3>Contact</h3>
             <div class="form-group col-sm-6">
                 <label for="lastName">Nom du contact *</label>
                 <input id="lastName" type="text" class="form-control">
@@ -39,7 +40,9 @@
                 <label for="email">Email *</label>
                 <input id="email" type="email" class="form-control">
             </div>
+    </div>
 
+    <div class="row jumbotron">
             <h3>Contacts locaux</h3>
             <div class="form-group col-sm-6">
                 <label for="lastName">Nom du contact</label>
@@ -57,43 +60,45 @@
                 <label for="email">Email</label>
                 <input id="email" type="email" class="form-control">
             </div>
+    </div>
 
-            <h3>Secteur d'activité *</h3>
+    <div class="row jumbotron">
+            <h3>A propos de votre entreprise</h3>
+            <h5>Secteur d'activité</h5>
 
             <div class="col-sm-12">
 
-                    <input type="radio" name="group1" id="test">
-                <label for="test">test</label>
+                    <ul>
+                    <li><input name="group1" type="radio" id="institution">
+                    <label for="institution">Institution</label></li>
 
 
-                    <input name="group1" type="radio" id="institution">
-                    <label for="institution">Institution</label>
+                    <li><input name="group1" type="radio" id="bank"/>
+                    <label for="bank">Banque Assurance Mutuelle</label></li>
 
 
-                    <input name="group1" type="radio" id="bank"/>
-                    <label for="bank">Banque Assurance Mutuelle</label>
+                    <li><input name="group1" type="radio" id="health"/>
+                    <label for="health">Santé</label></li>
 
 
-                    <input name="group1" type="radio" id="health"/>
-                    <label for="health">Santé</label>
+                    <li><input name="group1" type="radio" id="education"/>
+                    <label for="education">Education</label></li>
 
-
-                    <input name="group1" type="radio" id="education"/>
-                    <label for="education">Education</label>
-
-                    <input name="group1" type="radio" id="other" />
-                    <label for="other">Autres</label>
-
+                    <li><input name="group1" type="radio" id="other" />
+                    <label for="other">Autres</label></li>
+                    </ul>
             </div>
-            <h3>A propos</h3>
+            <h5>Présentation</h5>
 
             <div class="form-group col-sm-12">
-                <label for="presentation">Présentez votre activité (1200 signes max.) *</label>
-                <textarea id="presentation" class="form-control" maxlength="1200"></textarea>
+
+                <label for="presentation">Présentez votre activité *</label>
+                <textarea id="presentation" class="form-control" rows="6" data-length="1200"></textarea>
+
             </div>
 
 
-            <h3>Logo</h3>
+            <h5>Logo</h5>
             <div class="form-group col-sm-12">
                 <div class="file-field input-field">
                     <div class="btn">
@@ -102,13 +107,18 @@
                     </div>
                 </div>
             </div>
-            <h3>Site Internet</h3>
+            <h5>Site Internet</h5>
             <div class="form-group col-sm-12">
                 <label for="url"></label>
                 <input id="url" type="url" class="form-control">
             </div>
-        </form>
     </div>
+
+            <div class="form-group col-sm-12" align="center">
+
+            <button type="button" class="btn">Enregistrer votre fiche partenaire</button>
+
+            </div>
 
 </div>
 
