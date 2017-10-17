@@ -89,7 +89,7 @@
 
             <div class="form-group col-sm-12">
                 <label for="presentation">Présentez votre activité (1200 signes max.) *</label>
-                <textarea id="presentation" class="form-control" data-length="1200"></textarea>
+                <textarea id="presentation" class="form-control" maxlength="1200"></textarea>
             </div>
 
 

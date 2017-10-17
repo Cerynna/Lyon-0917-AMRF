@@ -262,6 +262,10 @@ textarea {
     text-align: right;
     padding-right: 1%;
     padding-top: 1%; }
+    #header .connect button {
+      padding: 20px; }
+    #header .connect .btn {
+      font-size: 1.5em; }
   #header .btn {
     background-color: #004d40;
     color: #e0f2f1;
@@ -281,7 +285,12 @@ textarea {
   padding: 20px; }
 
 .formConnect {
-  width: 100%; }
+  width: 100%;
+  padding: 20px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  border-radius: 5px; }
 
 .containerConnect {
   display: flex;
@@ -312,7 +321,8 @@ footer {
     font-weight: bold;
     color: #e0f2f1; }
   footer .bck {
-    background: linear-gradient(to bottom, rgba(224, 242, 241, 0.6), rgba(224, 242, 241, 0)); }
+    background: linear-gradient(to bottom, rgba(224, 242, 241, 0.6), rgba(224, 242, 241, 0));
+    height: 30vh; }
   footer .bck-copy {
     background-color: #004d40;
     padding: 20px;
@@ -330,10 +340,10 @@ footer {
     -moz-border-radius: 5px;
     -ms-border-radius: 5px;
     border-radius: 5px;
-    box-shadow: 5px 5px 0 rgba(255, 0, 0, 0.6); }
+    box-shadow: 5px 5px 0 rgba(0, 0, 0, 0.6); }
   footer .partlogo {
     height: 70px;
-    margin: 25px;
+    margin: 5px;
     padding: 5px;
     background-color: #FFFFFF;
     -webkit-border-radius: 5px;
@@ -496,8 +506,8 @@ body {
       font-weight: bold;
       color: #004d40; }
   body h4 {
-    font-size: 2.4em;
+    font-size: 1.8em;
     line-height: 1em; }
   body h5 {
-    font-size: 2.2em;
+    font-size: 1.6em;
     line-height: 1em; }
