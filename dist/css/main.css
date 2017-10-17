@@ -394,41 +394,53 @@ footer {
 
 .bck-maire {
   margin: 3px;
-  padding: 5px;
   background: #90CAF9; }
   .bck-maire div > a {
     color: #365069 !important; }
 
 .bck-part {
   margin: 3px;
-  padding: 5px;
   background: #b3ffb1; }
   .bck-part div > a {
     color: #577457 !important; }
 
 .bck-default {
   margin: 3px;
-  padding: 5px;
+  padding: 10px;
   background: #80CBC4; }
   .bck-default div > a {
     color: #3d625b !important; }
 
-.cardGest .card-title {
-  text-align: center; }
-  .cardGest .card-title .fa {
-    text-align: center;
-    font-size: 58px; }
-
-.cardGest .card-body {
-  height: 250px;
-  padding: 10px; }
-  .cardGest .card-body p {
-    font-size: 0.9em;
-    display: inline-block;
-    height: 110px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: normal; }
+.cardGest {
+  margin-top: 70px; }
+  .cardGest .card-title {
+    text-align: center; }
+    .cardGest .card-title .fa {
+      margin: 10px;
+      text-align: center;
+      font-size: 80px; }
+  .cardGest .card-body {
+    height: 300px;
+    border-radius: 5px;
+    box-shadow: 6px 6px 4px rgba(31, 31, 31, 0.71); }
+    .cardGest .card-body p {
+      margin-top: 10px;
+      padding: 10px;
+      font-size: 0.9em;
+      display: inline-block;
+      height: 110px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: normal; }
+    .cardGest .card-body .card-block {
+      display: flex;
+      justify-content: center; }
+      .cardGest .card-body .card-block .btn {
+        margin: 2px;
+        background-color: #3c3c3c; }
+        .cardGest .card-body .card-block .btn a {
+          text-decoration: none;
+          color: #ffffff; }
 
 /**
 *************************** View *********************
