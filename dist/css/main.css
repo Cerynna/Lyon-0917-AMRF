@@ -263,6 +263,10 @@ textarea {
     text-align: right;
     padding-right: 1%;
     padding-top: 1%; }
+    #header .connect button {
+      padding: 20px; }
+    #header .connect .btn {
+      font-size: 1.5em; }
   #header .btn {
     background-color: #004d40;
     color: #e0f2f1;
@@ -282,7 +286,12 @@ textarea {
   padding: 20px; }
 
 .formConnect {
-  width: 100%; }
+  width: 100%;
+  padding: 20px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  border-radius: 5px; }
 
 .containerConnect {
   display: flex;
@@ -313,7 +322,8 @@ footer {
     font-weight: bold;
     color: #e0f2f1; }
   footer .bck {
-    background: linear-gradient(to bottom, rgba(224, 242, 241, 0.6), rgba(224, 242, 241, 0)); }
+    background: linear-gradient(to bottom, rgba(224, 242, 241, 0.6), rgba(224, 242, 241, 0));
+    height: 30vh; }
   footer .bck-copy {
     background-color: #004d40;
     padding: 20px;
@@ -331,10 +341,10 @@ footer {
     -moz-border-radius: 5px;
     -ms-border-radius: 5px;
     border-radius: 5px;
-    box-shadow: 5px 5px 0 rgba(255, 0, 0, 0.6); }
+    box-shadow: 5px 5px 0 rgba(0, 0, 0, 0.6); }
   footer .partlogo {
     height: 70px;
-    margin: 25px;
+    margin: 5px;
     padding: 5px;
     background-color: #FFFFFF;
     -webkit-border-radius: 5px;
@@ -603,41 +613,53 @@ footer {
 
 .bck-maire {
   margin: 3px;
-  padding: 5px;
   background: #90CAF9; }
   .bck-maire div > a {
     color: #365069 !important; }
 
 .bck-part {
   margin: 3px;
-  padding: 5px;
   background: #b3ffb1; }
   .bck-part div > a {
     color: #577457 !important; }
 
 .bck-default {
   margin: 3px;
-  padding: 5px;
+  padding: 10px;
   background: #80CBC4; }
   .bck-default div > a {
     color: #3d625b !important; }
 
-.cardGest .card-title {
-  text-align: center; }
-  .cardGest .card-title .fa {
-    text-align: center;
-    font-size: 58px; }
-
-.cardGest .card-body {
-  height: 250px;
-  padding: 10px; }
-  .cardGest .card-body p {
-    font-size: 0.9em;
-    display: inline-block;
-    height: 110px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: normal; }
+.cardGest {
+  margin-top: 70px; }
+  .cardGest .card-title {
+    text-align: center; }
+    .cardGest .card-title .fa {
+      margin: 10px;
+      text-align: center;
+      font-size: 80px; }
+  .cardGest .card-body {
+    height: 300px;
+    border-radius: 5px;
+    box-shadow: 6px 6px 4px rgba(31, 31, 31, 0.71); }
+    .cardGest .card-body p {
+      margin-top: 10px;
+      padding: 10px;
+      font-size: 0.9em;
+      display: inline-block;
+      height: 110px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: normal; }
+    .cardGest .card-body .card-block {
+      display: flex;
+      justify-content: center; }
+      .cardGest .card-body .card-block .btn {
+        margin: 2px;
+        background-color: #3c3c3c; }
+        .cardGest .card-body .card-block .btn a {
+          text-decoration: none;
+          color: #ffffff; }
 
 /**
 *************************** View *********************
@@ -693,8 +715,8 @@ body {
       font-weight: bold;
       color: #004d40; }
   body h4 {
-    font-size: 2.4em;
+    font-size: 1.8em;
     line-height: 1em; }
   body h5 {
-    font-size: 2.2em;
+    font-size: 1.6em;
     line-height: 1em; }

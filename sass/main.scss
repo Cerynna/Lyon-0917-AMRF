@@ -16,12 +16,13 @@
  */
 @import 'partials/views/navbar';
 @import 'partials/views/header';
-@import 'partials/views/modalConnect';
+@import 'partials/components/modalConnect';
 @import 'partials/views/planDeSite';
 @import 'partials/views/footer';
 @import 'partials/views/search';
 @import 'partials/views/multiSelect';
 @import 'partials/components/cards';
+
 
 /**
 *************************** View *********************
@@ -98,11 +99,11 @@ body {
     }
   }
   h4 {
-    font-size: 2.4em;
+    font-size: 1.8em;
     line-height: 1em;
   }
   h5 {
-    font-size: 2.2em;
+    font-size: 1.6em;
     line-height: 1em;
   }
 }
