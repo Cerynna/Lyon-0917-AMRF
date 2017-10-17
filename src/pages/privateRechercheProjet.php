@@ -2,7 +2,7 @@
 <div class="search jumbotron">
 	<div id="custom-search-input">
 		<div class="input-group col-md-12">
-			<input type="text" class="  search-query form-control" placeholder="Recherche une fiche projet" />
+			<input type="text" class="search-query form-control" placeholder="Recherche une fiche projet" />
 			<span class="input-group-btn">
 				<button type="submit" class="btn btn-primary"><i class="fa fa-search"></i> Recherche</button>
 			</span>
@@ -21,7 +21,7 @@
 		<h3 class="text-center">Mots-clefs</h3>
 		<fieldset>
 			<div class="form-group">
-				<input type="text" class="form-control" name="mots" id="mots" multiple="multiple">
+				<input type="text" class="form-control" name="mots" id="mots">
 			</div>
 		</fieldset>
 		</div>
