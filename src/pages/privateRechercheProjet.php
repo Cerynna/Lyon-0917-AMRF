@@ -12,18 +12,18 @@
 <h2>Recherche Avancée</h2>
 <div class="jumbotron">
 	<h3 class="control-label text-center">Choisir un thematique</h3><br>
-	<?php
-		include "src/structures/thematique.php"
-	?>
+		<?php
+			include "src/structures/thematique.php"
+		?>
 	<div class="row">
 	<form>
-		<div class="col-md-10 col-md-offset-1">
-		<h3 class="text-center">Mots-clefs</h3>
-		<fieldset>
-			<div class="form-group">
-				<input type="text" class="form-control" name="mots" id="mots">
-			</div>
-		</fieldset>
+		<div class="col-md-11 col-md-offset-1">
+		<h3 class="text-center">Mots-clefs</h3><br>
+			<fieldset>
+				<div class="form-group">
+					<input type="text" class="form-control" name="mots" id="motsCle">
+				</div>
+			</fieldset>
 		</div>
 	</form>
 	</div>
