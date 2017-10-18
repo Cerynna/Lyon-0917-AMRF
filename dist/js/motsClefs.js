@@ -65,5 +65,6 @@ $(function(){
         source: availableTags,
         multiselect: true
     });
-});
 
+
+});

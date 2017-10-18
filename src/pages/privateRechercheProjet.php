@@ -17,13 +17,11 @@
 		?>
 	<div class="row">
 	<form>
-		<div class="col-md-11 col-md-offset-1">
+		<div class="col-md-12">
 		<h3 class="text-center">Mots-clefs</h3><br>
-			<fieldset>
-				<div class="form-group">
-					<input type="text" class="form-control" name="mots" id="motsCle">
-				</div>
-			</fieldset>
+			<div class="form-group">
+				<input type="text" class="motsCle form-control" id="motsCle">
+			</div>
 		</div>
 	</form>
 	</div>
