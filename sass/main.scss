@@ -21,6 +21,7 @@
 @import 'partials/views/footer';
 @import "partials/views/search";
 @import 'partials/components/cards';
+@import 'partials/components/resumeprojet';
 
 /**
 *************************** View *********************
@@ -70,7 +71,7 @@ body {
   h3 {
     font-family: $secondeFont, sans-serif;
     font-size: 2em;
-    line-height: 1em;
+    line-height: 2em;
     a:link {
       text-decoration: none;
       color: $primaryColor;

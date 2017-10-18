@@ -430,6 +430,31 @@ footer {
     text-overflow: ellipsis;
     white-space: normal; }
 
+.enCours, .achieved {
+  border-bottom: solid 3px #3c763d; }
+
+h3 {
+  color: #3c763d; }
+
+.jumbotron {
+  padding: 20px; }
+
+img {
+  margin-top: 50px; }
+
+#city {
+  margin-top: 10px; }
+  #city span {
+    font-size: .8em; }
+
+#theme {
+  margin-top: 10px; }
+  #theme span {
+    font-size: .8em; }
+
+.btn-success {
+  float: right; }
+
 /**
 *************************** View *********************
  */
@@ -468,7 +493,7 @@ body {
   body h3 {
     font-family: "Cabin Condensed", sans-serif;
     font-size: 2em;
-    line-height: 1em; }
+    line-height: 2em; }
     body h3 a:link {
       text-decoration: none;
       color: #004d40; }
