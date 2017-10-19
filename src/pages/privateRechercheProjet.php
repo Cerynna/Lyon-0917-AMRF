@@ -20,7 +20,7 @@
 		<div class="col-md-12">
 		<h3 class="text-center">Mots-clefs</h3><br>
 			<div class="form-group">
-				<input type="text" class="motsCle form-control" id="motsCle">
+				<input type="text" max="5" class="motsCle form-control" id="motsCle">
 			</div>
 		</div>
 	</form>

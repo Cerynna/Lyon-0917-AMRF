@@ -58,7 +58,7 @@ $.widget("ui.autocomplete", $.ui.autocomplete, {
                                 item.remove();
                             })
                     )
-                    .insertAfter(self.element);
+                    .insertBefore(self.element);
 
                 self.selectedItems[ui.item.label] = ui.item;
                 self._value("");
