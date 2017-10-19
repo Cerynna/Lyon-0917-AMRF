@@ -36,7 +36,7 @@
   }
   .card-body {
     height: 300px;
-    border-radius: 5px;
+    @include borderRadius(5px);
     box-shadow: 6px 6px 4px rgba(31, 31, 31, 0.71);
     p {
       margin-top: 10px;
@@ -52,7 +52,7 @@
       display: flex;
       justify-content: center;
       .btn {
-        a{
+        a {
           text-decoration: none;
           color: #ffffff;
         }
