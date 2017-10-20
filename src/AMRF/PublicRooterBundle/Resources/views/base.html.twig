@@ -1,21 +1,30 @@
 <!DOCTYPE html>
 <html lang="fr">
-    <head>
-        <meta charset="UTF-8" />
-        <title>{% block title %}Wiki des Maires{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
-        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
-    </head>
-    <body>
-    qelrfghqsdhgq rejghou oerhg osdg peri
-    {% block header %}
-        {% include 'header.html.twig' %}
-    {% endblock %}
+<head>
+    <meta charset="UTF-8"/>
+    <title>{% block title %}Wiki des Maires{% endblock %}</title>
+    {% block stylesheets %}{% endblock %}
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}"/>
+    {% include 'AMRFPublicRooterBundle::components/head.html.twig' %}
+</head>
+<body>
+{% include 'AMRFPublicRooterBundle::components/header.html.twig' %}
+{% include 'AMRFPublicRooterBundle::components/navbar.html.twig' %}
+<div class="body">
+    <section>
+        <div class="container">
+            <div class="content">
+                {% block body %}
+                {% endblock %}
+            </div>
+        </div>
+    </section>
+</div>
+<footer class="page-footer">
+    {% include 'AMRFPublicRooterBundle::components/footer.html.twig' %}
+</footer>
+{% block javascripts %}{% endblock %}
 
-        {% block body %}
-        {% endblock %}
-        {% block javascripts %}{% endblock %}
 
-
-    </body>
+</body>
 </html>
