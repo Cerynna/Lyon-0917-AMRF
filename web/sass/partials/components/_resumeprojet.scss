@@ -1,0 +1,45 @@
+.slide-wrap {
+
+  .enCours, .achieved {
+    border-bottom: solid 3px $primaryColor;
+  }
+  .bullet {
+    background-color: $secondeColor;
+    border: solid 1px $primaryColor;
+    .current {
+      background-color: $primaryColor;
+    }
+  }
+  .label {
+    background-color: $primaryColor;
+  }
+  .btn {
+    background-color: $primaryColor;
+  }
+
+  .jumbotron {
+    padding: 20px;
+  }
+
+  img {
+    margin-top: 50px;
+  }
+  #city {
+    margin-top: 10px;
+    span {
+      font-size: .8em;
+    }
+  }
+
+  #theme {
+    margin-top: 10px;
+    span {
+      font-size: .8em;
+    }
+  }
+
+  .btn-success {
+    float: right;
+  }
+
+}

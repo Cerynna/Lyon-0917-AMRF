@@ -1,0 +1,156 @@
+/**
+*************************** RESET *********************
+ */
+@import 'partials/reset';
+/**
+*************************** Variable *********************
+ */
+@import 'partials/variables';
+/**
+/**
+*************************** Fonction *********************
+ */
+@import 'partials/mixins';
+/**
+*************************** Components *********************
+ */
+@import 'partials/views/navbar';
+@import 'partials/views/header';
+@import 'partials/components/modalConnect';
+@import 'partials/views/footer';
+@import 'partials/views/search';
+@import 'partials/views/motsCle';
+@import 'partials/views/multiSelect';
+@import 'partials/components/cards';
+@import 'partials/components/resumeprojet';
+@import 'partials/components/listeAccordion';
+
+/**
+*************************** View *********************
+ */
+@import url('https://fonts.googleapis.com/css?family=Cabin+Condensed|Comfortaa|Francois+One|Josefin+Sans|Play|Poiret+One|Source+Sans+Pro');
+@import url('https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.0/css/bootstrap.min.css');
+@import url("http://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css");
+
+
+body::-webkit-scrollbar {
+  display: none;
+}
+body {
+  font-size: 1.0em;
+  background: url('../img/pixabay_champeix-334494.jpg') no-repeat fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  font-family: $primaryFont, sans-serif;
+  .content {
+    margin-top: 50px;
+    /*margin-bottom: 50px;*/
+    background-color: #fff;
+    padding: 30px;
+    min-height: 100vh;
+    z-index: 1;
+  }
+  .body {
+    background-color: rgba(224, 242, 241, 0.6);
+    padding-top: 10px;
+  }
+
+  .article {
+    padding: 20px;
+  }
+
+  h1 {
+    font-size: 4em;
+    font-family: $secondeFont, sans-serif;
+  }
+  h2 {
+    font-family: $secondeFont, sans-serif;
+    font-size: 2.8em;
+    line-height: 2em;
+    text-transform: uppercase;
+    text-align: center;
+  }
+
+  h3 {
+    color: $primaryColor;
+    font-family: $secondeFont, sans-serif;
+    font-size: 2em;
+    line-height: 2em;
+    a:link {
+      text-decoration: none;
+      color: $primaryColor;
+    }
+
+    a:visited {
+      text-decoration: none;
+      color: $primaryColor;
+    }
+
+    a:hover {
+      text-decoration: none;
+      font-weight: bold;
+      color: $primaryColor;
+    }
+
+    a:active {
+      text-decoration: none;
+      font-weight: bold;
+      color: $primaryColor;
+    }
+  }
+  h4 {
+    font-size: 1.8em;
+    line-height: 1em;
+  }
+  h5 {
+    font-size: 1.6em;
+    line-height: 1em;
+  }
+
+
+  /* slider
+  ----------------------*/
+  .slide-wrap {
+    margin: 5% auto 0;
+    width: 100%;
+  }
+  .slide-mask {
+    position: relative;
+    overflow: hidden;
+    height: 400px;
+  }
+  .slide-group {
+    position: absolute;
+    top: 0px;
+    left: 0;
+    width: 100%;
+  }
+  .slide {
+    height: 400px;
+  }
+
+  /* nav
+  ----------------------*/
+  .slide-nav {
+    text-align: center;
+  }
+  .slide-nav ul {
+    margin: 0;
+    padding: 0;
+  }
+  .slide-nav li {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    cursor: pointer;
+    margin-left: .5em;
+  }
+  .slide-nav li.current {
+    background: #3c763d;
+  }
+
+}
+
+
