@@ -1,28 +1,26 @@
-.slide-wrap {
+.resumeprojet {
+  .img-big {
+    margin: 10px;
+    @include borderRadius(5px);
+  }
 
-  .enCours, .achieved {
-    border-bottom: solid 3px $primaryColor;
+
+  .img-mini {
+    margin: 5px;
+    @include borderRadius(2px);
+    transition: all .2s ease-in-out;
   }
-  .bullet {
-    background-color: $secondeColor;
-    border: solid 1px $primaryColor;
-    .current {
-      background-color: $primaryColor;
-    }
+  .img-mini:hover {
+    transform: scale(1.1);
   }
-  .label {
-    background-color: $primaryColor;
+  .label-commune {
+    background-color: $color1;
+  }
+  .label-themat {
+    background-color: $color4;
   }
   .btn {
-    background-color: $primaryColor;
-  }
-
-  .jumbotron {
-    padding: 20px;
-  }
-
-  img {
-    margin-top: 50px;
+    background-color: $color1;
   }
   #city {
     margin-top: 10px;
@@ -36,10 +34,6 @@
     span {
       font-size: .8em;
     }
-  }
-
-  .btn-success {
-    float: right;
   }
 
 }

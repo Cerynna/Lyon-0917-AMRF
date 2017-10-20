@@ -2,8 +2,9 @@
   color: white;
   width: 100%;
   margin-top: 0;
-  background-color: $primaryColor;
+  background-color: $color1;
   border-radius: 0;
+  font-size: 1.8em;
   nav .button-collapse {
     float: right;
     position: relative;
@@ -13,27 +14,27 @@
   }
    li {
     a {
-      color: $secondeColor;
+      color: $color2;
     }
-    color: $primaryColor;
+    color: $color1;
   }
    li :hover {
     a {
-      color: $primaryColor;
+      color: $color1;
     }
-    color: $primaryColor;
+    color: $color1;
   }
   ul .dropdown-menu {
     a {
-      color: $primaryColor;
+      color: $color1;
     }
-    color: $primaryColor;
+    color: $color1;
   }
   ul .dropdown-menu :hover {
     a {
-      color: $primaryColor;
+      color: $color1;
     }
-    color: $primaryColor;
+    color: $color1;
   }
 
 }

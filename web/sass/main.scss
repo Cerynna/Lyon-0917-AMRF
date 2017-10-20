@@ -36,14 +36,33 @@
 body::-webkit-scrollbar {
   display: none;
 }
+/**
+******Ca sert a rien mais ca switch de background a chaque compilation
+** pour test
+ */
+$imgKey: random(5);
+
+$list: bck-1, bck-2, bck-3, bck-4, bck-5;
+$nth: nth($list, $imgKey);
+
 body {
   font-size: 1.0em;
-  background: url('../img/pixabay_champeix-334494.jpg') no-repeat fixed;
+  background: url('../img/#{$nth}.jpg') no-repeat fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
   font-family: $primaryFont, sans-serif;
+
+  .body {
+    background-color: rgba(224, 242, 241, 0.6);
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+
+  .article {
+    padding: 20px;
+  }
   .content {
     margin-top: 50px;
     /*margin-bottom: 50px;*/
@@ -52,15 +71,6 @@ body {
     min-height: 100vh;
     z-index: 1;
   }
-  .body {
-    background-color: rgba(224, 242, 241, 0.6);
-    padding-top: 10px;
-  }
-
-  .article {
-    padding: 20px;
-  }
-
   h1 {
     font-size: 4em;
     font-family: $secondeFont, sans-serif;
@@ -74,30 +84,30 @@ body {
   }
 
   h3 {
-    color: $primaryColor;
+    color: $color1;
     font-family: $secondeFont, sans-serif;
     font-size: 2em;
     line-height: 2em;
     a:link {
       text-decoration: none;
-      color: $primaryColor;
+      color: $color1;
     }
 
     a:visited {
       text-decoration: none;
-      color: $primaryColor;
+      color: $color1;
     }
 
     a:hover {
       text-decoration: none;
       font-weight: bold;
-      color: $primaryColor;
+      color: $color1;
     }
 
     a:active {
       text-decoration: none;
       font-weight: bold;
-      color: $primaryColor;
+      color: $color1;
     }
   }
   h4 {
@@ -108,49 +118,5 @@ body {
     font-size: 1.6em;
     line-height: 1em;
   }
-
-
-  /* slider
-  ----------------------*/
-  .slide-wrap {
-    margin: 5% auto 0;
-    width: 100%;
-  }
-  .slide-mask {
-    position: relative;
-    overflow: hidden;
-    height: 400px;
-  }
-  .slide-group {
-    position: absolute;
-    top: 0px;
-    left: 0;
-    width: 100%;
-  }
-  .slide {
-    height: 400px;
-  }
-
-  /* nav
-  ----------------------*/
-  .slide-nav {
-    text-align: center;
-  }
-  .slide-nav ul {
-    margin: 0;
-    padding: 0;
-  }
-  .slide-nav li {
-    display: inline-block;
-    width: 10px;
-    height: 10px;
-    cursor: pointer;
-    margin-left: .5em;
-  }
-  .slide-nav li.current {
-    background: #3c763d;
-  }
-
 }
-
 

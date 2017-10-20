@@ -1,3 +1,6 @@
+{% extends 'AMRFPublicRooterBundle::base.html.twig' %}
+{% block title %}A propos{% endblock %}
+{% block body %}
 <h2>Recherche</h2>
 <form action="test.php" method="post">
 <div class="search jumbotron">
@@ -13,9 +16,7 @@
 <h2>Recherche Avancée</h2>
 <div class="jumbotron">
 	<h3 class="control-label text-center">Choisir un thematique</h3><br>
-		<?php
-			include "src/structures/thematiques.html.twig"
-		?>
+    {% include 'AMRFPublicRooterBundle::components/thematiques.html.twig' %}
 	<div class="row">
 
 		<div class="col-md-12">
@@ -43,3 +44,4 @@
 	</div>
 </div><!--end jumbotron-->
 </form>
+{% endblock %}

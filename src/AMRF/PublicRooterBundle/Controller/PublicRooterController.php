@@ -12,27 +12,34 @@ class PublicRooterController extends Controller
      */
     public function amrfAction()
     {
-        return $this->render('AMRFPublicRooterBundle:Default:amrf.html.twig');
+        return $this->render('AMRFPublicRooterBundle:public:amrf.html.twig');
     }
     /**
      * @Route("/contact", name="contact")
      */
     public function contactAction()
     {
-        return $this->render('AMRFPublicRooterBundle:Default:contact.html.twig');
+        return $this->render('AMRFPublicRooterBundle:public:contact.html.twig');
     }
     /**
      * @Route("/confidential", name="confidential")
      */
     public function confidentialAction()
     {
-        return $this->render('AMRFPublicRooterBundle:Default:confidential.html.twig');
+        return $this->render('AMRFPublicRooterBundle:public:confidential.html.twig');
     }
     /**
      * @Route("/mentions", name="mentions")
      */
     public function mentionsAction()
     {
-        return $this->render('AMRFPublicRooterBundle:Default:mentions.html.twig');
+        return $this->render('AMRFPublicRooterBundle:public:mentions.html.twig');
+    }
+    /**
+     * @Route("/search", name="recherche")
+     */
+    public function searchAction()
+    {
+        return $this->render('AMRFPublicRooterBundle:private:search.html.twig');
     }
 }

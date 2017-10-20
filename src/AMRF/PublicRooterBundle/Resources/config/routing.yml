@@ -17,3 +17,7 @@ amrf_public_rooter_confidential:
 amrf_public_rooter_mentions:
     path:     /mentions
     defaults: { _controller: AMRFPublicRooterBundle:PublicRooter:mentions }
+
+amrf_public_rooter_search:
+    path:     /search
+    defaults: { _controller: AMRFPublicRooterBundle:PublicRooter:search }

@@ -1,5 +1,38 @@
 $(document).ready(function () {
-    //JS NavBar
+
+
+    //CAROUSSEL
+    $('#myCarousel').carousel({
+        interval: 1000
+    });
+
+    var clickEvent = false;
+    $('#myCarousel').on('click', '.nav a', function () {
+        clickEvent = true;
+        $('.nav li').removeClass('active');
+        $(this).parent().addClass('active');
+    }).on('slid.bs.carousel', function (e) {
+        if (!clickEvent) {
+            var count = $('.nav').children().length - 1;
+            var current = $('.nav li.active');
+            current.removeClass('active').next().addClass('active');
+            var id = parseInt(current.data('slide-to'));
+            if (count == id) {
+                $('.nav li').first().addClass('active');
+            }
+        }
+        clickEvent = false;
+    });
+    //Limit Checkbox
+    var cb = document.querySelectorAll("[class=check-themat]");
+    var i = 0,
+        l = cb.length;
+    for (; i < l; i++)
+        cb[i].addEventListener("change", function () {
+            if (document.querySelectorAll(":checked").length > 3)
+                this.checked = false;
+        }, false);
+    //NavBar
     $("#navbar").sticky({topSpacing: 0, zIndex: 1000});
 
 
@@ -7,52 +40,7 @@ $(document).ready(function () {
     $('#formConnect').on('shown.bs.modal', function () {
         $('#myInput').focus()
     });
-//Slider
-    var $slide = $('.slide'),
-        $slideGroup = $('.slide-group'),
-        $bullet = $('.bullet');
 
-
-    var slidesTotal = ($slide.length - 1),
-        current = 0,
-        isAutoSliding = true;
-
-    $bullet.first().addClass('current');
-
-    var clickSlide = function () {
-        //stop auto sliding
-        window.clearInterval(autoSlide);
-        isAutoSliding = false;
-
-        var slideIndex = $bullet.index($(this));
-
-        updateIndex(slideIndex);
-    };
-
-    var updateIndex = function (currentSlide) {
-        if (isAutoSliding) {
-            if (current === slidesTotal) {
-                current = 0;
-            } else {
-                current++;
-            }
-        } else {
-            current = currentSlide;
-        }
-
-        $bullet.removeClass('current');
-        $bullet.eq(current).addClass('current');
-
-        transition(current);
-    };
-
-    var transition = function (slidePosition) {
-        $slideGroup.animate({
-            'top': '-' + slidePosition + '00%'
-        });
-    };
-    $bullet.on('click', clickSlide);
-    var autoSlide = window.setInterval(updateIndex, 5000);
 
 });
 
@@ -66,3 +54,10 @@ $(window).on('scroll', function () {
         $('#logo').stop().animate({height: "100px", width: "200px"}, 50);
     }
 });
+
+function hover(idimg, img) {
+    document.getElementById(idimg).setAttribute('src', img);
+}
+function unhover(idimg,img) {
+    document.getElementById(idimg).setAttribute('src', img);
+}
