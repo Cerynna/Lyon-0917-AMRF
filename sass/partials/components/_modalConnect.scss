@@ -5,6 +5,8 @@
 }
 .formConnect {
   width: 100%;
+  padding: 20px;
+  @include borderRadius(5px);
 }
 .containerConnect{
   display: flex;

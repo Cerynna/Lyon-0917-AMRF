@@ -1,25 +1,33 @@
 <style>
+
 /* nom du projet */
 h2 {
     color: #3c763d;
 }
 
+
 /* position des thématiques*/
 .theme-city span
 {
-    font-size: 1vw;
+    font-size: 15px;
 }
 
 .panel-default
 {
     margin-top: 30px;
 }
-.main-theme {
+  
+.main-theme 
+{
     padding-left : 15px;
+    margin-left: 20px;
 }
-.second-theme {
+  
+.second-theme 
+{
     padding-left: 15px;
     margin-top: 20px;
+    margin-left: 20px;
 }
 
 /* blocs Commune + contact Mairie */
@@ -85,18 +93,18 @@ img {
 /* éléments de description du projet */
 .description-title {
     margin: 30px 20px 10px 10px;
-    color: #3c763d;
+
 }
 .description-body {
     margin: 10px 20px 10px 20px;
     padding-bottom: 10px;
-    border-bottom: 1px solid #3c763d;
+    border-bottom: 1px solid #000;
 }
 
 </style>
 
+<h2>Partenariat Application Mobile Court-voiturage</h2> <!-- insertion php-->
 <div class="row">
-    <h2>Partenariat Application Mobile Court-voiturage</h2> <!-- insertion php-->
     <div class="theme-city">
         <div class="col-md-8">
             <div class="label">
@@ -111,6 +119,7 @@ img {
                     <span class="label label-warning">transports</span>
                     <span class="label label-warning">voiture</span>
                     <span class="label label-warning">lien</span>
+
                 </div>
             </div>
             <div class="col-md-6">

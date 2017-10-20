@@ -1,49 +1,66 @@
-.bck-maire{
-  margin:3px;
-  padding: 5px;
+.bck-maire {
+  margin: 3px;
   background: #90CAF9;
-  div>a{
+  div > a {
     color: rgb(54, 80, 105) !important;
   }
 }
-.bck-part{
-  margin:3px;
-  padding: 5px;
+
+.bck-part {
+  margin: 3px;
   background: #b3ffb1;
-  div>a{
+  div > a {
     color: rgb(87, 116, 87) !important;
   }
 }
 
 .bck-default {
-  margin:3px;
-  padding: 5px;
+  margin: 3px;
+  padding: 10px;
   background: #80CBC4;
   div > a {
     color: rgb(61, 98, 91) !important;
   }
 }
 
+.cardGest {
+  margin-top: 70px;
 
-  .cardGest {
-    .card-title {
+  .card-title {
+    text-align: center;
+    .fa {
+      margin: 10px;
       text-align: center;
-      .fa {
-        text-align: center;
-        font-size: 58px
-      }
+      font-size: 80px
     }
-    .card-body {
-      height: 250px;
+  }
+  .card-body {
+    height: 300px;
+    @include borderRadius(5px);
+    box-shadow: 6px 6px 4px rgba(31, 31, 31, 0.71);
+    p {
+      margin-top: 10px;
       padding: 10px;
-      p {
-        font-size: 0.9em;
-        display: inline-block;
-        height: 110px;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: normal;
+      font-size: 0.9em;
+      display: inline-block;
+      height: 110px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: normal;
+    }
+    .card-block {
+      display: flex;
+      justify-content: center;
+      .btn {
+        a {
+          text-decoration: none;
+          color: #ffffff;
+        }
+        margin: 2px;
+        background-color: #3c3c3c;
+
       }
     }
   }
+}
 
