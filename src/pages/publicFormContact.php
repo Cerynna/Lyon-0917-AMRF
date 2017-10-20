@@ -1,6 +1,11 @@
-<h2>Contactez nous</h2>
+<h2>Contactez nous....</h2>
+<div class="jumbotron">
+	<h3>Par téléphone:</h3>
+	<p>Numero de téléphone..........</p>
+</div>
 <div class="jumbotron">
 	<form role="form">
+		<h4>Ou envoyez nous une message:</h4><br>
 		<div class="row">
 			<div class="form-group col-md-6">
 				<label>Nom</label>
@@ -46,4 +51,4 @@
 	<button type="button" id="submit" name="submit" class="btn btn-primary pull-right">Envoyer
 		</button>
 	</form>
-</div><!--end of main well-->
+</div><!--end of main jumbotron-->
