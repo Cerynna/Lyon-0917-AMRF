@@ -53,7 +53,6 @@ $(document).ready(function () {
 
     $('#formConnect').on('shown.bs.modal', function () {
         $('#myInput').focus()
-    })
 });
 
 
