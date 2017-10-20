@@ -108,4 +108,49 @@ body {
     font-size: 1.6em;
     line-height: 1em;
   }
+
+
+  /* slider
+  ----------------------*/
+  .slide-wrap {
+    margin: 5% auto 0;
+    width: 100%;
+  }
+  .slide-mask {
+    position: relative;
+    overflow: hidden;
+    height: 400px;
+  }
+  .slide-group {
+    position: absolute;
+    top: 0px;
+    left: 0;
+    width: 100%;
+  }
+  .slide {
+    height: 400px;
+  }
+
+  /* nav
+  ----------------------*/
+  .slide-nav {
+    text-align: center;
+  }
+  .slide-nav ul {
+    margin: 0;
+    padding: 0;
+  }
+  .slide-nav li {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    cursor: pointer;
+    margin-left: .5em;
+  }
+  .slide-nav li.current {
+    background: #3c763d;
+  }
+
 }
+
+
