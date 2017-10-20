@@ -1,9 +1,10 @@
 $(document).ready(function () {
-
+//NavBar
+    $("#navbar").sticky({topSpacing: 0, zIndex: 9999});
 
     //CAROUSSEL
     $('#myCarousel').carousel({
-        interval: 1000
+        interval: 3000
     });
 
     var clickEvent = false;
@@ -32,8 +33,7 @@ $(document).ready(function () {
             if (document.querySelectorAll(":checked").length > 3)
                 this.checked = false;
         }, false);
-    //NavBar
-    $("#navbar").sticky({topSpacing: 0, zIndex: 1000});
+
 
 
     //Modal de connection
