@@ -1,7 +1,13 @@
 $(document).ready(function () {
+    //JS NavBar
     $("#navbar").sticky({topSpacing: 0, zIndex: 1000});
 
-// slider HomePage
+
+    //Modal de connection
+    $('#formConnect').on('shown.bs.modal', function () {
+        $('#myInput').focus()
+    });
+//Slider
     var $slide = $('.slide'),
         $slideGroup = $('.slide-group'),
         $bullet = $('.bullet');
@@ -45,14 +51,8 @@ $(document).ready(function () {
             'top': '-' + slidePosition + '00%'
         });
     };
-
     $bullet.on('click', clickSlide);
-
     var autoSlide = window.setInterval(updateIndex, 5000);
-});  // end slider Homepage
-
-$('#formConnect').on('shown.bs.modal', function () {
-    $('#myInput').focus()
 
 });
 

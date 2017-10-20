@@ -3,6 +3,7 @@
 namespace AMRF\PublicRooterBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\Routing\Annotation\Route;
 
 class PublicRooterController extends Controller
 {
