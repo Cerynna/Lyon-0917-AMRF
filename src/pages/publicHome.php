@@ -25,16 +25,3 @@
         </p>
     </div>
 </div>
-<div class="row jumbotron">
-    <div class="col-md-12">
-        <h3>Le Wiki des Maires : une valorisation des maires et des partenaires</h3>
-        <p>
-            Plateforme multi-acteurs, le Wiki des Maires permet de réunir les maires adhérents et nos partenaires
-            financiers. Valoriser une initiative, mettre en avant une expertise, créer du lien entre les membres du
-            réseau… voilà les finalités du Wiki des Maires Ruraux de France.
-            Alors valorisez-vous !
-
-        </p>
-    </div>
-    <!--  <div class="col-md-4 right-align"><img class="responsive-img" src="http://lorempixel.com/300/300/nature" alt=""></div>-->
-</div>
