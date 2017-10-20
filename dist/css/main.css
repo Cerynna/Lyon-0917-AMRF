@@ -13,6 +13,7 @@
 /* HTML5 display definitions */
 @import url("https://fonts.googleapis.com/css?family=Cabin+Condensed|Comfortaa|Francois+One|Josefin+Sans|Play|Poiret+One|Source+Sans+Pro");
 @import url("https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.0/css/bootstrap.min.css");
+@import url("http://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css");
 section, nav, article, aside, hgroup,
 header, footer, figure, figcaption, details {
   display: block; }
@@ -298,10 +299,6 @@ textarea {
   flex-direction: row;
   justify-content: space-around; }
 
-.planDeSite {
-  font-size: 1.8em;
-  color: #00695c; }
-
 footer {
   color: #e0f2f1;
   line-height: 2.5em; }
@@ -414,6 +411,30 @@ footer {
 
 .tt-suggestion p {
   margin: 0; }
+
+.motsCle {
+  width: 100% !important; }
+
+.test {
+  color: #000000;
+  float: left;
+  background-position: -95px -125px;
+  padding-left: 10px; }
+
+.ui-state-hover,
+.ui-widget-content .ui-state-hover,
+.ui-widget-header .ui-state-hover,
+.ui-state-focus,
+.ui-widget-content .ui-state-focus,
+.ui-widget-header .ui-state-focus {
+  border: 1px solid #01b82f;
+  font-weight: bold;
+  color: #5cb85c; }
+
+.ui-state-active,
+.ui-widget-content .ui-state-active,
+.ui-widget-header .ui-state-active {
+  border: none; }
 
 /*
 .funkyradio div {

@@ -6,6 +6,7 @@ $(document).ready(function () {
         $slideGroup = $('.slide-group'),
         $bullet = $('.bullet');
 
+
     var slidesTotal = ($slide.length - 1),
         current = 0,
         isAutoSliding = true;
@@ -49,6 +50,11 @@ $(document).ready(function () {
 
     var autoSlide = window.setInterval(updateIndex, 5000);
 });  // end slider Homepage
+
+    $('#formConnect').on('shown.bs.modal', function () {
+        $('#myInput').focus()
+    })
+});
 
 
 $(window).on('scroll', function () {
