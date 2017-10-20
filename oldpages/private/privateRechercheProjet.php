@@ -14,7 +14,7 @@
 <div class="jumbotron">
 	<h3 class="control-label text-center">Choisir un thematique</h3><br>
 		<?php
-			include "src/structures/thematique.php"
+			include "src/structures/thematique.html.twig"
 		?>
 	<div class="row">
 
