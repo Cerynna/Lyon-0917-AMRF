@@ -1,0 +1,15 @@
+.containerConnect .card {
+  width:100%;
+  margin:20px;
+  padding:20px;
+}
+.formConnect {
+  width: 100%;
+  padding: 20px;
+  @include borderRadius(5px);
+}
+.containerConnect{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
