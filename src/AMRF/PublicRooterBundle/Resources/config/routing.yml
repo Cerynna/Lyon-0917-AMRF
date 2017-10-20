@@ -2,18 +2,18 @@ amrf_public_rooter_homepage:
     path:     /
     defaults: { _controller: AMRFPublicRooterBundle:Default:index }
 
-amrf_public_rooter_apropos:
+amrf_public_rooter_amrf:
     path:     /amrf
-    defaults: { _controller: AMRFPublicRooterBundle:Default:index }
+    defaults: { _controller: AMRFPublicRooterBundle:Default:amrf }
 
 amrf_public_rooter_contact:
     path:     /contact
-    defaults: { _controller: AMRFPublicRooterBundle:Default:index }
+    defaults: { _controller: AMRFPublicRooterBundle:Default:contact }
 
 amrf_public_rooter_confidential:
     path:     /confidential
-    defaults: { _controller: AMRFPublicRooterBundle:Default:index }
+    defaults: { _controller: AMRFPublicRooterBundle:Default:confidential }
 
 amrf_public_rooter_mentions:
     path:     /mentions
-    defaults: { _controller: AMRFPublicRooterBundle:Default:index }
+    defaults: { _controller: AMRFPublicRooterBundle:Default:mentions }
