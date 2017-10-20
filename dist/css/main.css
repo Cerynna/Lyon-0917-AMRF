@@ -468,7 +468,11 @@ body {
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
-  font-family: "Source Sans Pro", sans-serif; }
+  font-family: "Source Sans Pro", sans-serif;
+  /* slider
+  ----------------------*/
+  /* nav
+  ----------------------*/ }
   body .content {
     margin-top: 50px;
     /*margin-bottom: 50px;*/
@@ -514,3 +518,30 @@ body {
   body h5 {
     font-size: 2.2em;
     line-height: 1em; }
+  body .slide-wrap {
+    margin: 5% auto 0;
+    width: 100%; }
+  body .slide-mask {
+    position: relative;
+    overflow: hidden;
+    height: 400px; }
+  body .slide-group {
+    position: absolute;
+    top: 0px;
+    left: 0;
+    width: 100%; }
+  body .slide {
+    height: 400px; }
+  body .slide-nav {
+    text-align: center; }
+  body .slide-nav ul {
+    margin: 0;
+    padding: 0; }
+  body .slide-nav li {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    cursor: pointer;
+    margin-left: .5em; }
+  body .slide-nav li.current {
+    background: #3c763d; }
