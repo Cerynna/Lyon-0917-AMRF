@@ -4,16 +4,24 @@ amrf_public_rooter_homepage:
 
 amrf_public_rooter_amrf:
     path:     /amrf
-    defaults: { _controller: AMRFPublicRooterBundle:Default:amrf }
+    defaults: { _controller: AMRFPublicRooterBundle:PublicRooter:amrf }
 
 amrf_public_rooter_contact:
     path:     /contact
-    defaults: { _controller: AMRFPublicRooterBundle:Default:contact }
+    defaults: { _controller: AMRFPublicRooterBundle:PublicRooter:contact }
 
 amrf_public_rooter_confidential:
     path:     /confidential
-    defaults: { _controller: AMRFPublicRooterBundle:Default:confidential }
+    defaults: { _controller: AMRFPublicRooterBundle:PublicRooter:confidential }
 
 amrf_public_rooter_mentions:
     path:     /mentions
-    defaults: { _controller: AMRFPublicRooterBundle:Default:mentions }
+    defaults: { _controller: AMRFPublicRooterBundle:PublicRooter:mentions }
+
+amrf_public_rooter_search:
+    path:     /search
+    defaults: { _controller: AMRFPublicRooterBundle:PublicRooter:search }
+
+amrf_public_rooter_maireProfil:
+    path:     /maire/profil
+    defaults: { _controller: AMRFPublicRooterBundle:PublicRooter:maireProfil }

@@ -1,0 +1,27 @@
+.motsCle{
+  width: 100% !important;
+}
+
+.test{
+  color: #000000;
+  float: left;
+  background-position: -95px -125px;
+  padding-left: 10px;
+}
+
+.ui-state-hover,
+.ui-widget-content .ui-state-hover,
+.ui-widget-header .ui-state-hover,
+.ui-state-focus,
+.ui-widget-content .ui-state-focus,
+.ui-widget-header .ui-state-focus {
+  border: 1px solid #01b82f;
+  font-weight: bold;
+  color: #5cb85c;
+}
+
+.ui-state-active,
+.ui-widget-content .ui-state-active,
+.ui-widget-header .ui-state-active{
+  border: none;
+}

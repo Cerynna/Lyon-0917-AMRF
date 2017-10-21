@@ -8,6 +8,6 @@ class DefaultController extends Controller
 {
     public function indexAction()
     {
-        return $this->render('AMRFPublicRooterBundle:Default:index.html.twig');
+        return $this->render('AMRFPublicRooterBundle:public:index.html.twig');
     }
 }
