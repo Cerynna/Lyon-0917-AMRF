@@ -4,7 +4,6 @@
     @include borderRadius(5px);
   }
 
-
   .img-mini {
     margin: 5px;
     @include borderRadius(2px);
@@ -18,9 +17,6 @@
   }
   .label-themat {
     background-color: $color4;
-  }
-  .btn {
-    background-color: $color1;
   }
   #city {
     margin-top: 10px;

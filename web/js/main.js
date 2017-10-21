@@ -1,6 +1,6 @@
 $(document).ready(function () {
 //NavBar
-    $("#navbar").sticky({topSpacing: 0, zIndex: 9999});
+    $("#navbar").sticky({topSpacing: 0, zIndex: 4});
 
     //CAROUSSEL
     $('#myCarousel').carousel({
@@ -55,9 +55,9 @@ $(window).on('scroll', function () {
     }
 });
 
-function hover(idimg, img) {
+function showImg(idimg, img) {
     document.getElementById(idimg).setAttribute('src', img);
 }
-function unhover(idimg,img) {
+function hideImg(idimg,img) {
     document.getElementById(idimg).setAttribute('src', img);
 }

@@ -710,9 +710,6 @@ footer {
 .resumeprojet .label-themat {
   background-color: #777777; }
 
-.resumeprojet .btn {
-  background-color: #009E3D; }
-
 .resumeprojet #city {
   margin-top: 10px; }
   .resumeprojet #city span {
@@ -741,17 +738,21 @@ body::-webkit-scrollbar {
   display: none; }
 
 /**
+** node-sass --watch web/sass/main.scss web/css/main.css
+**
 ******Ca sert a rien mais ca switch de background a chaque compilation
 ** pour test
  */
 body {
   font-size: 1.0em;
-  background: url("../img/bck-1.jpg") no-repeat fixed;
+  background: url("../img/bck-2.jpg") no-repeat fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
   font-family: "Source Sans Pro", sans-serif; }
+  body .modal-backdrop {
+    z-index: 5; }
   body .body {
     background-color: rgba(224, 242, 241, 0.6);
     padding-top: 10px;
@@ -799,3 +800,11 @@ body {
   body h5 {
     font-size: 1.6em;
     line-height: 1em; }
+  body .btn {
+    background-color: #009E3D;
+    color: #FFFFFF;
+    border: 0;
+    font-size: 1.2em; }
+  body .btn:hover {
+    background-color: #FFFFFF;
+    color: #009E3D; }

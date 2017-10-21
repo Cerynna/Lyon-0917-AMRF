@@ -37,6 +37,8 @@ body::-webkit-scrollbar {
   display: none;
 }
 /**
+** node-sass --watch web/sass/main.scss web/css/main.css
+**
 ******Ca sert a rien mais ca switch de background a chaque compilation
 ** pour test
  */
@@ -53,9 +55,11 @@ body {
   -o-background-size: cover;
   background-size: cover;
   font-family: $primaryFont, sans-serif;
-
+  .modal-backdrop {
+    z-index: 5;
+  }
   .body {
-    background-color: rgba(224, 242, 241, 0.6);
+    background-color: $bodyColor;
     padding-top: 10px;
     padding-bottom: 10px;
   }
@@ -117,6 +121,16 @@ body {
   h5 {
     font-size: 1.6em;
     line-height: 1em;
+  }
+  .btn {
+    background-color: $color1;
+    color: $color2;
+    border: 0;
+    font-size: 1.2em;
+  }
+  .btn:hover {
+    background-color: $color2;
+    color: $color1;
   }
 }
 
