@@ -3,7 +3,9 @@
     margin: 10px;
     @include borderRadius(5px);
   }
-
+.img-preview {
+  text-align: center;
+}
   .img-mini {
     margin: 5px;
     @include borderRadius(2px);

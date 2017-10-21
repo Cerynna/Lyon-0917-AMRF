@@ -21,3 +21,7 @@ amrf_public_rooter_mentions:
 amrf_public_rooter_search:
     path:     /search
     defaults: { _controller: AMRFPublicRooterBundle:PublicRooter:search }
+
+amrf_public_rooter_maireProfil:
+    path:     /maire/profil
+    defaults: { _controller: AMRFPublicRooterBundle:PublicRooter:maireProfil }

@@ -24,7 +24,6 @@
 @import 'partials/components/cards';
 @import 'partials/components/resumeprojet';
 @import 'partials/components/listeAccordion';
-
 /**
 *************************** View *********************
  */
@@ -32,10 +31,10 @@
 @import url('https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.0/css/bootstrap.min.css');
 @import url("http://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css");
 
-
 body::-webkit-scrollbar {
   display: none;
 }
+
 /**
 ** node-sass --watch web/sass/main.scss web/css/main.css
 **
@@ -132,5 +131,37 @@ body {
     background-color: $color2;
     color: $color1;
   }
+  .test {
+    @include borderRadius(6px);
+    width: 100%;
+    padding: 60px 48px;
+    margin-bottom: 30px;
+    color: inherit;
+    background-color: #eee;
+    min-height: 50vh;
+
+    .tab-pane {
+      min-height: 35vh;
+    }
+    ul {
+      a{
+        color: $color2;
+      }
+      li {
+        background-color: $color1;
+        padding: 20px;
+        @include borderRadius(5px);
+      }
+      .active{
+        background-color: $color2;
+        a{
+          color: $color1;
+        }
+        color: $color1;
+      }
+    }
+  }
 }
+
+
 
