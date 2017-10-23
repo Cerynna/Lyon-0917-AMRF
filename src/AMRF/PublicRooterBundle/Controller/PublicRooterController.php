@@ -96,4 +96,45 @@ class PublicRooterController extends Controller
         return $this->render('AMRFPublicRooterBundle:private:maires/maireProjet.html.twig');
     }
 
+
+    /**
+     * @Route("/partenaire/liste", name="Annuaire des partenaires")
+     */
+    public function partListeAction()
+    {
+        return $this->render('AMRFPublicRooterBundle:private:partenaires/partListe.html.twig');
+    }
+    /**
+     * @Route("/maire/FormProjet", name="maireFormulaire")
+     */
+    public function mairesFormProjetAction()
+    {
+        return $this->render('AMRFPublicRooterBundle:private:maires/MairesFormProjet.html.twig');
+    }
+
+    /**
+     * @Route("/partenaire/profil", name="partenaireProfil")
+     */
+    public function partProfilAction()
+    {
+        return $this->render('AMRFPublicRooterBundle:private:partenaires/partProfil.html.twig');
+    }
+
+    /**
+     * @Route("/partenaire/favoris", name="favoris")
+     */
+    public function favorisAction()
+    {
+        return $this->render('AMRFPublicRooterBundle:private:favoris.html.twig');
+    }
+
+    /**
+     * @Route("/partenaire/form", name="partenaireForm")
+     */
+    public function partFormFicheAction()
+    {
+        return $this->render('AMRFPublicRooterBundle:private:partenaires/partFormFiche.html.twig');
+    }
+
+
 }
