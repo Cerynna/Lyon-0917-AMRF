@@ -134,6 +134,9 @@ body {
     background-color: $color2;
     color: $color1;
   }
+  .input-group-btn{
+    font-size: 82%;
+  }
   .test {
     @include borderRadius(6px);
     width: 100%;
