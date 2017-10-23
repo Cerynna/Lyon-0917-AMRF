@@ -28,4 +28,8 @@ amrf_public_rooter_maireProfil:
 
 amrf_public_rooter_maireIndex:
     path:     /maire
-    defaults: { _controller: AMRFPublicRooterBundle:PublicRooter:mairesIndex}
+    defaults: { _controller: AMRFPublicRooterBundle:PublicRooter:maireIndex}
+
+amrf_public_rooter_maireProjet:
+    path:     /maire/projet
+    defaults: { _controller: AMRFPublicRooterBundle:PublicRooter:maireProjet}

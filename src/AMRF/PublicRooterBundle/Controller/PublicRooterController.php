@@ -49,11 +49,20 @@ class PublicRooterController extends Controller
     {
         return $this->render('AMRFPublicRooterBundle:private:maires/ProfilMaire.html.twig');
     }
+
     /**
      * @Route("/maire", name="maireHome")
      */
-    public function mairesIndexAction()
+    public function maireIndexAction()
     {
-        return $this->render('AMRFPublicRooterBundle:private:maires/MairesIndex.html.twig');
+        return $this->render('AMRFPublicRooterBundle:private:maires/maireIndex.html.twig');
+    }
+
+    /**
+     * @Route("/maire/projet", name="Mes projets")
+     */
+    public function maireProjetAction()
+    {
+        return $this->render('AMRFPublicRooterBundle:private:maires/maireProjet.html.twig');
     }
 }
