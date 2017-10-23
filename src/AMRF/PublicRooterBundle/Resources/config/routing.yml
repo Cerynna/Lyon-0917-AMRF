@@ -42,4 +42,12 @@ amrf_public_rooter_partIndex:
 
 amrf_public_rooter_maireIndex:
     path:     /maire
-    defaults: { _controller: AMRFPublicRooterBundle:PublicRooter:mairesIndex}
+    defaults: { _controller: AMRFPublicRooterBundle:PublicRooter:maireIndex}
+
+amrf_public_rooter_maireProjet:
+    path:     /maire/projet
+    defaults: { _controller: AMRFPublicRooterBundle:PublicRooter:maireProjet}
+
+amrf_public_rooter_partListe:
+    path:     /partenaire/liste
+    defaults: { _controller: AMRFPublicRooterBundle:PublicRooter:partListe}
