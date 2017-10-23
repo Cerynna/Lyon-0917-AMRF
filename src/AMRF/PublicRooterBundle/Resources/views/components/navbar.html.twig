@@ -12,10 +12,15 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="/">Accueil</a></li>
-                <li><a href="/amrf">AMRF</a></li>
-                <li><a href="/contact">Contact</a></li>
-                <li class="visible-xs visible-md visible-sm"><a data-toggle="modal" data-target="#formConnect">Connection</a></li>
+                <li {% if app.request.attributes.get('_route') == 'amrf_public_rooter_homepage' %} class="active" {% endif %}>
+                    <a href="{{ path('amrf_public_rooter_homepage') }}">Accueil</a>
+                </li>
+                <li {% if app.request.attributes.get('_route') == 'amrf_public_rooter_amrf' %} class="active" {% endif %}>
+                    <a href="{{ path('amrf_public_rooter_amrf') }}">AMRF</a>
+                </li>
+                <li {% if app.request.attributes.get('_route') == 'amrf_public_rooter_contact' %} class="active" {% endif %}>
+                    <a href="{{ path('amrf_public_rooter_contact') }}">Accueil</a>
+                </li>
             </ul>
         </div>
     </div>
