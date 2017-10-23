@@ -53,3 +53,11 @@ amrf_public_rooter_partListe:
 amrf_public_rooter_partProfil:
     path:     /partenaire/profil
     defaults: { _controller: AMRFPublicRooterBundle:PublicRooter:partProfil}
+
+amrf_public_rooter_partFormFiche:
+    path:     /partenaire/form
+    defaults: { _controller: AMRFPublicRooterBundle:PublicRooter:partFormFiche}
+
+amrf_public_rooter_favoris:
+    path:     /partenaire/favoris
+    defaults: { _controller: AMRFPublicRooterBundle:PublicRooter:favoris}
