@@ -46,12 +46,12 @@ $.widget("ui.autocomplete", $.ui.autocomplete, {
 
             // TODO: There's a better way?
             o.select = o.select || function(e, ui) {
-                $("<textarea name ='keyword[]'></textarea>")
-                    .addClass("test ui-autocomplete-multiselect-item")
+                $("<div></div>")
+                    .addClass("cleIcon ui-autocomplete-multiselect-item")
                     .text(ui.item.label)
                     .append(
                         $("<span></span>")
-                            .addClass("test ui-icon ui-icon-close")
+                            .addClass("cleIcon ui-icon ui-icon-close")
                             .click(function(){
                                 var item = $(this).parent();
                                 delete self.selectedItems[item.text()];

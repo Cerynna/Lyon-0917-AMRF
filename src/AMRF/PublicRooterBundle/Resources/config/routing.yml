@@ -26,9 +26,17 @@ amrf_public_rooter_maireProfil:
     path:     /maire/profil
     defaults: { _controller: AMRFPublicRooterBundle:PublicRooter:maireProfil }
 
+
+
+amrf_public_rooter_partListe:
+    path:     /partenaire/liste
+    defaults: { _controller: AMRFPublicRooterBundle:PublicRooter:partListe }
+
+
 amrf_public_rooter_projet:
     path:     /projet
     defaults: { _controller: AMRFPublicRooterBundle:PublicRooter:projet }
+
 
 amrf_public_rooter_partIndex:
     path:     /partenaires
@@ -41,6 +49,7 @@ amrf_public_rooter_maireIndex:
 amrf_public_rooter_maireProjet:
     path:     /maire/projet
     defaults: { _controller: AMRFPublicRooterBundle:PublicRooter:maireProjet}
+
 amrf_public_rooter_maireFormProjet:
     path:     /maire/FormProjet
     defaults: { _controller: AMRFPublicRooterBundle:PublicRooter:mairesFormProjet}
@@ -61,3 +70,4 @@ amrf_public_rooter_partFormFiche:
 amrf_public_rooter_favoris:
     path:     /partenaire/favoris
     defaults: { _controller: AMRFPublicRooterBundle:PublicRooter:favoris}
+

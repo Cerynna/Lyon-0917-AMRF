@@ -51,9 +51,17 @@ class PublicRooterController extends Controller
      * @Route("/maire/profil", name="maireProfil")
      */
     public function maireProfilAction()
-    {
-        return $this->render('AMRFPublicRooterBundle:private:maires/ProfilMaire.html.twig');
-    }
+	{
+		return $this->render('AMRFPublicRooterBundle:private:maires/ProfilMaire.html.twig');
+	}
+
+	/**
+	 * @Route("/partenaire/liste", name="partListe")
+	 */
+	public function partListeAction()
+	{
+		return $this->render('AMRFPublicRooterBundle:private:partenaires/partListe.html.twig');
+	}
 
     /**
      * @Route("/projet", name="Projet")
@@ -63,13 +71,14 @@ class PublicRooterController extends Controller
         return $this->render('AMRFPublicRooterBundle:private:projet.html.twig');
     }
 
-    /**
+     /**
      * @Route("/partenaires", name="partenaire")
      */
     public function partIndexAction()
     {
         return $this->render('AMRFPublicRooterBundle:private/partenaires:partIndex.html.twig');
     }
+
 
     /**
      * @Route("/maire", name="maireHome")
@@ -86,6 +95,7 @@ class PublicRooterController extends Controller
     {
         return $this->render('AMRFPublicRooterBundle:private:maires/maireProjet.html.twig');
     }
+
 
     /**
      * @Route("/partenaire/liste", name="Annuaire des partenaires")
