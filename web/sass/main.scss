@@ -91,6 +91,7 @@ body {
     font-family: $secondeFont, sans-serif;
     font-size: 2em;
     line-height: 2em;
+    margin-bottom: 10px;
     a:link {
       text-decoration: none;
       color: $color1;
@@ -138,26 +139,27 @@ body {
     margin-bottom: 30px;
     color: inherit;
     background-color: #eee;
-    min-height: 50vh;
+    min-height: 30vh;
 
     .tab-pane {
-      min-height: 35vh;
+      min-height: 40vh;
     }
     ul {
-      a{
-        color: $color2;
-      }
-      li {
-        background-color: $color1;
-        padding: 20px;
-        @include borderRadius(5px);
-      }
-      .active{
-        background-color: $color2;
-        a{
-          color: $color1;
-        }
+      margin-bottom: 30px;
+      a {
         color: $color1;
+        background-color: $color2;
+        padding: 20px;
+        text-decoration: none;
+      }
+      .active {
+
+        a {
+          background-color: $color2;
+          border-bottom: 4px solid $color1;
+          color: $color1;
+          text-decoration: none;
+        }
       }
     }
   }

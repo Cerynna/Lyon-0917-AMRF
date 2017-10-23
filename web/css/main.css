@@ -763,9 +763,7 @@ body::-webkit-scrollbar {
  */
 body {
   font-size: 1.0em;
-
-  background: url("../img/bck-1.jpg") no-repeat fixed;
-
+  background: url("../img/bck-2.jpg") no-repeat fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -799,7 +797,8 @@ body {
     color: #009E3D;
     font-family: "Cabin Condensed", sans-serif;
     font-size: 2em;
-    line-height: 2em; }
+    line-height: 2em;
+    margin-bottom: 10px; }
     body h3 a:link {
       text-decoration: none;
       color: #009E3D; }
@@ -838,20 +837,18 @@ body {
     margin-bottom: 30px;
     color: inherit;
     background-color: #eee;
-    min-height: 50vh; }
+    min-height: 30vh; }
     body .test .tab-pane {
-      min-height: 35vh; }
-    body .test ul a {
-      color: #FFFFFF; }
-    body .test ul li {
-      background-color: #009E3D;
-      padding: 20px;
-      -webkit-border-radius: 5px;
-      -moz-border-radius: 5px;
-      -ms-border-radius: 5px;
-      border-radius: 5px; }
-    body .test ul .active {
-      background-color: #FFFFFF;
-      color: #009E3D; }
+      min-height: 40vh; }
+    body .test ul {
+      margin-bottom: 30px; }
+      body .test ul a {
+        color: #009E3D;
+        background-color: #FFFFFF;
+        padding: 20px;
+        text-decoration: none; }
       body .test ul .active a {
-        color: #009E3D; }
+        background-color: #FFFFFF;
+        border-bottom: 4px solid #009E3D;
+        color: #009E3D;
+        text-decoration: none; }

@@ -49,8 +49,8 @@ class PublicRooterController extends Controller
     {
         return $this->render('AMRFPublicRooterBundle:private:maires/ProfilMaire.html.twig');
     }
-    /**
 
+    /**
      * @Route("/partenaires", name="partenaire")
      */
     public function partIndexAction()
@@ -58,7 +58,7 @@ class PublicRooterController extends Controller
         return $this->render('AMRFPublicRooterBundle:private/partenaires:partIndex.html.twig');
     }
 
-
+    /**
      * @Route("/maire", name="maireHome")
      */
     public function mairesIndexAction()
