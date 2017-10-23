@@ -1,8 +1,14 @@
-<?php
-$alphabet = [
-    'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z',
-]; ?>
-<!-- form serach--->
+{% extends 'AMRFPublicRooterBundle::base.html.twig' %}
+{% block title %}Partenaire Liste{% endblock %}
+{% block body %}
+{#
+    <?php
+    $alphabet = [
+        'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z',
+    ]; ?>
+#}
+
+<!-- form search--->
 <section class="row ">
     <h2 class="center-align">Annuaire des partenaires</h2>
     <div class="jumbotron">
@@ -10,9 +16,11 @@ $alphabet = [
             <p>Trier par lettres</p>
             <ul class="pagination text-center">
                 <!--<li class="active"><a href="#!">active</a></li>-->
+                {#
                 <?php foreach ($alphabet as $result): ?>
                     <li class="waves-effect"><a href="#!"><?php echo $result ?></a></li>
                 <?php endforeach; ?>
+                #}
             </ul>
         </div>
         <div class="form-group row">
@@ -98,7 +106,10 @@ $alphabet = [
                 <div class="col-xs-2 col-xs-offset-2 plus">
                     <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne"
                        aria-expanded="true" aria-controls="collapseOne">
-                        "En savoir Plus ..."
+                        "En savoir Plus ..."?php
+$alphabet = [
+    'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z',
+]
                     </a>
                 </div>
             </div>
@@ -143,7 +154,7 @@ $alphabet = [
                 </div>
             </div>
         </div>
-
+    </div>
 </section>
 
 <div class="row">
@@ -157,5 +168,5 @@ $alphabet = [
 </div>
 
 
-
+{% endblock %}
 

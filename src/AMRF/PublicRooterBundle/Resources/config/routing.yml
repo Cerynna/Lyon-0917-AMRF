@@ -25,3 +25,7 @@ amrf_public_rooter_search:
 amrf_public_rooter_maireProfil:
     path:     /maire/profil
     defaults: { _controller: AMRFPublicRooterBundle:PublicRooter:maireProfil }
+
+amrf_public_rooter_partListe:
+    path:     /partenaire/liste
+    defaults: { _controller: AMRFPublicRooterBundle:PublicRooter:partListe }
