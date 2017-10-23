@@ -1,0 +1,37 @@
+.resumeprojet {
+  .img-big {
+    margin: 10px;
+    @include borderRadius(5px);
+  }
+.img-preview {
+  text-align: center;
+}
+  .img-mini {
+    margin: 5px;
+    @include borderRadius(2px);
+    transition: all .2s ease-in-out;
+  }
+  .img-mini:hover {
+    transform: scale(1.1);
+  }
+  .label-commune {
+    background-color: $color1;
+  }
+  .label-themat {
+    background-color: $color4;
+  }
+  #city {
+    margin-top: 10px;
+    span {
+      font-size: .8em;
+    }
+  }
+
+  #theme {
+    margin-top: 10px;
+    span {
+      font-size: .8em;
+    }
+  }
+
+}
