@@ -1,3 +1,6 @@
+{% extends 'AMRFPublicRooterBundle::base.html.twig' %}
+{% block title %}Formulaire fiche projet{% endblock %}
+{% block body %}
 <h2>Déposez une fiche projet</h2>
 
 <form action="#" id="form" method="post" name="form">
@@ -10,52 +13,19 @@
             </div>
 
 
-            <div class="col-sm-6">
-                <label for="theme">Choisir une thématique</label>
-                <select multiple class="form-control"><p>Choisir une thématique</p>
+    <div class="jumbotron">
+        <h3 class="control-label text-center">Choisir une thématique</h3><br>
+        {% include 'AMRFPublicRooterBundle::components/thematiques.html.twig' %}
+        <div class="row">
 
-                <option value="1">AMENAGEMENT DU TERRITOIRE</option>
-                <option value="2">CULTURE</option>
-                <option value="3">DEMOCRATIE LOCALE</option>
-                <option value="4">EDUCATION</option>
-                <option value="5">ECONOMIE</option>
-                <option value="6">ENVIRONNEMENT</option>
-                <option value="7">EAU ET ASSAINISSEMENT</option>
-                <option value="8">MOBILITE</option>
-                <option value="9">NUMERIQUE</option>
-                <option value="10">RELATIONS INTERNATIONALES</option>
-                <option value="11">SANTE</option>
-                <option value="12">SOCIAL</option>
-                <option value="13">SERVICES DE PROXIMITE</option>
-                <option value="14">TOURISME</option>
-            </select>
-
-        </div>
-
-
-            <div class="form-group col-sm-6">
-                <p>Mots-Clés</p>
-                <p>
-                    <input type="checkbox" id="MotsCles"/>
-                    <label for="ecole">école</label>
-                </p>
-                <p>
-                    <input type="checkbox" id=""/>
-                    <label for="">périscolaire</label>
-                </p>
-                <p>
-                    <input type="checkbox" id=""/>
-                    <label for="">formation</label>
-                </p>
-                <p>
-                    <input type="checkbox" id=""/>
-                    <label for="">crêche</label>
-                </p>
-                <p>
-                    <input type="checkbox" id=""/>
-                    <label for="">restauration scolaire</label>
-                </p>
+            <div class="col-md-12">
+                <h3 class="text-center">Mots-clefs</h3><br>
+                <div class="form-group">
+                    <input type="text" max="5" class="motsCle form-control" name="motsCle" id="motsCle">
+                </div>
             </div>
+        </div>
+        </div>
         <div class="form-group col-sm-12">
             <label for="exampleInputFile">Joindre un fichier</label>
             <input type="file" id="exampleInputFile">
@@ -164,3 +134,4 @@
 
 </div>
 
+{% endblock %}
