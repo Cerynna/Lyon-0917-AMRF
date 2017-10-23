@@ -430,10 +430,9 @@ footer {
 .motsCle {
   width: 100% !important; }
 
-.test {
+.cleIcon {
   color: #000000;
   float: left;
-  background-position: -95px -125px;
   padding-left: 10px; }
 
 .ui-state-hover,
@@ -763,11 +762,7 @@ body::-webkit-scrollbar {
  */
 body {
   font-size: 1.0em;
-
-  background: url("../img/bck-4.jpg") no-repeat fixed;
-
-  background: url("../img/bck-1.jpg") no-repeat fixed;
-
+  background: url("../img/bck-5.jpg") no-repeat fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
