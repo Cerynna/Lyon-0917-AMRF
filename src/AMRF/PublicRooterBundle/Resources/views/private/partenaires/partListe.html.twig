@@ -1,7 +1,11 @@
-<?php
+{% extends 'AMRFPublicRooterBundle::base.html.twig' %}
+{% block title %}Mes projets{% endblock %}
+{% block body %}
+
+<!--?php
 $alphabet = [
     'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z',
-]; ?>
+]; ?-->
 <!-- form serach--->
 <section class="row ">
     <h2 class="center-align">Annuaire des partenaires</h2>
@@ -10,9 +14,9 @@ $alphabet = [
             <p>Trier par lettres</p>
             <ul class="pagination text-center">
                 <!--<li class="active"><a href="#!">active</a></li>-->
-                <?php foreach ($alphabet as $result): ?>
+                <!--?php foreach ($alphabet as $result): ?>
                     <li class="waves-effect"><a href="#!"><?php echo $result ?></a></li>
-                <?php endforeach; ?>
+                <?php endforeach; ?-->
             </ul>
         </div>
         <div class="form-group row">
@@ -88,7 +92,8 @@ $alphabet = [
 <section class="row">
     <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
         <div class="panel panel-default">
-            <div class="panel-heading row" role="tab" id="headingOne">
+            <div class="row">
+                <div class="panel-heading" role="tab" id="headingOne">
                 <div class="col-xs-4">
                     <img src="http://via.placeholder.com/70x70">
                 </div>
@@ -101,6 +106,7 @@ $alphabet = [
                         "En savoir Plus ..."
                     </a>
                 </div>
+            </div>
             </div>
             <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
                 <div class="panel-body row ">
@@ -155,7 +161,7 @@ $alphabet = [
         <li class="waves-effect"><a href="#!"><i class="material-icons">chevron_right</i></a></li>
     </ul>
 </div>
-
+{% endblock %}
 
 
 
