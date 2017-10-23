@@ -1,3 +1,4 @@
+/* galery photo */
 .resumeprojet {
   .img-big {
     margin: 10px;
@@ -14,12 +15,16 @@
   .img-mini:hover {
     transform: scale(1.1);
   }
+
+/* labels */
   .label-commune {
     background-color: $color1;
   }
+
   .label-themat {
     background-color: $color4;
   }
+
   #city {
     margin-top: 10px;
     span {
@@ -33,5 +38,4 @@
       font-size: .8em;
     }
   }
-
 }
