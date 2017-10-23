@@ -51,6 +51,13 @@ class PublicRooterController extends Controller
     }
     /**
 
+     * @Route("/projet", name="Projet")
+     */
+    public function projetAction()
+    {
+        return $this->render('AMRFPublicRooterBundle:private:projet.html.twig');
+    }
+
      * @Route("/partenaires", name="partenaire")
      */
     public function partIndexAction()

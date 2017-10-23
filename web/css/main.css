@@ -1,3 +1,4 @@
+@charset "UTF-8";
 /**
 *************************** RESET *********************
  */
@@ -749,6 +750,101 @@ footer {
   .panel-group .plus {
     margin-top: 50px; }
 
+/* nom du projet */
+h2 {
+  color: #009E3D; }
+
+/* position des thématiques*/
+.theme-city span {
+  font-size: 15px; }
+
+.panel-default {
+  margin-top: 35px; }
+
+.main-theme {
+  padding-left: 15px;
+  margin-left: 20px; }
+
+.second-theme {
+  padding-left: 15px;
+  margin-top: 20px;
+  margin-left: 20px; }
+
+/* blocs Commune + contact Mairie */
+#cityName, #contact {
+  margin-top: 50px; }
+
+#cityName .collapsed {
+  margin-right: 70px; }
+
+#headingList {
+  background-color: #009E3D;
+  color: white;
+  font-weight: bolder;
+  font-size: 2em; }
+  #headingList a {
+    font-size: 1.5em;
+    line-height: 1em;
+    text-decoration: none; }
+
+/* petits blocs année et budget */
+.year-budget {
+  padding-left: 15px; }
+  .year-budget h3 {
+    font-size: .6em; }
+
+/* gestion des photos */
+img {
+  border: 1px solid black; }
+
+.thumb {
+  position: relative;
+  top: 0;
+  left: 0; }
+  .thumb a {
+    margin: 0;
+    text-decoration: none; }
+    .thumb a .grand {
+      display: block;
+      position: absolute;
+      width: 0; }
+    .thumb a :hover .grand, .thumb a .thumb a:focus .grand {
+      position: absolute;
+      top: 80px;
+      left: 0;
+      width: 300px;
+      height: 225px; }
+
+/* éléments de description du projet */
+.description-title {
+  margin: 30px 20px 10px 10px; }
+
+.description-body {
+  margin: 10px 20px 10px 20px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #000; }
+
+/* gallerie de photo */
+.mini-galery {
+  margin-top: 80px; }
+  .mini-galery .img-big {
+    margin: 10px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    border-radius: 5px; }
+  .mini-galery .img-preview {
+    text-align: center; }
+  .mini-galery .img-mini {
+    margin: 5px;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    -ms-border-radius: 2px;
+    border-radius: 2px;
+    transition: all .2s ease-in-out; }
+  .mini-galery .img-mini:hover {
+    transform: scale(1.1); }
+
 /**
 *************************** View *********************
  */
@@ -763,6 +859,8 @@ body::-webkit-scrollbar {
  */
 body {
   font-size: 1.0em;
+
+  background: url("../img/bck-3.jpg") no-repeat fixed;
 
   background: url("../img/bck-1.jpg") no-repeat fixed;
 

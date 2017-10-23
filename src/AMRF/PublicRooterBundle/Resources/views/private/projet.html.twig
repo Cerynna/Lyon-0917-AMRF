@@ -1,107 +1,7 @@
-<style>
+{% extends 'AMRFPublicRooterBundle::base.html.twig' %}
+{% block title %}Projet{% endblock %}
+{% block body %}
 
-/* nom du projet */
-h2 {
-    color: #3c763d;
-}
-
-
-/* position des thématiques*/
-.theme-city span
-{
-    font-size: 15px;
-}
-
-.panel-default
-{
-    margin-top: 30px;
-}
-  
-.main-theme 
-{
-    padding-left : 15px;
-    margin-left: 20px;
-}
-  
-.second-theme 
-{
-    padding-left: 15px;
-    margin-top: 20px;
-    margin-left: 20px;
-}
-
-/* blocs Commune + contact Mairie */
-#cityName, #contact {
-    margin-top: 50px;
-}
-
-#cityName .collapsed {
-    margin-right: 70px;
-}
-
-#headingList {
-    background-color: #3c763d;
-    color: white;
-    font-weight: bolder;
-    font-size: 2em;
-}
-
-#headingList a {
-    font-size: 1.5em;
-}
-
-/* petits blocs année et budget */
-.year-budget {
-    padding-left: 15px;
-    margin-top: 80px;
-}
-
-.year-budget h3 {
-    font-size: .6em;
-}
-
-/* gestion des photos */
-img {
-    border:1px solid black;
-}
-
-.thumb {
-    position:relative;
-    top:0;
-    left:0;
-}
-
-.thumb a {
-    margin:0;
-    text-decoration:none;
-}
-
-.thumb a .grand {
-    display:block;
-    position:absolute;
-    width:0;
-}
-
-.thumb a:hover .grand, .thumb a:focus .grand {
-    position:absolute;
-    top:80px;
-    left:0;
-    width:300px;
-    height:225px;
-}
-
-/* éléments de description du projet */
-.description-title {
-    margin: 30px 20px 10px 10px;
-
-}
-.description-body {
-    margin: 10px 20px 10px 20px;
-    padding-bottom: 10px;
-    border-bottom: 1px solid #000;
-}
-
-</style>
 
 <h2>Partenariat Application Mobile Court-voiturage</h2> <!-- insertion php-->
 <div class="row">
@@ -125,34 +25,22 @@ img {
             <div class="col-md-6">
                 <div class="panel panel-default" id="cityName">
                     <div class="panel-heading" role="tab" id="headingList">
-                        <h4 class="panel-title">
-                            <a class="collapsed" role="button" data-toggle="collapse" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
-                                Commune : SAINT JEAN PIED DE PORT
-                                <i class="fa fa-chevron-circle-down" aria-hidden="true"></i>
-                            </a>
-                        </h4>
+                        <h4 class="panel-title"><a>Commune : SAINT JEAN PIED DE PORT</a></h4>
                     </div>
-                    <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
                         <ul class="list-group">
                             <li class="list-group-item">Département : Essone</li>
                             <li class="list-group-item">CodePostal : 91xxx</li>
                             <li class="list-group-item">Population : 2000</li>
                             <li class="list-group-item">Code INSEE : 91411</li>
                         </ul>
-                    </div>
                 </div>
             </div>
              <div class="col-md-5">
                  <div class="panel panel-default" id="contact">
                     <div class="panel-heading" role="tab" id="headingList">
-                        <h4 class="panel-title">
-                            <a class="collapsed" role="button" data-toggle="collapse" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                Contact Mairie
-                                <i class="fa fa-chevron-circle-down" aria-hidden="true"></i>
-                            </a>
-                        </h4>
+                        <h4 class="panel-title"><a>Contact Mairie</a></h4>
                     </div>
-                    <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+
                         <ul class="list-group">
                             <li class="list-group-item">Nom du Maire : Yvan LUBRANESKI</li>
                             <li class="list-group-item">Tél Mairie : 160120799</li>
@@ -160,27 +48,28 @@ img {
                             <li class="list-group-item">Email</li>
                             <li href="#" class="list-group-item">Site internet : http://www.lesmolieres.fr</li>
                         </ul>
-                    </div>
+
                  </div>
              </div>
         </div>
-        <div class="col-md-4">
-            <div class="thumb">
-                <a href="#">
-                    <img src="100_" alt="miniature AMRF" />
-                    <img src="300_AMRF.jpg" alt="Inachis-io" class="grand" />
-                </a>
-                <a href="#">
-                    <img src="100_https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQjkLwGHiU6GsMV5mKk39WJJhYi8ITViZhTTMV4DUMMZN8D-u7y" alt="miniature Machaon" />
-                    <img src="300_https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQjkLwGHiU6GsMV5mKk39WJJhYi8ITViZhTTMV4DUMMZN8D-u7y" alt="Machaon" class="grand"  />
-                </a>
 
-                <a href="#">
-                    <img src="100_https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRcdLcHOukp_RmzskNHx3UfqVn3vQ5XLYzPo-QDjRHJNLVXdjhIEA" alt="miniature Polyommatus-icarus" />
-                    <img src="300_https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRcdLcHOukp_RmzskNHx3UfqVn3vQ5XLYzPo-QDjRHJNLVXdjhIEA" alt="Polyommatus-Icarus" class="grand"  />
-                </a>
+            <div class="col-md-3 mini-galery">
+                <div class="img-preview">
+                    <img id="my-img2" src="http://via.placeholder.com/200x200" class="img-big"/>
+                </div>
+                <div class="img-list text-center">
+                    <img class="img-mini" src="http://via.placeholder.com/50x50"
+                         onmouseover="showImg('my-img2','http://dummyimage.com/200x200/eb00eb/fff');"
+                         onmouseout="hideImg('my-img2','http://via.placeholder.com/200x200');"/>
+                    <img class="img-mini" src="http://via.placeholder.com/50x50"
+                         onmouseover="showImg('my-img2','http://dummyimage.com/200x200/009E3D/fff');"
+                         onmouseout="hideImg('my-img2','http://via.placeholder.com/200x200');"/>
+                    <img class="img-mini" src="http://via.placeholder.com/50x50"
+                         onmouseover="showImg('my-img2','http://dummyimage.com/200x200/33333/fff');"
+                         onmouseout="hideImg('my-img2','http://via.placeholder.com/200x200');"/>
+                </div>
             </div>
-        </div>
+
     </div>
 </div>
 
@@ -282,3 +171,5 @@ img {
         <li class="list-group-item">Documents complémentaires : </li>
     </ul>
 </div>
+
+{% endblock %}
