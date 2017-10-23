@@ -95,4 +95,12 @@ class PublicRooterController extends Controller
         return $this->render('AMRFPublicRooterBundle:private:partenaires/partListe.html.twig');
     }
 
+    /**
+     * @Route("/partenaire/profil", name="partenaireProfil")
+     */
+    public function partProfilAction()
+    {
+        return $this->render('AMRFPublicRooterBundle:private:partenaires/partProfil.html.twig');
+    }
+
 }
