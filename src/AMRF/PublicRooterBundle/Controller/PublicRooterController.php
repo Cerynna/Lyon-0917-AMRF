@@ -14,6 +14,7 @@ class PublicRooterController extends Controller
     {
         return $this->render('AMRFPublicRooterBundle:public:amrf.html.twig');
     }
+
     /**
      * @Route("/contact", name="contact")
      */
@@ -21,6 +22,7 @@ class PublicRooterController extends Controller
     {
         return $this->render('AMRFPublicRooterBundle:public:contact.html.twig');
     }
+
     /**
      * @Route("/confidential", name="confidential")
      */
@@ -28,6 +30,7 @@ class PublicRooterController extends Controller
     {
         return $this->render('AMRFPublicRooterBundle:public:confidential.html.twig');
     }
+
     /**
      * @Route("/mentions", name="mentions")
      */
@@ -35,6 +38,7 @@ class PublicRooterController extends Controller
     {
         return $this->render('AMRFPublicRooterBundle:public:mentions.html.twig');
     }
+
     /**
      * @Route("/search", name="recherche")
      */
@@ -42,12 +46,21 @@ class PublicRooterController extends Controller
     {
         return $this->render('AMRFPublicRooterBundle:private:search.html.twig');
     }
+
     /**
      * @Route("/maire/profil", name="maireProfil")
      */
     public function maireProfilAction()
     {
         return $this->render('AMRFPublicRooterBundle:private:maires/ProfilMaire.html.twig');
+    }
+
+    /**
+     * @Route("/projet", name="Projet")
+     */
+    public function projetAction()
+    {
+        return $this->render('AMRFPublicRooterBundle:private:projet.html.twig');
     }
 
     /**
