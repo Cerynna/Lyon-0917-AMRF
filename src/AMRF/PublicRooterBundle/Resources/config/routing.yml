@@ -29,3 +29,7 @@ amrf_public_rooter_maireProfil:
 amrf_public_rooter_projet:
     path:     /projet
     defaults: { _controller: AMRFPublicRooterBundle:PublicRooter:projet }
+
+amrf_public_rooter_favoris:
+    path:     /favoris
+    defaults: { _controller: AMRFPublicRooterBundle:PublicRooter:favoris }

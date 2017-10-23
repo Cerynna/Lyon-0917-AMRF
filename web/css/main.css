@@ -701,42 +701,38 @@ footer {
           text-decoration: none;
           color: #ffffff; }
 
-.resumeprojet .img-big {
-  margin: 10px;
-  -webkit-border-radius: 5px;
-  -moz-border-radius: 5px;
-  -ms-border-radius: 5px;
-  border-radius: 5px; }
-
-.resumeprojet .img-preview {
-  text-align: center; }
-
-.resumeprojet .img-mini {
-  margin: 5px;
-  -webkit-border-radius: 2px;
-  -moz-border-radius: 2px;
-  -ms-border-radius: 2px;
-  border-radius: 2px;
-  transition: all .2s ease-in-out; }
-
-.resumeprojet .img-mini:hover {
-  transform: scale(1.1); }
-
-.resumeprojet .label-commune {
-  background-color: #009E3D; }
-
-.resumeprojet .label-themat {
-  background-color: #777777; }
-
-.resumeprojet #city {
-  margin-top: 10px; }
-  .resumeprojet #city span {
-    font-size: .8em; }
-
-.resumeprojet #theme {
-  margin-top: 10px; }
-  .resumeprojet #theme span {
-    font-size: .8em; }
+/* galery photo */
+.resumeprojet {
+  /* labels */ }
+  .resumeprojet .img-big {
+    margin: 10px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    border-radius: 5px; }
+  .resumeprojet .img-preview {
+    text-align: center; }
+  .resumeprojet .img-mini {
+    margin: 5px;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    -ms-border-radius: 2px;
+    border-radius: 2px;
+    transition: all .2s ease-in-out; }
+  .resumeprojet .img-mini:hover {
+    transform: scale(1.1); }
+  .resumeprojet .label-commune {
+    background-color: #009E3D; }
+  .resumeprojet .label-themat {
+    background-color: #777777; }
+  .resumeprojet #city {
+    margin-top: 10px; }
+    .resumeprojet #city span {
+      font-size: .8em; }
+  .resumeprojet #theme {
+    margin-top: 10px; }
+    .resumeprojet #theme span {
+      font-size: .8em; }
 
 .pagination li.active {
   background-color: #004d40; }
@@ -858,7 +854,7 @@ body::-webkit-scrollbar {
  */
 body {
   font-size: 1.0em;
-  background: url("../img/bck-3.jpg") no-repeat fixed;
+  background: url("../img/bck-4.jpg") no-repeat fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;

@@ -56,4 +56,9 @@ class PublicRooterController extends Controller
     {
         return $this->render('AMRFPublicRooterBundle:private:projet.html.twig');
     }
+
+    public function favorisAction()
+    {
+        return $this->render('AMRFPublicRooterBundle:private:favoris.html.twig');
+    }
 }
