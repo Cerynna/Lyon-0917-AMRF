@@ -94,6 +94,13 @@ class PublicRooterController extends Controller
     {
         return $this->render('AMRFPublicRooterBundle:private:partenaires/partListe.html.twig');
     }
+    /**
+     * @Route("/maire/FormProjet", name="maireFormulaire")
+     */
+    public function mairesFormProjetAction()
+    {
+        return $this->render('AMRFPublicRooterBundle:private:maires/MairesFormProjet.html.twig');
+    }
 
     /**
      * @Route("/partenaire/profil", name="partenaireProfil")
