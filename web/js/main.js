@@ -48,10 +48,10 @@ $(document).ready(function () {
 $(window).on('scroll', function () {
     var scrollTop = $(window).scrollTop();
     if (scrollTop > 20) {
-        $('#logo').stop().animate({height: "40px", width: "80px"}, 50);
+        $('#logo').stop().animate({height: "40px", width: "80px"},50);
     }
     else {
-        $('#logo').stop().animate({height: "100px", width: "200px"}, 50);
+        $('#logo').stop().animate({height: "100px", width: "200px"},50);
     }
 });
 
