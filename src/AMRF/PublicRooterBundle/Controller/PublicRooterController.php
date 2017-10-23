@@ -14,6 +14,7 @@ class PublicRooterController extends Controller
     {
         return $this->render('AMRFPublicRooterBundle:public:amrf.html.twig');
     }
+
     /**
      * @Route("/contact", name="contact")
      */
@@ -21,6 +22,7 @@ class PublicRooterController extends Controller
     {
         return $this->render('AMRFPublicRooterBundle:public:contact.html.twig');
     }
+
     /**
      * @Route("/confidential", name="confidential")
      */
@@ -28,6 +30,7 @@ class PublicRooterController extends Controller
     {
         return $this->render('AMRFPublicRooterBundle:public:confidential.html.twig');
     }
+
     /**
      * @Route("/mentions", name="mentions")
      */
@@ -35,6 +38,7 @@ class PublicRooterController extends Controller
     {
         return $this->render('AMRFPublicRooterBundle:public:mentions.html.twig');
     }
+
     /**
      * @Route("/search", name="recherche")
      */
@@ -42,6 +46,7 @@ class PublicRooterController extends Controller
     {
         return $this->render('AMRFPublicRooterBundle:private:search.html.twig');
     }
+
     /**
      * @Route("/maire/profil", name="maireProfil")
      */
@@ -49,6 +54,15 @@ class PublicRooterController extends Controller
     {
         return $this->render('AMRFPublicRooterBundle:private:maires/ProfilMaire.html.twig');
     }
+
+    /**
+     * @Route("/projet", name="Projet")
+     */
+    public function projetAction()
+    {
+        return $this->render('AMRFPublicRooterBundle:private:projet.html.twig');
+    }
+
     /**
      * @Route("/partenaires", name="partenaire")
      */
@@ -60,9 +74,25 @@ class PublicRooterController extends Controller
     /**
      * @Route("/maire", name="maireHome")
      */
-    public function mairesIndexAction()
+    public function maireIndexAction()
     {
-        return $this->render('AMRFPublicRooterBundle:private:maires/MairesIndex.html.twig');
+        return $this->render('AMRFPublicRooterBundle:private:maires/maireIndex.html.twig');
+    }
+
+    /**
+     * @Route("/maire/projet", name="Mes projets")
+     */
+    public function maireProjetAction()
+    {
+        return $this->render('AMRFPublicRooterBundle:private:maires/maireProjet.html.twig');
+    }
+
+    /**
+     * @Route("/partenaire/liste", name="Annuaire des partenaires")
+     */
+    public function partListeAction()
+    {
+        return $this->render('AMRFPublicRooterBundle:private:partenaires/partListe.html.twig');
     }
     /**
      * @Route("/maire/FormProjet", name="maireFormulaire")
