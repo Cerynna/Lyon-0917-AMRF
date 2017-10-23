@@ -664,7 +664,7 @@ footer {
       text-align: center;
       font-size: 80px; }
   .cardGest .card-body {
-    height: 300px;
+    height: 330px;
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
     -ms-border-radius: 5px;
@@ -686,6 +686,7 @@ footer {
         margin: 2px;
         background-color: #3c3c3c; }
         .cardGest .card-body .card-block .btn a {
+          font-size: 0.6em;
           text-decoration: none;
           color: #ffffff; }
 
@@ -744,7 +745,7 @@ body::-webkit-scrollbar {
  */
 body {
   font-size: 1.0em;
-  background: url("../img/bck-4.jpg") no-repeat fixed;
+  background: url("../img/bck-5.jpg") no-repeat fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
