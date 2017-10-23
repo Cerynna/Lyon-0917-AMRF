@@ -27,6 +27,10 @@ amrf_public_rooter_maireProfil:
     defaults: { _controller: AMRFPublicRooterBundle:PublicRooter:maireProfil }
 
 
+amrf_public_rooter_projet:
+    path:     /projet
+    defaults: { _controller: AMRFPublicRooterBundle:PublicRooter:projet }
+
 amrf_public_rooter_partIndex:
     path:     /partenaires
     defaults: { _controller: AMRFPublicRooterBundle:PublicRooter:partIndex }
