@@ -1,0 +1,69 @@
+#navbar {
+  color: white;
+  width: 100%;
+  margin-top: 0;
+  background-color: $color1;
+  border-radius: 0;
+  font-size: 1.8em;
+  vertical-align: middle;
+  button {
+    background-color: $color1;
+    border: 1px solid $color2;
+    span {
+      color: $color2;
+      background-color: $color2;
+    }
+  }
+  ul {
+    vertical-align: middle;
+  }
+  .nav {
+    vertical-align: middle;
+  }
+  nav .button-collapse {
+    float: right;
+    position: relative;
+    z-index: 1;
+    height: 70px;
+    margin: 0 18px;
+  }
+  li {
+    margin: 5px;
+    a {
+      color: $color2;
+      height: 70px;
+      vertical-align: initial;
+      padding-top: 25px;
+    }
+    a:hover  {
+      color: $color2;
+      background: $color1;
+      border-bottom: 4px solid $color2;
+    }
+    a.active {
+      color: $color2;
+      background: $color1;
+      border-bottom: 4px solid $color2;
+    }
+  }
+  ul .dropdown-menu {
+    a {
+      color: $color1;
+    }
+    color: $color1;
+  }
+  ul .dropdown-menu :hover {
+    a {
+      color: $color1;
+    }
+    color: $color1;
+  }
+.logo {
+  height: 60px;
+  padding: 5px;
+  margin-top: -6px;
+  background-color: #FFFFFF;
+  @include borderRadius(5px);
+  box-shadow: 5px 5px 0 rgba(0, 0, 0, 0.6);
+}
+}

@@ -1,0 +1,59 @@
+<nav id="navbar" class="navbar navbar-static-top" role="navigation">
+    <div class="container-fluid">
+
+        <div class="navbar-header">
+            <a class="navbar-brand" href="/"><img class="logo visible-xs visible-md visible-sm"
+                                                  src="../img/AMRF.png"></a>
+
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                    data-target="#navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+
+
+
+                <li class="dropdown">
+                    <a data-toggle="dropdown" class="dropdown-toggle" href="#">Mon Espace <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+
+                        <li><a href="{{ path('maireHome') }}">Mon Espace</a></li>
+                        <li><a href="{{ path('maireProfil') }}">Profil</a></li>
+                        <li class="dropdown-submenu pull-left">
+                            <a tabindex="-1" href="#"><b class="caret"></b> Projet</a>
+                            <ul class="dropdown-menu">
+                                <li><a tabindex="-1" href="{{ path('maireFormProjet') }}">Ajouter</a></li>
+                                <li><a tabindex="-1" href="{{ path('maireProjets') }}">Consulter</a></li>
+                                <li><a tabindex="-1" href="{{ path('recherche') }}">Decouvrir</a></li>
+
+                            </ul>
+                        </li>
+                        <li><a tabindex="-1" href="{{ path('annuaire') }}">Les Partenaires</a></li>
+                        <li><a tabindex="-1" href="#">Déconnexion</a></li>
+                    </ul>
+                </li>
+
+                <li>
+                    <a {% if app.request.attributes.get('_route') == 'home' %} class="active" {% endif %}
+                            href="{{ path('home') }}">Accueil</a>
+                </li>
+                <li>
+                    <a {% if app.request.attributes.get('_route') == 'amrf' %} class="active" {% endif %}
+                            href="{{ path('amrf') }}">AMRF</a>
+                </li>
+                <li>
+                    <a {% if app.request.attributes.get('_route') == 'contact' %} class="active" {% endif %}
+                            href="{{ path('contact') }}">Contact</a>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+</nav>

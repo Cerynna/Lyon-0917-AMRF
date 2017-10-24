@@ -1,0 +1,218 @@
+{% extends 'AMRFPublicRooterBundle::base.html.twig' %}
+{% block title %}Accueil{% endblock %}
+{% block body %}
+    <h2>Bienvenue sur le Wiki des Maires</h2>
+    <div class="row jumbotron">
+        <div class="col-md-12">
+            <h3>Le Wiki des Maires : qu’est-ce que c’est ? </h3>
+            <p>
+                A destination des adhérents de l’Association des Maires Ruraux de France et de ses partenaires, le Wiki
+                des
+                Maires permet de partager et d’échanger sur des projets mis en place par les communes rurales
+                adhérentes.
+                Plateforme interactive et évolutive, elle illustre le dynamisme de nos communes et l’implication des
+                élus
+                sur leur territoire et pour leurs administrés. Nous ne le dirons jamais assez, l’échelon communal permet
+                l’innovation et la réalisation de projets divers que ce Wiki permet de partager.
+                Alors racontez-nous !
+            </p>
+        </div>
+        <!--<div class="col-md-4 right-align"><img class="responsive-img" src="http://lorempixel.com/300/300/nature" alt=""></div>-->
+    </div>
+    <div class="row jumbotron">
+        <!--<div class="col-md-4 left-align"><img class="responsive-img" src="http://lorempixel.com/300/300/nature" alt=""></div>-->
+        <div class="col-md-12">
+            <h3>Le Wiki des Maires : comment l’utiliser ? </h3>
+            <p>
+                Vous recherchez un projet mené dans un département spécifique ou une thématique dans laquelle vous
+                souhaitez
+                agir ? Le Wiki vous permet de solliciter l’expertise du réseau via l’expérience des maires et de nos
+                partenaires.
+                Alors inspirez-vous !
+            </p>
+        </div>
+    </div>
+    <div class="row jumbotron">
+        <!--<div class="col-md-4 left-align"><img class="responsive-img" src="http://lorempixel.com/300/300/nature" alt=""></div>-->
+        <div class="col-md-12">
+            <h3>Le Wiki des Maires : une valorisation des maires et des partenaires</h3>
+            <p>
+                Plateforme multi-acteurs, le Wiki des Maires permet de réunir les maires adhérents et nos partenaires financiers. Valoriser une initiative, mettre en avant une expertise, créer du lien entre les membres du réseau… voilà les finalités du Wiki des Maires Ruraux de France.
+                Alors valorisez-vous !
+
+            </p>
+        </div>
+    </div>
+
+    <div id="myCarousel" class="carousel slide jumbotron row" data-ride="carousel">
+        <!-- Wrapper for slides -->
+        <div class="carousel-inner">
+
+            <div class="item active">
+
+                <div class="row resumeprojet">
+                    <div class="col-md-3 mini-galery">
+                        <div class="img-preview">
+                            <img id="my-img1" src="http://via.placeholder.com/200x200" class="img-big" onmouseover="showImg('my-img1','http://via.placeholder.com/200x200');"/>
+                        </div>
+                        <div class="img-list text-center">
+                            <img class="img-mini" src="http://via.placeholder.com/50x50"
+                                 onmouseover="showImg('my-img1','http://dummyimage.com/200x200/eb00eb/fff');"
+                                 onmouseout="hideImg('my-img1','http://via.placeholder.com/200x200');"/>
+                            <img class="img-mini" src="http://via.placeholder.com/50x50"
+                                 onmouseover="showImg('my-img1','http://dummyimage.com/200x200/009E3D/fff');"
+                                 onmouseout="hideImg('http://via.placeholder.com/200x200');"/>
+                            <img class="img-mini" src="http://via.placeholder.com/50x50"
+                                 onmouseover="showImg('my-img1','http://dummyimage.com/200x200/33333/fff');"
+                                 onmouseout="hideImg('my-img1','http://via.placeholder.com/200x200');"/>
+                        </div>
+                    </div>
+                    <div class="col-md-9">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h3>1 Projet Application Mobile Court-voiturage</h3>
+                            </div>
+                            <div class="col-md-12" id="city">
+                                <span class="label label-commune">SAINT JEAN PIED DE PORT</span>
+                                <span class="label label-commune">Pyrénées-Atlantiques</span>
+                            </div>
+                            <div class="col-md-12" id="theme">
+                                <span class="label label-themat">Mobilité</span>
+                                <span class="label label-themat">Aménagement du territoire</span>
+                                <span class="label label-themat">Aménagement du territoire</span>
+                            </div>
+                            <div class="col-md-12">
+                                <h3>Résumé du projet</h3>
+                                <p>
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                                    incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+                                    exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute
+                                    irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+                                    pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
+                                    deserunt mollit anim id est laborum.
+                                </p>
+                            </div>
+                            <div class="col-md-12 text-right">
+                                <div class="btn btn-success" href="#" role="button">Voir la fiche complète</div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+
+            </div><!-- End Item -->
+
+            <div class="item ">
+
+                <div class="row resumeprojet">
+                    <div class="col-md-3 mini-galery">
+                        <div class="img-preview">
+                            <img id="my-img2" src="http://via.placeholder.com/200x200" class="img-big"/>
+                        </div>
+                        <div class="img-list text-center">
+                            <img class="img-mini" src="http://via.placeholder.com/50x50"
+                                 onmouseover="showImg('my-img2','http://dummyimage.com/200x200/eb00eb/fff');"
+                                 onmouseout="hideImg('my-img2','http://via.placeholder.com/200x200');"/>
+                            <img class="img-mini" src="http://via.placeholder.com/50x50"
+                                 onmouseover="showImg('my-img2','http://dummyimage.com/200x200/009E3D/fff');"
+                                 onmouseout="hideImg('my-img2','http://via.placeholder.com/200x200');"/>
+                            <img class="img-mini" src="http://via.placeholder.com/50x50"
+                                 onmouseover="showImg('my-img2','http://dummyimage.com/200x200/33333/fff');"
+                                 onmouseout="hideImg('my-img2','http://via.placeholder.com/200x200');"/>
+                        </div>
+                    </div>
+                    <div class="col-md-9">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h3>2 Projet Application Mobile Court-voiturage</h3>
+                            </div>
+                            <div class="col-md-12" id="city">
+                                <span class="label label-commune">SAINT JEAN PIED DE PORT</span>
+                                <span class="label label-commune">Pyrénées-Atlantiques</span>
+                            </div>
+                            <div class="col-md-12" id="theme">
+                                <span class="label label-themat">Mobilité</span>
+                                <span class="label label-themat">Aménagement du territoire</span>
+                                <span class="label label-themat">Aménagement du territoire</span>
+                            </div>
+                            <div class="col-md-12">
+                                <h3>Résumé du projet</h3>
+                                <p>
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                                    incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+                                    exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute
+                                    irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+                                    pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
+                                    deserunt mollit anim id est laborum.
+                                </p>
+                            </div>
+                            <div class="col-md-12 text-right">
+                                <div class="btn btn-success" href="#" role="button">Voir la fiche complète</div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+
+            </div><!-- End Item -->
+            <div class="item ">
+
+                <div class="row resumeprojet">
+                    <div class="col-md-3 mini-galery">
+                        <div class="img-preview">
+                            <img id="my-img3" src="http://via.placeholder.com/200x200" class="img-big"/>
+                        </div>
+                        <div class="img-list text-center">
+                            <img class="img-mini" src="http://via.placeholder.com/50x50"
+                                 onmouseover="showImg('my-img3','http://dummyimage.com/200x200/eb00eb/fff');"
+                                 onmouseout="hideImg('my-img3','http://via.placeholder.com/200x200');"/>
+                            <img class="img-mini" src="http://via.placeholder.com/50x50"
+                                 onmouseover="showImg('my-img3','http://dummyimage.com/200x200/009E3D/fff');"
+                                 onmouseout="hideImg('http://via.placeholder.com/200x200');"/>
+                            <img class="img-mini" src="http://via.placeholder.com/50x50"
+                                 onmouseover="showImg('my-img3','http://dummyimage.com/200x200/33333/fff');"
+                                 onmouseout="hideImg('my-img3','http://via.placeholder.com/200x200');"/>
+                        </div>
+                    </div>
+                    <div class="col-md-9">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h3>3 Projet Application Mobile Court-voiturage</h3>
+                            </div>
+                            <div class="col-md-12" id="city">
+                                <span class="label label-commune">SAINT JEAN PIED DE PORT</span>
+                                <span class="label label-commune">Pyrénées-Atlantiques</span>
+                            </div>
+                            <div class="col-md-12" id="theme">
+                                <span class="label label-themat">Mobilité</span>
+                                <span class="label label-themat">Aménagement du territoire</span>
+                                <span class="label label-themat">Aménagement du territoire</span>
+                            </div>
+                            <div class="col-md-12">
+                                <h3>Résumé du projet</h3>
+                                <p>
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                                    incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+                                    exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute
+                                    irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+                                    pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
+                                    deserunt mollit anim id est laborum.
+                                </p>
+                            </div>
+                            <div class="col-md-12 text-right">
+                                <div class="btn btn-success" href="#" role="button">Voir la fiche complète</div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+
+            </div><!-- End Item -->
+
+        </div><!-- End Carousel Inner -->
+
+    </div>
+{% endblock %}

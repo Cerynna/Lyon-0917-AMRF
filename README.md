@@ -1,3 +1,6 @@
+wikiMaire
+=========
+
 Project Wild Code School for 'Association des Maires Ruraux de France'. 
  
 
@@ -35,3 +38,5 @@ Project Wild Code School for 'Association des Maires Ruraux de France'.
  
  
 develoment Team : **Marie, Darin, Simon, Jeremy, Severine**
+
+A Symfony project created on October 20, 2017, 11:25 am.
