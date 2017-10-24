@@ -17,7 +17,7 @@
     position: fixed;
     width: 200px;
     height: 100px;
-    border-radius: 10px;
+    @include borderRadius(5px);
     box-shadow: 5px 5px 0 rgba(0, 0, 0, 0.6);
   }
   .connect {
