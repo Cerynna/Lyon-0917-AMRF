@@ -24,8 +24,20 @@
                 <li>
                     <a {% if app.request.attributes.get('_route') == 'contact' %} class="active" {% endif %} href="{{ path('contact') }}">Contact</a>
                 </li>
-                <li class="visible-xs visible-md visible-sm">
-                    <a data-toggle="modal"  data-target="#formConnect" >Connexion</a>
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">Mon Espace
+                        <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="{{ path('partHome') }}">Mon Espace</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="{{ path('partProfil') }}">Profil</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="{{ path('partPres') }}">Ma fiche</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="{{ path('partFavoris') }}">Mes Favoris</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="#">Déconnexion</a></li>
+                    </ul>
                 </li>
             </ul>
         </div>

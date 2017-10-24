@@ -1,4 +1,4 @@
 amrf_public_rooter:
-    resource: "@AMRFPublicRooterBundle/Resources/config/routing.yml"
-    prefix:   /
+    resource: "@AMRFPublicRooterBundle/Controller/"
+    type: annotation
 

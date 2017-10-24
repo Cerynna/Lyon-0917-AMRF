@@ -1,5 +1,8 @@
 {% extends 'AMRFPublicRooterBundle::base.html.twig' %}
 {% block title %}A propos{% endblock %}
+{% block navbar %}
+    {% include 'AMRFPublicRooterBundle::components/navbarMaire.html.twig' %}
+{% endblock %}
 {% block body %}
     <h2>Mon profil (Maire)</h2>
     <!-- Nav tabs -->
