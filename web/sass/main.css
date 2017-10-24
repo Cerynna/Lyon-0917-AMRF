@@ -1,4 +1,3 @@
-@charset "UTF-8";
 /**
 *************************** RESET *********************
  */
@@ -215,7 +214,7 @@ textarea {
   color: white;
   width: 100%;
   margin-top: 0;
-  background-color: #009E3D;
+  background-color: red;
   border-radius: 0;
   font-size: 1.8em;
   vertical-align: middle; }
@@ -236,31 +235,16 @@ textarea {
     height: 70px;
     margin: 0 18px; }
   #navbar li {
-
     color: #009E3D; }
-
-    margin: 5px; }
-
     #navbar li a {
       color: #FFFFFF;
       height: 70px;
       vertical-align: initial;
       padding-top: 25px; }
-
   #navbar li :hover {
     color: #009E3D; }
     #navbar li :hover a {
       color: #009E3D; }
-
-    #navbar li a:hover {
-      color: #FFFFFF;
-      background: #009E3D;
-      border-bottom: 4px solid #FFFFFF; }
-    #navbar li a.active {
-      color: #FFFFFF;
-      background: #009E3D;
-      border-bottom: 4px solid #FFFFFF; }
-
   #navbar ul .dropdown-menu {
     color: #009E3D; }
     #navbar ul .dropdown-menu a {
@@ -269,18 +253,6 @@ textarea {
     color: #009E3D; }
     #navbar ul .dropdown-menu :hover a {
       color: #009E3D; }
-
-  #navbar .logo {
-    height: 60px;
-    padding: 5px;
-    margin-top: -6px;
-    background-color: #FFFFFF;
-    -webkit-border-radius: 5px;
-    -moz-border-radius: 5px;
-    -ms-border-radius: 5px;
-    border-radius: 5px;
-    box-shadow: 5px 5px 0 rgba(0, 0, 0, 0.6); }
-
 
 #header {
   height: 25%;
@@ -299,14 +271,7 @@ textarea {
     position: fixed;
     width: 200px;
     height: 100px;
-
     border-radius: 10px;
-
-    -webkit-border-radius: 5px;
-    -moz-border-radius: 5px;
-    -ms-border-radius: 5px;
-    border-radius: 5px;
-
     box-shadow: 5px 5px 0 rgba(0, 0, 0, 0.6); }
   #header .connect {
     display: inline-block;
@@ -465,18 +430,6 @@ footer {
 .motsCle {
   width: 100% !important; }
 
-
-.cleIcon {
-  color: #000000;
-  float: left;
-
-.test {
-  color: #000000;
-  float: left;
-  background-position: -95px -125px;
-
-  padding-left: 10px; }
-
 .ui-state-hover,
 .ui-widget-content .ui-state-hover,
 .ui-widget-header .ui-state-hover,
@@ -605,13 +558,11 @@ footer {
 /* SCSS STYLES */
 .funkyradio div {
   overflow: hidden; }
-
 .funkyradio label {
   width: 100%;
   border-radius: 4px;
   border: 1px solid #D1D3D4;
   font-weight: normal; }
-
 .funkyradio input[type="radio"]:empty,
 .funkyradio input[type="checkbox"]:empty {
   display: none; }
@@ -634,7 +585,6 @@ footer {
       width: 2.5em;
       background: #D1D3D4;
       border-radius: 3px 0 0 3px; }
-
 .funkyradio input[type="radio"]:hover:not(:checked) ~ label,
 .funkyradio input[type="checkbox"]:hover:not(:checked) ~ label {
   color: #888; }
@@ -643,7 +593,6 @@ footer {
     content: '\2714';
     text-indent: .9em;
     color: #C2C2C2; }
-
 .funkyradio input[type="radio"]:checked ~ label,
 .funkyradio input[type="checkbox"]:checked ~ label {
   color: #777; }
@@ -653,36 +602,29 @@ footer {
     text-indent: .9em;
     color: #333;
     background-color: #ccc; }
-
 .funkyradio input[type="radio"]:focus ~ label:before,
 .funkyradio input[type="checkbox"]:focus ~ label:before {
   box-shadow: 0 0 0 3px #999; }
-
 .funkyradio-default input[type="radio"]:checked ~ label:before,
 .funkyradio-default input[type="checkbox"]:checked ~ label:before {
   color: #333;
   background-color: #ccc; }
-
 .funkyradio-primary input[type="radio"]:checked ~ label:before,
 .funkyradio-primary input[type="checkbox"]:checked ~ label:before {
   color: #fff;
   background-color: #337ab7; }
-
 .funkyradio-success input[type="radio"]:checked ~ label:before,
 .funkyradio-success input[type="checkbox"]:checked ~ label:before {
   color: #fff;
   background-color: #5cb85c; }
-
 .funkyradio-danger input[type="radio"]:checked ~ label:before,
 .funkyradio-danger input[type="checkbox"]:checked ~ label:before {
   color: #fff;
   background-color: #d9534f; }
-
 .funkyradio-warning input[type="radio"]:checked ~ label:before,
 .funkyradio-warning input[type="checkbox"]:checked ~ label:before {
   color: #fff;
   background-color: #f0ad4e; }
-
 .funkyradio-info input[type="radio"]:checked ~ label:before,
 .funkyradio-info input[type="checkbox"]:checked ~ label:before {
   color: #fff;
@@ -748,10 +690,8 @@ footer {
   -moz-border-radius: 5px;
   -ms-border-radius: 5px;
   border-radius: 5px; }
-
 .resumeprojet .img-preview {
   text-align: center; }
-
 .resumeprojet .img-mini {
   margin: 5px;
   -webkit-border-radius: 2px;
@@ -759,21 +699,16 @@ footer {
   -ms-border-radius: 2px;
   border-radius: 2px;
   transition: all .2s ease-in-out; }
-
 .resumeprojet .img-mini:hover {
   transform: scale(1.1); }
-
 .resumeprojet .label-commune {
   background-color: #009E3D; }
-
 .resumeprojet .label-themat {
   background-color: #777777; }
-
 .resumeprojet #city {
   margin-top: 10px; }
   .resumeprojet #city span {
     font-size: .8em; }
-
 .resumeprojet #theme {
   margin-top: 10px; }
   .resumeprojet #theme span {
@@ -790,101 +725,6 @@ footer {
   .panel-group .plus {
     margin-top: 50px; }
 
-/* nom du projet */
-h2 {
-  color: #009E3D; }
-
-/* position des thématiques*/
-.theme-city span {
-  font-size: 15px; }
-
-.panel-default {
-  margin-top: 35px; }
-
-.main-theme {
-  padding-left: 15px;
-  margin-left: 20px; }
-
-.second-theme {
-  padding-left: 15px;
-  margin-top: 20px;
-  margin-left: 20px; }
-
-/* blocs Commune + contact Mairie */
-#cityName, #contact {
-  margin-top: 50px; }
-
-#cityName .collapsed {
-  margin-right: 70px; }
-
-#headingList {
-  background-color: #009E3D;
-  color: white;
-  font-weight: bolder;
-  font-size: 2em; }
-  #headingList a {
-    font-size: 1.5em;
-    line-height: 1em;
-    text-decoration: none; }
-
-/* petits blocs année et budget */
-.year-budget {
-  padding-left: 15px; }
-  .year-budget h3 {
-    font-size: .6em; }
-
-/* gestion des photos */
-img {
-  border: 1px solid black; }
-
-.thumb {
-  position: relative;
-  top: 0;
-  left: 0; }
-  .thumb a {
-    margin: 0;
-    text-decoration: none; }
-    .thumb a .grand {
-      display: block;
-      position: absolute;
-      width: 0; }
-    .thumb a :hover .grand, .thumb a .thumb a:focus .grand {
-      position: absolute;
-      top: 80px;
-      left: 0;
-      width: 300px;
-      height: 225px; }
-
-/* éléments de description du projet */
-.description-title {
-  margin: 30px 20px 10px 10px; }
-
-.description-body {
-  margin: 10px 20px 10px 20px;
-  padding-bottom: 10px;
-  border-bottom: 1px solid #000; }
-
-/* gallerie de photo */
-.mini-galery {
-  margin-top: 80px; }
-  .mini-galery .img-big {
-    margin: 10px;
-    -webkit-border-radius: 5px;
-    -moz-border-radius: 5px;
-    -ms-border-radius: 5px;
-    border-radius: 5px; }
-  .mini-galery .img-preview {
-    text-align: center; }
-  .mini-galery .img-mini {
-    margin: 5px;
-    -webkit-border-radius: 2px;
-    -moz-border-radius: 2px;
-    -ms-border-radius: 2px;
-    border-radius: 2px;
-    transition: all .2s ease-in-out; }
-  .mini-galery .img-mini:hover {
-    transform: scale(1.1); }
-
 /**
 *************************** View *********************
  */
@@ -899,9 +739,7 @@ body::-webkit-scrollbar {
  */
 body {
   font-size: 1.0em;
-
-  background: url("../img/bck-2.jpg") no-repeat fixed;
-
+  background: url("../img/bck-3.jpg") no-repeat fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -935,8 +773,7 @@ body {
     color: #009E3D;
     font-family: "Cabin Condensed", sans-serif;
     font-size: 2em;
-    line-height: 2em;
-    margin-bottom: 10px; }
+    line-height: 2em; }
     body h3 a:link {
       text-decoration: none;
       color: #009E3D; }
@@ -965,10 +802,6 @@ body {
   body .btn:hover {
     background-color: #FFFFFF;
     color: #009E3D; }
-
-  body .input-group-btn {
-    font-size: 82%; }
-
   body .test {
     -webkit-border-radius: 6px;
     -moz-border-radius: 6px;
@@ -979,18 +812,22 @@ body {
     margin-bottom: 30px;
     color: inherit;
     background-color: #eee;
-    min-height: 30vh; }
+    min-height: 50vh; }
     body .test .tab-pane {
-      min-height: 40vh; }
-    body .test ul {
-      margin-bottom: 30px; }
-      body .test ul a {
-        color: #009E3D;
-        background-color: #FFFFFF;
-        padding: 20px;
-        text-decoration: none; }
+      min-height: 35vh; }
+    body .test ul a {
+      color: #FFFFFF; }
+    body .test ul li {
+      background-color: #009E3D;
+      padding: 20px;
+      -webkit-border-radius: 5px;
+      -moz-border-radius: 5px;
+      -ms-border-radius: 5px;
+      border-radius: 5px; }
+    body .test ul .active {
+      background-color: #FFFFFF;
+      color: #009E3D; }
       body .test ul .active a {
-        background-color: #FFFFFF;
-        border-bottom: 4px solid #009E3D;
-        color: #009E3D;
-        text-decoration: none; }
+        color: #009E3D; }
+
+/*# sourceMappingURL=main.css.map */

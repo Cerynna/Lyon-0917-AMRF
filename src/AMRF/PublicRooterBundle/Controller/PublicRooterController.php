@@ -51,9 +51,17 @@ class PublicRooterController extends Controller
      * @Route("/maire/profil", name="maireProfil")
      */
     public function maireProfilAction()
-    {
-        return $this->render('AMRFPublicRooterBundle:private:maires/ProfilMaire.html.twig');
-    }
+	{
+		return $this->render('AMRFPublicRooterBundle:private:maires/ProfilMaire.html.twig');
+	}
+
+	/**
+	 * @Route("/partenaire/liste", name="partListe")
+	 */
+	public function partListeAction()
+	{
+		return $this->render('AMRFPublicRooterBundle:private:partenaires/partListe.html.twig');
+	}
 
     /**
      * @Route("/projet", name="Projet")
@@ -63,7 +71,7 @@ class PublicRooterController extends Controller
         return $this->render('AMRFPublicRooterBundle:private:projet.html.twig');
     }
 
-    /**
+     /**
      * @Route("/partenaires", name="partenaire")
      */
     public function partIndexAction()
@@ -71,12 +79,62 @@ class PublicRooterController extends Controller
         return $this->render('AMRFPublicRooterBundle:private/partenaires:partIndex.html.twig');
     }
 
+
     /**
      * @Route("/maire", name="maireHome")
      */
-    public function mairesIndexAction()
+    public function maireIndexAction()
     {
-        return $this->render('AMRFPublicRooterBundle:private:maires/MairesIndex.html.twig');
+        return $this->render('AMRFPublicRooterBundle:private:maires/maireIndex.html.twig');
     }
+
+    /**
+     * @Route("/maire/projet", name="Mes projets")
+     */
+    public function maireProjetAction()
+    {
+        return $this->render('AMRFPublicRooterBundle:private:maires/maireProjet.html.twig');
+    }
+
+
+    /**
+     * @Route("/partenaire/liste", name="Annuaire des partenaires")
+     */
+    public function partListeAction()
+    {
+        return $this->render('AMRFPublicRooterBundle:private:partenaires/partListe.html.twig');
+    }
+    /**
+     * @Route("/maire/FormProjet", name="maireFormulaire")
+     */
+    public function mairesFormProjetAction()
+    {
+        return $this->render('AMRFPublicRooterBundle:private:maires/MairesFormProjet.html.twig');
+    }
+
+    /**
+     * @Route("/partenaire/profil", name="partenaireProfil")
+     */
+    public function partProfilAction()
+    {
+        return $this->render('AMRFPublicRooterBundle:private:partenaires/partProfil.html.twig');
+    }
+
+    /**
+     * @Route("/partenaire/favoris", name="favoris")
+     */
+    public function favorisAction()
+    {
+        return $this->render('AMRFPublicRooterBundle:private:favoris.html.twig');
+    }
+
+    /**
+     * @Route("/partenaire/form", name="partenaireForm")
+     */
+    public function partFormFicheAction()
+    {
+        return $this->render('AMRFPublicRooterBundle:private:partenaires/partFormFiche.html.twig');
+    }
+
 
 }
