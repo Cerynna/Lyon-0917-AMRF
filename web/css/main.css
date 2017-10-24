@@ -237,7 +237,7 @@ textarea {
     margin: 0 18px; }
   #navbar li {
 
-    color: #009E3D; }
+    color: #009E3D;
 
     margin: 5px; }
 
@@ -469,7 +469,7 @@ footer {
 .cleIcon {
   color: #000000;
   float: left;
-
+}
 .test {
   color: #000000;
   float: left;
