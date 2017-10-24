@@ -9,7 +9,11 @@
 </head>
 <body>
 {% include 'AMRFPublicRooterBundle::components/header.html.twig' %}
+
+{% block navbar %}
 {% include 'AMRFPublicRooterBundle::components/navbar.html.twig' %}
+{% endblock %}
+
 <div class="body">
     <section>
         <div class="container">
@@ -23,8 +27,8 @@
 <footer class="page-footer">
     {% include 'AMRFPublicRooterBundle::components/footer.html.twig' %}
 </footer>
-
 {% include 'AMRFPublicRooterBundle::components/script.html.twig' %}
+{% block javascripts %}{% endblock %}
 </body>
 {% include 'AMRFPublicRooterBundle::components/modalConnect.html.twig' %}
 </html>

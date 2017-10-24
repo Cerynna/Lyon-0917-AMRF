@@ -26,6 +26,7 @@
 @import 'partials/components/listeAccordion';
 @import 'partials/components/projet';
 
+
 /**
 *************************** View *********************
  */
@@ -43,6 +44,7 @@ body::-webkit-scrollbar {
 ******Ca sert a rien mais ca switch de background a chaque compilation
 ** pour test
  */
+
 $imgKey: random(5);
 
 $list: bck-1, bck-2, bck-3, bck-4, bck-5;
@@ -134,6 +136,9 @@ body {
     background-color: $color2;
     color: $color1;
   }
+  .input-group-btn{
+    font-size: 82%;
+  }
   .test {
     @include borderRadius(6px);
     width: 100%;
@@ -155,7 +160,6 @@ body {
         text-decoration: none;
       }
       .active {
-
         a {
           background-color: $color2;
           border-bottom: 4px solid $color1;
@@ -165,7 +169,66 @@ body {
       }
     }
   }
+
+
+
+
+  .dropdown-submenu {
+    position: relative;
+  }
+
+  .dropdown-submenu > .dropdown-menu {
+    top: 0;
+    left: 200px;
+  }
+
+  .dropdown-submenu:hover > .dropdown-menu {
+    display: block;
+  }
+
+  .dropup .dropdown-submenu > .dropdown-menu {
+    top: auto;
+    bottom: 0;
+    margin-top: 0;
+    margin-bottom: -2px;
+    -webkit-border-radius: 5px 5px 5px 0;
+    -moz-border-radius: 5px 5px 5px 0;
+    border-radius: 5px 5px 5px 0;
+  }
+
+  .dropdown-submenu > a:after {
+    display: block;
+    float: right;
+    width: 0;
+    height: 0;
+    border-color: transparent;
+    border-style: solid;
+    border-width: 5px 0 5px 5px;
+    border-left-color: #cccccc;
+    margin-top: 5px;
+    margin-right: -10px;
+  }
+
+  .dropdown-submenu:hover > a:after {
+    border-left-color: #ffffff;
+  }
+
+  .dropdown-submenu.pull-left {
+    float: none;
+    margin-left: 200px;
+  }
+
+  .dropdown-submenu.pull-left > .dropdown-menu {
+    left: -100%;
+    margin-left: 10px;
+    -webkit-border-radius: 6px 0 6px 6px;
+    -moz-border-radius: 6px 0 6px 6px;
+    border-radius: 6px 0 6px 6px;
+  }
+
+
+
+
+
 }
-
-
 

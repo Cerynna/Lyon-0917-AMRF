@@ -1,4 +1,3 @@
-@charset "UTF-8";
 /**
 *************************** RESET *********************
  */
@@ -215,12 +214,12 @@ textarea {
   color: white;
   width: 100%;
   margin-top: 0;
-  background-color: rgba(0, 158, 61, 0.99);
+  background-color: red;
   border-radius: 0;
   font-size: 1.8em;
   vertical-align: middle; }
   #navbar button {
-    background-color: rgba(0, 158, 61, 0.99);
+    background-color: #009E3D;
     border: 1px solid #FFFFFF; }
     #navbar button span {
       color: #FFFFFF;
@@ -236,38 +235,24 @@ textarea {
     height: 70px;
     margin: 0 18px; }
   #navbar li {
-    margin: 5px; }
+    color: #009E3D; }
     #navbar li a {
       color: #FFFFFF;
       height: 70px;
       vertical-align: initial;
       padding-top: 25px; }
-    #navbar li a:hover {
-      color: #FFFFFF;
-      background: rgba(0, 158, 61, 0.99);
-      border-bottom: 4px solid #FFFFFF; }
-    #navbar li a.active {
-      color: #FFFFFF;
-      background: rgba(0, 158, 61, 0.99);
-      border-bottom: 4px solid #FFFFFF; }
+  #navbar li :hover {
+    color: #009E3D; }
+    #navbar li :hover a {
+      color: #009E3D; }
   #navbar ul .dropdown-menu {
-    color: rgba(0, 158, 61, 0.99); }
+    color: #009E3D; }
     #navbar ul .dropdown-menu a {
-      color: rgba(0, 158, 61, 0.99); }
+      color: #009E3D; }
   #navbar ul .dropdown-menu :hover {
-    color: rgba(0, 158, 61, 0.99); }
+    color: #009E3D; }
     #navbar ul .dropdown-menu :hover a {
-      color: rgba(0, 158, 61, 0.99); }
-  #navbar .logo {
-    height: 60px;
-    padding: 5px;
-    margin-top: -6px;
-    background-color: #FFFFFF;
-    -webkit-border-radius: 5px;
-    -moz-border-radius: 5px;
-    -ms-border-radius: 5px;
-    border-radius: 5px;
-    box-shadow: 5px 5px 0 rgba(0, 0, 0, 0.6); }
+      color: #009E3D; }
 
 #header {
   height: 25%;
@@ -286,10 +271,7 @@ textarea {
     position: fixed;
     width: 200px;
     height: 100px;
-    -webkit-border-radius: 5px;
-    -moz-border-radius: 5px;
-    -ms-border-radius: 5px;
-    border-radius: 5px;
+    border-radius: 10px;
     box-shadow: 5px 5px 0 rgba(0, 0, 0, 0.6); }
   #header .connect {
     display: inline-block;
@@ -302,7 +284,7 @@ textarea {
     #header .connect .btn {
       font-size: 1.5em; }
   #header .btn {
-    background-color: rgba(0, 158, 61, 0.99);
+    background-color: #009E3D;
     color: #FFFFFF;
     border: 0;
     padding: 10px;
@@ -355,11 +337,11 @@ footer {
     background: linear-gradient(to bottom, rgba(224, 242, 241, 0.6), rgba(224, 242, 241, 0));
     height: 30vh; }
   footer .bck-copy {
-    background-color: rgba(0, 158, 61, 0.99);
+    background-color: #009E3D;
     padding: 20px;
     margin-top: 2em; }
   footer .bck-footer {
-    background-color: rgba(0, 158, 61, 0.99);
+    background-color: #009E3D;
     padding: 20px; }
   footer .space-bottom {
     margin-bottom: 2em; }
@@ -447,11 +429,6 @@ footer {
 
 .motsCle {
   width: 100% !important; }
-
-.cleIcon {
-  color: #000000;
-  float: left;
-  padding-left: 10px; }
 
 .ui-state-hover,
 .ui-widget-content .ui-state-hover,
@@ -581,13 +558,11 @@ footer {
 /* SCSS STYLES */
 .funkyradio div {
   overflow: hidden; }
-
 .funkyradio label {
   width: 100%;
   border-radius: 4px;
   border: 1px solid #D1D3D4;
   font-weight: normal; }
-
 .funkyradio input[type="radio"]:empty,
 .funkyradio input[type="checkbox"]:empty {
   display: none; }
@@ -610,7 +585,6 @@ footer {
       width: 2.5em;
       background: #D1D3D4;
       border-radius: 3px 0 0 3px; }
-
 .funkyradio input[type="radio"]:hover:not(:checked) ~ label,
 .funkyradio input[type="checkbox"]:hover:not(:checked) ~ label {
   color: #888; }
@@ -619,7 +593,6 @@ footer {
     content: '\2714';
     text-indent: .9em;
     color: #C2C2C2; }
-
 .funkyradio input[type="radio"]:checked ~ label,
 .funkyradio input[type="checkbox"]:checked ~ label {
   color: #777; }
@@ -629,36 +602,29 @@ footer {
     text-indent: .9em;
     color: #333;
     background-color: #ccc; }
-
 .funkyradio input[type="radio"]:focus ~ label:before,
 .funkyradio input[type="checkbox"]:focus ~ label:before {
   box-shadow: 0 0 0 3px #999; }
-
 .funkyradio-default input[type="radio"]:checked ~ label:before,
 .funkyradio-default input[type="checkbox"]:checked ~ label:before {
   color: #333;
   background-color: #ccc; }
-
 .funkyradio-primary input[type="radio"]:checked ~ label:before,
 .funkyradio-primary input[type="checkbox"]:checked ~ label:before {
   color: #fff;
   background-color: #337ab7; }
-
 .funkyradio-success input[type="radio"]:checked ~ label:before,
 .funkyradio-success input[type="checkbox"]:checked ~ label:before {
   color: #fff;
   background-color: #5cb85c; }
-
 .funkyradio-danger input[type="radio"]:checked ~ label:before,
 .funkyradio-danger input[type="checkbox"]:checked ~ label:before {
   color: #fff;
   background-color: #d9534f; }
-
 .funkyradio-warning input[type="radio"]:checked ~ label:before,
 .funkyradio-warning input[type="checkbox"]:checked ~ label:before {
   color: #fff;
   background-color: #f0ad4e; }
-
 .funkyradio-info input[type="radio"]:checked ~ label:before,
 .funkyradio-info input[type="checkbox"]:checked ~ label:before {
   color: #fff;
@@ -718,38 +684,35 @@ footer {
           text-decoration: none;
           color: #ffffff; }
 
-/* galery photo */
-.resumeprojet {
-  /* labels */ }
-  .resumeprojet .img-big {
-    margin: 10px;
-    -webkit-border-radius: 5px;
-    -moz-border-radius: 5px;
-    -ms-border-radius: 5px;
-    border-radius: 5px; }
-  .resumeprojet .img-preview {
-    text-align: center; }
-  .resumeprojet .img-mini {
-    margin: 5px;
-    -webkit-border-radius: 2px;
-    -moz-border-radius: 2px;
-    -ms-border-radius: 2px;
-    border-radius: 2px;
-    transition: all .2s ease-in-out; }
-  .resumeprojet .img-mini:hover {
-    transform: scale(1.1); }
-  .resumeprojet .label-commune {
-    background-color: rgba(0, 158, 61, 0.99); }
-  .resumeprojet .label-themat {
-    background-color: #777777; }
-  .resumeprojet #city {
-    margin-top: 10px; }
-    .resumeprojet #city span {
-      font-size: .8em; }
-  .resumeprojet #theme {
-    margin-top: 10px; }
-    .resumeprojet #theme span {
-      font-size: .8em; }
+.resumeprojet .img-big {
+  margin: 10px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  border-radius: 5px; }
+.resumeprojet .img-preview {
+  text-align: center; }
+.resumeprojet .img-mini {
+  margin: 5px;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  -ms-border-radius: 2px;
+  border-radius: 2px;
+  transition: all .2s ease-in-out; }
+.resumeprojet .img-mini:hover {
+  transform: scale(1.1); }
+.resumeprojet .label-commune {
+  background-color: #009E3D; }
+.resumeprojet .label-themat {
+  background-color: #777777; }
+.resumeprojet #city {
+  margin-top: 10px; }
+  .resumeprojet #city span {
+    font-size: .8em; }
+.resumeprojet #theme {
+  margin-top: 10px; }
+  .resumeprojet #theme span {
+    font-size: .8em; }
 
 .pagination li.active {
   background-color: #004d40; }
@@ -761,101 +724,6 @@ footer {
     font-size: 1.7em; }
   .panel-group .plus {
     margin-top: 50px; }
-
-/* nom du projet */
-h2 {
-  color: rgba(0, 158, 61, 0.99); }
-
-/* position des thématiques*/
-.theme-city span {
-  font-size: 15px; }
-
-.panel-default {
-  margin-top: 35px; }
-
-.main-theme {
-  padding-left: 15px;
-  margin-left: 20px; }
-
-.second-theme {
-  padding-left: 15px;
-  margin-top: 20px;
-  margin-left: 20px; }
-
-/* blocs Commune + contact Mairie */
-#cityName, #contact {
-  margin-top: 50px; }
-
-#cityName .collapsed {
-  margin-right: 70px; }
-
-#headingList {
-  background-color: rgba(0, 158, 61, 0.99);
-  color: white;
-  font-weight: bolder;
-  font-size: 2em; }
-  #headingList a {
-    font-size: 1.5em;
-    line-height: 1em;
-    text-decoration: none; }
-
-/* petits blocs année et budget */
-.year-budget {
-  padding-left: 15px; }
-  .year-budget h3 {
-    font-size: .6em; }
-
-/* gestion des photos */
-img {
-  border: 1px solid black; }
-
-.thumb {
-  position: relative;
-  top: 0;
-  left: 0; }
-  .thumb a {
-    margin: 0;
-    text-decoration: none; }
-    .thumb a .grand {
-      display: block;
-      position: absolute;
-      width: 0; }
-    .thumb a :hover .grand, .thumb a .thumb a:focus .grand {
-      position: absolute;
-      top: 80px;
-      left: 0;
-      width: 300px;
-      height: 225px; }
-
-/* éléments de description du projet */
-.description-title {
-  margin: 30px 20px 10px 10px; }
-
-.description-body {
-  margin: 10px 20px 10px 20px;
-  padding-bottom: 10px;
-  border-bottom: 1px solid #000; }
-
-/* gallerie de photo */
-.mini-galery {
-  margin-top: 80px; }
-  .mini-galery .img-big {
-    margin: 10px;
-    -webkit-border-radius: 5px;
-    -moz-border-radius: 5px;
-    -ms-border-radius: 5px;
-    border-radius: 5px; }
-  .mini-galery .img-preview {
-    text-align: center; }
-  .mini-galery .img-mini {
-    margin: 5px;
-    -webkit-border-radius: 2px;
-    -moz-border-radius: 2px;
-    -ms-border-radius: 2px;
-    border-radius: 2px;
-    transition: all .2s ease-in-out; }
-  .mini-galery .img-mini:hover {
-    transform: scale(1.1); }
 
 /**
 *************************** View *********************
@@ -902,25 +770,24 @@ body {
     text-transform: uppercase;
     text-align: center; }
   body h3 {
-    color: rgba(0, 158, 61, 0.99);
+    color: #009E3D;
     font-family: "Cabin Condensed", sans-serif;
     font-size: 2em;
-    line-height: 2em;
-    margin-bottom: 10px; }
+    line-height: 2em; }
     body h3 a:link {
       text-decoration: none;
-      color: rgba(0, 158, 61, 0.99); }
+      color: #009E3D; }
     body h3 a:visited {
       text-decoration: none;
-      color: rgba(0, 158, 61, 0.99); }
+      color: #009E3D; }
     body h3 a:hover {
       text-decoration: none;
       font-weight: bold;
-      color: rgba(0, 158, 61, 0.99); }
+      color: #009E3D; }
     body h3 a:active {
       text-decoration: none;
       font-weight: bold;
-      color: rgba(0, 158, 61, 0.99); }
+      color: #009E3D; }
   body h4 {
     font-size: 1.8em;
     line-height: 1em; }
@@ -928,15 +795,13 @@ body {
     font-size: 1.6em;
     line-height: 1em; }
   body .btn {
-    background-color: rgba(0, 158, 61, 0.99);
+    background-color: #009E3D;
     color: #FFFFFF;
     border: 0;
     font-size: 1.2em; }
   body .btn:hover {
     background-color: #FFFFFF;
-    color: rgba(0, 158, 61, 0.99); }
-  body .input-group-btn {
-    font-size: 82%; }
+    color: #009E3D; }
   body .test {
     -webkit-border-radius: 6px;
     -moz-border-radius: 6px;
@@ -947,55 +812,22 @@ body {
     margin-bottom: 30px;
     color: inherit;
     background-color: #eee;
-    min-height: 30vh; }
+    min-height: 50vh; }
     body .test .tab-pane {
-      min-height: 40vh; }
-    body .test ul {
-      margin-bottom: 30px; }
-      body .test ul a {
-        color: rgba(0, 158, 61, 0.99);
-        background-color: #FFFFFF;
-        padding: 20px;
-        text-decoration: none; }
+      min-height: 35vh; }
+    body .test ul a {
+      color: #FFFFFF; }
+    body .test ul li {
+      background-color: #009E3D;
+      padding: 20px;
+      -webkit-border-radius: 5px;
+      -moz-border-radius: 5px;
+      -ms-border-radius: 5px;
+      border-radius: 5px; }
+    body .test ul .active {
+      background-color: #FFFFFF;
+      color: #009E3D; }
       body .test ul .active a {
-        background-color: #FFFFFF;
-        border-bottom: 4px solid rgba(0, 158, 61, 0.99);
-        color: rgba(0, 158, 61, 0.99);
-        text-decoration: none; }
-  body .dropdown-submenu {
-    position: relative; }
-  body .dropdown-submenu > .dropdown-menu {
-    top: 0;
-    left: 200px; }
-  body .dropdown-submenu:hover > .dropdown-menu {
-    display: block; }
-  body .dropup .dropdown-submenu > .dropdown-menu {
-    top: auto;
-    bottom: 0;
-    margin-top: 0;
-    margin-bottom: -2px;
-    -webkit-border-radius: 5px 5px 5px 0;
-    -moz-border-radius: 5px 5px 5px 0;
-    border-radius: 5px 5px 5px 0; }
-  body .dropdown-submenu > a:after {
-    display: block;
-    float: right;
-    width: 0;
-    height: 0;
-    border-color: transparent;
-    border-style: solid;
-    border-width: 5px 0 5px 5px;
-    border-left-color: #cccccc;
-    margin-top: 5px;
-    margin-right: -10px; }
-  body .dropdown-submenu:hover > a:after {
-    border-left-color: #ffffff; }
-  body .dropdown-submenu.pull-left {
-    float: none;
-    margin-left: 200px; }
-  body .dropdown-submenu.pull-left > .dropdown-menu {
-    left: -100%;
-    margin-left: 10px;
-    -webkit-border-radius: 6px 0 6px 6px;
-    -moz-border-radius: 6px 0 6px 6px;
-    border-radius: 6px 0 6px 6px; }
+        color: #009E3D; }
+
+/*# sourceMappingURL=main.css.map */

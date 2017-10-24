@@ -1,68 +1,61 @@
+{% extends 'AMRFPublicRooterBundle::base.html.twig' %}
+{% block title %}Formulaire fiche projet{% endblock %}
+{% block navbar %}
+    {% include 'AMRFPublicRooterBundle::components/navbarMaire.html.twig' %}
+{% endblock %}
+{% block body %}
 <h2>Déposez une fiche projet</h2>
+    <!-- Nav tabs -->
+    <div class="test">
+    <ul class="list-inline text-center" role="tablist">
+        <li role="presentation" class="active">
+            <a href="#projet" aria-controls="projet" role="tab" data-toggle="tab">Mon Projet</a>
+        </li>
+        <li role="presentation">
+            <a href="#realisation" aria-controls="realisation" role="tab" data-toggle="tab">Réalisation</a>
+        </li>
+        <li role="presentation">
+            <a href="#description" aria-controls="description" role="tab" data-toggle="tab">Description </a>
+        </li>
+        <li role="presentation">
+            <a href="#informations" aria-controls="informations" role="tab" data-toggle="tab">Plus d'Informations</a>
+        </li>
+    </ul>
 
-<form action="#" id="form" method="post" name="form">
-<div class="container-fluid">
 
-    <div class="row jumbotron">
+    <form action="#" id="form" method="post" name="form">
+
+    <div class="tab-content">
+        <div role="tabpanel" class="tab-pane active" id="projet">
+
+            <h3>Mon projet</h3>
             <div class="form-group col-sm-12">
                 <label for="projectName" class="col-sm-12 control-label">Nom du Projet</label>
-                <input id="projectName" type="text" class="form-control"  placeholder="Nom du projet">
+                <input id="projectName" type="text" class="form-control"  placeholder="">
             </div>
 
 
-            <div class="col-sm-6">
-                <label for="theme">Choisir une thématique</label>
-                <select multiple class="form-control"><p>Choisir une thématique</p>
 
-                <option value="1">AMENAGEMENT DU TERRITOIRE</option>
-                <option value="2">CULTURE</option>
-                <option value="3">DEMOCRATIE LOCALE</option>
-                <option value="4">EDUCATION</option>
-                <option value="5">ECONOMIE</option>
-                <option value="6">ENVIRONNEMENT</option>
-                <option value="7">EAU ET ASSAINISSEMENT</option>
-                <option value="8">MOBILITE</option>
-                <option value="9">NUMERIQUE</option>
-                <option value="10">RELATIONS INTERNATIONALES</option>
-                <option value="11">SANTE</option>
-                <option value="12">SOCIAL</option>
-                <option value="13">SERVICES DE PROXIMITE</option>
-                <option value="14">TOURISME</option>
-            </select>
+        <h3>Choisir une thématique</h3><br>
+        {% include 'AMRFPublicRooterBundle::components/thematiques.html.twig' %}
+        <div class="row">
 
+            <div class="col-md-12">
+                <h3>Mots-clefs</h3><br>
+                <div class="form-group">
+                    <input type="text" max="5" class="motsCle form-control" name="motsCle" id="motsCle">
+                </div>
+            </div>
         </div>
-
-
-            <div class="form-group col-sm-6">
-                <p>Mots-Clés</p>
-                <p>
-                    <input type="checkbox" id="MotsCles"/>
-                    <label for="ecole">école</label>
-                </p>
-                <p>
-                    <input type="checkbox" id=""/>
-                    <label for="">périscolaire</label>
-                </p>
-                <p>
-                    <input type="checkbox" id=""/>
-                    <label for="">formation</label>
-                </p>
-                <p>
-                    <input type="checkbox" id=""/>
-                    <label for="">crêche</label>
-                </p>
-                <p>
-                    <input type="checkbox" id=""/>
-                    <label for="">restauration scolaire</label>
-                </p>
-            </div>
         <div class="form-group col-sm-12">
             <label for="exampleInputFile">Joindre un fichier</label>
             <input type="file" id="exampleInputFile">
             <p class="help-block">Téléchargez une illustration du projet</p>
         </div>
     </div>
-    <div class="row jumbotron">
+        <div role="tabpanel" class="tab-pane" id="realisation">
+
+            <h3>Réalisation</h3>
 
         <div class="form-group col-sm-6">
             <label for="year">Année de réalisation</label>
@@ -87,7 +80,10 @@
 
     </div>
 
-    <div class="row jumbotron">
+        <div role="tabpanel" class="tab-pane" id="description">
+
+
+            <h3>Description</h3>
 
         <div class="form-group col-sm-12">
             <label for="description">Description</label>
@@ -119,8 +115,11 @@
         <textarea id="difficults" type="text" class="form-control" placeholder="" rows="2"></textarea>
     </div>
     </div>
-        <div class="row jumbotron">
-            <h5>Pour plus d'informations</h5>
+
+        <div role="tabpanel" class="tab-pane" id="informations">
+
+            <h3>Plus d'informations</h3>
+
     <div class="form-group col-sm-6">
         <label for="responsable">Personne en charge du Projet</label>
         <input id="responsable" type="text" class="form-control" placeholder="">
@@ -140,9 +139,7 @@
         <label for="tel">Téléphone</label>
         <input id="tel" type="tel" class="form-control" placeholder="">
     </div>
-        </div>
 
-    <div class="row jumbotron">
     <div class="form-group col-sm-12">
             <label for="exampleInputFile">Joindre un fichier</label>
             <input type="file" id="exampleInputFile">
@@ -155,12 +152,15 @@
             <input id="url" type="url" class="form-control">
         </div>
     </div>
-        <div class="form-group col-sm-12" align="center">
-
-            <button type="button" class="btn">Envoyer votre fiche projet</button>
-
-        </div>
-
 
 </div>
 
+</form>
+    </div>
+    <div class="form-group col-sm-12" align="center">
+
+        <button type="button" class="btn">Envoyer votre fiche projet</button>
+
+    </div>
+
+{% endblock %}

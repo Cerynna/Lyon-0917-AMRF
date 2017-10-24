@@ -1,6 +1,10 @@
 {% extends 'AMRFPublicRooterBundle::base.html.twig' %}
 {% block title %}Mon espace{% endblock %}
+    {% block navbar %}
+        {% include 'AMRFPublicRooterBundle::components/navbarPart.html.twig' %}
+    {% endblock %}
 {% block body %}
+
 <h2 class="center-align">Mon Espace</h2>
 
 <div class="row">
