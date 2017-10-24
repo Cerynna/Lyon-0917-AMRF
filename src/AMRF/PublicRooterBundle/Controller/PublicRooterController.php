@@ -7,6 +7,18 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class PublicRooterController extends Controller
 {
+
+    //PARTIE PUBLIC
+
+
+    /**
+     * @Route("/", name="home")
+     */
+    public function indexAction()
+    {
+        return $this->render('AMRFPublicRooterBundle:public:index.html.twig');
+    }
+
     /**
      * @Route("/amrf", name="amrf")
      */
@@ -39,6 +51,9 @@ class PublicRooterController extends Controller
         return $this->render('AMRFPublicRooterBundle:public:mentions.html.twig');
     }
 
+
+    //PARTIE PRIVE
+
     /**
      * @Route("/search", name="recherche")
      */
@@ -48,29 +63,28 @@ class PublicRooterController extends Controller
     }
 
     /**
-     * @Route("/maire/profil", name="maireProfil")
-     */
-    public function maireProfilAction()
-	{
-		return $this->render('AMRFPublicRooterBundle:private:maires/ProfilMaire.html.twig');
-	}
-
-    /**
-     * @Route("/projet", name="Projet")
+     * @Route("/projet", name="projet")
      */
     public function projetAction()
     {
         return $this->render('AMRFPublicRooterBundle:private:projet.html.twig');
     }
-
-     /**
-     * @Route("/partenaires", name="partenaire")
+    /**
+     * @Route("/annuaire/", name="annuaire")
      */
-    public function partIndexAction()
+    public function partListeAction()
     {
-        return $this->render('AMRFPublicRooterBundle:private/partenaires:partIndex.html.twig');
+        return $this->render('AMRFPublicRooterBundle:private:annuaire.html.twig');
     }
+    //PARTIE MAIRE
 
+    /**
+     * @Route("/maire/profil", name="maireProfil")
+     */
+    public function maireProfilAction()
+    {
+        return $this->render('AMRFPublicRooterBundle:private:maires/maireProfil.html.twig');
+    }
 
     /**
      * @Route("/maire", name="maireHome")
@@ -81,51 +95,64 @@ class PublicRooterController extends Controller
     }
 
     /**
-     * @Route("/maire/projet", name="Mes projets")
+     * @Route("/maire/projet", name="maireProjets")
      */
     public function maireProjetAction()
     {
         return $this->render('AMRFPublicRooterBundle:private:maires/maireProjet.html.twig');
     }
 
-
     /**
-     * @Route("/partenaire/liste", name="Annuaire des partenaires")
-     */
-    public function partListeAction()
-    {
-        return $this->render('AMRFPublicRooterBundle:private:partenaires/partListe.html.twig');
-    }
-    /**
-     * @Route("/maire/FormProjet", name="maireFormulaire")
+     * @Route("/maire/projet/new", name="maireFormProjet")
      */
     public function mairesFormProjetAction()
     {
-        return $this->render('AMRFPublicRooterBundle:private:maires/MairesFormProjet.html.twig');
+        return $this->render('AMRFPublicRooterBundle:private:maires/maireFormProjet.html.twig');
     }
 
     /**
-     * @Route("/partenaire/profil", name="partenaireProfil")
+     * @Route("/maire/favoris", name="maireFavoris")
+     */
+    public function maireFavorisAction()
+    {
+        return $this->render('AMRFPublicRooterBundle:private:favoris.html.twig');
+    }
+
+
+    //PARTIE PARTENAIRE
+
+    /**
+     * @Route("/partenaire", name="partHome")
+     */
+    public function partIndexAction()
+    {
+        return $this->render('AMRFPublicRooterBundle:private/partenaires:partIndex.html.twig');
+    }
+
+    /**
+     * @Route("/partenaire/profil", name="partProfil")
      */
     public function partProfilAction()
     {
         return $this->render('AMRFPublicRooterBundle:private:partenaires/partProfil.html.twig');
     }
 
+
+
     /**
-     * @Route("/partenaire/favoris", name="favoris")
+     * @Route("/partenaire/favoris", name="partFavoris")
      */
-    public function favorisAction()
+    public function partFavorisAction()
     {
         return $this->render('AMRFPublicRooterBundle:private:favoris.html.twig');
     }
 
     /**
-     * @Route("/partenaire/form", name="partenaireForm")
+     * @Route("/partenaire/presentation", name="partPres")
      */
     public function partFormFicheAction()
     {
-        return $this->render('AMRFPublicRooterBundle:private:partenaires/partFormFiche.html.twig');
+        return $this->render('AMRFPublicRooterBundle:private:partenaires/partFormPresentation.html.twig');
     }
 
 
