@@ -21,7 +21,7 @@
                 <p>Gérez votre profil :</br> ajoutez, consultez, modifiez ou supprimez les informations de votre compte</p>
             </div>
             <div class="card-block">
-                <button class="btn btn-xs"><a href="?page=MairesProfil"><span class="fa fa-pencil"></span> ACCEDER A VOTRE PROFIL</a></button>
+                <button class="btn btn-xs"><a href="{{ path('maireProfil') }}"><span class="fa fa-pencil"></span> ACCEDER A VOTRE PROFIL</a></button>
 
             </div>
         </div>
@@ -40,9 +40,9 @@
                 </p>
             </div>
             <div class="card-block">
-                <button class="btn btn-xs"><a href="?page=MairesFormProjet"><span class=" 	fa fa-plus"></span> AJOUTER</a></button>
-               <button class="btn btn-xs"><a href="?page=MairesProjets"><span class="fa fa-file-text"></span>  CONSULTER</a> </button>
-                <button class="btn btn-xs"><a href="?page=RechercheProjets"><span class="fa fa-search"></span> DECOUVRIR</a></button>
+                <button class="btn btn-xs"><a href="{{ path('maireFormProjet') }}"><span class=" 	fa fa-plus"></span> AJOUTER</a></button>
+               <button class="btn btn-xs"><a href="{{ path('maireProjets') }}"><span class="fa fa-file-text"></span>  CONSULTER</a> </button>
+                <button class="btn btn-xs"><a href="{{ path('recherche') }}"><span class="fa fa-search"></span> DECOUVRIR</a></button>
             </div>
         </div>
     </div>
@@ -59,7 +59,7 @@
                 </p>
             </div>
             <div class="card-block">
-                <button class="btn btn-xs"><a href="?page=PartListe"><span class="fa fa-search"></span> TROUVER UN PARTENAIRE</a></button>
+                <button class="btn btn-xs"><a href="{{ path('annuaire') }}"><span class="fa fa-search"></span> TROUVER UN PARTENAIRE</a></button>
             </div>
         </div>
     </div>
