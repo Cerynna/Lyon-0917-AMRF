@@ -1,0 +1,82 @@
+.container{
+    margin:0px;
+    padding: 0px;
+}
+
+h3{
+    font-size: 150%;
+}
+
+.panel-body{
+    padding:0px;
+}
+.panel-default{
+    margin:0px;
+}
+
+.navLeft{
+    box-shadow: 2px 2px 4px #5d5d5d;
+}
+
+.login{
+    color: #000000;
+    text-align: left;
+}
+
+.panel{
+    background-color: lightgrey;
+}
+
+.leftPanel{
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    color: #ffffff;
+    background-color: #505050;
+    border: 2px solid black;
+    height: 15vh;
+}
+
+.badges{
+    margin-top:7px;
+}
+
+h2
+{
+    margin-top : 50px;
+    margin-left: 40px;
+    margin-bottom: 50px;
+    font-size: 3em;
+}
+
+.jumbotron
+{
+    border-radius: 10px;
+    background-color: #f9e5e5;
+}
+
+.btn-lg
+{
+    float : right;
+    background-color: #e06666;
+    border-color: transparent;
+}
+
+.btn-lg:hover
+{
+    background-color: #b70000;
+    border-color: transparent;
+}
+
+.jumbotron h3
+{
+    padding-top: 1px;
+    padding-bottom: 30px;
+    font-size : 2.5em;
+}
+
+.jumbotron p
+{
+    font-size : 2em;
+}

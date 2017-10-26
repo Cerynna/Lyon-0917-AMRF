@@ -260,10 +260,10 @@ header {
   justify-content: space-around; }
 
 nav {
-  color: #FFFFFF;
+  color: rgba(0, 158, 61, 0.99);
   width: 100%;
   margin-top: 0;
-  background-color: rgba(0, 158, 61, 0.99);
+  background-color: #FFFFFF;
   border-radius: 0;
   font-size: 1.8em;
   vertical-align: middle;
@@ -273,7 +273,7 @@ nav {
   /*box-shadow: 5px 5px  rgba(0, 0, 0, 0.6);*/ }
   nav .nav > li > a {
     margin: 0 5px -4px 5px;
-    color: #FFFFFF; }
+    color: rgba(0, 158, 61, 0.99); }
     nav .nav > li > a i {
       vertical-align: top; }
   nav .nav > li > a:hover, nav .nav > li > a:focus, nav .nav > li > a.active {
@@ -690,7 +690,7 @@ body::-webkit-scrollbar {
 
 body {
   font-size: 1.0em;
-  background: url("../img/bck-4.jpg") no-repeat fixed;
+  background: url("../img/bck-3.jpg") no-repeat fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -734,6 +734,15 @@ a:hover, a:active {
   width: 48px;
   border-radius: 0px 5px 5px 0px; }
 
+.btn-collapse {
+  margin: 0 !important;
+  height: 48px;
+  width: 48px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  border-radius: 5px; }
+
 .search {
   height: 50px;
   font-size: 1.8em !important; }
@@ -772,6 +781,9 @@ a:hover, a:active {
 
 .accordion {
   padding: 0 20px 0 20px; }
+
+.pagination > li > a {
+  color: rgba(0, 158, 61, 0.99) !important; }
 
 /*
 .col-md-1 {

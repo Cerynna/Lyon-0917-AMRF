@@ -76,7 +76,7 @@
                         <div class="form-group">
                             <label>Présentation</label>
                             <textarea id="presentation" class="form-control" rows="6" data-length="1200"
-                                      placeholder="Présentez votre activité *"></textarea>
+                                      placeholder="Présenter votre activité *"></textarea>
                         </div>
                     </div>
 
@@ -84,10 +84,13 @@
                     <div class="col-lg-6 col-md-6">
 
                         <div class="form-group">
-                            <div class="file-field input-field">
-                                <label for="logo">Insérez votre logo</label>
-                                <input type="file" name="logo"  class="form-control">
-                            </div>
+
+                                <input type="hidden" name="MAX_FILE_SIZE" value="500000">
+                                <input type="file" id="photo" name="photo"/>
+                                <label for="photo">Télécharger une illustration du projet<br/>
+                                    <div class="btn">Parcourir</div>
+                                </label>
+
                         </div>
 
 
