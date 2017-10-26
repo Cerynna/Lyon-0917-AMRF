@@ -155,5 +155,4 @@ class PublicRooterController extends Controller
         return $this->render('AMRFPublicRooterBundle:private:partenaires/partFormPresentation.html.twig');
     }
 
-
-}
+   }
