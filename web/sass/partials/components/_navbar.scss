@@ -1,5 +1,5 @@
 nav {
-  color: white;
+  color: $color2;
   width: 100%;
   margin-top: 0;
   background-color: $color1;
@@ -8,6 +8,7 @@ nav {
   vertical-align: middle;
   height: 55px;
   padding-right: 50px;
+  @include boxShadow(0.05em, rgba(0, 0, 0, 0.2));
   .nav > li > a {
     margin: 0 5px -4px 5px;
     color: $color2;
@@ -144,6 +145,14 @@ nav {
     #navbar {
       text-align: center;
     }
+  }
+  .logo {
+    height: 40px;
+    width: 80px;
+    margin-top: -10px;
+    background-color: #FFFFFF;
+    @include borderRadius(5px);
+    box-shadow: 5px 5px 0 rgba(0, 0, 0, 0.6);
   }
 
 }

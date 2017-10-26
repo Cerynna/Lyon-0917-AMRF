@@ -8,149 +8,167 @@
     <h2 class="center-align">Ma fiche Partenaire</h2>
 
     <!-- Nav tabs -->
-    <div class="test">
-        <ul class="list-inline text-center" role="tablist">
-            <li role="presentation" class="active">
-                <a href="#entreprise" aria-controls="entreprise" role="tab" data-toggle="tab">Entreprise</a>
-            </li>
-            <li role="presentation">
-                <a href="#presentation" aria-controls="presentation" role="tab" data-toggle="tab">Présentation</a>
-            </li>
-            <li role="presentation">
-                <a href="#contact" aria-controls="contact" role="tab" data-toggle="tab">Contacts</a>
-            </li>
-        </ul>
+    <div class="row tabPannel">
+        <form action="">
+            <ul class="list-inline text-center" role="tablist">
+                <li role="presentation" class="active">
+                    <a href="#entreprise" aria-controls="entreprise" role="tab" data-toggle="tab">Entreprise</a>
+                </li>
+                <li role="presentation">
+                    <a href="#description" aria-controls="description" role="tab" data-toggle="tab">Présentation</a>
+                </li>
+                <li role="presentation">
+                    <a href="#contact" aria-controls="contact" role="tab" data-toggle="tab">Contacts</a>
+                </li>
+            </ul>
 
-        <!-- Tab panes -->
-        <div class="tab-content">
-            <div role="tabpanel" class="tab-pane active" id="entreprise">
-                <h3>Entreprise</h3>
-                <div class="col-lg-6 col-md-6">
-                    <div class="form-group">
-                        <label for="company">Nom de l’entreprise *</label>
-                        <input id="company" type="text" class="form-control">
+            <!-- Tab panes -->
+            <div class="tab-content">
+                <div role="tabpanel" class="tab-pane active" id="entreprise">
+                    <h3>Entreprise</h3>
+                    <div class="col-lg-6 col-md-6">
+                        <div class="form-group">
+                            <label for="company">Nom de l’entreprise *</label>
+                            <input id="company" type="text" class="form-control">
+                        </div>
                     </div>
-                </div>
-                <div class="col-lg-6 col-md-6">
-                    <div class="form-group">
-                        <label for="address">Adresse de l’entreprise *</label>
-                        <input id="address" type="text" class="form-control">
+                    <div class="col-lg-6 col-md-6">
+                        <div class="form-group">
+                            <label for="address">Adresse de l’entreprise *</label>
+                            <input id="address" type="text" class="form-control">
+                        </div>
                     </div>
-                </div>
-                <div class="col-lg-6 col-md-6">
-                    <div class="form-group">
-                        <label for="zipcode">Code Postal *</label>
-                        <input id="zipcode" type="text" class="form-control">
+                    <div class="col-lg-6 col-md-6">
+                        <div class="form-group">
+                            <label for="zipcode">Code Postal *</label>
+                            <input id="zipcode" type="text" class="form-control">
+                        </div>
                     </div>
-                </div>
-                <div class="col-lg-6 col-md-6">
-                    <div class="form-group">
-                        <label for="city">Ville *</label>
-                        <input id="city" type="text" class="form-control">
-                    </div>
-                </div>
-            </div>
-
-
-            <div role="tabpanel" class="tab-pane active" id="presentation">
-
-                <h3>Présentation de l'entreprise</h3>
-                <div class="col-lg-12 col-md-12">
-                    <h4>Secteur d'activité</h4>
-                    <div class="form-group">
-                        <ul>
-                            <li><input name="group1" type="radio" id="institution">
-                                <label for="institution">Institution</label></li>
-                            <li><input name="group1" type="radio" id="bank"/>
-                                <label for="bank">Banque Assurance Mutuelle</label></li>
-                            <li><input name="group1" type="radio" id="health"/>
-                                <label for="health">Santé</label></li>
-                            <li><input name="group1" type="radio" id="education"/>
-                                <label for="education">Education</label></li>
-                            <li><input name="group1" type="radio" id="other"/>
-                                <label for="other">Autres</label></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-lg-12 col-md-12">
-                    <h4>Présentation</h4>
-                    <div class="form-group">
-                        <label for="presentation">Présentez votre activité *</label>
-                        <textarea id="presentation" class="form-control" rows="6"                                                   data-length="1200"></textarea>
-                    </div>
-                </div>
-                <div class="col-lg-6 col-md-6">
-                    <h4>Logo</h4>
-                    <div class="form-group">
-                        <div class="file-field input-field">
-                            <div class="btn">
-                                <span>Insérez votre logo</span>
-                                <input type="file">
-                            </div>
+                    <div class="col-lg-6 col-md-6">
+                        <div class="form-group">
+                            <label for="city">Ville *</label>
+                            <input id="city" type="text" class="form-control">
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-6 col-md-6">
-                    <h4>Site Internet</h4>
-                    <div class="form-group">
-                        <label for="url"></label>
-                        <input id="url" type="url" class="form-control">
+
+
+                <div role="tabpanel" class="tab-pane" id="description">
+                    <h3>Présentation de l'entreprise</h3>
+                    <div class="col-lg-12 col-md-12">
+                        <div class="form-group">
+                            <label>Secteur d'activité</label>
+                            <ul class="list-inline">
+                                <li><input name="group1" class="form-control" type="checkbox" id="institution">
+                                    <label for="institution">Institution</label></li>
+                                <li><input name="group1" type="checkbox" id="bank"/>
+                                    <label for="bank">Banque Assurance Mutuelle</label></li>
+                                <li><input name="group1" type="checkbox" id="health"/>
+                                    <label for="health">Santé</label></li>
+                                <li><input name="group1" type="checkbox" id="education"/>
+                                    <label for="education">Education</label></li>
+                                <li><input name="group1" type="checkbox" id="other"/>
+                                    <label for="other">Autres</label></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-12 col-md-12">
+                        <div class="form-group">
+                            <label>Présentation</label>
+                            <textarea id="presentation" class="form-control" rows="6" data-length="1200"
+                                      placeholder="Présentez votre activité *"></textarea>
+                        </div>
+                    </div>
+
+
+                    <div class="col-lg-6 col-md-6">
+
+                        <div class="form-group">
+                            <div class="file-field input-field">
+                                <label for="logo">Insérez votre logo</label>
+                                <input type="file" name="logo"  class="form-control">
+                            </div>
+                        </div>
+
+
+                    </div>
+                    <div class="col-lg-6 col-md-6">
+                        <div class="form-group">
+                            <label for="url">Site Internet</label>
+                            <input id="url" type="url" class="form-control">
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6">
+                        <div class="form-group">
+                            <label for="facebook">Facebook</label>
+                            <input id="facebook" type="url" class="form-control">
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6">
+                        <div class="form-group">
+                            <label for="twitter">Twitter</label>
+                            <input id="twitter" type="url" class="form-control">
+                        </div>
+                    </div>
+                </div>
+
+                <div role="tabpanel" class="tab-pane" id="contact">
+                    <h3>Contact</h3>
+                    <div class="col-lg-6 col-md-6">
+                        <div class="form-group">
+                            <label for="lastName">Nom du contact *</label>
+                            <input id="lastName" type="text" class="form-control">
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6">
+                        <div class="form-group">
+                            <label for="firstName">Prénom du contact *</label>
+                            <input id="firstName" type="text" class="form-control">
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6">
+                        <div class="form-group">
+                            <label for="tel">Téléphone *</label>
+                            <input id="tel" type="tel" class="form-control">
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6">
+                        <div class="form-group">
+                            <label for="email">Email *</label>
+                            <input id="email" type="email" class="form-control">
+                        </div>
+                    </div>
+                    <h3>Contacts locaux</h3>
+                    <div class="col-lg-6 col-md-6">
+                        <div class="form-group">
+                            <label for="lastName">Nom du contact</label>
+                            <input id="lastName" type="text" class="form-control">
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6">
+                        <div class="form-group">
+                            <label for="firstName">Prénom du contact</label>
+                            <input id="firstName" type="text" class="form-control">
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6">
+                        <div class="form-group">
+                            <label for="tel">Téléphone</label>
+                            <input id="tel" type="tel" class="form-control">
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6">
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input id="email" type="email" class="form-control">
+                        </div>
                     </div>
                 </div>
             </div>
-
-            <div role="tabpanel" class="tab-pane active" id="contact">
-                <h3>Contact</h3>
-                <div class="col-lg-6 col-md-6">
-                    <div class="form-group">
-                        <label for="lastName">Nom du contact *</label>
-                        <input id="lastName" type="text" class="form-control">
-                    </div>
-                </div>
-                <div class="col-lg-6 col-md-6">
-                    <div class="form-group">
-                        <label for="firstName">Prénom du contact *</label>
-                        <input id="firstName" type="text" class="form-control">
-                    </div>
-                </div>
-                <div class="col-lg-6 col-md-6">
-                    <div class="form-group">
-                        <label for="tel">Téléphone *</label>
-                        <input id="tel" type="tel" class="form-control">
-                    </div>
-                </div>
-                <div class="col-lg-6 col-md-6">
-                    <div class="form-group">
-                        <label for="email">Email *</label>
-                        <input id="email" type="email" class="form-control">
-                    </div>
-                </div>
+            <div class="form-group col-sm-12" align="center">
+                <button type="button" class="btn">Enregistrer votre fiche partenaire</button>
             </div>
-
-
-            <div role="tabpanel" class="tab-pane active" id="presentation">
-                <h3>Contacts locaux</h3>
-                <div class="form-group col-sm-6">
-                    <label for="lastName">Nom du contact</label>
-                    <input id="lastName" type="text" class="form-control">
-                </div>
-                <div class="form-group col-sm-6">
-                    <label for="firstName">Prénom du contact</label>
-                    <input id="firstName" type="text" class="form-control">
-                </div>
-                <div class="form-group col-sm-6">
-                    <label for="tel">Téléphone</label>
-                    <input id="tel" type="tel" class="form-control">
-                </div>
-                <div class="form-group col-sm-6">
-                    <label for="email">Email</label>
-                    <input id="email" type="email" class="form-control">
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="form-group col-sm-12" align="center">
-        <button type="button" class="btn">Enregistrer votre fiche partenaire</button>
+        </form>
     </div>
 
 {% endblock %}

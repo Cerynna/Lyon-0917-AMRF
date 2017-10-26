@@ -25,8 +25,6 @@
 @import 'partials/components/resumeprojet';
 @import 'partials/components/listeAccordion';
 @import 'partials/components/projet';
-
-
 /**
 *************************** View *********************
  */
@@ -136,7 +134,7 @@ body {
     background-color: $color2;
     color: $color1;
   }
-  .input-group-btn{
+  .input-group-btn {
     font-size: 82%;
   }
   .test {
@@ -169,9 +167,6 @@ body {
       }
     }
   }
-
-
-
 
   .dropdown-submenu {
     position: relative;
@@ -226,9 +221,4 @@ body {
     border-radius: 6px 0 6px 6px;
   }
 
-
-
-
-
 }
-

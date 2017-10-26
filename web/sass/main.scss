@@ -16,29 +16,30 @@
 @import 'partials/components/header';
 @import 'partials/components/modalConnect';
 @import 'partials/components/navbar';
+@import 'partials/components/resumeProjet';
+@import 'partials/components/cards';
 @import 'partials/components/footer';
-/**
-*************************** View *********************
- */
-@import 'partials/views/section';
-@import 'partials/views/form';
+@import 'partials/components/section';
+@import 'partials/components/form';
+@import 'partials/components/tabPannel';
+@import 'partials/components/projet';
 /**
 ** node-sass --watch web/sass/main.scss web/css/main.css
 */
-
 @import url('https://fonts.googleapis.com/css?family=Cabin+Condensed|Comfortaa|Francois+One|Josefin+Sans|Play|Poiret+One|Source+Sans+Pro');
 @import url("http://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css");
+
 /**
 */
 body::-webkit-scrollbar {
   display: none;
 }
+
 $imgKey: random(5);
 
 $list: bck-1, bck-2, bck-3, bck-4, bck-5;
 $nth: nth($list, $imgKey);
-body
-{
+body {
   font-size: 1.0em;
   background: url('../img/#{$nth}.jpg') no-repeat fixed;
   -webkit-background-size: cover;
@@ -47,6 +48,7 @@ body
   background-size: cover;
   font-family: $primaryFont, sans-serif;
 }
+
 a:visited, a:link {
   text-decoration: none;
   color: $color2;
@@ -57,20 +59,120 @@ a:hover, a:active {
   font-weight: bold;
   color: $color2;
 }
-.btn,.btn:focus, .btn:target, .btn:active  {
+
+.btn, .btn:focus, .btn:target, .btn:active {
   color: $color2;
   font-size: 1.2em;
   background: $color1;
   margin: 10px;
   padding: 10px;
   border: 2px solid $color1;
-  @include boxShadow(3px, rgba(0, 0, 0, 0.4));
+  @include boxShadow(1px, rgba(0, 0, 0, 0.4));
   outline: none;
 }
+
 .btn:hover {
   color: $color2;
   background: $color1;
-  margin: 10px;
   border: 2px solid $color1;
-  @include boxShadow(3px, rgba(0, 0, 0, 0.6));
+  @include boxShadow(2px, rgba(0, 0, 0, 0.8));
 }
+
+.input-group-addon {
+  padding: 0 !important;
+  border: 0 solid #ccc !important;
+}
+
+.btn-search {
+  margin: 0 !important;
+  height: 48px;
+  width: 48px;
+  border-radius: 0px 5px 5px 0px;
+
+}
+
+
+.search {
+  height: 50px;
+  font-size: 1.8em !important;
+}
+
+.label-commune {
+  display: inline-block;
+  background-color: $color1;
+  margin: 2px 1px !important;
+  padding: 8px;
+  font-size: 0.9em;
+
+}
+
+.label-themat {
+  display: inline-block;
+  background-color: $color4;
+  margin: 2px 1px !important;
+  padding: 7px;
+  font-size: 0.8em;
+}
+
+.label-motCle {
+  display: inline-block;
+  background-color: #f0ad4e;
+  margin: 2px 1px !important;
+  padding: 7px;
+  font-size: 0.8em;
+}
+
+.jumbotron {
+  @include boxShadow(0.05em, rgba(0, 0, 0, 0.4));
+  p {
+    padding: 0 10px;
+  }
+}
+
+.divider {
+  border: 1px solid $color2 !important;
+  width: 100%;
+  margin: 10px auto 50px auto;
+}
+
+.accordion {
+  padding: 0 20px 0 20px;
+}
+
+/*
+.col-md-1 {
+  border: 1px solid black !important;
+}
+.col-md-2 {
+  border: 1px solid black !important;
+}
+.col-md-3 {
+  border: 1px solid black !important;
+}
+.col-md-4 {
+   border: 1px solid black !important;
+ }
+.col-md-5 {
+  border: 1px solid black !important;
+}
+.col-md-6 {
+  border: 1px solid black !important;
+}
+.col-md-7 {
+  border: 1px solid black !important;
+}
+.col-md-8 {
+  border: 1px solid black !important;
+}
+.col-md-9 {
+  border: 1px solid black !important;
+}
+.col-md-10 {
+  border: 1px solid black !important;
+}
+.col-md-11 {
+  border: 1px solid black !important;
+}
+.col-md-12 {
+  border: 1px solid black !important;
+}*/

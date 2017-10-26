@@ -23,8 +23,14 @@ form {
 
   label {
     width: 100%;
+    font-size: 1.1em;
   }
-
+  input[type="file"] {
+    height: 0;
+    width: 0;
+    overflow: hidden;
+    border: 0 solid $color1;
+  }
   input[type="radio"],
   input[type="checkbox"] {
 
@@ -40,6 +46,7 @@ form {
         user-select: none;
 
         &:before {
+
           position: absolute;
           display: block;
           top: 0;
@@ -69,7 +76,7 @@ form {
       &:before {
         content: '\2714';
         text-indent: .9em;
-        color: #333;
+        color: $color2;
         background-color: $color1;
       }
     }
