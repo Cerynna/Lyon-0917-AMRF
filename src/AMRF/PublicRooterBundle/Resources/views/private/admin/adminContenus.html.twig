@@ -1,19 +1,7 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8"/>
-    <title>{% block title %}{% endblock %} - Administration des Contenus</title>
-    {% block stylesheets %}{% endblock %}
-    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}"/>
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}"/>
-    <link rel="stylesheet" href="{{ asset('css/admin.css') }}"/>
+{% extends 'AMRFPublicRooterBundle:private/admin:baseAdmin.html.twig' %}
+{% block title %}A propos{% endblock %}
+{% block body %}
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-</head>
-
-<body>
 
 <h2>Gérer les contenus publics</h2>
 <!-- Nav tabs -->
@@ -180,9 +168,5 @@
     <button type="button" class="btn">Enregistrer vos modifications</button>
 </div>
 
-<footer class="page-footer">
-</footer>
-{% include 'AMRFPublicRooterBundle::components/script.html.twig' %}
-{% block javascripts %}{% endblock %}
-</body>
-</html>
+{% endblock %}
+
