@@ -1,4 +1,4 @@
-<nav   id="navbar" class="navbar navbar-static-top" role="navigation">
+<div class="navbar navbar-static-top" role="navigation">
     <div class="container-fluid">
 
         <div class="navbar-header">
@@ -25,21 +25,18 @@
                     <a {% if app.request.attributes.get('_route') == 'contact' %} class="active" {% endif %} href="{{ path('contact') }}">Contact</a>
                 </li>
                 <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">Mon Espace
-                        <span class="caret"></span></a>
+                    <a class="dropdown-toggle d-inline" data-toggle="dropdown" href="#">Mon Espace <i
+                                class="d-inline fa fa-angle-down"></i></a>
                     <ul class="dropdown-menu">
-                        <li><a href="{{ path('partHome') }}">Mon Espace</a></li>
-                        <li role="separator" class="divider"></li>
+                        <li class="dropdown-main"><a href="{{ path('partHome') }}">Mon Espace <i
+                                        class="fa fa-angle-down"></i></a></li>
                         <li><a href="{{ path('partProfil') }}">Profil</a></li>
-                        <li role="separator" class="divider"></li>
                         <li><a href="{{ path('partPres') }}">Ma fiche</a></li>
-                        <li role="separator" class="divider"></li>
                         <li><a href="{{ path('partFavoris') }}">Mes Favoris</a></li>
-                        <li role="separator" class="divider"></li>
                         <li><a href="#">Déconnexion</a></li>
                     </ul>
                 </li>
             </ul>
         </div>
     </div>
-</nav>
+</div>
