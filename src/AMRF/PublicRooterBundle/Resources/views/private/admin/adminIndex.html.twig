@@ -1,46 +1,22 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8"/>
-    <title>{% block title %}{% endblock %} - Administartion</title>
-    {% block stylesheets %}{% endblock %}
-    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}"/>
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}"/>
-    <link rel="stylesheet" href="{{ asset('css/admin.css') }}"/>
-
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-</head>
-
-<body>
+{% extends 'AMRFPublicRooterBundle:private/admin:baseAdmin.html.twig' %}
+{% block title %}A propos{% endblock %}
+{% block body %}
 <h2>Bonjour, voici vos tâches en attente aujourd'hui :</h2>
 
 
 
-<div class="jumbotron col-md-5 col-md-offset-3">
+<div class="jumbotron col-md-8 col-md-offset-3">
     <h3>Projets</h3>
     <p>Vous avez XX projets en attente de validation</p>
     <p><a class="btn btn-primary btn-lg" href="#" role="button">Voir les projets</a></p>
 </div>
-<div class="jumbotron col-md-5 col-md-offset-3">
+<div class="jumbotron col-md-8 col-md-offset-3">
     <h3>Comptes utilisateurs</h3>
     <p>Il y a XX nouveaux comptes créés</p>
     <p><a class="btn btn-primary btn-lg" href="#" role="button">Voir les comptes</a></p>
 </div>
-<div class="jumbotron col-md-5 col-md-offset-3">
+<div class="jumbotron col-md-8 col-md-offset-3">
     <h3>Vous n'avez aucune tâche en attente</h3>
 </div>
 
-
-
-
-
-
-
-<footer class="page-footer">
-</footer>
-{% include 'AMRFPublicRooterBundle::components/script.html.twig' %}
-{% block javascripts %}{% endblock %}
-</body>
-</html>
+{% endblock %}
