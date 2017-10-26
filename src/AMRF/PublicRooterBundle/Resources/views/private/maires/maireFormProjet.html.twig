@@ -4,163 +4,169 @@
     {% include 'AMRFPublicRooterBundle::components/navbarMaire.html.twig' %}
 {% endblock %}
 {% block body %}
-<h2>Déposez une fiche projet</h2>
+    <h2>Déposer une fiche projet</h2>
     <!-- Nav tabs -->
-    <div class="test">
-    <ul class="list-inline text-center" role="tablist">
-        <li role="presentation" class="active">
-            <a href="#projet" aria-controls="projet" role="tab" data-toggle="tab">Mon Projet</a>
-        </li>
-        <li role="presentation">
-            <a href="#realisation" aria-controls="realisation" role="tab" data-toggle="tab">Réalisation</a>
-        </li>
-        <li role="presentation">
-            <a href="#description" aria-controls="description" role="tab" data-toggle="tab">Description </a>
-        </li>
-        <li role="presentation">
-            <a href="#informations" aria-controls="informations" role="tab" data-toggle="tab">Plus d'Informations</a>
-        </li>
-    </ul>
+    <div class="row tabPannel">
+        <ul class="list-inline text-center" role="tablist">
+            <li role="presentation" class="active">
+                <a href="#projet" aria-controls="projet" role="tab" data-toggle="tab">Mon Projet</a>
+            </li>
+            <li role="presentation">
+                <a href="#realisation" aria-controls="realisation" role="tab" data-toggle="tab">Réalisation</a>
+            </li>
+            <li role="presentation">
+                <a href="#description" aria-controls="description" role="tab" data-toggle="tab">Description </a>
+            </li>
+            <li role="presentation">
+                <a href="#informations" aria-controls="informations" role="tab" data-toggle="tab">Plus
+                    d'Informations</a>
+            </li>
+        </ul>
 
 
-    <form action="#" id="form" method="post" name="form">
+        <form action="#" id="form" method="post" name="form">
 
-    <div class="tab-content">
-        <div role="tabpanel" class="tab-pane active" id="projet">
+            <div class="tab-content">
+                <div role="tabpanel" class="tab-pane active" id="projet">
 
-            <h3>Mon projet</h3>
-            <div class="form-group col-sm-12">
-                <label for="projectName" class="col-sm-12 control-label">Nom du Projet</label>
-                <input id="projectName" type="text" class="form-control"  placeholder="">
-            </div>
+                    <h3>Mon projet</h3>
+                    <div class="form-group col-sm-12">
+                        <label for="projectName" class="col-sm-12 control-label">Nom du Projet</label>
+                        <input id="projectName" type="text" class="form-control" placeholder="">
+                    </div>
 
 
+                    <h3>Choisir une thématique</h3><br>
+                    {% include 'AMRFPublicRooterBundle::components/thematiques.html.twig' %}
+                    <div class="row">
 
-        <h3>Choisir une thématique</h3><br>
-        {% include 'AMRFPublicRooterBundle::components/thematiques.html.twig' %}
-        <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label>Mots-clefs</label>
+                                <input type="text" max="5" class="form-control" name="motsCle" id="motsCle"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class=" col-sm-12">
+                            <input type="hidden" name="MAX_FILE_SIZE" value="500000">
+                            <input type="file" id="photo" name="photo"/>
+                            <label for="photo">Télécharger une illustration du projet<br/>
+                                <div class="btn">Parcourir</div>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div role="tabpanel" class="tab-pane" id="realisation">
 
-            <div class="col-md-12">
-                <h3>Mots-clefs</h3><br>
-                <div class="form-group">
-                    <input type="text" max="5" class="motsCle form-control" name="motsCle" id="motsCle">
+                    <h3>Réalisation</h3>
+
+                    <div class="form-group col-sm-6">
+                        <label for="year">Année de réalisation</label>
+                        <input id="year" type="text" class="form-control" placeholder="">
+                    </div>
+
+                    <div class="form-group col-sm-6">
+                        <label for="time">Durée de réalisation</label>
+                        <input id="time" type="text" class="form-control" placeholder="">
+                    </div>
+
+                    <div class="form-group col-sm-6">
+                        <label for="cost">Coût global</label>
+                        <input id="cost" type="text" class="form-control" placeholder="">
+                    </div>
+
+                    <div class="form-group col-sm-6">
+                        <label for="dollars">Cofinancements</label>
+                        <input id="dollars" type="text" class="form-control" placeholder="">
+                    </div>
+
+
+                </div>
+
+                <div role="tabpanel" class="tab-pane" id="description">
+
+
+                    <h3>Description</h3>
+
+                    <div class="form-group col-sm-12">
+                        <label for="description">Description</label>
+                        <textarea id="description" type="text" class="form-control" placeholder="" rows="3"></textarea>
+                    </div>
+
+                    <div class="form-group col-sm-12">
+                        <label for="objectif">Objectifs</label>
+                        <textarea id="objectif" type="text" class="form-control" placeholder="" rows="2"></textarea>
+                    </div>
+
+                    <div class="form-group col-sm-12">
+                        <label for="partenaires">Partenaires mobilisés</label>
+                        <input id="partenaires" type="text" class="form-control" placeholder="">
+                    </div>
+
+                    <div class="form-group col-sm-12">
+                        <label for="results">Résultats Obtenus</label>
+                        <textarea id="results" type="text" class="form-control" placeholder="" rows="2"></textarea>
+                    </div>
+
+                    <div class="form-group col-sm-12">
+                        <label for="difficults">Difficultés rencontrées</label>
+                        <textarea id="difficults" type="text" class="form-control" placeholder="" rows="2"></textarea>
+                    </div>
+
+                    <div class="form-group col-sm-12">
+                        <label for="conseil">Conseils</label>
+                        <textarea id="conseil" type="text" class="form-control" placeholder="" rows="2"></textarea>
+                    </div>
+                </div>
+
+                <div role="tabpanel" class="tab-pane" id="informations">
+
+                    <h3>Plus d'informations</h3>
+
+                    <div class="form-group col-sm-6">
+                        <label for="responsable">Personne en charge du Projet</label>
+                        <input id="responsable" type="text" class="form-control" placeholder="">
+                    </div>
+
+                    <div class="form-group col-sm-6">
+                        <label for="fonction">Fonction</label>
+                        <input id="fonction" type="text" class="form-control" placeholder="">
+                    </div>
+
+                    <div class="form-group col-sm-6">
+                        <label for="email">Email</label>
+                        <input id="email" type="email" class="form-control" placeholder="">
+                    </div>
+
+                    <div class="form-group col-sm-6">
+                        <label for="tel">Téléphone</label>
+                        <input id="tel" type="tel" class="form-control" placeholder="">
+                    </div>
+
+                    <div class="form-group col-sm-12">
+                        <input type="hidden" name="MAX_FILE_SIZE" value="500000">
+                        <input type="file" id="fichier" name="fichier"/>
+                        <label for="fichier">Joindre un fichier<br/>
+                            <div class="btn">Parcourir</div>
+                        </label>
+                    </div>
+
+                    <h5>Liens Youtube</h5>
+                    <div class="form-group col-sm-12">
+                        <label for="url"></label>
+                        <input id="url" type="url" class="form-control">
+                    </div>
+                </div>
+                <div class="form-group col-sm-12" align="center">
+
+                    <button type="button" class="btn">Envoyer votre fiche projet</button>
+
                 </div>
             </div>
-        </div>
-        <div class="form-group col-sm-12">
-            <label for="exampleInputFile">Joindre un fichier</label>
-            <input type="file" id="exampleInputFile">
-            <p class="help-block">Téléchargez une illustration du projet</p>
-        </div>
-    </div>
-        <div role="tabpanel" class="tab-pane" id="realisation">
 
-            <h3>Réalisation</h3>
-
-        <div class="form-group col-sm-6">
-            <label for="year">Année de réalisation</label>
-            <input id="year" type="text" class="form-control" placeholder="">
-        </div>
-
-        <div class="form-group col-sm-6">
-            <label for="time">Durée de réalisation</label>
-            <input id="time" type="text" class="form-control" placeholder="">
-        </div>
-
-        <div class="form-group col-sm-6">
-            <label for="cost">Coût global</label>
-            <input id="cost" type="text" class="form-control" placeholder="">
-        </div>
-
-        <div class="form-group col-sm-6">
-            <label for="dollars">Cofinancements</label>
-            <input id="dollars" type="text" class="form-control" placeholder="">
-        </div>
-
-
+        </form>
     </div>
 
-        <div role="tabpanel" class="tab-pane" id="description">
-
-
-            <h3>Description</h3>
-
-        <div class="form-group col-sm-12">
-            <label for="description">Description</label>
-            <textarea id="description" type="text" class="form-control" placeholder="" rows="3"></textarea>
-        </div>
-
-        <div class="form-group col-sm-12">
-            <label for="objectif">Objectifs</label>
-            <textarea id="objectif" type="text" class="form-control" placeholder="" rows="2"></textarea>
-        </div>
-
-    <div class="form-group col-sm-12">
-        <label for="partenaires">Partenaires mobilisés</label>
-        <input id="partenaires" type="text" class="form-control" placeholder="">
-    </div>
-
-    <div class="form-group col-sm-12">
-        <label for="results">Résultats Obtenus</label>
-        <textarea id="results" type="text" class="form-control" placeholder="" rows="2"></textarea>
-    </div>
-
-    <div class="form-group col-sm-12">
-        <label for="difficults">Difficultés rencontrées</label>
-        <textarea id="difficults" type="text" class="form-control" placeholder="" rows="2"></textarea>
-    </div>
-
-    <div class="form-group col-sm-12">
-        <label for="difficults">Conseils</label>
-        <textarea id="difficults" type="text" class="form-control" placeholder="" rows="2"></textarea>
-    </div>
-    </div>
-
-        <div role="tabpanel" class="tab-pane" id="informations">
-
-            <h3>Plus d'informations</h3>
-
-    <div class="form-group col-sm-6">
-        <label for="responsable">Personne en charge du Projet</label>
-        <input id="responsable" type="text" class="form-control" placeholder="">
-    </div>
-
-    <div class="form-group col-sm-6">
-        <label for="fonction">Fonction</label>
-        <input id="fonction" type="text" class="form-control" placeholder="">
-    </div>
-
-    <div class="form-group col-sm-6">
-        <label for="email">Email</label>
-        <input id="email" type="email" class="form-control" placeholder="">
-    </div>
-
-    <div class="form-group col-sm-6">
-        <label for="tel">Téléphone</label>
-        <input id="tel" type="tel" class="form-control" placeholder="">
-    </div>
-
-    <div class="form-group col-sm-12">
-            <label for="exampleInputFile">Joindre un fichier</label>
-            <input type="file" id="exampleInputFile">
-            <p class="help-block">Téléchargez un fichier en JPEG, PDF...</p>
-        </div>
-
-        <h5>Liens Youtube</h5>
-        <div class="form-group col-sm-12">
-            <label for="url"></label>
-            <input id="url" type="url" class="form-control">
-        </div>
-    </div>
-
-</div>
-
-</form>
-    </div>
-    <div class="form-group col-sm-12" align="center">
-
-        <button type="button" class="btn">Envoyer votre fiche projet</button>
-
-    </div>
 
 {% endblock %}

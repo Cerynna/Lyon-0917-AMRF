@@ -58,12 +58,12 @@
     }
     color: $color1;
   }
-.logo {
-  height: 60px;
-  padding: 5px;
-  margin-top: -6px;
-  background-color: #FFFFFF;
-  @include borderRadius(5px);
-  box-shadow: 5px 5px 0 rgba(0, 0, 0, 0.6);
-}
+  .logo {
+    height: 60px;
+    padding: 5px;
+    margin-top: -6px;
+    background-color: #FFFFFF;
+    @include borderRadius(5px);
+    box-shadow: 5px 5px 0 rgba(0, 0, 0, 0.6);
+  }
 }

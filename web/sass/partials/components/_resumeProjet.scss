@@ -1,4 +1,4 @@
-.project{
+.resumeProject{
   @include borderRadius(10px);
   @include boxShadow(0.05em, rgba(0, 0, 0, 0.4));
   padding: 15px 20px!important;
@@ -21,10 +21,5 @@
   .img-mini:hover {
     transform: scale(1.1);
   }
-  h3 {
-    line-height: normal;
-  }
-  .row {
-    margin:0 0 20px 0;
-  }
+
 }

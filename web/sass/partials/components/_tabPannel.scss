@@ -1,0 +1,31 @@
+.tabPannel {
+  @include borderRadius(6px);
+  width: 100%;
+  padding: 60px 48px;
+  margin-bottom: 30px;
+  color: inherit;
+  background-color: #eee;
+  min-height: 30vh;
+  @include boxShadow(0.05em, rgba(0, 0, 0, 0.4));
+
+  .tab-pane {
+    min-height: 40vh;
+  }
+  ul {
+    margin-bottom: 30px;
+    a {
+      color: $color1;
+      background-color: $color2;
+      padding: 20px;
+      text-decoration: none;
+    }
+    .active {
+      a {
+        background-color: $color2;
+        border-bottom: 4px solid $color1;
+        color: $color1;
+        text-decoration: none;
+      }
+    }
+  }
+}

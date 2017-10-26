@@ -4,29 +4,13 @@
   div > a {
     color: rgb(54, 80, 105) !important;
   }
-  .btn {
-    background: rgb(54, 80, 105);
-    border: none;
-  }
-  .btn:hover {
-    background: rgb(54, 80, 105);
-    border: none;
-  }
 }
 
 .bck-part {
   margin: 3px;
-  background: rgba(139, 175, 139, 1);
+  background: #b3ffb1;
   div > a {
     color: rgb(87, 116, 87) !important;
-  }
-  .btn {
-    background: rgb(87, 116, 87);
-    border: none;
-  }
-  .btn:hover {
-    background: rgb(87, 116, 87);
-    border: none;
   }
 }
 
@@ -40,39 +24,43 @@
 }
 
 .cardGest {
+  margin-top: 70px;
+
   .card-title {
     text-align: center;
     .fa {
       margin: 10px;
       text-align: center;
-      font-size: 5em;
+      font-size: 80px
     }
   }
   .card-body {
-    height: 400px;
+    height: 330px;
     @include borderRadius(5px);
-    @include boxShadow(0.05em, rgba(0, 0, 0, 0.4));
+    box-shadow: 6px 6px 4px rgba(31, 31, 31, 0.71);
     p {
       margin-top: 10px;
       padding: 10px;
       font-size: 0.9em;
       display: inline-block;
+      height: 110px;
       overflow: hidden;
       text-overflow: ellipsis;
       white-space: normal;
     }
-    h3 {
-      color: $color2;
-      margin: 20px;
-      line-height: 0em;
-    }
     .card-block {
-      position: absolute;
-      bottom: 0;
-      text-align: center;
-      width:100%;
-      padding-right: 30px;
+      display: flex;
+      justify-content: center;
+      .btn {
+        a {
+          font-size: 0.6em;
+          text-decoration: none;
+          color: #ffffff;
+        }
+        margin: 2px;
+        background-color: #3c3c3c;
 
+      }
     }
   }
 }

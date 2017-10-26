@@ -1,4 +1,4 @@
-<nav id="navbar" class="navbar navbar-static-top" role="navigation">
+<div class="navbar navbar-static-top" role="navigation">
     <div class="container-fluid">
 
         <div class="navbar-header">
@@ -30,15 +30,13 @@
                     <a {% if app.request.attributes.get('_route') == 'contact' %} class="active" {% endif %}
                             href="{{ path('contact') }}">Contact</a>
                 </li>
-
                 <li class="dropdown">
-                    <a data-toggle="dropdown" class="dropdown-toggle" href="#">Mon Espace <b class="caret"></b></a>
+                    <a data-toggle="dropdown" class="dropdown-toggle" href="#">Mon Espace <i class="fa fa-angle-down"></i></a>
                     <ul class="dropdown-menu">
-
-                        <li><a href="{{ path('maireHome') }}">Mon Espace</a></li>
+                        <li class="dropdown-main"><a href="{{ path('maireHome') }}">Mon Espace <i class="fa fa-angle-down"></i></a></li>
                         <li><a href="{{ path('maireProfil') }}">Profil</a></li>
-                        <li class="dropdown-submenu pull-left">
-                            <a tabindex="-1" href="#"><b class="caret"></b> Projet</a>
+                        <li class="dropdown-submenu">
+                            <a tabindex="-1" href="#"><i class="fa fa-angle-left"></i> Projet</a>
                             <ul class="dropdown-menu">
                                 <li><a tabindex="-1" href="{{ path('maireFormProjet') }}">Ajouter</a></li>
                                 <li><a tabindex="-1" href="{{ path('maireProjets') }}">Consulter</a></li>
@@ -55,4 +53,4 @@
             </ul>
         </div>
     </div>
-</nav>
+</div>
