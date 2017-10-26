@@ -14,7 +14,7 @@
                 <a href="#entreprise" aria-controls="entreprise" role="tab" data-toggle="tab">Entreprise</a>
             </li>
             <li role="presentation">
-                <a href="#presentation" aria-controls="presentation" role="tab" data-toggle="tab">Présentation</a>
+                <a href="#description" aria-controls="description" role="tab" data-toggle="tab">Présentation</a>
             </li>
             <li role="presentation">
                 <a href="#contact" aria-controls="contact" role="tab" data-toggle="tab">Contacts</a>
@@ -52,8 +52,7 @@
             </div>
 
 
-            <div role="tabpanel" class="tab-pane active" id="presentation">
-
+            <div role="tabpanel" class="tab-pane" id="description">
                 <h3>Présentation de l'entreprise</h3>
                 <div class="col-lg-12 col-md-12">
                     <h4>Secteur d'activité</h4>
@@ -76,7 +75,7 @@
                     <h4>Présentation</h4>
                     <div class="form-group">
                         <label for="presentation">Présentez votre activité *</label>
-                        <textarea id="presentation" class="form-control" rows="6"                                                   data-length="1200"></textarea>
+                        <textarea id="presentation" class="form-control" rows="6" data-length="1200"></textarea>
                     </div>
                 </div>
                 <div class="col-lg-6 col-md-6">
@@ -97,9 +96,23 @@
                         <input id="url" type="url" class="form-control">
                     </div>
                 </div>
+                <div class="col-lg-6 col-md-6">
+                    <h4>Facebook</h4>
+                    <div class="form-group">
+                        <label for="url"></label>
+                        <input id="url" type="url" class="form-control">
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6">
+                    <h4>Twitter</h4>
+                    <div class="form-group">
+                        <label for="url"></label>
+                        <input id="url" type="url" class="form-control">
+                    </div>
+                </div>
             </div>
 
-            <div role="tabpanel" class="tab-pane active" id="contact">
+            <div role="tabpanel" class="tab-pane" id="contact">
                 <h3>Contact</h3>
                 <div class="col-lg-6 col-md-6">
                     <div class="form-group">
@@ -125,32 +138,36 @@
                         <input id="email" type="email" class="form-control">
                     </div>
                 </div>
-            </div>
-
-
-            <div role="tabpanel" class="tab-pane active" id="presentation">
                 <h3>Contacts locaux</h3>
-                <div class="form-group col-sm-6">
-                    <label for="lastName">Nom du contact</label>
-                    <input id="lastName" type="text" class="form-control">
+                <div class="col-lg-6 col-md-6">
+                    <div class="form-group">
+                        <label for="lastName">Nom du contact</label>
+                        <input id="lastName" type="text" class="form-control">
+                    </div>
                 </div>
-                <div class="form-group col-sm-6">
-                    <label for="firstName">Prénom du contact</label>
-                    <input id="firstName" type="text" class="form-control">
+                <div class="col-lg-6 col-md-6">
+                    <div class="form-group">
+                        <label for="firstName">Prénom du contact</label>
+                        <input id="firstName" type="text" class="form-control">
+                    </div>
                 </div>
-                <div class="form-group col-sm-6">
-                    <label for="tel">Téléphone</label>
-                    <input id="tel" type="tel" class="form-control">
+                <div class="col-lg-6 col-md-6">
+                    <div class="form-group">
+                        <label for="tel">Téléphone</label>
+                        <input id="tel" type="tel" class="form-control">
+                    </div>
                 </div>
-                <div class="form-group col-sm-6">
-                    <label for="email">Email</label>
-                    <input id="email" type="email" class="form-control">
+                <div class="col-lg-6 col-md-6">
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input id="email" type="email" class="form-control">
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-    <div class="form-group col-sm-12" align="center">
-        <button type="button" class="btn">Enregistrer votre fiche partenaire</button>
-    </div>
+            <div class="form-group col-sm-12" align="center">
+                <button type="button" class="btn">Enregistrer votre fiche partenaire</button>
+            </div>
 
 {% endblock %}
