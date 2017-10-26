@@ -12,10 +12,19 @@ h3{
 }
 .panel-default{
     margin:0px;
+    position : fixed;
+    top: 0;
+    left: 0;
+    width : 100%;
+    z-index: 1000;
+
 }
 
 .navLeft{
     box-shadow: 2px 2px 4px #5d5d5d;
+    display: inline-block;
+    margin-top: 57px;
+    position: fixed;
 }
 
 .login{
@@ -48,6 +57,7 @@ h2
     margin-left: 40px;
     margin-bottom: 50px;
     font-size: 3em;
+    color : #b70000;
 }
 
 .jumbotron
