@@ -155,4 +155,21 @@ class PublicRooterController extends Controller
         return $this->render('AMRFPublicRooterBundle:private:partenaires/partFormPresentation.html.twig');
     }
 
-   }
+    /**
+     * @Route("/admin", name="adminIndex")
+     */
+    public function adminIndexAction()
+    {
+        return $this->render('AMRFPublicRooterBundle:private:admin/adminIndex.html.twig');
+    }
+
+    /**
+     * @Route("/admin/contenus", name="adminContenus")
+     */
+    public function adminContenusAction()
+    {
+        return $this->render('AMRFPublicRooterBundle:private:admin/adminContenus.html.twig');
+    }
+
+
+}
