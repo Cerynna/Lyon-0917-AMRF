@@ -1,0 +1,29 @@
+.btnFavoris {
+  background-color: $color2;
+  border-radius: 50%;
+  width: 60px;
+  height: 50px;
+  outline: none;
+  font-size: 1.5em;
+  @include boxShadow(0.05em, rgba(0, 0, 0, 0.2));
+
+  i {
+    color: $color1;
+  }
+
+}
+
+.btnFavorisTest {
+  background-color: $color1;
+  border-radius: 50%;
+  font-size: 1.8em;
+
+  width: 60px;
+  height: 50px;
+  text-decoration: none;
+  @include boxShadow(0.05em, rgba(0, 0, 0, 0.2));
+
+  i {
+    color: $color2;
+  }
+}
