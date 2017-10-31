@@ -260,10 +260,10 @@ header {
   justify-content: space-around; }
 
 nav {
-  color: rgba(0, 158, 61, 0.99);
+  color: #FFFFFF;
   width: 100%;
   margin-top: 0;
-  background-color: #FFFFFF;
+  background-color: rgba(0, 158, 61, 0.99);
   border-radius: 0;
   font-size: 1.8em;
   vertical-align: middle;
@@ -273,7 +273,7 @@ nav {
   /*box-shadow: 5px 5px  rgba(0, 0, 0, 0.6);*/ }
   nav .nav > li > a {
     margin: 0 5px -4px 5px;
-    color: rgba(0, 158, 61, 0.99); }
+    color: #FFFFFF; }
     nav .nav > li > a i {
       vertical-align: top; }
   nav .nav > li > a:hover, nav .nav > li > a:focus, nav .nav > li > a.active {
@@ -690,7 +690,7 @@ body::-webkit-scrollbar {
 
 body {
   font-size: 1.0em;
-  background: url("../img/bck-3.jpg") no-repeat fixed;
+  background: url("../img/bck-1.jpg") no-repeat fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
