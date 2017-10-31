@@ -11,9 +11,8 @@
                 </span>
             </div>
         </div><!--end jumbotron-->
-        <h2>Recherche Avancée</h2>
         <div class="jumbotron">
-            <h3 class="control-label text-center">Choisir une thématique</h3><br>
+            <h3 class="text-center">Choisir une thématique</h3>
             {% include 'AMRFPublicRooterBundle::components/thematiques.html.twig' %}
             <div class="row">
                 <div class="col-md-12 ui-widget">
@@ -35,6 +34,14 @@
                 </div>
             </div>
         </div><!--end jumbotron-->
+        <div class="jumbotron">
+            <h3 class="text-center">Localiser un projet</h3>
+            <iframe width="100%" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"
+                    src="http://www.openstreetmap.org/export/embed.html?bbox=-4.932861328125001%2C43.59630591596551%2C9.569091796875002%2C50.00067775723633&amp;layer=mapnik"
+                    style="border: 1px solid black"></iframe>
+            <br/>
+            <small><a href="http://www.openstreetmap.org/#map=7/46.894/2.318">Afficher une carte plus grande</a></small>
+        </div>
     </form>
 
     {% include 'AMRFPublicRooterBundle::components/resumeProject.html.twig' %}
