@@ -647,6 +647,7 @@ form .cleIcon {
 .btnFavoris {
   background-color: #FFFFFF;
   border-radius: 50%;
+  border-style: none;
   width: 60px;
   height: 50px;
   outline: none;
