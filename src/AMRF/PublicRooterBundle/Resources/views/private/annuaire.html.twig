@@ -11,7 +11,7 @@
                 Trier par lettres
                 <ul class="pagination text-center">
                     {% for letter in 'a'|upper..'z'|upper %}
-                        <li class="waves-effect"><a href="#!">{{ letter }}</a></li>
+                        <li class="waves-effect"><a href="#{{ letter }}">{{ letter }}</a></li>
                     {% endfor %}
                 </ul>
             </div>

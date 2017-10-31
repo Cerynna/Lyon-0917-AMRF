@@ -1,8 +1,8 @@
 nav {
-  color: $color1;
+  color: $color2;
   width: 100%;
   margin-top: 0;
-  background-color: $color2;
+  background-color: $color1;
   border-radius: 0;
   font-size: 1.8em;
   vertical-align: middle;
@@ -11,7 +11,7 @@ nav {
   @include boxShadow(0.05em, rgba(0, 0, 0, 0.2));
   .nav > li > a {
     margin: 0 5px -4px 5px;
-    color: $color1;
+    color: $color2;
     i{
       vertical-align: top;
     }
