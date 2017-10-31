@@ -26,8 +26,6 @@ $(document).ready(function () {
 
 
 });
-
-
 $(window).on('scroll', function () {
     var scrollTop = $(window).scrollTop();
     if (scrollTop > 20) {

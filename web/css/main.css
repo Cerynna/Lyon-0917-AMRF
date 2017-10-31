@@ -690,7 +690,7 @@ body::-webkit-scrollbar {
 
 body {
   font-size: 1.0em;
-  background: url("../img/bck-1.jpg") no-repeat fixed;
+  background: url("../img/bck-5.jpg") no-repeat fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -738,6 +738,18 @@ a:hover, a:active {
   margin: 0 !important;
   height: 48px;
   width: 48px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  border-radius: 5px; }
+
+.scrollUp {
+  font-size: 40px;
+  position: fixed;
+  padding: 0 20px;
+  bottom: 50px;
+  right: 50px;
+  background-color: rgba(0, 158, 61, 0.99);
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
   -ms-border-radius: 5px;

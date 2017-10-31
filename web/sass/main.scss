@@ -90,7 +90,8 @@ a:hover, a:active {
   border-radius: 0px 5px 5px 0px;
 
 }
-.btn-collapse{
+
+.btn-collapse {
   margin: 0 !important;
   height: 48px;
   width: 48px;
@@ -98,6 +99,15 @@ a:hover, a:active {
 
 }
 
+.scrollUp {
+  font-size: 40px;
+  position: fixed;
+padding: 0 20px;
+  bottom: 50px;
+  right: 50px;
+  background-color: $color1;
+  @include borderRadius(5px);
+}
 
 .search {
   height: 50px;
@@ -145,9 +155,11 @@ a:hover, a:active {
 .accordion {
   padding: 0 20px 0 20px;
 }
-.pagination > li > a{
+
+.pagination > li > a {
   color: $color1 !important;
 }
+
 /*
 .col-md-1 {
   border: 1px solid black !important;
