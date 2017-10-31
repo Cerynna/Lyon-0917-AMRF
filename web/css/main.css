@@ -644,6 +644,30 @@ form .cleIcon {
       color: rgba(0, 158, 61, 0.99);
       text-decoration: none; }
 
+.btnFavoris {
+  background-color: #FFFFFF;
+  border-radius: 50%;
+  width: 60px;
+  height: 50px;
+  outline: none;
+  font-size: 1.5em;
+  box-shadow: 0.05em 0.05em 0.05em 0.05em rgba(0, 0, 0, 0.2);
+  /*box-shadow: 5px 5px  rgba(0, 0, 0, 0.6);*/ }
+  .btnFavoris i {
+    color: rgba(0, 158, 61, 0.99); }
+
+.btnFavorisTest {
+  background-color: rgba(0, 158, 61, 0.99);
+  border-radius: 50%;
+  font-size: 1.8em;
+  width: 60px;
+  height: 50px;
+  text-decoration: none;
+  box-shadow: 0.05em 0.05em 0.05em 0.05em rgba(0, 0, 0, 0.2);
+  /*box-shadow: 5px 5px  rgba(0, 0, 0, 0.6);*/ }
+  .btnFavorisTest i {
+    color: #FFFFFF; }
+
 .project {
   -webkit-border-radius: 10px;
   -moz-border-radius: 10px;
