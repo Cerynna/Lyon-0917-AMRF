@@ -96,9 +96,24 @@ $(function () {
         "Yonne",
         "Yvelines"
     ];
+
+    $("#communes").autocomplete({
+        appendTo: "#results",
+        source: availableCom,
+        open: function() {
+            var position = $("#results").position(),
+                left = position.left, top = position.top;
+
+            $("#results ").css({
+                top: top + 0 + "px" });
+
+        }
+    });
+
+    /*
     $("#communes").autocomplete({
         source: availableCom
     });
-
+*/
 });
 

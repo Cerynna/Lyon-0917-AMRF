@@ -715,7 +715,7 @@ body::-webkit-scrollbar {
 
 body {
   font-size: 1.0em;
-  background: url("../img/bck-2.jpg") no-repeat fixed;
+  background: url("../img/bck-1.jpg") no-repeat fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -822,7 +822,98 @@ a:hover, a:active {
 .pagination > li > a {
   color: rgba(0, 158, 61, 0.99) !important; }
 
+.ui-menu-item-wrapper {
+  text-decoration: none;
+  color: rgba(0, 158, 61, 0.99);
+  display: block;
+  padding: 5px; }
+
+.ui-menu-item-wrapper:visited, .ui-menu-item-wrapper:hover, .ui-menu-item-wrapper:active {
+  background: rgba(0, 158, 61, 0.99);
+  color: #FFFFFF;
+  border: 2px solid rgba(0, 158, 61, 0.99); }
+
+.ui-autocomplete {
+  background: #FFFFFF;
+  color: rgba(0, 158, 61, 0.99);
+  border-radius: 0px;
+  border: 0px solid rgba(0, 158, 61, 0.99);
+  height: 100px;
+  overflow: hidden;
+  overflow-y: scroll;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  border-radius: 5px;
+  padding: 5px; }
+
+.ui-menu-item {
+  background: #FFFFFF;
+  color: rgba(0, 158, 61, 0.99); }
+
+.ui-menu-item:hover {
+  background: rgba(0, 158, 61, 0.99);
+  color: #FFFFFF; }
+
+.ui-menu .ui-menu-item a:hover {
+  background: rgba(0, 158, 61, 0.99);
+  color: #FFFFFF;
+  border: 2px solid rgba(0, 158, 61, 0.99); }
+
+.output {
+  text-align: left;
+  padding: 0;
+  max-height: 100px;
+  width: 660px;
+  overflow: hidden;
+  overflow-y: scroll;
+  background: #FFFFFF;
+  border: 0 solid #ccc;
+  margin-top: 0px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  border-radius: 5px; }
+
+::-webkit-scrollbar {
+  width: 14px;
+  height: 14px; }
+
+::-webkit-scrollbar-button {
+  width: 0px;
+  height: 0px; }
+
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 158, 61, 0.99);
+  border: 0px solid #FFFFFF;
+  border-radius: 5px; }
+
+::-webkit-scrollbar-track {
+  background: #FFFFFF;
+  border: 0px solid #FFFFFF;
+  border-radius: 0; }
+
+::-webkit-scrollbar-corner {
+  background: transparent; }
+
+#output {
+  position: absolute;
+  z-index: 20; }
+  #output a {
+    text-decoration: none;
+    color: rgba(0, 158, 61, 0.99);
+    display: block;
+    padding: 5px; }
+  #output a:visited, #output a:hover, #output a:active {
+    background: rgba(0, 158, 61, 0.99);
+    color: #FFFFFF;
+    border: 2px solid rgba(0, 158, 61, 0.99); }
+
 /*
+
+.row {
+  border: 1px solid black !important;
+}
 .col-md-1 {
   border: 1px solid black !important;
 }
@@ -858,4 +949,6 @@ a:hover, a:active {
 }
 .col-md-12 {
   border: 1px solid black !important;
-}*/
+}
+
+*/

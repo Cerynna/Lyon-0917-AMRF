@@ -21,14 +21,28 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-4 col-md-offset-1 text-center">
+                <div class="col-md-4 text-center">
                     <label for="communes">Departement</label>
                     <input type="text" class="form-control" name="communes" id="communes">
                 </div>
-                <div class="col-md-4 col-md-offset-2 form-group text-center">
-                    <label for="codep">Code Postal</label>
-                    <input class="form-control" id="codep" type="text"/>
+                <div class="col-md-4 form-group text-center">
+                    <label for="code">Code Postal</label>
+                    <input id="code" class="form-control" type="text" autocomplete="off" size="5" maxlength="5">
                 </div>
+                <div class="col-md-4 form-group text-center">
+                    <label for="city">Communes</label>
+                    <input id="city" class="form-control" type="text" autocomplete="off">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4 text-center">
+                    <div id="results" class="output"></div>
+                </div>
+                <div class="col-md-8 form-group text-center">
+                    <div class="output" id="output"></div>
+                </div>
+            </div>
+            <div class="row">
                 <div class="col-md-12 text-center">
                     <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i> Recherche</button>
                 </div>
@@ -38,11 +52,70 @@
             <h3 class="text-center">Localiser un projet</h3>
             <iframe width="100%" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"
                     src="http://www.openstreetmap.org/export/embed.html?bbox=-4.932861328125001%2C43.59630591596551%2C9.569091796875002%2C50.00067775723633&amp;layer=mapnik"
-                    style="border: 1px solid black"></iframe>
-            <br/>
-            <small><a href="http://www.openstreetmap.org/#map=7/46.894/2.318">Afficher une carte plus grande</a></small>
+                    style="border: 0 solid black"></iframe>
         </div>
     </form>
 
     {% include 'AMRFPublicRooterBundle::components/resumeProject.html.twig' %}
+{% endblock %}
+{% block javascripts %}
+    <script>
+        jQuery(function ($) {
+            var _5 = $('#code'), _4 = $('#city'), _9 = $('#output');
+            var _2 = {};
+            var _12 = (~(location.protocol + '').indexOf('s') ? 'https' : 'http') + '://vicopo.selfbuild.fr';
+            _5.keyup(function () {
+                var _0 = $(this).val();
+                if (/^[^0-9]/.test(_0)) {
+                    _5.val('');
+                    _4.val(_0).focus().trigger('keyup')
+                }
+            });
+            _4.keyup(function () {
+                var _0 = $(this).val();
+                if (/^[0-9]/.test(_0)) {
+                    _4.val('');
+                    _5.val(_0).focus().trigger('keyup')
+                }
+            });
+
+            function _10(_13) {
+                _9.html(_13.map(function (_3) {
+                    return '<a href="#">' + _3.code + ' &nbsp; ' + _3.city + '</a>'
+                }).join(''))
+            }
+
+            $.each(['code', 'city'], function (i, _1) {
+                var _11 = $('#' + _1).on('keyup', function () {
+                    var _0 = _11.val();
+                    if (_0.length > 1) {
+                        _2[_1] = _2[_1] || {};
+                        if (_2[_1][_0]) {
+                            _10(_2[_1][_0])
+                        }
+                        var _3 = {};
+                        _3[_1] = _0;
+                        $.getJSON(_12, _3, function (_6) {
+                            _2[_1][_6.input] = _6.cities;
+                            if (_11.val() == _6.input) {
+                                _10(_6.cities)
+                            }
+                        })
+                    }
+                })
+            });
+            $(document).on('click', '#output a', function (e) {
+                var _8 = $(this).text();
+                var _7 = _8.indexOf(' ');
+                if (~_7) {
+                    _5.val(_8.substr(0, _7));
+                    _4.val(_8.substr(_7).trim());
+                    _9.empty()
+                }
+                e.preventDefault();
+                e.stopPropagation();
+                return false
+            })
+        });
+    </script>
 {% endblock %}
