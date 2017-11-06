@@ -39,7 +39,14 @@
   }
 }
 
+.espaceMaire {
+  .btn {
+    width: 325px;
+  }
+}
+
 .cardGest {
+  margin: 0 0 25px 0;
   .card-title {
     text-align: center;
     .fa {
@@ -48,8 +55,9 @@
       font-size: 5em;
     }
   }
+
   .card-body {
-    height: 400px;
+    height: 280px;
     @include borderRadius(5px);
     @include boxShadow(0.05em, rgba(0, 0, 0, 0.4));
     p {
@@ -70,9 +78,9 @@
       position: absolute;
       bottom: 0;
       text-align: center;
-      width:100%;
+      width: 100%;
+      height: 35%;
       padding-right: 30px;
-
     }
   }
 }
