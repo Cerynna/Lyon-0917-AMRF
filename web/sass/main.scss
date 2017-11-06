@@ -1,53 +1,45 @@
 /**
 *************************** RESET *********************
- */
+*/
 @import 'partials/reset';
 /**
 *************************** Variable *********************
  */
 @import 'partials/variables';
 /**
-/**
-*************************** Fonction *********************
- */
+*************************** Fonctions *********************
+*/
 @import 'partials/mixins';
 /**
 *************************** Components *********************
  */
-@import 'partials/views/navbar';
-@import 'partials/views/header';
+@import 'partials/components/header';
 @import 'partials/components/modalConnect';
-@import 'partials/views/footer';
-@import 'partials/views/search';
-@import 'partials/views/motsCle';
-@import 'partials/views/multiSelect';
+@import 'partials/components/navbar';
+@import 'partials/components/resumeProjet';
 @import 'partials/components/cards';
-@import 'partials/components/resumeprojet';
-@import 'partials/components/listeAccordion';
+@import 'partials/components/footer';
+@import 'partials/components/section';
+@import 'partials/components/form';
+@import 'partials/components/tabPannel';
+@import 'partials/components/btnFavoris';
 @import 'partials/components/projet';
 /**
-*************************** View *********************
- */
+** node-sass --watch web/sass/main.scss web/css/main.css
+*/
 @import url('https://fonts.googleapis.com/css?family=Cabin+Condensed|Comfortaa|Francois+One|Josefin+Sans|Play|Poiret+One|Source+Sans+Pro');
-@import url('https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.0/css/bootstrap.min.css');
 @import url("http://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css");
 
+/**
+*/
 body::-webkit-scrollbar {
   display: none;
 }
-
-/**
-** node-sass --watch web/sass/main.scss web/css/main.css
-**
-******Ca sert a rien mais ca switch de background a chaque compilation
-** pour test
- */
 
 $imgKey: random(5);
 
 $list: bck-1, bck-2, bck-3, bck-4, bck-5;
 $nth: nth($list, $imgKey);
-
 body {
   font-size: 1.0em;
   background: url('../img/#{$nth}.jpg') no-repeat fixed;
@@ -56,170 +48,255 @@ body {
   -o-background-size: cover;
   background-size: cover;
   font-family: $primaryFont, sans-serif;
-  .modal-backdrop {
-    z-index: 5;
-  }
-  .body {
-    background-color: $bodyColor;
-    padding-top: 10px;
-    padding-bottom: 10px;
-  }
+}
 
-  .article {
-    padding: 20px;
-  }
-  .content {
-    margin-top: 50px;
-    /*margin-bottom: 50px;*/
-    background-color: #fff;
-    padding: 30px;
-    min-height: 100vh;
-    z-index: 1;
-  }
-  h1 {
-    font-size: 4em;
-    font-family: $secondeFont, sans-serif;
-  }
-  h2 {
-    font-family: $secondeFont, sans-serif;
-    font-size: 2.8em;
-    line-height: 2em;
-    text-transform: uppercase;
-    text-align: center;
-  }
+a:visited, a:link {
+  text-decoration: none;
+  color: $color2;
+}
 
-  h3 {
+a:hover, a:active {
+  text-decoration: none;
+  font-weight: bold;
+  color: $color2;
+}
+
+.btn, .btn:focus, .btn:target, .btn:active {
+  color: $color2;
+  font-size: 1.2em;
+  background: $color1;
+  margin: 10px;
+  padding: 10px;
+  border: 2px solid $color1;
+  @include boxShadow(1px, rgba(0, 0, 0, 0.4));
+  outline: none;
+}
+
+.btn:hover {
+  color: $color2;
+  background: $color1;
+  border: 2px solid $color1;
+  @include boxShadow(2px, rgba(0, 0, 0, 0.8));
+}
+
+.input-group-addon {
+  padding: 0 !important;
+  border: 0 solid #ccc !important;
+}
+
+.btn-search {
+  margin: 0 !important;
+  height: 48px;
+  width: 48px;
+  border-radius: 0px 5px 5px 0px;
+
+}
+
+.btn-collapse {
+  margin: 0 !important;
+  height: 48px;
+  width: 48px;
+  @include borderRadius(5px);
+
+}
+
+.scrollUp {
+  font-size: 40px;
+  position: fixed;
+  padding: 0 20px;
+  bottom: 50px;
+  right: 50px;
+  background-color: $color1;
+  @include borderRadius(5px);
+}
+
+.search {
+  height: 50px;
+  font-size: 1.8em !important;
+}
+
+.label-commune {
+  display: inline-block;
+  background-color: $color1;
+  margin: 2px 1px !important;
+  padding: 8px;
+  font-size: 0.9em;
+
+}
+
+.label-themat {
+  display: inline-block;
+  background-color: $color4;
+  margin: 2px 1px !important;
+  padding: 7px;
+  font-size: 0.8em;
+}
+
+.label-motCle {
+  display: inline-block;
+  background-color: #f0ad4e;
+  margin: 2px 1px !important;
+  padding: 7px;
+  font-size: 0.8em;
+}
+
+.jumbotron {
+  @include boxShadow(0.05em, rgba(0, 0, 0, 0.4));
+  p {
+    padding: 0 10px;
+  }
+}
+
+.divider {
+  border: 1px solid $color2 !important;
+  width: 100%;
+  margin: 10px auto 50px auto;
+}
+
+.accordion {
+  padding: 0 20px 0 20px;
+}
+
+.pagination > li > a {
+  color: $color1 !important;
+}
+.ui-menu-item-wrapper {
+  text-decoration: none;
+  color: $color1;
+  display: block;
+  padding: 5px;
+}
+.ui-menu-item-wrapper:visited, .ui-menu-item-wrapper:hover, .ui-menu-item-wrapper:active {
+  background: $color1;
+  color: $color2;
+  border: 2px solid $color1;
+}
+
+
+.ui-autocomplete {
+  background: $color2;
+  color: $color1;
+  border-radius: 0px;
+  border: 0px solid $color1;
+  height: 100px;
+  overflow: hidden;
+  overflow-y: scroll;
+  @include borderRadius(5px);
+  padding: 5px;
+}
+
+.ui-menu-item {
+  background: $color2;
+  color: $color1;
+}
+
+.ui-menu-item:hover {
+  background: $color1;
+  color: $color2;
+}
+
+.ui-menu .ui-menu-item a:hover {
+  background: $color1;
+  color: $color2;
+  border: 2px solid $color1;
+}
+
+.output {
+  text-align: left;
+  padding: 0;
+  max-height: 100px;
+  width: 660px;
+  overflow: hidden;
+  overflow-y: scroll;
+  background: $color2;
+  border: 0 solid #ccc;
+  margin-top: 0px;
+  @include borderRadius(5px);
+}
+
+::-webkit-scrollbar {
+  width: 14px;
+  height: 14px;
+}
+
+::-webkit-scrollbar-button {
+  width: 0px;
+  height: 0px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: $color1;
+  border: 0px solid $color2;
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: $color2;
+  border: 0px solid $color2;
+  border-radius: 0;
+}
+
+::-webkit-scrollbar-corner {
+  background: transparent;
+}
+
+#output {
+  position: absolute;
+  z-index: 20;
+  a {
+    text-decoration: none;
     color: $color1;
-    font-family: $secondeFont, sans-serif;
-    font-size: 2em;
-    line-height: 2em;
-    margin-bottom: 10px;
-    a:link {
-      text-decoration: none;
-      color: $color1;
-    }
-
-    a:visited {
-      text-decoration: none;
-      color: $color1;
-    }
-
-    a:hover {
-      text-decoration: none;
-      font-weight: bold;
-      color: $color1;
-    }
-
-    a:active {
-      text-decoration: none;
-      font-weight: bold;
-      color: $color1;
-    }
+    display: block;
+    padding: 5px;
   }
-  h4 {
-    font-size: 1.8em;
-    line-height: 1em;
-  }
-  h5 {
-    font-size: 1.6em;
-    line-height: 1em;
-  }
-  .btn {
-    background-color: $color1;
+  a:visited, a:hover, a:active {
+    background: $color1;
     color: $color2;
-    border: 0;
-    font-size: 1.2em;
-  }
-  .btn:hover {
-    background-color: $color2;
-    color: $color1;
-  }
-  .input-group-btn {
-    font-size: 82%;
-  }
-  .test {
-    @include borderRadius(6px);
-    width: 100%;
-    padding: 60px 48px;
-    margin-bottom: 30px;
-    color: inherit;
-    background-color: #eee;
-    min-height: 30vh;
-
-    .tab-pane {
-      min-height: 40vh;
-    }
-    ul {
-      margin-bottom: 30px;
-      a {
-        color: $color1;
-        background-color: $color2;
-        padding: 20px;
-        text-decoration: none;
-      }
-      .active {
-        a {
-          background-color: $color2;
-          border-bottom: 4px solid $color1;
-          color: $color1;
-          text-decoration: none;
-        }
-      }
-    }
-  }
-
-  .dropdown-submenu {
-    position: relative;
-  }
-
-  .dropdown-submenu > .dropdown-menu {
-    top: 0;
-    left: 200px;
-  }
-
-  .dropdown-submenu:hover > .dropdown-menu {
-    display: block;
-  }
-
-  .dropup .dropdown-submenu > .dropdown-menu {
-    top: auto;
-    bottom: 0;
-    margin-top: 0;
-    margin-bottom: -2px;
-    -webkit-border-radius: 5px 5px 5px 0;
-    -moz-border-radius: 5px 5px 5px 0;
-    border-radius: 5px 5px 5px 0;
-  }
-
-  .dropdown-submenu > a:after {
-    display: block;
-    float: right;
-    width: 0;
-    height: 0;
-    border-color: transparent;
-    border-style: solid;
-    border-width: 5px 0 5px 5px;
-    border-left-color: #cccccc;
-    margin-top: 5px;
-    margin-right: -10px;
-  }
-
-  .dropdown-submenu:hover > a:after {
-    border-left-color: #ffffff;
-  }
-
-  .dropdown-submenu.pull-left {
-    float: none;
-    margin-left: 200px;
-  }
-
-  .dropdown-submenu.pull-left > .dropdown-menu {
-    left: -100%;
-    margin-left: 10px;
-    -webkit-border-radius: 6px 0 6px 6px;
-    -moz-border-radius: 6px 0 6px 6px;
-    border-radius: 6px 0 6px 6px;
+    border: 2px solid $color1;
   }
 
 }
 
+/*
+
+.row {
+  border: 1px solid black !important;
+}
+.col-md-1 {
+  border: 1px solid black !important;
+}
+.col-md-2 {
+  border: 1px solid black !important;
+}
+.col-md-3 {
+  border: 1px solid black !important;
+}
+.col-md-4 {
+   border: 1px solid black !important;
+ }
+.col-md-5 {
+  border: 1px solid black !important;
+}
+.col-md-6 {
+  border: 1px solid black !important;
+}
+.col-md-7 {
+  border: 1px solid black !important;
+}
+.col-md-8 {
+  border: 1px solid black !important;
+}
+.col-md-9 {
+  border: 1px solid black !important;
+}
+.col-md-10 {
+  border: 1px solid black !important;
+}
+.col-md-11 {
+  border: 1px solid black !important;
+}
+.col-md-12 {
+  border: 1px solid black !important;
+}
+
+*/

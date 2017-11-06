@@ -4,9 +4,9 @@
     margin: 10px;
     @include borderRadius(5px);
   }
-.img-preview {
-  text-align: center;
-}
+  .img-preview {
+    text-align: center;
+  }
   .img-mini {
     margin: 5px;
     @include borderRadius(2px);
@@ -16,7 +16,7 @@
     transform: scale(1.1);
   }
 
-/* labels */
+  /* labels */
   .label-commune {
     background-color: $color1;
   }

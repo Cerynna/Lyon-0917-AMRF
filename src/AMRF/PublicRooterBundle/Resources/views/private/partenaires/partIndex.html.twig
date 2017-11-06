@@ -18,7 +18,7 @@
                 <p>Créer ou mettre à jour sa fiche partenaire</p>
             </div>
             <div class="card-block">
-                <button class="btn btn-sm"><a href="{{ path('partPres') }}"><span class="fa fa-pencil"></span> ACCEDER</a></button>
+                <a href="{{ path('partPres') }}"><button class="btn btn-sm"><span class="fa fa-pencil"></span> ACCEDER</button></a>
             </div>
         </div>
     </div>
@@ -26,14 +26,15 @@
         <div class="card-body bck-part">
             <div class="card-title">
                 <i class="fa fa-tags"></i>
-                <h3>MES FAVORIS</h3>
+                <h3>PROJETS</h3>
             </div>
             <div class="card-text">
-                <p>Consulter mes projets et mes partenaires favoris</p>
+                <p>Découvrez les projets par thématiques, zone géographique... Consulter mes projets favoris</p>
             </div>
             <div class="card-block">
-                      <button class="btn btn-sm"><a href="{{ path('partFavoris') }}"><span class="fa fa-search"></span>
-                        CONSULTER</a></button>
+                <a href="{{ path('partFavoris') }}"><button class="btn btn-sm"><i class="fa fa-star-o"></i>
+                        MES FAVORIS</button></a>
+                <a href="{{ path('recherche') }}"><button class="btn btn-xs"><span class="fa fa-search"></span> DECOUVRIR</button></a>
             </div>
         </div>
     </div>
@@ -47,7 +48,7 @@
                 <p>Gérez votre profil : ajoutez, consultez, modifiez ou supprimez les informations de                         votre compte</p>
             </div>
             <div class="card-block ">
-                <button class="btn btn-sm"><a href="{{ path('partProfil') }}"><span class="fa fa-pencil"></span> ACCEDER A MON PROFIL</a></button>
+                <a href="{{ path('partProfil') }}"><button class="btn btn-sm"><span class="fa fa-pencil"></span> ACCEDER A MON PROFIL</button></a>
 
             </div>
         </div>

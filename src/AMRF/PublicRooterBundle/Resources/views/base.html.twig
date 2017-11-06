@@ -3,27 +3,28 @@
 <head>
     <meta charset="UTF-8"/>
     <title>{% block title %}{% endblock %} - Wiki des Maires</title>
-    {% block stylesheets %}{% endblock %}
     <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}"/>
     {% include 'AMRFPublicRooterBundle::components/head.html.twig' %}
+    {% block stylesheets %}{% endblock %}
 </head>
 <body>
-{% include 'AMRFPublicRooterBundle::components/header.html.twig' %}
-
-{% block navbar %}
-{% include 'AMRFPublicRooterBundle::components/navbar.html.twig' %}
-{% endblock %}
-
-<div class="body">
-    <section>
-        <div class="container">
-            <div class="content">
-                {% block body %}
-                {% endblock %}
-            </div>
+<header>
+    {% include 'AMRFPublicRooterBundle::components/header.html.twig' %}
+</header>
+<nav id="navbar">
+    {% block navbar %}
+        {% include 'AMRFPublicRooterBundle::components/navbar.html.twig' %}
+    {% endblock %}
+</nav>
+<a href="#"><div class="fuildScroll scrollUp"><i class="fa fa-angle-up"></i></div></a>
+<section>
+    <div class="container">
+        <div class="content">
+            {% block body %}
+            {% endblock %}
         </div>
-    </section>
-</div>
+    </div>
+</section>
 <footer class="page-footer">
     {% include 'AMRFPublicRooterBundle::components/footer.html.twig' %}
 </footer>
