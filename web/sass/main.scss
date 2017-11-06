@@ -24,7 +24,6 @@
 @import 'partials/components/tabPannel';
 @import 'partials/components/btnFavoris';
 @import 'partials/components/projet';
-
 /**
 ** node-sass --watch web/sass/main.scss web/css/main.css
 */
@@ -104,7 +103,7 @@ a:hover, a:active {
 .scrollUp {
   font-size: 40px;
   position: fixed;
-padding: 0 20px;
+  padding: 0 20px;
   bottom: 50px;
   right: 50px;
   background-color: $color1;
@@ -161,8 +160,108 @@ padding: 0 20px;
 .pagination > li > a {
   color: $color1 !important;
 }
+.ui-menu-item-wrapper {
+  text-decoration: none;
+  color: $color1;
+  display: block;
+  padding: 5px;
+}
+.ui-menu-item-wrapper:visited, .ui-menu-item-wrapper:hover, .ui-menu-item-wrapper:active {
+  background: $color1;
+  color: $color2;
+  border: 2px solid $color1;
+}
+
+
+.ui-autocomplete {
+  background: $color2;
+  color: $color1;
+  border-radius: 0px;
+  border: 0px solid $color1;
+  height: 100px;
+  overflow: hidden;
+  overflow-y: scroll;
+  @include borderRadius(5px);
+  padding: 5px;
+}
+
+.ui-menu-item {
+  background: $color2;
+  color: $color1;
+}
+
+.ui-menu-item:hover {
+  background: $color1;
+  color: $color2;
+}
+
+.ui-menu .ui-menu-item a:hover {
+  background: $color1;
+  color: $color2;
+  border: 2px solid $color1;
+}
+
+.output {
+  text-align: left;
+  padding: 0;
+  max-height: 100px;
+  width: 660px;
+  overflow: hidden;
+  overflow-y: scroll;
+  background: $color2;
+  border: 0 solid #ccc;
+  margin-top: 0px;
+  @include borderRadius(5px);
+}
+
+::-webkit-scrollbar {
+  width: 14px;
+  height: 14px;
+}
+
+::-webkit-scrollbar-button {
+  width: 0px;
+  height: 0px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: $color1;
+  border: 0px solid $color2;
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: $color2;
+  border: 0px solid $color2;
+  border-radius: 0;
+}
+
+::-webkit-scrollbar-corner {
+  background: transparent;
+}
+
+#output {
+  position: absolute;
+  z-index: 20;
+  a {
+    text-decoration: none;
+    color: $color1;
+    display: block;
+    padding: 5px;
+  }
+  a:visited, a:hover, a:active {
+    background: $color1;
+    color: $color2;
+    border: 2px solid $color1;
+  }
+
+}
 
 /*
+
+.row {
+  border: 1px solid black !important;
+}
 .col-md-1 {
   border: 1px solid black !important;
 }
@@ -198,4 +297,6 @@ padding: 0 20px;
 }
 .col-md-12 {
   border: 1px solid black !important;
-}*/
+}
+
+*/
