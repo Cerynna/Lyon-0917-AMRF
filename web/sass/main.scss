@@ -27,8 +27,14 @@
 /**
 ** node-sass --watch web/sass/main.scss web/css/main.css
 */
-@import url('https://fonts.googleapis.com/css?family=Cabin+Condensed|Comfortaa|Francois+One|Josefin+Sans|Play|Poiret+One|Source+Sans+Pro');
+@import url('https://fonts.googleapis.com/css?family=Cabin+Condensed|Source+Sans+Pro');
+@import url('../fonts/ERASDEMI.TTF');
 @import url("http://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css");
+
+@font-face {
+  font-family: ERASDEMI;
+  src: url('../fonts/ERASDEMI.TTF');
+}
 
 /**
 */
@@ -36,18 +42,14 @@ body::-webkit-scrollbar {
   display: none;
 }
 
-$imgKey: random(5);
-
-$list: bck-1, bck-2, bck-3, bck-4, bck-5;
-$nth: nth($list, $imgKey);
 body {
   font-size: 1.0em;
-  background: url('../img/#{$nth}.jpg') no-repeat fixed;
+  background: url('../img/bck-2.jpg') no-repeat fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
-  font-family: $primaryFont, sans-serif;
+  font-family: $font1, sans-serif;
 }
 
 a:visited, a:link {
