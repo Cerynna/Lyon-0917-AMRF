@@ -1,0 +1,43 @@
+section {
+  background-color: $bodyColor;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  .content {
+    margin-top: 30px;
+    /*margin-bottom: 50px;*/
+    background-color: #fff;
+    padding: 30px 50px;
+    z-index: 1;
+  }
+  h2 {
+    color: $color1;
+    font-family: $secondeFont, sans-serif;
+    font-size: 2.8em;
+    line-height: 2em;
+    text-transform: uppercase;
+    text-align: center;
+  }
+
+  h3 {
+    color: $color1;
+    font-family: $secondeFont, sans-serif;
+    font-size: 1.8em;
+    line-height: 2em;
+    margin-bottom: 10px;
+
+
+  }
+  h4 {
+    font-size: 1.8em;
+    line-height: 1em;
+  }
+  h5 {
+    font-size: 1.6em;
+    line-height: 1em;
+  }
+  .container .jumbotron {
+    margin: 20px 0 20px 0;
+    padding: 20px 10px 20px 10px;
+    text-align: justify;
+  }
+}

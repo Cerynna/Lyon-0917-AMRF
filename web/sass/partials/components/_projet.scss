@@ -1,0 +1,30 @@
+.project{
+  @include borderRadius(10px);
+  @include boxShadow(0.05em, rgba(0, 0, 0, 0.4));
+  padding: 15px 20px!important;
+  img {
+    border: 2px solid #FFF;
+    @include borderRadius(5px);
+  }
+  .img-big {
+    margin: 10px;
+    @include borderRadius(5px);
+  }
+  .img-preview {
+    text-align: center;
+  }
+  .img-mini {
+    margin: 5px;
+    @include borderRadius(2px);
+    transition: all .2s ease-in-out;
+  }
+  .img-mini:hover {
+    transform: scale(1.1);
+  }
+  h3 {
+    line-height: normal;
+  }
+  .row {
+    margin:0 0 20px 0;
+  }
+}

@@ -1,0 +1,172 @@
+{% extends 'AMRFPublicRooterBundle:private/admin:baseAdmin.html.twig' %}
+{% block title %}Admin contenu{% endblock %}
+{% block body %}
+
+
+<h2>Gérer les contenus publics</h2>
+<!-- Nav tabs -->
+<div class="row tabPannel">
+
+    <ul class="list-inline text-center" role="tablist">
+        <li role="presentation" class="active">
+            <a href="#homepage" aria-controls="homepage" role="tab" data-toggle="tab">Homepage</a>
+        </li>
+        <li role="presentation">
+            <a href="#amrf" aria-controls="amrf" role="tab" data-toggle="tab">AMRF</a>
+        </li>
+        <li role="presentation">
+            <a href="#footer" aria-controls="footer" role="tab" data-toggle="tab">Footer</a>
+        </li>
+    </ul>
+
+
+    <!-- Panel tabs -->
+    <form>
+        <div class="tab-content">
+            <div role="tabpanel" class="tab-pane active" id="homepage">
+                <div class="col-lg-7 col-md-5 col-md-offset-3">
+                    <div class="form-group">
+                        <label for="article1">Article 1</label>
+                        <div class="wysiwyg">
+                            <i class="fa fa-bold"></i>
+                            <i class="fa fa-italic"></i>
+                            <i class="fa fa-underline"></i>
+                            <i class="fa fa-align-center"></i>
+                            <i class="fa fa-align-justify"></i>
+                            <i class="fa fa-align-left"></i>
+                            <i class="fa fa-cut"></i>
+                            <i class="fa fa-copy"></i>
+                            <i class="fa fa-paste"></i>
+                        </div>
+                        <textarea id="article1_title" class="form-control" rows="2"></textarea>
+                        <textarea id="article1" class="form-control" rows="10"></textarea>
+                    </div>
+                </div>
+                <div class="col-lg-7 col-md-5 col-md-offset-3">
+                    <div class="form-group">
+                        <label for="article2">Article 2</label>
+                        <div class="wysiwyg">
+                            <i class="fa fa-bold"></i>
+                            <i class="fa fa-italic"></i>
+                            <i class="fa fa-underline"></i>
+                            <i class="fa fa-align-center"></i>
+                            <i class="fa fa-align-justify"></i>
+                            <i class="fa fa-align-left"></i>
+                            <i class="fa fa-cut"></i>
+                            <i class="fa fa-copy"></i>
+                            <i class="fa fa-paste"></i>
+                        </div>
+                        <textarea id="article2_title" class="form-control" rows="2"></textarea>
+                        <textarea id="article2" class="form-control" rows="10"></textarea>
+                    </div>
+                </div>
+                <div class="col-lg-7 col-md-5 col-md-offset-3">
+                    <div class="form-group">
+                        <label for="article3">Article 3</label>
+                        <div class="wysiwyg">
+                            <i class="fa fa-bold"></i>
+                            <i class="fa fa-italic"></i>
+                            <i class="fa fa-underline"></i>
+                            <i class="fa fa-align-center"></i>
+                            <i class="fa fa-align-justify"></i>
+                            <i class="fa fa-align-left"></i>
+                            <i class="fa fa-cut"></i>
+                            <i class="fa fa-copy"></i>
+                            <i class="fa fa-paste"></i>
+                        </div>
+                        <textarea id="article3_title" class="form-control" rows="2"></textarea>
+                        <textarea id="article3" class="form-control" rows="10"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div role="tabpanel" class="tab-pane" id="amrf">
+                <div class="col-lg-7 col-md-5 col-md-offset-3">
+                    <div class="form-group">
+                        <label for="association">L'Association</label>
+                        <div class="wysiwyg">
+                            <i class="fa fa-bold"></i>
+                            <i class="fa fa-italic"></i>
+                            <i class="fa fa-underline"></i>
+                            <i class="fa fa-align-center"></i>
+                            <i class="fa fa-align-justify"></i>
+                            <i class="fa fa-align-left"></i>
+                            <i class="fa fa-cut"></i>
+                            <i class="fa fa-copy"></i>
+                            <i class="fa fa-paste"></i>
+                        </div>
+                        <textarea id="association_title" class="form-control" rows="2"></textarea>
+                        <textarea id="association" class="form-control" rows="10"></textarea>
+                    </div>
+                </div>
+                <div class="col-lg-7 col-md-5 col-md-offset-3">
+                    <div class="form-group">
+                        <label for="objectif">Objectif</label>
+                        <div class="wysiwyg">
+                            <i class="fa fa-bold"></i>
+                            <i class="fa fa-italic"></i>
+                            <i class="fa fa-underline"></i>
+                            <i class="fa fa-align-center"></i>
+                            <i class="fa fa-align-justify"></i>
+                            <i class="fa fa-align-left"></i>
+                            <i class="fa fa-cut"></i>
+                            <i class="fa fa-copy"></i>
+                            <i class="fa fa-paste"></i>
+                        </div>
+                        <textarea id="objectif_title" class="form-control" rows="2"></textarea>
+                        <textarea id="objectif" class="form-control" rows="10"></textarea>
+
+                    </div>
+                </div>
+                <div class="col-lg-7 col-md-5 col-md-offset-3">
+                    <div class="form-group">
+                        <label for="reseau">Réseau</label>
+                        <div class="wysiwyg">
+                            <i class="fa fa-bold"></i>
+                            <i class="fa fa-italic"></i>
+                            <i class="fa fa-underline"></i>
+                            <i class="fa fa-align-center"></i>
+                            <i class="fa fa-align-justify"></i>
+                            <i class="fa fa-align-left"></i>
+                            <i class="fa fa-cut"></i>
+                            <i class="fa fa-copy"></i>
+                            <i class="fa fa-paste"></i>
+                        </div>
+                        <textarea id="reseau_title" class="form-control" rows="2"></textarea>
+                        <textarea id="reseau" class="form-control" rows="10"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div role="tabpanel" class="tab-pane" id="footer">
+                <div class="col-lg-7 col-md-5 col-md-offset-3">
+                    <div class="form-group">
+                        <label for="resume">Présentation résumée</label>
+                        <div class="wysiwyg">
+                            <i class="fa fa-bold"></i>
+                            <i class="fa fa-italic"></i>
+                            <i class="fa fa-underline"></i>
+                            <i class="fa fa-align-center"></i>
+                            <i class="fa fa-align-justify"></i>
+                            <i class="fa fa-align-left"></i>
+                            <i class="fa fa-cut"></i>
+                            <i class="fa fa-copy"></i>
+                            <i class="fa fa-paste"></i>
+                        </div>
+                        <textarea id="resume" class="form-control" rows="10"></textarea>
+                    </div>
+                </div>
+                <div class="form-group col-sm-12">
+                    <label for="exampleInputFile">Changer le logo</label>
+                    <input type="file" id="exampleInputFile">
+                    <p class="help-block">Téléchargez une image</p>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+<div class="form-group col-sm-12" align="center">
+    <button type="button" class="btn">Enregistrer vos modifications</button>
+</div>
+
+{% endblock %}
+

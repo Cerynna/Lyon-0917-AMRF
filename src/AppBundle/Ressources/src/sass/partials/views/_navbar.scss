@@ -1,0 +1,39 @@
+#navbar {
+  color: white;
+  width: 100%;
+  margin-top: 0;
+  background-color: $color1;
+  border-radius: 0;
+  nav .button-collapse {
+    float: right;
+    position: relative;
+    z-index: 1;
+    height: 56px;
+    margin: 0 18px;
+  }
+   li {
+    a {
+      color: $color2;
+    }
+    color: $color1;
+  }
+   li :hover {
+    a {
+      color: $color1;
+    }
+    color: $color1;
+  }
+  ul .dropdown-menu {
+    a {
+      color: $color1;
+    }
+    color: $color1;
+  }
+  ul .dropdown-menu :hover {
+    a {
+      color: $color1;
+    }
+    color: $color1;
+  }
+
+}

@@ -1,0 +1,79 @@
+footer {
+  color: $color2;
+  line-height: 2.5em;
+  p {
+    line-height: 1em;
+  }
+  a:link {
+    text-decoration: none;
+    color: $color2;
+  }
+
+  a:visited {
+    text-decoration: none;
+    color: $color2;
+  }
+
+  a:hover {
+    text-decoration: none;
+    font-weight: bold;
+    color: $color2;
+  }
+
+  a:active {
+    text-decoration: none;
+    font-weight: bold;
+    color: $color2;
+  }
+  .bck {
+    background: linear-gradient(to bottom, rgba(224, 242, 241, 0.6), rgba(224, 242, 241, 0));
+    height:30vh;
+  }
+  .bck-copy {
+    background-color: $color1;
+    padding: 20px;
+    margin-top: 2em;
+  }
+  .bck-footer {
+    background-color: $color1;
+    padding: 20px;
+  }
+  .space-bottom {
+    margin-bottom: 2em;
+  }
+  .footer-logo {
+    height: 90px;
+    padding: 5px;
+    background-color: #FFFFFF;
+    @include borderRadius(5px);
+    box-shadow: 5px 5px 0 rgba(0, 0, 0, 0.6);
+  }
+  .partlogo {
+    height: 70px;
+    margin: 5px;
+    padding: 5px;
+    background-color: #FFFFFF;
+    @include borderRadius(5px);
+    box-shadow: 5px 5px 0 rgba(0, 0, 0, 0.6);
+  }
+  .center {
+    text-align: center;
+  }
+  .logo {
+    display: inline-block;
+
+    background-color: rgba(224, 242, 241, 0.6);
+    background-image: url('../img/AMRF.png');
+    background-position: center;
+    background-repeat: no-repeat;
+
+    background-size: contain;
+    z-index: 10000;
+
+    width: 120px;
+    height: 40px;
+    border-radius: 10px;
+    box-shadow: 5px 5px 0 rgba(0, 0, 0, 0.6);
+  }
+
+}

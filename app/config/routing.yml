@@ -1,0 +1,4 @@
+amrf_public_rooter:
+    resource: "@AMRFPublicRooterBundle/Controller/"
+    type: annotation
+

@@ -1,6 +1,9 @@
+wikiMaire
+=========
+
 Project Wild Code School for 'Association des Maires Ruraux de France'. 
  
- 
+
     * Instructions :
     -----------------
          - Create a website gathering resources about projects development for cities of less of 3500 inh.
@@ -35,3 +38,5 @@ Project Wild Code School for 'Association des Maires Ruraux de France'.
  
  
 develoment Team : **Marie, Darin, Simon, Jeremy, Severine**
+
+A Symfony project created on October 20, 2017, 11:25 am.
