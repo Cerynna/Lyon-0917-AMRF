@@ -213,12 +213,27 @@ header {
   height: 25%;
   text-align: center;
   width: 100%; }
+  header .barSearch {
+    padding: 10px;
+    margin: 10px auto;
+    width: 500px; }
+  header #laBar {
+    background: url("../img/bck-2.jpg") no-repeat fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    width: 100%;
+    z-index: 6;
+    height: 170px; }
+  header #title {
+    height: 200px; }
   header .logo {
     display: inline-block;
     background: white url("../img/AMRF.png") no-repeat center;
     background-size: contain;
     z-index: 10000;
-    top: 5px;
+    top: 27px;
     left: 15px;
     position: fixed;
     width: 200px;
@@ -226,21 +241,19 @@ header {
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
     -ms-border-radius: 5px;
-    border-radius: 5px;
-    box-shadow: 5px 5px 0 rgba(0, 0, 0, 0.6); }
+    border-radius: 5px; }
   header .connect {
     display: inline-block;
-    float: right;
-    text-align: right;
     padding-right: 1%;
     padding-top: 1%; }
   header h1 {
     display: inline-block;
-    margin: 10% auto;
+    margin: 10px auto;
     font-size: 4em;
     font-family: "ERASDEMI", sans-serif;
     color: #FFFFFF;
-    text-shadow: 5px 5px 0 rgba(0, 0, 0, 0.6); }
+    text-shadow: 5px 5px 0 rgba(0, 0, 0, 0.6);
+    z-index: 100; }
 
 .containerConnect .card {
   width: 100%;
