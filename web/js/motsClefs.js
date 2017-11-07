@@ -1,5 +1,5 @@
 $(function () {
-    var motsCle = [
+    var availableTags = [
         "école",
         "périscolaire",
         "formation",
@@ -95,6 +95,7 @@ $(function () {
         "Ü": "U",
         "Ù": "U"
     };
+
     var normalize = function (term) {
         var ret = "";
         for (var i = 0; i < term.length; i++) {
@@ -111,6 +112,7 @@ $(function () {
         return split(term).pop();
     }
 
+
     $("#motsCle")
     // don't navigate away from the field on tab when selecting an item
         .on("keydown", function (event) {
@@ -122,8 +124,12 @@ $(function () {
         .autocomplete({
             minLength: 0,
             source: function (request, response) {
+                // delegate back to autocomplete, but extract the last term
+                response($.ui.autocomplete.filter(
+                    availableTags, extractLast(request.term)));
+
                 var matcher = new RegExp($.ui.autocomplete.escapeRegex(request.term), "i");
-                response($.grep(motsCle, function (value) {
+                response($.grep(availableTags, function (value) {
                     value = value.label || value.value || value;
                     return matcher.test(value) || matcher.test(normalize(value));
                 }));
