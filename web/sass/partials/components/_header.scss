@@ -5,7 +5,7 @@ header {
 
   .logo {
     display: inline-block;
-    background: rgba(255, 255, 255, 1) url('../img/AMRF.png') no-repeat center;
+    background: rgba(255, 255, 255,1) url('../img/AMRF.png') no-repeat center;
     background-size: contain;
     z-index: 10000;
     top: 5px;
@@ -13,8 +13,8 @@ header {
     position: fixed;
     width: 200px;
     height: 100px;
-    @include borderRadius(5px);
-    box-shadow: 5px 5px 0 rgba(0, 0, 0, 0.6);
+    @include borderRadius(0px);
+    box-shadow: 5px 5px 0 rgba(0, 0, 0, 0);
   }
   .connect {
     display: inline-block;
