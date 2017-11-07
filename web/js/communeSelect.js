@@ -1,4 +1,6 @@
-var availableCom = ["Ain",
+$(function () {
+    var communes = [
+        "Ain",
         "Aisne",
         "Allier",
         "Alpes de Haute-Provence",
@@ -96,45 +98,64 @@ var availableCom = ["Ain",
         "Yvelines"
     ];
 
-var accentMap = {
-    'á':'a',
-    'à':'a',
-    'ç':'c',
-    'é':'e',
-    'è':'e',
-    'í':'i',
-    'ô':'o',
-    'ú':'u',
-    'ù':'u'
-};
-
-var normalize = function(term){
-    var ret = "";
-    for(var i = 0; i < term.length; i++){
-        ret += accentMap[ term.charAt(i) ] || term.charAt(i);
-    }
-    return ret;
-};
+    var accentMap = {
+        "á": "a",
+        "à": "a",
+        "â": "a",
+        "ä": "a",
+        "ç": "c",
+        "é": "e",
+        "è": "e",
+        "ê": "e",
+        "ë": "e",
+        "î": "i",
+        "ï": "i",
+        "ô": "o",
+        "ö": "o",
+        "ù": "u",
+        "û": "u",
+        "ü": "u",
+        "Â": "A",
+        "Ä": "A",
+        "À": "A",
+        "Ç": "C",
+        "Ê": "E",
+        "Ë": "E",
+        "É": "E",
+        "È": "E",
+        "Î": "I",
+        "Ï": "I",
+        "Ô": "O",
+        "Ö": "O",
+        "Û": "U",
+        "Ü": "U",
+        "Ù": "U"
+    };
+    var normalize = function (term) {
+        var ret = "";
+        for (var i = 0; i < term.length; i++) {
+            ret += accentMap[term.charAt(i)] || term.charAt(i);
+        }
+        return ret;
+    };
 
     $("#communes").autocomplete({
-        appendTo: "#results",
-        source: availableCom,
+        source: function (request, response) {
+            var matcher = new RegExp($.ui.autocomplete.escapeRegex(request.term), "i");
+            response($.grep(communes, function (value) {
+                value = value.label || value.value || value;
+                return matcher.test(value) || matcher.test(normalize(value));
+            }));
+        },
         open: function() {
             var position = $("#results").position(),
                 left = position.left, top = position.top;
 
             $("#results ").css({
                 top: top + 0 + "px" });
-
         }
     });
+});
 
-
-
-    /*
-    $("#communes").autocomplete({
-        source: availableCom
-    });
-*/
 
 
