@@ -1,5 +1,4 @@
-$(function () {
-    var availableCom = ["Ain",
+var availableCom = ["Ain",
         "Aisne",
         "Allier",
         "Alpes de Haute-Provence",
@@ -97,6 +96,26 @@ $(function () {
         "Yvelines"
     ];
 
+var accentMap = {
+    'á':'a',
+    'à':'a',
+    'ç':'c',
+    'é':'e',
+    'è':'e',
+    'í':'i',
+    'ô':'o',
+    'ú':'u',
+    'ù':'u'
+};
+
+var normalize = function(term){
+    var ret = "";
+    for(var i = 0; i < term.length; i++){
+        ret += accentMap[ term.charAt(i) ] || term.charAt(i);
+    }
+    return ret;
+};
+
     $("#communes").autocomplete({
         appendTo: "#results",
         source: availableCom,
@@ -110,10 +129,12 @@ $(function () {
         }
     });
 
+
+
     /*
     $("#communes").autocomplete({
         source: availableCom
     });
 */
-});
+
 
