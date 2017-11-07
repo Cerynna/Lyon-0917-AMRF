@@ -2,12 +2,12 @@ header {
   height: 25%;
   text-align: center;
   width: 100%;
-.barSearch{
-  padding: 10px;
-  margin: 10px auto;
-  width: 500px;
+  .barSearch {
+    padding: 10px;
+    margin: 10px auto;
+    width: 500px;
+  }
 
-}
   #laBar {
     background: url('../img/bck-2.jpg') no-repeat fixed;
     -webkit-background-size: cover;
@@ -18,10 +18,11 @@ header {
     z-index: 6;
     height: 170px;
   }
+
   #title {
     height: 200px;
-
   }
+
   .logo {
     display: inline-block;
     background: rgba(255, 255, 255, 1) url('../img/AMRF.png') no-repeat center;
@@ -34,18 +35,25 @@ header {
     height: 100px;
     @include borderRadius(5px);
   }
+
   .connect {
+    font-size: 1.3em;
     display: inline-block;
-    padding-right: 1%;
-    padding-top: 1%;
+    background-size: contain;
+    z-index: 10000;
+    top: 17px;
+    right: 5px;
+    position: fixed;
+    @include borderRadius(5px);
   }
+
   h1 {
     display: inline-block;
     margin: 10px auto;
     font-size: 4em;
     font-family: $font3, sans-serif;
     color: #FFFFFF;
-    text-shadow: 5px 5px 0 rgba(0, 0, 0, 0.6);
+    text-shadow: 0.5px 0.5px 0.5px rgba(0, 0, 0, 0.6);
     z-index: 100;
   }
 }
