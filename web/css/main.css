@@ -447,12 +447,15 @@ nav {
 @media only screen and (max-width: 1000px) {
   .espaceMaire .card-body {
     height: 400px !important; }
-  .espaceMaire .card-block {
-    margin-bottom: 75px; } }
+  .espaceMaire .cardBtn {
+    margin-bottom: 120px !important; } }
 
-.espaceMaire button {
-  margin: -20px 0 30px 0;
-  width: 325px; }
+.espaceMaire div.btn {
+  width: 325px;
+  margin: 12px 2px 2px 2px; }
+
+.cardBtn {
+  margin-bottom: 40px; }
 
 .cardGest {
   margin: 0 0 20px 0; }
