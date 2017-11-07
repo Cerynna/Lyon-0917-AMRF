@@ -240,11 +240,12 @@ header {
     -ms-border-radius: 5px;
     border-radius: 5px; }
   header .connect {
-    font-size: 1.3em;
+    font-size: 1.5em;
     display: inline-block;
     z-index: 6000;
     position: fixed;
-    right: 0; }
+    right: 5px;
+    top: 17px; }
   header h1 {
     display: inline-block;
     margin: 10px auto;
@@ -291,16 +292,15 @@ nav {
   margin-top: 0;
   background-color: rgba(0, 158, 61, 0.99);
   border-radius: 0;
-  font-size: 1.8em;
+  font-size: 1.6em;
   vertical-align: middle;
-  height: 55px;
+  height: 60px;
   padding-right: 50px;
   box-shadow: 0.05em 0.05em 0.05em 0.05em rgba(0, 0, 0, 0.2);
   /*box-shadow: 5px 5px  rgba(0, 0, 0, 0.6);*/ }
   nav p {
     font-style: italic;
-    font-size: 1em;
-    text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.6);
+    font-size: 0.9em;
     margin-top: 10px;
     margin-left: 20px; }
     nav p i {
@@ -583,6 +583,10 @@ section {
     padding: 20px 10px 20px 10px;
     text-align: justify; }
 
+section form .search {
+  height: 50px;
+  font-size: 1.8em !important; }
+
 section form .form-control {
   font-size: 1em;
   color: #2a2a2a;
@@ -613,7 +617,7 @@ section form input[type="file"] {
   height: 0;
   width: 0;
   overflow: hidden;
-  border: 0 solid rgba(0, 158, 61, 0.99); }
+  border: 0 solid rgba(196, 255, 190, 0.1); }
 
 section form input[type="radio"]:empty,
 section form input[type="checkbox"]:empty {
@@ -835,10 +839,6 @@ a:hover, a:active {
   border-radius: 5px;
   z-index: 1000;
   border: 1px solid #FFF; }
-
-.search {
-  height: 50px;
-  font-size: 1.8em !important; }
 
 .label-commune {
   display: inline-block;
