@@ -210,12 +210,15 @@ textarea {
 *************************** Components *********************
  */
 header {
-  height: 25%;
   text-align: center;
   width: 100%; }
+  header p {
+    color: #FFFFFF;
+    font-size: 1.8em;
+    text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.6); }
   header .barSearch {
     padding: 10px;
-    margin: 10px auto;
+    margin: 0 auto;
     width: 500px; }
   header #laBar {
     background: url("../img/bck-2.jpg") no-repeat fixed;
@@ -223,18 +226,12 @@ header {
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
-    width: 100%;
-    z-index: 6;
-    height: 170px; }
-  header #title {
-    height: 200px; }
+    z-index: 990; }
   header .logo {
     display: inline-block;
     background: white url("../img/AMRF.png") no-repeat center;
     background-size: contain;
     z-index: 10000;
-    top: 27px;
-    left: 15px;
     position: fixed;
     width: 200px;
     height: 100px;
@@ -245,23 +242,17 @@ header {
   header .connect {
     font-size: 1.3em;
     display: inline-block;
-    background-size: contain;
-    z-index: 10000;
-    top: 17px;
-    right: 5px;
+    z-index: 6000;
     position: fixed;
-    -webkit-border-radius: 5px;
-    -moz-border-radius: 5px;
-    -ms-border-radius: 5px;
-    border-radius: 5px; }
+    right: 0; }
   header h1 {
     display: inline-block;
     margin: 10px auto;
     font-size: 4em;
     font-family: "ERASDEMI", sans-serif;
     color: #FFFFFF;
-    text-shadow: 0.5px 0.5px 0.5px rgba(0, 0, 0, 0.6);
-    z-index: 100; }
+    text-shadow: 5px 5px 0 rgba(0, 0, 0, 0.6);
+    position: relative; }
 
 h5 {
   font-size: 1.5em; }
@@ -306,6 +297,15 @@ nav {
   padding-right: 50px;
   box-shadow: 0.05em 0.05em 0.05em 0.05em rgba(0, 0, 0, 0.2);
   /*box-shadow: 5px 5px  rgba(0, 0, 0, 0.6);*/ }
+  nav p {
+    font-style: italic;
+    font-size: 1em;
+    text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.6);
+    margin-top: 10px;
+    margin-left: 20px; }
+    nav p i {
+      font-size: 0.5em !important;
+      vertical-align: top; }
   nav .nav > li > a {
     margin: 0 5px -4px 5px;
     color: #FFFFFF; }
@@ -826,13 +826,15 @@ a:hover, a:active {
   font-size: 40px;
   position: fixed;
   padding: 0 20px;
-  bottom: 50px;
-  right: 50px;
+  bottom: 10px;
+  right: 10px;
   background-color: rgba(0, 158, 61, 0.99);
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
   -ms-border-radius: 5px;
-  border-radius: 5px; }
+  border-radius: 5px;
+  z-index: 1000;
+  border: 1px solid #FFF; }
 
 .search {
   height: 50px;
@@ -964,7 +966,6 @@ a:hover, a:active {
     border: 2px solid rgba(0, 158, 61, 0.99); }
 
 /*
-
 .row {
   border: 1px solid black !important;
 }
@@ -1004,5 +1005,4 @@ a:hover, a:active {
 .col-md-12 {
   border: 1px solid black !important;
 }
-
 */
