@@ -6,11 +6,11 @@ header {
     font-size: 1.8em;
     text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.6);
   }
-.barSearch{
+.barSearch {
   padding: 10px;
   margin: 0 auto;
   width: 500px;
-
+}
 
   #laBar {
     background: url('../img/bck-2.jpg') no-repeat fixed;
@@ -32,11 +32,12 @@ header {
   }
 
   .connect {
-    font-size: 1.3em;
+    font-size: 1.5em;
     display: inline-block;
     z-index: 6000;
     position: fixed;
-    right: 0;
+    right: 5px;
+    top: 17px;
 
   }
 

@@ -2,7 +2,7 @@
 
 $(document).ready(function () {
 //NavBar
-    $("#navbar").sticky({topSpacing: 160, zIndex: 6});
+    $("#navbar").sticky({topSpacing: 158, zIndex: 6});
     $("#laBar").sticky({topSpacing: 0, zIndex: 4});
     $("#sticky2").sticky({topSpacing: 20, zIndex: 6,widthFromWrapper: false, center: true});
     /*$("#sticky3").sticky({topSpacing: 20, zIndex: 6, center: false});*/

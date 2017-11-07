@@ -1,5 +1,9 @@
 section {
   form {
+    .search {
+      height: 50px;
+      font-size: 1.8em !important;
+    }
     .form-control {
       font-size: 1em;
       color: $color5;
@@ -30,7 +34,7 @@ section {
       height: 0;
       width: 0;
       overflow: hidden;
-      border: 0 solid $color1;
+      border: 0 solid $color3;
     }
     input[type="radio"],
     input[type="checkbox"] {
