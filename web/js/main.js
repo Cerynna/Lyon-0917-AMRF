@@ -5,7 +5,9 @@ $(document).ready(function () {
 
 
 //NavBar
-    $("#navbar").sticky({topSpacing: 0, zIndex: 4});
+    $("#navbar").sticky({topSpacing: 140, zIndex: 5});
+    $("#laBar").sticky({topSpacing: 0, zIndex: 4});
+    $("#barRecherche").sticky({topSpacing: 20, zIndex: 4});
 
     //CAROUSSEL
     $('#myCarousel').carousel({
@@ -31,15 +33,7 @@ $(document).ready(function () {
 
 
 });
-$(window).on('scroll', function () {
-    var scrollTop = $(window).scrollTop();
-    if (scrollTop > 20) {
-        $('#logo').stop().animate({height: "40px", width: "80px"},50);
-    }
-    else {
-        $('#logo').stop().animate({height: "100px", width: "200px"},50);
-    }
-});
+
 
 function showImg(idimg, img) {
     document.getElementById(idimg).setAttribute('src', img);
