@@ -9,39 +9,40 @@
 
     <h2 class="center-align">Espace des Maires</h2>
 
-    <div class="row espaceMaire">
-        <div class="cardGest col-xs-12 col-md-12">
+    <div class="row">
+        <div class="espaceMaire cardGest col-xs-12 col-md-12">
             <div class="card-body bck-maire">
-                <div class="card-title col-md-12">
+                <div class="card-title col-xs-12 col-md-12">
                     <i class="fa fa-folder-open"></i>
                     <h3>PROJETS</h3>
                 </div>
-                <div class="col-md-5 col-md-offset-1">
-                    <a href="{{ path('maireFormProjet') }}">
-                        <button class="btn btn-xs"><span class="fa fa-plus"></span> AJOUTER UNE FICHE PROJET
-                        </button>
-                    </a>
-                    <a href="{{ path('maireProjets') }}">
-                        <button class="btn btn-xs"><span class="fa fa-file-text"></span> CONSULTER / MODIFIER MES FICHES
-                        </button>
-                    </a>
-                </div>
+                <div class="card-block col-xs-12 col-md-12">
+                    <div class="col-xs-12 col-md-6">
+                        <a href="{{ path('maireFormProjet') }}">
+                            <button class="btn btn-xs"><span class="fa fa-plus"></span> AJOUTER UNE FICHE PROJET
+                            </button>
+                        </a>
+                        <a href="{{ path('maireProjets') }}">
+                            <button class="btn btn-xs"><span class="fa fa-file-text"></span> CONSULTER / MODIFIER MES FICHES
+                            </button>
+                        </a>
+                    </div>
+                    <div class="col-xs-12 col-md-6">
+                        <a href="{{ path('recherche') }}">
+                            <button class="btn btn-xs"><span class="fa fa-search"></span> RECHERCHER LES PROJETS
+                            </button>
+                        </a>
+                        <a href="{{ path('partFavoris') }}">
+                            <button class="btn btn-sm"><i class="fa fa-star-o"></i>
+                                PARCOURIR MES FAVORIS
+                            </button>
+                        </a>
+                    </div>
+                </div>{#end card block#}
+            </div>{#end card body#}
+        </div>{#end card gest#}
 
-                <div class="col-md-5 col-md-offset-1">
-                    <a href="{{ path('recherche') }}">
-                        <button class="btn btn-xs"><span class="fa fa-search"></span> RECHERCHER LES PROJETS
-                        </button>
-                    </a>
-                    <a href="{{ path('partFavoris') }}">
-                        <button class="btn btn-sm"><i class="fa fa-star-o"></i>
-                            PARCOURIR MES FAVORIS
-                        </button>
-                    </a>
-                </div>
-            </div>
-        </div>
-
-        <div class="card cardGest col-xs-12 col-md-6">
+        <div class="cardGest col-xs-12 col-md-6">
             <div class="card-body bck-maire">
                 <div class="card-title">
                     <i class="fa fa-user"></i>
@@ -54,7 +55,7 @@
                 </div>
             </div>
         </div>
-        <div class="card cardGest col-xs-12 col-md-6">
+        <div class="cardGest col-xs-12 col-md-6">
             <div class="card-body bck-maire">
                 <div class="card-title">
                     <i class="fa fa-users"></i>
