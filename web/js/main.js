@@ -1,16 +1,18 @@
+
+
 $(document).ready(function () {
-
-    $("textarea").attr( "maxlength", 1200 );
-
-
-
 //NavBar
-    $("#navbar").sticky({topSpacing: 0, zIndex: 4});
+    $("#navbar").sticky({topSpacing: 160, zIndex: 6});
+    $("#laBar").sticky({topSpacing: 0, zIndex: 4});
+    $("#sticky2").sticky({topSpacing: 20, zIndex: 6,widthFromWrapper: false, center: true});
+    /*$("#sticky3").sticky({topSpacing: 20, zIndex: 6, center: false});*/
 
     //CAROUSSEL
     $('#myCarousel').carousel({
         interval: 3000
     });
+
+    $("textarea").attr( "maxlength", 1200 );x
 
     //Limit Checkbox
     var cb = document.querySelectorAll("[class=check-themat]");
@@ -31,15 +33,8 @@ $(document).ready(function () {
 
 
 });
-$(window).on('scroll', function () {
-    var scrollTop = $(window).scrollTop();
-    if (scrollTop > 20) {
-        $('#logo').stop().animate({height: "40px", width: "80px"},50);
-    }
-    else {
-        $('#logo').stop().animate({height: "100px", width: "200px"},50);
-    }
-});
+
+
 
 function showImg(idimg, img) {
     document.getElementById(idimg).setAttribute('src', img);

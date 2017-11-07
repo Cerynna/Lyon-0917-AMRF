@@ -9,6 +9,17 @@ nav {
   height: 55px;
   padding-right: 50px;
   @include boxShadow(0.05em, rgba(0, 0, 0, 0.2));
+  p {
+    font-style: italic;
+    font-size: 1em;
+    text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.6);
+    margin-top: 10px;
+    margin-left: 20px;
+    i {
+      font-size: 0.5em !important;
+      vertical-align: top;
+    }
+  }
   .nav > li > a {
     margin: 0 5px -4px 5px;
     color: $color2;
