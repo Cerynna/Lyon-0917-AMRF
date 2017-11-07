@@ -7,8 +7,8 @@
     <h2>Annuaire des partenaires</h2>
     <form>
         <div class="row jumbotron">
-            <div class="col-md-12 text-center">
-                Trier par lettres
+            <div class="col-md-12">
+                <p>Choisir par nom</p>
                 <ul class="pagination text-center">
                     {% for letter in 'a'|upper..'z'|upper %}
                         <li class="waves-effect"><a href="#{{ letter }}">{{ letter }}</a></li>
@@ -16,7 +16,7 @@
                 </ul>
             </div>
             <div class="col-md-12">
-                Trier par thématiques
+               <p>Choisir par secteur d'activité</p>
 
                 {% include 'AMRFPublicRooterBundle::components/thematiques.html.twig' %}
 
@@ -76,12 +76,10 @@
                             <li>Nom Prénom</li>
                             <li>Mail</li>
                             <li>Téléphone</li>
-                        </ul>
-                        <h4>Contact Local :</h4>
-                        <ul>
-                            <li>Nom Prénom</li>
-                            <li>Mail</li>
-                            <li>Téléphone</li>
+                            <li>Site internet</li>
+                            <li>Facebook</li>
+                            <li>Twitter</li>
+                            <li>Linkedin</li>
                         </ul>
                     </div>
                 </div>

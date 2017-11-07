@@ -10,7 +10,7 @@
 
                 <div class="formConnect bck-maire">
                     <form action="/maire" method="post">
-                        <h5 class="center-align">Maire</h5>
+                        <h5 class="text-center">Maire</h5>
                         <div class="form-group">
                             <label for="login">n° INSEE</label>
                             <input id="login" type="text" class="form-control">
@@ -19,19 +19,24 @@
                             <label for="last_name">Mot de passe</label>
                             <input id="mdp" type="password" class="form-control">
                         </div>
+                        <div class="saveAll">
+                            <input name="group1" class="" type="checkbox" id="saveMaire">
+                            <label class="labelSave" for="saveMaire">Se souvenir de moi</label>
+                        </div>
                         <div class="containerConnect">
                             <button class="btn" type="submit" name="action">Connection</button>
                         </div>
                         <div class="containerConnect">
-                            <a href="#">Créer mon compte</a>
+                            <a href="#">Mot de passe oublié ?</a>
                         </div>
+
                     </form>
                 </div>
 
 
                 <div class="formConnect bck-part">
                     <form action="/partenaire" method="post">
-                        <h5 class="center-align">Partenaire</h5>
+                        <h5 class="text-center">Partenaire</h5>
                         <div class="form-group">
                             <label for="login">n° SIRET</label>
                             <input id="login" type="text" class="form-control">
@@ -40,11 +45,15 @@
                             <label for="last_name">Mot de passe</label>
                             <input id="mdp" type="password" class="form-control">
                         </div>
+                        <div class="saveAll">
+                            <input name="group1" class="" type="checkbox" id="savePart">
+                            <label class="labelSave" for="savePart">Se souvenir de moi</label>
+                        </div>
                         <div class="containerConnect">
                             <button class="btn" type="submit" name="action">Connection</button>
                         </div>
                         <div class="containerConnect">
-                            <a href="#">Créer mon compte</a>
+                            <a href="#">Mot de passe oublié ?</a>
                         </div>
                     </form>
                 </div>
