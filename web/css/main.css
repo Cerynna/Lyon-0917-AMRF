@@ -474,7 +474,7 @@ nav {
     .cardGest .card-body h3 {
       color: #FFFFFF;
       margin: 20px;
-      line-height: 0em; }
+      line-height: 1em; }
     .cardGest .card-body .card-block {
       position: absolute;
       bottom: 0;
@@ -501,7 +501,7 @@ footer {
     background-color: rgba(0, 158, 61, 0.99);
     padding: 20px; }
   footer p {
-    font-size: 1.1em;
+    font-size: 0.8em;
     text-align: justify; }
   footer ul > li {
     margin: 0 20px 0 20px; }
