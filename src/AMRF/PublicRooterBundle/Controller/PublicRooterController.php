@@ -171,5 +171,4 @@ class PublicRooterController extends Controller
         return $this->render('AMRFPublicRooterBundle:private:admin/adminContenus.html.twig');
     }
 
-
 }

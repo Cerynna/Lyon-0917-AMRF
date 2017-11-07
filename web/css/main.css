@@ -444,39 +444,44 @@ nav {
   .bck-default div > a {
     color: #3d625b !important; }
 
-.cardGest .card-title {
-  text-align: center; }
-  .cardGest .card-title .fa {
-    margin: 10px;
-    text-align: center;
-    font-size: 5em; }
+.espaceMaire .btn {
+  width: 325px; }
 
-.cardGest .card-body {
-  height: 400px;
-  -webkit-border-radius: 5px;
-  -moz-border-radius: 5px;
-  -ms-border-radius: 5px;
-  border-radius: 5px;
-  box-shadow: 0.05em 0.05em 0.05em 0.05em rgba(0, 0, 0, 0.4);
-  /*box-shadow: 5px 5px  rgba(0, 0, 0, 0.6);*/ }
-  .cardGest .card-body p {
-    margin-top: 10px;
-    padding: 10px;
-    font-size: 0.9em;
-    display: inline-block;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: normal; }
-  .cardGest .card-body h3 {
-    color: #FFFFFF;
-    margin: 20px;
-    line-height: 0em; }
-  .cardGest .card-body .card-block {
-    position: absolute;
-    bottom: 0;
-    text-align: center;
-    width: 100%;
-    padding-right: 30px; }
+.cardGest {
+  margin: 0 0 25px 0; }
+  .cardGest .card-title {
+    text-align: center; }
+    .cardGest .card-title .fa {
+      margin: 10px;
+      text-align: center;
+      font-size: 5em; }
+  .cardGest .card-body {
+    height: 280px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    border-radius: 5px;
+    box-shadow: 0.05em 0.05em 0.05em 0.05em rgba(0, 0, 0, 0.4);
+    /*box-shadow: 5px 5px  rgba(0, 0, 0, 0.6);*/ }
+    .cardGest .card-body p {
+      margin-top: 10px;
+      padding: 10px;
+      font-size: 0.9em;
+      display: inline-block;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: normal; }
+    .cardGest .card-body h3 {
+      color: #FFFFFF;
+      margin: 20px;
+      line-height: 0em; }
+    .cardGest .card-body .card-block {
+      position: absolute;
+      bottom: 0;
+      text-align: center;
+      width: 100%;
+      height: 35%;
+      padding-right: 30px; }
 
 footer {
   color: #FFFFFF; }
