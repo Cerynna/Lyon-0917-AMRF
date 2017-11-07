@@ -457,11 +457,21 @@ nav {
   .bck-default div > a {
     color: #3d625b !important; }
 
-.espaceMaire .btn {
-  width: 325px; }
+@media only screen and (max-width: 1000px) {
+  .espaceMaire .card-body {
+    height: 400px !important; }
+  .espaceMaire .cardBtn {
+    margin-bottom: 120px !important; } }
+
+.espaceMaire div.btn {
+  width: 325px;
+  margin: 12px 2px 2px 2px; }
+
+.cardBtn {
+  margin-bottom: 40px; }
 
 .cardGest {
-  margin: 0 0 25px 0; }
+  margin: 0 0 20px 0; }
   .cardGest .card-title {
     text-align: center; }
     .cardGest .card-title .fa {
@@ -469,7 +479,7 @@ nav {
       text-align: center;
       font-size: 5em; }
   .cardGest .card-body {
-    height: 280px;
+    height: 300px;
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
     -ms-border-radius: 5px;
