@@ -7,7 +7,7 @@
         <p>Numero de téléphone..........</p>
     </div>
     <div class="jumbotron">
-        <h4>Ou envoyez nous une message:</h4><br>
+        <h4>Ou envoyez nous un message:</h4><br>
         <form role="form" method="post">
             <div class="row">
                 <div class="form-group col-md-6">
@@ -15,7 +15,7 @@
                     <input type="text" class="form-control" id="nom" name="nom" required>
                 </div>
                 <div class="form-group col-md-6">
-                    <label>Prenom</label>
+                    <label>Prénom</label>
                     <input type="text" class="form-control" id="prenom" name="prenom" required>
                 </div>
                 <div class="form-group col-md-6">
@@ -29,19 +29,22 @@
                 <div class="col-md-6">
                     <label>Je suis...</label>
                     <select class="form-control" id="subject" name="subject">
-                        <option selected value="na">Choisir une option</option>
+                        <option selected value="na" hidden>Choisir une option</option>
                         <option value="service">Maire</option>
                         <option value="suggestions">Partenaire</option>
+                        <option value="press">Journaliste</option>
                         <option value="product">Autre</option>
                     </select>
                 </div>
                 <div class="col-md-6">
                     <label>Objet</label>
                     <select class="form-control" id="subject" name="subject">
-                        <option selected value="na">Choisir une option</option>
-                        <option value="service">Inscription</option>
-                        <option value="suggestions">Fiche Projet</option>
+                        <option selected value="na" hidden>Choisir une option</option>
                         <option value="product">Demande de Renseignement</option>
+                        <option value="adhésion">Demande d'Adhésion </option>
+                        <option value="service">Problème de Connection</option>
+                        <option value="suggestions">Fiche Projet</option>
+                        <option value="autre">Autre</option>
                     </select>
                 </div>
             </div>

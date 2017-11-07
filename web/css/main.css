@@ -11,7 +11,8 @@
  * Inspired by Normalize.css: http://necolas.github.com/normalize.css/
  */
 /* HTML5 display definitions */
-@import url("https://fonts.googleapis.com/css?family=Cabin+Condensed|Comfortaa|Francois+One|Josefin+Sans|Play|Poiret+One|Source+Sans+Pro");
+@import url("https://fonts.googleapis.com/css?family=Cabin+Condensed|Source+Sans+Pro");
+@import url("../fonts/ERASDEMI.TTF");
 @import url("http://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css");
 section, nav, article, aside, hgroup,
 header, footer, figure, figcaption, details {
@@ -237,7 +238,7 @@ header {
     display: inline-block;
     margin: 10% auto;
     font-size: 4em;
-    font-family: "Cabin Condensed", sans-serif;
+    font-family: "ERASDEMI", sans-serif;
     color: #FFFFFF;
     text-shadow: 5px 5px 0 rgba(0, 0, 0, 0.6); }
 
@@ -517,14 +518,13 @@ section {
     z-index: 1; }
   section h2 {
     color: rgba(0, 158, 61, 0.99);
-    font-family: "Cabin Condensed", sans-serif;
+    font-family: "ERASDEMI", sans-serif;
     font-size: 2.8em;
     line-height: 2em;
-    text-transform: uppercase;
     text-align: center; }
   section h3 {
     color: rgba(0, 158, 61, 0.99);
-    font-family: "Cabin Condensed", sans-serif;
+    font-family: "ERASDEMI", sans-serif;
     font-size: 1.8em;
     line-height: 2em;
     margin-bottom: 10px; }
@@ -713,6 +713,10 @@ form .cleIcon {
 /**
 ** node-sass --watch web/sass/main.scss web/css/main.css
 */
+@font-face {
+  font-family: ERASDEMI;
+  src: url("../fonts/ERASDEMI.TTF"); }
+
 /**
 */
 body::-webkit-scrollbar {

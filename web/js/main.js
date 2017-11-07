@@ -1,4 +1,9 @@
 $(document).ready(function () {
+
+    $("textarea").attr( "maxlength", 1200 );
+
+
+
 //NavBar
     $("#navbar").sticky({topSpacing: 0, zIndex: 4});
 
@@ -42,3 +47,4 @@ function showImg(idimg, img) {
 function hideImg(idimg,img) {
     document.getElementById(idimg).setAttribute('src', img);
 }
+
