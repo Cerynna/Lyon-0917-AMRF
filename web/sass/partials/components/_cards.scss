@@ -40,13 +40,26 @@
 }
 
 .espaceMaire {
-  .btn {
+  @media only screen and (max-width: 1000px) {
+    .card-body {
+      height: 400px !important;
+    }
+    .cardBtn{
+      margin-bottom: 120px !important;
+    }
+  }
+  div.btn {
     width: 325px;
+    margin: 12px 2px 2px 2px;
   }
 }
 
+.cardBtn{
+  margin-bottom: 40px;
+}
+
 .cardGest {
-  margin: 0 0 25px 0;
+  margin: 0 0 20px 0;
   .card-title {
     text-align: center;
     .fa {
@@ -57,7 +70,7 @@
   }
 
   .card-body {
-    height: 280px;
+    height: 300px;
     @include borderRadius(5px);
     @include boxShadow(0.05em, rgba(0, 0, 0, 0.4));
     p {
