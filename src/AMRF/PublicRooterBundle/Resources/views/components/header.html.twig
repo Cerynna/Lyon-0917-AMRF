@@ -1,28 +1,61 @@
-<div class="container-fluid">
+{#<div class="container-fluid" id="header">
     <div class="row">
-        <div class="col-md-3">
+        <div class="col-md-3 text-left">
             <a href="{{ path('home') }}">
-                <div class="logo hidden-xs hidden-md hidden-sm" id="logo"></div>
+                <div class="logo" id="logo"></div>
             </a>
         </div>
         <div class="col-md-6">
             <a href="{{ path('home') }}" id="title"><h1>Le Wiki des Maires</h1></a>
 
-            <div class="input-group barSearch" id="sticky2">
-                <input type="text" class="search form-control" placeholder="Rechercher une fiche projet"/>
-                <span class="input-group-addon">
-                            <div type="submit" class="btn btn-search"><i class="fa fa-search"></i></div>
-                         </span>
+            <div id="search">
+                <ul>
+                    <li><input type="text" class="form-control" placeholder="Rechercher une fiche projet"/></li>
+                    <li><div class="btn"><i class="fa fa-search"></i></div></li>
+                </ul>
+
             </div>
         </div>
-        <div class="col-md-3 connect" id="sticky3">
+        <div class="col-md-3 connect text-right">
             <div class="btn" data-toggle="modal" data-target="#formConnect">
                 Accéder à votre espace
             </div>
         </div>
     </div>
 
+</div>#}
+
+<div id="stickHeader">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-3">
+                <img src="../img/AMRF.png" alt="">
+            </div>
+            <div class="col-md-6">
+                <div id="search">
+                    <form action="">
+                        <ul>
+                            <li><input type="text" class="form-control" placeholder="Recherche une fiche projet"/></li>
+                            <li><button type="submit" class="btn"><i class="fa fa-search"></i></button></li>
+                        </ul>
+
+
+
+                    </form>
+                </div>
+            </div>
+            <div class="col-md-3 text-right">
+                <div class="btn" data-toggle="modal" data-target="#formConnect">
+                    Accéder à votre espace
+                </div>
+            </div>
+
+        </div>
+    </div>
+
 </div>
 
-
+<div id="titleHeader">
+    <a href="{{ path('home') }}" id="title"><h1>Le Wiki des Maires</h1></a>
+</div>
 
