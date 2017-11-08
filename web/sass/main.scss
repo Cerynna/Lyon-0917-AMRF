@@ -86,6 +86,27 @@ a:hover, a:active {
   @include boxShadow(2px, rgba(0, 0, 0, 0.8));
 }
 
+.btn2, .btn2:focus, .btn2:target, .btn2:active {
+  color: $color2;
+  font-size: 1.2em;
+  background: $color4;
+  text-align: center;
+  width : 200px;
+  margin: 10px;
+  padding: 10px;
+  border: 2px solid;
+  @include boxShadow(1px, rgba(0, 0, 0, 0.4));
+  outline: none;
+  @include borderRadius(5px);
+}
+
+.btn2:hover {
+  color: $color2;
+  background: $color4;
+  border: 2px solid $color1;
+  @include boxShadow(2px, rgba(0, 0, 0, 0.8));
+}
+
 .input-group-addon {
   padding: 0 0 !important;
   border: 0 solid #ccc !important;

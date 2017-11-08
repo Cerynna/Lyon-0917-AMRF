@@ -881,6 +881,30 @@ a:hover, a:active {
   box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.8);
   /*box-shadow: 5px 5px  rgba(0, 0, 0, 0.6);*/ }
 
+.btn2, .btn2:focus, .btn2:target, .btn2:active {
+  color: #FFFFFF;
+  font-size: 1.2em;
+  background: #cbcbcb;
+  text-align: center;
+  width: 200px;
+  margin: 10px;
+  padding: 10px;
+  border: 2px solid;
+  box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.4);
+  /*box-shadow: 5px 5px  rgba(0, 0, 0, 0.6);*/
+  outline: none;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  border-radius: 5px; }
+
+.btn2:hover {
+  color: #FFFFFF;
+  background: #cbcbcb;
+  border: 2px solid rgba(0, 158, 61, 0.99);
+  box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.8);
+  /*box-shadow: 5px 5px  rgba(0, 0, 0, 0.6);*/ }
+
 .input-group-addon {
   padding: 0 0 !important;
   border: 0 solid #ccc !important;
