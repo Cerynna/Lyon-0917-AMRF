@@ -353,6 +353,9 @@ nav {
     color: #FFFFFF;
     font-size: 1.8em;
     font-weight: bold; }
+  nav .dropdown-header {
+    font-size: 1.5em;
+    color: #cbcbcb; }
   nav .dropdown-submenu {
     position: relative; }
   nav .dropdown-submenu > .dropdown-menu {

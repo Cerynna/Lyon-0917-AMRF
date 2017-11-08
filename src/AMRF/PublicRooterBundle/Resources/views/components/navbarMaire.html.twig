@@ -1,10 +1,8 @@
 <div class="navbar navbar-static-top" role="navigation">
     <div class="container-fluid">
-
         <div class="navbar-header">
             <a class="navbar-brand" href="/"><img class="logo visible-xs visible-md visible-sm"
                                                   src="../img/AMRF.png"></a>
-
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
                     data-target="#navbar-collapse-1">
                 <span class="sr-only">Toggle navigation</span>
@@ -13,7 +11,6 @@
                 <span class="icon-bar"></span>
             </button>
         </div>
-
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
@@ -31,25 +28,27 @@
                             href="{{ path('contact') }}">Contact</a>
                 </li>
                 <li class="dropdown">
-                    <a data-toggle="dropdown" class="dropdown-toggle" href="#">Mon Espace <i class="fa fa-angle-down"></i></a>
+                    <a data-toggle="dropdown" class="dropdown-toggle" href="#">Mon Espace <i
+                                class="fa fa-angle-down"></i></a>
                     <ul class="dropdown-menu">
-                        <li class="dropdown-main"><a href="{{ path('maireHome') }}">Mon Espace <i class="fa fa-angle-down"></i></a></li>
-                        <li><a href="{{ path('maireProfil') }}">Profil</a></li>
+                        <li class="dropdown-main"><a href="{{ path('maireHome') }}">Mon Espace <i
+                                        class="fa fa-angle-down"></i></a></li>
+                        <li class="dropdown-header">Mes Contenus</li>
+                        <li><a href="{{ path('maireProfil') }}">Mon Profil</a></li>
                         <li class="dropdown-submenu">
-                            <a tabindex="-1" href="#"><i class="fa fa-angle-left"></i> Projet</a>
+                            <a tabindex="-1" href="#"><i class="fa fa-angle-left"></i> Mes Projets</a>
                             <ul class="dropdown-menu">
                                 <li><a tabindex="-1" href="{{ path('maireFormProjet') }}">Ajouter</a></li>
                                 <li><a tabindex="-1" href="{{ path('maireProjets') }}">Consulter</a></li>
-                                <li><a tabindex="-1" href="{{ path('recherche') }}">Decouvrir</a></li>
-
                             </ul>
+                        <li class="dropdown-header">Rechercher</li>
+                        <li><a tabindex="-1" href="{{ path('recherche') }}">Des Projets</a></li>
                         </li>
-                        <li><a tabindex="-1" href="{{ path('annuaire') }}">Les Partenaires</a></li>
+                        <li><a tabindex="-1" href="{{ path('annuaire') }}">Des Partenaires</a></li>
+                        <hr>
                         <li><a tabindex="-1" href="#">Déconnexion</a></li>
                     </ul>
                 </li>
-
-
             </ul>
         </div>
     </div>
