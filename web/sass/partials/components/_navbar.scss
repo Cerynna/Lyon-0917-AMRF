@@ -8,6 +8,9 @@ nav {
   vertical-align: middle;
   height: 60px;
   padding-right: 50px;
+  position: sticky;
+  top: 100px;
+  z-index: 200;
   @include boxShadow(0.05em, rgba(0, 0, 0, 0.2));
   p {
     font-style: italic;
