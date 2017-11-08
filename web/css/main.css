@@ -293,8 +293,8 @@ header {
     width: 100%;
     position: fixed;
     top: 0;
-    height: 200px;
-    z-index: 4; }
+    height: 100px;
+    z-index: 100; }
   header #search {
     width: 500px;
     margin: 20px auto; }
@@ -309,9 +309,9 @@ header {
         width: 440px !important;
         height: 50px; }
   header img {
-    height: 100px;
+    height: 80px;
     background: #FFF;
-    margin: 20px; }
+    margin: 10px; }
 
 h5 {
   font-size: 1.5em; }
@@ -354,6 +354,9 @@ nav {
   vertical-align: middle;
   height: 60px;
   padding-right: 50px;
+  position: sticky;
+  top: 100px;
+  z-index: 200;
   box-shadow: 0.05em 0.05em 0.05em 0.05em rgba(0, 0, 0, 0.2);
   /*box-shadow: 5px 5px  rgba(0, 0, 0, 0.6);*/ }
   nav p {

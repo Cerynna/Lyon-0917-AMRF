@@ -1,35 +1,8 @@
-{#<div class="container-fluid" id="header">
-    <div class="row">
-        <div class="col-md-3 text-left">
-            <a href="{{ path('home') }}">
-                <div class="logo" id="logo"></div>
-            </a>
-        </div>
-        <div class="col-md-6">
-            <a href="{{ path('home') }}" id="title"><h1>Le Wiki des Maires</h1></a>
-
-            <div id="search">
-                <ul>
-                    <li><input type="text" class="form-control" placeholder="Rechercher une fiche projet"/></li>
-                    <li><div class="btn"><i class="fa fa-search"></i></div></li>
-                </ul>
-
-            </div>
-        </div>
-        <div class="col-md-3 connect text-right">
-            <div class="btn" data-toggle="modal" data-target="#formConnect">
-                Accéder à votre espace
-            </div>
-        </div>
-    </div>
-
-</div>#}
-
 <div id="stickHeader">
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-3">
-                <img src="../img/AMRF.png" alt="">
+                <img src="{{ asset('/img/AMRF.png') }}" alt="">
             </div>
             <div class="col-md-6">
                 <div id="search">
