@@ -772,7 +772,7 @@ section form .cleIcon {
       color: rgba(0, 158, 61, 0.99);
       text-decoration: none; }
 
-.btnFavoris {
+.btnFavoris, .btnFavorisPart {
   background-color: #FFFFFF;
   border-radius: 50%;
   border-style: none;
@@ -782,8 +782,12 @@ section form .cleIcon {
   font-size: 1.5em;
   box-shadow: 0.05em 0.05em 0.05em 0.05em rgba(0, 0, 0, 0.2);
   /*box-shadow: 5px 5px  rgba(0, 0, 0, 0.6);*/ }
-  .btnFavoris i {
+  .btnFavoris i, .btnFavorisPart i {
     color: rgba(0, 158, 61, 0.99); }
+
+.btnFavorisPart {
+  float: left;
+  margin-top: 10px; }
 
 .btnFavorisTest {
   background-color: rgba(0, 158, 61, 0.99);
