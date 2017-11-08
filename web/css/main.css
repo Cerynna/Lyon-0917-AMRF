@@ -491,6 +491,16 @@ nav {
   width: 325px;
   margin: 12px 2px 2px 2px; }
 
+@media only screen and (max-width: 1000px) {
+  .espacePart .card-body {
+    height: 400px !important; }
+  .espacePart .cardBtn {
+    margin-bottom: 120px !important; } }
+
+.espacePart div.btn {
+  width: 325px;
+  margin: 12px 2px 2px 2px; }
+
 .cardBtn {
   margin-bottom: 40px; }
 
@@ -524,7 +534,7 @@ nav {
       line-height: 1em; }
     .cardGest .card-body .card-block {
       position: absolute;
-      bottom: 0;
+      bottom: -10px;
       text-align: center;
       width: 100%;
       height: 35%;
