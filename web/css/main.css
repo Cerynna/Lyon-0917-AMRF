@@ -210,50 +210,108 @@ textarea {
 *************************** Components *********************
  */
 header {
-  text-align: center;
-  width: 100%; }
-  header p {
-    color: #FFFFFF;
+  width: 100%;
+  /*text-align: center;
+  width: 100%;
+  p {
+    color: $color2;
     font-size: 1.8em;
-    text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.6); }
-  header .barSearch {
-    padding: 10px;
-    margin: 0 auto;
-    width: 500px; }
-  header #laBar {
-    background: url("../img/bck-2.jpg") no-repeat fixed;
+    text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.6);
+  }
+  #header {
+    height: 400px;
+    background: url('../img/bck-1.jpg') no-repeat fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
-    z-index: 990; }
-  header .logo {
+  }
+  #laBar {
+    background: url('../img/bck-2.jpg') no-repeat fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    z-index: 990;
+    height: 400px;
+  }
+  .logo {
     display: inline-block;
-    background: white url("../img/AMRF.png") no-repeat center;
+    background: rgba(255, 255, 255, 1) url('../img/AMRF.png') no-repeat center;
     background-size: contain;
     z-index: 10000;
     position: fixed;
+    top: 5px;
     width: 200px;
     height: 100px;
-    -webkit-border-radius: 5px;
-    -moz-border-radius: 5px;
-    -ms-border-radius: 5px;
-    border-radius: 5px; }
-  header .connect {
+    @include borderRadius(5px);
+  }
+
+  .connect {
     font-size: 1.5em;
     display: inline-block;
     z-index: 6000;
     position: fixed;
     right: 5px;
-    top: 17px; }
-  header h1 {
+    top: 17px;
+
+  }
+
+  h1 {
     display: inline-block;
     margin: 10px auto;
+    font-size: 4em;
+    font-family: $font3, sans-serif;
+    color: #FFFFFF;
+    text-shadow: 5px 5px 0 rgba(0, 0, 0, 0.6);
+    position: relative;
+
+  }*/ }
+  header h1 {
+    display: inline-block;
+    margin: 200px auto 0 auto;
     font-size: 4em;
     font-family: "ERASDEMI", sans-serif;
     color: #FFFFFF;
     text-shadow: 5px 5px 0 rgba(0, 0, 0, 0.6);
-    position: relative; }
+    position: relative;
+    z-index: 99; }
+  header #titleHeader {
+    height: 400px;
+    text-align: center;
+    background: url("../img/bck-2.jpg") no-repeat fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover; }
+  header #stickHeader {
+    background: url("../img/bck-2.jpg") no-repeat fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    height: 200px;
+    z-index: 4; }
+  header #search {
+    width: 500px;
+    margin: 20px auto; }
+    header #search li {
+      display: inline-block; }
+      header #search li .btn {
+        margin: 0 !important;
+        margin-top: -8px !important;
+        height: 50px; }
+      header #search li input {
+        font-size: 1.4em;
+        width: 440px !important;
+        height: 50px; }
+  header img {
+    height: 100px;
+    background: #FFF;
+    margin: 20px; }
 
 h5 {
   font-size: 1.5em; }
@@ -824,8 +882,11 @@ a:hover, a:active {
   /*box-shadow: 5px 5px  rgba(0, 0, 0, 0.6);*/ }
 
 .input-group-addon {
-  padding: 0 !important;
-  border: 0 solid #ccc !important; }
+  padding: 0 0 !important;
+  border: 0 solid #ccc !important;
+  background: none;
+  height: 48px;
+  bottom: 0; }
 
 .btn-search {
   margin: 0 !important;

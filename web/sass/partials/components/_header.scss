@@ -1,17 +1,20 @@
 header {
-  text-align: center;
+  width: 100%;
+  /*text-align: center;
   width: 100%;
   p {
     color: $color2;
     font-size: 1.8em;
     text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.6);
   }
-.barSearch {
-  padding: 10px;
-  margin: 0 auto;
-  width: 500px;
-}
-
+  #header {
+    height: 400px;
+    background: url('../img/bck-1.jpg') no-repeat fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+  }
   #laBar {
     background: url('../img/bck-2.jpg') no-repeat fixed;
     -webkit-background-size: cover;
@@ -19,6 +22,7 @@ header {
     -o-background-size: cover;
     background-size: cover;
     z-index: 990;
+    height: 400px;
   }
   .logo {
     display: inline-block;
@@ -26,6 +30,7 @@ header {
     background-size: contain;
     z-index: 10000;
     position: fixed;
+    top: 5px;
     width: 200px;
     height: 100px;
     @include borderRadius(5px);
@@ -50,5 +55,63 @@ header {
     text-shadow: 5px 5px 0 rgba(0, 0, 0, 0.6);
     position: relative;
 
+  }*/
+
+  h1 {
+    display: inline-block;
+    margin: 200px auto 0 auto;
+    font-size: 4em;
+    font-family: $font3, sans-serif;
+    color: #FFFFFF;
+    text-shadow: 5px 5px 0 rgba(0, 0, 0, 0.6);
+    position: relative;
+    z-index: 99;
+
+  }
+
+  #titleHeader{
+    height: 400px;
+    text-align: center;
+    background: url('../img/bck-2.jpg') no-repeat fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+  }
+  #stickHeader {
+    background: url('../img/bck-2.jpg') no-repeat fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    height: 200px;
+    z-index: 4;
+  }
+  #search {
+    width: 500px;
+    margin: 20px auto;
+    ul {
+    }
+    li {
+      display: inline-block;
+      .btn {
+        margin: 0 !important;
+        margin-top: -8px!important;
+        height: 50px;
+      }
+      input {
+        font-size: 1.4em;
+        width: 440px !important;
+        height: 50px;
+      }
+    }
+  }
+  img{
+    height: 100px;
+    background: #FFF;
+    margin: 20px;
   }
 }
