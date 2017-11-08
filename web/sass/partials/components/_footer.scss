@@ -1,11 +1,9 @@
 footer {
   color: $color2;
   .footer-logo {
-    height: 90px;
-    padding: 5px;
+    height: 80px;
     background-color: #FFFFFF;
     @include borderRadius(5px);
-    box-shadow: 5px 5px 0 rgba(0, 0, 0, 0.6);
   }
   .bck {
      background: linear-gradient(to bottom, rgba(224, 242, 241, 0.8), rgba(224, 242, 241, 0));

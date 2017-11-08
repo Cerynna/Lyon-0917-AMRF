@@ -56,5 +56,6 @@ header {
     height: 80px;
     background: #FFF;
     margin: 10px;
+    @include borderRadius(5px);
   }
 }
