@@ -9,7 +9,6 @@
         <div class="row jumbotron">
             <h3>Choisir par nom</h3>
             <div class="col-md-12" align="center">
-
                 <ul class="pagination text-center">
                     {% for letter in 'a'|upper..'z'|upper %}
                         <li class="waves-effect"><a href="#{{ letter }}">{{ letter }}</a></li>
@@ -18,10 +17,7 @@
             </div>
             <h3>Choisir par secteur d'activité</h3>
             <div class="col-md-12">
-
-
                 {% include 'AMRFPublicRooterBundle::components/thematiques.html.twig' %}
-
             </div>
         </div>
     </form>
