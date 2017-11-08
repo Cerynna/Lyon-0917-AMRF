@@ -1,3 +1,4 @@
+/*
 $(window).on('scroll', function () {
     var scrollTop = $(window).scrollTop();
     if (scrollTop > 20) {
@@ -11,6 +12,7 @@ $(window).on('scroll', function () {
         $('#titleHeader').stop().fadeIn(50);
     }
 });
+*/
 
 $(document).ready(function () {
 
@@ -18,8 +20,8 @@ $(document).ready(function () {
 
 
 //NavBar
-    $("#navbar").sticky({topSpacing: 150, zIndex: 6});
-    $("#search").sticky({topSpacing: 0, zIndex: 6,getWidthFrom: "500px", center: true});
+   /* $("#navbar").sticky({topSpacing: 150, zIndex: 6});*/
+    /*$("#search").sticky({topSpacing: 0, zIndex: 6,getWidthFrom: "500px", center: true});*/
 
 
     //CAROUSSEL
