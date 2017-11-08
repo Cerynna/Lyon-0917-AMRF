@@ -52,6 +52,10 @@ body {
   font-family: $font1, sans-serif;
 }
 
+textarea{
+  resize: vertical;
+}
+
 a:visited, a:link {
   text-decoration: none;
   color: $color2;

@@ -780,6 +780,9 @@ body {
   background-size: cover;
   font-family: "Source Sans Pro", sans-serif; }
 
+textarea {
+  resize: vertical; }
+
 a:visited, a:link {
   text-decoration: none;
   color: #FFFFFF; }
