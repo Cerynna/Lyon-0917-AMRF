@@ -7,16 +7,18 @@
     <h2>Annuaire des partenaires</h2>
     <form>
         <div class="row jumbotron">
-            <div class="col-md-12">
-                <p>Choisir par nom</p>
+            <h3>Choisir par nom</h3>
+            <div class="col-md-12" align="center">
+
                 <ul class="pagination text-center">
                     {% for letter in 'a'|upper..'z'|upper %}
                         <li class="waves-effect"><a href="#{{ letter }}">{{ letter }}</a></li>
                     {% endfor %}
                 </ul>
             </div>
+            <h3>Choisir par secteur d'activité</h3>
             <div class="col-md-12">
-               <p>Choisir par secteur d'activité</p>
+
 
                 {% include 'AMRFPublicRooterBundle::components/thematiques.html.twig' %}
 

@@ -24,6 +24,7 @@
 @import 'partials/components/tabPannel';
 @import 'partials/components/btnFavoris';
 @import 'partials/components/projet';
+
 /**
 ** node-sass --watch web/sass/main.scss web/css/main.css
 */
@@ -254,8 +255,9 @@ a:hover, a:active {
     color: $color2;
     border: 2px solid $color1;
   }
-
 }
+
+
 
 
 /*
