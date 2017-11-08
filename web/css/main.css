@@ -210,66 +210,10 @@ textarea {
 *************************** Components *********************
  */
 header {
-  width: 100%;
-  /*text-align: center;
-  width: 100%;
-  p {
-    color: $color2;
-    font-size: 1.8em;
-    text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.6);
-  }
-  #header {
-    height: 400px;
-    background: url('../img/bck-1.jpg') no-repeat fixed;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
-  }
-  #laBar {
-    background: url('../img/bck-2.jpg') no-repeat fixed;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
-    z-index: 990;
-    height: 400px;
-  }
-  .logo {
-    display: inline-block;
-    background: rgba(255, 255, 255, 1) url('../img/AMRF.png') no-repeat center;
-    background-size: contain;
-    z-index: 10000;
-    position: fixed;
-    top: 5px;
-    width: 200px;
-    height: 100px;
-    @include borderRadius(5px);
-  }
-
-  .connect {
-    font-size: 1.5em;
-    display: inline-block;
-    z-index: 6000;
-    position: fixed;
-    right: 5px;
-    top: 17px;
-
-  }
-
-  h1 {
-    display: inline-block;
-    margin: 10px auto;
-    font-size: 4em;
-    font-family: $font3, sans-serif;
-    color: #FFFFFF;
-    text-shadow: 5px 5px 0 rgba(0, 0, 0, 0.6);
-    position: relative;
-
-  }*/ }
+  width: 100%; }
   header h1 {
     display: inline-block;
-    margin: 200px auto 0 auto;
+    margin: 140px auto 0 auto;
     font-size: 4em;
     font-family: "ERASDEMI", sans-serif;
     color: #FFFFFF;
@@ -277,7 +221,7 @@ header {
     position: relative;
     z-index: 99; }
   header #titleHeader {
-    height: 400px;
+    height: 300px;
     text-align: center;
     background: url("../img/bck-2.jpg") no-repeat fixed;
     -webkit-background-size: cover;
@@ -297,7 +241,7 @@ header {
     z-index: 100; }
   header #search {
     width: 500px;
-    margin: 20px auto; }
+    margin: 10px auto; }
     header #search li {
       display: inline-block; }
       header #search li .btn {
@@ -311,7 +255,11 @@ header {
   header img {
     height: 80px;
     background: #FFF;
-    margin: 10px; }
+    margin: 10px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    border-radius: 5px; }
 
 h5 {
   font-size: 1.5em; }
@@ -604,14 +552,12 @@ nav {
 footer {
   color: #FFFFFF; }
   footer .footer-logo {
-    height: 90px;
-    padding: 5px;
+    height: 80px;
     background-color: #FFFFFF;
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
     -ms-border-radius: 5px;
-    border-radius: 5px;
-    box-shadow: 5px 5px 0 rgba(0, 0, 0, 0.6); }
+    border-radius: 5px; }
   footer .bck {
     background: linear-gradient(to bottom, rgba(224, 242, 241, 0.8), rgba(224, 242, 241, 0));
     height: 20vh; }
@@ -772,7 +718,7 @@ section form .cleIcon {
       color: rgba(0, 158, 61, 0.99);
       text-decoration: none; }
 
-.btnFavoris {
+.btnFavoris, .btnFavorisPart {
   background-color: #FFFFFF;
   border-radius: 50%;
   border-style: none;
@@ -782,8 +728,12 @@ section form .cleIcon {
   font-size: 1.5em;
   box-shadow: 0.05em 0.05em 0.05em 0.05em rgba(0, 0, 0, 0.2);
   /*box-shadow: 5px 5px  rgba(0, 0, 0, 0.6);*/ }
-  .btnFavoris i {
+  .btnFavoris i, .btnFavorisPart i {
     color: rgba(0, 158, 61, 0.99); }
+
+.btnFavorisPart {
+  float: left;
+  margin-top: 10px; }
 
 .btnFavorisTest {
   background-color: rgba(0, 158, 61, 0.99);

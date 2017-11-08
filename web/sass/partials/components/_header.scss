@@ -1,65 +1,8 @@
 header {
   width: 100%;
-  /*text-align: center;
-  width: 100%;
-  p {
-    color: $color2;
-    font-size: 1.8em;
-    text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.6);
-  }
-  #header {
-    height: 400px;
-    background: url('../img/bck-1.jpg') no-repeat fixed;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
-  }
-  #laBar {
-    background: url('../img/bck-2.jpg') no-repeat fixed;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
-    z-index: 990;
-    height: 400px;
-  }
-  .logo {
-    display: inline-block;
-    background: rgba(255, 255, 255, 1) url('../img/AMRF.png') no-repeat center;
-    background-size: contain;
-    z-index: 10000;
-    position: fixed;
-    top: 5px;
-    width: 200px;
-    height: 100px;
-    @include borderRadius(5px);
-  }
-
-  .connect {
-    font-size: 1.5em;
-    display: inline-block;
-    z-index: 6000;
-    position: fixed;
-    right: 5px;
-    top: 17px;
-
-  }
-
   h1 {
     display: inline-block;
-    margin: 10px auto;
-    font-size: 4em;
-    font-family: $font3, sans-serif;
-    color: #FFFFFF;
-    text-shadow: 5px 5px 0 rgba(0, 0, 0, 0.6);
-    position: relative;
-
-  }*/
-
-  h1 {
-    display: inline-block;
-    margin: 200px auto 0 auto;
+    margin: 140px auto 0 auto;
     font-size: 4em;
     font-family: $font3, sans-serif;
     color: #FFFFFF;
@@ -70,7 +13,7 @@ header {
   }
 
   #titleHeader{
-    height: 400px;
+    height: 300px;
     text-align: center;
     background: url('../img/bck-2.jpg') no-repeat fixed;
     -webkit-background-size: cover;
@@ -92,7 +35,7 @@ header {
   }
   #search {
     width: 500px;
-    margin: 20px auto;
+    margin: 10px auto;
     ul {
     }
     li {
@@ -113,5 +56,6 @@ header {
     height: 80px;
     background: #FFF;
     margin: 10px;
+    @include borderRadius(5px);
   }
 }
