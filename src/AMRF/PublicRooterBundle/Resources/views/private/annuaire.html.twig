@@ -7,19 +7,17 @@
     <h2>Annuaire des partenaires</h2>
     <form>
         <div class="row jumbotron">
-            <div class="col-md-12 text-center">
-                Trier par lettres
+            <h3>Choisir par nom</h3>
+            <div class="col-md-12" align="center">
                 <ul class="pagination text-center">
                     {% for letter in 'a'|upper..'z'|upper %}
                         <li class="waves-effect"><a href="#{{ letter }}">{{ letter }}</a></li>
                     {% endfor %}
                 </ul>
             </div>
+            <h3>Choisir par secteur d'activité</h3>
             <div class="col-md-12">
-                Trier par thématiques
-
                 {% include 'AMRFPublicRooterBundle::components/thematiques.html.twig' %}
-
             </div>
         </div>
     </form>
@@ -46,45 +44,7 @@
                 </div>
             </a>
             <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
-                <div class="panel-body row ">
-                    <div class=" col-xs-8">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorem eaque eos est ex fuga
-                            impedit
-                            magni odio pariatur repudiandae? Animi aperiam aut eius eos explicabo facere magnam
-                            repudiandae
-                            sit, tempore.</p>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium aspernatur beatae
-                            ducimus
-                            eos fugit, id iste iusto laborum, nemo nostrum obcaecati officia quae quaerat quibusdam
-                            quis
-                            soluta temporibus, vel voluptate!</p>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores autem doloremque
-                            ducimus
-                            ea
-                            eum excepturi inventore itaque magnam maxime nihil quibusdam quis, tempore voluptatem?
-                            Ab at
-                            deleniti distinctio earum sequi.</p>
-                    </div>
-                    <div class="col-xs-4">
-                        <h4>Adresse :</h4>
-                        <ul>
-                        <li>25 rue de l'avenue</li>
-                        <li>65432 Ville</li>
-                        </ul>
-                        <h4>Contact :</h4>
-                        <ul>
-                            <li>Nom Prénom</li>
-                            <li>Mail</li>
-                            <li>Téléphone</li>
-                        </ul>
-                        <h4>Contact Local :</h4>
-                        <ul>
-                            <li>Nom Prénom</li>
-                            <li>Mail</li>
-                            <li>Téléphone</li>
-                        </ul>
-                    </div>
-                </div>
+                {% include 'AMRFPublicRooterBundle::components/partComponent.html.twig' %}
             </div>
         </div>
     </div>

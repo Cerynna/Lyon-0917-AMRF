@@ -4,11 +4,24 @@ nav {
   margin-top: 0;
   background-color: $color1;
   border-radius: 0;
-  font-size: 1.8em;
+  font-size: 1.6em;
   vertical-align: middle;
-  height: 55px;
+  height: 60px;
   padding-right: 50px;
+  position: sticky;
+  top: 100px;
+  z-index: 200;
   @include boxShadow(0.05em, rgba(0, 0, 0, 0.2));
+  p {
+    font-style: italic;
+    font-size: 0.9em;
+    margin-top: 10px;
+    margin-left: 20px;
+    i {
+      font-size: 0.5em !important;
+      vertical-align: top;
+    }
+  }
   .nav > li > a {
     margin: 0 5px -4px 5px;
     color: $color2;
@@ -22,8 +35,8 @@ nav {
     border-bottom: 4px solid $color2;
   }
 
-  .dropdown-menu {
-    a {
+   .dropdown-menu {
+     a {
       font-size: 1.5em;
       color: $color2;
       margin: 0 10px 0 10px;
@@ -67,6 +80,12 @@ nav {
     font-size: 1.8em;
     font-weight: bold;
   }
+
+  .dropdown-header{
+    font-size: 1.5em;
+    color: $color4;
+  }
+
   .dropdown-submenu {
     position: relative;
   }
@@ -154,5 +173,7 @@ nav {
     @include borderRadius(5px);
     box-shadow: 5px 5px 0 rgba(0, 0, 0, 0.6);
   }
+
+
 
 }

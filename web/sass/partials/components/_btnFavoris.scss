@@ -1,4 +1,4 @@
-.btnFavoris {
+.btnFavoris, .btnFavorisPart {
   background-color: $color2;
   border-radius: 50%;
   border-style: none;
@@ -12,6 +12,11 @@
     color: $color1;
   }
 
+}
+
+.btnFavorisPart {
+  float: left;
+  margin-top: 10px;
 }
 
 .btnFavorisTest {

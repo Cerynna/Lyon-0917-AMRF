@@ -62,6 +62,48 @@ $(function () {
         "Jumelage"
     ];
 
+    var accentMap = {
+        "á": "a",
+        "à": "a",
+        "â": "a",
+        "ä": "a",
+        "ç": "c",
+        "é": "e",
+        "è": "e",
+        "ê": "e",
+        "ë": "e",
+        "î": "i",
+        "ï": "i",
+        "ô": "o",
+        "ö": "o",
+        "ù": "u",
+        "û": "u",
+        "ü": "u",
+        "Â": "A",
+        "Ä": "A",
+        "À": "A",
+        "Ç": "C",
+        "Ê": "E",
+        "Ë": "E",
+        "É": "E",
+        "È": "E",
+        "Î": "I",
+        "Ï": "I",
+        "Ô": "O",
+        "Ö": "O",
+        "Û": "U",
+        "Ü": "U",
+        "Ù": "U"
+    };
+
+    var normalize = function (term) {
+        var ret = "";
+        for (var i = 0; i < term.length; i++) {
+            ret += accentMap[term.charAt(i)] || term.charAt(i);
+        }
+        return ret;
+    };
+
     function split(val) {
         return val.split(/,\s*/);
     }
@@ -69,6 +111,7 @@ $(function () {
     function extractLast(term) {
         return split(term).pop();
     }
+
 
     $("#motsCle")
     // don't navigate away from the field on tab when selecting an item
@@ -84,6 +127,12 @@ $(function () {
                 // delegate back to autocomplete, but extract the last term
                 response($.ui.autocomplete.filter(
                     availableTags, extractLast(request.term)));
+
+                var matcher = new RegExp($.ui.autocomplete.escapeRegex(request.term), "i");
+                response($.grep(availableTags, function (value) {
+                    value = value.label || value.value || value;
+                    return matcher.test(value) || matcher.test(normalize(value));
+                }));
             },
             focus: function () {
                 // prevent value inserted on focus

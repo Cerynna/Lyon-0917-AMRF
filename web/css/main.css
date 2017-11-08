@@ -11,7 +11,8 @@
  * Inspired by Normalize.css: http://necolas.github.com/normalize.css/
  */
 /* HTML5 display definitions */
-@import url("https://fonts.googleapis.com/css?family=Cabin+Condensed|Comfortaa|Francois+One|Josefin+Sans|Play|Poiret+One|Source+Sans+Pro");
+@import url("https://fonts.googleapis.com/css?family=Cabin+Condensed|Source+Sans+Pro");
+@import url("../fonts/ERASDEMI.TTF");
 @import url("http://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css");
 section, nav, article, aside, hgroup,
 header, footer, figure, figcaption, details {
@@ -209,37 +210,59 @@ textarea {
 *************************** Components *********************
  */
 header {
-  height: 25%;
-  text-align: center;
   width: 100%; }
-  header .logo {
+  header h1 {
     display: inline-block;
-    background: white url("../img/AMRF.png") no-repeat center;
-    background-size: contain;
-    z-index: 10000;
-    top: 5px;
-    left: 15px;
+    margin: 140px auto 0 auto;
+    font-size: 4em;
+    font-family: "ERASDEMI", sans-serif;
+    color: #FFFFFF;
+    text-shadow: 5px 5px 0 rgba(0, 0, 0, 0.6);
+    position: relative;
+    z-index: 99; }
+  header #titleHeader {
+    height: 300px;
+    text-align: center;
+    background: url("../img/bck-2.jpg") no-repeat fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover; }
+  header #stickHeader {
+    background: url("../img/bck-2.jpg") no-repeat fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    width: 100%;
     position: fixed;
-    width: 200px;
+    top: 0;
     height: 100px;
+    z-index: 100; }
+  header #search {
+    width: 500px;
+    margin: 10px auto; }
+    header #search li {
+      display: inline-block; }
+      header #search li .btn {
+        margin: 0 !important;
+        margin-top: -8px !important;
+        height: 50px; }
+      header #search li input {
+        font-size: 1.4em;
+        width: 440px !important;
+        height: 50px; }
+  header img {
+    height: 80px;
+    background: #FFF;
+    margin: 10px;
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
     -ms-border-radius: 5px;
-    border-radius: 5px;
-    box-shadow: 5px 5px 0 rgba(0, 0, 0, 0.6); }
-  header .connect {
-    display: inline-block;
-    float: right;
-    text-align: right;
-    padding-right: 1%;
-    padding-top: 1%; }
-  header h1 {
-    display: inline-block;
-    margin: 10% auto;
-    font-size: 4em;
-    font-family: "Cabin Condensed", sans-serif;
-    color: #FFFFFF;
-    text-shadow: 5px 5px 0 rgba(0, 0, 0, 0.6); }
+    border-radius: 5px; }
+
+h5 {
+  font-size: 1.5em; }
 
 .containerConnect .card {
   width: 100%;
@@ -248,7 +271,7 @@ header {
 
 .formConnect {
   width: 100%;
-  padding: 20px;
+  padding: 20px 20px 0px 20px;
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
   -ms-border-radius: 5px;
@@ -259,18 +282,39 @@ header {
   flex-direction: row;
   justify-content: space-around; }
 
+.form-control:focus {
+  border: 2px solid rgba(0, 158, 61, 0.99);
+  box-shadow: none;
+  background: rgba(196, 255, 190, 0.1); }
+
+.saveAll .labelSave {
+  font-size: 1em;
+  font-weight: normal;
+  margin: 0px; }
+
 nav {
   color: #FFFFFF;
   width: 100%;
   margin-top: 0;
   background-color: rgba(0, 158, 61, 0.99);
   border-radius: 0;
-  font-size: 1.8em;
+  font-size: 1.6em;
   vertical-align: middle;
-  height: 55px;
+  height: 60px;
   padding-right: 50px;
+  position: sticky;
+  top: 100px;
+  z-index: 200;
   box-shadow: 0.05em 0.05em 0.05em 0.05em rgba(0, 0, 0, 0.2);
   /*box-shadow: 5px 5px  rgba(0, 0, 0, 0.6);*/ }
+  nav p {
+    font-style: italic;
+    font-size: 0.9em;
+    margin-top: 10px;
+    margin-left: 20px; }
+    nav p i {
+      font-size: 0.5em !important;
+      vertical-align: top; }
   nav .nav > li > a {
     margin: 0 5px -4px 5px;
     color: #FFFFFF; }
@@ -318,6 +362,9 @@ nav {
     color: #FFFFFF;
     font-size: 1.8em;
     font-weight: bold; }
+  nav .dropdown-header {
+    font-size: 1.5em;
+    color: #cbcbcb; }
   nav .dropdown-submenu {
     position: relative; }
   nav .dropdown-submenu > .dropdown-menu {
@@ -443,51 +490,74 @@ nav {
   .bck-default div > a {
     color: #3d625b !important; }
 
-.cardGest .card-title {
-  text-align: center; }
-  .cardGest .card-title .fa {
-    margin: 10px;
-    text-align: center;
-    font-size: 5em; }
+@media only screen and (max-width: 1000px) {
+  .espaceMaire .card-body {
+    height: 400px !important; }
+  .espaceMaire .cardBtn {
+    margin-bottom: 120px !important; } }
 
-.cardGest .card-body {
-  height: 400px;
-  -webkit-border-radius: 5px;
-  -moz-border-radius: 5px;
-  -ms-border-radius: 5px;
-  border-radius: 5px;
-  box-shadow: 0.05em 0.05em 0.05em 0.05em rgba(0, 0, 0, 0.4);
-  /*box-shadow: 5px 5px  rgba(0, 0, 0, 0.6);*/ }
-  .cardGest .card-body p {
-    margin-top: 10px;
-    padding: 10px;
-    font-size: 0.9em;
-    display: inline-block;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: normal; }
-  .cardGest .card-body h3 {
-    color: #FFFFFF;
-    margin: 20px;
-    line-height: 0em; }
-  .cardGest .card-body .card-block {
-    position: absolute;
-    bottom: 0;
-    text-align: center;
-    width: 100%;
-    padding-right: 30px; }
+.espaceMaire div.btn {
+  width: 325px;
+  margin: 12px 2px 2px 2px; }
 
-footer {
-  color: #FFFFFF; }
-  footer .footer-logo {
-    height: 90px;
-    padding: 5px;
-    background-color: #FFFFFF;
+@media only screen and (max-width: 1000px) {
+  .espacePart .card-body {
+    height: 400px !important; }
+  .espacePart .cardBtn {
+    margin-bottom: 120px !important; } }
+
+.espacePart div.btn {
+  width: 325px;
+  margin: 12px 2px 2px 2px; }
+
+.cardBtn {
+  margin-bottom: 40px; }
+
+.cardGest {
+  margin: 0 0 20px 0; }
+  .cardGest .card-title {
+    text-align: center; }
+    .cardGest .card-title .fa {
+      margin: 10px;
+      text-align: center;
+      font-size: 5em; }
+  .cardGest .card-body {
+    height: 300px;
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
     -ms-border-radius: 5px;
     border-radius: 5px;
-    box-shadow: 5px 5px 0 rgba(0, 0, 0, 0.6); }
+    box-shadow: 0.05em 0.05em 0.05em 0.05em rgba(0, 0, 0, 0.4);
+    /*box-shadow: 5px 5px  rgba(0, 0, 0, 0.6);*/ }
+    .cardGest .card-body p {
+      margin-top: 10px;
+      padding: 10px;
+      font-size: 0.9em;
+      display: inline-block;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: normal; }
+    .cardGest .card-body h3 {
+      color: #FFFFFF;
+      margin: 20px;
+      line-height: 1em; }
+    .cardGest .card-body .card-block {
+      position: absolute;
+      bottom: -10px;
+      text-align: center;
+      width: 100%;
+      height: 35%;
+      padding-right: 30px; }
+
+footer {
+  color: #FFFFFF; }
+  footer .footer-logo {
+    height: 80px;
+    background-color: #FFFFFF;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    border-radius: 5px; }
   footer .bck {
     background: linear-gradient(to bottom, rgba(224, 242, 241, 0.8), rgba(224, 242, 241, 0));
     height: 20vh; }
@@ -495,7 +565,7 @@ footer {
     background-color: rgba(0, 158, 61, 0.99);
     padding: 20px; }
   footer p {
-    font-size: 1.1em;
+    font-size: 0.8em;
     text-align: justify; }
   footer ul > li {
     margin: 0 20px 0 20px; }
@@ -512,14 +582,13 @@ section {
     z-index: 1; }
   section h2 {
     color: rgba(0, 158, 61, 0.99);
-    font-family: "Cabin Condensed", sans-serif;
+    font-family: "ERASDEMI", sans-serif;
     font-size: 2.8em;
     line-height: 2em;
-    text-transform: uppercase;
     text-align: center; }
   section h3 {
     color: rgba(0, 158, 61, 0.99);
-    font-family: "Cabin Condensed", sans-serif;
+    font-family: "ERASDEMI", sans-serif;
     font-size: 1.8em;
     line-height: 2em;
     margin-bottom: 10px; }
@@ -534,7 +603,11 @@ section {
     padding: 20px 10px 20px 10px;
     text-align: justify; }
 
-form .form-control {
+section form .search {
+  height: 50px;
+  font-size: 1.8em !important; }
+
+section form .form-control {
   font-size: 1em;
   color: #2a2a2a;
   -webkit-border-radius: 5px;
@@ -542,43 +615,44 @@ form .form-control {
   -ms-border-radius: 5px;
   border-radius: 5px; }
 
-form .form-control:focus {
+section form .form-control:focus {
   border: 2px solid rgba(0, 158, 61, 0.99);
   box-shadow: none;
   background: rgba(196, 255, 190, 0.1); }
 
-form .textarea {
+section form .textarea {
   width: 100%;
   margin-left: auto;
   margin-right: auto; }
 
-form input {
+section form input {
   border: 1px solid rgba(0, 158, 61, 0.99);
   width: 100% !important; }
 
-form label {
+section form label {
   width: 100%;
-  font-size: 1.1em; }
+  font-size: 1.0em; }
 
-form input[type="file"] {
+section form input[type="file"] {
   height: 0;
   width: 0;
   overflow: hidden;
-  border: 0 solid rgba(0, 158, 61, 0.99); }
+  border: 0 solid rgba(196, 255, 190, 0.1); }
 
-form input[type="radio"]:empty,
-form input[type="checkbox"]:empty {
+section form input[type="radio"]:empty,
+section form input[type="checkbox"]:empty {
   display: none; }
-  form input[type="radio"]:empty ~ label,
-  form input[type="checkbox"]:empty ~ label {
+  section form input[type="radio"]:empty ~ label,
+  section form input[type="checkbox"]:empty ~ label {
+    font-size: 0.9em;
     position: relative;
     line-height: 2em;
     text-indent: 3em;
     margin-top: 5px;
     cursor: pointer;
     user-select: none; }
-    form input[type="radio"]:empty ~ label:before,
-    form input[type="checkbox"]:empty ~ label:before {
+    section form input[type="radio"]:empty ~ label:before,
+    section form input[type="checkbox"]:empty ~ label:before {
       position: absolute;
       display: block;
       top: 0;
@@ -589,30 +663,30 @@ form input[type="checkbox"]:empty {
       background: #D1D3D4;
       border-radius: 3px; }
 
-form input[type="radio"]:hover:not(:checked) ~ label,
-form input[type="checkbox"]:hover:not(:checked) ~ label {
+section form input[type="radio"]:hover:not(:checked) ~ label,
+section form input[type="checkbox"]:hover:not(:checked) ~ label {
   color: #888; }
-  form input[type="radio"]:hover:not(:checked) ~ label:before,
-  form input[type="checkbox"]:hover:not(:checked) ~ label:before {
+  section form input[type="radio"]:hover:not(:checked) ~ label:before,
+  section form input[type="checkbox"]:hover:not(:checked) ~ label:before {
     content: '\2714';
     text-indent: .9em;
     color: #C2C2C2; }
 
-form input[type="radio"]:checked ~ label,
-form input[type="checkbox"]:checked ~ label {
+section form input[type="radio"]:checked ~ label,
+section form input[type="checkbox"]:checked ~ label {
   color: rgba(0, 158, 61, 0.99); }
-  form input[type="radio"]:checked ~ label:before,
-  form input[type="checkbox"]:checked ~ label:before {
+  section form input[type="radio"]:checked ~ label:before,
+  section form input[type="checkbox"]:checked ~ label:before {
     content: '\2714';
     text-indent: .9em;
     color: #FFFFFF;
     background-color: rgba(0, 158, 61, 0.99); }
 
-form input[type="radio"]:focus ~ label:before,
-form input[type="checkbox"]:focus ~ label:before {
+section form input[type="radio"]:focus ~ label:before,
+section form input[type="checkbox"]:focus ~ label:before {
   box-shadow: 0 0 0 3px #999; }
 
-form .cleIcon {
+section form .cleIcon {
   width: 200px;
   height: 200px; }
 
@@ -644,7 +718,7 @@ form .cleIcon {
       color: rgba(0, 158, 61, 0.99);
       text-decoration: none; }
 
-.btnFavoris {
+.btnFavoris, .btnFavorisPart {
   background-color: #FFFFFF;
   border-radius: 50%;
   border-style: none;
@@ -654,8 +728,12 @@ form .cleIcon {
   font-size: 1.5em;
   box-shadow: 0.05em 0.05em 0.05em 0.05em rgba(0, 0, 0, 0.2);
   /*box-shadow: 5px 5px  rgba(0, 0, 0, 0.6);*/ }
-  .btnFavoris i {
+  .btnFavoris i, .btnFavorisPart i {
     color: rgba(0, 158, 61, 0.99); }
+
+.btnFavorisPart {
+  float: left;
+  margin-top: 10px; }
 
 .btnFavorisTest {
   background-color: rgba(0, 158, 61, 0.99);
@@ -708,6 +786,10 @@ form .cleIcon {
 /**
 ** node-sass --watch web/sass/main.scss web/css/main.css
 */
+@font-face {
+  font-family: ERASDEMI;
+  src: url("../fonts/ERASDEMI.TTF"); }
+
 /**
 */
 body::-webkit-scrollbar {
@@ -715,12 +797,15 @@ body::-webkit-scrollbar {
 
 body {
   font-size: 1.0em;
-  background: url("../img/bck-1.jpg") no-repeat fixed;
+  background: url("../img/bck-2.jpg") no-repeat fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
   font-family: "Source Sans Pro", sans-serif; }
+
+textarea {
+  resize: vertical; }
 
 a:visited, a:link {
   text-decoration: none;
@@ -749,9 +834,36 @@ a:hover, a:active {
   box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.8);
   /*box-shadow: 5px 5px  rgba(0, 0, 0, 0.6);*/ }
 
+.btn2, .btn2:focus, .btn2:target, .btn2:active {
+  color: #FFFFFF;
+  font-size: 1.2em;
+  background: #cbcbcb;
+  text-align: center;
+  width: 200px;
+  margin: 10px;
+  padding: 10px;
+  border: 2px solid;
+  box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.4);
+  /*box-shadow: 5px 5px  rgba(0, 0, 0, 0.6);*/
+  outline: none;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  border-radius: 5px; }
+
+.btn2:hover {
+  color: #FFFFFF;
+  background: #cbcbcb;
+  border: 2px solid rgba(0, 158, 61, 0.99);
+  box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.8);
+  /*box-shadow: 5px 5px  rgba(0, 0, 0, 0.6);*/ }
+
 .input-group-addon {
-  padding: 0 !important;
-  border: 0 solid #ccc !important; }
+  padding: 0 0 !important;
+  border: 0 solid #ccc !important;
+  background: none;
+  height: 48px;
+  bottom: 0; }
 
 .btn-search {
   margin: 0 !important;
@@ -772,17 +884,15 @@ a:hover, a:active {
   font-size: 40px;
   position: fixed;
   padding: 0 20px;
-  bottom: 50px;
-  right: 50px;
+  bottom: 10px;
+  right: 10px;
   background-color: rgba(0, 158, 61, 0.99);
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
   -ms-border-radius: 5px;
-  border-radius: 5px; }
-
-.search {
-  height: 50px;
-  font-size: 1.8em !important; }
+  border-radius: 5px;
+  z-index: 1000;
+  border: 1px solid #FFF; }
 
 .label-commune {
   display: inline-block;
@@ -910,7 +1020,6 @@ a:hover, a:active {
     border: 2px solid rgba(0, 158, 61, 0.99); }
 
 /*
-
 .row {
   border: 1px solid black !important;
 }
@@ -950,5 +1059,4 @@ a:hover, a:active {
 .col-md-12 {
   border: 1px solid black !important;
 }
-
 */

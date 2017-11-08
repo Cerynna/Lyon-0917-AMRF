@@ -39,7 +39,42 @@
   }
 }
 
+.espaceMaire {
+  @media only screen and (max-width: 1000px) {
+    .card-body {
+      height: 400px !important;
+    }
+    .cardBtn{
+      margin-bottom: 120px !important;
+    }
+  }
+  div.btn {
+    width: 325px;
+    margin: 12px 2px 2px 2px;
+  }
+}
+
+.espacePart {
+  @media only screen and (max-width: 1000px) {
+    .card-body {
+      height: 400px !important;
+    }
+    .cardBtn{
+      margin-bottom: 120px !important;
+    }
+  }
+  div.btn {
+    width: 325px;
+    margin: 12px 2px 2px 2px;
+  }
+}
+
+.cardBtn{
+  margin-bottom: 40px;
+}
+
 .cardGest {
+  margin: 0 0 20px 0;
   .card-title {
     text-align: center;
     .fa {
@@ -48,8 +83,9 @@
       font-size: 5em;
     }
   }
+
   .card-body {
-    height: 400px;
+    height: 300px;
     @include borderRadius(5px);
     @include boxShadow(0.05em, rgba(0, 0, 0, 0.4));
     p {
@@ -64,15 +100,15 @@
     h3 {
       color: $color2;
       margin: 20px;
-      line-height: 0em;
+      line-height: 1em;
     }
     .card-block {
       position: absolute;
-      bottom: 0;
+      bottom: -10px;
       text-align: center;
-      width:100%;
+      width: 100%;
+      height: 35%;
       padding-right: 30px;
-
     }
   }
 }

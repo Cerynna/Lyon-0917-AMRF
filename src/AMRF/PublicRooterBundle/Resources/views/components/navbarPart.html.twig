@@ -30,9 +30,14 @@
                     <ul class="dropdown-menu">
                         <li class="dropdown-main"><a href="{{ path('partHome') }}">Mon Espace <i
                                         class="fa fa-angle-down"></i></a></li>
-                        <li><a href="{{ path('partProfil') }}">Profil</a></li>
+                        <li class="dropdown-header">Mes Contenus</li>
+                        <li><a href="{{ path('partProfil') }}">Mon Profil</a></li>
                         <li><a href="{{ path('partPres') }}">Ma fiche</a></li>
                         <li><a href="{{ path('partFavoris') }}">Mes Favoris</a></li>
+                        <li class="dropdown-header">Rechercher</li>
+                        <li><a tabindex="-1" href="{{ path('recherche') }}">Les Projets</a></li>
+                        <li><a tabindex="-1" href="{{ path('annuaire') }}">Les Partenaires</a></li>
+                        <hr>
                         <li><a href="#">Déconnexion</a></li>
                     </ul>
                 </li>

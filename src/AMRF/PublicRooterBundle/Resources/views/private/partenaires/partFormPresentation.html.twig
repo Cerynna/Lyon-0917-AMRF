@@ -9,34 +9,37 @@
 
     <!-- Nav tabs -->
     <div class="row tabPannel">
-
         <form action="">
+
             <div class="col-md-12">
                 <ul class="list-inline text-center" role="tablist">
-                    <li role="presentation" class="active">
-                        <a href="#entreprise" aria-controls="entreprise" role="tab" data-toggle="tab">Entreprise</a>
+                    <li role="presentation" class="tabLi active" id="orgaMenu">
+                        <a href="#organisme" aria-controls="organisme" role="tab" data-toggle="tab">Organisme</a>
                     </li>
-                    <li role="presentation">
+                    <li role="presentation" id="preseMenu" class="tabLi">
                         <a href="#description" aria-controls="description" role="tab" data-toggle="tab">Présentation</a>
                     </li>
-                    <li role="presentation">
-                        <a href="#contact" aria-controls="contact" role="tab" data-toggle="tab">Contacts</a>
+                    <li role="presentation" id="contactMenu" class="tabLi">
+                        <a href="#contact" aria-controls="contact" role="tab" data-toggle="tab">Contact</a>
+                    </li>
+                    <li role="presentation" id="previewMenu" class="tabLi">
+                        <a href="#preview" aria-controls="preview" role="tab" data-toggle="tab">Prévisualisation</a>
                     </li>
                 </ul>
 
                 <!-- Tab panes -->
                 <div class="tab-content">
-                    <div role="tabpanel" class="tab-pane active" id="entreprise">
-                        <h3>Entreprise</h3>
+                    <div role="tabpanel" class="tab-pane active" id="organisme">
+                        <h3>Organisme</h3>
                         <div class="col-lg-6 col-md-6">
                             <div class="form-group">
-                                <label for="company">Nom de l’entreprise *</label>
+                                <label for="company">Nom de l’organisme *</label>
                                 <input id="company" type="text" class="form-control">
                             </div>
                         </div>
                         <div class="col-lg-6 col-md-6">
                             <div class="form-group">
-                                <label for="address">Adresse de l’entreprise *</label>
+                                <label for="address">Adresse de l’organisme *</label>
                                 <input id="address" type="text" class="form-control">
                             </div>
                         </div>
@@ -52,14 +55,28 @@
                                 <input id="city" type="text" class="form-control">
                             </div>
                         </div>
+
+                        <div class="form-group col-sm-4 col-md-offset-4" align="center">
+                            <button type="button" class="btn"><i class="fa fa-floppy-o" aria-hidden="true"></i>
+                                Enregistrer en brouillon</button>
+                        </div>
+                        <div class="form-group col-sm-4" align="right">
+                            <a href="#description" aria-controls="description" role="tab" data-toggle="tab"
+                               onclick="changeActiveMenu('preseMenu')">
+                                <div type="button" class="btn">Etape suivante <i class=" fa fa-angle-right"
+                                                                                 aria-hidden="true"></i>
+                                </div>
+                            </a>
+                        </div>
+
+                        <span>Le symbole * indique que cette information est obligatoire</span>
                     </div>
 
-
                     <div role="tabpanel" class="tab-pane" id="description">
-                        <h3>Présentation de l'entreprise</h3>
+                        <h3>Présentation de l'organisme</h3>
                         <div class="col-lg-12 col-md-12">
                             <div class="form-group">
-                                <label>Secteur d'activité</label>
+                                <label>Secteur d'activité *</label>
                                 <ul class="list-inline">
                                     <li><input name="group1" class="form-control" type="checkbox" id="institution">
                                         <label for="institution">Institution</label></li>
@@ -76,43 +93,59 @@
                         </div>
                         <div class="col-lg-12 col-md-12">
                             <div class="form-group">
-                                <label>Présentation</label>
+                                <label>Présentation * (1200 caractères maximum)</label>
                                 <textarea id="presentation" class="form-control" rows="6" data-length="1200"
-                                          placeholder="Présenter votre activité *"></textarea>
+                                          placeholder="Présentez votre activité"></textarea>
                             </div>
                         </div>
-
-
                         <div class="col-lg-6 col-md-6">
-
                             <div class="form-group">
-
                                 <input type="hidden" name="MAX_FILE_SIZE" value="500000">
                                 <input type="file" id="photo" name="photo"/>
                                 <label for="photo">
-                                    <div class="btn">Télécharger une illustration du projet</div>
+                                    <div class="btn2">Ajouter un logo</div>
                                 </label>
-
                             </div>
-
-
                         </div>
                         <div class="col-lg-6 col-md-6">
                             <div class="form-group">
-                                <label for="url">Site Internet</label>
+                                <label for="url">Site internet (les utilisateurs seront renvoyés vers cette
+                                    page)</label>
                                 <input id="url" type="url" class="form-control">
                             </div>
-
                             <div class="form-group">
                                 <label for="facebook">Facebook</label>
                                 <input id="facebook" type="url" class="form-control">
                             </div>
-
+                            <div class="form-group">
+                                <label for="linkedin">Linkedin</label>
+                                <input id="linkedin" type="url" class="form-control">
+                            </div>
                             <div class="form-group">
                                 <label for="twitter">Twitter</label>
                                 <input id="twitter" type="url" class="form-control">
                             </div>
                         </div>
+                        <div class="form-group col-sm-4" align="left">
+                            <a href="#organisme" aria-controls="organisme" role="tab" data-toggle="tab"
+                               onclick="changeActiveMenu('orgaMenu')">
+                                <div type="button" class="btn"><i class=" fa fa-angle-left" aria-hidden="true"></i>
+                                    Etape précédente
+                                </div>
+                            </a>
+                        </div>
+                        <div class="form-group col-sm-4" align="center">
+                            <button type="button" class="btn"><i class="fa fa-floppy-o" aria-hidden="true"></i>
+                                Enregistrer en brouillon</button>
+                        </div>
+                        <div class="form-group col-sm-4" align="right">
+                            <a href="#contact" aria-controls="contact" role="tab" data-toggle="tab"
+                               onclick="changeActiveMenu('contactMenu')">
+                                <div type="button" class="btn">Etape suivante <i class=" fa fa-angle-right"
+                                                                                 aria-hidden="true"></i></div>
+                            </a>
+                        </div>
+                        <span>Le symbole * indique que cette information est obligatoire</span>
                     </div>
 
                     <div role="tabpanel" class="tab-pane" id="contact">
@@ -141,41 +174,77 @@
                                 <input id="email" type="email" class="form-control">
                             </div>
                         </div>
-                        <h3>Contacts locaux</h3>
-                        <div class="col-lg-6 col-md-6">
-                            <div class="form-group">
-                                <label for="lastName">Nom du contact</label>
-                                <input id="lastName" type="text" class="form-control">
-                            </div>
+                        <div class="form-group col-sm-4" align="left">
+                            <a href="#description" aria-controls="description" role="tab" data-toggle="tab"
+                               onclick="changeActiveMenu('preseMenu')">
+                                <div type="button" class="btn"><i class=" fa fa-angle-left" aria-hidden="true"></i>
+                                    Etape
+                                    précédente
+                                </div>
+                            </a>
                         </div>
-                        <div class="col-lg-6 col-md-6">
-                            <div class="form-group">
-                                <label for="firstName">Prénom du contact</label>
-                                <input id="firstName" type="text" class="form-control">
-                            </div>
+                        <div class="form-group col-sm-4" align="center">
+                            <button type="button" class="btn"><i class="fa fa-floppy-o" aria-hidden="true"></i>
+                                Enregistrer en brouillon</button>
                         </div>
-                        <div class="col-lg-6 col-md-6">
-                            <div class="form-group">
-                                <label for="tel">Téléphone</label>
-                                <input id="tel" type="tel" class="form-control">
-                            </div>
+                        <div class="form-group col-sm-4" align="right">
+                            <a href="#preview" aria-controls="preview" role="tab" data-toggle="tab"
+                               onclick="changeActiveMenu('previewMenu')">
+                                <div type="button" class="btn">Etape suivante <i class=" fa fa-angle-right"
+                                                                                 aria-hidden="true"></i></div>
+                            </a>
                         </div>
-                        <div class="col-lg-6 col-md-6">
-                            <div class="form-group">
-                                <label for="email">Email</label>
-                                <input id="email" type="email" class="form-control">
-                            </div>
-                        </div>
+                        <span>Le symbole * indique que cette information est obligatoire</span>
                     </div>
+
+                    <div role="tabpanel" class="tab-pane" id="preview">
+                        <h3>Prévisualisez votre fiche</h3>
+                        <p>Ici vous pouvez visualiser votre fiche telle qu'elle apparaîtra sur le site. Si elle vous
+                            convient, cliquez sur "Publier", sinon, vous pouvez revenir au formulaire pour la
+                            corriger.</p>
+                        <div class="row jumbotron">
+                            <div class="panel panel-default">
+                                <div class="row">
+                                    <div class="panel-heading" role="tab">
+                                        <div class="col-md-4">
+                                            <img src="http://via.placeholder.com/70x70">
+                                        </div>
+                                        <div class="col-md-5">
+                                            <h3>Nom du partenaire</h3>
+                                        </div>
+                                    </div>
+                                </div>
+                                {% include 'AMRFPublicRooterBundle::components/partComponent.html.twig' %}
+                            </div>
+                            <div class="form-group col-sm-6" align="left">
+                                <a href="#contact" aria-controls="contact" role="tab" data-toggle="tab"
+                                   onclick="changeActiveMenu('contactMenu')">
+                                    <div type="button" class="btn"><i class=" fa fa-angle-left" aria-hidden="true"></i>
+                                        Etape
+                                        précédente
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="form-group col-sm-6" align="right">
+                                <button type="button" class="btn">Publier votre fiche</button>
+                            </div>
+                        </div>
+
+                    </div>
+
+
                 </div>
-            </div>
-            <div class="form-group col-sm-6" align="center">
-                <button type="button" class="btn">Previsualiser votre fiche</button>
-            </div>
-            <div class="form-group col-sm-6" align="center">
-                <button type="button" class="btn">Envoyer votre fiche</button>
             </div>
         </form>
     </div>
 
+{% endblock %}
+{% block javascripts %}
+    <script>
+
+        function changeActiveMenu(idActive) {
+            $('.tabLi').removeClass('active');
+            $('#' + idActive).addClass('active');
+        }
+    </script>
 {% endblock %}

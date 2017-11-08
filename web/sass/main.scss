@@ -24,11 +24,18 @@
 @import 'partials/components/tabPannel';
 @import 'partials/components/btnFavoris';
 @import 'partials/components/projet';
+
 /**
 ** node-sass --watch web/sass/main.scss web/css/main.css
 */
-@import url('https://fonts.googleapis.com/css?family=Cabin+Condensed|Comfortaa|Francois+One|Josefin+Sans|Play|Poiret+One|Source+Sans+Pro');
+@import url('https://fonts.googleapis.com/css?family=Cabin+Condensed|Source+Sans+Pro');
+@import url('../fonts/ERASDEMI.TTF');
 @import url("http://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css");
+
+@font-face {
+  font-family: ERASDEMI;
+  src: url('../fonts/ERASDEMI.TTF');
+}
 
 /**
 */
@@ -36,18 +43,18 @@ body::-webkit-scrollbar {
   display: none;
 }
 
-$imgKey: random(5);
-
-$list: bck-1, bck-2, bck-3, bck-4, bck-5;
-$nth: nth($list, $imgKey);
 body {
   font-size: 1.0em;
-  background: url('../img/#{$nth}.jpg') no-repeat fixed;
+  background: url('../img/bck-2.jpg') no-repeat fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
-  font-family: $primaryFont, sans-serif;
+  font-family: $font1, sans-serif;
+}
+
+textarea{
+  resize: vertical;
 }
 
 a:visited, a:link {
@@ -79,9 +86,33 @@ a:hover, a:active {
   @include boxShadow(2px, rgba(0, 0, 0, 0.8));
 }
 
+.btn2, .btn2:focus, .btn2:target, .btn2:active {
+  color: $color2;
+  font-size: 1.2em;
+  background: $color4;
+  text-align: center;
+  width : 200px;
+  margin: 10px;
+  padding: 10px;
+  border: 2px solid;
+  @include boxShadow(1px, rgba(0, 0, 0, 0.4));
+  outline: none;
+  @include borderRadius(5px);
+}
+
+.btn2:hover {
+  color: $color2;
+  background: $color4;
+  border: 2px solid $color1;
+  @include boxShadow(2px, rgba(0, 0, 0, 0.8));
+}
+
 .input-group-addon {
-  padding: 0 !important;
+  padding: 0 0 !important;
   border: 0 solid #ccc !important;
+  background: none;
+  height: 48px;
+  bottom: 0;
 }
 
 .btn-search {
@@ -104,16 +135,14 @@ a:hover, a:active {
   font-size: 40px;
   position: fixed;
   padding: 0 20px;
-  bottom: 50px;
-  right: 50px;
+  bottom: 10px;
+  right: 10px;
   background-color: $color1;
   @include borderRadius(5px);
+  z-index: 1000;
+  border: 1px solid #FFF;
 }
 
-.search {
-  height: 50px;
-  font-size: 1.8em !important;
-}
 
 .label-commune {
   display: inline-block;
@@ -254,11 +283,12 @@ a:hover, a:active {
     color: $color2;
     border: 2px solid $color1;
   }
-
 }
 
-/*
 
+
+
+/*
 .row {
   border: 1px solid black !important;
 }
@@ -298,5 +328,4 @@ a:hover, a:active {
 .col-md-12 {
   border: 1px solid black !important;
 }
-
 */
