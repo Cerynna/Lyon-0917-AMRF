@@ -2,8 +2,50 @@
 {% block title %}Mes Favoris{% endblock %}
 {% block body %}
 
-<h2>Mes projets favoris</h2>
+    <h2>Mes favoris</h2>
 
-    {% include 'AMRFPublicRooterBundle::components/resumeProject.html.twig' %}
+    <!-- Nav tabs -->
+    <div class="row tabPannel">
+    <ul class="list-inline text-center" role="tablist">
+        <li role="presentation" class="active">
+            <a href="#projets" aria-controls="profil" role="tab" data-toggle="tab">Mes projets favoris</a>
+        </li>
+        <li role="presentation">
+            <a href="#partenaires" aria-controls="mairie" role="tab" data-toggle="tab">Mes partenaires favoris</a>
+        </li>
+    </ul>
 
+    <div class="tab-content">
+
+        <div role="tabpanel" class="tab-pane active" id="projets">
+            {% include 'AMRFPublicRooterBundle::components/resumeProject.html.twig' %}
+        </div>
+
+        <div role="tabpanel" class="tab-pane" id="partenaires">
+            <div class="jumbotron panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne"
+                   aria-expanded="true" aria-controls="collapseOne">
+                    <div class="row">
+                        <div class="panel-heading" role="tab" id="headingOne">
+                            <div class="col-md-4">
+                                <img src="http://via.placeholder.com/70x70">
+                            </div>
+                            <div class="col-md-5">
+                                <h3>Nom du partenaire</h3>
+                            </div>
+                            <div class="col-md-3 text-right">
+                                <div class="btn btn-collapse">
+                                    <i class="fa fa-angle-double-down"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+                <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+                    {% include 'AMRFPublicRooterBundle::components/partComponent.html.twig' %}
+                </div>
+            </div>
+        </div>
+    </div>{#end tabContent#}
+    </div>{#end tabPannel #}
 {% endblock %}
