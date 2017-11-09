@@ -24,8 +24,7 @@
     <!-- results -->
     <div class="row jumbotron">
         <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-
-            <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne"
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne"
                aria-expanded="true" aria-controls="collapseOne">
                 <div class="row">
                     <div class="panel-heading" role="tab" id="headingOne">
@@ -36,9 +35,7 @@
                             <h3>Nom du partenaire</h3>
                         </div>
                         <div class="col-md-3 text-right">
-
                             <div class="btn btn-collapse"><i class="fa fa-angle-double-down"></i></div>
-
                         </div>
                     </div>
                 </div>
@@ -47,17 +44,18 @@
                 {% include 'AMRFPublicRooterBundle::components/partComponent.html.twig' %}
             </div>
         </div>
+        <div class="row text-center">
+            <ul class="pagination">
+                <li class="disabled"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
+                <li class="active"><a href="#!">1</a></li>
+                <li class="waves-effect"><a href="#!">2</a></li>
+                <li class="waves-effect"><a href="#!">3</a></li>
+                <li class="waves-effect"><a href="#!"><i class="material-icons">chevron_right</i></a></li>
+            </ul>
+        </div>
     </div>
 
-    <div class="row text-center">
-        <ul class="pagination">
-            <li class="disabled"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
-            <li class="active"><a href="#!">1</a></li>
-            <li class="waves-effect"><a href="#!">2</a></li>
-            <li class="waves-effect"><a href="#!">3</a></li>
-            <li class="waves-effect"><a href="#!"><i class="material-icons">chevron_right</i></a></li>
-        </ul>
-    </div>
+
 
 {% endblock %}
 
