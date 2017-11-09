@@ -1,0 +1,87 @@
+@media only screen and (max-width: 420px) {
+
+  .row {
+    margin: 0;
+  }
+  .container {
+    padding: 0;
+  }
+
+  .content {
+    padding: 20px 10px !important;
+    .search {
+      font-size: 1.2em !important;
+    }
+  }
+
+  h1 {
+    font-size: 2.5em !important;
+    text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.6) !important;
+  }
+
+  h2 {
+    font-size: 1.8em !important;
+    line-height: 1em !important;
+  }
+
+  h3 {
+    font-size: 1.2em !important;
+    line-height: 1em !important;
+    margin-top: 10px !important;
+    margin-bottom: 10px !important;
+  }
+  p {
+    font-size: 1em !important;
+  }
+  nav p {
+    font-size: 0.7em !important;
+  }
+  .connect {
+    display: none;
+  }
+
+  #search {
+    display: none;
+  }
+
+  .scrollUp {
+    font-size: 30px !important;
+    padding: 3px 14px !important;
+  }
+
+  footer {
+    .footer-logo {
+      display: none;
+    }
+    .bck {
+      height: 5vh !important;
+    }
+  }
+
+  /*Espace Maire*/
+  .espaceMaire {
+
+    .card-body {
+      height: 400px !important;
+    }
+    .cardBtn {
+      margin-bottom: 120px !important;
+    }
+    div.btn {
+      width: 100% !important;
+    }
+  }
+
+  /*Projets*/
+  .tabPanel {
+    li {
+      a {
+        font-size: 0.5em !important;
+        left: 50px !important;
+      }
+    }
+  }
+
+  /*end media querys*/
+}
+

@@ -11,6 +11,11 @@
 */
 @import 'partials/mixins';
 /**
+*************************** Queries *********************
+*/
+@import 'partials/queries/smartphone';
+@import 'partials/queries/tablette';
+/**
 *************************** Components *********************
  */
 @import 'partials/components/header';
