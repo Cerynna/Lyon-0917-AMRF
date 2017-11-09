@@ -12,50 +12,71 @@
             </div>
         </div>
         <div class="jumbotron">
-            <h3 class="text-center">Choisir une thématique</h3>
-            {% include 'AMRFPublicRooterBundle::components/thematiques.html.twig' %}
-            <div class="row">
-                <div class="col-md-12 ui-widget">
-                    <label for="motsCle" class="text-center">Mots-clefs</label><br>
-                    <input type="text" max="5" class="motsCle form-control" name="motsCle" id="motsCle">
+            <div class="panel-group" id="more" role="tablist" aria-multiselectable="true">
+                <a data-toggle="collapse" data-parent="#more" href="#collapseMore"
+                   aria-expanded="true" aria-controls="collapseMore">
+                    <div class="panel-heading text-center" role="tab" id="headingMore">
+                        <h3>Choisir une thématique <i class="fa fa-angle-double-down"></i></h3>
+                    </div>
+                </a>
+                <div id="collapseMore" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingMore">
+                    {% include 'AMRFPublicRooterBundle::components/thematiques.html.twig' %}
+                    <div class="row">
+                        <div class="col-md-12 ui-widget">
+                            <label for="motsCle" class="text-center">Mots-clefs</label><br>
+                            <input type="text" max="5" class="motsCle form-control" name="motsCle" id="motsCle">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4 text-center">
+                            <label for="communes">Departement</label>
+                            <input type="text" class="form-control" accept="" name="communes" id="communes">
+                        </div>
+                        <div class="col-md-4 form-group text-center">
+                            <label for="code">Code Postal</label>
+                            <input id="code" class="form-control" type="text" autocomplete="off" size="5" maxlength="5">
+                        </div>
+                        <div class="col-md-4 form-group text-center">
+                            <label for="city">Communes</label>
+                            <input id="city" class="form-control" type="text" autocomplete="off">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4 text-center">
+                            <div id="results" class="output"></div>
+                        </div>
+                        <div class="col-md-8 form-group text-center">
+                            <div class="output" id="output"></div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 text-center">
+                            <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i> Recherche
+                            </button>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-md-4 text-center">
-                    <label for="communes">Departement</label>
-                    <input type="text" class="form-control" accept="" name="communes" id="communes">
-                </div>
-                <div class="col-md-4 form-group text-center">
-                    <label for="code">Code Postal</label>
-                    <input id="code" class="form-control" type="text" autocomplete="off" size="5" maxlength="5">
-                </div>
-                <div class="col-md-4 form-group text-center">
-                    <label for="city">Communes</label>
-                    <input id="city" class="form-control" type="text" autocomplete="off">
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-4 text-center">
-                    <div id="results" class="output"></div>
-                </div>
-                <div class="col-md-8 form-group text-center">
-                    <div class="output" id="output"></div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-12 text-center">
-                    <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i> Recherche</button>
-                </div>
-            </div>
-        </div><!--end jumbotron-->
-        <div class="jumbotron">
-            <h3 class="text-center">Localiser un projet</h3>
-            <iframe width="100%" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"
-                    src="http://www.openstreetmap.org/export/embed.html?bbox=-4.932861328125001%2C43.59630591596551%2C9.569091796875002%2C50.00067775723633&amp;layer=mapnik"
-                    style="border: 0 solid black"></iframe>
         </div>
-    </form>
+        <div class="jumbotron">
 
+            <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne"
+                   aria-expanded="true" aria-controls="collapseOne">
+                    <div class="panel-heading text-center" role="tab" id="headingOne">
+                        <h3>Localiser un projet <i class="fa fa-angle-double-down"></i></h3>
+                    </div>
+                </a>
+                <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+                    <iframe width="100%" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"
+                            src="http://www.openstreetmap.org/export/embed.html?bbox=-4.932861328125001%2C43.59630591596551%2C9.569091796875002%2C50.00067775723633&amp;layer=mapnik"
+                            style="border: 0 solid black"></iframe>
+                </div>
+            </div>
+        </div>
+
+    </form>
+    <h3>Resultat(s) de votre recherche</h3>
     {% include 'AMRFPublicRooterBundle::components/resumeProject.html.twig' %}
 {% endblock %}
 {% block javascripts %}
