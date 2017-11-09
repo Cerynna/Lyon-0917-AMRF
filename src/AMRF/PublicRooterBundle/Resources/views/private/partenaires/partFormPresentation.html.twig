@@ -31,45 +31,46 @@
                 <div class="tab-content">
                     <div role="tabpanel" class="tab-pane active" id="organisme">
                         <h3>Organisme</h3>
-                        <div class="col-lg-6 col-md-6">
+                        <div class="col-lg-6 col-sm-6">
                             <div class="form-group">
                                 <label for="company">Nom de l’organisme *</label>
                                 <input id="company" type="text" class="form-control">
                             </div>
                         </div>
-                        <div class="col-lg-6 col-md-6">
+                        <div class="col-lg-6 col-sm-6">
                             <div class="form-group">
                                 <label for="address">Adresse de l’organisme *</label>
                                 <input id="address" type="text" class="form-control">
                             </div>
                         </div>
-                        <div class="col-lg-6 col-md-6">
+                        <div class="col-lg-6 col-sm-6">
                             <div class="form-group">
                                 <label for="zipcode">Code Postal *</label>
                                 <input id="zipcode" type="text" class="form-control">
                             </div>
                         </div>
-                        <div class="col-lg-6 col-md-6">
+                        <div class="col-lg-6 col-sm-6">
                             <div class="form-group">
                                 <label for="city">Ville *</label>
                                 <input id="city" type="text" class="form-control">
                             </div>
                         </div>
-
-                        <div class="form-group col-sm-4 col-md-offset-4" align="center">
-                            <button type="button" class="btn"><i class="fa fa-floppy-o" aria-hidden="true"></i>
-                                Enregistrer en brouillon</button>
+                        <div class="row">
+                            <div class="form-group col-sm-4 col-sm-offset-4" align="center">
+                                <button type="button" class="btn"><i class="fa fa-floppy-o" aria-hidden="true"></i>
+                                    Enregistrer en brouillon
+                                </button>
+                            </div>
+                            <div class="form-group col-sm-4" align="right">
+                                <a href="#description" aria-controls="description" role="tab" data-toggle="tab"
+                                   onclick="changeActiveMenu('preseMenu')">
+                                    <div type="button" class="btn">Etape suivante <i class=" fa fa-angle-right"
+                                                                                     aria-hidden="true"></i>
+                                    </div>
+                                </a>
+                            </div>
                         </div>
-                        <div class="form-group col-sm-4" align="right">
-                            <a href="#description" aria-controls="description" role="tab" data-toggle="tab"
-                               onclick="changeActiveMenu('preseMenu')">
-                                <div type="button" class="btn">Etape suivante <i class=" fa fa-angle-right"
-                                                                                 aria-hidden="true"></i>
-                                </div>
-                            </a>
-                        </div>
 
-                        <span>Le symbole * indique que cette information est obligatoire</span>
                     </div>
 
                     <div role="tabpanel" class="tab-pane" id="description">
@@ -107,20 +108,26 @@
                                 </label>
                             </div>
                         </div>
-                        <div class="col-lg-6 col-md-6">
+                        <div class="col-lg-6 col-sm-6">
                             <div class="form-group">
-                                <label for="url">Site internet (les utilisateurs seront renvoyés vers cette
-                                    page)</label>
+                                <label for="url">Site internet <span class="hidden-sm">(les utilisateurs seront renvoyés vers cette
+                                    page)</span></label>
                                 <input id="url" type="url" class="form-control">
                             </div>
+                        </div>
+                        <div class="col-lg-6 col-sm-6">
                             <div class="form-group">
                                 <label for="facebook">Facebook</label>
                                 <input id="facebook" type="url" class="form-control">
                             </div>
+                        </div>
+                        <div class="col-lg-6 col-sm-6">
                             <div class="form-group">
                                 <label for="linkedin">Linkedin</label>
                                 <input id="linkedin" type="url" class="form-control">
                             </div>
+                        </div>
+                        <div class="col-lg-6 col-sm-6">
                             <div class="form-group">
                                 <label for="twitter">Twitter</label>
                                 <input id="twitter" type="url" class="form-control">
@@ -136,7 +143,8 @@
                         </div>
                         <div class="form-group col-sm-4" align="center">
                             <button type="button" class="btn"><i class="fa fa-floppy-o" aria-hidden="true"></i>
-                                Enregistrer en brouillon</button>
+                                Enregistrer en brouillon
+                            </button>
                         </div>
                         <div class="form-group col-sm-4" align="right">
                             <a href="#contact" aria-controls="contact" role="tab" data-toggle="tab"
@@ -145,30 +153,30 @@
                                                                                  aria-hidden="true"></i></div>
                             </a>
                         </div>
-                        <span>Le symbole * indique que cette information est obligatoire</span>
+
                     </div>
 
                     <div role="tabpanel" class="tab-pane" id="contact">
                         <h3>Contact</h3>
-                        <div class="col-lg-6 col-md-6">
+                        <div class="col-lg-6 col-sm-6">
                             <div class="form-group">
                                 <label for="lastName">Nom du contact *</label>
                                 <input id="lastName" type="text" class="form-control">
                             </div>
                         </div>
-                        <div class="col-lg-6 col-md-6">
+                        <div class="col-lg-6 col-sm-6">
                             <div class="form-group">
                                 <label for="firstName">Prénom du contact *</label>
                                 <input id="firstName" type="text" class="form-control">
                             </div>
                         </div>
-                        <div class="col-lg-6 col-md-6">
+                        <div class="col-lg-6 col-sm-6">
                             <div class="form-group">
                                 <label for="tel">Téléphone *</label>
                                 <input id="tel" type="tel" class="form-control">
                             </div>
                         </div>
-                        <div class="col-lg-6 col-md-6">
+                        <div class="col-lg-6 col-sm-6">
                             <div class="form-group">
                                 <label for="email">Email *</label>
                                 <input id="email" type="email" class="form-control">
@@ -185,7 +193,8 @@
                         </div>
                         <div class="form-group col-sm-4" align="center">
                             <button type="button" class="btn"><i class="fa fa-floppy-o" aria-hidden="true"></i>
-                                Enregistrer en brouillon</button>
+                                Enregistrer en brouillon
+                            </button>
                         </div>
                         <div class="form-group col-sm-4" align="right">
                             <a href="#preview" aria-controls="preview" role="tab" data-toggle="tab"
@@ -194,7 +203,6 @@
                                                                                  aria-hidden="true"></i></div>
                             </a>
                         </div>
-                        <span>Le symbole * indique que cette information est obligatoire</span>
                     </div>
 
                     <div role="tabpanel" class="tab-pane" id="preview">
@@ -206,10 +214,10 @@
                             <div class="panel panel-default">
                                 <div class="row">
                                     <div class="panel-heading" role="tab">
-                                        <div class="col-md-4">
+                                        <div class="col-sm-4">
                                             <img src="http://via.placeholder.com/70x70">
                                         </div>
-                                        <div class="col-md-5">
+                                        <div class="col-sm-5">
                                             <h3>Nom du partenaire</h3>
                                         </div>
                                     </div>
@@ -232,7 +240,7 @@
 
                     </div>
 
-
+                    <span>Le symbole * indique que cette information est obligatoire</span>
                 </div>
             </div>
         </form>
