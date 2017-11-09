@@ -1,0 +1,84 @@
+/*  Media Query Tablette (portrait) */
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: portrait) {
+
+  .connect {
+    display: none;
+  }
+  header {
+    #titleHeader {
+      height: 200px !important;
+    }
+    #stickHeader {
+      height: 0 !important;
+    }
+    h1 {
+      margin-top: 70px !important;
+    }
+
+  }
+  nav {
+    top: 0 !important;
+    padding-right: 0 !important;
+    font-size: 1.3em !important;
+
+    p {
+      font-size: 0.8em !important;
+    }
+    li {
+      font-size: 0.8em !important;
+    }
+  }
+  section {
+    .jumbotron {
+      margin: 10px !important;
+      padding: 5px 10px !important;
+    }
+    .container {
+      padding: 0 !important;
+    }
+    .content {
+      padding: 30px 10px !important;
+    }
+    h2 {
+      font-size: 1.6em !important;
+    }
+    h3 {
+      font-size: 1.2em !important;
+    }
+    h4 {
+      font-size: 1.4em !important;
+    }
+    p {
+      font-size: 1em !important;
+    }
+    .tabPannel {
+      padding: 15px 10px !important;
+      margin: 0 !important;
+
+      .list-inline {
+        a {
+          padding: 10px 5px !important;
+        }
+      }
+
+    }
+    .panel-heading {
+      padding: 0 10px;
+    }
+    input[type="checkbox"] {
+      ~ label {
+        font-size: 0.8em !important;
+      }
+    }
+  }
+  footer {
+    .footer-logo {
+      height: 60px !important;
+    }
+    ul {
+      text-align: center;
+      margin: 20px 0 !important;
+    }
+  }
+
+}

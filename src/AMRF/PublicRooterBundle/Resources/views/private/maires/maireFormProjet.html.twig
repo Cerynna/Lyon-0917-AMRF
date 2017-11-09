@@ -35,7 +35,8 @@
                     <h3>Mon projet</h3>
                     <div class="form-group col-sm-12">
                         <label for="projectName" class="col-sm-12 control-label">Titre du Projet *</label>
-                        <input id="projectName" type="text" class="form-control" placeholder="Entrez ici le nom de votre projet pour qu'il soit facilement identifiable">
+                        <input id="projectName" type="text" class="form-control"
+                               placeholder="Entrez ici le nom de votre projet pour qu'il soit facilement identifiable">
                     </div>
 
 
@@ -48,7 +49,8 @@
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label>Mots-clefs</label>
-                                <input type="text" max="5" class="form-control" name="motsCle" id="motsCle" placeholder="Saisissez les premières lettres du mot et vérifiez qu'il apparaît dans la liste. Vous pouvez saisir jusqu'à 5 mots"/>
+                                <input type="text" max="5" class="form-control" name="motsCle" id="motsCle"
+                                       placeholder="Saisissez les premières lettres du mot et vérifiez qu'il apparaît dans la liste. Vous pouvez saisir jusqu'à 5 mots"/>
                             </div>
                         </div>
                     </div>
@@ -62,18 +64,24 @@
                             </label>
                         </div>
                     </div>
-                    <div class="form-group col-sm-6 col-md-offset-6" align="right">
-                        <a href="#realisation" aria-controls="projet" role="tab" data-toggle="tab"
-                           onclick="changeActiveMenu('realMenu')">
-                            <div type="button" class="btn">Etape suivante <i class=" fa fa-angle-right" aria-hidden="true"></i>
-                            </div>
-                        </a>
+                    <div class="row">
+                        <div class="col-sm-4 col-sm-offset-4" align="center">
+                            <button type="button" class="btn"><i class="fa fa-floppy-o" aria-hidden="true"></i>
+                                <span class="hidden-sm">Enregistrer en brouillon</span>
+                            </button>
+                        </div>
+                        <div class="col-sm-4" align="center">
+                            <a href="#realisation" aria-controls="projet" role="tab" data-toggle="tab"
+                               onclick="changeActiveMenu('realMenu')">
+                                <div type="button" class="btn">Etape suivante <i class=" fa fa-angle-right"
+                                                                                 aria-hidden="true"></i>
+                                </div>
+                            </a>
+                        </div>
                     </div>
-                    <div class="form-group col-sm-6 col-md-offset-6" align="right">
-                        <button type="button" class="btn"><i class="fa fa-floppy-o" aria-hidden="true"></i>
-                             Enregistrer en brouillon</button>
+                    <div class="col-xs-12">
+                        <span>Le symbole * indique que cette information est obligatoire</span>
                     </div>
-                    <span>Le symbole * indique que cette information est obligatoire</span>
                 </div>
                 <div role="tabpanel" class="tab-pane" id="realisation">
 
@@ -108,7 +116,8 @@
                     </div>
                     <div class="form-group col-sm-4" align="center">
                         <button type="button" class="btn"><i class="fa fa-floppy-o" aria-hidden="true"></i>
-                             Enregistrer en brouillon</button>
+                            <span class="hidden-sm">Enregistrer en brouillon</span>
+                        </button>
                     </div>
                     <div class="form-group col-sm-4" align="right">
                         <a href="#description" aria-controls="description" role="tab" data-toggle="tab"
@@ -128,22 +137,30 @@
 
                     <div class="form-group col-sm-12">
                         <label for="description">Description * (1200 caractères maximum)</label>
-                        <textarea id="description" type="text" class="form-control" placeholder="Décrivez ici le contexte du projet et les différentes étapes de sa réalisation, par exemple" rows="7"></textarea>
+                        <textarea id="description" type="text" class="form-control"
+                                  placeholder="Décrivez ici le contexte du projet et les différentes étapes de sa réalisation, par exemple"
+                                  rows="7"></textarea>
                     </div>
 
                     <div class="form-group col-sm-12">
                         <label for="objectif">Objectifs *</label>
-                        <textarea id="objectif" type="text" class="form-control" placeholder="Ici, vous pouvez indiquer quels étaient vos objectifs au départ et si ils ont évolué" rows="4"></textarea>
+                        <textarea id="objectif" type="text" class="form-control"
+                                  placeholder="Ici, vous pouvez indiquer quels étaient vos objectifs au départ et si ils ont évolué"
+                                  rows="4"></textarea>
                     </div>
 
                     <div class="form-group col-sm-12">
                         <label for="partenaires">Partenaires mobilisés *</label>
-                        <textarea id="partenaires" type="text" class="form-control" placeholder="Listez ici vos partenaires pour ce projet et la nature du partenariat (apport d'expertise, logistique, financier...), par exemple" rows="3"></textarea>
+                        <textarea id="partenaires" type="text" class="form-control"
+                                  placeholder="Listez ici vos partenaires pour ce projet et la nature du partenariat (apport d'expertise, logistique, financier...), par exemple"
+                                  rows="3"></textarea>
                     </div>
 
                     <div class="form-group col-sm-12">
                         <label for="results">Résultats obtenus *</label>
-                        <textarea id="results" type="text" class="form-control" placeholder="Indiquez ici des résultats chiffrés si vous en avez. Vous pouvez préciser si vous avez atteint vos objectifs ou s'il reste encore une marge de progression" rows="4"></textarea>
+                        <textarea id="results" type="text" class="form-control"
+                                  placeholder="Indiquez ici des résultats chiffrés si vous en avez. Vous pouvez préciser si vous avez atteint vos objectifs ou s'il reste encore une marge de progression"
+                                  rows="4"></textarea>
                     </div>
 
                     <div class="form-group col-sm-12">
@@ -153,7 +170,9 @@
 
                     <div class="form-group col-sm-12">
                         <label for="conseil">Conseils *</label>
-                        <textarea id="conseil" type="text" class="form-control" placeholder="Expliquez ici ce qui vous a été utile et vous a permis d'avancer ou au contraire les pièges à éviter" rows="4"></textarea>
+                        <textarea id="conseil" type="text" class="form-control"
+                                  placeholder="Expliquez ici ce qui vous a été utile et vous a permis d'avancer ou au contraire les pièges à éviter"
+                                  rows="4"></textarea>
                     </div>
 
                     <div class="form-group col-sm-4" align="left">
@@ -166,7 +185,8 @@
                     </div>
                     <div class="form-group col-sm-4" align="center">
                         <button type="button" class="btn"><i class="fa fa-floppy-o" aria-hidden="true"></i>
-                             Enregistrer en brouillon</button>
+                            <span class="hidden-sm ">Enregistrer en brouillon</span>
+                        </button>
                     </div>
                     <div class="form-group col-sm-4" align="right">
                         <a href="#informations" aria-controls="informations" role="tab" data-toggle="tab"
@@ -205,26 +225,27 @@
                     <div class="form-group col-sm-12">
                         <input type="hidden" name="MAX_FILE_SIZE" value="500000">
                         <input type="file" id="fichier" name="fichier"/>
-                        <label for="fichier">Vous pouvez ajouter un fichier apportant des informations plus détaillées (format acceptés : PDF ) <br/>
+                        <label for="fichier">Vous pouvez ajouter un fichier apportant des informations plus détaillées
+                            (format acceptés : PDF ) <br/>
                             <div class="btn2">Télécharger</div>
                         </label>
                     </div>
 
                     <h3>Votre projet est visible sur les réseaux sociaux et/ou un site internet ?</h3>
                     <label>Indiquez les liens ici</label>
-                    <div class="form-group col-sm-12">
+                    <div class="form-group col-sm-6">
                         <label for="url">Site internet</label>
                         <input id="url" type="url" class="form-control" placeholder="">
                     </div>
-                    <div class="form-group col-sm-12">
+                    <div class="form-group col-sm-6">
                         <label for="url">YouTube</label>
                         <input id="url" type="url" class="form-control" placeholder="">
                     </div>
-                    <div class="form-group col-sm-12">
+                    <div class="form-group col-sm-6">
                         <label for="url">Facebook</label>
                         <input id="url" type="url" class="form-control" placeholder="">
                     </div>
-                    <div class="form-group col-sm-12">
+                    <div class="form-group col-sm-6">
                         <label for="url">Twitter</label>
                         <input id="url" type="url" class="form-control" placeholder="">
                     </div>
@@ -239,7 +260,8 @@
                     </div>
                     <div class="form-group col-sm-4" align="center">
                         <button type="button" class="btn"><i class="fa fa-floppy-o" aria-hidden="true"></i>
-                             Enregistrer en brouillon</button>
+                            <span class="hidden-sm">Enregistrer en brouillon</span>
+                        </button>
                     </div>
                     <div class="form-group col-sm-4" align="right">
                         <a href="#preview" aria-controls="preview" role="tab" data-toggle="tab"
@@ -257,25 +279,26 @@
                         corriger.</p>
 
                     <div class="row">
-                    <div class="form-group col-sm-4" align="left">
-                        <a href="#informations" aria-controls="informations" role="tab" data-toggle="tab"
-                           onclick="changeActiveMenu('infoMenu')">
-                            <div type="button" class="btn"><i class=" fa fa-angle-left" aria-hidden="true"></i>
-                                Etape
-                                précédente
-                            </div>
-                        </a>
+                        <div class="form-group col-sm-4" align="left">
+                            <a href="#informations" aria-controls="informations" role="tab" data-toggle="tab"
+                               onclick="changeActiveMenu('infoMenu')">
+                                <div type="button" class="btn"><i class=" fa fa-angle-left" aria-hidden="true"></i>
+                                    Etape
+                                    précédente
+                                </div>
+                            </a>
+                        </div>
+                        <div class="form-group col-sm-4" align="center">
+                            <button type="button" class="btn"><i class="fa fa-floppy-o" aria-hidden="true"></i>
+                                <span class="hidden-sm">Enregistrer en brouillon</span>
+                            </button>
+                        </div>
+                        <div class="form-group col-sm-4" align="right">
+                            <button type="button" class="btn"><i class="fa fa-envelope-o" aria-hidden="true"></i>
+                                Soumettre votre fiche
+                            </button>
+                        </div>
                     </div>
-                    <div class="form-group col-sm-4" align="center">
-                        <button type="button" class="btn"><i class="fa fa-floppy-o" aria-hidden="true"></i>
-                             Enregistrer en brouillon</button>
-                    </div>
-                    <div class="form-group col-sm-4" align="right">
-                        <button type="button" class="btn"><i class="fa fa-envelope-o" aria-hidden="true"></i>
-                             Soumettre votre fiche</button>
-                    </div>
-                    </div>
-
 
 
                     {% include 'AMRFPublicRooterBundle::components/projectComponent.html.twig' %}
@@ -289,13 +312,15 @@
                             </div>
                         </a>
                     </div>
-                    <div class="form-group col-sm-4" align="center">
+                    <div class="form-group col-sm-4" align="left">
                         <button type="button" class="btn"><i class="fa fa-floppy-o" aria-hidden="true"></i>
-                             Enregistrer en brouillon</button>
+                            <span class="hidden-sm">Enregistrer en brouillon</span>
+                        </button>
                     </div>
                     <div class="form-group col-sm-4" align="right">
                         <button type="button" class="btn"><i class="fa fa-envelope-o" aria-hidden="true"></i>
-                             Soumettre votre fiche</button>
+                            Soumettre votre fiche
+                        </button>
                     </div>
 
                 </div>

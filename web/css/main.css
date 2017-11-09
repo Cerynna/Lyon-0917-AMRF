@@ -207,6 +207,61 @@ textarea {
 *************************** Fonctions *********************
 */
 /**
+*************************** Media Querie *********************
+ */
+/*  Media Query Tablette (portrait) */
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: portrait) {
+  .connect {
+    display: none; }
+  header #titleHeader {
+    height: 200px !important; }
+  header #stickHeader {
+    height: 0 !important; }
+  header h1 {
+    margin-top: 70px !important; }
+  nav {
+    top: 0 !important;
+    padding-right: 0 !important;
+    font-size: 1.3em !important; }
+    nav p {
+      font-size: 0.8em !important; }
+    nav li {
+      font-size: 0.8em !important; }
+  section .jumbotron {
+    margin: 10px !important;
+    padding: 5px 10px !important; }
+  section .container {
+    padding: 0 !important; }
+  section .content {
+    padding: 30px 10px !important; }
+  section h2 {
+    font-size: 1.6em !important; }
+  section h3 {
+    font-size: 1.2em !important; }
+  section h4 {
+    font-size: 1.4em !important; }
+  section p {
+    font-size: 1em !important; }
+  section .tabPannel {
+    padding: 15px 10px !important;
+    margin: 0 !important; }
+    section .tabPannel .list-inline a {
+      padding: 10px 5px !important; }
+  section .panel-heading {
+    padding: 0 10px; }
+  section input[type="checkbox"] ~ label {
+    font-size: 0.8em !important; }
+  footer .footer-logo {
+    height: 60px !important; }
+  footer ul {
+    text-align: center;
+    margin: 20px 0 !important; } }
+
+/*  Media Query Tablette (portrait) */
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: portrait) {
+  /* Styles pour cette Media Queries */ }
+
+/**
 *************************** Components *********************
  */
 header {
@@ -698,11 +753,8 @@ section form .cleIcon {
   margin-bottom: 30px;
   color: inherit;
   background-color: #eee;
-  min-height: 30vh;
   box-shadow: 0.05em 0.05em 0.05em 0.05em rgba(0, 0, 0, 0.4);
   /*box-shadow: 5px 5px  rgba(0, 0, 0, 0.6);*/ }
-  .tabPannel .tab-pane {
-    min-height: 40vh; }
   .tabPannel ul {
     margin-bottom: 30px; }
     .tabPannel ul a {
