@@ -1,5 +1,4 @@
-.resumeProject{
-
+.resumeProject {
   img {
     border: 2px solid #FFF;
     @include borderRadius(5px);
@@ -19,5 +18,4 @@
   .img-mini:hover {
     transform: scale(1.1);
   }
-
 }

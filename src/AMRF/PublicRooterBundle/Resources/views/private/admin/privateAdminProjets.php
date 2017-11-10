@@ -1,5 +1,4 @@
 <h2>Administrateur - Projet</h2>
-
 <div class="container">
     <section class="validation">
         <div class="row">

@@ -5,7 +5,6 @@
   border-radius: $radius;
 }
 
-
 @mixin boxShadow($height, $color) {
   box-shadow: $height $height $height $height $color;
   /*box-shadow: 5px 5px  rgba(0, 0, 0, 0.6);*/

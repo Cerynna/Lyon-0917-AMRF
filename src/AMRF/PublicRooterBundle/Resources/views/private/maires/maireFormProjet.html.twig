@@ -25,8 +25,6 @@
                 <a href="#preview" aria-controls="preview" role="tab" data-toggle="tab">Prévisualisation</a>
             </li>
         </ul>
-
-
         <form action="#" id="form" method="post" name="form">
             <div class="tab-content">
                 <div role="tabpanel" class="tab-pane active" id="projet">
@@ -171,29 +169,23 @@
                     </div>
                 </div>
                 <div role="tabpanel" class="tab-pane" id="informations">
-
                     <h3>Personne à contacter pour obtenir plus d'informations</h3>
-
                     <div class="form-group col-sm-6">
                         <label for="responsable">Personne en charge du Projet *</label>
                         <input id="responsable" type="text" class="form-control" placeholder="">
                     </div>
-
                     <div class="form-group col-sm-6">
                         <label for="fonction">Fonction *</label>
                         <input id="fonction" type="text" class="form-control" placeholder="">
                     </div>
-
                     <div class="form-group col-sm-6">
                         <label for="email">Email *</label>
                         <input id="email" type="email" class="form-control" placeholder="">
                     </div>
-
                     <div class="form-group col-sm-6">
                         <label for="tel">Téléphone *</label>
                         <input id="tel" type="tel" class="form-control" placeholder="">
                     </div>
-
                     <div class="form-group col-sm-12">
                         <input type="hidden" name="MAX_FILE_SIZE" value="500000">
                         <input type="file" id="fichier" name="fichier"/>
@@ -220,7 +212,6 @@
                         <label for="url">Twitter</label>
                         <input id="url" type="url" class="form-control" placeholder="">
                     </div>
-
                     <div class="form-group col-sm-4" align="left">
                         <a href="#description" aria-controls="description" role="tab" data-toggle="tab"
                            onclick="changeActiveMenu('descriptionMenu')">
@@ -247,7 +238,6 @@
                     <p>Ici vous pouvez visualiser votre fiche telle qu'elle apparaîtra sur le site. Si elle vous
                         convient, cliquez sur "Soumettre", sinon, vous pouvez revenir au formulaire pour la
                         corriger.</p>
-
                     <div class="row">
                         <div class="form-group col-sm-4" align="left">
                             <a href="#informations" aria-controls="informations" role="tab" data-toggle="tab"
@@ -297,7 +287,6 @@
 {% endblock %}
 {% block javascripts %}
     <script>
-
         function changeActiveMenu(idActive) {
             $('.tabLi').removeClass('active');
             $('#' + idActive).addClass('active');

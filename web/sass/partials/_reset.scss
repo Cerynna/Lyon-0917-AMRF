@@ -10,7 +10,6 @@
 
 /* HTML5 display definitions */
 
-
 section, nav, article, aside, hgroup,
 header, footer, figure, figcaption, details {
   display: block;
@@ -30,10 +29,7 @@ audio:not([controls]) {
   display: none;
 }
 
-
-
 /* The root element */
-
 html {
   font-size: 100%;
   overflow-y: scroll;
@@ -41,10 +37,7 @@ html {
   -ms-text-size-adjust: 100%;
 }
 
-
-
 /* Sections */
-
 body {
   font-family: sans-serif;
   margin: 0;
@@ -55,10 +48,7 @@ h1, h2, h3, h4, h5, h6 {
   margin: 0;
 }
 
-
-
 /* Grouping content */
-
 p, blockquote, dl, dd, figure {
   margin: 0;
 }
@@ -86,10 +76,7 @@ li {
   list-style: none;
 }
 
-
-
 /* Text-level semantics */
-
 a:focus {
   outline: thin dotted;
 }
@@ -142,10 +129,7 @@ br {
   *letter-spacing: 0;
 }
 
-
-
 /* Embedded content */
-
 img {
   border: 0;
   -ms-interpolation-mode: bicubic;
@@ -155,10 +139,7 @@ svg:not(:root) {
   overflow: hidden;
 }
 
-
-
 /* Tabular data */
-
 table {
   border-collapse: collapse;
   border-spacing: 0;
@@ -175,10 +156,7 @@ th, td {
   padding: 0;
 }
 
-
-
 /* Forms */
-
 form {
   margin: 0;
 }
