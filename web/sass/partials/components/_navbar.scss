@@ -8,10 +8,14 @@ nav {
   vertical-align: middle;
   height: 60px;
   padding-right: 50px;
+  position: -webkit-sticky;
   position: sticky;
   top: 100px;
   z-index: 200;
   @include boxShadow(0.05em, rgba(0, 0, 0, 0.2));
+  hr{
+    margin: 5px;
+  }
   p {
     font-style: italic;
     font-size: 0.9em;
@@ -141,6 +145,7 @@ nav {
     .navbar-default .navbar-nav .open .dropdown-menu > li > a:focus {
       background-color: #ccc;
     }
+
 
     .navbar-nav .open .dropdown-menu {
       border-bottom: 1px solid white;
