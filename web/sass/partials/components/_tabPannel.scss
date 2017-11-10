@@ -5,12 +5,8 @@
   margin-bottom: 30px;
   color: inherit;
   background-color: #eee;
-  min-height: 30vh;
   @include boxShadow(0.05em, rgba(0, 0, 0, 0.4));
 
-  .tab-pane {
-    min-height: 40vh;
-  }
   ul {
     margin-bottom: 30px;
     a {
