@@ -12,7 +12,6 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
-
                 <li>
                     <a {% if app.request.attributes.get('_route') == 'home' %} class="active" {% endif %}
                             href="{{ path('home') }}">Accueil</a>
@@ -31,20 +30,19 @@
                     <ul class="dropdown-menu">
                         <li class="dropdown-main"><a href="{{ path('maireHome') }}">Mon Espace <i
                                         class="fa fa-angle-down"></i></a></li>
-                        <li class="dropdown-header">Mes Contenus</li>
-                        <li><a href="{{ path('maireProfil') }}">Mon Profil</a></li>
-                        <li class="dropdown-submenu">
-                            <a tabindex="-1" href="#"><i class="fa fa-angle-left"></i> Mes Projets</a>
-                            <ul class="dropdown-menu">
-                                <li><a tabindex="-1" href="{{ path('maireFormProjet') }}">Ajouter</a></li>
-                                <li><a tabindex="-1" href="{{ path('maireProjets') }}">Consulter</a></li>
-                            </ul>
-                        <li class="dropdown-header">Rechercher</li>
-                        <li><a tabindex="-1" href="{{ path('recherche') }}">Des Projets</a></li>
-                        </li>
-                        <li><a tabindex="-1" href="{{ path('annuaire') }}">Des Partenaires</a></li>
-                        <hr>
+                        <li class="dropdown-header">Profil</li>
+                             <li><a href="{{ path('maireProfil') }}">Modifier</a></li>
+                        <li class="dropdown-header">Projet</li>
+                             <li><a tabindex="-1" href="{{ path('maireFormProjet') }}">Ajouter</a></li>
+                              <li><a tabindex="-1" href="{{ path('maireProjets') }}">Consulter</a></li>
+                              <li><a tabindex="-1" href="{{ path('recherche') }}">Rechercher</a></li>
+                              <li><a tabindex="-1" href="{{ path('maireFavoris') }}">favoris</a></li>
+                        <li class="dropdown-header">Partenaires</li>
+                                <li><a tabindex="-1" href="{{ path('maireFavoris') }}">favoris</a></li>
+                                <li><a tabindex="-1" href="{{ path('annuaire') }}">rechercher</a></li>
+                         <hr>
                         <li><a tabindex="-1" href="#">Déconnexion</a></li>
+                        </li>
                     </ul>
                 </li>
             </ul>
