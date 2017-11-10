@@ -6,9 +6,7 @@
 {% endblock %}
 
 {% block body %}
-
     <h2 class="center-align">Espace des Maires</h2>
-
     <div class="row">
         <div class="espaceMaire cardGest col-xs-12 col-md-12">
             <div class="card-body bck-maire">
@@ -25,14 +23,14 @@
                         <a href="{{ path('maireProjets') }}">
                             <div class="btn hidden-xs"><span class="fa fa-file-text"></span> CONSULTER / MODIFIER
                             </div>
-                            <div class="btn hidden-lg hidden-md hidden-sm"><span class="fa fa-file-text"></span> CONSULTER MES FICHES
+                            <div class="btn hidden-lg hidden-md hidden-sm"><span class="fa fa-file-text"></span>
+                                CONSULTER MES FICHES
                             </div>
                         </a>
                     </div>
                     <div class="col-xs-12 col-md-6 text-center">
                         <a href="{{ path('recherche') }}">
                             <div class="btn"><span class="fa fa-search"></span> RECHERCHER
-
                             </div>
                         </a>
                         <a href="{{ path('partFavoris') }}">
@@ -44,7 +42,6 @@
                 </div>{#end card block#}
             </div>{#end card body#}
         </div>{#end card gest#}
-
         <div class="cardGest col-xs-12 col-md-6">
             <div class="card-body bck-maire">
                 <div class="card-title">
@@ -77,5 +74,4 @@
             </div>
         </div>
     </div>
-
 {% endblock %}

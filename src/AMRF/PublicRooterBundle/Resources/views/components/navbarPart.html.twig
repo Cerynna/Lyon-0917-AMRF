@@ -1,27 +1,28 @@
 <div class="navbar navbar-static-top" role="navigation">
     <div class="container-fluid">
-
         <div class="navbar-header">
-
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-1">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                    data-target="#navbar-collapse-1">
                 <span class="sr-only">Toggle navigation</span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
         </div>
-
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
                 <li>
-                    <a {% if app.request.attributes.get('_route') == 'home' %} class="active" {% endif %} href="{{ path('home') }}">Accueil</a>
+                    <a {% if app.request.attributes.get('_route') == 'home' %} class="active" {% endif %}
+                            href="{{ path('home') }}">Accueil</a>
                 </li>
                 <li>
-                    <a {% if app.request.attributes.get('_route') == 'amrf' %} class="active" {% endif %} href="{{ path('amrf') }}">AMRF</a>
+                    <a {% if app.request.attributes.get('_route') == 'amrf' %} class="active" {% endif %}
+                            href="{{ path('amrf') }}">AMRF</a>
                 </li>
                 <li>
-                    <a {% if app.request.attributes.get('_route') == 'contact' %} class="active" {% endif %} href="{{ path('contact') }}">Contact</a>
+                    <a {% if app.request.attributes.get('_route') == 'contact' %} class="active" {% endif %}
+                            href="{{ path('contact') }}">Contact</a>
                 </li>
                 <li class="dropdown">
                     <a class="dropdown-toggle d-inline" data-toggle="dropdown" href="#">Mon Espace <i
@@ -30,13 +31,13 @@
                         <li class="dropdown-main"><a href="{{ path('partHome') }}">Mon Espace <i
                                         class="fa fa-angle-down"></i></a></li>
                         <li class="dropdown-header">Mon profil</li>
-                            <li><a href="{{ path('partProfil') }}">Modifier</a></li>
+                        <li><a href="{{ path('partProfil') }}">Modifier</a></li>
                         <li class="dropdown-header">Organisme</li>
-                              <li><a href="{{ path('partPres') }}">Ma fiche</a></li>
-                              <li><a tabindex="-1" href="{{ path('annuaire') }}">Les Partenaires</a></li>
+                        <li><a href="{{ path('partPres') }}">Ma fiche</a></li>
+                        <li><a tabindex="-1" href="{{ path('annuaire') }}">Les Partenaires</a></li>
                         <li class="dropdown-header">Projets</li>
-                               <li><a tabindex="-1" href="{{ path('recherche') }}">Les Projets</a></li>
-                                <li><a href="{{ path('partFavoris') }}">Favoris</a></li>
+                        <li><a tabindex="-1" href="{{ path('recherche') }}">Les Projets</a></li>
+                        <li><a href="{{ path('partFavoris') }}">Favoris</a></li>
                         <hr>
                         <li><a href="#">Déconnexion</a></li>
                     </ul>
