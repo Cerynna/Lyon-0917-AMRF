@@ -325,7 +325,7 @@ textarea {
     top: 0 !important;
     padding-right: 0 !important;
     font-size: 1.3em !important;
-    height: 50px !important; }
+    height: 60px !important; }
     nav p {
       width: 300px;
       vertical-align: bottom;
@@ -394,6 +394,16 @@ header {
     color: #FFFFFF;
     font-size: 1em;
     text-align: center; }
+  header .logoTablette {
+    position: fixed;
+    left: 10px;
+    visibility: hidden;
+    height: 0;
+    width: 0; }
+    @media only screen and (max-device-width: 1024px) and (max-device-height: 768px) {
+      header .logoTablette {
+        visibility: visible;
+        height: 80px; } }
   header #titleHeader {
     height: 300px;
     text-align: center;
@@ -488,7 +498,7 @@ nav {
     -moz-border-radius: 5px;
     -ms-border-radius: 5px;
     border-radius: 5px;
-    margin-top: 5px; }
+    margin-top: 10px; }
   nav p {
     font-style: italic;
     font-size: 0.9em;

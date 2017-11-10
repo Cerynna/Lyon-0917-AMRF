@@ -18,6 +18,18 @@ header {
     text-align: center;
 
   }
+  .logoTablette {
+    position: fixed;
+    left: 10px;
+    visibility: hidden;
+    height: 0;
+    width: 0;
+    @media only screen and (max-device-width: 1024px) and (max-device-height: 768px) {
+      visibility: visible;
+      height: 80px;
+
+    }
+  }
 
   #titleHeader{
     height: 300px;
