@@ -1,4 +1,4 @@
-@media only screen and (max-device-width: 420px) {
+@media only screen and (max-device-width: 768px) {
   .connect {
     display: none;
   }
@@ -95,7 +95,7 @@
     ul {
       text-align: center;
       margin: 20px 0 !important;
-      li{
+      li {
         margin: 5px !important;
       }
     }

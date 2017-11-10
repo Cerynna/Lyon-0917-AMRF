@@ -46,19 +46,7 @@
   }
 }
 
-.espacePart {
-  @media only screen and (max-width: 1000px) {
-    .card-body {
-      height: 400px !important;
-    }
-    .cardBtn{
-      margin-bottom: 120px !important;
-    }
-  }
-
-}
-
-.cardBtn{
+.cardBtn {
   margin-bottom: 40px;
 }
 

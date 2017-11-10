@@ -307,7 +307,7 @@ textarea {
     text-align: center;
     margin: 20px 0 !important; } }
 
-@media only screen and (max-device-width: 420px) {
+@media only screen and (max-device-width: 768px) {
   .connect {
     display: none; }
   .scrollUp {
@@ -662,12 +662,6 @@ nav {
 .espaceMaire div.btn {
   width: 300px;
   margin: 12px 2px 2px 2px; }
-
-@media only screen and (max-width: 1000px) {
-  .espacePart .card-body {
-    height: 400px !important; }
-  .espacePart .cardBtn {
-    margin-bottom: 120px !important; } }
 
 .cardBtn {
   margin-bottom: 40px; }
