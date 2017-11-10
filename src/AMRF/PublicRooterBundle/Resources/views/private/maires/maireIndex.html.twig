@@ -6,72 +6,91 @@
 {% endblock %}
 
 {% block body %}
+
     <h2 class="center-align">Espace des Maires</h2>
     <div class="row">
-        <div class="espaceMaire cardGest col-xs-12 col-md-12">
-            <div class="card-body bck-maire">
-                <div class="card-title col-xs-12 col-md-12">
-                    <i class="fa fa-folder-open"></i>
-                    <h3>PROJETS</h3>
-                </div>
-                <div class="cardBtn row">
-                    <div class="col-xs-12 col-md-6 text-center">
-                        <a href="{{ path('maireFormProjet') }}">
-                            <div class="btn hidden-xs"><span class="fa fa-plus"></span> AJOUTER UNE FICHE
-                            </div>
-                        </a>
-                        <a href="{{ path('maireProjets') }}">
-                            <div class="btn hidden-xs"><span class="fa fa-file-text"></span> CONSULTER / MODIFIER
-                            </div>
-                            <div class="btn hidden-lg hidden-md hidden-sm"><span class="fa fa-file-text"></span>
-                                CONSULTER MES FICHES
+        <div class="col-xs-12">
+            <div class="bck-maire">
+                <div class="row">
+                    <div class="col-lg-12 text-center">
+                        <i class="fa fa-folder-open"></i>
+                        <h3>PROJETS</h3>
+                    </div>
+                    <div class="col-xs-12 text-center">
+                        <a href="{{ path('recherche') }}">
+                            <div class="btn search">
+                                <span class="fa fa-search"></span> RECHERCHER
                             </div>
                         </a>
                     </div>
-                    <div class="col-xs-12 col-md-6 text-center">
-                        <a href="{{ path('recherche') }}">
-                            <div class="btn"><span class="fa fa-search"></span> RECHERCHER
+
+                    <div class="col-xs-12 col-sm-12 col-md-4 text-center">
+                        <a href="{{ path('maireFormProjet') }}">
+                            <div class="btn hidden-xs">
+                                <span class="fa fa-plus"></span> AJOUTER UNE FICHE
                             </div>
                         </a>
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-4 text-center">
+                        <a href="{{ path('maireProjets') }}">
+                            <div class="btn hidden-xs">
+                                <span class="fa fa-file-text"></span> CONSULTER / MODIFIER
+                            </div>
+                            <div class="btn hidden-lg hidden-md hidden-sm">
+                                <span class="fa fa-file-text"></span> CONSULTER MES FICHES
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-4 text-center">
+                        <a href="{{ path('partFavoris') }}">
+                            <div class="btn">
+                                <i class="fa fa-star-o"></i> MES FAVORIS
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-6 col-xs-12">
+            <div class="bck-maire">
+                <div class="row">
+                    <div class="col-xs-12 text-center">
+                        <i class="fa fa-user"></i>
+                        <h3>MON PROFIL</h3>
+                    </div>
+                    <div class="col-xs-12 text-center">
+                        <a href="{{ path('maireProfil') }}">
+                            <div class="btn btn-xs"><span class="fa fa-pencil"></span> VOIR / MODIFIER</div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6 col-xs-12">
+            <div class="bck-maire">
+                <div class="row">
+                    <div class="col-xs-12 text-center">
+                        <i class="fa fa-users"></i>
+                        <h3>PARTENAIRES</h3>
+                    </div>
+                    <div class="col-xs-12 text-center">
+                        <a href="{{ path('annuaire') }}">
+                            <div class="btn"><span class="fa fa-search"></span> RECHERCHER</div>
+                        </a>
+                    </div>
+                    <div class="col-xs-12 text-center">
                         <a href="{{ path('partFavoris') }}">
                             <div class="btn"><i class="fa fa-star-o"></i>
                                 MES FAVORIS
                             </div>
                         </a>
                     </div>
-                </div>{#end card block#}
-            </div>{#end card body#}
-        </div>{#end card gest#}
-        <div class="cardGest col-xs-12 col-md-6">
-            <div class="card-body bck-maire">
-                <div class="card-title">
-                    <i class="fa fa-user"></i>
-                    <h3>MON PROFIL</h3>
-                </div>
-                <div class="cardBtn card-block">
-                    <a href="{{ path('maireProfil') }}">
-                        <div class="btn btn-xs"><span class="fa fa-pencil"></span> VOIR / MODIFIER</div>
-                    </a>
-                </div>
-            </div>
-        </div>
-        <div class="cardGest col-xs-12 col-md-6">
-            <div class="card-body bck-maire">
-                <div class="card-title">
-                    <i class="fa fa-users"></i>
-                    <h3>PARTENAIRES</h3>
-                </div>
-                <div class="cardBtn card-block">
-                    <a href="{{ path('annuaire') }}">
-                        <div class="btn"><span class="fa fa-search"></span> RECHERCHER</div>
-                    </a>
-                    <a href="{{ path('partFavoris') }}">
-                        <div class="btn"><i class="fa fa-star-o"></i>
-                            MES FAVORIS
-                        </div>
-                    </a>
                 </div>
             </div>
         </div>
     </div>
+
+
 {% endblock %}

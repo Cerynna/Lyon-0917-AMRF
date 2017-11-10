@@ -307,7 +307,7 @@ textarea {
     text-align: center;
     margin: 20px 0 !important; } }
 
-@media only screen and (max-device-width: 768px) {
+@media only screen and (max-device-width: 420px) {
   .connect {
     display: none; }
   .scrollUp {
@@ -326,8 +326,6 @@ textarea {
     padding-right: 0 !important;
     font-size: 1.3em !important;
     height: 50px !important; }
-    nav .dropdown-header {
-      font-size: 1em !important; }
     nav p {
       width: 300px;
       vertical-align: bottom;
@@ -341,7 +339,6 @@ textarea {
   .row {
     margin: 0; }
   section {
-    /*Espace Maire*/
     /*Projets*/ }
     section h2 {
       font-size: 1.8em !important;
@@ -356,10 +353,11 @@ textarea {
       font-size: 1em !important; }
     section .jumbotron {
       padding: 10px 5px !important; }
-    section .espaceMaire .card-body {
-      height: 100% !important; }
-    section .espaceMaire .cardBtn {
-      margin-bottom: 60px !important; }
+    section .bck-maire .search {
+      width: 300px;
+      padding-right: 0;
+      padding-left: 0;
+      font-size: 2em !important; }
     section .project {
       padding: 0 !important; }
     section .tabPannel {
@@ -473,75 +471,11 @@ nav {
   vertical-align: middle;
   height: 60px;
   padding-right: 50px;
-  position: -webkit-sticky;
   position: sticky;
   top: 100px;
   z-index: 200;
   box-shadow: 0.05em 0.05em 0.05em 0.05em rgba(0, 0, 0, 0.2);
-  /*box-shadow: 5px 5px  rgba(0, 0, 0, 0.6);*/
-  /*@media (max-width: 767px) {
-
-    .navbar-nav {
-      display: inline;
-    }
-    .navbar-default .navbar-brand {
-      display: inline;
-    }
-    .navbar-default .navbar-toggle .icon-bar {
-      background-color: #fff;
-    }
-    .navbar-default .navbar-nav .dropdown-menu > li > a {
-      color: red;
-      background-color: #ccc;
-      border-radius: 4px;
-      margin-top: 2px;
-    }
-    .navbar-default .navbar-nav .open .dropdown-menu > li > a {
-      color: #333;
-    }
-    .navbar-default .navbar-nav .open .dropdown-menu > li > a:hover,
-    .navbar-default .navbar-nav .open .dropdown-menu > li > a:focus {
-      background-color: #ccc;
-    }
-
-    .navbar-nav .open .dropdown-menu {
-      border-bottom: 1px solid white;
-      border-radius: 0;
-    }
-    .dropdown-menu {
-      padding-left: 10px;
-    }
-    .dropdown-menu .dropdown-menu {
-      padding-left: 20px;
-    }
-    .dropdown-menu .dropdown-menu .dropdown-menu {
-      padding-left: 30px;
-    }
-    li.dropdown.open {
-      border: 0px solid red;
-    }
-
-  }
-
-  @media (min-width: 768px) {
-    ul.nav li:hover > ul.dropdown-menu {
-      display: block;
-    }
-    #navbar {
-      text-align: center;
-    }
-  }
-  .logo {
-    height: 40px;
-    width: 80px;
-    margin-top: -10px;
-    background-color: #FFFFFF;
-    @include borderRadius(5px);
-    box-shadow: 5px 5px 0 rgba(0, 0, 0, 0.6);
-  }*/ }
   /*box-shadow: 5px 5px  rgba(0, 0, 0, 0.6);*/ }
-  nav hr {
-    margin: 5px; }
   nav p {
     font-style: italic;
     font-size: 0.9em;
@@ -622,6 +556,49 @@ nav {
     border-left-color: #555; }
   nav .dropdown-menu > li > a:hover, nav .dropdown-menu > .active > a:hover {
     text-decoration: none; }
+  @media (max-width: 767px) {
+    nav .navbar-nav {
+      display: inline; }
+    nav .navbar-default .navbar-brand {
+      display: inline; }
+    nav .navbar-default .navbar-toggle .icon-bar {
+      background-color: #fff; }
+    nav .navbar-default .navbar-nav .dropdown-menu > li > a {
+      color: red;
+      background-color: #ccc;
+      border-radius: 4px;
+      margin-top: 2px; }
+    nav .navbar-default .navbar-nav .open .dropdown-menu > li > a {
+      color: #333; }
+    nav .navbar-default .navbar-nav .open .dropdown-menu > li > a:hover,
+    nav .navbar-default .navbar-nav .open .dropdown-menu > li > a:focus {
+      background-color: #ccc; }
+    nav .navbar-nav .open .dropdown-menu {
+      border-bottom: 1px solid white;
+      border-radius: 0; }
+    nav .dropdown-menu {
+      padding-left: 10px; }
+    nav .dropdown-menu .dropdown-menu {
+      padding-left: 20px; }
+    nav .dropdown-menu .dropdown-menu .dropdown-menu {
+      padding-left: 30px; }
+    nav li.dropdown.open {
+      border: 0px solid red; } }
+  @media (min-width: 768px) {
+    nav ul.nav li:hover > ul.dropdown-menu {
+      display: block; }
+    nav #navbar {
+      text-align: center; } }
+  nav .logo {
+    height: 40px;
+    width: 80px;
+    margin-top: -10px;
+    background-color: #FFFFFF;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    border-radius: 5px;
+    box-shadow: 5px 5px 0 rgba(0, 0, 0, 0.6); }
 
 .resumeProject img {
   border: 2px solid #FFF;
@@ -652,80 +629,90 @@ nav {
   transform: scale(1.1); }
 
 .bck-maire {
-  margin: 3px;
-  background: #90CAF9; }
+  margin-bottom: 20px;
+  background: #90caf9;
+  min-height: 330px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  border-radius: 5px; }
   .bck-maire div > a {
     color: #365069 !important; }
+  .bck-maire .fa {
+    margin: 10px;
+    text-align: center;
+    font-size: 5em; }
   .bck-maire .btn {
     background: #365069;
-    border: none; }
+    border: none;
+    width: 300px; }
+    .bck-maire .btn .fa {
+      margin: 10px;
+      text-align: center;
+      font-size: 1em; }
+  .bck-maire .search {
+    width: auto;
+    padding-right: 50px;
+    padding-left: 50px;
+    font-size: 2em !important; }
   .bck-maire .btn:hover {
     background: #365069;
     border: none; }
+  .bck-maire p {
+    margin-top: 10px;
+    padding: 10px;
+    font-size: 0.9em;
+    display: inline-block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: normal; }
+  .bck-maire h3 {
+    color: #FFFFFF;
+    margin: 20px;
+    line-height: 1em; }
 
 .bck-part {
-  margin: 3px;
-  background: #8baf8b; }
+  margin-bottom: 20px;
+  background: #8baf8b;
+  min-height: 330px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  border-radius: 5px; }
   .bck-part div > a {
     color: #577457 !important; }
+  .bck-part .fa {
+    margin: 10px;
+    text-align: center;
+    font-size: 5em; }
   .bck-part .btn {
     background: #577457;
-    border: none; }
+    border: none;
+    width: 300px; }
+    .bck-part .btn .fa {
+      margin: 10px;
+      text-align: center;
+      font-size: 1em; }
+  .bck-part .search {
+    width: auto;
+    padding-right: 50px;
+    padding-left: 50px;
+    font-size: 2em !important; }
   .bck-part .btn:hover {
     background: #577457;
     border: none; }
-
-.bck-default {
-  margin: 3px;
-  padding: 10px;
-  background: #80CBC4; }
-  .bck-default div > a {
-    color: #3d625b !important; }
-
-.espaceMaire div.btn {
-  width: 300px;
-  margin: 12px 2px 2px 2px; }
-
-.cardBtn {
-  margin-bottom: 40px; }
-
-.cardGest {
-  margin: 0 0 20px 0; }
-  .cardGest .card-title {
-    text-align: center; }
-    .cardGest .card-title .fa {
-      margin: 10px;
-      text-align: center;
-      font-size: 5em; }
-  .cardGest .card-body {
-    height: 300px;
-    -webkit-border-radius: 5px;
-    -moz-border-radius: 5px;
-    -ms-border-radius: 5px;
-    border-radius: 5px;
-    box-shadow: 0.05em 0.05em 0.05em 0.05em rgba(0, 0, 0, 0.4);
-    /*box-shadow: 5px 5px  rgba(0, 0, 0, 0.6);*/ }
-    .cardGest .card-body p {
-      margin-top: 10px;
-      padding: 10px;
-      font-size: 0.9em;
-      display: inline-block;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: normal; }
-    .cardGest .card-body h3 {
-      color: #FFFFFF;
-      margin: 20px;
-      line-height: 1em; }
-    .cardGest .card-body .card-block {
-      position: absolute;
-      bottom: -10px;
-      text-align: center;
-      width: 100%;
-      height: 35%;
-      padding-right: 30px; }
-    .cardGest .card-body #cardOrganism {
-      bottom: 35px; }
+  .bck-part p {
+    margin-top: 10px;
+    padding: 10px;
+    font-size: 0.9em;
+    display: inline-block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: normal; }
+  .bck-part h3 {
+    color: #FFFFFF;
+    margin: 20px;
+    line-height: 1em; }
 
 footer {
   color: #FFFFFF; }
@@ -967,9 +954,9 @@ section form .cleIcon {
 
 /**
 */
-body::-webkit-scrollbar {
-  display: none; }
-
+/*body::-webkit-scrollbar {
+  display: none;
+}*/
 body {
   font-size: 1.0em;
   background: url("../img/bck-2.jpg") no-repeat fixed;
@@ -1149,12 +1136,14 @@ a:hover, a:active {
   text-align: left;
   padding: 0;
   max-height: 100px;
-  width: 660px;
+  min-height: 0;
+  min-width: 0;
+  width: auto;
   overflow: hidden;
   overflow-y: scroll;
   background: #FFFFFF;
-  border: 0 solid #ccc;
-  margin-top: 0px;
+  border: 0;
+  margin-top: 0;
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
   -ms-border-radius: 5px;
@@ -1199,6 +1188,9 @@ a:hover, a:active {
 
 .partAsideBlock li {
   margin-left: 5px; }
+
+.modal-content {
+  width: 800px !important; }
 
 /*
 .row {
