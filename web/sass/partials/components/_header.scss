@@ -9,6 +9,13 @@ header {
     text-shadow: 5px 5px 0 rgba(0, 0, 0, 0.6);
     position: relative;
     z-index: 99;
+  }
+
+  .baseline {
+    font-family: $font3, sans-serif;
+    color: #FFFFFF;
+    font-size: 1em;
+    text-align: center;
 
   }
 
@@ -54,7 +61,7 @@ header {
   }
   img{
     height: 80px;
-    background: #FFF;
+    background: $color2;
     margin: 10px;
     @include borderRadius(5px);
   }

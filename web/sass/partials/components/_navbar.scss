@@ -12,6 +12,13 @@ nav {
   top: 100px;
   z-index: 200;
   @include boxShadow(0.05em, rgba(0, 0, 0, 0.2));
+  img {
+    height: 40px;
+    background-color: $color2;
+    @include borderRadius(5px);
+    margin-top : 5px;
+  }
+
   p {
     font-style: italic;
     font-size: 0.9em;
