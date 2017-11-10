@@ -8,10 +8,10 @@
     <form>
         <div class="row jumbotron">
             <h3>Choisir par nom</h3>
-            <div class="col-md-12" align="center">
-                <ul class="pagination text-center">
+            <div class="col-sm-12 text-center">
+                <ul class="pagination">
                     {% for letter in 'a'|upper..'z'|upper %}
-                        <li class="waves-effect"><a href="#{{ letter }}">{{ letter }}</a></li>
+                        <li><a href="#{{ letter }}">{{ letter }}</a></li>
                     {% endfor %}
                 </ul>
             </div>
@@ -28,16 +28,14 @@
                aria-expanded="true" aria-controls="collapseOne">
                 <div class="row">
                     <div class="panel-heading" role="tab" id="headingOne">
-                        <div class="col-md-4 col-xs-4">
+                        <div class="col-sm-4">
                             <img src="http://via.placeholder.com/70x70">
                         </div>
-                        <div class="col-md-5 col-xs-8">
+                        <div class="col-sm-5">
                             <h3>Nom du partenaire</h3>
                         </div>
-                        <div class="row">
-                            <div class="col-md-3 col-xs-12 text-right">
-                                <div class="btn btn-collapse"><i class="fa fa-angle-double-down"></i></div>
-                            </div>
+                        <div class="col-sm-3 text-right">
+                            <div class="btn btn-collapse"><i class="fa fa-angle-double-down"></i></div>
                         </div>
                     </div>
                 </div>
