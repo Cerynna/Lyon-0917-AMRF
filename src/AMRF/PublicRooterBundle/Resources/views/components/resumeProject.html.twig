@@ -1,11 +1,12 @@
-<div class="row  resumeProject">
+<div class="row resumeProject">
+
     <div class="">
-        {% if options.pictures == "true"  %}
+        {% if options.pictures == "true" %}
         <div class="col-sm-3 mini-galery">
             <div class="img-preview">
                 <img id="my-img2" src="http://via.placeholder.com/100x100" class="img-big"/>
             </div>
-            <div class="img-list text-center">
+            <div class="img-list hidden-xs text-center">
                 <img class="img-mini" src="http://via.placeholder.com/50x50"
                      onmouseover="showImg('my-img2','http://dummyimage.com/100x100/eb00eb/fff');"
                      onmouseout="hideImg('my-img2','http://via.placeholder.com/100x100');"/>
@@ -16,10 +17,47 @@
                      onmouseover="showImg('my-img2','http://dummyimage.com/100x100/33333/fff');"
                      onmouseout="hideImg('my-img2','http://via.placeholder.com/100x100');"/>
             </div>
+
+    {% if options.pictures == "true" %}
+    <div class="col-sm-3 mini-galery">
+        <div class="img-preview">
+            <img id="my-img2" src="http://via.placeholder.com/100x100" class="img-big"/>
         </div>
-        <div class="col-sm-9">
-            {% else %}
+        <div class="img-list text-center hidden-xs">
+            <img class="img-mini" src="http://via.placeholder.com/50x50"
+                 onmouseover="showImg('my-img2','http://dummyimage.com/100x100/eb00eb/fff');"
+                 onmouseout="hideImg('my-img2','http://via.placeholder.com/100x100');"/>
+            <img class="img-mini" src="http://via.placeholder.com/50x50"
+                 onmouseover="showImg('my-img2','http://dummyimage.com/100x100/009E3D/fff');"
+                 onmouseout="hideImg('my-img2','http://via.placeholder.com/100x100');"/>
+            <img class="img-mini" src="http://via.placeholder.com/50x50"
+                 onmouseover="showImg('my-img2','http://dummyimage.com/100x100/33333/fff');"
+                 onmouseout="hideImg('my-img2','http://via.placeholder.com/100x100');"/>
+
+        </div>
+    </div>
+    {% endif %}
+    <div class="{% if options.pictures == "true" %} col-sm-9 {% else %}col-xs-12{% endif %}">
+
+        <div class="row">
             <div class="col-xs-12">
+                <h3>Projet Application Mobile Court-voiturage</h3>
+            </div>
+            {% if options.thema == "true" %}
+                <div class="col-xs-12 text-left hidden-xs" id="city">
+                    <span class="label label-commune">SAINT JEAN PIED DE PORT</span>
+                    <span class="label label-commune">Pyrénées-Atlantiques</span>
+                </div>
+                <div class="col-xs-12 text-left hidden-xs" id="theme">
+                    <span class="label label-themat">Mobilité</span>
+                    <span class="label label-themat">Aménagement du territoire</span>
+                    <span class="label label-themat">Aménagement du territoire</span>
+                </div>
+            {% endif %}
+
+            <div class="col-md-12">
+                {% if options.thema == "true" %}
+                    <h3 class="hidden-xs">Résumé du projet</h3>
                 {% endif %}
                 <div class="row">
                     <div class="col-xs-12">

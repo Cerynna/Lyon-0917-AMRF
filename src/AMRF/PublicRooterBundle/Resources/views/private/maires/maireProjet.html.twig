@@ -16,30 +16,30 @@
                 </li>
             </ul>
         </div>
-        <div class="row hidden-sm hidden-md hidden-lg">
-            <div class="form-group col-xs-6">
-                <a href="#home" aria-controls="home" role="tab" data-toggle="tab"
-                   onclick="changeActiveMenu('realMenu')">
-                    <div type="button" class="btn">
-                        <i class=" fa fa-angle-left" aria-hidden="true"></i>
-                    </div>
-                </a>
-            </div>
-            <div>
 
-            </div>
-            <div class="form-group col-xs-6">
-                <a href="#projet" aria-controls="projet" role="tab" data-toggle="tab"
-                   onclick="changeActiveMenu('infoMenu')">
-                    <div type="button" class="btn">
-                        <i class=" fa fa-angle-right" aria-hidden="true"></i>
-                    </div>
-                </a>
-            </div>
-        </div>
+
+
+
         <!-- Tab panes -->
         <div class="tab-content">
             <div role="tabpanel" class="tab-pane active" id="home">
+                <div class="row hidden-sm hidden-md hidden-lg">
+
+                    <div class="form-group col-xs-6">
+
+                    </div>
+                    <div>
+
+                    </div>
+                    <div class="form-group col-xs-6 text-right">
+                        <a href="#projet" aria-controls="projet" role="tab" data-toggle="tab">
+                            <div type="button" class="btn">
+                                <i class=" fa fa-angle-right" aria-hidden="true"></i>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
                 <h3>Mes projets en cours de saisie</h3>
                 <div class="jumbotron">
                     {% set options = {'thema':'false','pictures':'false','update': 'true', 'more': 'true'} %}
@@ -48,7 +48,23 @@
             </div>
 
             <div role="tabpanel" class="tab-pane" id="projet">
-                <h3>Mes projets</h3>
+                <div class="row hidden-sm hidden-md hidden-lg">
+
+                    <div class="form-group col-xs-6">
+                        <a href="#home" aria-controls="home" role="tab" data-toggle="tab">
+                            <div type="button" class="btn">
+                                <i class=" fa fa-angle-left" aria-hidden="true"></i>
+                            </div>
+                        </a>
+                    </div>
+                    <div>
+
+                    </div>
+                    <div class="form-group col-xs-6 text-right">
+
+                    </div>
+                </div>
+                <h3>Mes projets Finalisés</h3>
                 <div class="jumbotron">
                     {% set options = {'thema':'false','pictures':'false','update': 'true', 'more': 'true'} %}
                     {% include 'AMRFPublicRooterBundle::components/resumeProject.html.twig' with options %}
