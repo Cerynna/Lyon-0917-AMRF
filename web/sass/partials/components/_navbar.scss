@@ -53,7 +53,6 @@ nav {
     }
     .dropdown-submenu a:hover::before {
       content: '';
-
     }
     position: absolute;
     top: 0;
@@ -118,7 +117,7 @@ nav {
     text-decoration: none;
   }
 
-  @media (max-width: 767px) {
+  /*@media (max-width: 767px) {
 
     .navbar-nav {
       display: inline;
@@ -177,6 +176,6 @@ nav {
     background-color: #FFFFFF;
     @include borderRadius(5px);
     box-shadow: 5px 5px 0 rgba(0, 0, 0, 0.6);
-  }
+  }*/
 
 }

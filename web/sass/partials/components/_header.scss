@@ -9,10 +9,8 @@ header {
     text-shadow: 5px 5px 0 rgba(0, 0, 0, 0.6);
     position: relative;
     z-index: 99;
-
   }
-
-  #titleHeader{
+  #titleHeader {
     height: 300px;
     text-align: center;
     background: url('../img/bck-2.jpg') no-repeat fixed;
@@ -42,7 +40,7 @@ header {
       display: inline-block;
       .btn {
         margin: 0 !important;
-        margin-top: -8px!important;
+        margin-top: -8px !important;
         height: 50px;
       }
       input {
@@ -52,7 +50,7 @@ header {
       }
     }
   }
-  img{
+  img {
     height: 80px;
     background: #FFF;
     margin: 10px;
