@@ -339,7 +339,6 @@ textarea {
   .row {
     margin: 0; }
   section {
-    /*Espace Maire*/
     /*Projets*/ }
     section h2 {
       font-size: 1.8em !important;
@@ -354,10 +353,11 @@ textarea {
       font-size: 1em !important; }
     section .jumbotron {
       padding: 10px 5px !important; }
-    section .espaceMaire .card-body {
-      height: 100% !important; }
-    section .espaceMaire .cardBtn {
-      margin-bottom: 60px !important; }
+    section .bck-maire .search {
+      width: 300px;
+      padding-right: 0;
+      padding-left: 0;
+      font-size: 2em !important; }
     section .project {
       padding: 0 !important; }
     section .tabPannel {
@@ -629,86 +629,90 @@ nav {
   transform: scale(1.1); }
 
 .bck-maire {
-  margin: 3px;
-  background: #90CAF9; }
+  margin-bottom: 20px;
+  background: #90caf9;
+  min-height: 330px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  border-radius: 5px; }
   .bck-maire div > a {
     color: #365069 !important; }
+  .bck-maire .fa {
+    margin: 10px;
+    text-align: center;
+    font-size: 5em; }
   .bck-maire .btn {
     background: #365069;
-    border: none; }
+    border: none;
+    width: 300px; }
+    .bck-maire .btn .fa {
+      margin: 10px;
+      text-align: center;
+      font-size: 1em; }
+  .bck-maire .search {
+    width: auto;
+    padding-right: 50px;
+    padding-left: 50px;
+    font-size: 2em !important; }
   .bck-maire .btn:hover {
     background: #365069;
     border: none; }
+  .bck-maire p {
+    margin-top: 10px;
+    padding: 10px;
+    font-size: 0.9em;
+    display: inline-block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: normal; }
+  .bck-maire h3 {
+    color: #FFFFFF;
+    margin: 20px;
+    line-height: 1em; }
 
 .bck-part {
-  margin: 3px;
-  background: #8baf8b; }
+  margin-bottom: 20px;
+  background: #8baf8b;
+  min-height: 330px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  border-radius: 5px; }
   .bck-part div > a {
     color: #577457 !important; }
+  .bck-part .fa {
+    margin: 10px;
+    text-align: center;
+    font-size: 5em; }
   .bck-part .btn {
     background: #577457;
-    border: none; }
+    border: none;
+    width: 300px; }
+    .bck-part .btn .fa {
+      margin: 10px;
+      text-align: center;
+      font-size: 1em; }
+  .bck-part .search {
+    width: auto;
+    padding-right: 50px;
+    padding-left: 50px;
+    font-size: 2em !important; }
   .bck-part .btn:hover {
     background: #577457;
     border: none; }
-
-.bck-default {
-  margin: 3px;
-  padding: 10px;
-  background: #80CBC4; }
-  .bck-default div > a {
-    color: #3d625b !important; }
-
-.espaceMaire div.btn {
-  width: 300px;
-  margin: 12px 2px 2px 2px; }
-
-@media only screen and (max-width: 1000px) {
-  .espacePart .card-body {
-    height: 400px !important; }
-  .espacePart .cardBtn {
-    margin-bottom: 120px !important; } }
-
-.cardBtn {
-  margin-bottom: 40px; }
-
-.cardGest {
-  margin: 0 0 20px 0; }
-  .cardGest .card-title {
-    text-align: center; }
-    .cardGest .card-title .fa {
-      margin: 10px;
-      text-align: center;
-      font-size: 5em; }
-  .cardGest .card-body {
-    height: 300px;
-    -webkit-border-radius: 5px;
-    -moz-border-radius: 5px;
-    -ms-border-radius: 5px;
-    border-radius: 5px;
-    box-shadow: 0.05em 0.05em 0.05em 0.05em rgba(0, 0, 0, 0.4);
-    /*box-shadow: 5px 5px  rgba(0, 0, 0, 0.6);*/ }
-    .cardGest .card-body p {
-      margin-top: 10px;
-      padding: 10px;
-      font-size: 0.9em;
-      display: inline-block;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: normal; }
-    .cardGest .card-body h3 {
-      color: #FFFFFF;
-      margin: 20px;
-      line-height: 1em; }
-    .cardGest .card-body .card-block {
-      position: absolute;
-      bottom: -10px;
-      text-align: center;
-      width: 100%;
-      height: 35%;
-      padding-right: 30px; }
-    .cardGest .card-body #cardOrganism {
-      bottom: 35px; }
+  .bck-part p {
+    margin-top: 10px;
+    padding: 10px;
+    font-size: 0.9em;
+    display: inline-block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: normal; }
+  .bck-part h3 {
+    color: #FFFFFF;
+    margin: 20px;
+    line-height: 1em; }
 
 footer {
   color: #FFFFFF; }
@@ -950,9 +954,9 @@ section form .cleIcon {
 
 /**
 */
-body::-webkit-scrollbar {
-  display: none; }
-
+/*body::-webkit-scrollbar {
+  display: none;
+}*/
 body {
   font-size: 1.0em;
   background: url("../img/bck-2.jpg") no-repeat fixed;
@@ -1132,12 +1136,14 @@ a:hover, a:active {
   text-align: left;
   padding: 0;
   max-height: 100px;
-  width: 660px;
+  min-height: 0;
+  min-width: 0;
+  width: auto;
   overflow: hidden;
   overflow-y: scroll;
   background: #FFFFFF;
-  border: 0 solid #ccc;
-  margin-top: 0px;
+  border: 0;
+  margin-top: 0;
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
   -ms-border-radius: 5px;
@@ -1182,6 +1188,9 @@ a:hover, a:active {
 
 .partAsideBlock li {
   margin-left: 5px; }
+
+.modal-content {
+  width: 800px !important; }
 
 /*
 .row {

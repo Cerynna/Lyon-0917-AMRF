@@ -61,16 +61,12 @@
     .jumbotron {
       padding: 10px 5px !important;
     }
-    /*Espace Maire*/
-    .espaceMaire {
-
-      .card-body {
-        height: 100% !important;
-      }
-      .cardBtn {
-        margin-bottom: 60px !important;
-      }
-      div.btn {
+    .bck-maire {
+      .search {
+        width: 300px;
+        padding-right: 0;
+        padding-left: 0;
+        font-size: 2em !important;
       }
     }
     /*Projets*/

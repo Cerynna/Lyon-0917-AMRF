@@ -44,9 +44,9 @@
 
 /**
 */
-body::-webkit-scrollbar {
+/*body::-webkit-scrollbar {
   display: none;
-}
+}*/
 
 body {
   font-size: 1.0em;
@@ -239,12 +239,14 @@ a:hover, a:active {
   text-align: left;
   padding: 0;
   max-height: 100px;
-  width: 660px;
+  min-height: 0;
+  min-width:0;
+  width: auto;
   overflow: hidden;
   overflow-y: scroll;
   background: $color2;
-  border: 0 solid #ccc;
-  margin-top: 0px;
+  border: 0;
+  margin-top: 0;
   @include borderRadius(5px);
 }
 
@@ -297,6 +299,9 @@ a:hover, a:active {
   li {
     margin-left: 5px;
   }
+}
+.modal-content{
+  width: 800px !important;
 }
 
 
