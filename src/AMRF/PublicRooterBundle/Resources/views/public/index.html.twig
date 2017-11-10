@@ -1,23 +1,21 @@
 {% extends 'AMRFPublicRooterBundle::base.html.twig' %}
 {% block title %}Accueil{% endblock %}
 {% block body %}
-    <div class="jumbotron">
-        {% set options = {'thema':'true','pictures':'true','update': 'false', 'more': 'false'} %}
-        {% include 'AMRFPublicRooterBundle::components/test.html.twig' with options %}
-
-    </div>
     <h2>Bienvenue sur le Wiki des Maires</h2>
     <h3 class="hidden-xs">Exemples de projets réalisés dans nos communes</h3>
     <div id="myCarousel" class="carousel slide resumeProject jumbotron row" data-ride="carousel">
         <div class="carousel-inner">
             <div class="item active">
-                {% include 'AMRFPublicRooterBundle::components/resumeProject.html.twig' %}
+                {% set options = {'thema':'false','pictures':'true','update': 'false', 'more': 'false'} %}
+                {% include 'AMRFPublicRooterBundle::components/resumeProject.html.twig' with options %}
             </div>
             <div class="item ">
-                {% include 'AMRFPublicRooterBundle::components/resumeProject.html.twig' %}
+                {% set options = {'thema':'false','pictures':'true','update': 'false', 'more': 'false'} %}
+                {% include 'AMRFPublicRooterBundle::components/resumeProject.html.twig' with options %}
             </div>
             <div class="item ">
-                {% include 'AMRFPublicRooterBundle::components/resumeProject.html.twig' %}
+                {% set options = {'thema':'false','pictures':'true','update': 'false', 'more': 'false'} %}
+                {% include 'AMRFPublicRooterBundle::components/resumeProject.html.twig' with options %}
             </div>
         </div>
     </div>

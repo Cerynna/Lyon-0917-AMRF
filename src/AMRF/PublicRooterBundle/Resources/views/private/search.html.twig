@@ -79,7 +79,8 @@
     </form>
     <h3>Resultat(s) de votre recherche</h3>
     <div class="jumbotron">
-    {% include 'AMRFPublicRooterBundle::components/resumeProject.html.twig' %}
+        {% set options = {'thema':'true','pictures':'true','update': 'false', 'more': 'true'} %}
+        {% include 'AMRFPublicRooterBundle::components/resumeProject.html.twig' with options %}
     </div>
 {% endblock %}
 {% block javascripts %}
