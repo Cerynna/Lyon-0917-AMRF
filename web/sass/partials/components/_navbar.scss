@@ -16,7 +16,6 @@ nav {
     font-style: italic;
     font-size: 0.9em;
     margin-top: 10px;
-    margin-left: 20px;
     i {
       font-size: 0.5em !important;
       vertical-align: top;
@@ -25,7 +24,7 @@ nav {
   .nav > li > a {
     margin: 0 5px -4px 5px;
     color: $color2;
-    i{
+    i {
       vertical-align: top;
     }
   }
@@ -34,9 +33,15 @@ nav {
     background-color: unset;
     border-bottom: 4px solid $color2;
   }
-
-   .dropdown-menu {
-     a {
+  .icon-bar {
+    color: $color2;
+    background: $color2;
+  }
+  .navbar-collapse {
+    background: $color1;
+  }
+  .dropdown-menu {
+    a {
       font-size: 1.5em;
       color: $color2;
       margin: 0 10px 0 10px;
@@ -46,7 +51,7 @@ nav {
       background-color: unset;
       box-shadow: -5px 0px 0 rgba(255, 255, 255, 1);
     }
-   .dropdown-submenu a:hover::before {
+    .dropdown-submenu a:hover::before {
       content: '';
 
     }
@@ -81,7 +86,7 @@ nav {
     font-weight: bold;
   }
 
-  .dropdown-header{
+  .dropdown-header {
     font-size: 1.5em;
     color: $color4;
   }
@@ -173,7 +178,5 @@ nav {
     @include borderRadius(5px);
     box-shadow: 5px 5px 0 rgba(0, 0, 0, 0.6);
   }
-
-
 
 }
