@@ -2,26 +2,24 @@
 {% block title %}Accueil{% endblock %}
 {% block body %}
     <div class="jumbotron">
-        {% set vars = {'favori': 'true', 'delete': 'false'} %}
-        {% include 'AMRFPublicRooterBundle::components/test.html.twig' with vars %}
+        {% set options = {'thema':'true','pictures':'true','update': 'false', 'more': 'false'} %}
+        {% include 'AMRFPublicRooterBundle::components/test.html.twig' with options %}
 
     </div>
     <h2>Bienvenue sur le Wiki des Maires</h2>
-    <h3>Exemples de projets réalisés dans nos communes</h3>
+    <h3 class="hidden-xs">Exemples de projets réalisés dans nos communes</h3>
     <div id="myCarousel" class="carousel slide resumeProject jumbotron row" data-ride="carousel">
-        <!-- Wrapper for slides -->
         <div class="carousel-inner">
             <div class="item active">
                 {% include 'AMRFPublicRooterBundle::components/resumeProject.html.twig' %}
-            </div><!-- End Item -->
-
+            </div>
             <div class="item ">
                 {% include 'AMRFPublicRooterBundle::components/resumeProject.html.twig' %}
-            </div><!-- End Item -->
+            </div>
             <div class="item ">
                 {% include 'AMRFPublicRooterBundle::components/resumeProject.html.twig' %}
-            </div><!-- End Item -->
-        </div><!-- End Carousel Inner -->
+            </div>
+        </div>
     </div>
     <h3>Un outil collaboratif et participatif</h3>
     <div class="row jumbotron">

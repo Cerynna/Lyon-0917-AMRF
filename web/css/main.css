@@ -307,9 +307,66 @@ textarea {
     text-align: center;
     margin: 20px 0 !important; } }
 
-/*  Media Query Tablette (portrait) */
-@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: portrait) {
-  /* Styles pour cette Media Queries */ }
+@media only screen and (max-device-width: 420px) {
+  .connect {
+    display: none; }
+  .scrollUp {
+    font-size: 2em !important;
+    padding: 3px 14px !important; }
+  header #titleHeader {
+    height: 200px !important; }
+  header #stickHeader {
+    height: 0 !important; }
+  header h1 {
+    margin-top: 70px !important;
+    font-size: 2.4em !important;
+    text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.6) !important; }
+  nav {
+    top: 0 !important;
+    padding-right: 0 !important;
+    font-size: 1.3em !important; }
+    nav p {
+      width: 300px;
+      vertical-align: bottom;
+      font-size: 0.7em !important; }
+  .container {
+    padding: 0 !important; }
+  .content {
+    padding: 20px 10px !important; }
+    .content .search {
+      font-size: 1.2em !important; }
+  .row {
+    margin: 0; }
+  section {
+    /*Espace Maire*/
+    /*Projets*/ }
+    section h2 {
+      font-size: 1.8em !important;
+      line-height: 1em !important; }
+    section h3 {
+      font-size: 1.2em !important;
+      line-height: 1em !important;
+      margin-top: 10px !important;
+      margin-bottom: 10px !important; }
+    section p {
+      font-size: 1em !important; }
+    section .espaceMaire .card-body {
+      height: 400px !important; }
+    section .espaceMaire .cardBtn {
+      margin-bottom: 120px !important; }
+    section .espaceMaire div.btn {
+      width: 100% !important; }
+  footer .footer-logo {
+    display: none; }
+  footer .bck {
+    height: 5vh !important; } }
+
+.tabPannel {
+  padding: 15px 10px  !important;
+  margin: 0 !important; }
+
+.col-xs-1, .col-sm-1, .col-md-1, .col-lg-1, .col-xs-2, .col-sm-2, .col-md-2, .col-lg-2, .col-xs-3, .col-sm-3, .col-md-3, .col-lg-3, .col-xs-4, .col-sm-4, .col-md-4, .col-lg-4, .col-xs-5, .col-sm-5, .col-md-5, .col-lg-5, .col-xs-6, .col-sm-6, .col-md-6, .col-lg-6, .col-xs-7, .col-sm-7, .col-md-7, .col-lg-7, .col-xs-8, .col-sm-8, .col-md-8, .col-lg-8, .col-xs-9, .col-sm-9, .col-md-9, .col-lg-9, .col-xs-10, .col-sm-10, .col-md-10, .col-lg-10, .col-xs-11, .col-sm-11, .col-md-11, .col-lg-11, .col-xs-12, .col-sm-12, .col-md-12, .col-lg-12 {
+  padding: 0; }
 
 /**
 *************************** Components *********************
@@ -415,8 +472,7 @@ nav {
   nav p {
     font-style: italic;
     font-size: 0.9em;
-    margin-top: 10px;
-    margin-left: 20px; }
+    margin-top: 10px; }
     nav p i {
       font-size: 0.5em !important;
       vertical-align: top; }
@@ -429,6 +485,11 @@ nav {
     height: 50px;
     background-color: unset;
     border-bottom: 4px solid #FFFFFF; }
+  nav .icon-bar {
+    color: #FFFFFF;
+    background: #FFFFFF; }
+  nav .navbar-collapse {
+    background: rgba(0, 158, 61, 0.99); }
   nav .dropdown-menu {
     position: absolute;
     top: 0;
@@ -591,12 +652,6 @@ nav {
   .bck-default div > a {
     color: #3d625b !important; }
 
-@media only screen and (max-width: 1000px) {
-  .espaceMaire .card-body {
-    height: 400px !important; }
-  .espaceMaire .cardBtn {
-    margin-bottom: 120px !important; } }
-
 .espaceMaire div.btn {
   width: 325px;
   margin: 12px 2px 2px 2px; }
@@ -692,7 +747,7 @@ section {
     line-height: 2em;
     margin-bottom: 10px; }
   section h4 {
-    font-size: 1.8em;
+    font-size: 1.6em;
     line-height: 1em; }
   section h5 {
     font-size: 1.6em;
