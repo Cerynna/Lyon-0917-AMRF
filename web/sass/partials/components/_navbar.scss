@@ -16,6 +16,13 @@ nav {
   hr{
     margin: 5px;
   }
+  img {
+    height: 40px;
+    background-color: $color2;
+    @include borderRadius(5px);
+    margin-top: 10px;
+  }
+
   p {
     font-style: italic;
     font-size: 0.9em;

@@ -10,6 +10,26 @@ header {
     position: relative;
     z-index: 99;
   }
+
+  .baseline {
+    font-family: $font3, sans-serif;
+    color: #FFFFFF;
+    font-size: 1em;
+    text-align: center;
+
+  }
+  .logoTablette {
+    position: fixed;
+    left: 10px;
+    visibility: hidden;
+    height: 0;
+    width: 0;
+    @media only screen and (max-device-width: 1024px) and (max-device-height: 768px) {
+      visibility: visible;
+      height: 80px;
+
+    }
+  }
   #titleHeader {
     height: 300px;
     text-align: center;
@@ -52,7 +72,7 @@ header {
   }
   img {
     height: 80px;
-    background: #FFF;
+    background: $color2;
     margin: 10px;
     @include borderRadius(5px);
   }

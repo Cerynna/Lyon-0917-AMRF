@@ -2,8 +2,11 @@
     <div class="container-fluid">
         <div class="navbar-header">
             <div class="row">
-                <div class="col-xs-10 col-md-12 col-sm-12">
+                <div class="col-md-12 hidden-xs hidden-sm">
                     <p><i class="fa fa-quote-left"></i> Des maires au service des maires</p>
+                </div>
+                <div class="col-md-3 col-xs-10 col-sm-6 visible-xs visible-sm" >
+                    <a href="{{ path('home') }}"><img src="{{ asset('/img/AMRF.png') }}" alt=""></a>
                 </div>
                 <div class="col-xs-2">
                     <button type="button" class="navbar-toggle collapsed text-right" data-toggle="collapse"
