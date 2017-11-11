@@ -1,7 +1,8 @@
 {% extends 'AMRFPublicRooterBundle::base.html.twig' %}
 {% block title %}Mes projets{% endblock %}
 {% block navbar %}
-    {% include 'AMRFPublicRooterBundle::components/navbarMaire.html.twig' %}
+    {% set options = {'status':1} %}
+    {% include 'AMRFPublicRooterBundle::components/navbar.html.twig' with options %}
 {% endblock %}
 {% block body %}
     <h2>Mes Projets réalisés et en cours</h2>
@@ -20,14 +21,10 @@
         <div class="tab-content">
             <div role="tabpanel" class="tab-pane active" id="home">
                 <div class="row hidden-sm hidden-md hidden-lg">
-                    <div class="form-group col-xs-6">
-                    </div>
-                    <div>
-                    </div>
-                    <div class="form-group col-xs-6 text-right">
+                    <div class="form-group col-xs-12 text-right">
                         <a href="#projet" aria-controls="projet" role="tab" data-toggle="tab">
                             <div type="button" class="btn">
-                                <i class=" fa fa-angle-right" aria-hidden="true"></i>
+                                Finalisés <i class=" fa fa-angle-right" aria-hidden="true"></i>
                             </div>
                         </a>
                     </div>
@@ -40,10 +37,10 @@
             </div>
             <div role="tabpanel" class="tab-pane" id="projet">
                 <div class="row hidden-sm hidden-md hidden-lg">
-                    <div class="form-group col-xs-6">
+                    <div class="form-group col-xs-12 text-left">
                         <a href="#home" aria-controls="home" role="tab" data-toggle="tab">
                             <div type="button" class="btn">
-                                <i class=" fa fa-angle-left" aria-hidden="true"></i>
+                                <i class=" fa fa-angle-left" aria-hidden="true"></i> En cours de saisie
                             </div>
                         </a>
                     </div>

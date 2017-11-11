@@ -14,7 +14,7 @@
     </ul>
     <div class="tab-content">
     <div role="tabpanel" class="tab-pane active jumbotron" id="projets">
-        {% set options = {'thema':'false','pictures':'false','update': 'false', 'more': 'false'} %}
+        {% set options = {'thema':'false','pictures':'false','update': 'false', 'more': 'true'} %}
         {% include 'AMRFPublicRooterBundle::components/resumeProject.html.twig' with options %}
     </div>
     <div role="tabpanel" class="tab-pane" id="partenaires">
@@ -38,8 +38,7 @@
                 </div>
             </a>
             <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
-                {% set options = {'thema':'false','pictures':'false','update': 'false', 'more': 'false'} %}
-                {% include 'AMRFPublicRooterBundle::components/resumeProject.html.twig' with options %}
+                {% include 'AMRFPublicRooterBundle::components/partComponent.html.twig'%}
             </div>
         </div>
     </div>

@@ -1,8 +1,9 @@
 {% extends 'AMRFPublicRooterBundle::base.html.twig' %}
 {% block title %}Ma fiche{% endblock %}
-    {% block navbar %}
-        {% include 'AMRFPublicRooterBundle::components/navbarPart.html.twig' %}
-    {% endblock %}
+{% block navbar %}
+    {% set options = {'status':2} %}
+    {% include 'AMRFPublicRooterBundle::components/navbar.html.twig' with options %}
+{% endblock %}
 {% block body %}
 
     <h2 class="center-align">Ma fiche Partenaire</h2>
@@ -75,24 +76,70 @@
 
                     <div role="tabpanel" class="tab-pane" id="description">
                         <h3>Présentation de l'organisme</h3>
-                        <div class="col-lg-12 col-md-12">
+                        <div class=" col-xs-12">
                             <div class="form-group">
                                 <label>Secteur d'activité *</label>
-                                <ul class="list-inline">
-                                    <li><input name="group1" class="form-control" type="checkbox" id="institution">
-                                        <label for="institution">Institution</label></li>
-                                    <li><input name="group1" type="checkbox" id="bank"/>
-                                        <label for="bank">Banque Assurance Mutuelle</label></li>
-                                    <li><input name="group1" type="checkbox" id="health"/>
-                                        <label for="health">Santé</label></li>
-                                    <li><input name="group1" type="checkbox" id="education"/>
-                                        <label for="education">Education</label></li>
-                                    <li><input name="group1" type="checkbox" id="other"/>
-                                        <label for="other">Autres</label></li>
-                                </ul>
+                                <div class="row scroll-in">
+                                    <div class="col-xs-3">
+                                        <div><input name="secteur[]" class="form-control check-limit" type="checkbox"
+                                                    id="alimentation"/> <label for="alimentation">Alimentation</label>
+                                        </div>
+                                        <div><input name="secteur[]" class="form-control check-limit" type="checkbox"
+                                                    id="assurance"/> <label for="assurance">Assurance</label></div>
+                                        <div><input name="secteur[]" class="form-control check-limit" type="checkbox"
+                                                    id="banque"/> <label for="banque">Banque</label></div>
+                                        <div><input name="secteur[]" class="form-control check-limit" type="checkbox"
+                                                    id="collectivite"/> <label for="collectivite">Collectivité</label>
+                                        </div>
+                                        <div><input name="secteur[]" class="form-control check-limit" type="checkbox"
+                                                    id="commerce"/> <label for="commerce">Commerce</label></div>
+
+                                    </div>
+                                    <div class="col-xs-3">
+                                        <div><input name="secteur[]" class="form-control check-limit" type="checkbox"
+                                                    id="dechets"/> <label for="dechets">Déchets</label></div>
+                                        <div><input name="secteur[]" class="form-control check-limit" type="checkbox"
+                                                    id="democratie locale"/> <label for="democratie locale">Démocratie
+                                                locale</label></div>
+                                        <div><input name="secteur[]" class="form-control check-limit" type="checkbox"
+                                                    id="developpement local"/> <label for="developpement local">Développement
+                                                local</label></div>
+                                        <div><input name="secteur[]" class="form-control check-limit" type="checkbox"
+                                                    id="economie"/> <label for="economie">Économie</label></div>
+                                        <div><input name="secteur[]" class="form-control check-limit" type="checkbox"
+                                                    id="education"/> <label for="education">Éducation</label></div>
+                                    </div>
+                                    <div class="col-xs-3">
+                                        <div><input name="secteur[]" class="form-control check-limit" type="checkbox"
+                                                    id="energie"/> <label for="energie">Énergie</label></div>
+                                        <div><input name="secteur[]" class="form-control check-limit" type="checkbox"
+                                                    id="equipement"/> <label for="equipement">Équipement</label></div>
+                                        <div><input name="secteur[]" class="form-control check-limit" type="checkbox"
+                                                    id="finances"/> <label for="finances">Finances</label></div>
+                                        <div><input name="secteur[]" class="form-control check-limit" type="checkbox"
+                                                    id="formation"/> <label for="formation">Formation</label></div>
+                                        <div><input name="secteur[]" class="form-control check-limit" type="checkbox"
+                                                    id="internet"/> <label for="internet">Internet</label></div>
+                                    </div>
+                                    <div class="col-xs-3">
+                                        <div><input name="secteur[]" class="form-control check-limit" type="checkbox"
+                                                    id="numerique"/> <label for="numerique">Numérique</label></div>
+                                        <div><input name="secteur[]" class="form-control check-limit" type="checkbox"
+                                                    id="sante"/> <label for="sante">Santé</label></div>
+                                        <div><input name="secteur[]" class="form-control check-limit" type="checkbox"
+                                                    id="services publics"/> <label for="services publics">Services
+                                                publics</label></div>
+                                        <div><input name="secteur[]" class="form-control check-limit" type="checkbox"
+                                                    id="social"/> <label for="social">Social</label></div>
+                                        <div><input name="secteur[]" class="form-control check-limit" type="checkbox"
+                                                    id="telephonie"/> <label for="telephonie">Téléphonie</label></div>
+                                    </div>
+                                </div>
+
+
                             </div>
                         </div>
-                        <div class="col-lg-12 col-md-12">
+                        <div class=" col-xs-12">
                             <div class="form-group">
                                 <label>Présentation * (1200 caractères maximum)</label>
                                 <textarea id="presentation" class="form-control" rows="6" data-length="1200"
@@ -207,9 +254,10 @@
 
                     <div role="tabpanel" class="tab-pane" id="preview">
                         <h3>Prévisualisez votre fiche</h3>
-                        <p>Ici vous pouvez visualiser votre fiche telle qu'elle apparaîtra sur le site. Si elle vous
-                            convient, cliquez sur "Publier", sinon, vous pouvez revenir au formulaire pour la
-                            corriger.</p>
+                        <p>Vous pouvez ici visualiser votre fiche telle qu'elle apparaîtra sur le site.
+                            Si elle vous convient, validez en cliquant sur "Publier votre fiche". Auquel cas, vous
+                            pouvez revenir en arrière pour la rectifier.
+                        </p>
                         <div class="row jumbotron">
                             <div class="panel panel-default">
                                 <div class="row">
@@ -240,7 +288,7 @@
 
                     </div>
 
-                    <span>Le symbole * indique que cette information est obligatoire</span>
+                    <span>Le symbole * indique que cette information est nécessaires</span>
                 </div>
             </div>
         </form>
