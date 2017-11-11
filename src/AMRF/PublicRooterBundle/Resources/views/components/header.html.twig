@@ -1,14 +1,14 @@
 <div id="stickHeader">
-    <div class="container-fluid connect">
+    <div class="container-fluid hidden-t-p hidden-s">
         <div class="row">
             <div class="col-md-3">
-                <a href="{{ path('home') }}"><img src="{{ asset('/img/AMRF.png') }}" alt=""></a>
+                <a class="" href="{{ path('home') }}"><img src="{{ asset('/img/AMRF.png') }}" alt=""></a>
             </div>
             <div class="col-md-6">
-                <div id="search">
+                <div id="search" class="hidden-t-l">
                     <form action="">
                         <ul>
-                            <li><input type="text" class="form-control" placeholder="Recherche une fiche projet"/></li>
+                            <li><input type="text" class="form-control" placeholder="Rechercher une fiche projet"/></li>
                             <li>
                                 <button type="submit" class="btn"><i class="fa fa-search"></i></button>
                             </li>
@@ -17,7 +17,7 @@
                 </div>
             </div>
             <div class="col-md-3 text-right">
-                <div class="btn" data-toggle="modal" data-target="#formConnect">
+                <div class="btn hidden-t-l" data-toggle="modal" data-target="#formConnect">
                     Accédez à votre espace
                 </div>
             </div>
@@ -28,7 +28,6 @@
 </div>
 
 <div id="titleHeader">
-    <a href="{{ path('home') }}" class="logoTablette"><img src="{{ asset('/img/AMRF.png') }}" alt=""></a>
     <a href="{{ path('home') }}" id="title"><h1>Le Wiki des Maires</h1></a>
     <div class="baseline visible-xs visible-sm">
         <span>DES MAIRES AU SERVICE DES MAIRES</span>

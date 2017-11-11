@@ -14,8 +14,14 @@ section {
     font-family: $font3, sans-serif;
     font-size: 2.8em;
     line-height: 2em;
-
+    text-transform: uppercase;
     text-align: center;
+  }
+  .jumbotron {
+    h3 {
+      color: $color5;
+      font-size: 1.6em;
+    }
   }
   h3 {
     color: $color1;
@@ -25,12 +31,16 @@ section {
     margin-bottom: 10px;
   }
   h4 {
+    font-family: $font3, sans-serif;
     font-size: 1.6em;
     line-height: 1em;
   }
   h5 {
     font-size: 1.6em;
     line-height: 1em;
+    margin-top: 10px;
+    margin-left: 20px;
+    margin-bottom: 5px;
   }
   .container .jumbotron {
     margin: 20px 0 20px 0;

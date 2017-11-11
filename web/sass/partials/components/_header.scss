@@ -6,29 +6,17 @@ header {
     font-size: 4em;
     font-family: $font3, sans-serif;
     color: #FFFFFF;
-    text-shadow: 5px 5px 0 rgba(0, 0, 0, 0.6);
     position: relative;
     z-index: 99;
   }
 
   .baseline {
     font-family: $font3, sans-serif;
+    font-weight: bold;
     color: #FFFFFF;
     font-size: 1em;
     text-align: center;
 
-  }
-  .logoTablette {
-    position: fixed;
-    left: 10px;
-    visibility: hidden;
-    height: 0;
-    width: 0;
-    @media only screen and (max-device-width: 1024px) and (max-device-height: 768px) {
-      visibility: visible;
-      height: 80px;
-
-    }
   }
   #titleHeader {
     height: 300px;

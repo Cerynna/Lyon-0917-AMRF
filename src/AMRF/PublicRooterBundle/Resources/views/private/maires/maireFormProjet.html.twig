@@ -1,7 +1,8 @@
 {% extends 'AMRFPublicRooterBundle::base.html.twig' %}
 {% block title %}Formulaire fiche projet{% endblock %}
 {% block navbar %}
-    {% include 'AMRFPublicRooterBundle::components/navbarMaire.html.twig' %}
+    {% set options = {'status':1} %}
+    {% include 'AMRFPublicRooterBundle::components/navbar.html.twig' with options %}
 {% endblock %}
 {% block body %}
     <h2>Déposer une fiche projet</h2>
@@ -280,7 +281,7 @@
                         </button>
                     </div>
                 </div>
-                <span>Le symbole * indique que cette information est obligatoire</span>
+                <span>Le symbole * indique que cette information est nécessaire.</span>
             </div>
         </form>
     </div>
