@@ -28,7 +28,7 @@ $(document).ready(function () {
     });
 
     //Limit Checkbox
-    var cb = document.querySelectorAll("[class=check-themat]");
+    var cb = document.querySelectorAll("[class=check-limit]");
     var i = 0,
         l = cb.length;
     for (; i < l; i++)

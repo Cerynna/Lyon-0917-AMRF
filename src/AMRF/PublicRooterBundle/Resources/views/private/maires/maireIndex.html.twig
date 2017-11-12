@@ -2,7 +2,8 @@
 {% block title %}Mon espace{% endblock %}
 
 {% block navbar %}
-    {% include 'AMRFPublicRooterBundle::components/navbarMaire.html.twig' %}
+    {% set options = {'status':1} %}
+    {% include 'AMRFPublicRooterBundle::components/navbar.html.twig' with options %}
 {% endblock %}
 
 {% block body %}
@@ -42,7 +43,7 @@
                         </a>
                     </div>
                     <div class="col-xs-12 col-sm-12 col-md-4 text-center">
-                        <a href="{{ path('partFavoris') }}">
+                        <a href="{{ path('favoris') }}">
                             <div class="btn">
                                 <i class="fa fa-star-o"></i> MES FAVORIS
                             </div>
@@ -81,7 +82,7 @@
                         </a>
                     </div>
                     <div class="col-xs-12 text-center">
-                        <a href="{{ path('partFavoris') }}">
+                        <a href="{{ path('favoris') }}">
                             <div class="btn"><i class="fa fa-star-o"></i>
                                 MES FAVORIS
                             </div>

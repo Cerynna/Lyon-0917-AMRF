@@ -76,6 +76,14 @@ class PublicRooterController extends Controller
     {
         return $this->render('AMRFPublicRooterBundle:private:annuaire.html.twig');
     }
+
+    /**
+     * @Route("/favoris", name="favoris")
+     */
+    public function partFavorisAction()
+    {
+        return $this->render('AMRFPublicRooterBundle:private:favoris.html.twig');
+    }
     //PARTIE MAIRE
 
     /**
@@ -138,14 +146,6 @@ class PublicRooterController extends Controller
     }
 
 
-
-    /**
-     * @Route("/partenaire/favoris", name="partFavoris")
-     */
-    public function partFavorisAction()
-    {
-        return $this->render('AMRFPublicRooterBundle:private:favoris.html.twig');
-    }
 
     /**
      * @Route("/partenaire/presentation", name="partPres")

@@ -211,11 +211,12 @@ textarea {
  */
 /*  Media Query Tablette (portrait) */
 @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: portrait) {
-  .connect {
+  .hidden-t-p {
     display: none; }
   header #titleHeader {
     height: 200px !important; }
   header #stickHeader {
+    position: absolute !important;
     height: 0 !important; }
   header h1 {
     margin-top: 70px !important; }
@@ -258,11 +259,12 @@ textarea {
     margin: 20px 0 !important; } }
 
 @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape) {
-  .connect {
+  .hidden-t-l {
     display: none; }
   header #titleHeader {
     height: 200px !important; }
   header #stickHeader {
+    position: absolute !important;
     height: 0 !important; }
   header h1 {
     margin-top: 70px !important; }
@@ -307,8 +309,8 @@ textarea {
     text-align: center;
     margin: 20px 0 !important; } }
 
-@media only screen and (max-device-width: 768px) {
-  .connect {
+@media only screen and (max-device-width: 767px) {
+  .hidden-s {
     display: none; }
   .scrollUp {
     font-size: 2em !important;
@@ -326,8 +328,16 @@ textarea {
     padding-right: 0 !important;
     font-size: 1.3em !important;
     height: 60px !important; }
+    nav .scroll-in {
+      height: 185px;
+      overflow-y: scroll; }
     nav .dropdown-header {
       font-size: 1em !important; }
+    nav .dropdown-menu {
+      background: rgba(0, 158, 61, 0.99) !important;
+      position: static !important;
+      top: 0;
+      z-index: 3000 !important; }
     nav p {
       width: 300px;
       vertical-align: bottom;
@@ -353,9 +363,17 @@ textarea {
       margin-bottom: 10px !important; }
     section p {
       font-size: 1em !important; }
+    section .scroll-in {
+      height: 100px;
+      overflow-y: scroll; }
     section .jumbotron {
       padding: 10px 5px !important; }
     section .bck-maire .search {
+      width: 300px;
+      padding-right: 0;
+      padding-left: 0;
+      font-size: 2em !important; }
+    section .bck-part .search {
       width: 300px;
       padding-right: 0;
       padding-left: 0;
@@ -365,6 +383,8 @@ textarea {
     section .tabPannel {
       padding: 15px 10px !important;
       margin: 0 !important; }
+      section .tabPannel .list-inline a {
+        padding: 10px 5px !important; }
   footer .footer-logo {
     display: none; }
   footer .bck {
@@ -388,24 +408,14 @@ header {
     font-size: 4em;
     font-family: "ERASDEMI", sans-serif;
     color: #FFFFFF;
-    text-shadow: 5px 5px 0 rgba(0, 0, 0, 0.6);
     position: relative;
     z-index: 99; }
   header .baseline {
     font-family: "ERASDEMI", sans-serif;
+    font-weight: bold;
     color: #FFFFFF;
     font-size: 1em;
     text-align: center; }
-  header .logoTablette {
-    position: fixed;
-    left: 10px;
-    visibility: hidden;
-    height: 0;
-    width: 0; }
-    @media only screen and (max-device-width: 1024px) and (max-device-height: 768px) {
-      header .logoTablette {
-        visibility: visible;
-        height: 80px; } }
   header #titleHeader {
     height: 300px;
     text-align: center;
@@ -564,9 +574,10 @@ nav {
     -moz-border-radius: 5px;
     -ms-border-radius: 5px;
     border-radius: 5px;
-    margin-top: 10px; }
+    margin: 10px 15px; }
   nav p {
-    font-style: italic;
+    font-family: "ERASDEMI", sans-serif;
+    font-weight: bold;
     font-size: 0.9em;
     margin-top: 10px; }
     nav p i {
@@ -586,10 +597,11 @@ nav {
     background: #FFFFFF; }
   nav .navbar-collapse {
     background: rgba(0, 158, 61, 0.99); }
+  nav .nav .open > a, nav .nav .open > a:hover, nav .nav .open > a:focus {
+    background: #FFFFFF;
+    color: rgba(0, 158, 61, 0.99);
+    border: 0; }
   nav .dropdown-menu {
-    position: absolute;
-    top: 0;
-    left: 0;
     z-index: 1000;
     display: none;
     float: left;
@@ -617,7 +629,7 @@ nav {
       content: ''; }
   nav .dropdown-main > a {
     height: 50px;
-    font-size: 1.8em; }
+    font-size: 1.5em; }
   nav .dropdown-main > a:hover {
     border-bottom: 4px solid #FFFFFF;
     box-shadow: 0 0 0 transparent;
@@ -796,7 +808,11 @@ section {
     font-family: "ERASDEMI", sans-serif;
     font-size: 2.8em;
     line-height: 2em;
+    text-transform: uppercase;
     text-align: center; }
+  section .jumbotron h3 {
+    color: #2a2a2a;
+    font-size: 1.6em; }
   section h3 {
     color: rgba(0, 158, 61, 0.99);
     font-family: "ERASDEMI", sans-serif;
@@ -804,11 +820,15 @@ section {
     line-height: 2em;
     margin-bottom: 10px; }
   section h4 {
+    font-family: "ERASDEMI", sans-serif;
     font-size: 1.6em;
     line-height: 1em; }
   section h5 {
     font-size: 1.6em;
-    line-height: 1em; }
+    line-height: 1em;
+    margin-top: 10px;
+    margin-left: 20px;
+    margin-bottom: 5px; }
   section .container .jumbotron {
     margin: 20px 0 20px 0;
     padding: 20px 10px 20px 10px;
