@@ -20,11 +20,12 @@ nav {
     height: 40px;
     background-color: $color2;
     @include borderRadius(5px);
-    margin-top: 10px;
+    margin: 10px 15px;
   }
 
   p {
-    font-style: italic;
+    font-family: $font3, sans-serif;
+    font-weight: bold;
     font-size: 0.9em;
     margin-top: 10px;
     i {
@@ -51,6 +52,11 @@ nav {
   .navbar-collapse {
     background: $color1;
   }
+  .nav .open > a, .nav .open > a:hover, .nav .open > a:focus {
+    background: $color2;
+    color: $color1;
+    border: 0;
+  }
   .dropdown-menu {
     a {
       font-size: 1.5em;
@@ -65,9 +71,7 @@ nav {
     .dropdown-submenu a:hover::before {
       content: '';
     }
-    position: absolute;
-    top: 0;
-    left: 0;
+
     z-index: 1000;
     display: none;
     float: left;
@@ -86,7 +90,7 @@ nav {
   }
   .dropdown-main > a {
     height: 50px;
-    font-size: 1.8em;
+    font-size: 1.5em;
   }
   .dropdown-main > a:hover {
     border-bottom: 4px solid $color2;

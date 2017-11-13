@@ -1,8 +1,9 @@
 {% extends 'AMRFPublicRooterBundle::base.html.twig' %}
 {% block title %}Mon profil{% endblock %}
-    {% block navbar %}
-        {% include 'AMRFPublicRooterBundle::components/navbarPart.html.twig' %}
-    {% endblock %}
+{% block navbar %}
+    {% set options = {'status':2} %}
+    {% include 'AMRFPublicRooterBundle::components/navbar.html.twig' with options %}
+{% endblock %}
 {% block body %}
 
     <h2>Mon profil</h2>
@@ -49,7 +50,7 @@
                     <div class="col-lg-6 col-sm-6">
                         <div class="form-group">
                             <label for="tel">Téléphone</label>
-                            <input id="tel" type="number" class="form-control">
+                            <input id="tel" type="tel" class="form-control">
                         </div>
                     </div>
                     <div class="col-lg-6 col-sm-6">
@@ -78,7 +79,7 @@
                     </div>
                     <div class="col-lg-4 col-sm-4">
                         <div class="form-group">
-                            <label for="password">Confirmation</label>
+                            <label for="password">Confirmer le nouveau mot de passe</label>
                             <input id="password" type="password" class="form-control" data-error="wrong"
                                    data-success="right">
                         </div>

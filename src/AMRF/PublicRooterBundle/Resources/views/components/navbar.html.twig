@@ -5,7 +5,7 @@
                 <div class="col-md-12 hidden-xs hidden-sm">
                     <p><i class="fa fa-quote-left"></i> Des maires au service des maires</p>
                 </div>
-                <div class="col-md-3 col-xs-10 col-sm-6 visible-xs visible-sm" >
+                <div class="col-md-3 col-xs-10 col-sm-6 visible-xs visible-sm">
                     <a href="{{ path('home') }}"><img src="{{ asset('/img/AMRF.png') }}" alt=""></a>
                 </div>
                 <div class="col-xs-2">
@@ -34,9 +34,106 @@
                     <a {% if app.request.attributes.get('_route') == 'contact' %} class="active" {% endif %}
                             href="{{ path('contact') }}">Contact</a>
                 </li>
-                <li class="visible-xs visible-md visible-sm">
-                    <a data-toggle="modal" data-target="#formConnect">Connexion</a>
-                </li>
+
+                {% if options.status == 0 %}
+                    <li class="visible-xs visible-md visible-sm">
+                        <a data-toggle="modal" data-target="#formConnect">Connexion</a>
+                    </li>
+                {% endif %}
+                {% if options.status == 1 %}
+                    <li class="dropdown">
+                        <a data-toggle="dropdown" class="dropdown-toggle hidden-xs" href="#">Mon Espace <i
+                                    class="fa fa-angle-down"></i></a>
+                        <ul class="dropdown-menu scroll-in hidden-xs">
+                            <li><a href="{{ path('maireHome') }}">Mon Espace</a></li>
+                            <li class="dropdown-header">Projet</li>
+                            <li><a tabindex="-1" href="{{ path('maireFormProjet') }}">Ajouter</a></li>
+                            <li><a tabindex="-1" href="{{ path('maireProjets') }}">Consulter</a></li>
+                            <li><a tabindex="-1" href="{{ path('recherche') }}">Rechercher</a></li>
+                            <li><a tabindex="-1" href="{{ path('maireFavoris') }}">Favoris</a></li>
+                            <li class="dropdown-header">Profil</li>
+                            <li><a href="{{ path('maireProfil') }}">Modifier</a></li>
+                            <li class="dropdown-header">Partenaires</li>
+                            <li><a tabindex="-1" href="{{ path('annuaire') }}">Rechercher</a></li>
+                            <li><a tabindex="-1" href="{{ path('maireFavoris') }}">Favoris</a></li>
+                        </ul>
+                        <ul class="dropdown-menu scroll-in visible-xs">
+                            <li class="col-xs-12">
+                                <ul>
+                                    <li><a href="{{ path('maireHome') }}">Mon Espace</a></li>
+                                </ul>
+                            </li>
+                            <li class="col-xs-6">
+                                <ul>
+
+                                    <li class="dropdown-header">Projet</li>
+                                    <li><a tabindex="-1" href="{{ path('maireFormProjet') }}">Ajouter</a></li>
+                                    <li><a tabindex="-1" href="{{ path('maireProjets') }}">Consulter</a></li>
+                                    <li><a tabindex="-1" href="{{ path('recherche') }}">Rechercher</a></li>
+                                    <li><a tabindex="-1" href="{{ path('maireFavoris') }}">Favoris</a></li>
+                                </ul>
+                            </li>
+                            <li class="col-xs-6">
+                                <ul>
+
+                                    <li class="dropdown-header">Profil</li>
+                                    <li><a href="{{ path('maireProfil') }}">Modifier</a></li>
+                                    <li class="dropdown-header">Partenaires</li>
+                                    <li><a tabindex="-1" href="{{ path('annuaire') }}">Rechercher</a></li>
+                                </ul>
+                            </li>
+                            <li role="separator" class="divider"></li>
+                            <li><a tabindex="-1" href="#">Déconnexion</a></li>
+                        </ul>
+                    </li>
+                {% endif %}
+                {% if options.status == 2 %}
+
+                    <li class="dropdown">
+                        <a data-toggle="dropdown" class="dropdown-toggle hidden-xs" href="#">Mon Espace <i
+                                    class="fa fa-angle-down"></i></a>
+                        <ul class="dropdown-menu scroll-in hidden-xs">
+                            <li><a href="{{ path('partHome') }}">Mon Espace</a></li>
+                            <li class="dropdown-header">Mon profil</li>
+                            <li><a href="{{ path('partProfil') }}">Modifier</a></li>
+                            <li class="dropdown-header">Organisme</li>
+                            <li><a href="{{ path('partPres') }}">Ma fiche</a></li>
+                            <li><a tabindex="-1" href="{{ path('annuaire') }}">Les Partenaires</a></li>
+                            <li class="dropdown-header">Projets</li>
+                            <li><a tabindex="-1" href="{{ path('recherche') }}">Les Projets</a></li>
+                            <li><a href="{{ path('favoris') }}">Favoris</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="#">Déconnexion</a></li>
+                        </ul>
+                        <ul class="dropdown-menu scroll-in visible-xs">
+                            <li class="col-xs-12">
+                                <ul>
+                                    <li><a href="{{ path('partHome') }}">Mon Espace</a></li>
+                                </ul>
+                            </li>
+                            <li class="col-xs-6">
+                                <ul>
+                                    <li class="dropdown-header">Organisme</li>
+                                    <li><a href="{{ path('partPres') }}">Ma fiche</a></li>
+                                    <li><a tabindex="-1" href="{{ path('annuaire') }}">Les Partenaires</a></li>
+                                    <li><a href="{{ path('favoris') }}">Favoris</a></li>
+                                </ul>
+                            </li>
+                            <li class="col-xs-6">
+                                <ul>
+                                    <li class="dropdown-header">Projets</li>
+                                    <li><a tabindex="-1" href="{{ path('recherche') }}">Les Projets</a></li>
+                                    <li class="dropdown-header">Mon profil</li>
+                                    <li><a href="{{ path('partProfil') }}">Modifier</a></li>
+                                    <li><a href="{{ path('favoris') }}">Favoris</a></li>
+                                </ul>
+                            </li>
+                            <li role="separator" class="divider"></li>
+                            <li><a tabindex="-1" href="#">Déconnexion</a></li>
+                        </ul>
+                    </li>
+                {% endif %}
+
             </ul>
         </div>
     </div>
