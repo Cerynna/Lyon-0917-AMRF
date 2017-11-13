@@ -147,8 +147,6 @@ class PublicRooterController extends Controller
 
 
 
-
-
     /**
      * @Route("/partenaire/presentation", name="partPres")
      */
