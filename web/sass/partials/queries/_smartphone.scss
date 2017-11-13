@@ -1,5 +1,5 @@
-@media only screen and (max-device-width: 768px) {
-  .connect {
+@media only screen and (max-device-width: 767px) {
+  .hidden-s {
     display: none;
   }
   .scrollUp {
@@ -24,17 +24,26 @@
     padding-right: 0 !important;
     font-size: 1.3em !important;
     height: 60px !important;
-
+    .scroll-in{
+      height: 185px;
+      overflow-y: scroll;
+    }
     .dropdown-header {
       font-size: 1em !important;
     }
-
+    .dropdown-menu{
+      background: $color1 !important;
+      position: static !important;
+      top:0;
+      z-index: 3000!important;
+    }
     p {
       width: 300px;
       vertical-align: bottom;
       font-size: 0.7em !important;
     }
   }
+
   .container {
     padding: 0 !important;
   }
@@ -44,9 +53,10 @@
       font-size: 1.2em !important;
     }
   }
-  .row {
+  .row{
     margin: 0;
   }
+
   section {
     h2 {
       font-size: 1.8em !important;
@@ -63,10 +73,22 @@
     p {
       font-size: 1em !important;
     }
+    .scroll-in{
+      height: 100px;
+      overflow-y: scroll;
+    }
     .jumbotron {
       padding: 10px 5px !important;
     }
     .bck-maire {
+      .search {
+        width: 300px;
+        padding-right: 0;
+        padding-left: 0;
+        font-size: 2em !important;
+      }
+    }
+    .bck-part {
       .search {
         width: 300px;
         padding-right: 0;
@@ -81,6 +103,11 @@
     .tabPannel {
       padding: 15px 10px !important;
       margin: 0 !important;
+      .list-inline {
+        a {
+          padding: 10px 5px !important;
+        }
+      }
     }
   }
   footer {

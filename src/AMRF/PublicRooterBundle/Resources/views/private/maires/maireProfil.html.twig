@@ -1,7 +1,8 @@
 {% extends 'AMRFPublicRooterBundle::base.html.twig' %}
 {% block title %}Mon profil{% endblock %}
 {% block navbar %}
-    {% include 'AMRFPublicRooterBundle::components/navbarMaire.html.twig' %}
+    {% set options = {'status':1} %}
+    {% include 'AMRFPublicRooterBundle::components/navbar.html.twig' with options %}
 {% endblock %}
 {% block body %}
     <h2>Mon profil</h2>
@@ -129,7 +130,7 @@
                     </div>
                     <div class="col-lg-4 col-sm-4">
                         <div class="form-group">
-                            <label for="password">Confirmation</label>
+                            <label for="password">Confirmer le nouveau mot de passe</label>
                             <input type="password" name="newPass[]" class="form-control" data-error="wrong"
                                    data-success="right">
                         </div>

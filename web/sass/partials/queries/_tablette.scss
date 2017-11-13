@@ -1,7 +1,6 @@
 /*  Media Query Tablette (portrait) */
 @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: portrait) {
-
-  .connect {
+  .hidden-t-p {
     display: none;
   }
   header {
@@ -9,6 +8,7 @@
       height: 200px !important;
     }
     #stickHeader {
+      position: absolute !important;
       height: 0 !important;
     }
     h1 {
@@ -79,7 +79,7 @@
 }
 
 @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape) {
-  .connect {
+  .hidden-t-l {
     display: none;
   }
   header {
@@ -87,6 +87,7 @@
       height: 200px !important;
     }
     #stickHeader {
+      position: absolute !important;
       height: 0 !important;
     }
     h1 {
