@@ -17,7 +17,7 @@
                     <a href="#mairie" aria-controls="mairie" role="tab" data-toggle="tab">Ma Mairie</a>
                 </li>
                 <li role="presentation">
-                    <a href="#reseau" aria-controls="reseau" role="tab" data-toggle="tab">Reseaux Sociaux</a>
+                    <a href="#reseau" aria-controls="reseau" role="tab" data-toggle="tab">Réseaux Sociaux</a>
                 </li>
                 <li role="presentation">
                     <a href="#settings" aria-controls="settings" role="tab" data-toggle="tab">Mot de Passe</a>
@@ -42,7 +42,7 @@
                     <div class="col-lg-6 col-sm-6">
                         <div class="form-group">
                             <label for="tel">Téléphone *</label>
-                            <input id="tel" type="number" class="form-control">
+                            <input id="tel" type="tel" class="form-control">
                         </div>
                     </div>
                     <div class="col-lg-6 col-sm-6">
@@ -63,7 +63,7 @@
                     <div class="col-lg-6 col-sm-6">
                         <div class="form-group">
                             <label for="codep">Code Postal *</label>
-                            <input id="codep" type="number" class="form-control">
+                            <input id="codep" type="number" min="0" class="form-control">
                         </div>
                     </div>
                     <div class="col-lg-12 col-sm-12">
@@ -75,7 +75,7 @@
                     <div class="col-lg-6 col-sm-6">
                         <div class="form-group">
                             <label for="habitants">Nombre d'habitants</label>
-                            <input id="habitants" type="number" class="form-control">
+                            <input id="habitants" type="number" min="0" class="form-control">
                         </div>
                     </div>
                     <div class="col-lg-6 col-sm-6">
@@ -137,9 +137,11 @@
                     </div>
                 </div>
             </div>
+            <span>Le symbole * indique que cette information est nécessaire.</span>
             <div class="col-lg-12 col-md-12 text-center">
                 <button class="btn" type="submit">Sauvegarder</button>
             </div>
+
         </form>
     </div>
 {% endblock %}

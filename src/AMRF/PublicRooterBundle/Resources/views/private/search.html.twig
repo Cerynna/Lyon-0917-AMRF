@@ -46,8 +46,8 @@
                 </a>
                 <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
                     <div class="row">
-                        <div class="col-sm-4 text-center">
-                            <label for="communes">Departement</label>
+                        <div class="col-sm-4 form-group text-center">
+                            <label for="communes">Département</label>
                             <input type="text" class="form-control" accept="" name="communes" id="communes">
                         </div>
                         <div class="col-sm-4 form-group text-center">
@@ -55,7 +55,7 @@
                             <input id="code" class="form-control" type="text" autocomplete="off" size="5" maxlength="5">
                         </div>
                         <div class="col-sm-4 form-group text-center">
-                            <label for="city">Communes</label>
+                            <label for="city">Commune</label>
                             <input id="city" class="form-control" type="text" autocomplete="off">
                         </div>
                             <div class=" col-md-12 text-center">
@@ -76,7 +76,7 @@
             </div>
         </div>
     </form>
-    <h3>Resultat(s) de votre recherche</h3>
+    <h3>Résultat(s) de votre recherche</h3>
     <div class="jumbotron">
         {% set options = {'thema':'true','pictures':'true','update': 'false', 'more': 'true'} %}
         {% include 'AMRFPublicRooterBundle::components/resumeProject.html.twig' with options %}
