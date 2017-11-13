@@ -128,11 +128,14 @@ $(function () {
                 response($.ui.autocomplete.filter(
                     availableTags, extractLast(request.term)));
 
-                var matcher = new RegExp($.ui.autocomplete.escapeRegex(request.term), "i");
-                response($.grep(availableTags, function (value) {
-                    value = value.label || value.value || value;
-                    return matcher.test(value) || matcher.test(normalize(value));
-                }));
+                /* accent map in dev....!!!!!!!!
+                                var matcher = new RegExp($.ui.autocomplete.escapeRegex(request.term), "i");
+                                response($.grep(availableTags, function (value) {
+                                    value = value.label || value.value || value;
+                                    return matcher.test(value) || matcher.test(normalize(value));
+                                }));
+
+                                */
             },
             focus: function () {
                 // prevent value inserted on focus
