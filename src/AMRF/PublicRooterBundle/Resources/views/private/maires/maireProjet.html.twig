@@ -5,7 +5,7 @@
     {% include 'AMRFPublicRooterBundle::components/navbar.html.twig' with options %}
 {% endblock %}
 {% block body %}
-    <h2>Mes Projets réalisés et en cours</h2>
+    <h2>MES FICHES PROJETS</h2>
     <div class="row tabPannel">
         <div class="hidden-xs">
             <ul class="list-inline text-center" role="tablist">
@@ -13,7 +13,7 @@
                                                           data-toggle="tab">Mes
                         Projets en Attente</a></li>
                 <li role="presentation"><a href="#projet" aria-controls="projet" role="tab" data-toggle="tab">Mes
-                        Projets Finalisés</a>
+                        Projets Publiés</a>
                 </li>
             </ul>
         </div>
@@ -49,7 +49,7 @@
                     <div class="form-group col-xs-6 text-right">
                     </div>
                 </div>
-                <h3>Mes projets Finalisés</h3>
+                <h3>Mes projets Publiés</h3>
                 <div class="jumbotron">
                     {% set options = {'thema':'false','pictures':'false','update': 'true', 'more': 'true'} %}
                     {% include 'AMRFPublicRooterBundle::components/resumeProject.html.twig' with options %}
