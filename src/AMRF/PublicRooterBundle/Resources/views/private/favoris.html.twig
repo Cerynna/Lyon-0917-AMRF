@@ -1,5 +1,9 @@
 {% extends 'AMRFPublicRooterBundle::base.html.twig' %}
 {% block title %}Mes Favoris{% endblock %}
+{% block navbar %}
+    {% set options = {'status':1} %}
+    {% include 'AMRFPublicRooterBundle::components/navbar.html.twig' with options %}
+{% endblock %}
 {% block body %}
     <h2>Mes favoris</h2>
     <!-- Nav tabs -->
@@ -13,11 +17,23 @@
         </li>
     </ul>
     <div class="tab-content">
-    <div role="tabpanel" class="tab-pane active jumbotron" id="projets">
-        {% set options = {'thema':'false','pictures':'false','update': 'false', 'more': 'true'} %}
+    <div role="tabpanel" class="tab-pane active" id="projets">
+        <div class="jumbotron">
+        {% set options = {'thema':'false','pictures':'false','update': 'false', 'more': 'true', 'id': 1, 'text': 100} %}
         {% include 'AMRFPublicRooterBundle::components/resumeProject.html.twig' with options %}
+        </div>
+        <div class="jumbotron">
+            {% set options = {'thema':'false','pictures':'false','update': 'false', 'more': 'true', 'id': 2, 'text': 100} %}
+            {% include 'AMRFPublicRooterBundle::components/resumeProject.html.twig' with options %}
+        </div>
+        <div class="jumbotron">
+            {% set options = {'thema':'false','pictures':'false','update': 'false', 'more': 'true', 'id': 2, 'text': 100} %}
+            {% include 'AMRFPublicRooterBundle::components/resumeProject.html.twig' with options %}
+        </div>
     </div>
     <div role="tabpanel" class="tab-pane" id="partenaires">
+
+
         <div class="jumbotron panel-group" id="accordion" role="tablist" aria-multiselectable="true">
             <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne"
                aria-expanded="true" aria-controls="collapseOne">
@@ -41,6 +57,55 @@
                 {% include 'AMRFPublicRooterBundle::components/partComponent.html.twig'%}
             </div>
         </div>
+
+        <div class="jumbotron panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+            <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo"
+               aria-expanded="true" aria-controls="collapseTwo">
+                <div class="row">
+                    <div class="panel-heading" role="tab" id="headingTwo">
+                        <div class="col-xs-4">
+                            <img src="http://via.placeholder.com/70x70">
+                        </div>
+                        <div class="col-xs-5">
+                            <h3>Nom du partenaire</h3>
+                        </div>
+                        <div class="col-xs-3 text-right">
+                            <div class="btn btn-collapse">
+                                <i class="fa fa-angle-double-down"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </a>
+            <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                {% include 'AMRFPublicRooterBundle::components/partComponent.html.twig'%}
+            </div>
+        </div>
+
+        <div class="jumbotron panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+            <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree"
+               aria-expanded="true" aria-controls="collapseThree">
+                <div class="row">
+                    <div class="panel-heading" role="tab" id="headingThree">
+                        <div class="col-xs-4">
+                            <img src="http://via.placeholder.com/70x70">
+                        </div>
+                        <div class="col-xs-5">
+                            <h3>Nom du partenaire</h3>
+                        </div>
+                        <div class="col-xs-3 text-right">
+                            <div class="btn btn-collapse">
+                                <i class="fa fa-angle-double-down"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </a>
+            <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+                {% include 'AMRFPublicRooterBundle::components/partComponent.html.twig'%}
+            </div>
+        </div>
+
     </div>
     </div>{#end tabContent#}
     </div>{#end tabPannel #}

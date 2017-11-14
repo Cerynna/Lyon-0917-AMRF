@@ -1,5 +1,9 @@
 {% extends 'AMRFPublicRooterBundle::base.html.twig' %}
 {% block title %}Recherche{% endblock %}
+{% block navbar %}
+    {% set options = {'status':1} %}
+    {% include 'AMRFPublicRooterBundle::components/navbar.html.twig' with options %}
+{% endblock %}
 {% block body %}
     <h2>RECHERCHE DE PROJETS</h2>
     <h3>Par mots clefs</h3>
@@ -81,7 +85,15 @@
     </form>
     <h3>Résultat(s) de votre recherche</h3>
     <div class="jumbotron">
-        {% set options = {'thema':'true','pictures':'true','update': 'false', 'more': 'true'} %}
+        {% set options = {'thema':'true','pictures':'true','update': 'false', 'more': 'true', 'id': 1, 'text': 210} %}
+        {% include 'AMRFPublicRooterBundle::components/resumeProject.html.twig' with options %}
+    </div>
+    <div class="jumbotron">
+        {% set options = {'thema':'true','pictures':'true','update': 'false', 'more': 'true', 'id': 2, 'text': 210} %}
+        {% include 'AMRFPublicRooterBundle::components/resumeProject.html.twig' with options %}
+    </div>
+    <div class="jumbotron">
+        {% set options = {'thema':'true','pictures':'true','update': 'false', 'more': 'true', 'id': 3, 'text': 210} %}
         {% include 'AMRFPublicRooterBundle::components/resumeProject.html.twig' with options %}
     </div>
 {% endblock %}

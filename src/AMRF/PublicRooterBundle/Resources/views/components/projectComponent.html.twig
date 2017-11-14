@@ -29,10 +29,10 @@
         <div class="col-md-4">
             <div class="panel panel-default" id="cityName">
                 <div class="panel-heading text-left" role="tab" id="headingList">
-                    <h4>Commune : SAINT JEAN PIED DE PORT</h4>
+                    <h4>Commune : LES MOLIERES</h4>
                 </div>
                 <ul class="list-group">
-                    <li class="list-group-item">Département : Essone</li>
+                    <li class="list-group-item">Département : Essonne</li>
                     <li class="list-group-item">CodePostal : 91xxx</li>
                     <li class="list-group-item">Population : 2000</li>
                     <li class="list-group-item">Code INSEE : 91411</li>
@@ -54,20 +54,21 @@
             </div>
         </div>
         <div class="col-md-4 mini-galery">
-            <div class="img-preview">
-                <img id="my-img2" src="http://via.placeholder.com/200x200" class="img-big"/>
-            </div>
             <div class="img-list text-center">
-                <img class="img-mini" src="http://via.placeholder.com/50x50"
-                     onmouseover="showImg('my-img2','http://dummyimage.com/200x200/eb00eb/fff');"
-                     onmouseout="hideImg('my-img2','http://via.placeholder.com/200x200');"/>
-                <img class="img-mini" src="http://via.placeholder.com/50x50"
-                     onmouseover="showImg('my-img2','http://dummyimage.com/200x200/009E3D/fff');"
-                     onmouseout="hideImg('my-img2','http://via.placeholder.com/200x200');"/>
-                <img class="img-mini" src="http://via.placeholder.com/50x50"
-                     onmouseover="showImg('my-img2','http://dummyimage.com/200x200/33333/fff');"
-                     onmouseout="hideImg('my-img2','http://via.placeholder.com/200x200');"/>
+                <img class="img-mini" src="{{ asset('/img/bck-2.jpg') }}" width="50px"
+                     onmouseover="showImg('my-img2','{{ asset('/img/bck-2.jpg') }}');"
+                     onmouseout="hideImg('my-img2','{{ asset('/img/bck-2.jpg') }}');"/>
+                <img class="img-mini" src="{{ asset('/img/bck-3.jpg') }}" width="50px"
+                     onmouseover="showImg('my-img2','{{ asset('/img/bck-3.jpg') }}');"
+                     onmouseout="hideImg('my-img2','{{ asset('/img/bck-1.jpg') }}');"/>
+                <img class="img-mini" src="{{ asset('/img/bck-4.jpg') }}" width="50px"
+                     onmouseover="showImg('my-img2','{{ asset('/img/bck-4.jpg') }}');"
+                     onmouseout="hideImg('my-img2','{{ asset('/img/bck-1.jpg') }}');"/>
             </div>
+            <div class="img-preview">
+                <img id="my-img2" src="{{ asset('/img/bck-1.jpg') }}" class="img-big"/>
+            </div>
+
         </div>
     </div>
     <div class="row">
@@ -115,7 +116,7 @@
         </div>
     </div>
     <div class="row">
-        <h3>Description du projet</h3>
+        <h3>Contexte</h3>
         <p>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
             dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
@@ -132,6 +133,18 @@
             Le maillage en transports collectifs étant faible, il y a un intérêt majeur à étudier des modes de
             transports collectifs nouveaux et complémentaires.
             Transformer le véhicule particulier en un mode nouveau de transport collectif
+        </p>
+        <div class="divider"></div>
+        <h3>Déroulement</h3>
+        <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+            dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+            ex
+            ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
+            fugiat
+            nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
+            mollit
+            anim id est laborum.
         </p>
         <div class="divider"></div>
         <h3>Partenaires mobilisés</h3>

@@ -1,11 +1,11 @@
-.containerConnect .card {
-  width:100%;
+.containerConnect{
+  width:200px;
   margin:20px;
-  padding:20px;
+  padding:20px auto;
 }
 .formConnect {
   width: 100%;
-  padding: 20px;
+  padding: 0;
   @include borderRadius(5px);
 }
 .containerConnect{
