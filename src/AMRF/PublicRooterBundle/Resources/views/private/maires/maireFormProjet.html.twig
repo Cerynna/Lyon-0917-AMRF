@@ -1,10 +1,11 @@
 {% extends 'AMRFPublicRooterBundle::base.html.twig' %}
 {% block title %}Formulaire fiche projet{% endblock %}
 {% block navbar %}
-    {% include 'AMRFPublicRooterBundle::components/navbarMaire.html.twig' %}
+    {% set options = {'status':1} %}
+    {% include 'AMRFPublicRooterBundle::components/navbar.html.twig' with options %}
 {% endblock %}
 {% block body %}
-    <h2>Déposer une fiche projet</h2>
+    <h2>CREER UNE FICHE PROJET</h2>
     <!-- Nav tabs -->
     <div class="row tabPannel">
         <ul class="list-inline text-center" role="tablist">
@@ -18,82 +19,74 @@
                 <a href="#description" aria-controls="description" role="tab" data-toggle="tab">Description </a>
             </li>
             <li role="presentation" id="infoMenu" class="tabLi">
-                <a href="#informations" aria-controls="informations" role="tab" data-toggle="tab">Plus
-                    d'Informations</a>
+                <a href="#informations" aria-controls="informations" role="tab" data-toggle="tab">Informations</a>
             </li>
             <li role="presentation" id="previewMenu" class="tabLi">
-                <a href="#preview" aria-controls="preview" role="tab" data-toggle="tab">Prévisualisation</a>
+                <a href="#preview" aria-controls="preview" role="tab" data-toggle="tab">Aperçu</a>
             </li>
         </ul>
-
-
+        <span>Le symbole * indique que cette information est nécessaire.</span>
         <form action="#" id="form" method="post" name="form">
-
             <div class="tab-content">
                 <div role="tabpanel" class="tab-pane active" id="projet">
-
                     <h3>Mon projet</h3>
                     <div class="form-group col-sm-12">
                         <label for="projectName" class="col-sm-12 control-label">Titre du Projet *</label>
-                        <input id="projectName" type="text" class="form-control" placeholder="Entrez ici le nom de votre projet pour qu'il soit facilement identifiable">
+                        <input id="projectName" type="text" class="form-control"
+                               placeholder="Entrez ici le nom de votre projet pour qu'il soit facilement identifiable.">
                     </div>
-
-
-                    <h3>Choisir des thématiques et des mots-clés pour définir votre projet</h3>
-                    <label>Choisissez au maximum 3 thématiques</label>
-
+                    <h3>Thématiques et mots-clefs</h3>
+                    <label>Cochez jusqu'à 3 thématiques</label>
                     {% include 'AMRFPublicRooterBundle::components/thematiques.html.twig' %}
                     <div class="row">
-
                         <div class="col-md-12">
                             <div class="form-group">
-                                <label>Mots-clefs</label>
-                                <input type="text" max="5" class="form-control" name="motsCle" id="motsCle" placeholder="Saisissez les premières lettres du mot et vérifiez qu'il apparaît dans la liste. Vous pouvez saisir jusqu'à 5 mots."/>
+                                <label>Saississez jusqu'à 5 mots-clefs</label>
+                                <input type="text" max="5" class="form-control" name="motsCle" id="motsCle"
+                                       placeholder="Tapez les premières lettres du mot et vérifiez qu'il apparaît dans la liste."/>
                             </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class=" col-sm-12">
-                            <h3>Ajouter des images pour illustrer la fiche</h3>
+                            <h3>Illustrations</h3>
                             <input type="hidden" name="MAX_FILE_SIZE" value="500000">
                             <input type="file" id="photo" name="photo"/>
-                            <label for="photo">Vous pouvez télécharger jusqu'à 4 images<br/>
-                                <div class="btn2">Télécharger</div>
+                            <label for="photo">Téléchargez jusqu'à 4 images<br/>
+                                <div class="btn2">Ajouter des images</div>
                             </label>
                         </div>
                     </div>
-                    <div class="form-group col-sm-6 col-md-offset-6" align="right">
-                        <a href="#realisation" aria-controls="projet" role="tab" data-toggle="tab"
-                           onclick="changeActiveMenu('realMenu')">
-                            <div type="button" class="btn">Etape suivante <i class=" fa fa-angle-right" aria-hidden="true"></i>
-                            </div>
-                        </a>
+                    <div class="row">
+                        <div class="col-sm-4 col-sm-offset-4" align="center">
+                            <button type="button" class="btn"><i class="fa fa-floppy-o" aria-hidden="true"></i>
+                                <span class="hidden-sm">Enregistrer</span>
+                            </button>
+                        </div>
+                        <div class="col-sm-4" align="center">
+                            <a href="#realisation" aria-controls="projet" role="tab" data-toggle="tab"
+                               onclick="changeActiveMenu('realMenu')">
+                                <div type="button" class="btn">Etape suivante <i class=" fa fa-angle-right"
+                                                                                 aria-hidden="true"></i>
+                                </div>
+                            </a>
+                        </div>
                     </div>
-                    <div class="form-group col-sm-6 col-md-offset-6" align="right">
-                        <button type="button" class="btn"><i class="fa fa-floppy-o" aria-hidden="true"></i>
-                             Enregistrer en brouillon</button>
-                    </div>
-                    <span>Le symbole * indique que cette information est obligatoire</span>
                 </div>
                 <div role="tabpanel" class="tab-pane" id="realisation">
-
                     <h3>Réalisation</h3>
-
                     <div class="form-group col-sm-6">
                         <label for="year">Année de réalisation *</label>
                         <input id="year" type="text" class="form-control" placeholder="">
                     </div>
-
                     <div class="form-group col-sm-6">
                         <label for="time">Durée de réalisation *</label>
                         <input id="time" type="text" class="form-control" placeholder="">
                     </div>
-
                     <div class="form-group col-sm-6">
                         <label for="cost">Coût global *</label>
                         <input id="cost" type="text" class="form-control" placeholder="">
                     </div>
-
                     <div class="form-group col-sm-6">
                         <label for="dollars">Cofinancements</label>
                         <input id="dollars" type="text" class="form-control" placeholder="">
@@ -108,7 +101,8 @@
                     </div>
                     <div class="form-group col-sm-4" align="center">
                         <button type="button" class="btn"><i class="fa fa-floppy-o" aria-hidden="true"></i>
-                             Enregistrer en brouillon</button>
+                            <span class="hidden-sm">Enregistrer</span>
+                        </button>
                     </div>
                     <div class="form-group col-sm-4" align="right">
                         <a href="#description" aria-controls="description" role="tab" data-toggle="tab"
@@ -117,45 +111,43 @@
                                                                              aria-hidden="true"></i></div>
                         </a>
                     </div>
-
-                    <span>Le symbole * indique que cette information est obligatoire</span>
                 </div>
-
                 <div role="tabpanel" class="tab-pane" id="description">
-
-
                     <h3>Description</h3>
-
                     <div class="form-group col-sm-12">
                         <label for="description">Description * (1200 caractères maximum)</label>
-                        <textarea id="description" type="text" class="form-control" placeholder="Décrivez ici le contexte du projet et les différentes étapes de sa réalisation, par exemple" rows="7"></textarea>
+                        <textarea id="description" type="text" class="form-control"
+                                  placeholder="Décrivez ici le contexte du projet et les différentes étapes de sa réalisation, par exemple"
+                                  rows="7"></textarea>
                     </div>
-
                     <div class="form-group col-sm-12">
                         <label for="objectif">Objectifs *</label>
-                        <textarea id="objectif" type="text" class="form-control" placeholder="Ici, vous pouvez indiquer quels étaient vos objectifs au départ et si ils ont évolué" rows="4"></textarea>
+                        <textarea id="objectif" type="text" class="form-control"
+                                  placeholder="Ici, vous pouvez indiquer quels étaient vos objectifs au départ et si ils ont évolué"
+                                  rows="4"></textarea>
                     </div>
-
                     <div class="form-group col-sm-12">
                         <label for="partenaires">Partenaires mobilisés *</label>
-                        <textarea id="partenaires" type="text" class="form-control" placeholder="Listez ici vos partenaires pour ce projet et la nature du partenariat (apport d'expertise, logistique, financier...), par exemple" rows="3"></textarea>
+                        <textarea id="partenaires" type="text" class="form-control"
+                                  placeholder="Listez ici vos partenaires pour ce projet et la nature du partenariat (apport d'expertise, logistique, financier...), par exemple"
+                                  rows="3"></textarea>
                     </div>
-
                     <div class="form-group col-sm-12">
                         <label for="results">Résultats obtenus *</label>
-                        <textarea id="results" type="text" class="form-control" placeholder="Indiquez ici des résultats chiffrés si vous en avez. Vous pouvez préciser si vous avez atteint vos objectifs ou s'il reste encore une marge de progression" rows="4"></textarea>
+                        <textarea id="results" type="text" class="form-control"
+                                  placeholder="Indiquez ici des résultats chiffrés si vous en avez. Vous pouvez préciser si vous avez atteint vos objectifs ou s'il reste encore une marge de progression"
+                                  rows="4"></textarea>
                     </div>
-
                     <div class="form-group col-sm-12">
                         <label for="difficults">Difficultés rencontrées *</label>
-                        <textarea id="difficults" type="text" class="form-control" placeholder="" rows="4"></textarea>
+                        <textarea id="difficults" type="text" class="form-control" placeholder="Listez ici vos difficultés rencontrées pour ce projet" rows="4"></textarea>
                     </div>
-
                     <div class="form-group col-sm-12">
                         <label for="conseil">Conseils *</label>
-                        <textarea id="conseil" type="text" class="form-control" placeholder="Expliquez ici ce qui vous a été utile et vous a permis d'avancer ou au contraire les pièges à éviter" rows="4"></textarea>
+                        <textarea id="conseil" type="text" class="form-control"
+                                  placeholder="Expliquez ici ce qui vous a été utile et vous a permis d'avancer ou au contraire les pièges à éviter"
+                                  rows="4"></textarea>
                     </div>
-
                     <div class="form-group col-sm-4" align="left">
                         <a href="#realisation" aria-controls="realisation" role="tab" data-toggle="tab"
                            onclick="changeActiveMenu('realMenu')">
@@ -166,7 +158,8 @@
                     </div>
                     <div class="form-group col-sm-4" align="center">
                         <button type="button" class="btn"><i class="fa fa-floppy-o" aria-hidden="true"></i>
-                             Enregistrer en brouillon</button>
+                            <span class="hidden-sm ">Enregistrer</span>
+                        </button>
                     </div>
                     <div class="form-group col-sm-4" align="right">
                         <a href="#informations" aria-controls="informations" role="tab" data-toggle="tab"
@@ -175,64 +168,52 @@
                                                                              aria-hidden="true"></i></div>
                         </a>
                     </div>
-                    <span>Le symbole * indique que cette information est obligatoire</span>
                 </div>
-
                 <div role="tabpanel" class="tab-pane" id="informations">
-
-                    <h3>Personne à contacter pour obtenir plus d'informations</h3>
-
+                    <h3>Personne en charge du projet</h3>
                     <div class="form-group col-sm-6">
-                        <label for="responsable">Personne en charge du Projet *</label>
+                        <label for="responsable">Nom Prénom *</label>
                         <input id="responsable" type="text" class="form-control" placeholder="">
                     </div>
-
                     <div class="form-group col-sm-6">
                         <label for="fonction">Fonction *</label>
                         <input id="fonction" type="text" class="form-control" placeholder="">
                     </div>
-
                     <div class="form-group col-sm-6">
                         <label for="email">Email *</label>
                         <input id="email" type="email" class="form-control" placeholder="">
                     </div>
-
                     <div class="form-group col-sm-6">
                         <label for="tel">Téléphone *</label>
                         <input id="tel" type="tel" class="form-control" placeholder="">
                     </div>
-
+                    <h3>Ajout de fichiers</h3>
                     <div class="form-group col-sm-12">
                         <input type="hidden" name="MAX_FILE_SIZE" value="500000">
                         <input type="file" id="fichier" name="fichier"/>
-                        <label for="fichier">Vous pouvez ajouter un fichier apportant des informations plus détaillées (format acceptés : PDF ) <br/>
+                        <label for="fichier">Vous pouvez ajouter un fichier apportant des informations plus détaillées
+                            (format accepté : PDF ) <br/>
                             <div class="btn2">Télécharger</div>
                         </label>
                     </div>
-
-                    <h3>Votre projet est visible sur les réseaux sociaux et/ou un site internet ? </h3>
-                    <label>Indiquez les liens ici</label>
-                    <div class="form-group col-sm-12">
+                    <h3>Votre projet est visible en ligne ?</h3>
+                    <label>Indiquez vos liens ci-dessous</label>
+                    <div class="form-group col-sm-6">
                         <label for="url">Site internet</label>
-                        <input id="url" type="url" class="form-control" placeholder="Site internet">
+                        <input id="url" type="url" class="form-control" placeholder="">
                     </div>
-                    <div class="form-group col-sm-12">
+                    <div class="form-group col-sm-6">
                         <label for="url">YouTube</label>
-                        <input id="url" type="url" class="form-control" placeholder="YouTube">
+                        <input id="url" type="url" class="form-control" placeholder="">
                     </div>
-                    <div class="form-group col-sm-12">
+                    <div class="form-group col-sm-6">
                         <label for="url">Facebook</label>
-                        <input id="url" type="url" class="form-control" placeholder="Facebook">
+                        <input id="url" type="url" class="form-control" placeholder="">
                     </div>
-                    <div class="form-group col-sm-12">
+                    <div class="form-group col-sm-6">
                         <label for="url">Twitter</label>
-                        <input id="url" type="url" class="form-control" placeholder="Twitter">
+                        <input id="url" type="url" class="form-control" placeholder="">
                     </div>
-                    <div class="form-group col-sm-12">
-                        <label for="url">Autres</label>
-                        <input id="url" type="url" class="form-control" placeholder="Autres">
-                    </div>
-
                     <div class="form-group col-sm-4" align="left">
                         <a href="#description" aria-controls="description" role="tab" data-toggle="tab"
                            onclick="changeActiveMenu('descriptionMenu')">
@@ -243,7 +224,8 @@
                     </div>
                     <div class="form-group col-sm-4" align="center">
                         <button type="button" class="btn"><i class="fa fa-floppy-o" aria-hidden="true"></i>
-                             Enregistrer en brouillon</button>
+                            <span class="hidden-sm">Enregistrer</span>
+                        </button>
                     </div>
                     <div class="form-group col-sm-4" align="right">
                         <a href="#preview" aria-controls="preview" role="tab" data-toggle="tab"
@@ -252,38 +234,34 @@
                                                                              aria-hidden="true"></i></div>
                         </a>
                     </div>
-                    <span>Le symbole * indique que cette information est obligatoire</span>
                 </div>
                 <div role="tabpanel" class="tab-pane" id="preview">
                     <h3>Prévisualisez votre fiche</h3>
                     <p>Ici vous pouvez visualiser votre fiche telle qu'elle apparaîtra sur le site. Si elle vous
-                        convient, cliquez sur "Envoyer", sinon, vous pouvez revenir au formulaire pour la
+                        convient, cliquez sur "Soumettre", sinon, vous pouvez revenir au formulaire pour la
                         corriger.</p>
-
                     <div class="row">
-                    <div class="form-group col-sm-4" align="left">
-                        <a href="#informations" aria-controls="informations" role="tab" data-toggle="tab"
-                           onclick="changeActiveMenu('infoMenu')">
-                            <div type="button" class="btn"><i class=" fa fa-angle-left" aria-hidden="true"></i>
-                                Etape
-                                précédente
-                            </div>
-                        </a>
+                        <div class="form-group col-sm-4" align="left">
+                            <a href="#informations" aria-controls="informations" role="tab" data-toggle="tab"
+                               onclick="changeActiveMenu('infoMenu')">
+                                <div type="button" class="btn"><i class=" fa fa-angle-left" aria-hidden="true"></i>
+                                    Etape
+                                    précédente
+                                </div>
+                            </a>
+                        </div>
+                        <div class="form-group col-sm-4" align="center">
+                            <button type="button" class="btn"><i class="fa fa-floppy-o" aria-hidden="true"></i>
+                                <span class="hidden-sm">Enregistrer</span>
+                            </button>
+                        </div>
+                        <div class="form-group col-sm-4" align="right">
+                            <button type="button" class="btn"><i class="fa fa-envelope-o" aria-hidden="true"></i>
+                                Soumettre votre fiche
+                            </button>
+                        </div>
                     </div>
-                    <div class="form-group col-sm-4" align="center">
-                        <button type="button" class="btn"><i class="fa fa-floppy-o" aria-hidden="true"></i>
-                             Enregistrer en brouillon</button>
-                    </div>
-                    <div class="form-group col-sm-4" align="right">
-                        <button type="button" class="btn"><i class="fa fa-envelope-o" aria-hidden="true"></i>
-                             Soumettre votre fiche</button>
-                    </div>
-                    </div>
-
-
-
                     {% include 'AMRFPublicRooterBundle::components/projectComponent.html.twig' %}
-
                     <div class="form-group col-sm-4" align="left">
                         <a href="#informations" aria-controls="informations" role="tab" data-toggle="tab"
                            onclick="changeActiveMenu('infoMenu')">
@@ -293,29 +271,23 @@
                             </div>
                         </a>
                     </div>
-                    <div class="form-group col-sm-4" align="center">
+                    <div class="form-group col-sm-4" align="left">
                         <button type="button" class="btn"><i class="fa fa-floppy-o" aria-hidden="true"></i>
-                             Enregistrer en brouillon</button>
+                            <span class="hidden-sm">Enregistrer</span>
+                        </button>
                     </div>
                     <div class="form-group col-sm-4" align="right">
                         <button type="button" class="btn"><i class="fa fa-envelope-o" aria-hidden="true"></i>
-                             Soumettre votre fiche</button>
+                            Soumettre votre fiche
+                        </button>
                     </div>
-
                 </div>
-
-
             </div>
-
         </form>
-
     </div>
-
-
 {% endblock %}
 {% block javascripts %}
     <script>
-
         function changeActiveMenu(idActive) {
             $('.tabLi').removeClass('active');
             $('#' + idActive).addClass('active');

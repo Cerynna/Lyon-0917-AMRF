@@ -5,58 +5,82 @@
     <form action="" method="post">
         <div class="jumbotron">
             <div class="input-group col-md-12">
-                <input type="text" class="search form-control" placeholder="Recherche une fiche projet"/>
+                <input type="text" class="search form-control" placeholder="Rechercher une fiche projet"/>
                 <span class="input-group-addon">
                     <button type="submit" class="btn btn-search"><i class="fa fa-search"></i></button>
                 </span>
             </div>
         </div>
         <div class="jumbotron">
-            <h3 class="text-center">Choisir une thématique</h3>
-            {% include 'AMRFPublicRooterBundle::components/thematiques.html.twig' %}
-            <div class="row">
-                <div class="col-md-12 ui-widget">
-                    <label for="motsCle" class="text-center">Mots-clefs</label><br>
-                    <input type="text" max="5" class="motsCle form-control" name="motsCle" id="motsCle">
+            <div class="panel-group" id="more" role="tablist" aria-multiselectable="true">
+                <a data-toggle="collapse" data-parent="#more" href="#collapseMore"
+                   aria-expanded="true" aria-controls="collapseMore">
+                    <div class="panel-heading text-center" role="tab" id="headingMore">
+                        <h3>Recherche avancée <i class="fa fa-angle-double-down"></i></h3>
+                    </div>
+                </a>
+                <div id="collapseMore" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingMore">
+                    {% include 'AMRFPublicRooterBundle::components/thematiques.html.twig' %}
+                    <div class="row">
+                        <div class="col-md-12 ui-widget">
+                            <label for="motsCle" class="text-center">Mots-clefs</label><br>
+                            <input type="text" max="5" class="motsCle form-control" name="motsCle" id="motsCle">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 text-center">
+                            <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i> Recherche
+                            </button>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-md-4 text-center">
-                    <label for="communes">Departement</label>
-                    <input type="text" class="form-control" accept="" name="communes" id="communes">
-                </div>
-                <div class="col-md-4 form-group text-center">
-                    <label for="code">Code Postal</label>
-                    <input id="code" class="form-control" type="text" autocomplete="off" size="5" maxlength="5">
-                </div>
-                <div class="col-md-4 form-group text-center">
-                    <label for="city">Communes</label>
-                    <input id="city" class="form-control" type="text" autocomplete="off">
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-4 text-center">
-                    <div id="results" class="output"></div>
-                </div>
-                <div class="col-md-8 form-group text-center">
-                    <div class="output" id="output"></div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-12 text-center">
-                    <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i> Recherche</button>
-                </div>
-            </div>
-        </div><!--end jumbotron-->
+        </div>
         <div class="jumbotron">
-            <h3 class="text-center">Localiser un projet</h3>
-            <iframe width="100%" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"
-                    src="http://www.openstreetmap.org/export/embed.html?bbox=-4.932861328125001%2C43.59630591596551%2C9.569091796875002%2C50.00067775723633&amp;layer=mapnik"
-                    style="border: 0 solid black"></iframe>
+            <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne"
+                   aria-expanded="true" aria-controls="collapseOne">
+                    <div class="panel-heading text-center" role="tab" id="headingOne">
+                        <h3>Localiser un projet <i class="fa fa-angle-double-down"></i></h3>
+                    </div>
+                </a>
+                <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+                    <div class="row">
+                        <div class="col-sm-4 form-group text-center">
+                            <label for="communes">Département</label>
+                            <input type="text" class="form-control" accept="" name="communes" id="communes">
+                        </div>
+                        <div class="col-sm-4 form-group text-center">
+                            <label for="code">Code Postal</label>
+                            <input id="code" class="form-control" type="text" autocomplete="off" size="5" maxlength="5">
+                        </div>
+                        <div class="col-sm-4 form-group text-center">
+                            <label for="city">Commune</label>
+                            <input id="city" class="form-control" type="text" autocomplete="off">
+                        </div>
+                            <div class=" col-md-12 text-center">
+                                <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i> Recherche
+                                </button>
+                            </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-offset-4 col-xs-8 form-group text-center">
+                            <div class="output" id="output"></div>
+                        </div>
+                    </div>
+                    <iframe class="hidden-xs" width="100%" height="350" frameborder="0" scrolling="no" marginheight="0"
+                            marginwidth="0"
+                            src="http://www.openstreetmap.org/export/embed.html?bbox=-4.932861328125001%2C43.59630591596551%2C9.569091796875002%2C50.00067775723633&amp;layer=mapnik"
+                            style="border: 0 solid black"></iframe>
+                </div>
+            </div>
         </div>
     </form>
-
-    {% include 'AMRFPublicRooterBundle::components/resumeProject.html.twig' %}
+    <h3>Résultat(s) de votre recherche</h3>
+    <div class="jumbotron">
+        {% set options = {'thema':'true','pictures':'true','update': 'false', 'more': 'true'} %}
+        {% include 'AMRFPublicRooterBundle::components/resumeProject.html.twig' with options %}
+    </div>
 {% endblock %}
 {% block javascripts %}
     <script>

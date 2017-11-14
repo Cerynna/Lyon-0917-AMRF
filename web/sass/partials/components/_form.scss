@@ -8,7 +8,6 @@ section {
       font-size: 1em;
       color: $color5;
       @include borderRadius(5px)
-
     }
     .form-control:focus {
       border: 2px solid $color1;
@@ -20,12 +19,10 @@ section {
       margin-left: auto;
       margin-right: auto;
     }
-
     input {
       border: 1px solid $color1;
       width: 100% !important;
     }
-
     label {
       width: 100%;
       font-size: 1.0em;
@@ -38,10 +35,8 @@ section {
     }
     input[type="radio"],
     input[type="checkbox"] {
-
       &:empty {
         display: none;
-
         ~ label {
           font-size: 0.9em;
           position: relative;
@@ -50,9 +45,7 @@ section {
           margin-top: 5px;
           cursor: pointer;
           user-select: none;
-
           &:before {
-
             position: absolute;
             display: block;
             top: 0;
@@ -65,20 +58,16 @@ section {
           }
         }
       }
-
       &:hover:not(:checked) ~ label {
         color: #888;
-
         &:before {
           content: '\2714';
           text-indent: .9em;
           color: #C2C2C2;
         }
       }
-
       &:checked ~ label {
         color: $color1;
-
         &:before {
           content: '\2714';
           text-indent: .9em;
@@ -86,17 +75,14 @@ section {
           background-color: $color1;
         }
       }
-
       &:focus ~ label:before {
         box-shadow: 0 0 0 3px #999;
       }
     }
-
     .cleIcon {
       width: 200px;
       height: 200px;
     }
-
   }
 }
 

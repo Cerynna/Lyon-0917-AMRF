@@ -1,7 +1,4 @@
-.resumeProject{
-  @include borderRadius(10px);
-  @include boxShadow(0.05em, rgba(0, 0, 0, 0.4));
-  padding: 15px 20px!important;
+.resumeProject {
   img {
     border: 2px solid #FFF;
     @include borderRadius(5px);
@@ -21,5 +18,4 @@
   .img-mini:hover {
     transform: scale(1.1);
   }
-
 }

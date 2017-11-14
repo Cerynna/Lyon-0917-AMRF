@@ -1,154 +1,61 @@
 {% extends 'AMRFPublicRooterBundle::base.html.twig' %}
 {% block title %}Mes projets{% endblock %}
 {% block navbar %}
-    {% include 'AMRFPublicRooterBundle::components/navbarMaire.html.twig' %}
+    {% set options = {'status':1} %}
+    {% include 'AMRFPublicRooterBundle::components/navbar.html.twig' with options %}
 {% endblock %}
 {% block body %}
     <h2>Mes Projets réalisés et en cours</h2>
     <div class="row tabPannel">
-        <ul class="list-inline text-center" role="tablist">
-            <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Mes
-                    Projets en Attente</a></li>
-            <li role="presentation"><a href="#projet" aria-controls="projet" role="tab" data-toggle="tab">Mes
-                    Projets Finalisés</a>
-            </li>
-        </ul>
-
+        <div class="hidden-xs">
+            <ul class="list-inline text-center" role="tablist">
+                <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab"
+                                                          data-toggle="tab">Mes
+                        Projets en Attente</a></li>
+                <li role="presentation"><a href="#projet" aria-controls="projet" role="tab" data-toggle="tab">Mes
+                        Projets Finalisés</a>
+                </li>
+            </ul>
+        </div>
         <!-- Tab panes -->
         <div class="tab-content">
             <div role="tabpanel" class="tab-pane active" id="home">
+                <div class="row hidden-sm hidden-md hidden-lg">
+                    <div class="form-group col-xs-12 text-right">
+                        <a href="#projet" aria-controls="projet" role="tab" data-toggle="tab">
+                            <div type="button" class="btn">
+                                Finalisés <i class=" fa fa-angle-right" aria-hidden="true"></i>
+                            </div>
+                        </a>
+                    </div>
+                </div>
                 <h3>Mes projets en cours de saisie</h3>
-
-                <div class="row resumeProject">
-
-                    <div class="col-md-3">
-                        <img src="http://via.placeholder.com/200x200" alt="">
-                    </div>
-                    <div class="col-md-9">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <h3 class="display-3">Participation citoyenne et démocratie locale</h3>
-                            </div>
-                            <div class="col-md-12 text-left" id="city">
-                                <span class="label label-commune">SAINT JEAN PIED DE PORT</span>
-                                <span class="label label-commune">Pyrénées-Atlantiques</span>
-                            </div>
-                            <div class="col-md-12 text-left" id="theme">
-                                <span class="label label-themat">Démocratie locale</span>
-                                <span class="label label-themat">Transports</span>
-                                <span class="label label-themat">Aménagement du territoire</span>
-                            </div>
-                            <div class="col-md-12">
-                                <h3>Résumé du projet</h3>
-                            </div>
-                            <div class="col-md-12">
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                                incididunt ut
-                                labore.
-                            </div>
-                        </div>
-                        <div class="col-md-12 text-right">
-                            <div class="btn btn-success" href="#" role="button">Modifier la fiche</div>
-                        </div>
-                    </div>
-
+                <div class="jumbotron">
+                    {% set options = {'thema':'false','pictures':'false','update': 'true', 'more': 'true'} %}
+                    {% include 'AMRFPublicRooterBundle::components/resumeProject.html.twig' with options %}
                 </div>
-
-
             </div>
-
             <div role="tabpanel" class="tab-pane" id="projet">
-                <h3>Mes projets</h3>
-                <div class="row resumeProject">
-                    <div class="col-md-3">
-                        <img src="http://via.placeholder.com/200x200" alt="">
+                <div class="row hidden-sm hidden-md hidden-lg">
+                    <div class="form-group col-xs-12 text-left">
+                        <a href="#home" aria-controls="home" role="tab" data-toggle="tab">
+                            <div type="button" class="btn">
+                                <i class=" fa fa-angle-left" aria-hidden="true"></i> En cours de saisie
+                            </div>
+                        </a>
                     </div>
-                    <div class="col-md-9">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <h3 class="display-3">Réhabilitation commerce</h3>
-                            </div>
-                            <div class="col-md-12 text-left" id="city">
-                                <span class="label label-commune">SAINT JEAN PIED DE PORT</span>
-                                <span class="label label-commune">Pyrénées-Atlantiques</span>
-                            </div>
-                            <div class="col-md-12 text-left" id="theme">
-                                <span class="label label-themat">Services de proximité</span>
-                                <span class="label label-themat">Tourisme </span>
-                                <span class="label label-themat">Economie</span>
-                            </div>
-                            <div class="col-md-12">
-                                <h3>Résumé du projet</h3>
-                            </div>
-                            <div class="col-md-12">
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                                incididunt ut
-                                labore
-                                et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                                laboris
-                                nisi ut
-                                aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-                                velit
-                                esse
-                                cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-                                sunt
-                                in
-                                culpa qui officia deserunt mollit anim id est laborum.
-                            </div>
-                        </div>
-                        <div class="col-md-12 text-right">
-                            <div class="btn btn-success" href="#" role="button">Voir la fiche</div>
-                        </div>
+                    <div>
+                    </div>
+                    <div class="form-group col-xs-6 text-right">
                     </div>
                 </div>
-            </div>
-            <div role="tabpanel" class="tab-pane" id="favoris">
-                <h3>Mes favoris</h3>
-                <div class="row resumeProject">
-                    <div class="col-md-3">
-                        <img src="http://via.placeholder.com/200x200" alt="">
-                    </div>
-                    <div class="col-md-9">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <h3 class="display-3">Réhabilitation commerce</h3>
-                            </div>
-                            <div class="col-md-12 text-left" id="city">
-                                <span class="label label-commune">SAINT JEAN PIED DE PORT</span>
-                                <span class="label label-commune">Pyrénées-Atlantiques</span>
-                            </div>
-                            <div class="col-md-12 text-left" id="theme">
-                                <span class="label label-themat">Services de proximité</span>
-                                <span class="label label-themat">Tourisme </span>
-                                <span class="label label-themat">Economie</span>
-                            </div>
-                            <div class="col-md-12">
-                                <h3>Résumé du projet</h3>
-                            </div>
-                            <div class="col-md-12">
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                                incididunt ut
-                                labore
-                                et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                                laboris
-                                nisi ut
-                                aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-                                velit
-                                esse
-                                cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-                                sunt
-                                in
-                                culpa qui officia deserunt mollit anim id est laborum.
-                            </div>
-                        </div>
-                        <div class="col-md-12 text-right">
-                            <div class="btn btn-success" href="#" role="button">Voir la fiche</div>
-                        </div>
-                    </div>
+                <h3>Mes projets Finalisés</h3>
+                <div class="jumbotron">
+                    {% set options = {'thema':'false','pictures':'false','update': 'true', 'more': 'true'} %}
+                    {% include 'AMRFPublicRooterBundle::components/resumeProject.html.twig' with options %}
                 </div>
             </div>
         </div>
     </div>
-
 {% endblock %}
 

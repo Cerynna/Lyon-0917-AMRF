@@ -8,15 +8,26 @@ nav {
   vertical-align: middle;
   height: 60px;
   padding-right: 50px;
+  position: -webkit-sticky;
   position: sticky;
   top: 100px;
   z-index: 200;
   @include boxShadow(0.05em, rgba(0, 0, 0, 0.2));
+  hr{
+    margin: 5px;
+  }
+  img {
+    height: 40px;
+    background-color: $color2;
+    @include borderRadius(5px);
+    margin: 10px 15px;
+  }
+
   p {
-    font-style: italic;
+    font-family: $font3, sans-serif;
+    font-weight: bold;
     font-size: 0.9em;
     margin-top: 10px;
-    margin-left: 20px;
     i {
       font-size: 0.5em !important;
       vertical-align: top;
@@ -25,7 +36,7 @@ nav {
   .nav > li > a {
     margin: 0 5px -4px 5px;
     color: $color2;
-    i{
+    i {
       vertical-align: top;
     }
   }
@@ -34,9 +45,20 @@ nav {
     background-color: unset;
     border-bottom: 4px solid $color2;
   }
-
-   .dropdown-menu {
-     a {
+  .icon-bar {
+    color: $color2;
+    background: $color2;
+  }
+  .navbar-collapse {
+    background: $color1;
+  }
+  .nav .open > a, .nav .open > a:hover, .nav .open > a:focus {
+    background: $color2;
+    color: $color1;
+    border: 0;
+  }
+  .dropdown-menu {
+    a {
       font-size: 1.5em;
       color: $color2;
       margin: 0 10px 0 10px;
@@ -46,13 +68,10 @@ nav {
       background-color: unset;
       box-shadow: -5px 0px 0 rgba(255, 255, 255, 1);
     }
-   .dropdown-submenu a:hover::before {
+    .dropdown-submenu a:hover::before {
       content: '';
-
     }
-    position: absolute;
-    top: 0;
-    left: 0;
+
     z-index: 1000;
     display: none;
     float: left;
@@ -71,7 +90,7 @@ nav {
   }
   .dropdown-main > a {
     height: 50px;
-    font-size: 1.8em;
+    font-size: 1.5em;
   }
   .dropdown-main > a:hover {
     border-bottom: 4px solid $color2;
@@ -81,7 +100,7 @@ nav {
     font-weight: bold;
   }
 
-  .dropdown-header{
+  .dropdown-header {
     font-size: 1.5em;
     color: $color4;
   }
@@ -113,7 +132,7 @@ nav {
     text-decoration: none;
   }
 
-  @media (max-width: 767px) {
+  /*@media (max-width: 767px) {
 
     .navbar-nav {
       display: inline;
@@ -137,6 +156,7 @@ nav {
     .navbar-default .navbar-nav .open .dropdown-menu > li > a:focus {
       background-color: #ccc;
     }
+
 
     .navbar-nav .open .dropdown-menu {
       border-bottom: 1px solid white;
@@ -172,8 +192,6 @@ nav {
     background-color: #FFFFFF;
     @include borderRadius(5px);
     box-shadow: 5px 5px 0 rgba(0, 0, 0, 0.6);
-  }
-
-
+  }*/
 
 }

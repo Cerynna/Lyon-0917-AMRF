@@ -13,10 +13,13 @@
 </header>
 <nav id="navbar">
     {% block navbar %}
-        {% include 'AMRFPublicRooterBundle::components/navbar.html.twig' %}
+        {% set options = {'status':0} %}
+        {% include 'AMRFPublicRooterBundle::components/navbar.html.twig' with options %}
     {% endblock %}
 </nav>
-<a href="#"><div class="scrollUp"><i class="fa fa-angle-up"></i></div></a>
+<a href="#">
+    <div class="scrollUp"><i class="fa fa-angle-up"></i></div>
+</a>
 <section>
     <div class="container">
         <div class="content">

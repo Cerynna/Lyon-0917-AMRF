@@ -11,6 +11,11 @@
 */
 @import 'partials/mixins';
 /**
+*************************** Media Querie *********************
+ */
+@import 'partials/queries/tablette';
+@import 'partials/queries/smartphone';
+/**
 *************************** Components *********************
  */
 @import 'partials/components/header';
@@ -24,7 +29,6 @@
 @import 'partials/components/tabPannel';
 @import 'partials/components/btnFavoris';
 @import 'partials/components/projet';
-
 /**
 ** node-sass --watch web/sass/main.scss web/css/main.css
 */
@@ -32,16 +36,16 @@
 @import url('../fonts/ERASDEMI.TTF');
 @import url("http://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css");
 
-@font-face {
+@font-face{
   font-family: ERASDEMI;
   src: url('../fonts/ERASDEMI.TTF');
 }
 
 /**
 */
-body::-webkit-scrollbar {
+/*body::-webkit-scrollbar {
   display: none;
-}
+}*/
 
 body {
   font-size: 1.0em;
@@ -53,11 +57,11 @@ body {
   font-family: $font1, sans-serif;
 }
 
-textarea{
+textarea {
   resize: vertical;
 }
 
-a:visited, a:link {
+a:visited, a:link{
   text-decoration: none;
   color: $color2;
 }
@@ -91,7 +95,7 @@ a:hover, a:active {
   font-size: 1.2em;
   background: $color4;
   text-align: center;
-  width : 200px;
+  width: 200px;
   margin: 10px;
   padding: 10px;
   border: 2px solid;
@@ -143,7 +147,6 @@ a:hover, a:active {
   border: 1px solid #FFF;
 }
 
-
 .label-commune {
   display: inline-block;
   background-color: $color1;
@@ -189,18 +192,19 @@ a:hover, a:active {
 .pagination > li > a {
   color: $color1 !important;
 }
+
 .ui-menu-item-wrapper {
   text-decoration: none;
   color: $color1;
   display: block;
   padding: 5px;
 }
+
 .ui-menu-item-wrapper:visited, .ui-menu-item-wrapper:hover, .ui-menu-item-wrapper:active {
   background: $color1;
   color: $color2;
   border: 2px solid $color1;
 }
-
 
 .ui-autocomplete {
   background: $color2;
@@ -234,12 +238,14 @@ a:hover, a:active {
   text-align: left;
   padding: 0;
   max-height: 100px;
-  width: 660px;
+  min-height: 0;
+  min-width:0;
+  width: auto;
   overflow: hidden;
   overflow-y: scroll;
   background: $color2;
-  border: 0 solid #ccc;
-  margin-top: 0px;
+  border: 0;
+  margin-top: 0;
   @include borderRadius(5px);
 }
 
@@ -285,8 +291,17 @@ a:hover, a:active {
   }
 }
 
-
-
+.partAsideBlock {
+  h4 {
+    margin-top: 15px;
+  }
+  li {
+    margin-left: 5px;
+  }
+}
+.modal-content{
+  width: 800px !important;
+}
 
 /*
 .row {

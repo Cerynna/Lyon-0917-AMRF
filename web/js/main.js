@@ -16,13 +16,11 @@ $(window).on('scroll', function () {
 
 $(document).ready(function () {
 
-    $("textarea").attr( "maxlength", 1200 );
-
+    $("textarea").attr("maxlength", 1200);
 
 //NavBar
-   /* $("#navbar").sticky({topSpacing: 150, zIndex: 6});*/
+    /* $("#navbar").sticky({topSpacing: 150, zIndex: 6});*/
     /*$("#search").sticky({topSpacing: 0, zIndex: 6,getWidthFrom: "500px", center: true});*/
-
 
     //CAROUSSEL
     $('#myCarousel').carousel({
@@ -30,7 +28,7 @@ $(document).ready(function () {
     });
 
     //Limit Checkbox
-    var cb = document.querySelectorAll("[class=check-themat]");
+    var cb = document.querySelectorAll("[class=check-limit]");
     var i = 0,
         l = cb.length;
     for (; i < l; i++)
@@ -39,22 +37,16 @@ $(document).ready(function () {
                 this.checked = false;
         }, false);
 
-
-
     //Modal de connection
     $('#formConnect').on('shown.bs.modal', function () {
         $('#myInput').focus()
     });
-
-
 });
-
-
 
 function showImg(idimg, img) {
     document.getElementById(idimg).setAttribute('src', img);
 }
-function hideImg(idimg,img) {
+
+function hideImg(idimg, img) {
     document.getElementById(idimg).setAttribute('src', img);
 }
-
