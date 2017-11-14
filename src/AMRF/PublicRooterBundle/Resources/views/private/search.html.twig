@@ -1,22 +1,24 @@
 {% extends 'AMRFPublicRooterBundle::base.html.twig' %}
 {% block title %}Recherche{% endblock %}
 {% block body %}
-    <h2>Recherche</h2>
+    <h2>RECHERCHE DE PROJETS</h2>
+    <h3>Par mots clefs</h3>
     <form action="" method="post">
         <div class="jumbotron">
             <div class="input-group col-md-12">
-                <input type="text" class="search form-control" placeholder="Rechercher une fiche projet"/>
+                <input type="text" class="search form-control" placeholder="Ecrivez des mots clefs"/>
                 <span class="input-group-addon">
                     <button type="submit" class="btn btn-search"><i class="fa fa-search"></i></button>
                 </span>
             </div>
         </div>
+        <h3>Par thématique</h3>
         <div class="jumbotron">
             <div class="panel-group" id="more" role="tablist" aria-multiselectable="true">
                 <a data-toggle="collapse" data-parent="#more" href="#collapseMore"
                    aria-expanded="true" aria-controls="collapseMore">
                     <div class="panel-heading text-center" role="tab" id="headingMore">
-                        <h3>Recherche avancée <i class="fa fa-angle-double-down"></i></h3>
+                        <h3>Vous pouvez selectionner de 1 à 3 thématiques <i class="fa fa-angle-double-down"></i></h3>
                     </div>
                 </a>
                 <div id="collapseMore" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingMore">
@@ -36,6 +38,7 @@
                 </div>
             </div>
         </div>
+        <h3>Par lieux</h3>
         <div class="jumbotron">
             <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
                 <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne"
