@@ -5,7 +5,7 @@
     {% include 'AMRFPublicRooterBundle::components/navbar.html.twig' with options %}
 {% endblock %}
 {% block body %}
-    <h2>Déposer une fiche projet</h2>
+    <h2>CREER UNE FICHE PROJET</h2>
     <!-- Nav tabs -->
     <div class="row tabPannel">
         <ul class="list-inline text-center" role="tablist">
@@ -19,13 +19,13 @@
                 <a href="#description" aria-controls="description" role="tab" data-toggle="tab">Description </a>
             </li>
             <li role="presentation" id="infoMenu" class="tabLi">
-                <a href="#informations" aria-controls="informations" role="tab" data-toggle="tab">Plus
-                    d'Informations</a>
+                <a href="#informations" aria-controls="informations" role="tab" data-toggle="tab">Informations</a>
             </li>
             <li role="presentation" id="previewMenu" class="tabLi">
-                <a href="#preview" aria-controls="preview" role="tab" data-toggle="tab">Prévisualisation</a>
+                <a href="#preview" aria-controls="preview" role="tab" data-toggle="tab">Aperçu</a>
             </li>
         </ul>
+        <span>Le symbole * indique que cette information est nécessaire.</span>
         <form action="#" id="form" method="post" name="form">
             <div class="tab-content">
                 <div role="tabpanel" class="tab-pane active" id="projet">
@@ -33,34 +33,34 @@
                     <div class="form-group col-sm-12">
                         <label for="projectName" class="col-sm-12 control-label">Titre du Projet *</label>
                         <input id="projectName" type="text" class="form-control"
-                               placeholder="Entrez ici le nom de votre projet pour qu'il soit facilement identifiable">
+                               placeholder="Entrez ici le nom de votre projet pour qu'il soit facilement identifiable.">
                     </div>
-                    <h3>Choisir des thématiques et des mots-clés pour définir votre projet</h3>
-                    <label>Choisissez au maximum 3 thématiques</label>
+                    <h3>Thématiques et mots-clefs</h3>
+                    <label>Cochez jusqu'à 3 thématiques</label>
                     {% include 'AMRFPublicRooterBundle::components/thematiques.html.twig' %}
                     <div class="row">
                         <div class="col-md-12">
                             <div class="form-group">
-                                <label>Mots-clefs</label>
+                                <label>Saississez jusqu'à 5 mots-clefs</label>
                                 <input type="text" max="5" class="form-control" name="motsCle" id="motsCle"
-                                       placeholder="Saisissez les premières lettres du mot et vérifiez qu'il apparaît dans la liste. Vous pouvez saisir jusqu'à 5 mots"/>
+                                       placeholder="Tapez les premières lettres du mot et vérifiez qu'il apparaît dans la liste."/>
                             </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class=" col-sm-12">
-                            <h3>Ajouter des images pour illustrer la fiche</h3>
+                            <h3>Illustrations</h3>
                             <input type="hidden" name="MAX_FILE_SIZE" value="500000">
                             <input type="file" id="photo" name="photo"/>
-                            <label for="photo">Vous pouvez télécharger jusqu'à 4 images<br/>
-                                <div class="btn2">Télécharger</div>
+                            <label for="photo">Téléchargez jusqu'à 4 images<br/>
+                                <div class="btn2">Ajouter des images</div>
                             </label>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-sm-4 col-sm-offset-4" align="center">
                             <button type="button" class="btn"><i class="fa fa-floppy-o" aria-hidden="true"></i>
-                                <span class="hidden-sm">Enregistrer en brouillon</span>
+                                <span class="hidden-sm">Enregistrer</span>
                             </button>
                         </div>
                         <div class="col-sm-4" align="center">
@@ -101,7 +101,7 @@
                     </div>
                     <div class="form-group col-sm-4" align="center">
                         <button type="button" class="btn"><i class="fa fa-floppy-o" aria-hidden="true"></i>
-                            <span class="hidden-sm">Enregistrer en brouillon</span>
+                            <span class="hidden-sm">Enregistrer</span>
                         </button>
                     </div>
                     <div class="form-group col-sm-4" align="right">
@@ -158,7 +158,7 @@
                     </div>
                     <div class="form-group col-sm-4" align="center">
                         <button type="button" class="btn"><i class="fa fa-floppy-o" aria-hidden="true"></i>
-                            <span class="hidden-sm ">Enregistrer en brouillon</span>
+                            <span class="hidden-sm ">Enregistrer</span>
                         </button>
                     </div>
                     <div class="form-group col-sm-4" align="right">
@@ -170,9 +170,9 @@
                     </div>
                 </div>
                 <div role="tabpanel" class="tab-pane" id="informations">
-                    <h3>Personne à contacter pour obtenir plus d'informations</h3>
+                    <h3>Personne en charge du projet</h3>
                     <div class="form-group col-sm-6">
-                        <label for="responsable">Personne en charge du Projet *</label>
+                        <label for="responsable">Nom Prénom *</label>
                         <input id="responsable" type="text" class="form-control" placeholder="">
                     </div>
                     <div class="form-group col-sm-6">
@@ -187,16 +187,17 @@
                         <label for="tel">Téléphone *</label>
                         <input id="tel" type="tel" class="form-control" placeholder="">
                     </div>
+                    <h3>Ajout de fichiers</h3>
                     <div class="form-group col-sm-12">
                         <input type="hidden" name="MAX_FILE_SIZE" value="500000">
                         <input type="file" id="fichier" name="fichier"/>
                         <label for="fichier">Vous pouvez ajouter un fichier apportant des informations plus détaillées
-                            (format acceptés : PDF ) <br/>
+                            (format accepté : PDF ) <br/>
                             <div class="btn2">Télécharger</div>
                         </label>
                     </div>
-                    <h3>Votre projet est visible sur les réseaux sociaux et/ou un site internet ?</h3>
-                    <label>Indiquez les liens ici</label>
+                    <h3>Votre projet est visible en ligne ?</h3>
+                    <label>Indiquez vos liens ci-dessous</label>
                     <div class="form-group col-sm-6">
                         <label for="url">Site internet</label>
                         <input id="url" type="url" class="form-control" placeholder="">
@@ -223,7 +224,7 @@
                     </div>
                     <div class="form-group col-sm-4" align="center">
                         <button type="button" class="btn"><i class="fa fa-floppy-o" aria-hidden="true"></i>
-                            <span class="hidden-sm">Enregistrer en brouillon</span>
+                            <span class="hidden-sm">Enregistrer</span>
                         </button>
                     </div>
                     <div class="form-group col-sm-4" align="right">
@@ -251,7 +252,7 @@
                         </div>
                         <div class="form-group col-sm-4" align="center">
                             <button type="button" class="btn"><i class="fa fa-floppy-o" aria-hidden="true"></i>
-                                <span class="hidden-sm">Enregistrer en brouillon</span>
+                                <span class="hidden-sm">Enregistrer</span>
                             </button>
                         </div>
                         <div class="form-group col-sm-4" align="right">
@@ -272,7 +273,7 @@
                     </div>
                     <div class="form-group col-sm-4" align="left">
                         <button type="button" class="btn"><i class="fa fa-floppy-o" aria-hidden="true"></i>
-                            <span class="hidden-sm">Enregistrer en brouillon</span>
+                            <span class="hidden-sm">Enregistrer</span>
                         </button>
                     </div>
                     <div class="form-group col-sm-4" align="right">
@@ -281,7 +282,6 @@
                         </button>
                     </div>
                 </div>
-                <span>Le symbole * indique que cette information est nécessaire.</span>
             </div>
         </form>
     </div>
