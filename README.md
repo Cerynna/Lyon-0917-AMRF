@@ -25,6 +25,8 @@ Project Wild Code School for 'Association des Maires Ruraux de France'.
         
         - Javascript / jQuery
         
+        - Symfony3
+        
       
     * Period : 
     ----------
