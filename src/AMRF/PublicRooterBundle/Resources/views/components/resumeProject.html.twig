@@ -10,7 +10,7 @@
                      onmouseout="hideImg('my-img{{ options.id }}','{{ asset('/img/projets/' ~ options.id ~ '/1.jpg') }}');"/>
                 <img class="img-mini" src="{{ asset('/img/projets/' ~ options.id ~ '/1.jpg') }}"
                      onmouseover="showImg('my-img{{ options.id }}','{{ asset('/img/projets/' ~ options.id ~ '/1.jpg') }}');"
-                     onmouseout="hideImg('my-img{{ options.id }}','{{ asset('/img/projets/bck-' ~ options.id ~ '.jpg') }}');"/>
+                     onmouseout="hideImg('my-img{{ options.id }}','{{ asset('/img/projets/' ~ options.id ~ '/1.jpg') }}');"/>
             </div>
             <div class="img-preview">
                 <img id="my-img{{ options.id }}" src="{{ asset('/img/projets/' ~ options.id ~ '/1.jpg') }}" class="img-big"/>
