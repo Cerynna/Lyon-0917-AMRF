@@ -300,8 +300,15 @@ a:hover, a:active {
   }
 }
 .modal-content{
-  width: 800px !important;
-}
+  margin: 0 auto !important;
+  .bck-maire {
+    width: 220px;
+  }
+  .bck-part {
+    width: 220px;
+  }
+
+  }
 
 /*
 .row {
