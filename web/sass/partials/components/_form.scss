@@ -12,7 +12,6 @@ section {
     .form-control:focus {
       border: 2px solid $color1;
       box-shadow: none;
-      background: $color3;
     }
     .textarea {
       width: 100%;
@@ -20,6 +19,7 @@ section {
       margin-right: auto;
     }
     input {
+      background: red;
       border: 1px solid $color1;
       width: 100% !important;
     }

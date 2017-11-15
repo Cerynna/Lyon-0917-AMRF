@@ -39,6 +39,16 @@ header {
     height: 100px;
     z-index: 100;
   }
+  .form-control {
+    font-size: 1em;
+    color: $color5;
+    @include borderRadius(5px)
+  }
+  .form-control:focus {
+    border: 2px solid $color1;
+    box-shadow: none;
+    background: $color2;
+  }
   #search {
     width: 500px;
     margin: 10px auto;

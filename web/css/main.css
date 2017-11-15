@@ -437,6 +437,17 @@ header {
     top: 0;
     height: 100px;
     z-index: 100; }
+  header .form-control {
+    font-size: 1em;
+    color: #2a2a2a;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    border-radius: 5px; }
+  header .form-control:focus {
+    border: 2px solid rgba(0, 158, 61, 0.99);
+    box-shadow: none;
+    background: #FFFFFF; }
   header #search {
     width: 500px;
     margin: 10px auto; }
@@ -672,10 +683,13 @@ nav {
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
   -ms-border-radius: 5px;
-  border-radius: 5px; }
+  border-radius: 5px;
+  width: 100%;
+  max-height: 200px; }
 
 .resumeProject .img-preview {
-  text-align: center; }
+  text-align: center;
+  height: 190px; }
 
 .resumeProject .img-mini {
   margin: 5px;
@@ -683,7 +697,8 @@ nav {
   -moz-border-radius: 2px;
   -ms-border-radius: 2px;
   border-radius: 2px;
-  transition: all .2s ease-in-out; }
+  transition: all .2s ease-in-out;
+  width: 50px; }
 
 .resumeProject .img-mini:hover {
   transform: scale(1.1); }
@@ -705,19 +720,23 @@ nav {
   .bck-maire .btn {
     background: #365069;
     border: none;
-    width: 300px; }
+    width: 280px; }
     .bck-maire .btn .fa {
       margin: 10px;
       text-align: center;
       font-size: 1em; }
+  .bck-maire .btn:hover {
+    background: #365069;
+    border: none; }
   .bck-maire .search {
     width: auto;
     padding-right: 50px;
     padding-left: 50px;
     font-size: 2em !important; }
-  .bck-maire .btn:hover {
-    background: #365069;
-    border: none; }
+  .bck-maire .search:hover {
+    padding-right: 50px;
+    padding-left: 50px;
+    font-size: 2em !important; }
   .bck-maire p {
     margin-top: 10px;
     padding: 10px;
@@ -753,14 +772,18 @@ nav {
       margin: 10px;
       text-align: center;
       font-size: 1em; }
+  .bck-part .btn:hover {
+    background: #577457;
+    border: none; }
   .bck-part .search {
     width: auto;
     padding-right: 50px;
     padding-left: 50px;
     font-size: 2em !important; }
-  .bck-part .btn:hover {
-    background: #577457;
-    border: none; }
+  .bck-part .search:hover {
+    padding-right: 50px;
+    padding-left: 50px;
+    font-size: 2em !important; }
   .bck-part p {
     margin-top: 10px;
     padding: 10px;
@@ -850,8 +873,7 @@ section form .form-control {
 
 section form .form-control:focus {
   border: 2px solid rgba(0, 158, 61, 0.99);
-  box-shadow: none;
-  background: rgba(196, 255, 190, 0.1); }
+  box-shadow: none; }
 
 section form .textarea {
   width: 100%;
@@ -859,6 +881,7 @@ section form .textarea {
   margin-right: auto; }
 
 section form input {
+  background: red;
   border: 1px solid rgba(0, 158, 61, 0.99);
   width: 100% !important; }
 
@@ -996,16 +1019,20 @@ section form .cleIcon {
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
     -ms-border-radius: 5px;
-    border-radius: 5px; }
+    border-radius: 5px;
+    width: 100%;
+    max-height: 190px; }
   .project .img-preview {
-    text-align: center; }
+    text-align: center;
+    height: 200px; }
   .project .img-mini {
     margin: 5px;
     -webkit-border-radius: 2px;
     -moz-border-radius: 2px;
     -ms-border-radius: 2px;
     border-radius: 2px;
-    transition: all .2s ease-in-out; }
+    transition: all .2s ease-in-out;
+    width: 50px; }
   .project .img-mini:hover {
     transform: scale(1.1); }
   .project h3 {
@@ -1295,7 +1322,11 @@ a:hover, a:active {
   margin-left: 5px; }
 
 .modal-content {
-  width: 800px !important; }
+  margin: 0 auto !important; }
+  .modal-content .bck-maire {
+    width: 220px; }
+  .modal-content .bck-part {
+    width: 220px; }
 
 /*
 .row {
