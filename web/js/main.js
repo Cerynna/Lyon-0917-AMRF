@@ -24,7 +24,7 @@ $(document).ready(function () {
 
     //CAROUSSEL
     $('#myCarousel').carousel({
-        interval: 3000
+        interval: 5000
     });
 
     //Limit Checkbox

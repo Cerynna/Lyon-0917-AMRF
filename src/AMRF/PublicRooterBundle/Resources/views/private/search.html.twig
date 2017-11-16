@@ -6,17 +6,17 @@
 {% endblock %}
 {% block body %}
     <h2>RECHERCHE DE PROJETS</h2>
-    <h3>Par mots clefs</h3>
+    {#<h3>Recherche</h3>#}
     <form action="" method="post">
         <div class="jumbotron">
             <div class="input-group col-md-12">
-                <input type="text" class="search form-control" placeholder="Saisissez ici votre recherche"/>
+                <input type="text" class="search form-control"  autofocus/>
                 <span class="input-group-addon">
                     <button type="submit" class="btn btn-search"><i class="fa fa-search"></i></button>
                 </span>
             </div>
         </div>
-        <h3>Par thématiques</h3>
+        <h3>Recherche avancée</h3>
         <div class="jumbotron">
             <div class="panel-group" id="more" role="tablist" aria-multiselectable="true">
                 <a data-toggle="collapse" data-parent="#more" href="#collapseMore"
@@ -42,7 +42,7 @@
                 </div>
             </div>
         </div>
-        <h3>Par lieux</h3>
+        <h3>Et / ou</h3>
         <div class="jumbotron">
             <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
                 <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne"
@@ -65,31 +65,30 @@
                             <label for="city">Commune</label>
                             <input id="city" class="form-control" type="text" autocomplete="off">
                         </div>
+                        <div class="col-xs-offset-4 col-xs-8 form-group text-center">
+                            <div class="output" id="output"></div>
+                        </div>
                             <div class=" col-md-12 text-center">
                                 <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i> Recherche
                                 </button>
                             </div>
                     </div>
-                    <div class="row">
-                        <div class="col-xs-offset-4 col-xs-8 form-group text-center">
-                            <div class="output" id="output"></div>
-                        </div>
-                    </div>
-                    <iframe class="hidden-xs" width="100%" height="350" frameborder="0" scrolling="no" marginheight="0"
+                    {#<iframe class="hidden-xs" width="100%" height="350" frameborder="0" scrolling="no" marginheight="0"
                             marginwidth="0"
                             src="http://www.openstreetmap.org/export/embed.html?bbox=-4.932861328125001%2C43.59630591596551%2C9.569091796875002%2C50.00067775723633&amp;layer=mapnik"
-                            style="border: 0 solid black"></iframe>
+                            style="border: 0 solid black"></iframe>#}
                 </div>
             </div>
         </div>
     </form>
+    <hr>
     <h3>Résultat(s) de votre recherche</h3>
     <div class="jumbotron">
         {% set options = {'thema':'true','pictures':'true','update': 'false', 'more': 'true', 'id': 1, 'text': 210} %}
         {% include 'AMRFPublicRooterBundle::components/resumeProject.html.twig' with options %}
     </div>
     <div class="jumbotron">
-        {% set options = {'thema':'true','pictures':'true','update': 'false', 'more': 'true', 'id': 2, 'text': 210} %}
+        {% set options = {'thema':'false','pictures':'true','update': 'false', 'more': 'true', 'id': 2, 'text': 210} %}
         {% include 'AMRFPublicRooterBundle::components/resumeProject.html.twig' with options %}
     </div>
     <div class="jumbotron">
