@@ -34,6 +34,7 @@ section {
     font-family: $font3, sans-serif;
     font-size: 1.4em;
     line-height: 1em;
+    margin-top: 15px;
   }
   h5 {
     font-size: 1.6em;
@@ -46,5 +47,9 @@ section {
     margin: 20px 0 20px 0;
     padding: 20px 10px 20px 10px;
     text-align: justify;
+  }
+  .choose
+  {
+    margin: 20px 0 20px 0 !important;
   }
 }

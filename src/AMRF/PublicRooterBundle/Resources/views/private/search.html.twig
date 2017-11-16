@@ -10,53 +10,38 @@
     <form action="" method="post">
         <div class="jumbotron">
             <div class="input-group col-md-12">
-                <input type="text" class="search form-control"  autofocus/>
+                <input type="text" class="search form-control" autofocus/>
                 <span class="input-group-addon">
                     <button type="submit" class="btn btn-search"><i class="fa fa-search"></i></button>
                 </span>
             </div>
         </div>
-        <h3>Recherche avancée</h3>
         <div class="jumbotron">
             <div class="panel-group" id="more" role="tablist" aria-multiselectable="true">
                 <a data-toggle="collapse" data-parent="#more" href="#collapseMore"
                    aria-expanded="true" aria-controls="collapseMore">
                     <div class="panel-heading text-center" role="tab" id="headingMore">
-                        <h3>Vous pouvez selectionner de 1 à 3 thématiques <i class="fa fa-angle-double-down"></i></h3>
+                        <h3>Recherche avancée <i class="fa fa-angle-double-down"></i></h3>
                     </div>
                 </a>
                 <div id="collapseMore" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingMore">
+                    <div class="choose">Vous pouvez selectionner de 1 à 3 thématiques</div>
                     {% include 'AMRFPublicRooterBundle::components/thematiques.html.twig' %}
                     <div class="row">
-                        <div class="col-md-12 ui-widget">
-                            <label for="motsCle" class="text-center">Mots-clefs</label><br>
+                        <div class="col-md-12">
+                            <div class="choose">Et / Ou saisir un ou plusieurs mots-clefs</div>
+                            <label for="motsCle" class="text-center" hidden>Mots-clefs</label><br>
                             <input type="text" max="5" class="motsCle form-control" name="motsCle" id="motsCle">
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-12 text-center">
-                            <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i> Recherche
-                            </button>
+                        <div class="col-md-12 choose">
+                            <span>Et / Ou choisir une Région ou un Département ou une Commune</span>
                         </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <h3>Et / ou</h3>
-        <div class="jumbotron">
-            <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-                <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne"
-                   aria-expanded="true" aria-controls="collapseOne">
-                    <div class="panel-heading text-center" role="tab" id="headingOne">
-                        <h3>Localiser un projet <i class="fa fa-angle-double-down"></i></h3>
-                    </div>
-                </a>
-                <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
-                    <div class="row">
                         <div class="col-sm-4 form-group text-center">
-                            <label>Région</label>
+                            <label for="region">Région</label>
                             <select class="form-control" id="region" name="region">
-                                <option selected value="na"> </option>
+                                <option selected value="na"></option>
                                 <option value="auvergne">Auvergne-Rhône-Alpes</option>
                                 <option value="bourgogne">Bourgogne-Franche-Comté</option>
                                 <option value="bretagne">Bretagne</option>
@@ -77,16 +62,16 @@
                             <input type="text" class="form-control" accept="" name="communes" id="communes">
                         </div>
                         <div class="col-sm-4 form-group text-center">
-                            <label for="city">Commune</label>
+                            <label for="city">Et / ou choisir une Commune</label>
                             <input id="city" class="form-control" type="text" autocomplete="off">
                         </div>
                         <div class="col-xs-offset-4 col-xs-8 form-group text-center">
                             <div class="output" id="output"></div>
                         </div>
-                            <div class=" col-md-12 text-center">
-                                <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i> Recherche
-                                </button>
-                            </div>
+                        <div class=" col-md-12 text-center">
+                            <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i> Recherche
+                            </button>
+                        </div>
                     </div>
                     {#<iframe class="hidden-xs" width="100%" height="350" frameborder="0" scrolling="no" marginheight="0"
                             marginwidth="0"
@@ -96,7 +81,7 @@
             </div>
         </div>
     </form>
-    <hr>
+
     <h3>Résultat(s) de votre recherche</h3>
     <div class="jumbotron">
         {% set options = {'thema':'true','pictures':'true','update': 'false', 'more': 'true', 'id': 1, 'text': 210} %}
