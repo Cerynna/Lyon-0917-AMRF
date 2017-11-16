@@ -51,5 +51,9 @@ section {
   .choose
   {
     margin: 20px 0 20px 0 !important;
+    color: $color1;
+  }
+  .hidden{
+    height: 0 !important;
   }
 }

@@ -1,16 +1,11 @@
 $('.btnFavoris').click(function () {
-    if ($(this).hasClass('btnFavorisTest')) {
-        $(this).removeClass('btnFavorisTest')
+    if ($('#btnFavoris').hasClass('hidden')) {
+        $('#btnFavoris').removeClass('hidden')
+        $('#btnFavorisSelect').addClass('hidden')
     } else {
-        $(this).addClass('btnFavorisTest')
+        $('#btnFavorisSelect').removeClass('hidden')
+        $('#btnFavoris').addClass('hidden')
     }
 });
 
-$('.btnFavorisPart').click(function () {
-    if ($(this).hasClass('btnFavorisTest')) {
-        $(this).removeClass('btnFavorisTest')
-    } else {
-        $(this).addClass('btnFavorisTest')
-    }
-});
 
