@@ -847,7 +847,8 @@ section {
   section h4 {
     font-family: "ERASDEMI", sans-serif;
     font-size: 1.4em;
-    line-height: 1em; }
+    line-height: 1em;
+    margin-top: 15px; }
   section h5 {
     font-size: 1.6em;
     line-height: 1em;
@@ -860,6 +861,8 @@ section {
     margin: 20px 0 20px 0;
     padding: 20px 10px 20px 10px;
     text-align: justify; }
+  section .choose {
+    margin: 20px 0 20px 0 !important; }
   section .list-group-item .fa {
     font-size: 2em;
     margin-right: 10px; }
