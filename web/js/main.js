@@ -77,3 +77,4 @@ function showImg(idimg, img) {
 function hideImg(idimg, img) {
     document.getElementById(idimg).setAttribute('src', img);
 }
+

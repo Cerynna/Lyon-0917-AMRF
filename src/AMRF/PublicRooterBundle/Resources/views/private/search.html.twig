@@ -7,10 +7,10 @@
 {% block body %}
     <h2>RECHERCHE DE PROJETS</h2>
     {#<h3>Recherche</h3>#}
-    <form action="" method="post">
+    <form action="test.php" method="post">
         <div class="jumbotron">
             <div class="input-group col-md-12">
-                <input type="text" class="search form-control"  autofocus/>
+                <input type="text" class="search form-control" autofocus/>
                 <span class="input-group-addon">
                     <button type="submit" class="btn btn-search"><i class="fa fa-search"></i></button>
                 </span>
@@ -31,6 +31,13 @@
                         <div class="col-md-12 ui-widget">
                             <label for="motsCle" class="text-center">Mots-clefs</label><br>
                             <input type="text" max="5" class="motsCle form-control" name="motsCle" id="motsCle">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="motsCle col-md-12">
+                            <select class="js-example-basic-multiple" name="motsCle[]" multiple="multiple">
+                                <option></option>
+                            </select>
                         </div>
                     </div>
                     <div class="row">
@@ -68,10 +75,10 @@
                         <div class="col-xs-offset-4 col-xs-8 form-group text-center">
                             <div class="output" id="output"></div>
                         </div>
-                            <div class=" col-md-12 text-center">
-                                <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i> Recherche
-                                </button>
-                            </div>
+                        <div class=" col-md-12 text-center">
+                            <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i> Recherche
+                            </button>
+                        </div>
                     </div>
                     {#<iframe class="hidden-xs" width="100%" height="350" frameborder="0" scrolling="no" marginheight="0"
                             marginwidth="0"
