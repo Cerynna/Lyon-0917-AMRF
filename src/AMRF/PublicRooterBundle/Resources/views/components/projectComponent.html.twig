@@ -35,10 +35,30 @@
                     <h4>Commune : LES MOLIERES</h4>
                 </div>
                 <ul class="list-group">
-                    <li class="list-group-item">Département : Essonne</li>
-                    <li class="list-group-item">CodePostal : 91xxx</li>
-                    <li class="list-group-item">Population : 2000</li>
-                    <li class="list-group-item">Code INSEE : 91411</li>
+                    <li class="list-group-item">
+                        <div class="row">
+                            <div class="col-xs-6 text-left">Département :</div>
+                            <div class="col-xs-6 text-right">Essonne</div>
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <div class="row">
+                            <div class="col-xs-6 text-left">Code Postal :</div>
+                            <div class="col-xs-6 text-right">91xxx</div>
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <div class="row">
+                            <div class="col-xs-6 text-left">Population :</div>
+                            <div class="col-xs-6 text-right">2 000</div>
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <div class="row">
+                            <div class="col-xs-6 text-left">Code INSEE :</div>
+                            <div class="col-xs-6 text-right">91411</div>
+                        </div>
+                    </li>
                 </ul>
             </div>
         </div>
@@ -48,29 +68,58 @@
                     <h4>Contact Mairie</h4>
                 </div>
                 <ul class="list-group text-left">
-                    <li class="list-group-item">Nom du Maire : Yvan LUBRANESKI</li>
-                    <li class="list-group-item">Tél Mairie : 160120799</li>
-                    <li class="list-group-item">Tél mobile : @LesMolieres91</li>
-                    <li class="list-group-item">Email</li>
-                    <li href="#" class="list-group-item">Site internet : http://www.lesmolieres.fr</li>
+                    <li class="list-group-item">
+                        <div class="row">
+                            <div class="col-xs-6 text-left">Nom du Maire : </div>
+                            <div class="col-xs-6 text-right">Yvan LUBRANESKI</div>
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <div class="row">
+                            <div class="col-xs-6 text-left">Tél Mairie : </div>
+                            <div class="col-xs-6 text-right">0160120799</div>
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <div class="row">
+                            <div class="col-xs-6 text-left">Tél mobile : </div>
+                            <div class="col-xs-6 text-right">@LesMolieres91</div>
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <div class="row">
+                            <div class="col-xs-6 text-left">Email</div>
+                            <div class="col-xs-6 text-right">...</div>
+                        </div>
+                    </li>
+                    <li class="list-group-item text-center">
+                        <i class="fa fa-link"></i>
+                        <i class="fa fa-facebook-square"></i>
+                        <i class="fa fa-twitter-square"></i>
+                        <i class="fa fa-linkedin-square"></i>
+                    </li>
                 </ul>
             </div>
         </div>
         <div class="col-md-4 mini-galery">
-            <div class="img-list text-center">
-                <img class="img-mini" src="{{ asset('/img/bck-2.jpg') }}" width="50px"
-                     onmouseover="showImg('my-img2','{{ asset('/img/bck-2.jpg') }}');"
-                     onmouseout="hideImg('my-img2','{{ asset('/img/bck-2.jpg') }}');"/>
-                <img class="img-mini" src="{{ asset('/img/bck-3.jpg') }}" width="50px"
-                     onmouseover="showImg('my-img2','{{ asset('/img/bck-3.jpg') }}');"
-                     onmouseout="hideImg('my-img2','{{ asset('/img/bck-1.jpg') }}');"/>
-                <img class="img-mini" src="{{ asset('/img/bck-4.jpg') }}" width="50px"
-                     onmouseover="showImg('my-img2','{{ asset('/img/bck-4.jpg') }}');"
-                     onmouseout="hideImg('my-img2','{{ asset('/img/bck-1.jpg') }}');"/>
-            </div>
-            <div class="img-preview">
-                <img id="my-img2" src="{{ asset('/img/bck-1.jpg') }}" class="img-big"/>
-            </div>
+
+            <ul class="list-group text-center">
+                <li>
+                    <img class="img-mini" src="{{ asset('/img/bck-2.jpg') }}" width="50px"
+                         onmouseover="showImg('my-img2','{{ asset('/img/bck-2.jpg') }}');"
+                         onmouseout="hideImg('my-img2','{{ asset('/img/bck-2.jpg') }}');"/>
+                    <img class="img-mini" src="{{ asset('/img/bck-3.jpg') }}" width="50px"
+                         onmouseover="showImg('my-img2','{{ asset('/img/bck-3.jpg') }}');"
+                         onmouseout="hideImg('my-img2','{{ asset('/img/bck-1.jpg') }}');"/>
+                    <img class="img-mini" src="{{ asset('/img/bck-4.jpg') }}" width="50px"
+                         onmouseover="showImg('my-img2','{{ asset('/img/bck-4.jpg') }}');"
+                         onmouseout="hideImg('my-img2','{{ asset('/img/bck-1.jpg') }}');"/>
+                </li>
+                <li class="img-preview">
+                    <img id="my-img2" src="{{ asset('/img/bck-1.jpg') }}" class="img-big"/>
+                </li>
+            </ul>
+
 
         </div>
     </div>

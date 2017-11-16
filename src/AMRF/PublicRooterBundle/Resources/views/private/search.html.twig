@@ -83,12 +83,13 @@
     </form>
 
     <h3>Résultat(s) de votre recherche</h3>
+    <hr />
     <div class="jumbotron">
         {% set options = {'thema':'true','pictures':'true','update': 'false', 'more': 'true', 'id': 1, 'text': 210} %}
         {% include 'AMRFPublicRooterBundle::components/resumeProject.html.twig' with options %}
     </div>
     <div class="jumbotron">
-        {% set options = {'thema':'false','pictures':'true','update': 'false', 'more': 'true', 'id': 2, 'text': 210} %}
+        {% set options = {'thema':'true','pictures':'true','update': 'false', 'more': 'true', 'id': 2, 'text': 210} %}
         {% include 'AMRFPublicRooterBundle::components/resumeProject.html.twig' with options %}
     </div>
     <div class="jumbotron">
