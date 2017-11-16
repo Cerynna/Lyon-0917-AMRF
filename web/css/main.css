@@ -679,13 +679,13 @@ nav {
   border-radius: 5px; }
 
 .resumeProject .img-big {
-  margin: 10px;
+  margin: 0;
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
   -ms-border-radius: 5px;
   border-radius: 5px;
-  width: 100%;
-  max-height: 200px; }
+  max-width: 100%;
+  max-height: 180px; }
 
 .resumeProject .img-preview {
   text-align: center;
@@ -813,7 +813,7 @@ footer {
     background-color: rgba(0, 158, 61, 0.99);
     padding: 20px; }
   footer p {
-    font-size: 0.8em;
+    font-size: 1em;
     text-align: justify; }
   footer ul > li {
     margin: 0 20px 0 20px; }
@@ -846,7 +846,7 @@ section {
     margin-bottom: 10px; }
   section h4 {
     font-family: "ERASDEMI", sans-serif;
-    font-size: 1.6em;
+    font-size: 1.4em;
     line-height: 1em; }
   section h5 {
     font-size: 1.6em;
@@ -1015,13 +1015,13 @@ section form .cleIcon {
     -ms-border-radius: 5px;
     border-radius: 5px; }
   .project .img-big {
-    margin: 10px;
+    margin: 0;
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
     -ms-border-radius: 5px;
     border-radius: 5px;
-    width: 100%;
-    max-height: 190px; }
+    max-width: 100%;
+    max-height: 180px; }
   .project .img-preview {
     text-align: center;
     height: 200px; }
