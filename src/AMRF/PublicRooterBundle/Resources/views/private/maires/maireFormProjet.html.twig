@@ -6,7 +6,6 @@
 {% endblock %}
 {% block body %}
     <h2>CREER UNE FICHE PROJET</h2>
-
     <!-- Nav tabs -->
     <div class="row tabPannel">
         <ul class="list-inline text-center" role="tablist">
@@ -27,15 +26,14 @@
             </li>
         </ul>
         <div class="text-center">
-            <em>Le symbole * indique que cette information est nécessaire.</em>
 
         </div>
 
         <form action="#" id="form" method="post" name="form">
             <div class="tab-content">
                 <div role="tabpanel" class="tab-pane active" id="projet">
+                    <div class="star">Le symbole * indique que cette information est nécessaire.</div>
                     <h3>Mon projet</h3>
-
                     <div class="form-group col-sm-12">
                         <label for="projectName" class="col-sm-12 control-label">Titre du Projet *</label>
                         <input id="projectName" type="text" class="form-control"
@@ -51,6 +49,14 @@
                                 <input type="text" max="5" class="form-control" name="motsCle" id="motsCle"
                                        placeholder="Ecrivez les premières lettres du mot et vérifiez qu'il apparaît dans la liste."/>
                             </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-sm-12">
+                            <label for="resume">Résumé du projet*</label>
+                            <textarea id="resume" type="text" class="form-control"
+                                      placeholder="Saisissez une brève description de votre projet (1 à 2 phrases)."
+                                      rows="2"></textarea>
                         </div>
                     </div>
                     <div class="row">
@@ -81,6 +87,7 @@
                     </div>
                 </div>
                 <div role="tabpanel" class="tab-pane" id="realisation">
+                    <div class="star">Le symbole * indique que cette information est nécessaire.</div>
                     <h3>Réalisation</h3>
                     <div class="row">
                         <div class="form-group col-sm-6">
@@ -139,6 +146,7 @@
                     </div>
                 </div>
                 <div role="tabpanel" class="tab-pane" id="description">
+                    <div class="star">Le symbole * indique que cette information est nécessaire.</div>
                     <div class="form-group col-sm-12">
                         <label for="contexte">1/ Contexte *</label>
                         <textarea id="contexte" type="text" class="form-control"
@@ -203,6 +211,7 @@
                     </div>
                 </div>
                 <div role="tabpanel" class="tab-pane" id="informations">
+                    <div class="star">Le symbole * indique que cette information est nécessaire.</div>
                     <h3>Personne en charge du projet</h3>
                     <div class="form-group col-sm-6">
                         <label for="responsable">Nom Prénom *</label>
