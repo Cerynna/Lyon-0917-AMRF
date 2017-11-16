@@ -54,12 +54,27 @@
                 <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
                     <div class="row">
                         <div class="col-sm-4 form-group text-center">
-                            <label for="communes">Département</label>
-                            <input type="text" class="form-control" accept="" name="communes" id="communes">
+                            <label>Région</label>
+                            <select class="form-control" id="region" name="region">
+                                <option selected value="na"> </option>
+                                <option value="auvergne">Auvergne-Rhône-Alpes</option>
+                                <option value="bourgogne">Bourgogne-Franche-Comté</option>
+                                <option value="bretagne">Bretagne</option>
+                                <option value="centre">Centre-Val de Loire</option>
+                                <option value="corse">Corse</option>
+                                <option value="grandest">Grand Est</option>
+                                <option value="hautdefrance">Haut-de-France</option>
+                                <option value="iledefrance">Ile-de-France</option>
+                                <option value="normandie">Normandie</option>
+                                <option value="aquitaine">Nouvelle-Aquitaine</option>
+                                <option value="occitanie">Occitanie</option>
+                                <option value="paysloire">Pays-de-la-Loire</option>
+                                <option value="paca">Provence-Alpes-Côte-d'Azur</option>
+                            </select>
                         </div>
                         <div class="col-sm-4 form-group text-center">
-                            <label for="code">Code Postal</label>
-                            <input id="code" class="form-control" type="text" autocomplete="off" size="5" maxlength="5">
+                            <label for="communes">Département</label>
+                            <input type="text" class="form-control" accept="" name="communes" id="communes">
                         </div>
                         <div class="col-sm-4 form-group text-center">
                             <label for="city">Commune</label>
