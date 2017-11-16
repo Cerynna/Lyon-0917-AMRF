@@ -26,11 +26,13 @@
             </li>
         </ul>
         <div class="text-center">
-            <em>Le symbole * indique que cette information est nécessaire.</em>
+
         </div>
+
         <form action="#" id="form" method="post" name="form">
             <div class="tab-content">
                 <div role="tabpanel" class="tab-pane active" id="projet">
+                    <div class="star">Le symbole * indique que cette information est nécessaire.</div>
                     <h3>Mon projet</h3>
                     <div class="form-group col-sm-12">
                         <label for="projectName" class="col-sm-12 control-label">Titre du Projet *</label>
@@ -63,6 +65,7 @@
                             <input type="hidden" name="MAX_FILE_SIZE" value="500000">
                             <input type="file" id="photo" name="photo"/>
                             <label for="photo">Téléchargez jusqu'à 4 images<br/>
+                                <p>le poids d'une image ne doit pas excéder ... ... Mo</p>
                                 <div class="btn2">Ajouter des images</div>
                             </label>
                         </div>
@@ -84,22 +87,42 @@
                     </div>
                 </div>
                 <div role="tabpanel" class="tab-pane" id="realisation">
+                    <div class="star">Le symbole * indique que cette information est nécessaire.</div>
                     <h3>Réalisation</h3>
-                    <div class="form-group col-sm-6">
-                        <label for="year">Année de réalisation *</label>
-                        <input id="year" type="text" class="form-control" placeholder="">
-                    </div>
-                    <div class="form-group col-sm-6">
-                        <label for="time">Durée de réalisation *</label>
-                        <input id="time" type="text" class="form-control" placeholder="">
-                    </div>
-                    <div class="form-group col-sm-6">
-                        <label for="cost">Coût global *</label>
-                        <input id="cost" type="text" class="form-control" placeholder="">
-                    </div>
-                    <div class="form-group col-sm-6">
-                        <label for="dollars">Cofinancements</label>
-                        <input id="dollars" type="text" class="form-control" placeholder="">
+                    <div class="row">
+                        <div class="form-group col-sm-6">
+                            <label for="year">Année de réalisation *</label>
+                            <input id="year" type="text" class="form-control" placeholder="">
+                        </div>
+                        <div class="form-group col-sm-6">
+                            <label for="time">Durée de réalisation *</label>
+                            <input id="time" type="text" class="form-control" placeholder="">
+                        </div>
+                        <div class="form-group col-sm-6">
+                            <label for="cost">Coût global *</label>
+                            <input id="cost" type="text" class="form-control" placeholder="">
+                        </div>
+
+
+                        <div class="form-group col-sm-6">
+                            <label for="cofinance">Cofinancements</label>
+                            <div class="radio-inline">
+                                <label>
+                                    <input type="radio" name="optionsRadios" id="oui" value="1"
+                                           onClick="afficherCacher();">
+                                    Oui
+                                </label>
+                            </div>
+                            <div class="radio-inline">
+                                <label>
+                                    <input type="radio" name="optionsRadios" id="non" value="2"
+                                           onClick="afficherCacher();">
+                                    Non
+                                </label>
+                            </div>
+                            <input id="divCacher" type="text" name="cofinance" class="form-control"
+                                   placeholder="Saisissez le montant du financement et le partenaire associé">
+                        </div>
                     </div>
                     <div class="form-group col-sm-4" align="left">
                         <a href="#projet" aria-controls="projet" role="tab" data-toggle="tab"
@@ -123,6 +146,7 @@
                     </div>
                 </div>
                 <div role="tabpanel" class="tab-pane" id="description">
+                    <div class="star">Le symbole * indique que cette information est nécessaire.</div>
                     <div class="form-group col-sm-12">
                         <label for="contexte">1/ Contexte *</label>
                         <textarea id="contexte" type="text" class="form-control"
@@ -187,6 +211,7 @@
                     </div>
                 </div>
                 <div role="tabpanel" class="tab-pane" id="informations">
+                    <div class="star">Le symbole * indique que cette information est nécessaire.</div>
                     <h3>Personne en charge du projet</h3>
                     <div class="form-group col-sm-6">
                         <label for="responsable">Nom Prénom *</label>
@@ -210,6 +235,7 @@
                         <input type="file" id="fichier" name="fichier"/>
                         <label for="fichier">Vous pouvez ajouter un fichier apportant des informations plus détaillées
                             (format accepté : PDF ) <br/>
+                            <p>le poids d'un fichier ne doit pas excéder ... ... Mo</p>
                             <div class="btn2">Télécharger</div>
                         </label>
                     </div>
@@ -308,6 +334,14 @@
         function changeActiveMenu(idActive) {
             $('.tabLi').removeClass('active');
             $('#' + idActive).addClass('active');
+        }
+
+        function afficherCacher() {
+            if (document.getElementById('oui').checked) {
+                document.getElementById('divCacher').style.display = "block";
+            } else if (document.getElementById('non').checked) {
+                document.getElementById('divCacher').style.display = "none";
+            }
         }
     </script>
 {% endblock %}
