@@ -7,7 +7,7 @@
 {% block body %}
     <h2>RECHERCHE DE PROJETS</h2>
     {#<h3>Recherche</h3>#}
-    <form action="" method="post">
+    <form action="test.php" method="post">
         <div class="jumbotron">
             <div class="input-group col-md-12">
                 <input type="text" class="search form-control" autofocus/>
@@ -35,8 +35,21 @@
                         </div>
                     </div>
                     <div class="row">
+
+                        <div class="motsCle col-md-12">
+                            <select class="js-example-basic-multiple" name="motsCle[]" multiple="multiple">
+                                <option></option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 text-center">
+                            <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i> Recherche
+                            </button>
+
                         <div class="col-md-12 choose">
                             <span>Et / Ou choisir une Région ou un Département ou une Commune</span>
+
                         </div>
                         <div class="col-sm-4 form-group text-center">
                             <label for="region">Région</label>

@@ -1,156 +1,74 @@
-$(function () {
-    var availableTags = [
-        "école",
-        "périscolaire",
-        "formation",
-        "crèche",
-        "restauration scolaire",
-        "médecin",
-        "maison de santé",
-        "infirmiers",
-        "professionnels de santé",
-        "maison de services publics",
-        "commerces",
-        "Etat civil",
-        "manifestations citoyennes",
-        "vie associative",
-        "economie sociale et solidaire",
-        "élections",
-        "cérémonie",
-        "parcs régionaux",
-        "espaces verts",
-        "écologie",
-        "développement durable",
-        "urbanisme",
-        "rénovation/réfection",
-        "transports",
-        "voirie",
-        "voies navigables",
-        "intermodalités",
-        "transports",
-        "station service",
-        "patrimoine",
-        "valorisation du territoire",
-        "église",
-        "logements sociaux",
-        "EHPAD",
-        "maisons de quartier",
-        "CCAS",
-        "emploi",
-        "entreprises",
-        "startups",
-        "espace de coworking",
-        "télétravail",
-        "lecture",
-        "festival",
-        "musique",
-        "cinema",
-        "théâtre",
-        "haut débit",
-        "application",
-        "digital",
-        "téléphonie mobile",
-        "téléphonie fixe",
-        "innovation",
-        "internet",
-        "SPANC",
-        "Station d'épuration ",
-        "réseaux",
-        "Coopération décentralisée",
-        "Arménie",
-        "Europe",
-        "Jumelage"
-    ];
-
-    var accentMap = {
-        "á": "a",
-        "à": "a",
-        "â": "a",
-        "ä": "a",
-        "ç": "c",
-        "é": "e",
-        "è": "e",
-        "ê": "e",
-        "ë": "e",
-        "î": "i",
-        "ï": "i",
-        "ô": "o",
-        "ö": "o",
-        "ù": "u",
-        "û": "u",
-        "ü": "u",
-        "Â": "A",
-        "Ä": "A",
-        "À": "A",
-        "Ç": "C",
-        "Ê": "E",
-        "Ë": "E",
-        "É": "E",
-        "È": "E",
-        "Î": "I",
-        "Ï": "I",
-        "Ô": "O",
-        "Ö": "O",
-        "Û": "U",
-        "Ü": "U",
-        "Ù": "U"
-    };
-
-    var normalize = function (term) {
-        var ret = "";
-        for (var i = 0; i < term.length; i++) {
-            ret += accentMap[term.charAt(i)] || term.charAt(i);
-        }
-        return ret;
-    };
-
-    function split(val) {
-        return val.split(/,\s*/);
-    }
-
-    function extractLast(term) {
-        return split(term).pop();
-    }
+var data = [
+    {id: 'école', text: 'école'},
+    {id: 'périscolaire', text: 'périscolaire'},
+    {id: 'formation', text: 'formation'},
+    {id: 'crèche', text: 'crèche'},
+    {id: 'restauration scolaire', text: 'restauration scolaire'},
+    {id: 'médecin', text: 'médecin'},
+    {id: 'maison de santé', text: 'maison de santé'},
+    {id: 'infirmiers', text: 'infirmiers'},
+    {id: 'professionnels de santé', text: 'professionnels de santé'},
+    {id: 'maison de services publics', text: 'maison de services publics'},
+    {id: 'commerces', text: 'commerces'},
+    {id: 'Etat civil', text: 'Etat civil'},
+    {id: 'manifestations citoyennes', text: 'manifestations citoyennes'},
+    {id: 'vie associative', text: 'vie associative'},
+    {id: 'economie sociale et solidaire', text: 'economie sociale et solidaire'},
+    {id: 'élections', text: 'élections'},
+    {id: 'cérémonie', text: 'cérémonie'},
+    {id: 'parcs régionaux', text: 'parcs régionaux'},
+    {id: 'espaces verts', text: 'espaces verts'},
+    {id: 'écologie', text: 'écologie'},
+    {id: 'développement durable', text: 'développement durable'},
+    {id: 'urbanisme', text: 'urbanisme'},
+    {id: 'rénovation/réfection', text: 'rénovation/réfection'},
+    {id: 'transports', text: 'transports'},
+    {id: 'voirie', text: 'voirie'},
+    {id: 'voies navigables', text: 'voies navigables'},
+    {id: 'intermodalités', text: 'intermodalités'},
+    {id: 'transports', text: 'transports'},
+    {id: 'station service', text: 'station service'},
+    {id: 'patrimoine', text: 'patrimoine'},
+    {id: 'valorisation du territoire', text: 'valorisation du territoire'},
+    {id: 'église', text: 'église'},
+    {id: 'logements sociaux', text: 'logements sociaux'},
+    {id: 'EHPAD', text: 'EHPAD'},
+    {id: 'maisons de quartier', text: 'maisons de quartier'},
+    {id: 'CCAS', text: 'CCAS'},
+    {id: 'emploi', text: 'emploi'},
+    {id: 'entreprises', text: 'entreprises'},
+    {id: 'startups', text: 'startups'},
+    {id: 'espace de coworking', text: 'espace de coworking'},
+    {id: 'télétravail ', text: 'télétravail '},
+    {id: 'lecture', text: 'lecture'},
+    {id: 'festival', text: 'festival'},
+    {id: 'musique', text: 'musique'},
+    {id: 'cinema', text: 'cinema'},
+    {id: 'théâtre', text: 'théâtre'},
+    {id: 'haut débit', text: 'haut débit'},
+    {id: 'application', text: 'application'},
+    {id: 'digital', text: 'digital'},
+    {id: 'téléphonie mobile', text: 'téléphonie mobile'},
+    {id: 'téléphonie fixe', text: 'téléphonie fixe'},
+    {id: 'innovation', text: 'innovation'},
+    {id: 'internet', text: 'internet'},
+    {id: 'SPANC', text: 'SPANC'},
+    {id: 'Station d\'épuration ', text: 'Station d\'épuration '},
+    {id: 'réseaux', text: 'réseaux'},
+    {id: 'Coopération décentralisée', text: 'Coopération décentralisée'},
+    {id: 'Arménie', text: 'Arménie'},
+    {id: 'Europe', text: 'Europe'},
+    {id: 'Jumelage', text: 'Jumelage'}
 
 
-    $("#motsCle")
-    // don't navigate away from the field on tab when selecting an item
-        .on("keydown", function (event) {
-            if (event.keyCode === $.ui.keyCode.TAB &&
-                $(this).autocomplete("instance").menu.active) {
-                event.preventDefault();
-            }
-        })
-        .autocomplete({
-            minLength: 0,
-            source: function (request, response) {
-                // delegate back to autocomplete, but extract the last term
-                response($.ui.autocomplete.filter(
-                    availableTags, extractLast(request.term)));
+];
 
-                /* accent map in dev....!!!!!!!!
-                                var matcher = new RegExp($.ui.autocomplete.escapeRegex(request.term), "i");
-                                response($.grep(availableTags, function (value) {
-                                    value = value.label || value.value || value;
-                                    return matcher.test(value) || matcher.test(normalize(value));
-                                }));
-
-                                */
-            },
-            focus: function () {
-                // prevent value inserted on focus
-                return false;
-            },
-            select: function (event, ui) {
-                var terms = split(this.value);
-                // remove the current input
-                terms.pop();
-                // add the selected item
-                terms.push(ui.item.value);
-                // add placeholder to get the comma-and-space at the end
-                terms.push("");
-                this.value = terms.join(", ");
-                return false;
-            }
-        });
+$(document).ready(function () {
+    $('.js-example-basic-multiple').select2({
+        placeholder: "Select a state",
+        data: data
+    });
+    $(".js-example-data-array").select2({
+        data: data
+    })
 });
