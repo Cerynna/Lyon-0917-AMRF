@@ -43,13 +43,31 @@ section {
     margin-left: 20px;
     margin-bottom: 5px;
   }
+  hr {
+    margin-top: 50px;
+  }
   .container .jumbotron {
     margin: 20px 0 20px 0;
     padding: 20px 10px 20px 10px;
     text-align: justify;
   }
+
   .choose
   {
     margin: 20px 0 20px 0 !important;
+  }
+
+    .list-group-item {
+    .fa{
+      font-size: 2em;
+      margin-right: 10px;
+    }
+    .col-xs-6 {
+      padding: 0 !important;
+
+    }
+    .row {
+      margin:0 !important;
+    }
   }
 }

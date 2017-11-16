@@ -33,7 +33,6 @@ section {
       overflow: hidden;
       border: 0 solid $color3;
     }
-    input[type="radio"],
     input[type="checkbox"] {
       &:empty {
         display: none;
@@ -79,10 +78,23 @@ section {
         box-shadow: 0 0 0 3px #999;
       }
     }
-    .cleIcon {
+
+    input[type="radio"] {
+      width: 1em !important;
+margin-left: 20px;
+    }
+
+    #divCacher{
+      display: none;
+    }
+.star{  //phrase symbole obligatoire
+  text-align: center;
+  font-style: italic;
+}
+   /* .cleIcon {
       width: 200px;
       height: 200px;
-    }
+    }*/
   }
 }
 
