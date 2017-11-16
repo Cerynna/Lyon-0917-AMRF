@@ -37,7 +37,9 @@
             <div role="tabpanel" class="tab-pane" id="ligne">
                 <h3>Mes projets en ligne</h3>
                 <div class="jumbotron">
-                    {% set options = {'thema':'false','pictures':'false','update': 'true', 'more': 'true', 'text': 0} %}
+
+                    {% set options = {'thema':'false','pictures':'false','update': 'true', 'more': 'true', 'id': 2, 'text': 0} %}
+
                     {% include 'AMRFPublicRooterBundle::components/resumeProject.html.twig' with options %}
                 </div>
             </div>
