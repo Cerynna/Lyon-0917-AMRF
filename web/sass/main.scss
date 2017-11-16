@@ -37,7 +37,7 @@
 @import url('../fonts/ERASDEMI.TTF');
 @import url("http://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css");
 
-@font-face{
+@font-face {
   font-family: ERASDEMI;
   src: url('../fonts/ERASDEMI.TTF');
 }
@@ -62,7 +62,7 @@ textarea {
   resize: vertical;
 }
 
-a:visited, a:link{
+a:visited, a:link {
   text-decoration: none;
   color: $color2;
 }
@@ -240,7 +240,7 @@ a:hover, a:active {
   padding: 0;
   max-height: 100px;
   min-height: 0;
-  min-width:0;
+  min-width: 0;
   width: auto;
   overflow: hidden;
   overflow-y: scroll;
@@ -300,7 +300,8 @@ a:hover, a:active {
     margin-left: 5px;
   }
 }
-.modal-content{
+
+.modal-content {
   margin: 0 auto !important;
   .bck-maire {
     width: 220px;
@@ -309,7 +310,7 @@ a:hover, a:active {
     width: 220px;
   }
 
-  }
+}
 
 /*.row {
   border: 2px solid red !important;

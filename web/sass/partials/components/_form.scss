@@ -1,5 +1,13 @@
 section {
   form {
+    .select2 {
+      width: 100% !important;
+    }
+    .select2-container--default.select2-container--focus .select2-selection--multiple {
+      border: solid $color1 2px;
+      outline: 0;
+      background-color: $color3;
+    }
     .search {
       height: 50px;
       font-size: 1.8em !important;
@@ -81,20 +89,20 @@ section {
 
     input[type="radio"] {
       width: 1em !important;
-margin-left: 20px;
+      margin-left: 20px;
     }
 
-    #divCacher{
+    #divCacher {
       display: none;
     }
-.star{  //phrase symbole obligatoire
-  text-align: center;
-  font-style: italic;
-}
-   /* .cleIcon {
-      width: 200px;
-      height: 200px;
-    }*/
+    .star { //phrase symbole obligatoire
+      text-align: center;
+      font-style: italic;
+    }
+    /* .cleIcon {
+       width: 200px;
+       height: 200px;
+     }*/
   }
 }
 
