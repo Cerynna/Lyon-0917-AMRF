@@ -863,6 +863,10 @@ section {
     text-align: justify; }
   section .choose {
     margin: 20px 0 20px 0 !important; }
+  section .list-group-item {
+    color: rgba(0, 158, 61, 0.99); }
+  section .hidden {
+    height: 0 !important; }
   section .list-group-item .fa {
     font-size: 2em;
     margin-right: 10px; }
@@ -974,34 +978,12 @@ section form {
       color: rgba(0, 158, 61, 0.99);
       text-decoration: none; }
 
-.btnFavoris, .btnFavorisPart {
-  background-color: #FFFFFF;
-  border-radius: 50%;
-  border-style: none;
-  width: 50px;
-  height: 50px;
-  outline: none;
-  font-size: 1.5em;
-  box-shadow: 0.05em 0.05em 0.05em 0.05em rgba(0, 0, 0, 0.2);
-  /*box-shadow: 5px 5px  rgba(0, 0, 0, 0.6);*/ }
-  .btnFavoris i, .btnFavorisPart i {
+.btnFavoris, .btnFavorisPart, .btnFavorisSelect {
+  border: hidden;
+  background-color: transparent;
+  font-size: 2em; }
+  .btnFavoris i, .btnFavorisPart i, .btnFavorisSelect i {
     color: rgba(0, 158, 61, 0.99); }
-
-.btnFavorisPart {
-  float: left;
-  margin-top: 10px; }
-
-.btnFavorisTest {
-  background-color: rgba(0, 158, 61, 0.99);
-  border-radius: 50%;
-  font-size: 1.8em;
-  width: 50px;
-  height: 50px;
-  text-decoration: none;
-  box-shadow: 0.05em 0.05em 0.05em 0.05em rgba(0, 0, 0, 0.2);
-  /*box-shadow: 5px 5px  rgba(0, 0, 0, 0.6);*/ }
-  .btnFavorisTest i {
-    color: #FFFFFF; }
 
 .project {
   -webkit-border-radius: 10px;

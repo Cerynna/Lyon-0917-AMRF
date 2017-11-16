@@ -58,6 +58,12 @@ section {
   }
 
     .list-group-item {
+    color: $color1;
+  }
+  .hidden{
+    height: 0 !important;
+  }
+  .list-group-item {
     .fa{
       font-size: 2em;
       margin-right: 10px;

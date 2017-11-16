@@ -7,7 +7,7 @@
 {% block body %}
     <h2>RECHERCHE DE PROJETS</h2>
     {#<h3>Recherche</h3>#}
-    <form action="test.php" method="post">
+    <form action="" method="post">
         <div class="jumbotron">
             <div class="input-group col-md-12">
                 <input type="text" class="search form-control" autofocus/>
@@ -30,7 +30,7 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div class="choose">Et / Ou saisir un ou plusieurs mots-clefs</div>
-                            <label for="motsCle" class="text-center" hidden>Mots-clefs</label><br>
+                            <label for="motsCle" class="text-center hidden">Mots-clefs</label>
                             <input type="text" max="5" class="motsCle form-control" name="motsCle" id="motsCle">
                         </div>
                     </div>
@@ -44,57 +44,56 @@
                     </div>
                     <div class="row">
                         <div class="col-md-12 text-center">
-                            <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i> Recherche
-                            </button>
-
-                        <div class="col-md-12 choose">
-                            <span>Et / Ou choisir une Région ou un Département ou une Commune</span>
-
+                            <div class="col-md-12 choose">
+                                <span>Et / Ou choisir une Région ou un Département ou une Commune</span>
+                            </div>
+                            <div class="col-sm-4 form-group text-center">
+                                <label for="region">Région</label>
+                                <select class="form-control" id="region" name="region">
+                                    <option selected value="na"></option>
+                                    <option value="auvergne">Auvergne-Rhône-Alpes</option>
+                                    <option value="bourgogne">Bourgogne-Franche-Comté</option>
+                                    <option value="bretagne">Bretagne</option>
+                                    <option value="centre">Centre-Val de Loire</option>
+                                    <option value="corse">Corse</option>
+                                    <option value="grandest">Grand Est</option>
+                                    <option value="hautdefrance">Haut-de-France</option>
+                                    <option value="iledefrance">Ile-de-France</option>
+                                    <option value="normandie">Normandie</option>
+                                    <option value="aquitaine">Nouvelle-Aquitaine</option>
+                                    <option value="occitanie">Occitanie</option>
+                                    <option value="paysloire">Pays-de-la-Loire</option>
+                                    <option value="paca">Provence-Alpes-Côte-d'Azur</option>
+                                </select>
+                            </div>
+                            <div class="col-sm-4 form-group text-center">
+                                <label for="communes">Département</label>
+                                <input type="text" class="form-control" accept="" name="communes" id="communes">
+                            </div>
+                            <div class="col-sm-4 form-group text-center">
+                                <label for="city">Et / ou choisir une Commune</label>
+                                <input id="city" class="form-control" type="text" autocomplete="off">
+                            </div>
+                            <div class="col-xs-offset-4 col-xs-8 form-group text-center">
+                                <div class="output" id="output"></div>
+                            </div>
+                            <div class=" col-md-12 text-center">
+                                <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i> Recherche
+                                </button>
+                            </div>
                         </div>
-                        <div class="col-sm-4 form-group text-center">
-                            <label for="region">Région</label>
-                            <select class="form-control" id="region" name="region">
-                                <option selected value="na"></option>
-                                <option value="auvergne">Auvergne-Rhône-Alpes</option>
-                                <option value="bourgogne">Bourgogne-Franche-Comté</option>
-                                <option value="bretagne">Bretagne</option>
-                                <option value="centre">Centre-Val de Loire</option>
-                                <option value="corse">Corse</option>
-                                <option value="grandest">Grand Est</option>
-                                <option value="hautdefrance">Haut-de-France</option>
-                                <option value="iledefrance">Ile-de-France</option>
-                                <option value="normandie">Normandie</option>
-                                <option value="aquitaine">Nouvelle-Aquitaine</option>
-                                <option value="occitanie">Occitanie</option>
-                                <option value="paysloire">Pays-de-la-Loire</option>
-                                <option value="paca">Provence-Alpes-Côte-d'Azur</option>
-                            </select>
-                        </div>
-                        <div class="col-sm-4 form-group text-center">
-                            <label for="communes">Département</label>
-                            <input type="text" class="form-control" accept="" name="communes" id="communes">
-                        </div>
-                        <div class="col-sm-4 form-group text-center">
-                            <label for="city">Et / ou choisir une Commune</label>
-                            <input id="city" class="form-control" type="text" autocomplete="off">
-                        </div>
-                        <div class="col-xs-offset-4 col-xs-8 form-group text-center">
-                            <div class="output" id="output"></div>
-                        </div>
-                        <div class=" col-md-12 text-center">
-                            <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i> Recherche
-                            </button>
-                        </div>
+                        {#<iframe class="hidden-xs" width="100%" height="350" frameborder="0" scrolling="no" marginheight="0"
+                                marginwidth="0"
+                                src="http://www.openstreetmap.org/export/embed.html?bbox=-4.932861328125001%2C43.59630591596551%2C9.569091796875002%2C50.00067775723633&amp;layer=mapnik"
+                                style="border: 0 solid black"></iframe>#}
                     </div>
-                    {#<iframe class="hidden-xs" width="100%" height="350" frameborder="0" scrolling="no" marginheight="0"
-                            marginwidth="0"
-                            src="http://www.openstreetmap.org/export/embed.html?bbox=-4.932861328125001%2C43.59630591596551%2C9.569091796875002%2C50.00067775723633&amp;layer=mapnik"
-                            style="border: 0 solid black"></iframe>#}
                 </div>
             </div>
         </div>
     </form>
+    <hr/>
     <h3>Résultat(s) de votre recherche</h3>
+
     <div class="jumbotron">
         {% set options = {'thema':'true','pictures':'true','update': 'false', 'more': 'true', 'id': 1, 'text': 210} %}
         {% include 'AMRFPublicRooterBundle::components/resumeProject.html.twig' with options %}
