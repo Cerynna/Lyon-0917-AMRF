@@ -51,9 +51,13 @@ section {
     padding: 20px 10px 20px 10px;
     text-align: justify;
   }
+
   .choose
   {
     margin: 20px 0 20px 0 !important;
+  }
+
+    .list-group-item {
     color: $color1;
   }
   .hidden{
