@@ -22,10 +22,15 @@ $(document).ready(function () {
     var swiper = new Swiper ('.swiper-container', {
         // Optional parameters
         loop: true,
+        spaceBetween: 30,
+        hashNavigation: {
+            watchState: true
+        },
 
         // If we need pagination
         pagination: {
-            el: '.swiper-pagination'
+            el: '.swiper-pagination',
+            clickable: true
         },
 
         // Navigation arrows
