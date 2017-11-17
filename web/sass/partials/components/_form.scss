@@ -81,20 +81,59 @@ section {
 
     input[type="radio"] {
       width: 1em !important;
-margin-left: 20px;
+      margin-left: 20px;
     }
-
-    #divCacher{
+    .resultCommune {
+      min-height: 0;
+      max-height: 200px;
+      position: absolute;
+      overflow-y: scroll;
+      background: $color2;
+      text-align: left;
+      padding-left: 10px;
+      z-index: 200;
+      li {
+        padding: 5px;
+        background: red;
+      }
+    }
+    #divCacher {
       display: none;
     }
-.star{  //phrase symbole obligatoire
-  text-align: center;
-  font-style: italic;
-}
-   /* .cleIcon {
-      width: 200px;
-      height: 200px;
-    }*/
+    .star { //phrase symbole obligatoire
+      text-align: center;
+      font-style: italic;
+    }
+    .result {
+      position: absolute;
+      background: $color2;
+      max-height: 200px;
+      overflow-y: scroll;
+      width: 300px;
+      overflow-x: hidden;
+      z-index: 200;
+      top: 70px;
+      list-style:none;
+      margin-left:0;
+      padding-left:0;
+      li {
+        text-align: left;
+        padding: 5px 0 5px 10px;
+        border-radius: 5px;
+        margin: 2px;
+      }
+      li:hover {
+        background: $color1;
+        color: $color2;
+      }
+    }
+    .relativeDiv {
+      position: relative;
+    }
+    /* .cleIcon {
+       width: 200px;
+       height: 200px;
+     }*/
   }
 }
 

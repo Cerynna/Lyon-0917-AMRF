@@ -878,9 +878,9 @@ section {
 
 section form {
   /* .cleIcon {
-      width: 200px;
-      height: 200px;
-    }*/ }
+       width: 200px;
+       height: 200px;
+     }*/ }
   section form .search {
     height: 50px;
     font-size: 1.8em !important; }
@@ -948,11 +948,45 @@ section form {
   section form input[type="radio"] {
     width: 1em !important;
     margin-left: 20px; }
+  section form .resultCommune {
+    min-height: 0;
+    max-height: 200px;
+    position: absolute;
+    overflow-y: scroll;
+    background: #FFFFFF;
+    text-align: left;
+    padding-left: 10px;
+    z-index: 200; }
+    section form .resultCommune li {
+      padding: 5px;
+      background: red; }
   section form #divCacher {
     display: none; }
   section form .star {
     text-align: center;
     font-style: italic; }
+  section form .result {
+    position: absolute;
+    background: #FFFFFF;
+    max-height: 200px;
+    overflow-y: scroll;
+    width: 300px;
+    overflow-x: hidden;
+    z-index: 200;
+    top: 70px;
+    list-style: none;
+    margin-left: 0;
+    padding-left: 0; }
+    section form .result li {
+      text-align: left;
+      padding: 5px 0 5px 10px;
+      border-radius: 5px;
+      margin: 2px; }
+    section form .result li:hover {
+      background: rgba(0, 158, 61, 0.99);
+      color: #FFFFFF; }
+  section form .relativeDiv {
+    position: relative; }
 
 .tabPannel {
   -webkit-border-radius: 6px;
