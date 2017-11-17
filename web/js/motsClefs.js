@@ -64,11 +64,9 @@ var data = [
 ];
 
 $(document).ready(function () {
-    $('.js-example-basic-multiple').select2({
-        placeholder: "Select a state",
-        data: data
+    $('.mots').select2({
+        placeholder: 'saisir un mot-cle',
+        data: data,
+        allowClear: true
     });
-    $(".js-example-data-array").select2({
-        data: data
-    })
 });

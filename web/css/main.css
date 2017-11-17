@@ -868,7 +868,6 @@ section {
   section .hidden {
     height: 0 !important; }
   section .list-group-item .fa {
-    color: rgba(0, 158, 61, 0.99);
     font-size: 2em;
     margin-right: 10px; }
   section .list-group-item .col-xs-6 {
@@ -881,6 +880,12 @@ section form {
        width: 200px;
        height: 200px;
      }*/ }
+  section form .select2 {
+    width: 100% !important; }
+  section form .select2-container--default.select2-container--focus .select2-selection--multiple {
+    border: solid rgba(0, 158, 61, 0.99) 2px;
+    outline: 0;
+    background-color: rgba(196, 255, 190, 0.1); }
   section form .search {
     height: 50px;
     font-size: 1.8em !important; }
@@ -948,45 +953,11 @@ section form {
   section form input[type="radio"] {
     width: 1em !important;
     margin-left: 20px; }
-  section form .resultCommune {
-    min-height: 0;
-    max-height: 200px;
-    position: absolute;
-    overflow-y: scroll;
-    background: #FFFFFF;
-    text-align: left;
-    padding-left: 10px;
-    z-index: 200; }
-    section form .resultCommune li {
-      padding: 5px;
-      background: red; }
   section form #divCacher {
     display: none; }
   section form .star {
     text-align: center;
     font-style: italic; }
-  section form .result {
-    position: absolute;
-    background: #FFFFFF;
-    max-height: 200px;
-    overflow-y: scroll;
-    width: 300px;
-    overflow-x: hidden;
-    z-index: 200;
-    top: 70px;
-    list-style: none;
-    margin-left: 0;
-    padding-left: 0; }
-    section form .result li {
-      text-align: left;
-      padding: 5px 0 5px 10px;
-      border-radius: 5px;
-      margin: 2px; }
-    section form .result li:hover {
-      background: rgba(0, 158, 61, 0.99);
-      color: #FFFFFF; }
-  section form .relativeDiv {
-    position: relative; }
 
 .tabPannel {
   -webkit-border-radius: 6px;
@@ -1352,15 +1323,9 @@ a:hover, a:active {
   .modal-content .bck-part {
     width: 220px; }
 
-/*
-
-div {
-  border: 1px solid cyan !important;
-}
-.row {
+/*.row {
   border: 2px solid red !important;
 }
-[class*="col-"]{
+.col-xs-1, .col-sm-1, .col-md-1, .col-lg-1, .col-xs-2, .col-sm-2, .col-md-2, .col-lg-2, .col-xs-3, .col-sm-3, .col-md-3, .col-lg-3, .col-xs-4, .col-sm-4, .col-md-4, .col-lg-4, .col-xs-5, .col-sm-5, .col-md-5, .col-lg-5, .col-xs-6, .col-sm-6, .col-md-6, .col-lg-6, .col-xs-7, .col-sm-7, .col-md-7, .col-lg-7, .col-xs-8, .col-sm-8, .col-md-8, .col-lg-8, .col-xs-9, .col-sm-9, .col-md-9, .col-lg-9, .col-xs-10, .col-sm-10, .col-md-10, .col-lg-10, .col-xs-11, .col-sm-11, .col-md-11, .col-lg-11, .col-xs-12, .col-sm-12, .col-md-12, .col-lg-12 {
   border: 1px solid black !important;
-}
-*/
+}*/
