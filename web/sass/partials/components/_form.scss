@@ -8,6 +8,11 @@ section {
       outline: 0;
       background-color: $color3;
     }
+    .select2-results__options{
+      li:hover{
+        background: red !important;
+      }
+    }
     .search {
       height: 50px;
       font-size: 1.8em !important;
