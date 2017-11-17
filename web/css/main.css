@@ -877,18 +877,23 @@ section {
     margin: 0 !important; }
 
 section form {
+  /*
+    .select2-container--default.select2-container--focus .select2-selection--multiple {
+      border: solid $color1 2px;
+      outline: 0;
+      background-color: $color3;
+    }
+    .select2-results__options{
+      li:hover{
+        background: red !important;
+      }
+    }*/
   /* .cleIcon {
        width: 200px;
        height: 200px;
      }*/ }
   section form .select2 {
     width: 100% !important; }
-  section form .select2-container--default.select2-container--focus .select2-selection--multiple {
-    border: solid rgba(0, 158, 61, 0.99) 2px;
-    outline: 0;
-    background-color: rgba(196, 255, 190, 0.1); }
-  section form .select2-results__options li:hover {
-    background: red !important; }
   section form .search {
     height: 50px;
     font-size: 1.8em !important; }
@@ -1044,7 +1049,7 @@ section form {
 
 .select2-dropdown {
   background-color: white;
-  border: 1px solid #aaa;
+  border: 2px solid rgba(0, 158, 61, 0.99);
   border-radius: 4px;
   box-sizing: border-box;
   display: block;
@@ -1126,7 +1131,7 @@ section form {
 
 .select2-container--default .select2-selection--single {
   background-color: #fff;
-  border: 1px solid #aaa;
+  border: 1px solid rgba(0, 158, 61, 0.99);
   border-radius: 4px; }
 
 .select2-container--default .select2-selection--single .select2-selection__rendered {
@@ -1209,7 +1214,6 @@ section form {
 .select2-container--default .select2-selection--multiple .select2-selection__choice {
   background-color: rgba(0, 158, 61, 0.99);
   color: #FFFFFF;
-  border: 1px solid #aaa;
   cursor: default;
   float: left;
   margin: 2px 1px 0 1px !important;
@@ -1244,8 +1248,9 @@ section form {
   margin-right: auto; }
 
 .select2-container--default.select2-container--focus .select2-selection--multiple {
-  border: solid black 1px;
-  outline: 0; }
+  border: solid rgba(0, 158, 61, 0.99) 2px;
+  outline: 0;
+  background: rgba(196, 255, 190, 0.1); }
 
 .select2-container--default.select2-container--disabled .select2-selection--multiple {
   background-color: #eee;
@@ -1283,7 +1288,7 @@ section form {
   color: #2a2a2a; }
 
 .select2-container--default .select2-results__option[aria-selected=true] {
-  background-color: rgba(0, 110, 45, 0.5);
+  background-color: rgba(0, 209, 81, 0.2);
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
   -ms-border-radius: 5px;

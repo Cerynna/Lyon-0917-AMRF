@@ -68,7 +68,7 @@
 
 .select2-dropdown {
   background-color: white;
-  border: 1px solid #aaa;
+  border: 2px solid $color1;
   border-radius: 4px;
   box-sizing: border-box;
   display: block;
@@ -164,7 +164,7 @@
 
 .select2-container--default .select2-selection--single {
   background-color: #fff;
-  border: 1px solid #aaa;
+  border: 1px solid $color1;
   border-radius: 4px
 }
 
@@ -263,7 +263,6 @@
 .select2-container--default .select2-selection--multiple .select2-selection__choice {
   background-color: $color1;
   color: $color2;
-  border: 1px solid #aaa;
   cursor: default;
   float: left;
   margin: 2px 1px 0 1px !important;
@@ -307,8 +306,9 @@
 }
 
 .select2-container--default.select2-container--focus .select2-selection--multiple {
-  border: solid black 1px;
-  outline: 0
+  border: solid $color1 2px;
+  outline: 0;
+  background: $color3;
 }
 
 .select2-container--default.select2-container--disabled .select2-selection--multiple {
@@ -356,7 +356,7 @@
 }
 
 .select2-container--default .select2-results__option[aria-selected=true] {
-  background-color: $color6;
+  background-color: rgba( lighten( $color1, 10% ), .2 );
   @include borderRadius(5px);
   margin-left: 1px;
 }
