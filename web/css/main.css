@@ -877,9 +877,15 @@ section {
 
 section form {
   /* .cleIcon {
-      width: 200px;
-      height: 200px;
-    }*/ }
+       width: 200px;
+       height: 200px;
+     }*/ }
+  section form .select2 {
+    width: 100% !important; }
+  section form .select2-container--default.select2-container--focus .select2-selection--multiple {
+    border: solid rgba(0, 158, 61, 0.99) 2px;
+    outline: 0;
+    background-color: rgba(196, 255, 190, 0.1); }
   section form .search {
     height: 50px;
     font-size: 1.8em !important; }
