@@ -20,14 +20,12 @@ class ProjectType extends AbstractType
             ->add('creationDate')
             ->add('updateDate')
             ->add('image')
-
             ->add('projectDate', DateType::class, array(
                 'widget' => 'single_text',
                 // this is actually the default format for single_text
                 'format' => 'yyyy-MM-dd',
 
             ))
-
             ->add('projectDuration')
             ->add('projectCost')
             ->add('projectCoFinance')
