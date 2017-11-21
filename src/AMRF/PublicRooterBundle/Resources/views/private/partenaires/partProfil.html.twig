@@ -5,7 +5,7 @@
     {% include 'AMRFPublicRooterBundle::components/navbar.html.twig' with options %}
 {% endblock %}
 {% block body %}
-
+    {{ form_start(form) }}
     <h2>Mon profil</h2>
     <div class="row tabPannel">
         <form action="">
@@ -24,38 +24,38 @@
                     <h3>Mon profil</h3>
                     <div class="col-lg-6 col-sm-6">
                         <div class="form-group">
-                            <label for="lastName">Nom *</label>
-                            <input id="lastName" type="text" class="form-control">
+                            {{ form_label(form.lastName, "Nom *") }}
+                            {{ form_widget(form.lastName) }}
                         </div>
                     </div>
                     <div class="col-lg-6 col-sm-6">
                         <div class="form-group">
-                            <label for="firstName">Prénom *</label>
-                            <input id="firstName" type="text" class="form-control">
+                            {{ form_label(form.firstName, "Prénom *") }}
+                            {{ form_widget(form.firstName) }}
                         </div>
                     </div>
                     <div class="col-lg-6 col-sm-6">
                         <div class="form-group">
-                            <label for="societe">Organisme *</label>
-                            <input id="societe" type="text" class="form-control">
+                            {{ form_label(form.company, "Organisme *") }}
+                            {{ form_widget(form.company) }}
                         </div>
                     </div>
                     <div class="col-lg-6 col-sm-6">
                         <div class="form-group">
-                            <label for="fonction">Fonction *</label>
-                            <input id="fonction" type="text" class="form-control">
+                            {{ form_label(form.occupation, "Fonction *") }}
+                            {{ form_widget(form.occupation) }}
                         </div>
                     </div>
                     <div class="col-lg-6 col-sm-6">
                         <div class="form-group">
-                            <label for="tel">Téléphone *</label>
-                            <input id="tel" type="tel" class="form-control">
+                            {{ form_label(form.phone, "Téléphone *") }}
+                            {{ form_widget(form.phone) }}
                         </div>
                     </div>
                     <div class="col-lg-6 col-sm-6">
                         <div class="form-group">
-                            <label for="email">Email *</label>
-                            <input id="email" type="email" class="form-control">
+                            {{ form_label(form.email, "Email *") }}
+                            {{ form_widget(form.email) }}
                         </div>
                     </div>
                 </div>
@@ -91,5 +91,6 @@
             </div>
         </form>
     </div>
-
+    {{ form_widget(form) }}
+    {{ form_end(form) }}
 {% endblock %}
