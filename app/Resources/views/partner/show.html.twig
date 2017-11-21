@@ -1,0 +1,48 @@
+{% extends 'AMRFPublicRooterBundle::private/admin/baseAdmin.html.twig' %}
+
+{% block body %}
+    <h1>Partner</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ partner.id }}</td>
+            </tr>
+            <tr>
+                <th>Firstname</th>
+                <td>{{ partner.firstName }}</td>
+            </tr>
+            <tr>
+                <th>Lastname</th>
+                <td>{{ partner.lastName }}</td>
+            </tr>
+            <tr>
+                <th>Occupation</th>
+                <td>{{ partner.occupation }}</td>
+            </tr>
+            <tr>
+                <th>Phone</th>
+                <td>{{ partner.phone }}</td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td>{{ partner.email }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('admin_partner_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('admin_partner_edit', { 'id': partner.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

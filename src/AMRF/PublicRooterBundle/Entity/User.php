@@ -10,9 +10,18 @@ use Doctrine\ORM\Mapping\JoinColumn;
  *
  * @ORM\Table(name="user")
  * @ORM\Entity(repositoryClass="AMRF\PublicRooterBundle\Repository\UserRepository")
+ * @ORM\HasLifecycleCallbacks()
  */
 class User
 {
+
+
+    const USER_ROLE_MAYOR   = 1;
+    const USER_ROLE_PARTNER = 2;
+    const USER_ROLE_ADMIN   = 3;
+
+
+
     /**
      * @var int
      *
@@ -74,12 +83,12 @@ class User
     private $lastLogin;
 
     /**
-     * @ORM\OneToOne(targetEntity="Mayor")
+     * @ORM\OneToOne(targetEntity="Mayor", cascade={"persist"})
      */
     private $mayor;
 
     /**
-     * @ORM\OneToOne(targetEntity="Partner")
+     * @ORM\OneToOne(targetEntity="Partner", cascade={"persist"})
      */
     private $partner;
 

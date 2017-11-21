@@ -593,4 +593,11 @@ class Mayor
     {
         return $this->projects;
     }
+
+    public function __toString()
+    {
+        return (string) $this->getId();
+    }
+
+
 }
