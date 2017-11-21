@@ -150,32 +150,4 @@ class Favorite
     {
         return $this->company;
     }
-
-    /**
-     * Set project
-     *
-     * @param \AMRF\PublicRooterBundle\Entity\Project $project
-     *
-     * @return Favorite
-     */
-    public function setProject(\AMRF\PublicRooterBundle\Entity\Project $project = null)
-    {
-        $this->project = $project;
-
-        return $this;
-    }
-
-    /**
-     * Set company
-     *
-     * @param \AMRF\PublicRooterBundle\Entity\Company $company
-     *
-     * @return Favorite
-     */
-    public function setCompany(\AMRF\PublicRooterBundle\Entity\Company $company = null)
-    {
-        $this->company = $company;
-
-        return $this;
-    }
 }
