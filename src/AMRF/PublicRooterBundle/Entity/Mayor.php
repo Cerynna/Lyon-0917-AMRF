@@ -21,12 +21,6 @@ class Mayor
      */
     private $id;
 
-    /**
-     * @var int
-     *
-     * @ORM\Column(name="idUser", type="integer", unique=true)
-     */
-    private $idUser;
 
     /**
      * @var string
@@ -147,6 +141,11 @@ class Mayor
      */
     private $google;
 
+    /**
+     * @ORM\OneToMany(targetEntity="Project", mappedBy="mayor")
+     */
+    private $projects;
+
 
     /**
      * Get id
@@ -156,30 +155,6 @@ class Mayor
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * Set idUser
-     *
-     * @param integer $idUser
-     *
-     * @return Mayor
-     */
-    public function setIdUser($idUser)
-    {
-        $this->idUser = $idUser;
-
-        return $this;
-    }
-
-    /**
-     * Get idUser
-     *
-     * @return int
-     */
-    public function getIdUser()
-    {
-        return $this->idUser;
     }
 
     /**
@@ -577,5 +552,52 @@ class Mayor
     {
         return $this->google;
     }
-}
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->projects = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
+    /**
+     * Add project
+     *
+     * @param \AMRF\PublicRooterBundle\Entity\Project $project
+     *
+     * @return Mayor
+     */
+    public function addProject(\AMRF\PublicRooterBundle\Entity\Project $project)
+    {
+        $this->projects[] = $project;
+
+        return $this;
+    }
+
+    /**
+     * Remove project
+     *
+     * @param \AMRF\PublicRooterBundle\Entity\Project $project
+     */
+    public function removeProject(\AMRF\PublicRooterBundle\Entity\Project $project)
+    {
+        $this->projects->removeElement($project);
+    }
+
+    /**
+     * Get projects
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getProjects()
+    {
+        return $this->projects;
+    }
+
+    public function __toString()
+    {
+        return (string) $this->getId();
+    }
+
+
+}

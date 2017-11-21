@@ -1,0 +1,47 @@
+{% extends 'AMRFPublicRooterBundle::private/admin/baseAdmin.html.twig' %}
+
+{% block body %}
+    <h1>Partners list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Firstname</th>
+                <th>Lastname</th>
+                <th>Occupation</th>
+                <th>Phone</th>
+                <th>Email</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for partner in partners %}
+            <tr>
+                <td><a href="{{ path('admin_partner_show', { 'id': partner.id }) }}">{{ partner.id }}</a></td>
+                <td>{{ partner.firstName }}</td>
+                <td>{{ partner.lastName }}</td>
+                <td>{{ partner.occupation }}</td>
+                <td>{{ partner.phone }}</td>
+                <td>{{ partner.email }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('admin_partner_show', { 'id': partner.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('admin_partner_edit', { 'id': partner.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('admin_partner_new') }}">Create a new partner</a>
+        </li>
+    </ul>
+{% endblock %}

@@ -2,7 +2,10 @@
 
 namespace AMRF\PublicRooterBundle\Controller;
 
+use AMRF\PublicRooterBundle\Entity\Company;
+use AMRF\PublicRooterBundle\Entity\Project;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
 class PublicRooterController extends Controller
@@ -113,9 +116,25 @@ class PublicRooterController extends Controller
     /**
      * @Route("/maire/projet/new", name="maireFormProjet")
      */
-    public function mairesFormProjetAction()
+    public function mairesFormProjetAction(Request $request)
     {
-        return $this->render('AMRFPublicRooterBundle:private:maires/maireFormProjet.html.twig');
+        $project = new Project();
+        $form = $this->createForm('AMRF\PublicRooterBundle\Form\ProjectType', $project);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($project);
+            $em->flush();
+
+            return $this->redirectToRoute('maireHome', array('id' => $project->getId()));
+        }
+
+
+        return $this->render('AMRFPublicRooterBundle:private:maires/maireFormProjet.html.twig', array(
+            'project' => $project,
+            'form' => $form->createView(),
+        ));
     }
 
     /**
@@ -150,9 +169,26 @@ class PublicRooterController extends Controller
     /**
      * @Route("/partenaire/presentation", name="partPres")
      */
-    public function partFormFicheAction()
+    public function partFormFicheAction(Request $request)
     {
-        return $this->render('AMRFPublicRooterBundle:private:partenaires/partFormPresentation.html.twig');
+        $company = new Company();
+        $form = $this->createForm('AMRF\PublicRooterBundle\Form\CompanyType', $company);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($company);
+            $em->flush();
+
+            return $this->redirectToRoute('partHome', array('id' => $company->getId()));
+        }
+
+        return $this->render('AMRFPublicRooterBundle:private:partenaires/partFormPresentation.html.twig', array(
+            'company' => $company,
+            'form' => $form->createView(),
+        ));
+
+
     }
 
     /**

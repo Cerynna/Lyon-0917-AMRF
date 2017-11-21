@@ -13,19 +13,22 @@
                      onmouseout="hideImg('my-img{{ options.id }}','{{ asset('/img/projets/' ~ options.id ~ '/1.jpg') }}');"/>
             </div>
             <div class="img-preview">
-                <img id="my-img{{ options.id }}" src="{{ asset('/img/projets/' ~ options.id ~ '/1.jpg') }}" class="img-big"/>
+                <img id="my-img{{ options.id }}" src="{{ asset('/img/projets/' ~ options.id ~ '/1.jpg') }}"
+                     class="img-big"/>
             </div>
 
         </div>
     {% endif %}
     <div class="{% if options.pictures == "true" %} col-sm-9 {% else %}col-xs-12{% endif %}">
         <div class="row">
-            <div class="col-xs-10">
+            <div class="col-xs-9">
                 <h3>Projet Application Mobile Court-voiturage</h3>
             </div>
-            <div class="col-xs-2 text-right">
+            <div class="col-xs-3 text-right">
                 <span class="label label-commune">05/2017</span>
             </div>
+        </div>
+        <div class="row">
             {% if options.thema == "true" %}
                 <div class="col-xs-12 text-left hidden-xs" id="city">
                     <span class="label label-commune">LES MOLIERES</span>
@@ -50,7 +53,7 @@
                     pariatur." %}
                     {% if options.text is defined %}
                         {% if options.text != 0 %}
-                    {{ text|slice (0,options.text) }}...
+                            {{ text|slice (0,options.text) }}...
                         {% endif %}
                     {% else %}
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor

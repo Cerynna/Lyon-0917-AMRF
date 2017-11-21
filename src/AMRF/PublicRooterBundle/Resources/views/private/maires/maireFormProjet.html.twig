@@ -5,6 +5,16 @@
     {% include 'AMRFPublicRooterBundle::components/navbar.html.twig' with options %}
 {% endblock %}
 {% block body %}
+
+        {{ form_start(form) }}
+
+
+
+
+
+
+
+
     <h2>CREER UNE FICHE PROJET</h2>
     <!-- Nav tabs -->
     <div class="row tabPannel">
@@ -35,9 +45,11 @@
                     <div class="star">Le symbole * indique que cette information est nécessaire.</div>
                     <h3>Mon projet</h3>
                     <div class="form-group col-sm-12">
-                        <label for="projectName" class="col-sm-12 control-label">Titre du Projet *</label>
-                        <input id="projectName" type="text" class="form-control"
-                               placeholder="Entrez ici le nom de votre projet pour qu'il soit facilement identifiable.">
+                        {#<input id="projectName" type="text" class="form-control"
+                               placeholder="Entrez ici le nom de votre projet pour qu'il soit facilement identifiable.">#}
+                        {{ form_label(form.title, "Titre du Projet *") }}
+                        {{ form_widget(form.title, {'attr': {
+                            'placeholder': 'Entrez ici le nom de votre projet pour qu\'il soit facilement identifiable.'} }) }}
                     </div>
                     <h3>Thématiques et mots-clefs</h3>
                     <label>Cochez jusqu'à 3 thématiques</label>
@@ -45,9 +57,12 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div class="form-group">
-                                <label>Saississez jusqu'à 5 mots-clefs</label>
-                                <input type="text" max="5" class="form-control" name="motsCle" id="motsCle"
-                                       placeholder="Ecrivez les premières lettres du mot et vérifiez qu'il apparaît dans la liste."/>
+                                {{ form_label(form.keyWords, "Saississez jusqu'à 5 mots-clefs") }}
+                                {{ form_widget(form.keyWords, {'attr': {
+                                    'placeholder': 'Ecrivez les premières lettres du mot et vérifiez qu\'il apparaît dans la liste.'} }) }}
+
+                                {#<input type="text" max="5" class="form-control" name="motsCle" id="motsCle"
+                                       placeholder="Ecrivez les premières lettres du mot et vérifiez qu'il apparaît dans la liste."/>#}
                             </div>
                         </div>
                     </div>
@@ -242,19 +257,19 @@
                     <h3>Votre projet est visible en ligne ?</h3>
                     <label>Indiquez vos liens ci-dessous</label>
                     <div class="form-group col-sm-6">
-                        <label for="url">Site internet</label>
+                        <label for="url"><i class="fa fa-link"></i> Site internet</label>
                         <input id="url" type="url" class="form-control" placeholder="">
                     </div>
                     <div class="form-group col-sm-6">
-                        <label for="url">YouTube</label>
+                        <label for="url"><i class="fa fa-youtube-square"></i> YouTube</label>
                         <input id="url" type="url" class="form-control" placeholder="">
                     </div>
                     <div class="form-group col-sm-6">
-                        <label for="url">Facebook</label>
+                        <label for="url"><i class="fa fa-facebook-square"></i> Facebook</label>
                         <input id="url" type="url" class="form-control" placeholder="">
                     </div>
                     <div class="form-group col-sm-6">
-                        <label for="url">Twitter</label>
+                        <label for="url"><i class="fa fa-twitter-square"></i> Twitter</label>
                         <input id="url" type="url" class="form-control" placeholder="">
                     </div>
                     <div class="form-group col-sm-4" align="left">
@@ -328,6 +343,8 @@
             </div>
         </form>
     </div>
+    {{ form_widget(form) }}
+    {{ form_end(form) }}
 {% endblock %}
 {% block javascripts %}
     <script>

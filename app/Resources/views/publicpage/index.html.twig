@@ -1,0 +1,43 @@
+{% extends 'AMRFPublicRooterBundle::private/admin/baseAdmin.html.twig' %}
+
+{% block body %}
+    <h1>Publicpages list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Date</th>
+                <th>Content</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for publicPage in publicPages %}
+            <tr>
+                <td><a href="{{ path('admin_publicpage_show', { 'id': publicPage.id }) }}">{{ publicPage.id }}</a></td>
+                <td>{{ publicPage.name }}</td>
+                <td>{% if publicPage.date %}{{ publicPage.date|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{{ publicPage.content }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('admin_publicpage_show', { 'id': publicPage.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('admin_publicpage_edit', { 'id': publicPage.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('admin_publicpage_new') }}">Create a new publicPage</a>
+        </li>
+    </ul>
+{% endblock %}
