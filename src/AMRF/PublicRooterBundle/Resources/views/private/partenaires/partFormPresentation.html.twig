@@ -145,8 +145,7 @@
                         </div>
                         <div class="col-xs-12">
                             <div class="form-group">
-                                {{ form_widget(form.logo, {'attr': {
-                                    'class': 'hidden'} }) }}
+
                                 <input type="hidden" name="MAX_FILE_SIZE" value="500000">
                                 <input type="file" id="photo" name="photo"/>
                                 <p>le poids du fichier ne doit pas excéder ... ... Mo</p>
@@ -157,10 +156,8 @@
                         </div>
                         <div class="col-lg-6 col-sm-6">
                             <div class="form-group">
-                                {{ form_label(form.url, "Site internet ") }}
+                                <label for="amrf_publicrooterbundle_company_url">Site internet <span class="hidden-sm">(les utilisateurs seront renvoyés vers cette page)</span></label>
                                 {{ form_widget(form.url) }}
-                                {#<label for="url">Site internet <span class="hidden-sm">(les utilisateurs seront renvoyés vers cette
-                                    page)</span></label>#}
                             </div>
                         </div>
                         <div class="col-lg-6 col-sm-6">
@@ -293,6 +290,7 @@
             </div>
         </form>
     </div>
+    {{ form_widget(form)}}
     {{ form_end(form) }}
 {% endblock %}
 {% block javascripts %}
