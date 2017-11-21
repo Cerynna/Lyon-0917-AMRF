@@ -3,21 +3,33 @@
 namespace AMRF\PublicRooterBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\JoinColumn;
 
 /**
  * User
  *
  * @ORM\Table(name="user")
  * @ORM\Entity(repositoryClass="AMRF\PublicRooterBundle\Repository\UserRepository")
+ * @ORM\HasLifecycleCallbacks()
  */
 class User
 {
+
+
+    const USER_ROLE_MAYOR   = 1;
+    const USER_ROLE_PARTNER = 2;
+    const USER_ROLE_ADMIN   = 3;
+
+
+
     /**
      * @var int
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
+     *
+     *
      */
     private $id;
 
@@ -69,6 +81,21 @@ class User
      * @ORM\Column(name="lastLogin", type="datetime")
      */
     private $lastLogin;
+
+    /**
+     * @ORM\OneToOne(targetEntity="Mayor", cascade={"persist"})
+     */
+    private $mayor;
+
+    /**
+     * @ORM\OneToOne(targetEntity="Partner", cascade={"persist"})
+     */
+    private $partner;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Favorite", mappedBy="user")
+     */
+    private $favorites;
 
 
     /**
@@ -248,5 +275,93 @@ class User
     {
         return $this->lastLogin;
     }
-}
 
+    /**
+     * Set mayor
+     *
+     * @param \AMRF\PublicRooterBundle\Entity\Mayor $mayor
+     *
+     * @return User
+     */
+    public function setMayor(\AMRF\PublicRooterBundle\Entity\Mayor $mayor = null)
+    {
+        $this->mayor = $mayor;
+
+        return $this;
+    }
+
+    /**
+     * Get mayor
+     *
+     * @return \AMRF\PublicRooterBundle\Entity\Mayor
+     */
+    public function getMayor()
+    {
+        return $this->mayor;
+    }
+
+    /**
+     * Set partner
+     *
+     * @param \AMRF\PublicRooterBundle\Entity\Partner $partner
+     *
+     * @return User
+     */
+    public function setPartner(\AMRF\PublicRooterBundle\Entity\Partner $partner = null)
+    {
+        $this->partner = $partner;
+
+        return $this;
+    }
+
+    /**
+     * Get partner
+     *
+     * @return \AMRF\PublicRooterBundle\Entity\Partner
+     */
+    public function getPartner()
+    {
+        return $this->partner;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->favorites = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add favorite
+     *
+     * @param \AMRF\PublicRooterBundle\Entity\Favorite $favorite
+     *
+     * @return User
+     */
+    public function addFavorite(\AMRF\PublicRooterBundle\Entity\Favorite $favorite)
+    {
+        $this->favorites[] = $favorite;
+
+        return $this;
+    }
+
+    /**
+     * Remove favorite
+     *
+     * @param \AMRF\PublicRooterBundle\Entity\Favorite $favorite
+     */
+    public function removeFavorite(\AMRF\PublicRooterBundle\Entity\Favorite $favorite)
+    {
+        $this->favorites->removeElement($favorite);
+    }
+
+    /**
+     * Get favorites
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getFavorites()
+    {
+        return $this->favorites;
+    }
+}

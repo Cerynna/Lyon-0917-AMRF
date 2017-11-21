@@ -22,25 +22,20 @@ class Favorite
     private $id;
 
     /**
-     * @var int
-     *
-     * @ORM\Column(name="idUser", type="integer")
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="favorites")
      */
-    private $idUser;
+    private $user;
 
     /**
-     * @var int
-     *
-     * @ORM\Column(name="idProject", type="integer", nullable=true)
+     * @ORM\OneToOne(targetEntity="Project")
      */
-    private $idProject;
+    private $project;
 
     /**
-     * @var int
-     *
-     * @ORM\Column(name="idPart", type="integer", nullable=true)
+     * @ORM\OneToOne(targetEntity="Company")
      */
-    private $idPart;
+    private $company;
+
 
 
     /**
@@ -53,76 +48,134 @@ class Favorite
         return $this->id;
     }
 
+
+
+
     /**
-     * Set idUser
+     * Set user
      *
-     * @param integer $idUser
+     * @param \AMRF\PublicRooterBundle\Entity\User $user
      *
      * @return Favorite
      */
-    public function setIdUser($idUser)
+    public function setUser(\AMRF\PublicRooterBundle\Entity\User $user = null)
     {
-        $this->idUser = $idUser;
+        $this->user = $user;
 
         return $this;
     }
 
     /**
-     * Get idUser
+     * Get user
      *
-     * @return int
+     * @return \AMRF\PublicRooterBundle\Entity\User
      */
-    public function getIdUser()
+    public function getUser()
     {
-        return $this->idUser;
+        return $this->user;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->project = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->company = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
-     * Set idProject
+     * Add project
      *
-     * @param integer $idProject
+     * @param \AMRF\PublicRooterBundle\Entity\Project $project
      *
      * @return Favorite
      */
-    public function setIdProject($idProject)
+    public function addProject(\AMRF\PublicRooterBundle\Entity\Project $project)
     {
-        $this->idProject = $idProject;
+        $this->project[] = $project;
 
         return $this;
     }
 
     /**
-     * Get idProject
+     * Remove project
      *
-     * @return int
+     * @param \AMRF\PublicRooterBundle\Entity\Project $project
      */
-    public function getIdProject()
+    public function removeProject(\AMRF\PublicRooterBundle\Entity\Project $project)
     {
-        return $this->idProject;
+        $this->project->removeElement($project);
     }
 
     /**
-     * Set idPart
+     * Get project
      *
-     * @param integer $idPart
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getProject()
+    {
+        return $this->project;
+    }
+
+    /**
+     * Add company
+     *
+     * @param \AMRF\PublicRooterBundle\Entity\Company $company
      *
      * @return Favorite
      */
-    public function setIdPart($idPart)
+    public function addCompany(\AMRF\PublicRooterBundle\Entity\Company $company)
     {
-        $this->idPart = $idPart;
+        $this->company[] = $company;
 
         return $this;
     }
 
     /**
-     * Get idPart
+     * Remove company
      *
-     * @return int
+     * @param \AMRF\PublicRooterBundle\Entity\Company $company
      */
-    public function getIdPart()
+    public function removeCompany(\AMRF\PublicRooterBundle\Entity\Company $company)
     {
-        return $this->idPart;
+        $this->company->removeElement($company);
+    }
+
+    /**
+     * Get company
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getCompany()
+    {
+        return $this->company;
+    }
+
+    /**
+     * Set project
+     *
+     * @param \AMRF\PublicRooterBundle\Entity\Project $project
+     *
+     * @return Favorite
+     */
+    public function setProject(\AMRF\PublicRooterBundle\Entity\Project $project = null)
+    {
+        $this->project = $project;
+
+        return $this;
+    }
+
+    /**
+     * Set company
+     *
+     * @param \AMRF\PublicRooterBundle\Entity\Company $company
+     *
+     * @return Favorite
+     */
+    public function setCompany(\AMRF\PublicRooterBundle\Entity\Company $company = null)
+    {
+        $this->company = $company;
+
+        return $this;
     }
 }
-

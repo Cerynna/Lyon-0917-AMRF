@@ -1,0 +1,71 @@
+{% extends 'AMRFPublicRooterBundle::private/admin/baseAdmin.html.twig' %}
+
+{% block body %}
+    <h1>Mayors list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Firstname</th>
+                <th>Lastname</th>
+                <th>Address</th>
+                <th>Insee</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Town</th>
+                <th>Zipcode</th>
+                <th>Department</th>
+                <th>Region</th>
+                <th>Latitude</th>
+                <th>Longitude</th>
+                <th>Population</th>
+                <th>Url</th>
+                <th>Facebook</th>
+                <th>Twitter</th>
+                <th>Google</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for mayor in mayors %}
+            <tr>
+                <td><a href="{{ path('admin_mayor_show', { 'id': mayor.id }) }}">{{ mayor.id }}</a></td>
+                <td>{{ mayor.firstName }}</td>
+                <td>{{ mayor.lastName }}</td>
+                <td>{{ mayor.address }}</td>
+                <td>{{ mayor.insee }}</td>
+                <td>{{ mayor.email }}</td>
+                <td>{{ mayor.phone }}</td>
+                <td>{{ mayor.town }}</td>
+                <td>{{ mayor.zipCode }}</td>
+                <td>{{ mayor.department }}</td>
+                <td>{{ mayor.region }}</td>
+                <td>{{ mayor.latitude }}</td>
+                <td>{{ mayor.longitude }}</td>
+                <td>{{ mayor.population }}</td>
+                <td>{{ mayor.url }}</td>
+                <td>{{ mayor.facebook }}</td>
+                <td>{{ mayor.twitter }}</td>
+                <td>{{ mayor.google }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('admin_mayor_show', { 'id': mayor.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('admin_mayor_edit', { 'id': mayor.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('admin_mayor_new') }}">Create a new mayor</a>
+        </li>
+    </ul>
+{% endblock %}
