@@ -1,0 +1,91 @@
+{% extends 'AMRFPublicRooterBundle::private/admin/baseAdmin.html.twig' %}
+
+{% block body %}
+    <h1>Projects list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Title</th>
+                <th>Theme</th>
+                <th>Creationdate</th>
+                <th>Updatedate</th>
+                <th>Image</th>
+                <th>Projectdate</th>
+                <th>Projectduration</th>
+                <th>Projectcost</th>
+                <th>Projectcofinance</th>
+                <th>Descresume</th>
+                <th>Desccontext</th>
+                <th>Descgoal</th>
+                <th>Descprogress</th>
+                <th>Descpartners</th>
+                <th>Descresults</th>
+                <th>Descdifficulties</th>
+                <th>Descadvices</th>
+                <th>Contactname</th>
+                <th>Contactoccupation</th>
+                <th>Contactemail</th>
+                <th>Contactphone</th>
+                <th>File</th>
+                <th>Url</th>
+                <th>Youtube</th>
+                <th>Facebook</th>
+                <th>Twitter</th>
+                <th>Keywords</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for project in projects %}
+            <tr>
+                <td><a href="{{ path('admin_project_show', { 'id': project.id }) }}">{{ project.id }}</a></td>
+                <td>{{ project.title }}</td>
+                <td>{{ project.theme }}</td>
+                <td>{% if project.creationDate %}{{ project.creationDate|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if project.updateDate %}{{ project.updateDate|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{{ project.image }}</td>
+                <td>{% if project.projectDate %}{{ project.projectDate|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{{ project.projectDuration }}</td>
+                <td>{{ project.projectCost }}</td>
+                <td>{{ project.projectCoFinance }}</td>
+                <td>{{ project.descResume }}</td>
+                <td>{{ project.descContext }}</td>
+                <td>{{ project.descGoal }}</td>
+                <td>{{ project.descProgress }}</td>
+                <td>{{ project.descPartners }}</td>
+                <td>{{ project.descResults }}</td>
+                <td>{{ project.descDifficulties }}</td>
+                <td>{{ project.descAdvices }}</td>
+                <td>{{ project.contactName }}</td>
+                <td>{{ project.contactOccupation }}</td>
+                <td>{{ project.contactEmail }}</td>
+                <td>{{ project.contactPhone }}</td>
+                <td>{{ project.file }}</td>
+                <td>{{ project.url }}</td>
+                <td>{{ project.youtube }}</td>
+                <td>{{ project.facebook }}</td>
+                <td>{{ project.twitter }}</td>
+                <td>{{ project.keyWords }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('admin_project_show', { 'id': project.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('admin_project_edit', { 'id': project.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('admin_project_new') }}">Create a new project</a>
+        </li>
+    </ul>
+{% endblock %}

@@ -3,11 +3,17 @@ section {
     .select2 {
       width: 100% !important;
     }
+    /*
     .select2-container--default.select2-container--focus .select2-selection--multiple {
       border: solid $color1 2px;
       outline: 0;
       background-color: $color3;
     }
+    .select2-results__options{
+      li:hover{
+        background: red !important;
+      }
+    }*/
     .search {
       height: 50px;
       font-size: 1.8em !important;
@@ -91,13 +97,38 @@ section {
       width: 1em !important;
       margin-left: 20px;
     }
-
     #divCacher {
       display: none;
     }
     .star { //phrase symbole obligatoire
       text-align: center;
       font-style: italic;
+    }
+    .result {
+      position: absolute;
+      background: $color2;
+      max-height: 200px;
+      overflow-y: scroll;
+      width: 300px;
+      overflow-x: hidden;
+      z-index: 200;
+      top: 70px;
+      list-style:none;
+      margin-left:0;
+      padding-left:0;
+      li {
+        text-align: left;
+        padding: 5px 0 5px 10px;
+        border-radius: 5px;
+        margin: 2px;
+      }
+      li:hover {
+        background: $color1;
+        color: $color2;
+      }
+    }
+    .relativeDiv {
+      position: relative;
     }
     /* .cleIcon {
        width: 200px;
