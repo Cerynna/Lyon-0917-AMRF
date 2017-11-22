@@ -2,9 +2,101 @@
 
 {% block body %}
     <h1>User creation</h1>
-
     {{ form_start(form) }}
-        {{ form_widget(form) }}
+<div class="jumbotron">
+    {{ form_label(form.login) }}
+    {{ form_widget(form.login) }}
+    {{ form_label(form.password) }}
+    {{ form_widget(form.password) }}
+    {{ form_label(form.role) }}
+
+    {{ form_widget(form.role, {'attr': {
+        'onchange': "change_valeur()"
+    } }
+    ) }}
+    {{ form_label(form.status) }}
+    {{ form_widget(form.status) }}
+    {{ form_label(form.email) }}
+    {{ form_widget(form.email) }}
+    {{ form_widget(form.creationDate, {'attr': {
+        'class': "hidden"
+    } }) }}
+    {{ form_widget(form.lastLogin, {'attr': {
+        'class': "hidden"
+    } }) }}
+</div>
+<div class="jumbotron userMayor">
+    <h4>Maire</h4>
+    {{ form_label(form.mayor.firstName) }}
+    {{ form_widget(form.mayor.firstName) }}
+
+    {{ form_label(form.mayor.lastName) }}
+    {{ form_widget(form.mayor.lastName) }}
+
+    {{ form_label(form.mayor.address) }}
+    {{ form_widget(form.mayor.address) }}
+
+    {{ form_label(form.mayor.insee) }}
+    {{ form_widget(form.mayor.insee) }}
+
+    {{ form_label(form.mayor.email) }}
+    {{ form_widget(form.mayor.email) }}
+
+    {{ form_label(form.mayor.phone) }}
+    {{ form_widget(form.mayor.phone) }}
+
+    {{ form_label(form.mayor.town) }}
+    {{ form_widget(form.mayor.town) }}
+
+    {{ form_label(form.mayor.zipCode) }}
+    {{ form_widget(form.mayor.zipCode) }}
+
+    {{ form_label(form.mayor.department) }}
+    {{ form_widget(form.mayor.department) }}
+
+    {{ form_label(form.mayor.region) }}
+    {{ form_widget(form.mayor.region) }}
+
+    {{ form_label(form.mayor.latitude) }}
+    {{ form_widget(form.mayor.latitude) }}
+
+    {{ form_label(form.mayor.longitude) }}
+    {{ form_widget(form.mayor.longitude) }}
+
+    {{ form_label(form.mayor.population) }}
+    {{ form_widget(form.mayor.population) }}
+
+    {{ form_label(form.mayor.url) }}
+    {{ form_widget(form.mayor.url) }}
+
+    {{ form_label(form.mayor.facebook) }}
+    {{ form_widget(form.mayor.facebook) }}
+
+    {{ form_label(form.mayor.twitter) }}
+    {{ form_widget(form.mayor.twitter) }}
+
+    {{ form_label(form.mayor.google) }}
+    {{ form_widget(form.mayor.google) }}
+</div>
+<div class="jumbotron userPartner hidden">
+    <h4>Partenaires</h4>
+    {{ form_label(form.partner.firstName) }}
+    {{ form_widget(form.partner.firstName) }}
+
+    {{ form_label(form.partner.lastName) }}
+    {{ form_widget(form.partner.lastName) }}
+
+    {{ form_label(form.partner.occupation) }}
+    {{ form_widget(form.partner.occupation) }}
+
+    {{ form_label(form.partner.phone) }}
+    {{ form_widget(form.partner.phone) }}
+
+    {{ form_label(form.partner.email) }}
+    {{ form_widget(form.partner.email) }}
+
+</div>
+    {{ form_widget(form) }}
         <input type="submit" value="Create" />
     {{ form_end(form) }}
 
@@ -13,4 +105,30 @@
             <a href="{{ path('admin_user_index') }}">Back to the list</a>
         </li>
     </ul>
+{% endblock %}
+{% block javascripts %}
+<script>
+    function change_valeur() {
+        var select = document.getElementById("amrf_publicrooterbundle_user_role");
+        var choice = select.selectedIndex;
+        var role = select.options[choice].value;
+
+
+        if (role == 1) {
+            $(".userPartner").addClass("hidden");
+            $(".userMayor").removeClass("hidden");
+
+        }
+        if (role == 2) {
+            $(".userMayor").addClass("hidden");
+            $(".userPartner").removeClass("hidden");
+
+        }
+        if (role == 3) {
+            $(".userMayor").addClass("hidden");
+            $(".userPartner").addClass("hidden");
+
+        }
+    }
+</script>
 {% endblock %}

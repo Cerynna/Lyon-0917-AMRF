@@ -3,6 +3,7 @@
 namespace AMRF\PublicRooterBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -13,7 +14,12 @@ class PartnerType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('firstName')->add('lastName')->add('occupation')->add('phone')->add('email')->add('company');
+        $builder->add('firstName')
+            ->add('lastName')
+            ->add('occupation')
+            ->add('phone')
+            ->add('email')
+            ->add('company', TextType::class);
     }
     
     /**

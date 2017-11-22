@@ -3,11 +3,12 @@
 namespace AMRF\PublicRooterBundle\Controller;
 
 
+
 use AMRF\PublicRooterBundle\Entity\Mayor;
-
+use AMRF\PublicRooterBundle\Entity\Partner;
 use AMRF\PublicRooterBundle\Entity\Company;
-
 use AMRF\PublicRooterBundle\Entity\Project;
+
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -357,12 +358,25 @@ class PublicRooterController extends Controller
     /**
      * @Route("/partenaire/profil", name="partProfil")
      */
-    public function partProfilAction()
+    public function partProfilAction(Request $request)
     {
-        return $this->render('AMRFPublicRooterBundle:private:partenaires/partProfil.html.twig');
+        $partner = new Partner();
+        $form = $this->createForm('AMRF\PublicRooterBundle\Form\PartnerType', $partner);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($partner);
+            $em->flush();
+
+            return $this->redirectToRoute('partHome', array('id' => $partner->getId()));
+        }
+
+        return $this->render('AMRFPublicRooterBundle:private:partenaires/partProfil.html.twig', array(
+            'partner' => $partner,
+            'form' => $form->createView(),
+        ));
     }
-
-
 
     /**
      * @Route("/partenaire/presentation", name="partPres")
