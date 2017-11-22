@@ -74,7 +74,7 @@ class Mayor
     /**
      * @var string
      *
-     * @ORM\Column(name="zipCode", type="string", length=5, nullable=true)
+     * @ORM\Column(name="zipCode", type="string", length=20, nullable=true)
      */
     private $zipCode;
 
