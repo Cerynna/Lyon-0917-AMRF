@@ -20,6 +20,12 @@ class User
     const USER_ROLE_PARTNER = 2;
     const USER_ROLE_ADMIN   = 3;
 
+    const USER_STATUS_ACTIF     = 1;
+    const USER_STATUS_INACTIF   = 2;
+    const USER_STATUS_DELETE    = 3;
+
+
+
 
 
     /**
