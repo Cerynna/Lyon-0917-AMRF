@@ -547,4 +547,9 @@ class Company
     {
         return $this->favoriteCompany;
     }
+    public function __toString()
+    {
+        return $this->getName();
+    }
+
 }
