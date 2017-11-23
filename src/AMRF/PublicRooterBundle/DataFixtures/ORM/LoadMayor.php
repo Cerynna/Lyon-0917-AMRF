@@ -24,7 +24,7 @@ class LoadMayor extends Fixture implements FixtureInterface
         $faker = Faker\Factory::create('fr_FR');
 
         $mayors = [];
-        for ($i = 0; $i < 10; $i++) {
+        for ($i = 0; $i < LoadUser::MAX_USER; $i++) {
             $mayors[$i] = new Mayor();
             $mayors[$i]
                 ->setFirstName($faker->firstName($gender = null))

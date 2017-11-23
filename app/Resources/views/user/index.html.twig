@@ -1,51 +1,68 @@
 {% extends 'AMRFPublicRooterBundle::private/admin/baseAdmin.html.twig' %}
 
 {% block body %}
+    <div class="menu-admin menu-user">
+        <ul>
+            <li>
+                <a href="{{ path('admin_user_index') }}" data-toggle="tooltip" data-placement="right"
+                   title="Liste Utilisateur"><i class="fa fa-users fa-admin"></i></a>
+            </li>
+            <li>
+                <a href="{{ path('admin_user_new') }}" data-toggle="tooltip" data-placement="right"
+                   title="Nouvel Utilisateur"><i
+                            class="fa fa-user-plus fa-admin"></i></a>
+            </li>
+        </ul>
+    </div>
     <h1>Users list</h1>
+
 
     <table>
         <thead>
-            <tr>
-                <th>Id</th>
-                <th>Login</th>
-                <th>Password</th>
-                <th>Role</th>
-                <th>Status</th>
-                <th>Email</th>
-                <th>Creationdate</th>
-                <th>Lastlogin</th>
-                <th>Actions</th>
-            </tr>
+        <tr>
+            <th>Actions</th>
+            <th>Id</th>
+            <th>Login</th>
+            <th>Role</th>
+            <th>Status</th>
+            <th>Email</th>
+            <th>Creationdate</th>
+            <th>Lastlogin</th>
+            <th>Mayor_id</th>
+
+        </tr>
         </thead>
         <tbody>
         {% for user in users %}
             <tr>
+                <td>
+                    <a href="{{ path('admin_user_show', { 'id': user.id }) }}" data-toggle="tooltip"
+                       data-placement="left" title="Voir"><i class="fa fa-eye fa-admin"></i></a>
+                    <a href="{{ path('admin_user_edit', { 'id': user.id }) }}" data-toggle="tooltip"
+                       data-placement="right" title="Editer"><i class="fa fa-pencil fa-admin"></i></a>
+                </td>
                 <td><a href="{{ path('admin_user_show', { 'id': user.id }) }}">{{ user.id }}</a></td>
                 <td>{{ user.login }}</td>
-                <td>{{ user.password }}</td>
                 <td>{{ user.role }}</td>
                 <td>{{ user.status }}</td>
                 <td>{{ user.email }}</td>
                 <td>{% if user.creationDate %}{{ user.creationDate|date('Y-m-d H:i:s') }}{% endif %}</td>
                 <td>{% if user.lastLogin %}{{ user.lastLogin|date('Y-m-d H:i:s') }}{% endif %}</td>
                 <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('admin_user_show', { 'id': user.id }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('admin_user_edit', { 'id': user.id }) }}">edit</a>
-                        </li>
-                    </ul>
+                    {% if user.mayor %}{{ user.mayor.id }}{% endif %}
+                    {% if user.partner %}{{ user.partner.id }}{% endif %}
                 </td>
+
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <ul>
-        <li>
-            <a href="{{ path('admin_user_new') }}">Create a new user</a>
-        </li>
-    </ul>
+{% endblock %}
+{% block javascripts %}
+    <script>
+        $(document).ready(function () {
+            $('[data-toggle="tooltip"]').tooltip();
+        });
+    </script>
 {% endblock %}

@@ -17,6 +17,7 @@ use Faker;
 
 class LoadUser extends Fixture implements FixtureInterface
 {
+    const MAX_USER = 20;
     public function load(ObjectManager $em)
     {
         $faker = Faker\Factory::create('fr_FR');
@@ -43,7 +44,7 @@ class LoadUser extends Fixture implements FixtureInterface
         $em->flush();*/
 
 
-        for ($i = 0; $i < 10; $i++) {
+        for ($i = 0; $i < self::MAX_USER; $i++) {
             $users[$i] = new User();
             $role = $faker->randomElement($roles);
             $insee = $faker->numberBetween($min = 10000, $max = 99999);
@@ -58,7 +59,7 @@ class LoadUser extends Fixture implements FixtureInterface
                 ->setMayor($this->getReference('mayor-' . $i));
             $em->persist($users[$i]);
         }
-        for ($i = 0; $i < 10; $i++) {
+        for ($i = 0; $i < self::MAX_USER; $i++) {
             $users[$i] = new User();
             $role = $faker->randomElement($roles);
             $insee = $faker->numberBetween($min = 10000, $max = 99999);

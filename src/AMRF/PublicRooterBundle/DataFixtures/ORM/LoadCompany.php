@@ -24,7 +24,7 @@ class LoadCompany extends Fixture implements FixtureInterface
 
         $companies = [];
         $thematiques = array('culture', 'education', 'economie', 'mobilite', 'social');
-        for ($i = 0; $i < 10; $i++) {
+        for ($i = 0; $i < LoadUser::MAX_USER; $i++) {
             $companies[$i] = new Company();
             $companies[$i]
                 ->setName($faker->company)

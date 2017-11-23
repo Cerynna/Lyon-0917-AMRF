@@ -25,7 +25,7 @@ class LoadProject extends Fixture implements FixtureInterface
         $projects = [];
         $thematiques = array('culture', 'education', 'economie', 'mobilite', 'social');
         $keywords = array('ecole', 'periscolaire', 'medecin', 'sante', 'kebab');
-        for ($i = 0; $i < 10; $i++) {
+        for ($i = 0; $i < LoadUser::MAX_USER; $i++) {
             $projects[$i] = new Project();
             $projects[$i]
                 ->setTitle($faker->sentence($nbWords = 6, $variableNbWords = true))
