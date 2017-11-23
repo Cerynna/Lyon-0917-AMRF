@@ -19,7 +19,7 @@ class PartnerType extends AbstractType
             ->add('occupation')
             ->add('phone')
             ->add('email')
-            ->add('company', TextType::class);
+            ->add('company');
     }
     
     /**

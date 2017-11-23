@@ -2,8 +2,11 @@
 
 namespace AMRF\PublicRooterBundle\DataFixtures\ORM;
 
+use AMRF\PublicRooterBundle\Entity\Mayor;
+use AMRF\PublicRooterBundle\Entity\Partner;
 use AMRF\PublicRooterBundle\Entity\Project;
 
+use AMRF\PublicRooterBundle\Entity\User;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\FixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
@@ -20,8 +23,8 @@ class LoadProject extends Fixture implements FixtureInterface
         $faker = Faker\Factory::create('fr_FR');
 
         $projects = [];
-        $thematiques = array ('culture','education','economie','mobilite','social');
-        $keywords = array ('ecole','periscolaire','medecin','sante','kebab');
+        $thematiques = array('culture', 'education', 'economie', 'mobilite', 'social');
+        $keywords = array('ecole', 'periscolaire', 'medecin', 'sante', 'kebab');
         for ($i = 0; $i < 10; $i++) {
             $projects[$i] = new Project();
             $projects[$i]
@@ -31,9 +34,9 @@ class LoadProject extends Fixture implements FixtureInterface
                 ->setUpdateDate($faker->dateTime($max = 'now', $timezone = date_default_timezone_get()))
                 ->setImage($faker->imageUrl($width = 150, $height = 150))
                 ->setProjectDate($faker->dateTime($max = 'now', $timezone = date_default_timezone_get()))
-                ->setProjectDuration($faker->randomElement($array = array ('1 mois','6 mois','1 ans','100 ans')))
+                ->setProjectDuration($faker->randomElement($array = array('1 mois', '6 mois', '1 ans', '100 ans')))
                 ->setProjectCost($faker->numberBetween($min = 1000, $max = 50000))
-                ->setProjectCoFinance($faker->randomElement($array = array ('Oui','Non')))
+                ->setProjectCoFinance($faker->randomElement($array = array('Oui', 'Non')))
                 ->setDescResume($faker->realText($maxNbChars = 200, $indexSize = 2))
                 ->setDescContext($faker->realText($maxNbChars = 1200, $indexSize = 2))
                 ->setDescGoal($faker->realText($maxNbChars = 200, $indexSize = 2))
@@ -51,11 +54,12 @@ class LoadProject extends Fixture implements FixtureInterface
                 ->setYoutube($faker->url)
                 ->setFacebook($faker->url)
                 ->setTwitter($faker->url)
-                ->setKeyWords(serialize($faker->randomElements($keywords, $count = 3)));
-
-
+                ->setKeyWords(serialize($faker->randomElements($keywords, $count = 3)))
+                ->setMayor($this->getReference('mayor-' . $i));
             $em->persist($projects[$i]);
         }
+
+
         $em->flush();
     }
 
