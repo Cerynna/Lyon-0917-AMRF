@@ -72,6 +72,19 @@ class PartnerController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+
+            $secteur = $company->getActivities();
+            $dbsecteur = [];
+            foreach ($secteur as $key => $value) {
+
+                $dbsecteur[] = $value->getValue();
+            }
+            $secteurs = serialize($dbsecteur);
+            $company->setActivities($secteurs);
+
+
+
+
             $em->persist($company);
             $em->flush();
 
