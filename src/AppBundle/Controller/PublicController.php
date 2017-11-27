@@ -155,11 +155,11 @@ class PublicController extends Controller
             $themes = serialize($dbthema);
             $project->setTheme($themes);
 
-			$em->persist($project);
-			$em->flush();
+            $em->persist($project);
+            $em->flush();
 
-			return $this->redirectToRoute('maireHome', array('id' => $project->getId()));
-		}
+            return $this->redirectToRoute('maireHome', array('id' => $project->getId()));
+        }
 
         return $this->render('private/maires/maireFormProjet.html.twig', array(
             'project' => $project,

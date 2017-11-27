@@ -12,7 +12,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component
  *
  * @Route("admin/company")
  */
-class CompanyController extends Controller
+class AdminCompanyController extends Controller
 {
     /**
      * Lists all company entities.
@@ -24,7 +24,7 @@ class CompanyController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $companies = $em->getRepository('AMRFPublicRooterBundle:Company')->findAll();
+        $companies = $em->getRepository('AppBundle:Company')->findAll();
 
         return $this->render('company/index.html.twig', array(
             'companies' => $companies,

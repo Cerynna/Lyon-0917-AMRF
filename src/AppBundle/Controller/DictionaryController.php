@@ -24,7 +24,7 @@ class DictionaryController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $dictionaries = $em->getRepository('AMRFPublicRooterBundle:Dictionary')->findAll();
+        $dictionaries = $em->getRepository('Appbundle:Dictionary')->findAll();
 
         return $this->render('dictionary/index.html.twig', array(
             'dictionaries' => $dictionaries,
