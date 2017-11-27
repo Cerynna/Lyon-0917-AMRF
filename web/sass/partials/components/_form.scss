@@ -3,17 +3,6 @@ section {
     .select2 {
       width: 100% !important;
     }
-    /*
-    .select2-container--default.select2-container--focus .select2-selection--multiple {
-      border: solid $color1 2px;
-      outline: 0;
-      background-color: $color3;
-    }
-    .select2-results__options{
-      li:hover{
-        background: red !important;
-      }
-    }*/
     .search {
       height: 50px;
       font-size: 1.8em !important;
@@ -33,7 +22,6 @@ section {
       margin-right: auto;
     }
     input {
-      background: red;
       border: 1px solid $color1;
       width: 100% !important;
     }
