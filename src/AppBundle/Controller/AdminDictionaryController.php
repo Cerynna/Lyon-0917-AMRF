@@ -12,7 +12,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component
  *
  * @Route("admin/dictionary")
  */
-class DictionaryController extends Controller
+class AdminDictionaryController extends Controller
 {
     /**
      * Lists all dictionary entities.
@@ -24,7 +24,7 @@ class DictionaryController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $dictionaries = $em->getRepository('Appbundle:Dictionary')->findAll();
+        $dictionaries = $em->getRepository('AppBundle:Dictionary')->findAll();
 
         return $this->render('dictionary/index.html.twig', array(
             'dictionaries' => $dictionaries,

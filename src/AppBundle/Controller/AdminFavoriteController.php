@@ -12,7 +12,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component
  *
  * @Route("admin/favorite")
  */
-class FavoriteController extends Controller
+class AdminFavoriteController extends Controller
 {
     /**
      * Lists all favorite entities.

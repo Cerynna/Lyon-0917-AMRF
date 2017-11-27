@@ -1,0 +1,65 @@
+{% extends 'private/admin/baseAdmin.html.twig' %}
+
+{% block body %}
+    <div class="menu-admin menu-user">
+        <ul>
+            <li>
+                <a href="{{ path('admin_user_index') }}" data-toggle="tooltip" data-placement="right"
+                   title="Liste Utilisateur"><i class="fa fa-users fa-admin"></i></a>
+            </li>
+            <li>
+                <a href="{{ path('admin_user_new') }}" data-toggle="tooltip" data-placement="right" title="Nouvel Utilisateur"><i
+                            class="fa fa-user-plus fa-admin"></i></a>
+            </li>
+            <li>
+                <a href="{{ path('admin_user_edit', { 'id': user.id }) }}" data-toggle="tooltip"
+                   data-placement="right" title="Editer"><i class="fa fa-pencil fa-admin"></i></a>
+            </li>
+            <li>
+                {{ form_start(delete_form) }}
+                <button class="fa-admin" data-toggle="tooltip" data-placement="right"
+                        title="Supprimer l'Utilisateur" type="submit"><i class="fa fa-trash-o"></i></button>
+                {{ form_end(delete_form) }}
+
+            </li>
+        </ul>
+    </div>
+    <h1>User</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ user.id }}</td>
+            </tr>
+            <tr>
+                <th>Login</th>
+                <td>{{ user.login }}</td>
+            </tr>
+            <tr>
+                <th>Password</th>
+                <td>{{ user.password }}</td>
+            </tr>
+            <tr>
+                <th>Role</th>
+                <td>{{ user.role }}</td>
+            </tr>
+            <tr>
+                <th>Status</th>
+                <td>{{ user.status }}</td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td>{{ user.email }}</td>
+            </tr>
+            <tr>
+                <th>Creationdate</th>
+                <td>{% if user.creationDate %}{{ user.creationDate|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Lastlogin</th>
+                <td>{% if user.lastLogin %}{{ user.lastLogin|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+        </tbody>
+    </table>
+{% endblock %}

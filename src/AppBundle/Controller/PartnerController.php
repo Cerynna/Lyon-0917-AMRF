@@ -1,44 +1,44 @@
 <?php
+/**
+ * Created by PhpStorm.
+ * User: cerynna
+ * Date: 27/11/17
+ * Time: 16:11
+ */
 
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\Mayor;
 use AppBundle\Entity\Partner;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use AppBundle\Entity\Company;
+use AppBundle\Entity\Project;
+
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * Partner controller.
- *
- * @Route("admin/partner")
+ * @Route("partner/")
  */
+
 class PartnerController extends Controller
 {
+
     /**
-     * Lists all partner entities.
-     *
-     * @Route("/", name="admin_partner_index")
-     * @Method("GET")
+     * @Route("", name="partner_index")
      */
-    public function indexAction()
+    public function partnerIndexAction()
     {
-        $em = $this->getDoctrine()->getManager();
-
-        $partners = $em->getRepository('AppBundle:Partner')->findAll();
-
-        return $this->render('partner/index.html.twig', array(
-            'partners' => $partners,
-        ));
+        return $this->render('private/partenaires/partIndex.html.twig');
     }
 
     /**
-     * Creates a new partner entity.
-     *
-     * @Route("/new", name="admin_partner_new")
-     * @Method({"GET", "POST"})
+     * @Route("profil", name="partner_profil")
      */
-    public function newAction(Request $request)
+    public function partnerProfilAction(Request $request)
     {
+
         $partner = new Partner();
         $form = $this->createForm('AppBundle\Form\PartnerType', $partner);
         $form->handleRequest($request);
@@ -48,89 +48,48 @@ class PartnerController extends Controller
             $em->persist($partner);
             $em->flush();
 
-            return $this->redirectToRoute('admin_partner_show', array('id' => $partner->getId()));
+            return $this->redirectToRoute('partHome', array('id' => $partner->getId()));
         }
 
-        return $this->render('partner/new.html.twig', array(
+        return $this->render('private/partenaires/partProfil.html.twig', array(
             'partner' => $partner,
             'form' => $form->createView(),
         ));
+
     }
 
-    /**
-     * Finds and displays a partner entity.
-     *
-     * @Route("/{id}", name="admin_partner_show")
-     * @Method("GET")
-     */
-    public function showAction(Partner $partner)
-    {
-        $deleteForm = $this->createDeleteForm($partner);
-
-        return $this->render('partner/show.html.twig', array(
-            'partner' => $partner,
-            'delete_form' => $deleteForm->createView(),
-        ));
-    }
 
     /**
-     * Displays a form to edit an existing partner entity.
-     *
-     * @Route("/{id}/edit", name="admin_partner_edit")
+     * @Route("presentation", name="partner_press")
      * @Method({"GET", "POST"})
      */
-    public function editAction(Request $request, Partner $partner)
+    public function partnerPressEditAction(Request $request)
     {
-        $deleteForm = $this->createDeleteForm($partner);
-        $editForm = $this->createForm('AppBundle\Form\PartnerType', $partner);
-        $editForm->handleRequest($request);
 
-        if ($editForm->isSubmitted() && $editForm->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
-
-            return $this->redirectToRoute('admin_partner_edit', array('id' => $partner->getId()));
-        }
-
-        return $this->render('partner/edit.html.twig', array(
-            'partner' => $partner,
-            'edit_form' => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
-        ));
-    }
-
-    /**
-     * Deletes a partner entity.
-     *
-     * @Route("/{id}", name="admin_partner_delete")
-     * @Method("DELETE")
-     */
-    public function deleteAction(Request $request, Partner $partner)
-    {
-        $form = $this->createDeleteForm($partner);
+        $company = new Company();
+        $form = $this->createForm('AppBundle\Form\CompanyType', $company);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $em->remove($partner);
+            $em->persist($company);
             $em->flush();
+
+            return $this->redirectToRoute('admin_company_show', array('id' => $company->getId()));
         }
 
-        return $this->redirectToRoute('admin_partner_index');
+        return $this->render('private/partenaires/partFormPresentation.html.twig', array(
+            'company' => $company,
+            'form' => $form->createView(),
+        ));
+
+    }
+    /**
+     * @Route("favorite", name="partner_favorite")
+     */
+    public function partnerFavoriteAction()
+    {
+        return $this->render('private/favoris.html.twig');
     }
 
-    /**
-     * Creates a form to delete a partner entity.
-     *
-     * @param Partner $partner The partner entity
-     *
-     * @return \Symfony\Component\Form\Form The form
-     */
-    private function createDeleteForm(Partner $partner)
-    {
-        return $this->createFormBuilder()
-            ->setAction($this->generateUrl('admin_partner_delete', array('id' => $partner->getId())))
-            ->setMethod('DELETE')
-            ->getForm()
-        ;
-    }
 }

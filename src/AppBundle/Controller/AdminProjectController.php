@@ -12,7 +12,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component
  *
  * @Route("admin/project")
  */
-class ProjectController extends Controller
+class AdminProjectController extends Controller
 {
     /**
      * Lists all project entities.

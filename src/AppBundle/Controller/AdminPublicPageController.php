@@ -13,7 +13,7 @@ use Symfony\Component\HttpFoundation\Request;
  *
  * @Route("admin/publicpage")
  */
-class PublicPageController extends Controller
+class AdminPublicPageController extends Controller
 {
     /**
      * Lists all publicPage entities.

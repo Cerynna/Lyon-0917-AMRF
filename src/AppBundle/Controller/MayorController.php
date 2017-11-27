@@ -1,43 +1,41 @@
 <?php
+/**
+ * Created by PhpStorm.
+ * User: cerynna
+ * Date: 27/11/17
+ * Time: 16:09
+ */
 
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Mayor;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use AppBundle\Entity\Partner;
+use AppBundle\Entity\Company;
+use AppBundle\Entity\Project;
+
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * Mayor controller.
- *
- * @Route("admin/mayor")
+ * @Route("mayor/")
  */
 class MayorController extends Controller
 {
+
     /**
-     * Lists all mayor entities.
-     *
-     * @Route("/", name="admin_mayor_index")
-     * @Method("GET")
+     * @Route("", name="mayor_index")
      */
-    public function indexAction()
+    public function mayorIndexAction()
     {
-        $em = $this->getDoctrine()->getManager();
-
-        $mayors = $em->getRepository('AppBundle:Mayor')->findAll();
-
-        return $this->render('mayor/index.html.twig', array(
-            'mayors' => $mayors,
-        ));
+        return $this->render('private/maires/maireIndex.html.twig');
     }
 
     /**
-     * Creates a new mayor entity.
-     *
-     * @Route("/new", name="admin_mayor_new")
-     * @Method({"GET", "POST"})
+     * @Route("profil", name="mayor_profil")
      */
-    public function newAction(Request $request)
+    public function mayorProfilAction(Request $request)
     {
         $mayor = new Mayor();
         $form = $this->createForm('AppBundle\Form\MayorType', $mayor);
@@ -51,86 +49,61 @@ class MayorController extends Controller
             return $this->redirectToRoute('admin_mayor_show', array('id' => $mayor->getId()));
         }
 
-        return $this->render('mayor/new.html.twig', array(
+        return $this->render('private/maires/maireProfil.html.twig', array(
             'mayor' => $mayor,
             'form' => $form->createView(),
         ));
     }
 
-    /**
-     * Finds and displays a mayor entity.
-     *
-     * @Route("/{id}", name="admin_mayor_show")
-     * @Method("GET")
-     */
-    public function showAction(Mayor $mayor)
-    {
-        $deleteForm = $this->createDeleteForm($mayor);
 
-        return $this->render('mayor/show.html.twig', array(
-            'mayor' => $mayor,
-            'delete_form' => $deleteForm->createView(),
-        ));
+
+    /**
+     * @Route("project", name="mayor_project")
+     */
+    public function mayorProjectAction()
+    {
+        return $this->render('private/maires/maireProjet.html.twig');
     }
 
     /**
-     * Displays a form to edit an existing mayor entity.
-     *
-     * @Route("/{id}/edit", name="admin_mayor_edit")
-     * @Method({"GET", "POST"})
+     * @Route("project/new", name="mayor_project_new")
      */
-    public function editAction(Request $request, Mayor $mayor)
+    public function mayorProjectNewAction(Request $request)
     {
-        $deleteForm = $this->createDeleteForm($mayor);
-        $editForm = $this->createForm('AppBundle\Form\MayorType', $mayor);
-        $editForm->handleRequest($request);
-
-        if ($editForm->isSubmitted() && $editForm->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
-
-            return $this->redirectToRoute('admin_mayor_edit', array('id' => $mayor->getId()));
-        }
-
-        return $this->render('mayor/edit.html.twig', array(
-            'mayor' => $mayor,
-            'edit_form' => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
-        ));
-    }
-
-    /**
-     * Deletes a mayor entity.
-     *
-     * @Route("/{id}", name="admin_mayor_delete")
-     * @Method("DELETE")
-     */
-    public function deleteAction(Request $request, Mayor $mayor)
-    {
-        $form = $this->createDeleteForm($mayor);
+        $project = new Project();
+        $form = $this->createForm('AppBundle\Form\ProjectType', $project);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $em->remove($mayor);
+
+            $theme = $project->getTheme();
+            $dbthema = [];
+            foreach ($theme as $key => $value) {
+
+                $dbthema[] = $value->getValue();
+            }
+            $themes = serialize($dbthema);
+            $project->setTheme($themes);
+
+            $em->persist($project);
             $em->flush();
+
+            return $this->redirectToRoute('mayor_index', array('id' => $project->getId()));
         }
 
-        return $this->redirectToRoute('admin_mayor_index');
+        return $this->render('private/maires/maireFormProjet.html.twig', array(
+            'project' => $project,
+            'form' => $form->createView(),
+        ));
     }
 
     /**
-     * Creates a form to delete a mayor entity.
-     *
-     * @param Mayor $mayor The mayor entity
-     *
-     * @return \Symfony\Component\Form\Form The form
+     * @Route("favorite", name="mayor_favorite")
      */
-    private function createDeleteForm(Mayor $mayor)
+    public function mayorFavoriteAction()
     {
-        return $this->createFormBuilder()
-            ->setAction($this->generateUrl('admin_mayor_delete', array('id' => $mayor->getId())))
-            ->setMethod('DELETE')
-            ->getForm()
-        ;
+        return $this->render('private/favoris.html.twig');
     }
+
 }
