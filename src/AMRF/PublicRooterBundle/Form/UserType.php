@@ -20,8 +20,8 @@ class UserType extends AbstractType
             ->add('status')
             ->add('status', ChoiceType::class, array(
                 'choices'  => array(
-                    'Actif' => User::USER_STATUS_ACTIF,
                     'Inactif' => User::USER_STATUS_INACTIF,
+                    'Actif' => User::USER_STATUS_ACTIF,
                     'Delete' => User::USER_STATUS_DELETE,
                 ),
             ))

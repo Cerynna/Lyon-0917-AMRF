@@ -1,6 +1,21 @@
 {% extends 'AMRFPublicRooterBundle::private/admin/baseAdmin.html.twig' %}
 
 {% block body %}
+    <div class="menu-admin menu-publicpage">
+        <ul>
+            <li>
+                <a href="{{ path('admin_publicpage_index') }}" data-toggle="tooltip" data-placement="right"
+                   title="Liste Utilisateur"><i class="fa fa-users fa-admin"></i></a>
+            </li>
+            <li>
+                <a href="{{ path('admin_publicpage_new') }}" data-toggle="tooltip" data-placement="right" title="Nouvel Utilisateur"><i
+                            class="fa fa-user-plus fa-admin"></i></a>
+            </li>
+            <li>
+
+            </li>
+        </ul>
+    </div>
     <h1>Publicpage edit</h1>
 
     {{ form_start(edit_form) }}

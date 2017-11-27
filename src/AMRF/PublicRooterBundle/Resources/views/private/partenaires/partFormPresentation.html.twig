@@ -9,7 +9,6 @@
     <h2 class="center-align">Ma fiche Partenaire</h2>
     <!-- Nav tabs -->
     <div class="row tabPannel">
-        <form action="">
             <div class="col-md-12">
                 <ul class="list-inline text-center" role="tablist">
                     <li role="presentation" class="tabLi active" id="orgaMenu">
@@ -56,7 +55,7 @@
                         </div>
                         <div class="row">
                             <div class="form-group col-sm-4 col-sm-offset-4" align="center">
-                                <button type="button" class="btn"><i class="fa fa-floppy-o" aria-hidden="true"></i>
+                                <button type="submit" class="btn"><i class="fa fa-floppy-o" aria-hidden="true"></i>
                                     Enregistrer en brouillon
                                 </button>
                             </div>
@@ -186,7 +185,7 @@
                             </a>
                         </div>
                         <div class="form-group col-sm-4" align="center">
-                            <button type="button" class="btn"><i class="fa fa-floppy-o" aria-hidden="true"></i>
+                            <button type="submit" class="btn"><i class="fa fa-floppy-o" aria-hidden="true"></i>
                                 Enregistrer en brouillon
                             </button>
                         </div>
@@ -235,7 +234,7 @@
                             </a>
                         </div>
                         <div class="form-group col-sm-4" align="center">
-                            <button type="button" class="btn"><i class="fa fa-floppy-o" aria-hidden="true"></i>
+                            <button type="submit" class="btn"><i class="fa fa-floppy-o" aria-hidden="true"></i>
                                 Enregistrer en brouillon
                             </button>
                         </div>
@@ -280,14 +279,15 @@
                                 </a>
                             </div>
                             <div class="form-group col-sm-6" align="right">
-                                <button type="button" class="btn">Publier votre fiche</button>
+                                <button type="submit" class="btn">Publier votre fiche</button>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </form>
+
     </div>
+    {{ form_row(form._token) }}
     {{ form_widget(form)}}
     {{ form_end(form) }}
 {% endblock %}

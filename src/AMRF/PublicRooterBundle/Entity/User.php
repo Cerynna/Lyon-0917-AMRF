@@ -24,10 +24,6 @@ class User
     const USER_STATUS_INACTIF   = 2;
     const USER_STATUS_DELETE    = 3;
 
-
-
-
-
     /**
      * @var int
      *

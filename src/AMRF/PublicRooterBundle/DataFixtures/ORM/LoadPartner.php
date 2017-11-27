@@ -23,7 +23,7 @@ class LoadPartner extends Fixture implements FixtureInterface
         $faker = Faker\Factory::create('fr_FR');
 
         $partners = [];
-        for ($i = 0; $i < 10; $i++) {
+        for ($i = 0; $i < LoadUser::MAX_USER; $i++) {
             $partners[$i] = new Partner();
             $partners[$i]
                 ->setFirstName($faker->firstName($gender = null))
