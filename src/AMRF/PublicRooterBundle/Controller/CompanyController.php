@@ -6,8 +6,8 @@ use AMRF\PublicRooterBundle\Entity\Company;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Request;
+use AMRF\PublicRooterBundle\Services\UploadService;
 
 
 /**
@@ -40,7 +40,7 @@ class CompanyController extends Controller
      * @Route("/new", name="admin_company_new")
      * @Method({"GET", "POST"})
      */
-    public function newAction(Request $request)
+    public function newAction(Request $request, UploadService $upload)
     {
         $company = new Company();
         $form = $this->createForm('AMRF\PublicRooterBundle\Form\CompanyType', $company);
@@ -49,9 +49,10 @@ class CompanyController extends Controller
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $file = $company->getLogo();
-            $fileName = md5(uniqid()).'.'.$file->guessExtension();
-            $file->move($this->getTargetDir(), $fileName);
-            $company->setLogo($fileName);
+            dump($upload);
+            $test = $upload->imageUpload($file);
+
+            $company->setLogo($test);
             $em->persist($company);
             $em->flush();
 

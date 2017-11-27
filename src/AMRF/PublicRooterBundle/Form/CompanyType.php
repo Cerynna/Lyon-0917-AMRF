@@ -3,6 +3,7 @@
 namespace AMRF\PublicRooterBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -19,7 +20,7 @@ class CompanyType extends AbstractType
             ->add('city')
             ->add('activities')
             ->add('presentation')
-            ->add('logo')
+            ->add('logo', FileType::class)
             ->add('url')
             ->add('facebook')
             ->add('linkedin')

@@ -11,9 +11,13 @@ namespace AMRF\PublicRooterBundle\Services;
 
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
-class Upload
+class UploadService
 {
-    public function upload(UploadedFile $file)
+    /**
+     * @param UploadedFile $file
+     * @return string
+     */
+    public function imageUpload($file)
     {
        $fileName = md5(uniqid()).'.'.$file->guessExtension();
 
