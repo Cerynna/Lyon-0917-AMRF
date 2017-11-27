@@ -11,6 +11,10 @@
                 <a href="{{ path('admin_user_new') }}" data-toggle="tooltip" data-placement="right" title="Nouvel Utilisateur"><i
                             class="fa fa-user-plus fa-admin"></i></a>
             </li>
+            <li>
+                <a  onclick="document.amrf_publicrooterbundle_user.submit();" data-toggle="tooltip" data-placement="right"
+                    title="Nouvel Utilisateur"><i class="fa fa-check fa-admin"></i></a>
+            </li>
         </ul>
     </div>
     <h1>Nouvel Utilisateur</h1>
@@ -171,14 +175,9 @@
     </div>
 
     {{ form_widget(form) }}
-    <input type="submit" value="Create"/>
+
     {{ form_end(form) }}
 
-    <ul>
-        <li>
-            <a href="{{ path('admin_user_index') }}">Back to the list</a>
-        </li>
-    </ul>
 {% endblock %}
 {% block javascripts %}
     <script>

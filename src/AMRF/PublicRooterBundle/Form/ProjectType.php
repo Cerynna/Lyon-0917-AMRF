@@ -2,7 +2,11 @@
 
 namespace AMRF\PublicRooterBundle\Form;
 
+use AMRF\PublicRooterBundle\AMRFPublicRooterBundle;
+use Doctrine\ORM\EntityRepository;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -15,8 +19,21 @@ class ProjectType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('title')
-            ->add('theme')
+        $builder
+            ->add('title')
+            ->add('theme', EntityType::class, array(
+                'class' => 'AMRFPublicRooterBundle:Dictionary',
+                'query_builder' => function (EntityRepository $er) {
+                    return $er->createQueryBuilder('u')
+                        ->orderBy('u.type', 'ASC');
+                },
+                'expanded' => true,
+                'multiple' => true,
+                'choice_label' => 'name',
+                'label_attr' => ['class' => 'style_checkbox'],
+
+            ))
+            /*->add('theme')*/
             ->add('creationDate')
             ->add('updateDate')
             ->add('image')
@@ -49,7 +66,7 @@ class ProjectType extends AbstractType
             ->add('keyWords')
             ->add('mayor');
     }
-    
+
     /**
      * {@inheritdoc}
      */

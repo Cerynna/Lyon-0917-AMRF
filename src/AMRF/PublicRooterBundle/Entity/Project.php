@@ -25,7 +25,7 @@ class Project
     /**
      * @var string
      *
-     * @ORM\Column(name="title", type="string", length=255, nullable=true)
+     * @ORM\Column(name="title", type="string", length=255, nullable=false)
      */
     private $title;
 
@@ -39,7 +39,7 @@ class Project
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="creationDate", type="datetime")
+     * @ORM\Column(name="creationDate", type="datetime", nullable=true)
      */
     private $creationDate;
 
@@ -74,7 +74,7 @@ class Project
     /**
      * @var string
      *
-     * @ORM\Column(name="projectCost", type="string", length=255)
+     * @ORM\Column(name="projectCost", type="string", length=255, nullable=true)
      */
     private $projectCost;
 

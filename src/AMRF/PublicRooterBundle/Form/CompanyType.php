@@ -41,6 +41,7 @@ class CompanyType extends AbstractType
         ));
     }
 
+
     /**
      * {@inheritdoc}
      */

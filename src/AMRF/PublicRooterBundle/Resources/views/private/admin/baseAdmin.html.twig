@@ -100,6 +100,16 @@
                 <h3><i class="fa fa-bar-chart"></i> Organisme</h3>
             </a>
         </li>
+        <li {% if app.request.attributes.get('_route') == 'admin_dictionary_index'
+        or app.request.attributes.get('_route') == 'admin_dictionary_new'
+        or app.request.attributes.get('_route') == 'admin_dictionary_show'
+        or app.request.attributes.get('_route') == 'admin_dictionary_edit'
+        or app.request.attributes.get('_route') == 'admin_dictionary_delete' %} class="active-company" {% endif %}
+        >
+            <a href="{{ path('admin_dictionary_index') }}">
+                <h3><i class="fa fa-bar-chart"></i> Dictionary</h3>
+            </a>
+        </li>
     </ul>
 </nav>
 <section>

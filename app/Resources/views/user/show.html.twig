@@ -11,6 +11,17 @@
                 <a href="{{ path('admin_user_new') }}" data-toggle="tooltip" data-placement="right" title="Nouvel Utilisateur"><i
                             class="fa fa-user-plus fa-admin"></i></a>
             </li>
+            <li>
+                <a href="{{ path('admin_user_edit', { 'id': user.id }) }}" data-toggle="tooltip"
+                   data-placement="right" title="Editer"><i class="fa fa-pencil fa-admin"></i></a>
+            </li>
+            <li>
+                {{ form_start(delete_form) }}
+                <button class="fa-admin" data-toggle="tooltip" data-placement="right"
+                        title="Supprimer l'Utilisateur" type="submit"><i class="fa fa-trash-o"></i></button>
+                {{ form_end(delete_form) }}
+
+            </li>
         </ul>
     </div>
     <h1>User</h1>
@@ -51,18 +62,4 @@
             </tr>
         </tbody>
     </table>
-
-    <ul>
-        <li>
-            <a href="{{ path('admin_user_index') }}">Back to the list</a>
-        </li>
-        <li>
-            <a href="{{ path('admin_user_edit', { 'id': user.id }) }}">Edit</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
 {% endblock %}

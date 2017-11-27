@@ -45,6 +45,8 @@ class ProjectController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+            $theme = $project->getTheme();
+            $project->setTheme(serialize($theme));
             $em->persist($project);
             $em->flush();
 
