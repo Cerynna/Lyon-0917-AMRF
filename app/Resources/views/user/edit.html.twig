@@ -2,20 +2,112 @@
 
 {% block body %}
     <h1>User edit</h1>
-
     {{ form_start(edit_form) }}
-        {{ form_widget(edit_form) }}
-        <input type="submit" value="Edit" />
+    <div class="jumbotron">
+        {{ form_label(edit_form.login) }}
+        {{ form_widget(edit_form.login) }}
+        {{ form_label(edit_form.password) }}
+        {{ form_widget(edit_form.password) }}
+        {{ form_label(edit_form.role) }}
+
+        {{ form_widget(edit_form.role, {'attr': {
+            'onchange': "change_valeur()"
+        } }
+        ) }}
+        {{ form_label(edit_form.status) }}
+        {{ form_widget(edit_form.status) }}
+        {{ form_label(edit_form.email) }}
+        {{ form_widget(edit_form.email) }}
+        {{ form_widget(edit_form.creationDate, {'attr': {
+            'class': "hidden"
+        } }) }}
+        {{ form_widget(edit_form.lastLogin, {'attr': {
+            'class': "hidden"
+        } }) }}
+    </div>
+    <div class="jumbotron userMayor">
+        <h4>Maire</h4>
+        {{ form_label(edit_form.mayor.firstName) }}
+        {{ form_widget(edit_form.mayor.firstName) }}
+
+        {{ form_label(edit_form.mayor.lastName) }}
+        {{ form_widget(edit_form.mayor.lastName) }}
+
+        {{ form_label(edit_form.mayor.address) }}
+        {{ form_widget(edit_form.mayor.address) }}
+
+        {{ form_label(edit_form.mayor.insee) }}
+        {{ form_widget(edit_form.mayor.insee) }}
+
+        {{ form_label(edit_form.mayor.email) }}
+        {{ form_widget(edit_form.mayor.email) }}
+
+        {{ form_label(edit_form.mayor.phone) }}
+        {{ form_widget(edit_form.mayor.phone) }}
+
+        {{ form_label(edit_form.mayor.town) }}
+        {{ form_widget(edit_form.mayor.town) }}
+
+        {{ form_label(edit_form.mayor.zipCode) }}
+        {{ form_widget(edit_form.mayor.zipCode) }}
+
+        {{ form_label(edit_form.mayor.department) }}
+        {{ form_widget(edit_form.mayor.department) }}
+
+        {{ form_label(edit_form.mayor.region) }}
+        {{ form_widget(edit_form.mayor.region) }}
+
+        {{ form_label(edit_form.mayor.latitude) }}
+        {{ form_widget(edit_form.mayor.latitude) }}
+
+        {{ form_label(edit_form.mayor.longitude) }}
+        {{ form_widget(edit_form.mayor.longitude) }}
+
+        {{ form_label(edit_form.mayor.population) }}
+        {{ form_widget(edit_form.mayor.population) }}
+
+        {{ form_label(edit_form.mayor.url) }}
+        {{ form_widget(edit_form.mayor.url) }}
+
+        {{ form_label(edit_form.mayor.facebook) }}
+        {{ form_widget(edit_form.mayor.facebook) }}
+
+        {{ form_label(edit_form.mayor.twitter) }}
+        {{ form_widget(edit_form.mayor.twitter) }}
+
+        {{ form_label(edit_form.mayor.google) }}
+        {{ form_widget(edit_form.mayor.google) }}
+    </div>
+    <div class="jumbotron userPartner hidden">
+        <h4>Partenaires</h4>
+        {{ form_label(edit_form.partner.company) }}
+        {{ form_widget(edit_form.partner.company) }}
+
+        {{ form_label(edit_form.partner.firstName) }}
+        {{ form_widget(edit_form.partner.firstName) }}
+
+        {{ form_label(edit_form.partner.lastName) }}
+        {{ form_widget(edit_form.partner.lastName) }}
+
+        {{ form_label(edit_form.partner.occupation) }}
+        {{ form_widget(edit_form.partner.occupation) }}
+
+        {{ form_label(edit_form.partner.phone) }}
+        {{ form_widget(edit_form.partner.phone) }}
+
+        {{ form_label(edit_form.partner.email) }}
+        {{ form_widget(edit_form.partner.email) }}
+
+
+    </div>
+    {{ form_widget(edit_form) }}
+    <input type="submit" value="Create" />
     {{ form_end(edit_form) }}
 
     <ul>
         <li>
             <a href="{{ path('admin_user_index') }}">Back to the list</a>
         </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
     </ul>
 {% endblock %}
+

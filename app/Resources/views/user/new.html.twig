@@ -80,6 +80,9 @@
 </div>
 <div class="jumbotron userPartner hidden">
     <h4>Partenaires</h4>
+    {{ form_label(form.partner.company) }}
+    {{ form_widget(form.partner.company) }}
+
     {{ form_label(form.partner.firstName) }}
     {{ form_widget(form.partner.firstName) }}
 
@@ -94,6 +97,7 @@
 
     {{ form_label(form.partner.email) }}
     {{ form_widget(form.partner.email) }}
+
 
 </div>
     {{ form_widget(form) }}

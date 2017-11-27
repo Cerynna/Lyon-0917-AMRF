@@ -128,7 +128,7 @@ class Company
     private $contactEmail;
 
 
-
+    //****************** AUTO GENERATED FUNCTIONS ****************************
     /**
      * Get id
      *
@@ -546,5 +546,15 @@ class Company
     public function getFavoriteCompany()
     {
         return $this->favoriteCompany;
+    }
+
+    // *************************  ADDED FUNCTIONS *********************************
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->name;
     }
 }

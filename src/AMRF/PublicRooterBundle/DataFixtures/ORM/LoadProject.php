@@ -37,7 +37,7 @@ class LoadProject extends Fixture implements FixtureInterface
                 ->setProjectDuration($faker->randomElement($array = array('1 mois', '6 mois', '1 ans', '100 ans')))
                 ->setProjectCost($faker->numberBetween($min = 1000, $max = 50000))
                 ->setProjectCoFinance($faker->randomElement($array = array('Oui', 'Non')))
-                ->setDescResume($faker->realText($maxNbChars = 200, $indexSize = 2))
+                ->setDescResume($faker->realText($maxNbChars = 200))
                 ->setDescContext($faker->realText($maxNbChars = 1200, $indexSize = 2))
                 ->setDescGoal($faker->realText($maxNbChars = 200, $indexSize = 2))
                 ->setDescProgress($faker->realText($maxNbChars = 800, $indexSize = 2))
