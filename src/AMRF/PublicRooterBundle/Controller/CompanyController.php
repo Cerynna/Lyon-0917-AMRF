@@ -40,7 +40,7 @@ class CompanyController extends Controller
      * @Route("/new", name="admin_company_new")
      * @Method({"GET", "POST"})
      */
-    public function newAction(Request $request, UploadedFile $file)
+    public function newAction(Request $request)
     {
         $company = new Company();
         $form = $this->createForm('AMRF\PublicRooterBundle\Form\CompanyType', $company);
