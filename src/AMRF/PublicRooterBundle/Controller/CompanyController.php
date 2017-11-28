@@ -49,10 +49,8 @@ class CompanyController extends Controller
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $file = $company->getLogo();
-            dump($upload);
-            $test = $upload->imageUpload($file);
-
-            $company->setLogo($test);
+//            dump($upload);
+            $company->setLogo($upload->imageUpload($file));
             $em->persist($company);
             $em->flush();
 
