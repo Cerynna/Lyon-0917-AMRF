@@ -48,8 +48,8 @@ class AdminCompanyController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $file=$company->getLogo();
-            $company->setLogo($upload->fileUpload($file));
+            $logo=$company->getLogo();
+            $company->setLogo($upload->fileUpload($logo, "/company/" . $company->getName(), "IMG"));
             $em->persist($company);
             $em->flush();
 
