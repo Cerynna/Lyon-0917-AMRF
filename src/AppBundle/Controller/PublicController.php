@@ -24,7 +24,6 @@ class PublicController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-
         $projects = $em->getRepository('AppBundle:Project')->getLastProject();
 
         return $this->render('public/index.html.twig', array(

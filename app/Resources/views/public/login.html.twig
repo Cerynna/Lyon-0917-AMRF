@@ -6,16 +6,60 @@
         <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
     {% endif %}
 
-    <form action="{{ path('login') }}" method="post">
-        <label for="username">Username:</label>
-        <input type="text" id="username" name="_username" value="{{ last_username }}"/>
+    <div class="row">
 
-        <label for="password">Password:</label>
-        <input type="password" id="password" name="_password"/>
-        {# Input de redirection #}
-        <input type="hidden" name="_target_path" value="/amrf"/>
-
-        <button type="submit">login</button>
-    </form>
+        <div class="col-sm-6 col-xs-12 text-center">
+            <div class="formConnect bck-maire">
+                <form action="{{ path('login') }}" method="post">
+                    <h5 class="text-center">Maire</h5>
+                    <div class="form-group">
+                        <label for="login">n° INSEE</label>
+                        <input id="login" type="text" name="_username" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="mdp">Mot de passe</label>
+                        <input id="mdp" type="password" name="_password" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <input type="checkbox" id="remember_me" name="_remember_me" checked />
+                        <label for="remember_me">Se souvenir de moi</label>
+                    </div>
+                    <div class="containerConnect">
+                        <button class="btn" type="submit" name="action">Connexion</button>
+                    </div>
+                    <div class="containerConnect">
+                        <a href="#">Mot de passe oublié ?</a>
+                    </div>
+                    <input type="hidden" name="_target_path" value="/mayor"/>
+                </form>
+            </div>
+        </div>
+        <div class="col-sm-6 col-xs-12 text-center">
+            <div class="formConnect bck-part">
+                <form action="{{ path('login') }}" method="post">
+                    <h5 class="text-center">Partenaire</h5>
+                    <div class="form-group">
+                        <label for="login">n° SIRET</label>
+                        <input id="login" type="text" name="_username" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="mdp">Mot de passe</label>
+                        <input id="mdp" type="password" name="_password" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <input type="checkbox" id="remember_me" name="_remember_me" checked />
+                        <label for="remember_me">Se souvenir de moi</label>
+                    </div>
+                    <div class="containerConnect">
+                        <button class="btn" type="submit" name="action">Connexion</button>
+                    </div>
+                    <div class="containerConnect">
+                        <a href="#">Mot de passe oublié ?</a>
+                    </div>
+                    <input type="hidden" name="_target_path" value="/partner"/>
+                </form>
+            </div>
+        </div>
+    </div>
 
 {% endblock %}

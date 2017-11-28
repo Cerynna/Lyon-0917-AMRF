@@ -5,11 +5,15 @@ security:
         AppBundle\Entity\User:
             algorithm: bcrypt
 
-    #access_control:
-       # - { path: ^/mayor, roles: ROLE_MAYOR }
-       # - { path: ^/partner, roles: ROLE_PARTNER }
-       # - { path: ^/admin, roles: ROLE_ADMIN }
-       # - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY, requires_channel: https }
+    role_hierarchy:
+        ROLE_MAYOR:         ROLE_MAYOR
+        ROLE_PARTNER:       ROLE_PARTNER
+        ROLE_ADMIN:         ROLE_ADMIN
+
+    access_control:
+        - { path: ^/mayor, roles: ROLE_MAYOR }
+        - { path: ^/partner, roles: ROLE_PARTNER }
+        - { path: ^/admin, roles: ROLE_ADMIN }
 
 
     # https://symfony.com/doc/current/security.html#b-configuring-how-users-are-loaded
@@ -36,6 +40,10 @@ security:
             logout:
                 path: /logout
                 target: /
+            remember_me:
+                secret:   '%secret%'
+                lifetime: 15768000 # 6 mois
+                path:     /
 
         #main:
             #anonymous: ~
