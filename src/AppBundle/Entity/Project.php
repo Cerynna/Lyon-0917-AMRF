@@ -12,6 +12,11 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Project
 {
+
+    const TYPE_THEME      = 1;
+    const TYPE_ACTIVITY   = 2;
+    const TYPE_KEYWORD    = 3;
+
     /**
      * @var int
      *

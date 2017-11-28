@@ -27,12 +27,25 @@ class LoadProject extends Fixture implements FixtureInterface
         $keywords = array('ecole', 'periscolaire', 'medecin', 'sante', 'kebab');
         for ($i = 0; $i < LoadUser::MAX_USER; $i++) {
             $projects[$i] = new Project();
+
+            $nbimage = rand(1,4);
+            $dbimage = [];
+            for ($j = 0; $j < $nbimage; $j++) {
+                $dbimage[$j] = $faker->imageUrl($width = 150, $height = 150);
+            }
+            $imagefaker = serialize($dbimage);
             $projects[$i]
                 ->setTitle($faker->sentence($nbWords = 6, $variableNbWords = true))
                 ->setTheme(serialize($faker->randomElements($thematiques, $count = 3)))
                 ->setCreationDate($faker->dateTime($max = 'now', $timezone = date_default_timezone_get()))
                 ->setUpdateDate($faker->dateTime($max = 'now', $timezone = date_default_timezone_get()))
-                ->setImage($faker->imageUrl($width = 150, $height = 150))
+
+
+
+                ->setImage($imagefaker)
+
+
+
                 ->setProjectDate($faker->dateTime($max = 'now', $timezone = date_default_timezone_get()))
                 ->setProjectDuration($faker->randomElement($array = array('1 mois', '6 mois', '1 ans', '100 ans')))
                 ->setProjectCost($faker->numberBetween($min = 1000, $max = 50000))
