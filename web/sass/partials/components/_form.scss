@@ -123,7 +123,27 @@ section {
        width: 200px;
        height: 200px;
      }*/
-
+    .fuckingBox {
+      label {
+        width: 50%;
+      }
+      input[type="checkbox"]:checked ~ label {
+        color: $color2;
+        text-indent: 1em;
+      }
+      input[type="checkbox"]:empty ~ label {
+        color: $color2;
+        text-indent: 1em;
+      }
+      input[type="checkbox"]:checked ~ label:before {
+        color: $color2;
+        text-indent: 0.3em;
+      }
+      input[type="checkbox"]:empty ~ label:before {
+        color: $color2;
+        text-indent: 0.3em;
+      }
+    }
   }
 }
 
