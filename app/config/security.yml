@@ -1,9 +1,23 @@
 # To get started with security, check out the documentation:
 # https://symfony.com/doc/current/security.html
 security:
+    encoders:
+        AppBundle\Entity\User:
+            algorithm: bcrypt
+
+    #access_control:
+       # - { path: ^/mayor, roles: ROLE_MAYOR }
+       # - { path: ^/partner, roles: ROLE_PARTNER }
+       # - { path: ^/admin, roles: ROLE_ADMIN }
+       # - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY, requires_channel: https }
+
 
     # https://symfony.com/doc/current/security.html#b-configuring-how-users-are-loaded
     providers:
+        our_db_provider:
+            entity:
+                class: AppBundle:User
+                property: login
         in_memory:
             memory: ~
 
@@ -12,9 +26,17 @@ security:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
-
         main:
-            anonymous: ~
+            pattern:    ^/
+            http_basic: ~
+            provider: our_db_provider
+
+            logout:
+                path:   /logout
+                target: /
+
+        #main:
+            #anonymous: ~
             # activate different ways to authenticate
 
             # https://symfony.com/doc/current/security.html#a-configuring-how-your-users-will-authenticate

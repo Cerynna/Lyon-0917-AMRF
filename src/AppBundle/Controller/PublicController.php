@@ -21,7 +21,14 @@ class PublicController extends Controller
      */
     public function indexAction()
     {
-        return $this->render('public/index.html.twig');
+        $em = $this->getDoctrine()->getManager();
+
+
+        $projects = $em->getRepository('AppBundle:Project')->getLastProject();
+
+        return $this->render('public/index.html.twig', array(
+            'projects' => $projects,
+        ));
     }
 
     /**
