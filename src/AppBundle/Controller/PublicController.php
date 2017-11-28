@@ -12,6 +12,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 class PublicController extends Controller
 {
@@ -100,5 +101,26 @@ class PublicController extends Controller
         return $this->render('private/admin/adminIndex.html.twig');
     }
 
+    /**
+     * @Route("/logout", name="logout")
+     */
+    public function logoutAction()
+    {
+    }
+
+    /**
+     * @Route("/login", name="login")
+     */
+    public function loginAction(AuthenticationUtils $authUtils)
+    {
+        // get the login error if there is one
+        $error = $authUtils->getLastAuthenticationError();
+        // last username entered by the user
+        $lastUsername = $authUtils->getLastUsername();
+        return $this->render('public/login.html.twig', array(
+            'last_username' => $lastUsername,
+            'error'         => $error,
+        ));
+    }
 
 }
