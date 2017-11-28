@@ -971,18 +971,18 @@ section form {
       color: #FFFFFF; }
   section form .relativeDiv {
     position: relative; }
-  section form .fuckingBox label {
+  section form .saveMe label {
     width: 50%; }
-  section form .fuckingBox input[type="checkbox"]:checked ~ label {
+  section form .saveMe input[type="checkbox"]:checked ~ label {
     color: #FFFFFF;
     text-indent: 1em; }
-  section form .fuckingBox input[type="checkbox"]:empty ~ label {
+  section form .saveMe input[type="checkbox"]:empty ~ label {
     color: #FFFFFF;
     text-indent: 1em; }
-  section form .fuckingBox input[type="checkbox"]:checked ~ label:before {
+  section form .saveMe input[type="checkbox"]:checked ~ label:before {
     color: #FFFFFF;
     text-indent: 0.3em; }
-  section form .fuckingBox input[type="checkbox"]:empty ~ label:before {
+  section form .saveMe input[type="checkbox"]:empty ~ label:before {
     color: #FFFFFF;
     text-indent: 0.3em; }
 
