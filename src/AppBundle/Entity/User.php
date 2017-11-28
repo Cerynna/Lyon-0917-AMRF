@@ -369,7 +369,6 @@ class User implements UserInterface, \Serializable
     public function __construct()
     {
         $this->favorites = new \Doctrine\Common\Collections\ArrayCollection();
-
         $this->isActive = true;
         $this->lastLogin = new \DateTime();
         // may not be needed, see section on salt below
@@ -395,7 +394,7 @@ class User implements UserInterface, \Serializable
             return array('ROLE_ADMIN');
         }
 
-        throw new \Exception('Something went wrong!');
+        return array();
     }
     public function eraseCredentials()
     {
