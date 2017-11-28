@@ -1,0 +1,217 @@
+{% extends 'base.html.twig' %}
+{% block title %}Recherche{% endblock %}
+{% block navbar %}
+    {% set options = {'status':1} %}
+    {% include 'components/navbar.html.twig' with options %}
+{% endblock %}
+{% block body %}
+    <h2>RECHERCHE DE PROJETS</h2>
+    {#<h3>Recherche</h3>#}
+    <form action="" method="post">
+        <div class="jumbotron">
+            <div class="input-group col-md-12">
+                <input type="text" class="search form-control" autofocus/>
+                <span class="input-group-addon">
+                    <button type="submit" class="btn btn-search"><i class="fa fa-search"></i></button>
+                </span>
+            </div>
+        </div>
+        <div class="jumbotron">
+            <div class="panel-group" id="more" role="tablist" aria-multiselectable="true">
+                <a data-toggle="collapse" data-parent="#more" href="#collapseMore"
+                   aria-expanded="true" aria-controls="collapseMore">
+                    <div class="panel-heading text-center" role="tab" id="headingMore">
+                        <h3>Recherche avancée <i class="fa fa-angle-double-down"></i></h3>
+                    </div>
+                </a>
+                <div id="collapseMore" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingMore">
+                    <div class="choose">Vous pouvez selectionner de 1 à 3 thématiques</div>
+                    {% include 'components/thematiques.html.twig' %}
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="choose">Et / Ou saisir un ou plusieurs mots-clefs</div>
+                            <select class="form-control mots" name="motsCle[]" multiple="multiple">
+                                <option></option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 text-center">
+                            <div class="col-md-12 choose">
+                                <span>Et / Ou choisir une Région ou un Département ou une Commune</span>
+                            </div>
+                            <div class="col-sm-4 form-group text-center relativeDiv">
+                                <label for="region">Région</label>
+                                <input name="region" id="region" class="form-control" autocomplete="off"/>
+                                <ul class="result result_region" onmouseleave="cleanSearch()"></ul>
+                            </div>
+                            <div class="col-sm-4 form-group text-center relativeDiv">
+                                <label for="departement">Département</label>
+                                <input name="departement" id="departement" class="form-control" autocomplete="off" />
+                                <ul class="result result_departement" onmouseleave="cleanSearch()"></ul>
+                            </div>
+                            <div class="col-sm-4 form-group text-center relativeDiv">
+                                <label for="commune">Commune</label>
+                                <input name="commune" id="commune" class="form-control" autocomplete="off" />
+                                <ul class="result result_commune" onmouseleave="cleanSearch()"></ul>
+                            </div>
+
+                            <div class=" col-md-12 text-center">
+                                <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i> Recherche
+                                </button>
+                            </div>
+                        </div>
+                        {#<iframe class="hidden-xs" width="100%" height="350" frameborder="0" scrolling="no" marginheight="0"
+                                marginwidth="0"
+                                src="http://www.openstreetmap.org/export/embed.html?bbox=-4.932861328125001%2C43.59630591596551%2C9.569091796875002%2C50.00067775723633&amp;layer=mapnik"
+                                style="border: 0 solid black"></iframe>#}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+    <hr/>
+    <h3>Résultat(s) de votre recherche</h3>
+
+    <div class="jumbotron">
+        {% set options = {'thema':'true','pictures':'true','update': 'false', 'more': 'true', 'id': 1, 'text': 210} %}
+        {% include 'components/resumeProject.html.twig' with options %}
+    </div>
+    <div class="jumbotron">
+        {% set options = {'thema':'true','pictures':'true','update': 'false', 'more': 'true', 'id': 2, 'text': 210} %}
+        {% include 'components/resumeProject.html.twig' with options %}
+    </div>
+    <div class="jumbotron">
+        {% set options = {'thema':'true','pictures':'true','update': 'false', 'more': 'true', 'id': 3, 'text': 210} %}
+        {% include 'components/resumeProject.html.twig' with options %}
+    </div>
+
+
+
+{% endblock %}
+{% block javascripts %}
+    <script>
+        $('#region').keyup(function() {
+            var valuesInput = $( "#region" ).val();
+            $('.result_region').text("");
+            $.ajax({
+                type:"GET",
+                url:"https://geo.api.gouv.fr/regions?nom=" + valuesInput,
+                success: function(data) {
+                    var limit = data.length;
+
+                    for (var iter = 0; iter < limit; iter++) {
+                        var resultNom = JSON.stringify(data[iter].nom).replace(/\"/g, '');
+
+                        $('.result_region').append('<li onclick="completInput(\'region\',$(this).text())">' + resultNom + "</li>");
+                    }
+                },
+                dataType: 'json',
+            });
+
+        });
+
+        $('#departement').keyup(function() {
+            var valuesInput = $( "#departement" ).val();
+            $('.resultdepartement').text("");
+
+            if (isNaN(valuesInput))
+            {
+                $.ajax({
+                    type:"GET",
+                    url:"https://geo.api.gouv.fr/departements?nom=" + valuesInput,
+                    success: function(data) {
+                        var limit = data.length;
+
+                        for (var iter = 0; iter < limit; iter++) {
+                            var resultNom = JSON.stringify(data[iter].nom).replace(/\"/g, '');
+                            var resultCode = JSON.stringify(data[iter].code).replace(/\"/g, '');
+
+                            $('.result_departement').append('<li onclick="completInput(\'departement\',$(this).text())">' + resultCode + " - " + resultNom + "</li>");
+
+                        }
+                    },
+                    dataType: 'json',
+                });
+            }
+            else {
+                $.ajax({
+                    type:"GET",
+                    url:"https://geo.api.gouv.fr/departements?code=" + valuesInput,
+                    success: function(data) {
+                        var limit = data.length;
+
+                        for (var iter = 0; iter < limit; iter++) {
+                            var resultNom = JSON.stringify(data[iter].nom).replace(/\"/g, '');
+                            var resultCode = JSON.stringify(data[iter].code).replace(/\"/g, '');
+
+                            $('.result_departement').append('<li onclick="completInput(\'departement\',$(this).text())">' + resultCode + " - " + resultNom + "</li>");
+                        }
+                    },
+                    dataType: 'json',
+                });
+            }
+        });
+
+        $('#commune').keyup(function() {
+            var valuesInput = $( "#commune" ).val();
+            var nbCarac = valuesInput.length;
+            $('.result_commune').text("");
+
+
+            if(nbCarac > 2)
+            {
+                if (isNaN(valuesInput))
+                {
+                    $.ajax({
+                        type:"GET",
+                        url:"https://geo.api.gouv.fr/communes?nom=" + valuesInput,
+                        success: function(data) {
+                            var limit = data.length;
+
+                            for (var iter = 0; iter < limit; iter++) {
+                                var resultNom = JSON.stringify(data[iter].nom).replace(/\"/g, '');
+                                var resultCode = JSON.stringify(data[iter].codesPostaux).replace(/\"/g, '').replace('[', '').replace(']', '');
+
+                                $('.result_commune').append('<li onclick="completInput(\'commune\',$(this).text())">' + resultCode + " - " + resultNom + "</li>");
+                            }
+                        },
+                        dataType: 'json',
+                    });
+                }
+                else {
+                    $.ajax({
+                        type:"GET",
+                        url:"https://geo.api.gouv.fr/communes?codePostal=" + valuesInput,
+                        success: function(data) {
+                            var limit = data.length;
+
+                            for (var iter = 0; iter < limit; iter++) {
+                                var resultNom = JSON.stringify(data[iter].nom).replace(/\"/g, '');
+                                var resultCode = JSON.stringify(data[iter].codesPostaux).replace(/\"/g, '').replace('[', '').replace(']', '');
+
+
+                                $('.result_commune').append('<li onclick="completInput(\'commune\',$(this).text())">' + resultCode + " - " + resultNom + "</li>");
+                            }
+                        },
+                        dataType: 'json',
+                    });
+                }
+            }
+        });
+
+
+        function completInput(id, value) {
+            document.getElementById(id).value = value;
+            $('.result'+id).text("");
+        }
+
+        function cleanSearch() {
+            $('.result_region').text("");
+            $('.result_departement').text("");
+            $('.result_commune').text("");
+
+        }
+
+    </script>
+{% endblock %}

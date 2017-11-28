@@ -1,0 +1,87 @@
+<div class="row resumeProject">
+    {% if options.pictures == "true" %}
+        <div class="col-sm-3 mini-galery">
+            <div class="img-list text-center">
+                <img class="img-mini" src="{{ asset('/img/projets/' ~ options.id ~ '/2.jpg') }}"
+                     onmouseover="showImg('my-img{{ options.id }}','{{ asset('/img/projets/' ~ options.id ~ '/2.jpg') }}');"
+                     onmouseout="hideImg('my-img{{ options.id }}','{{ asset('/img/projets/' ~ options.id ~ '/1.jpg') }}');"/>
+                <img class="img-mini" src="{{ asset('/img/projets/' ~ options.id ~ '/3.jpg') }}"
+                     onmouseover="showImg('my-img{{ options.id }}','{{ asset('/img/projets/' ~ options.id ~ '/3.jpg') }}');"
+                     onmouseout="hideImg('my-img{{ options.id }}','{{ asset('/img/projets/' ~ options.id ~ '/1.jpg') }}');"/>
+                <img class="img-mini" src="{{ asset('/img/projets/' ~ options.id ~ '/1.jpg') }}"
+                     onmouseover="showImg('my-img{{ options.id }}','{{ asset('/img/projets/' ~ options.id ~ '/1.jpg') }}');"
+                     onmouseout="hideImg('my-img{{ options.id }}','{{ asset('/img/projets/' ~ options.id ~ '/1.jpg') }}');"/>
+            </div>
+            <div class="img-preview">
+                <img id="my-img{{ options.id }}" src="{{ asset('/img/projets/' ~ options.id ~ '/1.jpg') }}"
+                     class="img-big"/>
+            </div>
+
+        </div>
+    {% endif %}
+    <div class="{% if options.pictures == "true" %} col-sm-9 {% else %}col-xs-12{% endif %}">
+        <div class="row">
+            <div class="col-xs-9">
+                <h3>Projet Application Mobile Court-voiturage</h3>
+            </div>
+            <div class="col-xs-3 text-right">
+                <span class="label label-commune">05/2017</span>
+            </div>
+        </div>
+        <div class="row">
+            {% if options.thema == "true" %}
+                <div class="col-xs-12 text-left hidden-xs" id="city">
+                    <span class="label label-commune">LES MOLIERES</span>
+                    <span class="label label-commune">Essonne</span>
+
+                </div>
+                <div class="col-xs-12 text-left hidden-xs" id="theme">
+                    <span class="label label-themat">Mobilité</span>
+                    <span class="label label-themat">Aménagement du territoire</span>
+                    <span class="label label-themat">Aménagement du territoire</span>
+                </div>
+            {% endif %}
+            <div class="col-md-12">
+                {#{% if options.thema == "true" %}
+                    <h3 class="hidden-xs">Résumé du projet</h3>
+                {% endif %}#}
+                <p>
+                    {% set text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                    incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+                    exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute
+                    irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+                    pariatur." %}
+                    {% if options.text is defined %}
+                        {% if options.text != 0 %}
+                            {{ text|slice (0,options.text) }}...
+                        {% endif %}
+                    {% else %}
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                        incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+                        exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute
+                        irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+                        pariatur.
+                    {% endif %}
+                </p>
+            </div>
+            <div class=" col-md-offset-6 col-md-3 col-xs-6 text-right">
+                {% if options.update == "true" %}
+                    <a href="{{ path('mayor_project_new') }}">
+                        <div class="btn hidden-xs" role="button">
+                            Modifier la fiche
+                        </div>
+                    </a>
+                {% endif %}
+            </div>
+            <div class="col-md-3 col-xs-6 text-right">
+                {% if options.more == "true" %}
+                    <a href="{{ path('sheet_project') }}">
+                        <div class="btn" role="button">
+                            Voir la fiche
+                        </div>
+                    </a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
