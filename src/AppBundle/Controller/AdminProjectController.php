@@ -95,10 +95,6 @@ class AdminProjectController extends Controller
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
-            $image=$project->getImage();
-            $project->setImage($upload->fileUpload($image, "/project/" . $project->getTitle(), "IMG"));
-            $file=$project->getFile();
-            $project->setFile($upload->fileUpload($file, "/project/" . $project->getTitle(), "PDF"));
             $this->getDoctrine()->getManager()->flush();
 
             return $this->redirectToRoute('admin_project_edit', array('id' => $project->getId()));
