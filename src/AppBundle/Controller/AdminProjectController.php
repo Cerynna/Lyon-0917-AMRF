@@ -40,7 +40,7 @@ class AdminProjectController extends Controller
      * @Route("/new", name="admin_project_new")
      * @Method({"GET", "POST"})
      */
-    public function newAction(Request $request,UploadService $upload)
+    public function newAction(Request $request, UploadService $upload)
     {
         $project = new Project();
         $form = $this->createForm('AppBundle\Form\ProjectType', $project);
@@ -52,8 +52,8 @@ class AdminProjectController extends Controller
             $project->setImage($upload->fileUpload($image, "/project/" . $project->getTitle(), "IMG"));
             $file=$project->getFile();
             $project->setFile($upload->fileUpload($file, "/project/" . $project->getTitle(), "PDF"));
-            $theme = $project->getTheme();
-            $project->setTheme(serialize($theme));
+            /*$theme = $project->getTheme();
+            $project->setTheme($theme);*/
             $em->persist($project);
             $em->flush();
 
@@ -88,7 +88,7 @@ class AdminProjectController extends Controller
      * @Route("/{id}/edit", name="admin_project_edit")
      * @Method({"GET", "POST"})
      */
-    public function editAction(Request $request, Project $project,UploadedFile $upload)
+    public function editAction(Request $request, Project $project, UploadService $upload)
     {
         $deleteForm = $this->createDeleteForm($project);
         $editForm = $this->createForm('AppBundle\Form\ProjectType', $project);

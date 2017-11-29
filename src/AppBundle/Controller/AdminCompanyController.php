@@ -1,18 +1,21 @@
 <?php
 
-namespace AMRF\PublicRooterBundle\Controller;
+namespace AppBundle\Controller;
 
 use AppBundle\Entity\Company;
+use AppBundle\Service\UploadService;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\Request;
+
 
 /**
  * Company controller.
  *
  * @Route("admin/company")
  */
-class CompanyController extends Controller
+class AdminCompanyController extends Controller
 {
     /**
      * Lists all company entities.
@@ -24,7 +27,7 @@ class CompanyController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $companies = $em->getRepository('AMRFPublicRooterBundle:Company')->findAll();
+        $companies = $em->getRepository('AppBundle:Company')->findAll();
 
         return $this->render('company/index.html.twig', array(
             'companies' => $companies,
@@ -37,15 +40,16 @@ class CompanyController extends Controller
      * @Route("/new", name="admin_company_new")
      * @Method({"GET", "POST"})
      */
-    public function newAction(Request $request)
+    public function newAction(Request $request, UploadService $upload)
     {
         $company = new Company();
-        $form = $this->createForm('AMRF\PublicRooterBundle\Form\CompanyType', $company);
+        $form = $this->createForm('AppBundle\Form\CompanyType', $company);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-
+            $logo = $company->getLogo();
+            $company->setLogo($upload->fileUpload($logo, "/company/" . $company->getName(), "IMG"));
             $em->persist($company);
             $em->flush();
 
@@ -80,16 +84,15 @@ class CompanyController extends Controller
      * @Route("/{id}/edit", name="admin_company_edit")
      * @Method({"GET", "POST"})
      */
-    public function editAction(Request $request, Company $company)
+    public function editAction(Request $request, Company $company, UploadService $upload)
     {
-
         $deleteForm = $this->createDeleteForm($company);
-        $editForm = $this->createForm('AMRF\PublicRooterBundle\Form\CompanyType', $company);
+        $editForm = $this->createForm('AppBundle\Form\CompanyType', $company);
         $editForm->handleRequest($request);
-        
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
-
+            $logo = $company->getLogo();
+            $company->setLogo($upload->fileUpload($logo, "/company/" . $company->getName(), "IMG"));
             $this->getDoctrine()->getManager()->flush();
 
             return $this->redirectToRoute('admin_company_edit', array('id' => $company->getId()));

@@ -21,8 +21,8 @@ class CompanyType extends AbstractType
             ->add('activities')
             ->add('presentation')
             ->add('logo',FileType::class, array(
-                'data_class' => null,
-                )
+                'label'             => 'logo',
+                'data_class'    =>null,)
             )
             ->add('url')
             ->add('facebook')

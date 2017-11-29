@@ -36,7 +36,9 @@ class ProjectType extends AbstractType
             /*->add('theme')*/
             ->add('creationDate')
             ->add('updateDate')
-            ->add('image', FileType::class)
+            ->add('image', FileType::class, [
+                'multiple' => true,
+            ])
             ->add('projectDate', DateType::class, array(
                 'widget' => 'single_text',
                 // this is actually the default format for single_text

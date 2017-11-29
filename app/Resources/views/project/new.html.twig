@@ -5,6 +5,12 @@
 
     {{ form_start(form) }}
         {{ form_widget(form) }}
+    <ul class="images">
+        {# iterate over each existing tag and render its only field: name #}
+        {% for image in form.image %}
+            <li>{{ form_row(image.name) }}</li>
+        {% endfor %}
+    </ul>
         <input type="submit" value="Create" />
     {{ form_end(form) }}
 
