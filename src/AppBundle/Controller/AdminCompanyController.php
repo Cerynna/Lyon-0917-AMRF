@@ -40,7 +40,7 @@ class AdminCompanyController extends Controller
      * @Route("/new", name="admin_company_new")
      * @Method({"GET", "POST"})
      */
-    public function newAction(Request $request,UploadService $upload)
+    public function newAction(Request $request, UploadService $upload)
     {
         $company = new Company();
         $form = $this->createForm('AppBundle\Form\CompanyType', $company);
@@ -48,7 +48,7 @@ class AdminCompanyController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $logo=$company->getLogo();
+            $logo = $company->getLogo();
             $company->setLogo($upload->fileUpload($logo, "/company/" . $company->getName(), "IMG"));
             $em->persist($company);
             $em->flush();
