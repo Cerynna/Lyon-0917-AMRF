@@ -58,7 +58,7 @@ class ProjectType extends AbstractType
             ->add('contactOccupation')
             ->add('contactEmail')
             ->add('contactPhone')
-            ->add('file',FileType::class)
+            ->add('file', FileType::class)
             ->add('url')
             ->add('youtube')
             ->add('facebook')

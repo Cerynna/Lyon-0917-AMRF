@@ -20,7 +20,7 @@ class CompanyType extends AbstractType
             ->add('city')
             ->add('activities')
             ->add('presentation')
-            ->add('logo',FileType::class)
+            ->add('logo', FileType::class)
             ->add('url')
             ->add('facebook')
             ->add('linkedin')
