@@ -3,9 +3,12 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Company;
+use AppBundle\Service\UploadService;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\Request;
+
 
 /**
  * Company controller.
@@ -37,7 +40,7 @@ class AdminCompanyController extends Controller
      * @Route("/new", name="admin_company_new")
      * @Method({"GET", "POST"})
      */
-    public function newAction(Request $request)
+    public function newAction(Request $request, UploadService $upload)
     {
         $company = new Company();
         $form = $this->createForm('AppBundle\Form\CompanyType', $company);
@@ -45,6 +48,8 @@ class AdminCompanyController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+            $logo = $company->getLogo();
+            $company->setLogo($upload->fileUpload($logo, "/company/" . $company->getName(), "IMG"));
             $em->persist($company);
             $em->flush();
 
