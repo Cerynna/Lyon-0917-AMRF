@@ -2,7 +2,6 @@
 
 namespace AppBundle\Service;
 
-
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 class UploadService
@@ -13,12 +12,9 @@ class UploadService
      */
     public function fileUpload($file, $dir, $type)
     {
-
-            $fileName = md5(uniqid()).'.'.$file->guessExtension();
-            $file->move('../web/upload' . $dir, $fileName);
+        $fileName = md5(uniqid()) . '.' . $file->guessExtension();
+        $file->move('../web/upload' . $dir, $fileName);
 
         return $fileName;
-
-
     }
 }

@@ -227,6 +227,15 @@ class Project
         return $this->id;
     }
 
+    /**
+     * Get title
+     *
+     * @return string
+     */
+    public function getTitle()
+    {
+        return $this->title;
+    }
 
     /**
      * Set title
@@ -243,13 +252,13 @@ class Project
     }
 
     /**
-     * Get title
+     * Get theme
      *
      * @return string
      */
-    public function getTitle()
+    public function getTheme()
     {
-        return $this->title;
+        return $this->theme;
     }
 
     /**
@@ -267,13 +276,13 @@ class Project
     }
 
     /**
-     * Get theme
+     * Get creationDate
      *
-     * @return string
+     * @return \DateTime
      */
-    public function getTheme()
+    public function getCreationDate()
     {
-        return $this->theme;
+        return $this->creationDate;
     }
 
     /**
@@ -291,13 +300,13 @@ class Project
     }
 
     /**
-     * Get creationDate
+     * Get updateDate
      *
      * @return \DateTime
      */
-    public function getCreationDate()
+    public function getUpdateDate()
     {
-        return $this->creationDate;
+        return $this->updateDate;
     }
 
     /**
@@ -315,13 +324,13 @@ class Project
     }
 
     /**
-     * Get updateDate
+     * Get image
      *
-     * @return \DateTime
+     * @return string
      */
-    public function getUpdateDate()
+    public function getImage()
     {
-        return $this->updateDate;
+        return $this->image;
     }
 
     /**
@@ -339,13 +348,13 @@ class Project
     }
 
     /**
-     * Get image
+     * Get projectDate
      *
-     * @return string
+     * @return \DateTime
      */
-    public function getImage()
+    public function getProjectDate()
     {
-        return $this->image;
+        return $this->projectDate;
     }
 
     /**
@@ -363,13 +372,13 @@ class Project
     }
 
     /**
-     * Get projectDate
+     * Get projectDuration
      *
-     * @return \DateTime
+     * @return string
      */
-    public function getProjectDate()
+    public function getProjectDuration()
     {
-        return $this->projectDate;
+        return $this->projectDuration;
     }
 
     /**
@@ -387,13 +396,13 @@ class Project
     }
 
     /**
-     * Get projectDuration
+     * Get projectCost
      *
      * @return string
      */
-    public function getProjectDuration()
+    public function getProjectCost()
     {
-        return $this->projectDuration;
+        return $this->projectCost;
     }
 
     /**
@@ -411,13 +420,13 @@ class Project
     }
 
     /**
-     * Get projectCost
+     * Get projectCoFinance
      *
      * @return string
      */
-    public function getProjectCost()
+    public function getProjectCoFinance()
     {
-        return $this->projectCost;
+        return $this->projectCoFinance;
     }
 
     /**
@@ -435,13 +444,13 @@ class Project
     }
 
     /**
-     * Get projectCoFinance
+     * Get descResume
      *
      * @return string
      */
-    public function getProjectCoFinance()
+    public function getDescResume()
     {
-        return $this->projectCoFinance;
+        return $this->descResume;
     }
 
     /**
@@ -459,13 +468,13 @@ class Project
     }
 
     /**
-     * Get descResume
+     * Get descContext
      *
      * @return string
      */
-    public function getDescResume()
+    public function getDescContext()
     {
-        return $this->descResume;
+        return $this->descContext;
     }
 
     /**
@@ -483,13 +492,13 @@ class Project
     }
 
     /**
-     * Get descContext
+     * Get descGoal
      *
      * @return string
      */
-    public function getDescContext()
+    public function getDescGoal()
     {
-        return $this->descContext;
+        return $this->descGoal;
     }
 
     /**
@@ -507,13 +516,13 @@ class Project
     }
 
     /**
-     * Get descGoal
+     * Get descProgress
      *
      * @return string
      */
-    public function getDescGoal()
+    public function getDescProgress()
     {
-        return $this->descGoal;
+        return $this->descProgress;
     }
 
     /**
@@ -531,13 +540,13 @@ class Project
     }
 
     /**
-     * Get descProgress
+     * Get descPartners
      *
      * @return string
      */
-    public function getDescProgress()
+    public function getDescPartners()
     {
-        return $this->descProgress;
+        return $this->descPartners;
     }
 
     /**
@@ -555,13 +564,13 @@ class Project
     }
 
     /**
-     * Get descPartners
+     * Get descResults
      *
      * @return string
      */
-    public function getDescPartners()
+    public function getDescResults()
     {
-        return $this->descPartners;
+        return $this->descResults;
     }
 
     /**
@@ -579,13 +588,13 @@ class Project
     }
 
     /**
-     * Get descResults
+     * Get descDifficulties
      *
      * @return string
      */
-    public function getDescResults()
+    public function getDescDifficulties()
     {
-        return $this->descResults;
+        return $this->descDifficulties;
     }
 
     /**
@@ -603,13 +612,13 @@ class Project
     }
 
     /**
-     * Get descDifficulties
+     * Get descAdvices
      *
      * @return string
      */
-    public function getDescDifficulties()
+    public function getDescAdvices()
     {
-        return $this->descDifficulties;
+        return $this->descAdvices;
     }
 
     /**
@@ -627,13 +636,13 @@ class Project
     }
 
     /**
-     * Get descAdvices
+     * Get contactName
      *
      * @return string
      */
-    public function getDescAdvices()
+    public function getContactName()
     {
-        return $this->descAdvices;
+        return $this->contactName;
     }
 
     /**
@@ -651,13 +660,13 @@ class Project
     }
 
     /**
-     * Get contactName
+     * Get contactOccupation
      *
      * @return string
      */
-    public function getContactName()
+    public function getContactOccupation()
     {
-        return $this->contactName;
+        return $this->contactOccupation;
     }
 
     /**
@@ -675,13 +684,13 @@ class Project
     }
 
     /**
-     * Get contactOccupation
+     * Get contactEmail
      *
      * @return string
      */
-    public function getContactOccupation()
+    public function getContactEmail()
     {
-        return $this->contactOccupation;
+        return $this->contactEmail;
     }
 
     /**
@@ -699,13 +708,13 @@ class Project
     }
 
     /**
-     * Get contactEmail
+     * Get contactPhone
      *
      * @return string
      */
-    public function getContactEmail()
+    public function getContactPhone()
     {
-        return $this->contactEmail;
+        return $this->contactPhone;
     }
 
     /**
@@ -723,13 +732,13 @@ class Project
     }
 
     /**
-     * Get contactPhone
+     * Get file
      *
      * @return string
      */
-    public function getContactPhone()
+    public function getFile()
     {
-        return $this->contactPhone;
+        return $this->file;
     }
 
     /**
@@ -747,13 +756,13 @@ class Project
     }
 
     /**
-     * Get file
+     * Get url
      *
      * @return string
      */
-    public function getFile()
+    public function getUrl()
     {
-        return $this->file;
+        return $this->url;
     }
 
     /**
@@ -771,13 +780,13 @@ class Project
     }
 
     /**
-     * Get url
+     * Get youtube
      *
      * @return string
      */
-    public function getUrl()
+    public function getYoutube()
     {
-        return $this->url;
+        return $this->youtube;
     }
 
     /**
@@ -795,13 +804,13 @@ class Project
     }
 
     /**
-     * Get youtube
+     * Get facebook
      *
      * @return string
      */
-    public function getYoutube()
+    public function getFacebook()
     {
-        return $this->youtube;
+        return $this->facebook;
     }
 
     /**
@@ -819,13 +828,13 @@ class Project
     }
 
     /**
-     * Get facebook
+     * Get twitter
      *
      * @return string
      */
-    public function getFacebook()
+    public function getTwitter()
     {
-        return $this->facebook;
+        return $this->twitter;
     }
 
     /**
@@ -843,13 +852,13 @@ class Project
     }
 
     /**
-     * Get twitter
+     * Get keyWords
      *
      * @return string
      */
-    public function getTwitter()
+    public function getKeyWords()
     {
-        return $this->twitter;
+        return $this->keyWords;
     }
 
     /**
@@ -867,13 +876,13 @@ class Project
     }
 
     /**
-     * Get keyWords
+     * Get mayor
      *
-     * @return string
+     * @return \AppBundle\Entity\Mayor
      */
-    public function getKeyWords()
+    public function getMayor()
     {
-        return $this->keyWords;
+        return $this->mayor;
     }
 
     /**
@@ -888,16 +897,6 @@ class Project
         $this->mayor = $mayor;
 
         return $this;
-    }
-
-    /**
-     * Get mayor
-     *
-     * @return \AppBundle\Entity\Mayor
-     */
-    public function getMayor()
-    {
-        return $this->mayor;
     }
 
     /**

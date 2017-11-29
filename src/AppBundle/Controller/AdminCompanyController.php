@@ -79,6 +79,21 @@ class AdminCompanyController extends Controller
     }
 
     /**
+     * Creates a form to delete a company entity.
+     *
+     * @param Company $company The company entity
+     *
+     * @return \Symfony\Component\Form\Form The form
+     */
+    private function createDeleteForm(Company $company)
+    {
+        return $this->createFormBuilder()
+            ->setAction($this->generateUrl('admin_company_delete', array('id' => $company->getId())))
+            ->setMethod('DELETE')
+            ->getForm();
+    }
+
+    /**
      * Displays a form to edit an existing company entity.
      *
      * @Route("/{id}/edit", name="admin_company_edit")
@@ -123,21 +138,5 @@ class AdminCompanyController extends Controller
         }
 
         return $this->redirectToRoute('admin_company_index');
-    }
-
-    /**
-     * Creates a form to delete a company entity.
-     *
-     * @param Company $company The company entity
-     *
-     * @return \Symfony\Component\Form\Form The form
-     */
-    private function createDeleteForm(Company $company)
-    {
-        return $this->createFormBuilder()
-            ->setAction($this->generateUrl('admin_company_delete', array('id' => $company->getId())))
-            ->setMethod('DELETE')
-            ->getForm()
-        ;
     }
 }
