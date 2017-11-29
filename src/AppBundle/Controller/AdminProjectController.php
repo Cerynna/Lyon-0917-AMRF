@@ -6,6 +6,7 @@ use AppBundle\Entity\Project;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Project controller.
@@ -50,7 +51,11 @@ class AdminProjectController extends Controller
             $em->persist($project);
             $em->flush();
 
-            return $this->redirectToRoute('admin_project_show', array('id' => $project->getId()));
+            return $this->redirectToRoute('admin_project_show', array(
+                'id' => $project->getId(),
+                'test' => $form,
+
+            ));
         }
 
         return $this->render('project/new.html.twig', array(

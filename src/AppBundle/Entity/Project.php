@@ -278,7 +278,7 @@ class Project
      */
     public function getTheme()
     {
-        return unserialize($this->theme);
+        return $this->theme;
     }
 
     /**
