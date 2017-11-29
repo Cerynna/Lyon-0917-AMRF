@@ -295,8 +295,30 @@ nav {
     padding-top: 1px;
     padding-bottom: 30px;
     font-size: 2.5em; }
+  .jumbotron h4 {
+    padding-top: 1px;
+    padding-bottom: 30px;
+    font-size: 1.5em; }
   .jumbotron p {
     font-size: 2em; }
+  .jumbotron .label-commune {
+    display: inline-block;
+    background-color: rgba(0, 158, 61, 0.99);
+    margin: 2px 1px !important;
+    padding: 8px;
+    font-size: 0.9em; }
+  .jumbotron .label-themat {
+    display: inline-block;
+    background-color: rgba(203, 203, 203, 0.99);
+    margin: 2px 1px !important;
+    padding: 7px;
+    font-size: 0.8em; }
+  .jumbotron .label-motCle {
+    display: inline-block;
+    background-color: rgba(240, 173, 78, 0.99);
+    margin: 2px 1px !important;
+    padding: 7px;
+    font-size: 0.8em; }
 
 .userMayor {
   background: #90CAF9; }
@@ -317,7 +339,8 @@ nav {
   border-radius: 5px;
   border: 2px solid #1e5d6b;
   text-align: center;
-  vertical-align: middle; }
+  vertical-align: middle;
+  margin: 1px; }
 
 .fa-admin:hover {
   background: #FFF;
@@ -347,7 +370,7 @@ table > tbody > tr > td,
 table > tfoot > tr > td {
   padding: 8px;
   line-height: 1.42857143;
-  vertical-align: middle;
+  vertical-align: top;
   border-top: 1px solid #ddd;
   text-align: center; }
 

@@ -108,7 +108,10 @@ class AdminUserController extends Controller
             $user->setPassword($password);
 
             $this->getDoctrine()->getManager()->flush();
-
+            $this->addFlash(
+                'notice',
+                'Le user n°'. $user->getLogin() . ' a été modifié.'
+            );
             return $this->redirectToRoute('admin_user_edit', array('id' => $user->getId()));
         }
 

@@ -1,91 +1,162 @@
 {% extends 'private/admin/baseAdmin.html.twig' %}
 
 {% block body %}
+
+
+    <div class="menu-admin menu-project">
+        <ul>
+            <li>
+                <a href="{{ path('admin_project_index') }}" data-toggle="tooltip" data-placement="right"
+                   title="Liste Projets"><i class="fa fa-archive fa-admin"></i></a>
+            </li>
+            <li>
+                <a href="{{ path('admin_project_new') }}" data-toggle="tooltip" data-placement="right"
+                   title="Nouveau Projet"><i
+                            class="fa fa-plus fa-admin"></i></a>
+            </li>
+        </ul>
+    </div>
     <h1>Projects list</h1>
 
-    <table>
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Title</th>
-                <th>Theme</th>
-                <th>Creationdate</th>
-                <th>Updatedate</th>
-                <th>Image</th>
-                <th>Projectdate</th>
-                <th>Projectduration</th>
-                <th>Projectcost</th>
-                <th>Projectcofinance</th>
-                <th>Descresume</th>
-                <th>Desccontext</th>
-                <th>Descgoal</th>
-                <th>Descprogress</th>
-                <th>Descpartners</th>
-                <th>Descresults</th>
-                <th>Descdifficulties</th>
-                <th>Descadvices</th>
-                <th>Contactname</th>
-                <th>Contactoccupation</th>
-                <th>Contactemail</th>
-                <th>Contactphone</th>
-                <th>File</th>
-                <th>Url</th>
-                <th>Youtube</th>
-                <th>Facebook</th>
-                <th>Twitter</th>
-                <th>Keywords</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for project in projects %}
-            <tr>
-                <td><a href="{{ path('admin_project_show', { 'id': project.id }) }}">{{ project.id }}</a></td>
-                <td>{{ project.title }}</td>
-                <td>{{ project.theme }}</td>
-                <td>{% if project.creationDate %}{{ project.creationDate|date('Y-m-d H:i:s') }}{% endif %}</td>
-                <td>{% if project.updateDate %}{{ project.updateDate|date('Y-m-d H:i:s') }}{% endif %}</td>
-                <td>{{ project.image }}</td>
-                <td>{% if project.projectDate %}{{ project.projectDate|date('Y-m-d H:i:s') }}{% endif %}</td>
-                <td>{{ project.projectDuration }}</td>
-                <td>{{ project.projectCost }}</td>
-                <td>{{ project.projectCoFinance }}</td>
-                <td>{{ project.descResume }}</td>
-                <td>{{ project.descContext }}</td>
-                <td>{{ project.descGoal }}</td>
-                <td>{{ project.descProgress }}</td>
-                <td>{{ project.descPartners }}</td>
-                <td>{{ project.descResults }}</td>
-                <td>{{ project.descDifficulties }}</td>
-                <td>{{ project.descAdvices }}</td>
-                <td>{{ project.contactName }}</td>
-                <td>{{ project.contactOccupation }}</td>
-                <td>{{ project.contactEmail }}</td>
-                <td>{{ project.contactPhone }}</td>
-                <td>{{ project.file }}</td>
-                <td>{{ project.url }}</td>
-                <td>{{ project.youtube }}</td>
-                <td>{{ project.facebook }}</td>
-                <td>{{ project.twitter }}</td>
-                <td>{{ project.keyWords }}</td>
-                <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('admin_project_show', { 'id': project.id }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('admin_project_edit', { 'id': project.id }) }}">edit</a>
-                        </li>
-                    </ul>
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
 
-    <ul>
-        <li>
-            <a href="{{ path('admin_project_new') }}">Create a new project</a>
-        </li>
-    </ul>
+
+
+
+
+    {#<table>
+        <thead>
+        <tr>
+            <th>Actions</th>
+            <th>Id</th>
+            <th>Title</th>
+            <th>Theme</th>
+            <th>Creationdate</th>
+            <th>Updatedate</th>
+            <th>Image</th>
+            <th>Projectdate</th>
+            <th>Projectduration</th>
+            <th>Projectcost</th>
+            <th>Projectcofinance</th>
+            <th>Descresume</th>
+            <th>Desccontext</th>
+            <th>Descgoal</th>
+            <th>Descprogress</th>
+            <th>Descpartners</th>
+            <th>Descresults</th>
+            <th>Descdifficulties</th>
+            <th>Descadvices</th>
+            <th>Contactname</th>
+            <th>Contactoccupation</th>
+            <th>Contactemail</th>
+            <th>Contactphone</th>
+            <th>File</th>
+            <th>Url</th>
+            <th>Youtube</th>
+            <th>Facebook</th>
+            <th>Twitter</th>
+            <th>Keywords</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>#}
+    {% for project in projects %}
+
+        <div class="row jumbotron">
+            <div class="col-xs-3">
+                <h4>{{ project.title }}</h4>
+            </div>
+            <div class="col-xs-2">
+                {% for theme in project.theme %}
+                    <span class="label label-themat">{{ theme }}</span>
+                {% endfor %}
+            </div>
+            <div class="col-xs-2">
+                {% for img in project.image %}
+                    <img src="{{ img }}" alt="" width="50px">
+                {% endfor %}
+
+            </div>
+            <div class="col-xs-2">
+                <a href="{{ project.url }}"><i class="fa fa-link fa-admin"></i></a>
+                <a href="{{ project.youtube }}"><i class="fa fa-youtube-square fa-admin"></i></a>
+                <a href="{{ project.facebook }}"><i class="fa fa-facebook-square fa-admin"></i></a>
+                <a href="{{ project.twitter }} "><i class="fa fa-twitter-square fa-admin"></i></a>
+            </div>
+            <div class="col-xs-2">
+                <table>
+                    <thead>
+                    <tr>
+                        <th>Creationdate</th>
+                        <th>Updatedate</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>{% if project.creationDate %}{{ project.creationDate|date('d-m-Y') }}{% endif %}</td>
+                        <td>{% if project.updateDate %}{{ project.updateDate|date('d-m-Y') }}{% endif %}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+        {#<tr>
+            <td>
+                <ul>
+                    <li>
+                        <a href="{{ path('admin_project_show', { 'id': project.id }) }}">show</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('admin_project_edit', { 'id': project.id }) }}">edit</a>
+                    </li>
+                </ul>
+            </td>
+            <td><a href="{{ path('admin_project_show', { 'id': project.id }) }}">{{ project.id }}</a></td>
+            <td>{{ project.title }}</td>
+            <td>{{ project.theme }}</td>
+            <td>{% if project.creationDate %}{{ project.creationDate|date('d-m-Y') }}{% endif %}</td>
+            <td>{% if project.updateDate %}{{ project.updateDate|date('d-m-Y') }}{% endif %}</td>
+            <td>{{ project.image }}</td>
+            <td>{% if project.projectDate %}{{ project.projectDate|date('d-m-Y') }}{% endif %}</td>
+            <td>{{ project.projectDuration }}</td>
+            <td>{{ project.projectCost }}</td>
+            <td>{{ project.projectCoFinance }}</td>
+            <td>{{ project.descResume }}</td>
+            <td>{{ project.descContext }}</td>
+            <td>{{ project.descGoal }}</td>
+            <td>{{ project.descProgress }}</td>
+            <td>{{ project.descPartners }}</td>
+            <td>{{ project.descResults }}</td>
+            <td>{{ project.descDifficulties }}</td>
+            <td>{{ project.descAdvices }}</td>
+            <td>{{ project.contactName }}</td>
+            <td>{{ project.contactOccupation }}</td>
+            <td>{{ project.contactEmail }}</td>
+            <td>{{ project.contactPhone }}</td>
+            <td>{{ project.file }}</td>
+            <td>{{ project.url }}</td>
+            <td>{{ project.youtube }}</td>
+            <td>{{ project.facebook }}</td>
+            <td>{{ project.twitter }}</td>
+            <td>{{ project.keyWords }}</td>
+            <td>
+                <ul>
+                    <li>
+                        <a href="{{ path('admin_project_show', { 'id': project.id }) }}">show</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('admin_project_edit', { 'id': project.id }) }}">edit</a>
+                    </li>
+                </ul>
+            </td>
+        </tr>#}
+    {% endfor %}
+    {# </tbody>
+ </table>
+
+ <ul>
+     <li>
+         <a href="{{ path('admin_project_new') }}">Create a new project</a>
+     </li>
+ </ul>#}
 {% endblock %}

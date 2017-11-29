@@ -278,7 +278,7 @@ class Project
      */
     public function getTheme()
     {
-        return $this->theme;
+        return unserialize($this->theme);
     }
 
     /**
@@ -350,7 +350,7 @@ class Project
      */
     public function getImage()
     {
-        return $this->image;
+        return unserialize($this->image);
     }
 
     /**
