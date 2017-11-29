@@ -1,0 +1,46 @@
+table {
+  width: 100%;
+  max-width: 100%;
+  margin-bottom: 20px;
+}
+
+table > thead > tr > th,
+table > tbody > tr > th,
+table > tfoot > tr > th,
+table > thead > tr > td,
+table > tbody > tr > td,
+table > tfoot > tr > td,
+table {
+  border: 1px solid #E3E3E3;
+}
+
+table > thead > tr > th,
+table > tbody > tr > th,
+table > tfoot > tr > th,
+table > thead > tr > td,
+table > tbody > tr > td,
+table > tfoot > tr > td {
+  padding: 8px;
+  line-height: 1.42857143;
+  vertical-align: middle;
+  border-top: 1px solid #ddd;
+  text-align: center;
+}
+
+table > thead > tr > th {
+  vertical-align: bottom;
+  border-bottom: 2px solid #ddd;
+}
+
+table > tbody > tr:nth-of-type(odd) {
+  background-color: rgb(255, 255, 255);
+}
+
+table > tbody > tr:nth-of-type(even) {
+  background-color: rgba(58, 176, 202, 0.2);
+}
+
+thead {
+  background-color: #1e5d6b;
+  color: #FFF;
+}

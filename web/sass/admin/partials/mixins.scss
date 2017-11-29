@@ -1,0 +1,22 @@
+@mixin borderRadius($radius) {
+  -webkit-border-radius: $radius;
+  -moz-border-radius: $radius;
+  -ms-border-radius: $radius;
+  border-radius: $radius;
+}
+
+@mixin boxShadow($height, $color) {
+  box-shadow: $height $height $height $height $color;
+  /*box-shadow: 5px 5px  rgba(0, 0, 0, 0.6);*/
+}
+
+@mixin colorback1($color,$pourcent) {
+  background-color:  lighten($color, $pourcent);
+  /*box-shadow: 5px 5px  rgba(0, 0, 0, 0.6);*/
+}
+@mixin colortext1($color,$pourcent) {
+  color:  lighten($color, $pourcent);
+  /*box-shadow: 5px 5px  rgba(0, 0, 0, 0.6);*/
+}
+
+
