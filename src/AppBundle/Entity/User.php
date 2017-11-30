@@ -4,6 +4,7 @@ namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Mapping\JoinColumn;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * User
@@ -12,7 +13,7 @@ use Doctrine\ORM\Mapping\JoinColumn;
  * @ORM\Entity(repositoryClass="AppBundle\Repository\UserRepository")
  * @ORM\HasLifecycleCallbacks()
  */
-class User
+class User implements UserInterface, \Serializable
 {
 
 
@@ -99,6 +100,11 @@ class User
      */
     private $favorites;
 
+    /**
+     * @ORM\Column(name="is_active", type="boolean")
+     */
+    private $isActive;
+
 
     /**
      * Get id
@@ -173,14 +179,13 @@ class User
     }
 
     /**
-     * Get role
-     *
      * @return int
      */
     public function getRole()
     {
         return $this->role;
     }
+
 
     /**
      * Set status
@@ -325,13 +330,7 @@ class User
     {
         return $this->partner;
     }
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->favorites = new \Doctrine\Common\Collections\ArrayCollection();
-    }
+
 
     /**
      * Add favorite
@@ -365,5 +364,67 @@ class User
     public function getFavorites()
     {
         return $this->favorites;
+    }
+
+    public function __construct()
+    {
+        $this->favorites = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->isActive = true;
+        $this->lastLogin = new \DateTime();
+        // may not be needed, see section on salt below
+        // $this->salt = md5(uniqid('', true));
+    }
+    public function getSalt()
+    {
+        // you *may* need a real salt depending on your encoder
+        // see section on salt below
+        //return null;
+    }
+
+
+    public function getRoles()
+    {
+        if ($this->getRole() == self::USER_ROLE_MAYOR) {
+            return array('ROLE_MAYOR');
+        }
+        if ($this->getRole() == self::USER_ROLE_PARTNER) {
+            return array('ROLE_PARTNER');
+        }
+        if ($this->getRole() == self::USER_ROLE_ADMIN) {
+            return array('ROLE_ADMIN');
+        }
+
+        return array();
+    }
+    public function eraseCredentials()
+    {
+    }
+
+    /** @see \Serializable::serialize() */
+    public function serialize()
+    {
+        return serialize(array(
+            $this->id,
+            $this->login,
+            $this->password,
+            // see section on salt below
+            // $this->salt,
+        ));
+    }
+
+    /** @see \Serializable::unserialize() */
+    public function unserialize($serialized)
+    {
+        list (
+            $this->id,
+            $this->login,
+            $this->password,
+            // see section on salt below
+            // $this->salt
+            ) = unserialize($serialized);
+    }
+    public function getUsername()
+    {
+        return $this->login;
     }
 }

@@ -75,9 +75,27 @@
                         <div class=" col-xs-12">
                             <div class="form-group">
                                 {{ form_label(form.activities, "Secteur d'activité *") }}
-                                {{ form_widget(form.activities) }}
                                 <div class="row scroll-in">
-                                    <div class="col-xs-3">
+
+                                    <div class="col-sm-3">
+                                        {% set nbthema = form.activities|length %}
+                                        {% set col =  nbthema/4 %}
+                                        {% set col = col|round %}
+                                        {% for activity in form.activities %}
+                                        {{ form_errors(activity) }}
+                                        <div>
+                                            <input type="checkbox" id="{{ activity.vars.id }}"
+                                                   name="{{ activity.vars.full_name }}" value="{{ activity.vars.value }}" class="check-limit">
+                                            <label for="{{ activity.vars.id }}">{{ activity.vars.label }}</label>
+                                        </div>
+                                        {% if (loop.index == col) or (loop.index == col*2) or (loop.index == col*3) %}
+                                    </div>
+                                    <div class="col-sm-3">
+                                        {% endif %}
+                                        {% endfor %}
+                                    </div>
+
+                                    {#<div class="col-xs-3">
                                         <div><input name="secteur[]" class="form-control check-limit" type="checkbox"
                                                     id="alimentation"/> <label for="alimentation">Alimentation</label>
                                         </div>
@@ -130,7 +148,7 @@
                                                     id="social"/> <label for="social">Social</label></div>
                                         <div><input name="secteur[]" class="form-control check-limit" type="checkbox"
                                                     id="telephonie"/> <label for="telephonie">Téléphonie</label></div>
-                                    </div>
+                                    </div>#}
                                 </div>
                             </div>
                         </div>

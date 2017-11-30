@@ -10,19 +10,19 @@
                     </div>
                     <div class="col-sm-6 col-xs-12 text-center">
                         <div class="formConnect bck-maire">
-                            <form action="{{ path('mayor_index') }}" method="post">
+                            <form action="{{ path('login') }}" method="post">
                                 <h5 class="text-center">Maire</h5>
                                 <div class="form-group">
                                     <label for="login">n° INSEE</label>
-                                    <input id="login" type="text" class="form-control">
+                                    <input id="login" type="text" name="_username" class="form-control">
                                 </div>
                                 <div class="form-group">
                                     <label for="mdp">Mot de passe</label>
-                                    <input id="mdp" type="password" class="form-control">
+                                    <input id="mdp" type="password" name="_password" class="form-control">
                                 </div>
-                                <div class="saveAll">
-                                    <input name="group1" class="" type="checkbox" id="saveMaire">
-                                    <label class="labelSave" for="saveMaire">Se souvenir de moi</label>
+                                <div class="form-group">
+                                    <input type="checkbox" id="remember_me" name="_remember_me" checked />
+                                    <label for="remember_me">Se souvenir de moi</label>
                                 </div>
                                 <div class="containerConnect">
                                     <button class="btn" type="submit" name="action">Connexion</button>
@@ -30,24 +30,25 @@
                                 <div class="containerConnect">
                                     <a href="#">Mot de passe oublié ?</a>
                                 </div>
+                                <input type="hidden" name="_target_path" value="/mayor"/>
                             </form>
                         </div>
                     </div>
                     <div class="col-sm-6 col-xs-12 text-center">
                         <div class="formConnect bck-part">
-                            <form action="{{ path('partner_index') }}" method="post">
+                            <form action="{{ path('login') }}" method="post">
                                 <h5 class="text-center">Partenaire</h5>
                                 <div class="form-group">
                                     <label for="login">n° SIRET</label>
-                                    <input id="login" type="text" class="form-control">
+                                    <input id="login" type="text" name="_username" class="form-control">
                                 </div>
                                 <div class="form-group">
-                                    <label for="last_name">Mot de passe</label>
-                                    <input id="mdp" type="password" class="form-control">
+                                    <label for="mdp">Mot de passe</label>
+                                    <input id="mdp" type="password" name="_password" class="form-control">
                                 </div>
-                                <div class="saveAll">
-                                    <input name="group1" class="" type="checkbox" id="savePart">
-                                    <label class="labelSave" for="savePart">Se souvenir de moi</label>
+                                <div class="form-group">
+                                    <input type="checkbox" id="remember_me" name="_remember_me" checked />
+                                    <label for="remember_me">Se souvenir de moi</label>
                                 </div>
                                 <div class="containerConnect">
                                     <button class="btn" type="submit" name="action">Connexion</button>
@@ -55,6 +56,7 @@
                                 <div class="containerConnect">
                                     <a href="#">Mot de passe oublié ?</a>
                                 </div>
+                                <input type="hidden" name="_target_path" value="/partner"/>
                             </form>
                         </div>
                     </div>

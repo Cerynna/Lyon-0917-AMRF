@@ -1,23 +1,26 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: wilder
+ * User: cerynna
  * Date: 29/11/17
- * Time: 10:23
+ * Time: 10:22
  */
 
 namespace AppBundle\Controller;
+
+
 use AppBundle\Service\Email\EmailService;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
-
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
+use Symfony\Component\HttpFoundation\Request;
 
 
 /**
- * Class AdminEmailController
- * @Route("admin/email")
+ * Email controller.
  *
+ * @Route("admin/email")
  */
 class AdminEmailController extends Controller
 {
@@ -26,19 +29,61 @@ class AdminEmailController extends Controller
      */
     public function mailTestAction(EmailService $emailService)
     {
-        $message = [
-            'to'     => 'severinelab@gmail.com',
-            'type'   => EmailService::TYPE_MAIL_EVENT['key'],
-            'message'=> 'c\'est la fête',
+        $message[] = [
+            'to' => 'cerynna@gmail.com',
+            'type' => EmailService::TYPE_MAIL_EVENT['key'],
+            'object' => 'Message d\'event',
+            'message' => 'Salut les moches',
+        ];
+        $message[] = [
+            'to' => 'cerynna@gmail.com',
+            'type' => EmailService::TYPE_MAIL_CONFIRM_PASSWORD['key'],
+        ];
+        $message[] = [
+            'to' => 'cerynna@gmail.com',
+            'type' => EmailService::TYPE_MAIL_CONTACT_CONFIRM['key'],
+
+        ];
+        $message[] = [
+            'to' => 'cerynna@gmail.com',
+            'type' => EmailService::TYPE_MAIL_CONTACT_ADMIN['key'],
+        ];
+        $message[] = [
+            'to' => 'cerynna@gmail.com',
+            'type' => EmailService::TYPE_MAIL_PROJECT_VALID['key'],
+        ];
+        $message[] = [
+            'to' => 'cerynna@gmail.com',
+            'type' => EmailService::TYPE_MAIL_NEW_USER['key'],
         ];
 
-        $emailService->sendEmail($message);
+        foreach ($message as $mess) {
+            $emailService->sendEmail($mess);
+        }
+
+
         $this->addFlash(
             'notice',
-            'Email envoyé'
+            'Email envoyé.'
         );
         return new Response(
-            '<html><body>Et voilou</body></html>'
+            '<html><body>Et la on envoie un mail</body></html>'
         );
     }
+
+    /**
+     * @Route("/preview", name="admin_mail_preview")
+     */
+    public function previewMail()
+    {
+        $message = [
+            'message' => 'Salut les moches',
+        ];
+
+        return $this->render('email/event.html.twig', array(
+                'message' => $message['message']
+            )
+        );
+    }
+
 }
