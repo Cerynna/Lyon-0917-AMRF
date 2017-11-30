@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8"/>
+    <title>{% block title %}{% endblock %} - Administration</title>
+    {% block stylesheets %}{% endblock %}
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}"/>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}"/>
+    <link rel="stylesheet" href="{{ asset('css/admin.css') }}"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+</head>
+<body>
+<header>
+    <div class="col-md-2">
+        <h3><i class="fa fa-user"></i> Admin</h3>
+    </div>
+    <div class="col-md-offset-6 col-md-4  text-right">
+        <button class="btn btn-badge" type="button">
+            Projets <span class="badge">4</span>
+        </button>
+        <button class="btn btn-badge" type="button">
+            Maires <span class="badge">4</span>
+        </button>
+        <button class="btn btn-badge" type="button">
+            Partenaires<span class="badge">4</span>
+        </button>
+    </div>
+</header>
+<nav>
+    <ul>
+        <li {% if app.request.attributes.get('_route') == 'admin_user_index'
+        or app.request.attributes.get('_route') == 'admin_user_new'
+        or app.request.attributes.get('_route') == 'admin_user_show'
+        or app.request.attributes.get('_route') == 'admin_user_edit'
+        or app.request.attributes.get('_route') == 'admin_user_delete' %} class="active-user" {% endif %}
+        >
+            <a href="{{ path('admin_user_index') }}">
+                <h3><i class="fa fa-address-book"></i> User</h3>
+            </a>
+        </li>
+        <li {% if app.request.attributes.get('_route') == 'admin_publicpage_index'
+        or app.request.attributes.get('_route') == 'admin_publicpage_new'
+        or app.request.attributes.get('_route') == 'admin_publicpage_show'
+        or app.request.attributes.get('_route') == 'admin_publicpage_edit'
+        or app.request.attributes.get('_route') == 'admin_publicpage_delete' %} class="active-publicpage" {% endif %}
+        >
+            <a href="{{ path('admin_publicpage_index') }}">
+                <h3><i class="fa fa-address-book"></i> Page Public</h3>
+            </a>
+        </li>
+        <li {% if app.request.attributes.get('_route') == 'admin_project_index'
+        or app.request.attributes.get('_route') == 'admin_project_new'
+        or app.request.attributes.get('_route') == 'admin_project_show'
+        or app.request.attributes.get('_route') == 'admin_project_edit'
+        or app.request.attributes.get('_route') == 'admin_project_delete' %} class="active-project" {% endif %}
+        >
+            <a href="{{ path('admin_project_index') }}">
+                <h3><i class="fa fa-address-book-o"></i> Project</h3>
+            </a>
+        </li>
+        <li {% if app.request.attributes.get('_route') == 'admin_partner_index'
+        or app.request.attributes.get('_route') == 'admin_partner_new'
+        or app.request.attributes.get('_route') == 'admin_partner_show'
+        or app.request.attributes.get('_route') == 'admin_partner_edit'
+        or app.request.attributes.get('_route') == 'admin_partner_delete' %} class="active-partner" {% endif %}
+        >
+            <a href="{{ path('admin_partner_index') }}">
+                <h3><i class="fa fa-folder-open"></i> Partenaires</h3>
+            </a>
+        </li>
+        <li {% if app.request.attributes.get('_route') == 'admin_mayor_index'
+        or app.request.attributes.get('_route') == 'admin_mayor_new'
+        or app.request.attributes.get('_route') == 'admin_mayor_show'
+        or app.request.attributes.get('_route') == 'admin_mayor_edit'
+        or app.request.attributes.get('_route') == 'admin_mayor_delete' %} class="active-mayor" {% endif %}
+        >
+            <a href="{{ path('admin_mayor_index') }}">
+                <h3><i class="fa fa-edit"></i> Maires</h3>
+            </a>
+        </li>
+        <li {% if app.request.attributes.get('_route') == 'admin_favorite_index'
+        or app.request.attributes.get('_route') == 'admin_favorite_new'
+        or app.request.attributes.get('_route') == 'admin_favorite_show'
+        or app.request.attributes.get('_route') == 'admin_favorite_edit'
+        or app.request.attributes.get('_route') == 'admin_favorite_delete' %} class="active-favorite" {% endif %}
+        >
+            <a href="{{ path('admin_favorite_index') }}">
+                <h3><i class="fa fa-bar-chart"></i> Favoris</h3>
+            </a>
+        </li>
+        <li {% if app.request.attributes.get('_route') == 'admin_company_index'
+        or app.request.attributes.get('_route') == 'admin_company_new'
+        or app.request.attributes.get('_route') == 'admin_company_show'
+        or app.request.attributes.get('_route') == 'admin_company_edit'
+        or app.request.attributes.get('_route') == 'admin_company_delete' %} class="active-company" {% endif %}
+        >
+            <a href="{{ path('admin_company_index') }}">
+                <h3><i class="fa fa-bar-chart"></i> Organisme</h3>
+            </a>
+        </li>
+        <li {% if app.request.attributes.get('_route') == 'admin_dictionary_index'
+        or app.request.attributes.get('_route') == 'admin_dictionary_new'
+        or app.request.attributes.get('_route') == 'admin_dictionary_show'
+        or app.request.attributes.get('_route') == 'admin_dictionary_edit'
+        or app.request.attributes.get('_route') == 'admin_dictionary_delete' %} class="active-company" {% endif %}
+        >
+            <a href="{{ path('admin_dictionary_index') }}">
+                <h3><i class="fa fa-bar-chart"></i> Dictionary</h3>
+            </a>
+        </li>
+    </ul>
+</nav>
+<section>
+    <div class="container-fluid">
+        <div class="content">
+            {% block body %}
+            {% endblock %}
+        </div>
+
+    </div>
+</section>
+<footer class="page-footer">
+    footer et cet fois pas un truc moche :D
+</footer>
+
+{% include 'components/script.html.twig' %}
+{% block javascripts %}{% endblock %}
+</body>
+</html>

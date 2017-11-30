@@ -1,0 +1,76 @@
+{% extends 'base.html.twig' %}
+{% block title %}Accueil{% endblock %}
+{% block body %}
+    {{ dump(projects) }}
+    {% if is_granted('ROLE_MAYOR') %} JE SUIS UN MAYOR !!!! {% endif %}
+    {% if is_granted('ROLE_PARTNER') %} JE SUIS UN PARTNER !!!! {% endif %}
+    {% if is_granted('ROLE_ADMIN') %} JE SUIS UN ADMIN !!!! {% endif %}
+    {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+        <a class="link" href="{{ path('logout') }}">Logout</a>
+    {% endif %}
+    <h2>Bienvenue</h2>
+    <h3 class="hidden-xs">Les dernières fiches projets</h3>
+    <div id="myCarousel" class="carousel slide resumeProject jumbotron row" data-ride="carousel">
+        <div class="carousel-inner">
+            <div class="item active">
+                {% set options = {'thema':'true','pictures':'true','update': 'false', 'more': 'false', 'id': 1, 'text': 300} %}
+                {% include 'components/resumeProject.html.twig' with options %}
+            </div>
+            <div class="item ">
+                {% set options = {'thema':'true','pictures':'true','update': 'false', 'more': 'false', 'id':2, 'text': 300} %}
+                {% include 'components/resumeProject.html.twig' with options %}
+            </div>
+            <div class="item ">
+                {% set options = {'thema':'true','pictures':'true','update': 'false', 'more': 'false', 'id':3, 'text': 300} %}
+                {% include 'components/resumeProject.html.twig' with options %}
+            </div>
+        </div>
+    </div>
+    <h3>Un outil collaboratif et participatif</h3>
+    <div class="row jumbotron">
+        <div class="col-md-12">
+
+
+            <h3>Le Wiki des Maires : qu’est-ce que c’est ?</h3>
+            <p>
+                A destination des communes adhérentes de l’Association des Maires Ruraux de France et de ses
+                partenaires, le Wiki des Maires permet de partager et d’échanger sur des projets mis en place par les
+                communes rurales.
+            </p>
+            <p>
+                Le Wiki des Maires a pour objectif de <strong>valoriser les initiatives menées</strong> et de <strong>faciliter
+                    les échanges</strong>, en mettant à disposition les coordonnées des porteurs de projets et des
+                partenaires mobilisés. Créatrice de lien entre les membres du réseau, cette plateforme interactive
+                illustre le dynamisme des communes et l’implication des élus pour leur territoire et leurs administrés.
+            </p>
+            <p>
+                L’échelon communal permet l’innovation et la réalisation de projets concrets. Le Wiki des Maires, en est
+                une traduction et l’incarnation numérique de la devise de l’Association « Des maires au service des
+                maires ».
+            </p>
+
+        </div>
+    </div>
+    <div class="row jumbotron">
+        <div class="col-md-12">
+
+            <h3>Comment l’utiliser ?</h3>
+            <h5><i class="fa fa-share-square-o"></i> Je partage</h5>
+            <p>
+                Vous avez un projet, une initiative, une réalisation à valoriser ou une expertise à apporter ?
+                Enrichissez la base et partagez votre enthousiasme !
+            </p>
+            <h5><i class="fa fa-search"></i> Je recherche</h5>
+            <p>
+                Vous voulez savoir si un projet similaire au vôtre a déjà été mis en place par quelqu’un et comment il
+                s’y est pris ? Vous souhaitez avoir une liste des projets réalisés selon une thématique donnée ? Ou tout
+                simplement, vous aimeriez connaître les actions menées autour de vous ou dans un département particulier
+                ? Le Wiki des Maires est la solution qui met en avant l’expérience des maires et l’expertise de nos
+                partenaires.
+                Alors partez à la recherche et inspirez-vous !
+            </p>
+
+        </div>
+    </div>
+
+{% endblock %}

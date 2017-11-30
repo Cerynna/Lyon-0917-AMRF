@@ -1,0 +1,79 @@
+{% extends 'base.html.twig' %}
+{% block title %}Mon espace{% endblock %}
+{% block navbar %}
+    {% set options = {'status':2} %}
+    {% include 'components/navbar.html.twig' with options %}
+{% endblock %}
+{% block body %}
+
+    <h2 class="center-align">Mon Espace</h2>
+
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="bck-part">
+                <div class="row">
+                    <div class="col-lg-12 text-center">
+                        <i class="fa fa-tags"></i>
+                        <h3>PROJETS</h3>
+                    </div>
+                    <div class="col-xs-12 text-center">
+                        <a href="{{ path('search') }}">
+                            <div class="btn search">
+                                <span class="fa fa-search"></span> RECHERCHER
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-xs-12 text-center">
+                        <a href="{{ path('partner_favorite') }}">
+                            <div class="btn">
+                                <i class="fa fa-star-o"></i> PARCOURIR MES FAVORIS
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-6 col-xs-12">
+            <div class="bck-part">
+                <div class="row">
+                    <div class="col-xs-12 text-center">
+                        <i class="fa fa-id-card"></i>
+                        <h3>ORGANISME</h3>
+                        <h4>Pensez à remplir votre fiche pour apparaitre dans l'annuaire du site</h4>
+                    </div>
+                    <div class="col-xs-12 hidden-xs text-center">
+                        <a href="{{ path('partner_press') }}">
+                            <button class="btn btn-sm"><span class="fa fa-pencil"></span> ACCEDER A MA FICHE</button>
+                        </a>
+                    </div>
+                    <div class="col-xs-12 text-center">
+                        <a href="{{ path('directory') }}">
+                            <button class="btn btn-sm"><span class="fa fa-search"></span>TROUVER DES PARTENAIRES
+                            </button>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6 col-xs-12">
+            <div class="bck-part">
+                <div class="row">
+                    <div class="col-xs-12 text-center">
+                        <i class="fa fa-user"></i>
+                        <h3>MON PROFIL UTILISATEUR</h3>
+                    </div>
+
+                    <div class="col-xs-12 text-center">
+                        <a href="{{ path('partner_profil') }}">
+                            <div class="btn btn-sm"><span class="fa fa-pencil"></span> ACCEDER A MON PROFIL</div>
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

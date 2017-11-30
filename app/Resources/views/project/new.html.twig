@@ -1,10 +1,13 @@
-{% extends 'AMRFPublicRooterBundle::private/admin/baseAdmin.html.twig' %}
+{% extends 'private/admin/baseAdmin.html.twig' %}
 
 {% block body %}
     <h1>Project creation</h1>
 
     {{ form_start(form) }}
         {{ form_widget(form) }}
+    <input id="projet_photos_1" type='file' name='project[photos][]'>
+    <input id="projet_photos_2" type='file' name='project[photos][]'>
+
         <input type="submit" value="Create" />
     {{ form_end(form) }}
 

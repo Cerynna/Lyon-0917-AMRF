@@ -3,17 +3,6 @@ section {
     .select2 {
       width: 100% !important;
     }
-    /*
-    .select2-container--default.select2-container--focus .select2-selection--multiple {
-      border: solid $color1 2px;
-      outline: 0;
-      background-color: $color3;
-    }
-    .select2-results__options{
-      li:hover{
-        background: red !important;
-      }
-    }*/
     .search {
       height: 50px;
       font-size: 1.8em !important;
@@ -33,7 +22,6 @@ section {
       margin-right: auto;
     }
     input {
-      background: red;
       border: 1px solid $color1;
       width: 100% !important;
     }
@@ -47,6 +35,7 @@ section {
       overflow: hidden;
       border: 0 solid $color3;
     }
+
     input[type="checkbox"] {
       &:empty {
         display: none;
@@ -113,9 +102,9 @@ section {
       overflow-x: hidden;
       z-index: 200;
       top: 70px;
-      list-style:none;
-      margin-left:0;
-      padding-left:0;
+      list-style: none;
+      margin-left: 0;
+      padding-left: 0;
       li {
         text-align: left;
         padding: 5px 0 5px 10px;
@@ -134,8 +123,30 @@ section {
        width: 200px;
        height: 200px;
      }*/
+    .saveMe {
+      label {
+        width: 50%;
+      }
+      input[type="checkbox"]:checked ~ label {
+        color: $color2;
+        text-indent: 1em;
+      }
+      input[type="checkbox"]:empty ~ label {
+        color: $color2;
+        text-indent: 1em;
+      }
+      input[type="checkbox"]:checked ~ label:before {
+        color: $color2;
+        text-indent: 0.3em;
+      }
+      input[type="checkbox"]:empty ~ label:before {
+        color: $color2;
+        text-indent: 0.3em;
+      }
+    }
   }
 }
+
 
 
 

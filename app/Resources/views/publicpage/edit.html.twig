@@ -1,6 +1,30 @@
-{% extends 'AMRFPublicRooterBundle::private/admin/baseAdmin.html.twig' %}
+{% extends 'private/admin/baseAdmin.html.twig' %}
 
 {% block body %}
+    <div class="menu-admin menu-publicpage">
+        <ul>
+            <li>
+                <a href="{{ path('admin_publicpage_index') }}" data-toggle="tooltip" data-placement="right"
+                   title="Liste Utilisateur"><i class="fa fa-book fa-admin"></i></a>
+            </li>
+            <li>
+                <a href="{{ path('admin_publicpage_new') }}" data-toggle="tooltip" data-placement="right"
+                   title="Nouvel Utilisateur"><i
+                            class="fa fa-plus fa-admin"></i></a>
+            </li>
+            <li>
+                <a  onclick="document.amrf_publicrooterbundle_user.submit();" data-toggle="tooltip" data-placement="right"
+                    title="Nouvel Utilisateur"><i class="fa fa-check fa-admin"></i></a>
+            </li>
+            <li>
+                {{ form_start(delete_form) }}
+                <button class="fa-admin" data-toggle="tooltip" data-placement="right"
+                        title="Supprimer l'Utilisateur" type="submit"><i class="fa fa-trash-o"></i></button>
+                {{ form_end(delete_form) }}
+
+            </li>
+        </ul>
+    </div>
     <h1>Publicpage edit</h1>
 
     {{ form_start(edit_form) }}
@@ -8,14 +32,4 @@
         <input type="submit" value="Edit" />
     {{ form_end(edit_form) }}
 
-    <ul>
-        <li>
-            <a href="{{ path('admin_publicpage_index') }}">Back to the list</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
 {% endblock %}

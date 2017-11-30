@@ -496,11 +496,6 @@ h5 {
   box-shadow: none;
   background: rgba(196, 255, 190, 0.1); }
 
-.saveAll .labelSave {
-  font-size: 1em;
-  font-weight: normal;
-  margin: 0px; }
-
 nav {
   color: #FFFFFF;
   width: 100%;
@@ -877,17 +872,6 @@ section {
     margin: 0 !important; }
 
 section form {
-  /*
-    .select2-container--default.select2-container--focus .select2-selection--multiple {
-      border: solid $color1 2px;
-      outline: 0;
-      background-color: $color3;
-    }
-    .select2-results__options{
-      li:hover{
-        background: red !important;
-      }
-    }*/
   /* .cleIcon {
        width: 200px;
        height: 200px;
@@ -912,7 +896,6 @@ section form {
     margin-left: auto;
     margin-right: auto; }
   section form input {
-    background: red;
     border: 1px solid rgba(0, 158, 61, 0.99);
     width: 100% !important; }
   section form label {
@@ -988,6 +971,20 @@ section form {
       color: #FFFFFF; }
   section form .relativeDiv {
     position: relative; }
+  section form .saveMe label {
+    width: 50%; }
+  section form .saveMe input[type="checkbox"]:checked ~ label {
+    color: #FFFFFF;
+    text-indent: 1em; }
+  section form .saveMe input[type="checkbox"]:empty ~ label {
+    color: #FFFFFF;
+    text-indent: 1em; }
+  section form .saveMe input[type="checkbox"]:checked ~ label:before {
+    color: #FFFFFF;
+    text-indent: 0.3em; }
+  section form .saveMe input[type="checkbox"]:empty ~ label:before {
+    color: #FFFFFF;
+    text-indent: 0.3em; }
 
 .select2-container {
   box-sizing: border-box;
