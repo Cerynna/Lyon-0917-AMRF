@@ -13,8 +13,7 @@
 </header>
 <nav id="navbar">
     {% block navbar %}
-        {% set options = {'status':0} %}
-        {% include 'components/navbar.html.twig' with options %}
+        {% include 'components/navbar.html.twig'%}
     {% endblock %}
 </nav>
 <a href="#">

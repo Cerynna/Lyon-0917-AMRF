@@ -106,12 +106,14 @@ class AdminCompanyController extends Controller
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
+
             $logo = $company->getLogo();
             $company->setLogo($upload->fileUpload($logo, "/company/" . $company->getName(), "IMG"));
             $this->getDoctrine()->getManager()->flush();
 
             return $this->redirectToRoute('admin_company_edit', array('id' => $company->getId()));
         }
+
 
         return $this->render('company/edit.html.twig', array(
             'company' => $company,

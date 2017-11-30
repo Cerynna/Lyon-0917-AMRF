@@ -35,12 +35,19 @@
                             href="{{ path('contact') }}">Contact</a>
                 </li>
 
-                {% if options.status == 0 %}
+                {% if is_granted('IS_AUTHENTICATED_REMEMBERED') == false %}
                     <li class="visible-xs visible-md visible-sm">
                         <a data-toggle="modal" data-target="#formConnect" href="#formConnect">Connexion</a>
                     </li>
                 {% endif %}
-                {% if options.status == 1 %}
+
+                {% if is_granted('ROLE_ADMIN') %}
+                    <li>
+                        <a href="{{ path('admin_index') }}">Administration</a>
+                    </li>
+                {% endif %}
+
+                {% if is_granted('ROLE_MAYOR') %}
                     <li class="dropdown">
                         <a data-toggle="dropdown" class="dropdown-toggle hidden-xs" href="#">Mon Espace <i
                                     class="fa fa-angle-down"></i></a>
@@ -86,7 +93,8 @@
                         </ul>
                     </li>
                 {% endif %}
-                {% if options.status == 2 %}
+
+                {% if is_granted('ROLE_PARTNER') %}
 
                     <li class="dropdown">
                         <a data-toggle="dropdown" class="dropdown-toggle hidden-xs" href="#">Mon Espace <i

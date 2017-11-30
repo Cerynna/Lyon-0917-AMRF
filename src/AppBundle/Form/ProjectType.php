@@ -2,6 +2,8 @@
 
 namespace AppBundle\Form;
 
+use AppBundle\Entity\Dictionary;
+use AppBundle\Entity\Project;
 use Doctrine\ORM\EntityRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
@@ -21,10 +23,12 @@ class ProjectType extends AbstractType
     {
         $builder
             ->add('title')
-            ->add('theme', EntityType::class, array(
+            ->add('themes', EntityType::class, array(
                 'class' => 'AppBundle:Dictionary',
                 'query_builder' => function (EntityRepository $er) {
                     return $er->createQueryBuilder('u')
+                        ->setParameter('type', Dictionary::TYPE_THEME)
+                        ->where('u.type = :type')
                         ->orderBy('u.type', 'ASC');
                 },
                 'expanded' => true,
@@ -36,7 +40,7 @@ class ProjectType extends AbstractType
             /*->add('theme')*/
             ->add('creationDate')
             ->add('updateDate')
-            ->add('image', FileType::class, [
+            ->add('images', FileType::class, [
                 'multiple' => true,
             ])
             ->add('projectDate', DateType::class, array(

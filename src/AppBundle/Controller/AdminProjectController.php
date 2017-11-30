@@ -6,9 +6,10 @@ use AppBundle\Entity\Project;
 use AppBundle\Service\UploadService;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
-use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Project controller.
@@ -48,17 +49,20 @@ class AdminProjectController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $image = $project->getImage();
-            $project->setImage($upload->fileUpload($image, "/project/" . $project->getTitle(), "IMG"));
+            $images = $project->getImages();
+            $project->setImages($upload->fileUpload($images, "/project/" . $project->getTitle(), "IMG"));
             $file = $project->getFile();
             $project->setFile($upload->fileUpload($file, "/project/" . $project->getTitle(), "PDF"));
-            /*$theme = $project->getTheme();
-            $project->setTheme($theme);*/
+            $themes = $project->getThemes();
+            $project->setThemes($themes);
             $em->persist($project);
             $em->flush();
 
             return $this->redirectToRoute('admin_project_show', array(
-                'id' => $project->getId()));
+                'id' => $project->getId(),
+                'test' => $form,
+
+            ));
         }
 
         return $this->render('project/new.html.twig', array(
@@ -84,21 +88,6 @@ class AdminProjectController extends Controller
     }
 
     /**
-     * Creates a form to delete a project entity.
-     *
-     * @param Project $project The project entity
-     *
-     * @return \Symfony\Component\Form\Form The form
-     */
-    private function createDeleteForm(Project $project)
-    {
-        return $this->createFormBuilder()
-            ->setAction($this->generateUrl('admin_project_delete', array('id' => $project->getId())))
-            ->setMethod('DELETE')
-            ->getForm();
-    }
-
-    /**
      * Displays a form to edit an existing project entity.
      *
      * @Route("/{id}/edit", name="admin_project_edit")
@@ -111,8 +100,8 @@ class AdminProjectController extends Controller
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
-            $image = $project->getImage();
-            $project->setImage($upload->fileUpload($image, "/project/" . $project->getTitle(), "IMG"));
+            /*$images = $project->getImages();
+            $project->setImages($upload->fileUpload($images, "/project/" . $project->getTitle(), "IMG"));*/
             $file = $project->getFile();
             $project->setFile($upload->fileUpload($file, "/project/" . $project->getTitle(), "PDF"));
             $this->getDoctrine()->getManager()->flush();
@@ -145,5 +134,21 @@ class AdminProjectController extends Controller
         }
 
         return $this->redirectToRoute('admin_project_index');
+    }
+
+    /**
+     * Creates a form to delete a project entity.
+     *
+     * @param Project $project The project entity
+     *
+     * @return \Symfony\Component\Form\Form The form
+     */
+    private function createDeleteForm(Project $project)
+    {
+        return $this->createFormBuilder()
+            ->setAction($this->generateUrl('admin_project_delete', array('id' => $project->getId())))
+            ->setMethod('DELETE')
+            ->getForm()
+        ;
     }
 }
