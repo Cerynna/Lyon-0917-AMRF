@@ -3,17 +3,6 @@ section {
     .select2 {
       width: 100% !important;
     }
-    /*
-    .select2-container--default.select2-container--focus .select2-selection--multiple {
-      border: solid $color1 2px;
-      outline: 0;
-      background-color: $color3;
-    }
-    .select2-results__options{
-      li:hover{
-        background: red !important;
-      }
-    }*/
     .search {
       height: 50px;
       font-size: 1.8em !important;
@@ -33,7 +22,6 @@ section {
       margin-right: auto;
     }
     input {
-      background: red;
       border: 1px solid $color1;
       width: 100% !important;
     }
@@ -47,6 +35,67 @@ section {
       overflow: hidden;
       border: 0 solid $color3;
     }
+/*    .checkbox {
+      label {
+        font-size: 1em;
+        line-height: 1em;
+text-align: right;
+        z-index: 200;
+        width: 50px;
+      }
+      input[type="checkbox"] {
+        -webkit-appearance:none;!* Hides the default checkbox style *!
+        height:2em;
+        width:10px;
+        cursor:pointer;
+        position:relative;
+        -webkit-transition: .15s;
+        border-radius:5px;
+        background-color:#CCC;
+      }
+
+      input[type="checkbox"]:checked {
+        background-color:$color1;
+      }
+
+      input[type="checkbox"]:before, input[type="checkbox"]:checked:before {
+        position:absolute;
+        top:0;
+        left:0;
+        width:30px;
+        height:100%;
+        line-height:2em;
+        text-align:center;
+        color:#fff;
+      }
+
+      input[type="checkbox"]:checked:before {
+        content: '✔';
+      }
+
+      input[type="checkbox"]:hover:before {
+        background:rgba(255,255,255,0.3);
+      }
+    }*/
+
+    /**
+
+    .checkbox {
+      font-size: 0.9em;
+      position: relative;
+      line-height: 2em;
+      text-indent: 3em;
+      margin-top: 5px;
+      cursor: pointer;
+      input {
+        height: 50px;
+        width: 50px;
+      }
+    }
+
+    **/
+
+
     input[type="checkbox"] {
       &:empty {
         display: none;
@@ -113,9 +162,9 @@ section {
       overflow-x: hidden;
       z-index: 200;
       top: 70px;
-      list-style:none;
-      margin-left:0;
-      padding-left:0;
+      list-style: none;
+      margin-left: 0;
+      padding-left: 0;
       li {
         text-align: left;
         padding: 5px 0 5px 10px;

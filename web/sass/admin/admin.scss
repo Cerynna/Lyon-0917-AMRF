@@ -1,0 +1,78 @@
+/**
+** node-sass --watch web/sass/admin/admin.scss web/css/admin.css
+*/
+/**
+*************************** RESET *********************
+*/
+@import 'partials/reset';
+/**
+*************************** Variable *********************
+ */
+@import 'partials/variables';
+/**
+*************************** Fonctions *********************
+*/
+@import 'partials/mixins';
+/**
+*************************** Partials *********************
+*/
+@import 'partials/header';
+@import 'partials/sidenav';
+@import 'partials/section';
+@import 'partials/table';
+@import 'partials/footer';
+
+body {
+  background: rgb(227, 227, 227);
+  height: 100vh;
+}
+
+h1 {
+  @include colortext1($color1, 100%);
+  font-size: 3em;
+  margin: 0 5px 10px -20px;
+  position: sticky;
+  position: -webkit-sticky;
+  z-index: 200;
+  top: 0;
+}
+
+.container-fluid {
+  margin: 0 0 0 250px;
+  padding: 0 10px 0 40px;
+  min-height: 100vh;
+  max-width: 100%;
+}
+
+.content {
+  margin-top: 0;
+  margin-bottom: 50px;
+}
+
+$backs: ("user", "publicpage", "project", "partner", "company", "favorite", "mayor");
+
+@for $i from 1 through length($backs) {
+  $c: nth($backs, $i);
+  $pourcent: ($i * 10)+10;
+  .active-#{$c} {
+    @include colorback1($color1, $pourcent);
+  }
+  .menu-#{$c} {
+  @include colorback1($color1, $pourcent);
+  }
+}
+
+.menu-admin {
+  position: fixed;
+  height: 100%;
+  left: 200px;
+  top: 50px;
+  padding: 10px;
+
+  ul {
+    list-style: none;
+  }
+  li {
+    margin-bottom: 10px
+  }
+}
