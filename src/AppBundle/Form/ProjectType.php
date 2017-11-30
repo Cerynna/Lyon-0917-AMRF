@@ -67,6 +67,23 @@ class ProjectType extends AbstractType
             ->add('facebook')
             ->add('twitter')
             ->add('keyWords')
+
+            ->add('keyWords', EntityType::class, array(
+                'class' => 'AppBundle:Dictionary',
+                'query_builder' => function (EntityRepository $er) {
+                    return $er->createQueryBuilder('u')
+                        ->setParameter('type', Dictionary::TYPE_KEYWORD)
+                        ->where('u.type = :type')
+                        ->orderBy('u.type', 'ASC');
+                },
+                'expanded' => true,
+                'multiple' => true,
+                'choice_label' => 'name',
+                'label_attr' => ['class' => 'style_checkbox'],
+
+            ))
+
+
             ->add('mayor');
     }
 

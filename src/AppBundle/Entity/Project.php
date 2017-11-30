@@ -258,7 +258,7 @@ class Project
     }
 
     /**
-     * Set theme
+     * Set themes
      *
      * @param array $themes
      *

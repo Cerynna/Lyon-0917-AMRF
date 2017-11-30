@@ -51,9 +51,9 @@ class Company
     private $city;
 
     /**
-     * @var string
+     * @var array
      *
-     * @ORM\Column(name="activities", type="string", length=255, nullable=true)
+     * @ORM\Column(name="activities", type="array", nullable=true)
      */
     private $activities;
 
@@ -239,7 +239,7 @@ class Company
     /**
      * Set activities
      *
-     * @param string $activities
+     * @param array $activities
      *
      * @return Company
      */
@@ -253,7 +253,7 @@ class Company
     /**
      * Get activities
      *
-     * @return string
+     * @return array
      */
     public function getActivities()
     {
