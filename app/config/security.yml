@@ -4,6 +4,7 @@ security:
     encoders:
         AppBundle\Entity\User:
             algorithm: bcrypt
+            cost: 10
 
     role_hierarchy:
         ROLE_MAYOR:         ROLE_MAYOR
@@ -11,8 +12,8 @@ security:
         ROLE_ADMIN:         ROLE_ADMIN
 
     access_control:
-        - { path: ^/mayor, roles: ROLE_MAYOR }
-        - { path: ^/partner, roles: ROLE_PARTNER }
+        - { path: ^/mayor, roles: [ROLE_MAYOR, ROLE_ADMIN] }
+        - { path: ^/partner, roles: [ROLE_PARTNER, ROLE_ADMIN] }
         - { path: ^/admin, roles: ROLE_ADMIN }
 
 

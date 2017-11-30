@@ -53,15 +53,15 @@
 
                 <div class="form-group row scroll-in">
                     <div class="col-sm-4">
-                        {% set nbthema = form.theme|length %}
-                        {% set col =  nbthema/3 %}
+                        {% set nbthemes = form.themes|length %}
+                        {% set col =  nbthemes/3 %}
                         {% set col = col|round %}
-                        {% for thema in form.theme %}
-                        {{ form_errors(thema) }}
+                        {% for theme in form.themes %}
+                        {{ form_errors(theme) }}
                         <div>
-                            <input type="checkbox" id="{{ thema.vars.id }}"
-                                   name="{{ thema.vars.full_name }}" value="{{ thema.vars.value }}" class="check-limit">
-                            <label for="{{ thema.vars.id }}">{{ thema.vars.label }}</label>
+                            <input type="checkbox" id="{{ theme.vars.id }}"
+                                   name="{{ theme.vars.full_name }}" value="{{ theme.vars.value }}" class="check-limit">
+                            <label for="{{ theme.vars.id }}">{{ theme.vars.label }}</label>
                         </div>
                         {% if (loop.index == col) or (loop.index == col*2) %}
                     </div>

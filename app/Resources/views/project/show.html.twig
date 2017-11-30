@@ -15,7 +15,11 @@
             </tr>
             <tr>
                 <th>Theme</th>
-                <td>{{ project.theme }}</td>
+                <td>
+                    {% for theme in project.themes %}
+                        <span class="label label-primary">{{ theme.name }}</span>
+                    {% endfor %}
+                </td>
             </tr>
             <tr>
                 <th>Creationdate</th>
@@ -27,7 +31,11 @@
             </tr>
             <tr>
                 <th>Image</th>
-                <td>{{ project.image }}</td>
+                <td>
+                    {% for img in project.images %}
+                        <img src="{{ img }}" alt="" width="50px">
+                    {% endfor %}
+                </td>
             </tr>
             <tr>
                 <th>Projectdate</th>
@@ -115,7 +123,11 @@
             </tr>
             <tr>
                 <th>Keywords</th>
-                <td>{{ project.keyWords }}</td>
+                <td>
+                    {% for keyword in project.keywords %}
+                        <span class="label label-primary">{{ keyword.name }}</span>
+                    {% endfor %}
+                </td>
             </tr>
         </tbody>
     </table>

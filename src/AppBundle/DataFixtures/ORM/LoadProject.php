@@ -23,8 +23,83 @@ class LoadProject extends Fixture implements FixtureInterface
         $faker = Faker\Factory::create('fr_FR');
 
         $projects = [];
-        $thematiques = array('culture', 'education', 'economie', 'mobilite', 'social');
-        $keywords = array('ecole', 'periscolaire', 'medecin', 'sante', 'kebab');
+        $thematiques = ['Education',
+            'Aménagement du territoire',
+            'Culture',
+            'Démocratie Local',
+            'Eau et assainissement',
+            'Economie',
+            'Environnement',
+            'Mobilité',
+            'Numérique',
+            'Relations internationales',
+            'Santé',
+            'Services de proximité',
+            'Social',
+            'Tourisme',
+
+        ];
+        $keywords = ['application',
+            'Arménie',
+            'CCAS',
+            'cérémonie',
+            'cinema',
+            'commerces',
+            'Coopération décentralisée',
+            'crèche',
+            'développement durable',
+            'digital',
+            'école',
+            'écologie',
+            'economie sociale et solidaire',
+            'église',
+            'EHPAD',
+            'élections',
+            'emploi',
+            'entreprises',
+            'espace de coworking',
+            'espaces verts',
+            'Etat civil',
+            'Europe',
+            'festival',
+            'formation',
+            'haut débit',
+            'infirmiers',
+            'innovation',
+            'intermodalités',
+            'internet',
+            'Jumelage',
+            'lecture',
+            'logements sociaux',
+            'maison de santé',
+            'maison de services publics',
+            'maisons de quartier',
+            'manifestations citoyennes',
+            'médecin',
+            'musique',
+            'parcs régionaux',
+            'patrimoine',
+            'périscolaire',
+            'professionnels de santé',
+            'rénovation/réfection',
+            'réseaux',
+            'restauration scolaire',
+            'SPANC',
+            'startups',
+            'Station d\'épuration ',
+            'station service',
+            'téléphonie fixe',
+            'téléphonie mobile',
+            'télétravail ',
+            'théâtre',
+            'transports',
+            'transports',
+            'urbanisme',
+            'valorisation du territoire',
+            'vie associative',
+            'voies navigables',
+            'voirie',
+        ];
         for ($i = 0; $i < LoadUser::MAX_USER; $i++) {
             $projects[$i] = new Project();
 
@@ -33,18 +108,16 @@ class LoadProject extends Fixture implements FixtureInterface
             for ($j = 0; $j < $nbimage; $j++) {
                 $dbimage[$j] = $faker->imageUrl($width = 150, $height = 150);
             }
-            $imagefaker = serialize($dbimage);
+            $imagefaker = $dbimage;
             $projects[$i]
                 ->setTitle($faker->sentence($nbWords = 6, $variableNbWords = true))
-                ->setTheme(serialize($faker->randomElements($thematiques, $count = 3)))
+
+
+
                 ->setCreationDate($faker->dateTime($max = 'now', $timezone = date_default_timezone_get()))
                 ->setUpdateDate($faker->dateTime($max = 'now', $timezone = date_default_timezone_get()))
 
-
-
-                ->setImage($imagefaker)
-
-
+                ->setImages($imagefaker)
 
                 ->setProjectDate($faker->dateTime($max = 'now', $timezone = date_default_timezone_get()))
                 ->setProjectDuration($faker->randomElement($array = array('1 mois', '6 mois', '1 ans', '100 ans')))
@@ -67,7 +140,8 @@ class LoadProject extends Fixture implements FixtureInterface
                 ->setYoutube($faker->url)
                 ->setFacebook($faker->url)
                 ->setTwitter($faker->url)
-                ->setKeyWords(serialize($faker->randomElements($keywords, $count = 3)))
+
+
                 ->setMayor($this->getReference('mayor-' . $i));
             $em->persist($projects[$i]);
         }

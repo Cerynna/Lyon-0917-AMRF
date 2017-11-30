@@ -93,7 +93,7 @@ class PublicController extends Controller
     //PARTIE ADMIN
 
     /**
-     * @Route("/admin", name="admin_index")
+     * @Route("/admin/", name="admin_index")
      */
     public function adminIndexAction()
     {

@@ -6,9 +6,8 @@ use AppBundle\Entity\Project;
 use AppBundle\Service\UploadService;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Symfony\Component\HttpFoundation\File\UploadedFile;
-use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Project controller.
@@ -40,7 +39,7 @@ class AdminProjectController extends Controller
      * @Route("/new", name="admin_project_new")
      * @Method({"GET", "POST"})
      */
-    public function newAction(Request $request,UploadService $upload)
+    public function newAction(Request $request)
     {
         $project = new Project();
         $form = $this->createForm('AppBundle\Form\ProjectType', $project);
@@ -48,16 +47,14 @@ class AdminProjectController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $image=$project->getImage();
-            $project->setImage($upload->fileUpload($image, "/project/" . $project->getTitle(), "IMG"));
-            $file=$project->getFile();
-            $project->setFile($upload->fileUpload($file, "/project/" . $project->getTitle(), "PDF"));
-            $theme = $project->getTheme();
-            $project->setTheme(serialize($theme));
             $em->persist($project);
             $em->flush();
 
-            return $this->redirectToRoute('admin_project_show', array('id' => $project->getId()));
+            return $this->redirectToRoute('admin_project_show', array(
+                'id' => $project->getId(),
+                'test' => $form,
+
+            ));
         }
 
         return $this->render('project/new.html.twig', array(
@@ -88,7 +85,7 @@ class AdminProjectController extends Controller
      * @Route("/{id}/edit", name="admin_project_edit")
      * @Method({"GET", "POST"})
      */
-    public function editAction(Request $request, Project $project,UploadedFile $upload)
+    public function editAction(Request $request, Project $project)
     {
         $deleteForm = $this->createDeleteForm($project);
         $editForm = $this->createForm('AppBundle\Form\ProjectType', $project);

@@ -23,7 +23,6 @@ class LoadCompany extends Fixture implements FixtureInterface
         $faker = Faker\Factory::create('fr_FR');
 
         $companies = [];
-        $thematiques = array('culture', 'education', 'economie', 'mobilite', 'social');
         for ($i = 0; $i < LoadUser::MAX_USER; $i++) {
             $companies[$i] = new Company();
             $companies[$i]
@@ -31,7 +30,6 @@ class LoadCompany extends Fixture implements FixtureInterface
                 ->setAddress($faker->streetAddress)
                 ->setZipCode($faker->postcode)
                 ->setCity($faker->city)
-                ->setActivities(serialize($faker->randomElements($thematiques, $count = 2)))
                 ->setPresentation($faker->realText($maxNbChars = 1200, $indexSize = 2))
                 ->setLogo($faker->imageUrl($width = 150, $height = 150))
                 ->setUrl($faker->url)
