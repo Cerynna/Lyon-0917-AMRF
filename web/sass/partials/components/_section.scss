@@ -52,19 +52,18 @@ section {
     text-align: justify;
   }
 
-  .choose
-  {
+  .choose {
     margin: 20px 0 20px 0 !important;
   }
 
-    .list-group-item {
+  .list-group-item {
     color: $color1;
   }
-  .hidden{
+  .hidden {
     height: 0 !important;
   }
   .list-group-item {
-    .fa{
+    .fa {
       color: $color1;
       font-size: 2em;
       margin-right: 10px;
@@ -74,7 +73,7 @@ section {
 
     }
     .row {
-      margin:0 !important;
+      margin: 0 !important;
     }
   }
 }
