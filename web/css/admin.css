@@ -287,10 +287,29 @@ nav {
 
 }
 */
+h4 {
+  background-color: #50b6cf;
+  /*box-shadow: 5px 5px  rgba(0, 0, 0, 0.6);*/
+  color: white;
+  /*box-shadow: 5px 5px  rgba(0, 0, 0, 0.6);*/
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  border-radius: 5px;
+  margin: 2px;
+  padding: 10px;
+  font-size: 1.2em;
+  cursor: pointer; }
+
+h4:hover {
+  background-color: #339fb9;
+  /*box-shadow: 5px 5px  rgba(0, 0, 0, 0.6);*/ }
+
 .jumbotron {
   border-radius: 10px;
   background-color: rgba(58, 176, 202, 0.2);
-  color: #000; }
+  color: #000;
+  padding: 10px !important; }
   .jumbotron h3 {
     padding-top: 1px;
     padding-bottom: 30px;
@@ -330,9 +349,9 @@ nav {
   display: none; }
 
 .fa-admin {
-  font-size: 2em;
-  height: 45px;
-  width: 45px;
+  font-size: 35px;
+  min-height: 50px;
+  min-width: 50px;
   background: #1e5d6b;
   padding: 5px;
   color: #FFF;
@@ -343,6 +362,23 @@ nav {
   margin: 1px; }
 
 .fa-admin:hover {
+  background: #FFF;
+  color: #1e5d6b;
+  border: 2px solid #1e5d6b;
+  /*2f92a8*/ }
+
+.fa-admin-mini {
+  font-size: 1.2em;
+  background: #1e5d6b;
+  padding: 5px;
+  color: #FFF;
+  border-radius: 5px;
+  border: 2px solid #1e5d6b;
+  text-align: center;
+  vertical-align: middle;
+  margin-right: 1px; }
+
+.fa-admin-mini:hover {
   background: #FFF;
   color: #1e5d6b;
   border: 2px solid #1e5d6b;
@@ -485,3 +521,16 @@ h1 {
     list-style: none; }
   .menu-admin li {
     margin-bottom: 10px; }
+
+/*
+div {
+  border: 1px solid cyan !important;
+}
+.row {
+  border: 2px solid red !important;
+}
+[class*="col-"]{
+  border: 1px solid black !important;
+}
+
+*/

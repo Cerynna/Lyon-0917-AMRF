@@ -59,47 +59,85 @@
         </tr>
         </thead>
         <tbody>#}
-    {% for project in projects %}
+    {% for key, project in projects %}
 
-        <div class="row jumbotron">
-            <div class="col-xs-3">
-                <h4>{{ project.title }}</h4>
-            </div>
-            <div class="col-xs-2">
-                {% for theme in project.theme %}
-                    <span class="label label-themat">{{ theme }}</span>
-                {% endfor %}
-            </div>
-            <div class="col-xs-2">
-                {% for img in project.image %}
-                    <img src="{{ img }}" alt="" width="50px">
-                {% endfor %}
+        <h4 data-toggle="collapse" data-target="#project_{{ key }}">
+            <div class="row">
+                <div class="col-xs-1">
+                    <a href="{{ path('admin_project_show', { 'id': project.id }) }}"><i class="fa fa-eye fa-admin-mini"></i></a>
+                    <a href="{{ path('admin_project_edit', { 'id': project.id }) }}"><i class="fa fa-pencil fa-admin-mini"></i></a>
+                </div>
+                <div class="col-xs-5">
+                    {{ project.title }} <span class="caret"></span>
+                </div>
+                <div class="col-xs-6 text-right">
+                    Crée : <span
+                            class="label label-primary">{% if project.creationDate %}{{ project.creationDate|date('d-m-Y') }}{% endif %}</span>
+                    Modifié : <span
+                            class="label label-primary">{% if project.updateDate %}{{ project.updateDate|date('d-m-Y') }}{% endif %}</span>
 
+                </div>
             </div>
-            <div class="col-xs-2">
-                <a href="{{ project.url }}"><i class="fa fa-link fa-admin"></i></a>
-                <a href="{{ project.youtube }}"><i class="fa fa-youtube-square fa-admin"></i></a>
-                <a href="{{ project.facebook }}"><i class="fa fa-facebook-square fa-admin"></i></a>
-                <a href="{{ project.twitter }} "><i class="fa fa-twitter-square fa-admin"></i></a>
+
+
+        </h4>
+
+        <div id="project_{{ key }}" class="collapse">
+
+            <div class=" jumbotron">
+                <div class="row">
+                    <div class="col-xs-2">
+                        {% for theme in project.themes %}
+                            <span class="label label-themat">{{ theme }}</span>
+                        {% endfor %}
+                    </div>
+                    <div class="col-xs-2">
+                        {% for img in project.images %}
+                            <img src="{{ img }}" alt="" width="50px">
+                        {% endfor %}
+
+                    </div>
+                    <div class="col-xs-2">
+                        <a href="{{ project.url }}"><i class="fa fa-link fa-admin"></i></a>
+                        <a href="{{ project.youtube }}"><i class="fa fa-youtube-square fa-admin"></i></a>
+                        <a href="{{ project.facebook }}"><i class="fa fa-facebook-square fa-admin"></i></a>
+                        <a href="{{ project.twitter }} "><i class="fa fa-twitter-square fa-admin"></i></a>
+                    </div>
+                    <div class="col-xs-2">
+
+                    </div>
+                    <div class="col-xs-3">
+                        <table>
+                            <thead>
+                            <tr>
+                                <th>Date du Projet</th>
+                                <th>Durée</th>
+                                <th>Cout</th>
+                                <th>Cofinancement</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td>{% if project.projectDate %}{{ project.projectDate|date('d-m-Y') }}{% endif %}</td>
+                                <td>{{ project.projectDuration }}</td>
+                                <td>{{ project.projectCost }}</td>
+                                <td>{{ project.projectCoFinance }}</td>
+                            </tr>
+                            </tbody>
+                        </table>
+
+
+                    </div>
+
+                </div>
             </div>
-            <div class="col-xs-2">
-                <table>
-                    <thead>
-                    <tr>
-                        <th>Creationdate</th>
-                        <th>Updatedate</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <td>{% if project.creationDate %}{{ project.creationDate|date('d-m-Y') }}{% endif %}</td>
-                        <td>{% if project.updateDate %}{{ project.updateDate|date('d-m-Y') }}{% endif %}</td>
-                    </tr>
-                    </tbody>
-                </table>
-            </div>
+
 
         </div>
+
+
+
+
         {#<tr>
             <td>
                 <ul>

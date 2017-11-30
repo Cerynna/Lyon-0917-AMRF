@@ -33,18 +33,14 @@ class LoadProject extends Fixture implements FixtureInterface
             for ($j = 0; $j < $nbimage; $j++) {
                 $dbimage[$j] = $faker->imageUrl($width = 150, $height = 150);
             }
-            $imagefaker = serialize($dbimage);
+            $imagefaker = $dbimage;
             $projects[$i]
                 ->setTitle($faker->sentence($nbWords = 6, $variableNbWords = true))
-                ->setTheme(serialize($faker->randomElements($thematiques, $count = 3)))
+                ->setThemes($faker->randomElements($thematiques, $count = 3))
                 ->setCreationDate($faker->dateTime($max = 'now', $timezone = date_default_timezone_get()))
                 ->setUpdateDate($faker->dateTime($max = 'now', $timezone = date_default_timezone_get()))
 
-
-
-                ->setImage($imagefaker)
-
-
+                ->setImages($imagefaker)
 
                 ->setProjectDate($faker->dateTime($max = 'now', $timezone = date_default_timezone_get()))
                 ->setProjectDuration($faker->randomElement($array = array('1 mois', '6 mois', '1 ans', '100 ans')))
@@ -67,7 +63,7 @@ class LoadProject extends Fixture implements FixtureInterface
                 ->setYoutube($faker->url)
                 ->setFacebook($faker->url)
                 ->setTwitter($faker->url)
-                ->setKeyWords(serialize($faker->randomElements($keywords, $count = 3)))
+                ->setKeyWords($faker->randomElements($keywords, $count = 3))
                 ->setMayor($this->getReference('mayor-' . $i));
             $em->persist($projects[$i]);
         }

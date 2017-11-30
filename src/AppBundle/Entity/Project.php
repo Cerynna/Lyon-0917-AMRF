@@ -35,11 +35,11 @@ class Project
     private $title;
 
     /**
-     * @var string
+     * @var array
      *
-     * @ORM\Column(name="theme", type="string", length=255, nullable=true)
+     * @ORM\Column(name="themes", type="array", nullable=true)
      */
-    private $theme;
+    private $themes;
 
     /**
      * @var \DateTime
@@ -56,11 +56,11 @@ class Project
     private $updateDate;
 
     /**
-     * @var string
+     * @var array
      *
-     * @ORM\Column(name="image", type="string", length=255, nullable=true)
+     * @ORM\Column(name="image", type="array", nullable=true)
      */
-    private $image;
+    private $images;
 
     /**
      * @var \DateTime
@@ -212,7 +212,7 @@ class Project
     /**
      * @var string
      *
-     * @ORM\Column(name="keyWords", type="string", length=255, nullable=true)
+     * @ORM\Column(name="keyWords", type="array",  nullable=true)
      */
     private $keyWords;
 
@@ -260,25 +260,25 @@ class Project
     /**
      * Set theme
      *
-     * @param string $theme
+     * @param array $themes
      *
      * @return Project
      */
-    public function setTheme($theme)
+    public function setThemes($themes)
     {
-        $this->theme = $theme;
+        $this->themes = $themes;
 
         return $this;
     }
 
     /**
-     * Get theme
+     * Get themes
      *
-     * @return string
+     * @return array
      */
-    public function getTheme()
+    public function getThemes()
     {
-        return $this->theme;
+        return $this->themes;
     }
 
     /**
@@ -330,27 +330,27 @@ class Project
     }
 
     /**
-     * Set image
+     * Set images
      *
-     * @param string $image
+     * @param array $images
      *
      * @return Project
      */
-    public function setImage($image)
+    public function setImages($images)
     {
-        $this->image = $image;
+        $this->images = $images;
 
         return $this;
     }
 
     /**
-     * Get image
+     * Get images
      *
-     * @return string
+     * @return array
      */
-    public function getImage()
+    public function getImages()
     {
-        return unserialize($this->image);
+        return $this->images;
     }
 
     /**
@@ -860,7 +860,7 @@ class Project
     /**
      * Set keyWords
      *
-     * @param string $keyWords
+     * @param array $keyWords
      *
      * @return Project
      */
@@ -874,7 +874,7 @@ class Project
     /**
      * Get keyWords
      *
-     * @return string
+     * @return array|string
      */
     public function getKeyWords()
     {

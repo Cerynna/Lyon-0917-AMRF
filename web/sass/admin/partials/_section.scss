@@ -1,7 +1,21 @@
+h4{
+  @include colorback1($color1, 40%);
+  @include colortext1($color1, 100%);
+  @include borderRadius(5px);
+  margin:2px;
+  padding: 10px;
+  font-size: 1.2em;
+  cursor: pointer;
+}
+h4:hover {
+  @include colorback1($color1, 30%);
+}
+
 .jumbotron {
   border-radius: 10px;
   background-color: rgba(58, 176, 202, 0.2);
   color: #000;
+  padding: 10px !important;
   h3 {
     padding-top: 1px;
     padding-bottom: 30px;
@@ -54,9 +68,9 @@
 }
 
 .fa-admin {
-  font-size: 2em;
-  height: 45px;
-  width: 45px;
+  font-size: 35px;
+  min-height: 50px;
+  min-width: 50px;
   background: #1e5d6b;
   padding: 5px;
   color: #FFF;
@@ -68,6 +82,24 @@
 }
 
 .fa-admin:hover {
+  background: #FFF;
+  color: #1e5d6b;
+  border: 2px solid #1e5d6b;
+  /*2f92a8*/
+}
+.fa-admin-mini {
+  font-size: 1.2em;
+  background: #1e5d6b;
+  padding: 5px;
+  color: #FFF;
+  border-radius: 5px;
+  border: 2px solid #1e5d6b;
+  text-align: center;
+  vertical-align: middle;
+  margin-right: 1px;
+}
+
+.fa-admin-mini:hover {
   background: #FFF;
   color: #1e5d6b;
   border: 2px solid #1e5d6b;
