@@ -22,7 +22,7 @@ class ProjectType extends AbstractType
     {
         $builder
             ->add('title')
-            ->add('theme', EntityType::class, array(
+            ->add('themes', EntityType::class, array(
                 'class' => 'AppBundle:Dictionary',
                 'query_builder' => function (EntityRepository $er) {
                     return $er->createQueryBuilder('u')
@@ -39,7 +39,7 @@ class ProjectType extends AbstractType
             /*->add('theme')*/
             ->add('creationDate')
             ->add('updateDate')
-            ->add('image')
+            ->add('images')
             ->add('projectDate', DateType::class, array(
                 'widget' => 'single_text',
                 // this is actually the default format for single_text
@@ -67,6 +67,23 @@ class ProjectType extends AbstractType
             ->add('facebook')
             ->add('twitter')
             ->add('keyWords')
+
+            ->add('keyWords', EntityType::class, array(
+                'class' => 'AppBundle:Dictionary',
+                'query_builder' => function (EntityRepository $er) {
+                    return $er->createQueryBuilder('u')
+                        ->setParameter('type', Dictionary::TYPE_KEYWORD)
+                        ->where('u.type = :type')
+                        ->orderBy('u.type', 'ASC');
+                },
+                'expanded' => true,
+                'multiple' => true,
+                'choice_label' => 'name',
+                'label_attr' => ['class' => 'style_checkbox'],
+
+            ))
+
+
             ->add('mayor');
     }
 

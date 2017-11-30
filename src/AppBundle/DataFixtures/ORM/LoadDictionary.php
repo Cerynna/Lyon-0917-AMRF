@@ -22,6 +22,7 @@ class LoadDictionary extends Fixture implements FixtureInterface
 
         $bdthema = [];
         $bdsecteur = [];
+        $bdkey = [];
         $thematiques = ['Education',
             'Aménagement du territoire',
             'Culture',
@@ -59,6 +60,81 @@ class LoadDictionary extends Fixture implements FixtureInterface
             'Social',
             'Téléphonie',
         ];
+
+        $keywords = ['application',
+            'Arménie',
+            'CCAS',
+            'cérémonie',
+            'cinema',
+            'commerces',
+            'Coopération décentralisée',
+            'crèche',
+            'développement durable',
+            'digital',
+            'école',
+            'écologie',
+            'economie sociale et solidaire',
+            'église',
+            'EHPAD',
+            'élections',
+            'emploi',
+            'entreprises',
+            'espace de coworking',
+            'espaces verts',
+            'Etat civil',
+            'Europe',
+            'festival',
+            'formation',
+            'haut débit',
+            'infirmiers',
+            'innovation',
+            'intermodalités',
+            'internet',
+            'Jumelage',
+            'lecture',
+            'logements sociaux',
+            'maison de santé',
+            'maison de services publics',
+            'maisons de quartier',
+            'manifestations citoyennes',
+            'médecin',
+            'musique',
+            'parcs régionaux',
+            'patrimoine',
+            'périscolaire',
+            'professionnels de santé',
+            'rénovation/réfection',
+            'réseaux',
+            'restauration scolaire',
+            'SPANC',
+            'startups',
+            'Station d\'épuration ',
+            'station service',
+            'téléphonie fixe',
+            'téléphonie mobile',
+            'télétravail ',
+            'théâtre',
+            'transports',
+            'transports',
+            'urbanisme',
+            'valorisation du territoire',
+            'vie associative',
+            'voies navigables',
+            'voirie',
+
+
+        ];
+
+        for ($i = 0; $i < count($keywords); $i++) {
+            $bdkey[$i] = new Dictionary();
+            $value = strtolower(str_replace(" ", "", $keywords[$i]));
+            $bdkey[$i]
+                ->setName($keywords[$i])
+                ->setType(Dictionary::TYPE_KEYWORD)
+                ->setValue($value);
+            $em->persist($bdkey[$i]);
+        }
+
         for ($i = 0; $i < count($thematiques); $i++) {
             $bdthema[$i] = new Dictionary();
             $value = strtolower(str_replace(" ", "", $thematiques[$i]));
@@ -68,7 +144,7 @@ class LoadDictionary extends Fixture implements FixtureInterface
                 ->setValue($value);
             $em->persist($bdthema[$i]);
         }
-        $em->flush();
+
         for ($i = 0; $i < count($secteur); $i++) {
             $bdsecteur[$i] = new Dictionary();
             $value = strtolower(str_replace(" ", "", $secteur[$i]));

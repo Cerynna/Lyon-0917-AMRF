@@ -33,7 +33,12 @@
                 <td>{{ company.address }}</td>
                 <td>{{ company.zipCode }}</td>
                 <td>{{ company.city }}</td>
-                <td>{{ company.activities }}</td>
+                <td>
+                    {% for activity in company.activities %}
+                        {{ activity }}
+                    {% endfor %}
+
+                </td>
                 <td>{{ company.presentation }}</td>
                 <td>{{ company.logo }}</td>
                 <td>{{ company.url }}</td>
