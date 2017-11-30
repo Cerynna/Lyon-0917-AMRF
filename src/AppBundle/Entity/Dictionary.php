@@ -130,4 +130,3 @@ class Dictionary
         return $this->value;
     }
 }
-

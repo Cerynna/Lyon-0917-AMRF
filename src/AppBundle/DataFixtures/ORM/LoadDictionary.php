@@ -133,7 +133,9 @@ class LoadDictionary extends Fixture implements FixtureInterface
                 ->setType(Dictionary::TYPE_KEYWORD)
                 ->setValue($value);
             $em->persist($bdkey[$i]);
+            $this->setReference('keywords', $bdkey[$i]);
         }
+
 
         for ($i = 0; $i < count($thematiques); $i++) {
             $bdthema[$i] = new Dictionary();
@@ -143,7 +145,9 @@ class LoadDictionary extends Fixture implements FixtureInterface
                 ->setType(Dictionary::TYPE_THEME)
                 ->setValue($value);
             $em->persist($bdthema[$i]);
+            $this->setReference('thematiques', $bdthema[$i]);
         }
+
 
         for ($i = 0; $i < count($secteur); $i++) {
             $bdsecteur[$i] = new Dictionary();
@@ -153,6 +157,7 @@ class LoadDictionary extends Fixture implements FixtureInterface
                 ->setType(Dictionary::TYPE_ACTIVITY)
                 ->setValue($value);
             $em->persist($bdsecteur[$i]);
+            $this->setReference('secteur-' . $i, $bdsecteur[$i]);
         }
         $em->flush();
 

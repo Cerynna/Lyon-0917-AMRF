@@ -87,9 +87,11 @@
             <div class=" jumbotron">
                 <div class="row">
                     <div class="col-xs-2">
+
                         {% for theme in project.themes %}
-                            <span class="label label-themat">{{ theme }}</span>
+                            <span class="label label-primary">{{ theme.name }}</span>
                         {% endfor %}
+
                     </div>
                     <div class="col-xs-2">
                         {% for img in project.images %}
