@@ -77,7 +77,7 @@ class AdminEmailController extends Controller
     public function previewMail()
     {
         $message = [
-            'message' => 'Salut les moches',
+            'message' => 'Tootsie roll pie topping powder sugar plum souffl&eacute;. Gingerbread sugar plum tiramisu powder macaroon candy canes drag&eacute;e icing. Sweet macaroon tootsie roll chocolate chocolate cake. Tootsie roll muffin donut apple pie gummies powder. Lollipop candy canes bonbon sesame snaps danish brownie croissant tiramisu. Oat cake pastry pudding ice cream fruitcake. Muffin pudding croissant pudding tart oat cake caramels sugar plum icing.',
         ];
 
         return $this->render('email/event.html.twig', array(
