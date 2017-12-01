@@ -2,12 +2,13 @@
 
 namespace AppBundle\Form;
 
+use AppBundle\Entity\Dictionary;
+use AppBundle\Entity\Project;
 use Doctrine\ORM\EntityRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
-use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -21,10 +22,12 @@ class ProjectType extends AbstractType
     {
         $builder
             ->add('title')
-            ->add('theme', EntityType::class, array(
+            ->add('themes', EntityType::class, array(
                 'class' => 'AppBundle:Dictionary',
                 'query_builder' => function (EntityRepository $er) {
                     return $er->createQueryBuilder('u')
+                        ->setParameter('type', Dictionary::TYPE_THEME)
+                        ->where('u.type = :type')
                         ->orderBy('u.type', 'ASC');
                 },
                 'expanded' => true,
@@ -36,7 +39,7 @@ class ProjectType extends AbstractType
             /*->add('theme')*/
             ->add('creationDate')
             ->add('updateDate')
-            ->add('image', FileType::class)
+            ->add('images')
             ->add('projectDate', DateType::class, array(
                 'widget' => 'single_text',
                 // this is actually the default format for single_text
@@ -58,12 +61,29 @@ class ProjectType extends AbstractType
             ->add('contactOccupation')
             ->add('contactEmail')
             ->add('contactPhone')
-            ->add('file', FileType::class)
+            ->add('file')
             ->add('url')
             ->add('youtube')
             ->add('facebook')
             ->add('twitter')
             ->add('keyWords')
+
+            ->add('keyWords', EntityType::class, array(
+                'class' => 'AppBundle:Dictionary',
+                'query_builder' => function (EntityRepository $er) {
+                    return $er->createQueryBuilder('u')
+                        ->setParameter('type', Dictionary::TYPE_KEYWORD)
+                        ->where('u.type = :type')
+                        ->orderBy('u.type', 'ASC');
+                },
+                'expanded' => true,
+                'multiple' => true,
+                'choice_label' => 'name',
+                'label_attr' => ['class' => 'style_checkbox'],
+
+            ))
+
+
             ->add('mayor');
     }
 

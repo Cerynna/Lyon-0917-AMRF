@@ -63,7 +63,7 @@ class PartnerController extends Controller
      * @Route("presentation", name="partner_press")
      * @Method({"GET", "POST"})
      */
-    public function partnerPressEditAction(Request $request)
+    public function partnerPressEditAction(Request $request, Partner $partner)
     {
 
         $company = new Company();
@@ -72,6 +72,8 @@ class PartnerController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+
+
             $em->persist($company);
             $em->flush();
 

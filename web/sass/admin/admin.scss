@@ -53,12 +53,12 @@ $backs: ("user", "publicpage", "project", "partner", "company", "favorite", "may
 
 @for $i from 1 through length($backs) {
   $c: nth($backs, $i);
-  $pourcent: ($i * 10)+10;
+  $pourcent: ($i * 10) + 10;
   .active-#{$c} {
     @include colorback1($color1, $pourcent);
   }
   .menu-#{$c} {
-  @include colorback1($color1, $pourcent);
+    @include colorback1($color1, $pourcent);
   }
 }
 
@@ -76,3 +76,16 @@ $backs: ("user", "publicpage", "project", "partner", "company", "favorite", "may
     margin-bottom: 10px
   }
 }
+
+div {
+  border: 1px solid cyan !important;
+}
+
+.row {
+  border: 2px solid red !important;
+}
+
+[class*="col-"] {
+  border: 1px solid black !important;
+}
+
