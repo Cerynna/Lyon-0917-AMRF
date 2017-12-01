@@ -27,7 +27,13 @@
             </tr>
             <tr>
                 <th>Activities</th>
-                <td>{{ company.activities }}</td>
+                <td>
+                    {% if company.activities %}
+                        {% for activity in company.activities %}
+                            <span class="label label-primary"> {{ activity.name }}</span>
+                        {% endfor %}
+                    {% endif %}
+                </td>
             </tr>
             <tr>
                 <th>Presentation</th>
