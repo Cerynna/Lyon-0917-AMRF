@@ -3,6 +3,7 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Project;
+use AppBundle\Service\UploadService;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
@@ -84,13 +85,20 @@ class AdminProjectController extends Controller
      * @Route("/{id}/edit", name="admin_project_edit")
      * @Method({"GET", "POST"})
      */
-    public function editAction(Request $request, Project $project)
+    public function editAction(Request $request, Project $project, UploadService $uploadService)
     {
         $deleteForm = $this->createDeleteForm($project);
         $editForm = $this->createForm('AppBundle\Form\ProjectType', $project);
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
+            $images = $project->getImages();
+            $dbimg = [];
+            foreach ($images as $image) {
+                $dbimg[] = $uploadService->fileUpload($image, '/project/' . $project->getId());
+            }
+            $project->setImages($dbimg);
+
             $this->getDoctrine()->getManager()->flush();
 
             return $this->redirectToRoute('admin_project_edit', array('id' => $project->getId()));

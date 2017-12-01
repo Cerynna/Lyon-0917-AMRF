@@ -4,8 +4,24 @@
     <h1>Project edit</h1>
 
     {{ form_start(edit_form) }}
-        {{ form_widget(edit_form) }}
-        <input type="submit" value="Edit" />
+
+    {{ dump(edit_form.images.vars.data) }}
+
+
+
+
+    {% if project.images %}
+        {% for image in project.images %}
+            {% set img = 'upload/project/' ~ project.id ~ '/' ~ image %}
+            {% set imglink = 'upload-project-' ~ project.id ~ '-' ~ image %}
+            <i class="fa fa-trash fa-admin-mini" onclick="deleteFile('{{ imglink }}')"></i>
+            <img src="{{ asset(img) }}" alt="" width="100px">
+        {% endfor %}
+    {% endif %}
+
+
+    {{ form_widget(edit_form) }}
+    <input type="submit" value="Edit"/>
     {{ form_end(edit_form) }}
 
     <ul>
@@ -14,8 +30,27 @@
         </li>
         <li>
             {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
+            <input type="submit" value="Delete">
             {{ form_end(delete_form) }}
         </li>
     </ul>
+{% endblock %}
+{% block javascripts %}
+    <script>
+        function deleteFile(file) {
+            $.ajax({
+                type: "GET",
+                url: "/deletefile/" + file,
+                success: function () {
+                    location.reload();
+                    console.log("File Delete")
+                },
+                error: function () {
+                    alert("la photo ne peu pas etre supprimé")
+                }
+            })
+
+        }
+
+    </script>
 {% endblock %}

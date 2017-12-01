@@ -9,10 +9,15 @@ use AppBundle\Entity\Company;
 use AppBundle\Entity\Project;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
+use SensioLabs\Security\Exception\HttpException;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
+
+use Symfony\Component\Filesystem\Filesystem;
+use Symfony\Component\Filesystem\Exception\IOExceptionInterface;
 
 class PublicController extends Controller
 {
@@ -118,8 +123,43 @@ class PublicController extends Controller
         $lastUsername = $authUtils->getLastUsername();
         return $this->render('public/login.html.twig', array(
             'last_username' => $lastUsername,
-            'error'         => $error,
+            'error' => $error,
         ));
     }
 
+
+    /**
+     * @Route("/deletefile/{fileName}", name="deletefile")
+     */
+    public function deleteFileAction(Request $request, $fileName)
+    {
+
+        if ($request->isXmlHttpRequest()) {
+
+            $imageDelete = str_replace("-", "/", $fileName);
+            $imgExplode = explode('/', $imageDelete);
+            $em = $this->getDoctrine()->getManager();
+            $imagesInDB = $em->getRepository('AppBundle:Project')->getImageProject($imgExplode[2]);
+            $newImagesDB = [];
+            foreach ($imagesInDB[0]['images'] as $imageInDB) {
+                if ($imgExplode[3] != $imageInDB) {
+                    $newImagesDB[] = $imageInDB;
+                }
+            }
+
+            $fs = new Filesystem();
+            $fs->remove($imageDelete);
+
+            $em = $this->getDoctrine()->getManager();
+            $project = $em->getRepository(Project::class)->find($imgExplode[2]);
+            $project->setImages($newImagesDB);
+
+            $em->flush();
+
+            return new Response("Image supprimer " . $imageDelete . " - " . count($imageDelete) . " - " . $imgExplode[3]);
+        } else {
+            throw new HttpException('500', 'Invalid call');
+        }
+
+    }
 }
