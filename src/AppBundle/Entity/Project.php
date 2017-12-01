@@ -3,6 +3,9 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\JoinColumn;
+use Doctrine\ORM\Mapping\JoinTable;
+use Doctrine\ORM\Mapping\ManyToMany;
 
 /**
  * Project
@@ -13,9 +16,9 @@ use Doctrine\ORM\Mapping as ORM;
 class Project
 {
 
-    const TYPE_THEME      = 1;
-    const TYPE_ACTIVITY   = 2;
-    const TYPE_KEYWORD    = 3;
+    const TYPE_THEME = 1;
+    const TYPE_ACTIVITY = 2;
+    const TYPE_KEYWORD = 3;
 
     /**
      * @var int
@@ -35,9 +38,13 @@ class Project
     private $title;
 
     /**
-     * @var array
+     * Many Project have many themes
      *
-     * @ORM\Column(name="themes", type="array", nullable=true)
+     * @ManyToMany(targetEntity="Dictionary")
+     * @JoinTable(name="project_theme",
+     *      joinColumns={@JoinColumn(name="id", referencedColumnName="id")},
+     *      inverseJoinColumns={@JoinColumn(name="themes", referencedColumnName="id")}
+     *      )
      */
     private $themes;
 
@@ -210,9 +217,13 @@ class Project
     private $twitter;
 
     /**
-     * @var string
+     * Many Project have many themes
      *
-     * @ORM\Column(name="keyWords", type="array",  nullable=true)
+     * @ManyToMany(targetEntity="Dictionary")
+     * @JoinTable(name="project_keywords",
+     *      joinColumns={@JoinColumn(name="id", referencedColumnName="id")},
+     *      inverseJoinColumns={@JoinColumn(name="keyWords", referencedColumnName="id")}
+     *      )
      */
     private $keyWords;
 
@@ -223,15 +234,22 @@ class Project
 
 
     /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->themes = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
      * Get id
      *
-     * @return int
+     * @return integer
      */
     public function getId()
     {
         return $this->id;
     }
-
 
     /**
      * Set title
@@ -255,30 +273,6 @@ class Project
     public function getTitle()
     {
         return $this->title;
-    }
-
-    /**
-     * Set theme
-     *
-     * @param array $themes
-     *
-     * @return Project
-     */
-    public function setThemes($themes)
-    {
-        $this->themes = $themes;
-
-        return $this;
-    }
-
-    /**
-     * Get themes
-     *
-     * @return array
-     */
-    public function getThemes()
-    {
-        return $this->themes;
     }
 
     /**
@@ -874,11 +868,45 @@ class Project
     /**
      * Get keyWords
      *
-     * @return array|string
+     * @return array
      */
     public function getKeyWords()
     {
         return $this->keyWords;
+    }
+
+    /**
+     * Add theme
+     *
+     * @param \AppBundle\Entity\Dictionary $theme
+     *
+     * @return Project
+     */
+    public function addTheme(\AppBundle\Entity\Dictionary $theme)
+    {
+        $this->themes[] = $theme;
+
+        return $this;
+    }
+
+    /**
+     * Remove theme
+     *
+     * @param \AppBundle\Entity\Dictionary $theme
+     */
+    public function removeTheme(\AppBundle\Entity\Dictionary $theme)
+    {
+        $this->themes->removeElement($theme);
+    }
+
+    /**
+     * Get themes
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getThemes()
+    {
+        return $this->themes;
     }
 
     /**
@@ -906,50 +934,26 @@ class Project
     }
 
     /**
-     * Set favorites
+     * Add keyWord
      *
-     * @param \AppBundle\Entity\Favorite $favorites
+     * @param \AppBundle\Entity\Dictionary $keyWord
      *
      * @return Project
      */
-    public function setFavorites(\AppBundle\Entity\Favorite $favorites = null)
+    public function addKeyWord(\AppBundle\Entity\Dictionary $keyWord)
     {
-        $this->favorites = $favorites;
+        $this->keyWords[] = $keyWord;
 
         return $this;
     }
 
     /**
-     * Get favorites
+     * Remove keyWord
      *
-     * @return \AppBundle\Entity\Favorite
+     * @param \AppBundle\Entity\Dictionary $keyWord
      */
-    public function getFavorites()
+    public function removeKeyWord(\AppBundle\Entity\Dictionary $keyWord)
     {
-        return $this->favorites;
-    }
-
-    /**
-     * Set favoriteProject
-     *
-     * @param \AppBundle\Entity\Favorite $favoriteProject
-     *
-     * @return Project
-     */
-    public function setFavoriteProject(\AppBundle\Entity\Favorite $favoriteProject = null)
-    {
-        $this->favoriteProject = $favoriteProject;
-
-        return $this;
-    }
-
-    /**
-     * Get favoriteProject
-     *
-     * @return \AppBundle\Entity\Favorite
-     */
-    public function getFavoriteProject()
-    {
-        return $this->favoriteProject;
+        $this->keyWords->removeElement($keyWord);
     }
 }
