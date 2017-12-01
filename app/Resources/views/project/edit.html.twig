@@ -5,6 +5,9 @@
 
     {{ form_start(edit_form) }}
         {{ form_widget(edit_form) }}
+    <ul class="images">
+        <img src="{{app.request.basepath}}/upload/project/{{ company.name }}/{{company.logo}}" alt="image">
+    </ul>
         <input type="submit" value="Edit" />
     {{ form_end(edit_form) }}
 

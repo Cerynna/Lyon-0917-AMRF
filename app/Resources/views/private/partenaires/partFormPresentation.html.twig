@@ -5,6 +5,10 @@
     {% include 'components/navbar.html.twig' with options %}
 {% endblock %}
 {% block body %}
+    {#{{ render(controller('AppBundle:AdminCompany:new')) }}#}
+   {# {{ form_start(edit_form) }}
+    {{ form_widget(form) }}
+    {{ form_end(edit_form) }}#}
     {{ form_start(form) }}
     <h2 class="center-align">Ma fiche Partenaire</h2>
     <!-- Nav tabs -->

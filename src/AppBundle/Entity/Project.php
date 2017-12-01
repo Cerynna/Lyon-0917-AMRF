@@ -58,7 +58,7 @@ class Project
     /**
      * @var array
      *
-     * @ORM\Column(name="image", type="array", nullable=true)
+     * @ORM\Column(name="images", type="array", nullable=true)
      */
     private $images;
 
@@ -258,7 +258,7 @@ class Project
     }
 
     /**
-     * Set theme
+     * Set themes
      *
      * @param array $themes
      *

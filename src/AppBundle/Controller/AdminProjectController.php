@@ -3,10 +3,13 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Project;
+use AppBundle\Service\UploadService;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 /**
  * Project controller.
@@ -38,7 +41,7 @@ class AdminProjectController extends Controller
      * @Route("/new", name="admin_project_new")
      * @Method({"GET", "POST"})
      */
-    public function newAction(Request $request)
+    public function newAction(Request $request, UploadService $upload)
     {
         $project = new Project();
         $form = $this->createForm('AppBundle\Form\ProjectType', $project);
@@ -46,8 +49,12 @@ class AdminProjectController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $theme = $project->getTheme();
-            $project->setTheme(serialize($theme));
+            $images = $project->getImages();
+            $project->setImages($upload->fileUpload($images, "/project/" . $project->getTitle(), "IMG"));
+            $file = $project->getFile();
+            $project->setFile($upload->fileUpload($file, "/project/" . $project->getTitle(), "PDF"));
+            $themes = $project->getThemes();
+            $project->setThemes($themes);
             $em->persist($project);
             $em->flush();
 
@@ -86,13 +93,17 @@ class AdminProjectController extends Controller
      * @Route("/{id}/edit", name="admin_project_edit")
      * @Method({"GET", "POST"})
      */
-    public function editAction(Request $request, Project $project)
+    public function editAction(Request $request, Project $project, UploadService $upload)
     {
         $deleteForm = $this->createDeleteForm($project);
         $editForm = $this->createForm('AppBundle\Form\ProjectType', $project);
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
+            /*$images = $project->getImages();
+            $project->setImages($upload->fileUpload($images, "/project/" . $project->getTitle(), "IMG"));*/
+            $file = $project->getFile();
+            $project->setFile($upload->fileUpload($file, "/project/" . $project->getTitle(), "PDF"));
             $this->getDoctrine()->getManager()->flush();
 
             return $this->redirectToRoute('admin_project_edit', array('id' => $project->getId()));

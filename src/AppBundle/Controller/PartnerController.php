@@ -82,9 +82,6 @@ class PartnerController extends Controller
             $secteurs = serialize($dbsecteur);
             $company->setActivities($secteurs);
 
-
-
-
             $em->persist($company);
             $em->flush();
 

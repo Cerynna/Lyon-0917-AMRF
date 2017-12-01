@@ -13,13 +13,13 @@ class ProjectRepository extends \Doctrine\ORM\EntityRepository
 
     const MAX_PROJECT = 3;
 
-    public function getLastProject()
+  /*  public function getLastProject()
     {
         return $this->createQueryBuilder('p')
             ->orderBy("p.updateDate", "DESC")
             ->setMaxResults(self::MAX_PROJECT)
             ->getQuery()
             ->getResult();
-    }
+    }*/
     
 }
