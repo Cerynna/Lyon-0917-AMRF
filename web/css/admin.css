@@ -522,15 +522,11 @@ h1 {
   .menu-admin li {
     margin-bottom: 10px; }
 
-/*
 div {
-  border: 1px solid cyan !important;
-}
-.row {
-  border: 2px solid red !important;
-}
-[class*="col-"]{
-  border: 1px solid black !important;
-}
+  border: 1px solid cyan !important; }
 
-*/
+.row {
+  border: 2px solid red !important; }
+
+[class*="col-"] {
+  border: 1px solid black !important; }
