@@ -3,6 +3,7 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Project;
+use AppBundle\Entity\Uploader;
 use AppBundle\Service\UploadService;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -85,19 +86,35 @@ class AdminProjectController extends Controller
      * @Route("/{id}/edit", name="admin_project_edit")
      * @Method({"GET", "POST"})
      */
-    public function editAction(Request $request, Project $project, UploadService $uploadService)
+    public function editAction(Request $request, Project $project, UploadService $uploadService, Uploader $uploader)
     {
         $deleteForm = $this->createDeleteForm($project);
         $editForm = $this->createForm('AppBundle\Form\ProjectType', $project);
         $editForm->handleRequest($request);
 
-        if ($editForm->isSubmitted() && $editForm->isValid()) {
+        $uplodForm = $this->createForm('AppBundle\Form\UploaderType', $uploader);
+        $uplodForm->handleRequest($request);
+
+        if ($uplodForm->isSubmitted() && $uplodForm->isValid()) {
+            $files = $uploader->getPath();
             $images = $project->getImages();
+            $dbimg = $images;
+            $dbimg[] = $uploadService->fileUpload($files, '/project/' . $project->getId());
+            $project->setImages($dbimg);
+            $this->getDoctrine()->getManager()->flush();
+            return $this->redirectToRoute('admin_project_edit', array(
+                'id' => $project->getId(),
+            ));
+        }
+
+
+        if ($editForm->isSubmitted() && $editForm->isValid()) {
+            /*$images = $project->getImages();
             $dbimg = [];
             foreach ($images as $image) {
                 $dbimg[] = $uploadService->fileUpload($image, '/project/' . $project->getId());
             }
-            $project->setImages($dbimg);
+            $project->setImages($dbimg);*/
 
             $this->getDoctrine()->getManager()->flush();
 
@@ -107,6 +124,7 @@ class AdminProjectController extends Controller
         return $this->render('project/edit.html.twig', array(
             'project' => $project,
             'edit_form' => $editForm->createView(),
+            'upload_form' => $uplodForm->createView(),
             'delete_form' => $deleteForm->createView(),
         ));
     }

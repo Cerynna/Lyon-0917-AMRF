@@ -88,7 +88,9 @@ h4:hover {
   /*2f92a8*/
 }
 .fa-admin-mini {
-  font-size: 1.2em;
+  font-size: 15px;
+  min-height: 30px;
+  min-width: 30px;
   background: #1e5d6b;
   padding: 5px;
   color: #FFF;
@@ -104,4 +106,12 @@ h4:hover {
   color: #1e5d6b;
   border: 2px solid #1e5d6b;
   /*2f92a8*/
+}
+.adminImageProject {
+  position: relative;
+  min-height: 200px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-origin: content-box;
+  padding: 15px;
 }
