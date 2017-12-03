@@ -46,14 +46,23 @@ class AdminProjectController extends Controller
         $form = $this->createForm('AppBundle\Form\ProjectType', $project);
         $form->handleRequest($request);
 
+        $uploaderImage = new Uploader();
+        $uplodImageForm = $this->createForm('AppBundle\Form\UploaderType', $uploaderImage, [
+            'block_name' => 'image',
+        ]);
+        $uplodImageForm->handleRequest($request);
+
+        $uploaderFile = new Uploader();
+        $uplodFileForm = $this->createForm('AppBundle\Form\UploaderType', $uploaderFile);
+        $uplodFileForm->handleRequest($request);
+
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->persist($project);
             $em->flush();
-
-            return $this->redirectToRoute('admin_project_show', array(
+dump($project);
+            return $this->redirectToRoute('admin_project_edit', array(
                 'id' => $project->getId(),
-                'test' => $form,
 
             ));
         }
@@ -61,6 +70,8 @@ class AdminProjectController extends Controller
         return $this->render('project/new.html.twig', array(
             'project' => $project,
             'form' => $form->createView(),
+            'upload_image_form' => $uplodImageForm->createView(),
+            'upload_file_form' => $uplodFileForm->createView(),
         ));
     }
 
@@ -86,20 +97,40 @@ class AdminProjectController extends Controller
      * @Route("/{id}/edit", name="admin_project_edit")
      * @Method({"GET", "POST"})
      */
-    public function editAction(Request $request, Project $project, UploadService $uploadService, Uploader $uploader)
+    public function editAction(Request $request, Project $project, UploadService $uploadService )
     {
         $deleteForm = $this->createDeleteForm($project);
         $editForm = $this->createForm('AppBundle\Form\ProjectType', $project);
+        $editForm->remove('images');
+        $editForm->remove('file');
         $editForm->handleRequest($request);
 
-        $uplodForm = $this->createForm('AppBundle\Form\UploaderType', $uploader);
-        $uplodForm->handleRequest($request);
+        $uploaderImage = new Uploader();
+        $uplodImageForm = $this->createForm('AppBundle\Form\UploaderType', $uploaderImage, [
+            'block_name' => 'image',
+        ]);
+        $uplodImageForm->handleRequest($request);
 
-        if ($uplodForm->isSubmitted() && $uplodForm->isValid()) {
-            $files = $uploader->getPath();
+        $uploaderFile = new Uploader();
+        $uplodFileForm = $this->createForm('AppBundle\Form\UploaderType', $uploaderFile);
+        $uplodFileForm->handleRequest($request);
+
+
+        if ($uplodFileForm->isSubmitted() && $uplodFileForm->isValid()) {
+            $file = $uploaderFile->getPath();
+            $fileNewDB = $uploadService->fileUpload($file, '/project/' . $project->getId() . '/file');
+            $project->setFile($fileNewDB);
+            $this->getDoctrine()->getManager()->flush();
+            return $this->redirectToRoute('admin_project_edit', array(
+                'id' => $project->getId(),
+            ));
+        }
+
+        if ($uplodImageForm->isSubmitted() && $uplodImageForm->isValid()) {
+            $files = $uploaderImage->getPath();
             $images = $project->getImages();
             $dbimg = $images;
-            $dbimg[] = $uploadService->fileUpload($files, '/project/' . $project->getId());
+            $dbimg[] = $uploadService->fileUpload($files, '/project/' . $project->getId() . '/photos');
             $project->setImages($dbimg);
             $this->getDoctrine()->getManager()->flush();
             return $this->redirectToRoute('admin_project_edit', array(
@@ -109,14 +140,9 @@ class AdminProjectController extends Controller
 
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
-            /*$images = $project->getImages();
-            $dbimg = [];
-            foreach ($images as $image) {
-                $dbimg[] = $uploadService->fileUpload($image, '/project/' . $project->getId());
-            }
-            $project->setImages($dbimg);*/
-
-            $this->getDoctrine()->getManager()->flush();
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($project);
+            $em->flush();
 
             return $this->redirectToRoute('admin_project_edit', array('id' => $project->getId()));
         }
@@ -124,7 +150,8 @@ class AdminProjectController extends Controller
         return $this->render('project/edit.html.twig', array(
             'project' => $project,
             'edit_form' => $editForm->createView(),
-            'upload_form' => $uplodForm->createView(),
+            'upload_image_form' => $uplodImageForm->createView(),
+            'upload_file_form' => $uplodFileForm->createView(),
             'delete_form' => $deleteForm->createView(),
         ));
     }

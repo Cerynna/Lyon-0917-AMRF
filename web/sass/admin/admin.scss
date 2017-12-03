@@ -20,6 +20,7 @@
 @import 'partials/sidenav';
 @import 'partials/section';
 @import 'partials/table';
+@import 'partials/forms';
 @import 'partials/footer';
 
 body {
@@ -53,12 +54,15 @@ $backs: ("user", "publicpage", "project", "partner", "company", "favorite", "may
 
 @for $i from 1 through length($backs) {
   $c: nth($backs, $i);
-  $pourcent: ($i * 10) + 10;
+  $pourcent: ($i * 12) + 10;
+  $inverse: 100 - $pourcent;
   .active-#{$c} {
     @include colorback1($color1, $pourcent);
+    @include colortext1($color1, 0%);
   }
   .menu-#{$c} {
     @include colorback1($color1, $pourcent);
+    @include colortext1($color1, 0%);
   }
 }
 
@@ -76,6 +80,42 @@ $backs: ("user", "publicpage", "project", "partner", "company", "favorite", "may
     margin-bottom: 10px
   }
 }
+.preview-pdf {
+  width: 100%;
+  max-height: 200px;
+}
+.modal-content {
+  @include colorback1($color1, 0%);
+  @include colortext1($color1, 100%);
+  input[type="file"] {
+    height: 0;
+    width: 0;
+    overflow: hidden;
+    @include borderback1(0, $color1, 20%);
+  }
+  label{
+    @include colorback1($color1, 20%);
+    @include borderback1(2px, $color1, 20%);
+    @include colortext1($color1, 100%);
+    min-width: 100%;
+    font-size: 1em;
+    min-height: 30px;
+    padding: 5px;
+    border-radius: 5px;
+    text-align: center;
+    vertical-align: middle;
+    margin-right: 1px;
+    cursor: pointer;
+    &:hover {
+      background: #FFF;
+      @include colortext1($color1, 20%);
+      @include borderback1(2px, $color1, 20%);
+
+      /*2f92a8*/
+    }
+  }
+}
+
 /*
 div {
   border: 1px solid cyan !important;

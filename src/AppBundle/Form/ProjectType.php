@@ -22,7 +22,11 @@ class ProjectType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('title')
+            ->add('title',TextType::class,[
+                'attr' => [
+                    'required' => true,
+                ]
+                ])
             ->add('themes', EntityType::class, array(
                 'class' => 'AppBundle:Dictionary',
                 'query_builder' => function (EntityRepository $er) {
@@ -49,7 +53,8 @@ class ProjectType extends AbstractType
                 'format' => 'yyyy-MM-dd',
 
             ))
-            ->add('images')
+            ->add('images', FileType::class, [
+                'multiple' => true])
             ->add('projectDate', DateType::class, array(
                 'widget' => 'single_text',
                 // this is actually the default format for single_text
@@ -94,7 +99,10 @@ class ProjectType extends AbstractType
             ))
 
 
-            ->add('mayor');
+            ->add('mayor', EntityType::class, [
+                'class' => 'AppBundle\Entity\Mayor',
+                'choice_label' => 'town',
+            ]);
     }
 
     /**

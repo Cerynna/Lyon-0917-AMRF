@@ -139,24 +139,31 @@ class PublicController extends Controller
             $imageDelete = str_replace("-", "/", $fileName);
             $imgExplode = explode('/', $imageDelete);
             $em = $this->getDoctrine()->getManager();
-            $imagesInDB = $em->getRepository('AppBundle:Project')->getImageProject($imgExplode[2]);
-            $newImagesDB = [];
-            foreach ($imagesInDB[0]['images'] as $imageInDB) {
-                if ($imgExplode[3] != $imageInDB) {
-                    $newImagesDB[] = $imageInDB;
-                }
-            }
+            $project = $em->getRepository(Project::class)->find($imgExplode[2]);
 
+            if ($imgExplode[3] == 'photos'){
+                $imagesInDB = $em->getRepository('AppBundle:Project')->getImageProject($imgExplode[2]);
+                $newImagesDB = [];
+                foreach ($imagesInDB[0]['images'] as $imageInDB) {
+                    if ($imgExplode[4] != $imageInDB) {
+                        $newImagesDB[] = $imageInDB;
+                    }
+                }
+                $project->setImages($newImagesDB);
+
+            }
+            elseif ($imgExplode[3] == 'file')
+            {
+                $project = $em->getRepository(Project::class)->find($imgExplode[2]);
+                $project->setFile('');
+            }
+            $em->flush();
             $fs = new Filesystem();
             $fs->remove($imageDelete);
 
-            $em = $this->getDoctrine()->getManager();
-            $project = $em->getRepository(Project::class)->find($imgExplode[2]);
-            $project->setImages($newImagesDB);
 
-            $em->flush();
 
-            return new Response("Image supprimer " . $imageDelete . " - " . count($imageDelete) . " - " . $imgExplode[3]);
+            return new Response("Image supprimer " . $imageDelete . " - " . count($imageDelete) . " - " . $imgExplode[4]);
         } else {
             throw new HttpException('500', 'Invalid call');
         }
