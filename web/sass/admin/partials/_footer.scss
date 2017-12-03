@@ -1,7 +1,11 @@
 footer {
-  background-color: #123841;
-  min-height: 50px;
-  margin-left: 250px;
+  bottom: 0;
+  border-top: 2px solid lighten($color1, 100%);
+  background-color: $color1;
+  max-height: 50px;
+  width: 100%;
   color: #FFF;
-  padding: 10px;
+  padding: 10px 10px;
+  z-index: 200;
+  position: fixed;
 }

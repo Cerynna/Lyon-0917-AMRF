@@ -30,84 +30,84 @@
 </header>
 <nav>
     <ul>
-        <li {% if app.request.attributes.get('_route') == 'admin_user_index'
+        <li class="sidenav-user {% if app.request.attributes.get('_route') == 'admin_user_index'
         or app.request.attributes.get('_route') == 'admin_user_new'
         or app.request.attributes.get('_route') == 'admin_user_show'
         or app.request.attributes.get('_route') == 'admin_user_edit'
-        or app.request.attributes.get('_route') == 'admin_user_delete' %} class="active-user" {% endif %}
+        or app.request.attributes.get('_route') == 'admin_user_delete' %} active-user {% endif %}"
         >
             <a href="{{ path('admin_user_index') }}">
-                <h3><i class="fa fa-address-book"></i> User</h3>
+                <i class="fa fa-address-book"></i> User
             </a>
         </li>
-        <li {% if app.request.attributes.get('_route') == 'admin_publicpage_index'
+        <li class="sidenav-publicpage {% if app.request.attributes.get('_route') == 'admin_publicpage_index'
         or app.request.attributes.get('_route') == 'admin_publicpage_new'
         or app.request.attributes.get('_route') == 'admin_publicpage_show'
         or app.request.attributes.get('_route') == 'admin_publicpage_edit'
-        or app.request.attributes.get('_route') == 'admin_publicpage_delete' %} class="active-publicpage" {% endif %}
+        or app.request.attributes.get('_route') == 'admin_publicpage_delete' %} active-publicpage {% endif %}"
         >
             <a href="{{ path('admin_publicpage_index') }}">
-                <h3><i class="fa fa-address-book"></i> Page Public</h3>
+                <i class="fa fa-address-book"></i> Page Public
             </a>
         </li>
-        <li {% if app.request.attributes.get('_route') == 'admin_project_index'
+        <li class="sidenav-project {% if app.request.attributes.get('_route') == 'admin_project_index'
         or app.request.attributes.get('_route') == 'admin_project_new'
         or app.request.attributes.get('_route') == 'admin_project_show'
         or app.request.attributes.get('_route') == 'admin_project_edit'
-        or app.request.attributes.get('_route') == 'admin_project_delete' %} class="active-project" {% endif %}
+        or app.request.attributes.get('_route') == 'admin_project_delete' %} active-project {% endif %}"
         >
             <a href="{{ path('admin_project_index') }}">
-                <h3><i class="fa fa-address-book-o"></i> Project</h3>
+                <i class="fa fa-address-book-o"></i> Project
             </a>
         </li>
-        <li {% if app.request.attributes.get('_route') == 'admin_partner_index'
+        <li class="sidenav-partner {% if app.request.attributes.get('_route') == 'admin_partner_index'
         or app.request.attributes.get('_route') == 'admin_partner_new'
         or app.request.attributes.get('_route') == 'admin_partner_show'
         or app.request.attributes.get('_route') == 'admin_partner_edit'
-        or app.request.attributes.get('_route') == 'admin_partner_delete' %} class="active-partner" {% endif %}
+        or app.request.attributes.get('_route') == 'admin_partner_delete' %} active-partner {% endif %}"
         >
             <a href="{{ path('admin_partner_index') }}">
-                <h3><i class="fa fa-folder-open"></i> Partenaires</h3>
+                <i class="fa fa-folder-open"></i> Partenaires
             </a>
         </li>
-        <li {% if app.request.attributes.get('_route') == 'admin_mayor_index'
+        <li class="sidenav-mayor {% if app.request.attributes.get('_route') == 'admin_mayor_index'
         or app.request.attributes.get('_route') == 'admin_mayor_new'
         or app.request.attributes.get('_route') == 'admin_mayor_show'
         or app.request.attributes.get('_route') == 'admin_mayor_edit'
-        or app.request.attributes.get('_route') == 'admin_mayor_delete' %} class="active-mayor" {% endif %}
+        or app.request.attributes.get('_route') == 'admin_mayor_delete' %} active-mayor {% endif %}"
         >
             <a href="{{ path('admin_mayor_index') }}">
-                <h3><i class="fa fa-edit"></i> Maires</h3>
+                <i class="fa fa-edit"></i> Maires
             </a>
         </li>
-        <li {% if app.request.attributes.get('_route') == 'admin_favorite_index'
+        <li class="sidenav-favorite {% if app.request.attributes.get('_route') == 'admin_favorite_index'
         or app.request.attributes.get('_route') == 'admin_favorite_new'
         or app.request.attributes.get('_route') == 'admin_favorite_show'
         or app.request.attributes.get('_route') == 'admin_favorite_edit'
-        or app.request.attributes.get('_route') == 'admin_favorite_delete' %} class="active-favorite" {% endif %}
+        or app.request.attributes.get('_route') == 'admin_favorite_delete' %} active-favorite {% endif %}"
         >
             <a href="{{ path('admin_favorite_index') }}">
-                <h3><i class="fa fa-bar-chart"></i> Favoris</h3>
+                <i class="fa fa-bar-chart"></i> Favoris
             </a>
         </li>
-        <li {% if app.request.attributes.get('_route') == 'admin_company_index'
+        <li class="sidenav-company {% if app.request.attributes.get('_route') == 'admin_company_index'
         or app.request.attributes.get('_route') == 'admin_company_new'
         or app.request.attributes.get('_route') == 'admin_company_show'
         or app.request.attributes.get('_route') == 'admin_company_edit'
-        or app.request.attributes.get('_route') == 'admin_company_delete' %} class="active-company" {% endif %}
+        or app.request.attributes.get('_route') == 'admin_company_delete' %} active-company {% endif %}"
         >
             <a href="{{ path('admin_company_index') }}">
-                <h3><i class="fa fa-bar-chart"></i> Organisme</h3>
+                <i class="fa fa-bar-chart"></i> Organisme
             </a>
         </li>
-        <li {% if app.request.attributes.get('_route') == 'admin_dictionary_index'
+        <li class="sidenav-dictionary {% if app.request.attributes.get('_route') == 'admin_dictionary_index'
         or app.request.attributes.get('_route') == 'admin_dictionary_new'
         or app.request.attributes.get('_route') == 'admin_dictionary_show'
         or app.request.attributes.get('_route') == 'admin_dictionary_edit'
-        or app.request.attributes.get('_route') == 'admin_dictionary_delete' %} class="active-company" {% endif %}
+        or app.request.attributes.get('_route') == 'admin_dictionary_delete' %} active-dictionary {% endif %}"
         >
             <a href="{{ path('admin_dictionary_index') }}">
-                <h3><i class="fa fa-bar-chart"></i> Dictionary</h3>
+                <i class="fa fa-bar-chart"></i> Dictionary
             </a>
         </li>
     </ul>
