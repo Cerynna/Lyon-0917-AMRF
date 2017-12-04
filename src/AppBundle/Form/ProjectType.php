@@ -22,7 +22,11 @@ class ProjectType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('title')
+            ->add('title',TextType::class,[
+                'attr' => [
+                    'required' => true,
+                ]
+                ])
             ->add('themes', EntityType::class, array(
                 'class' => 'AppBundle:Dictionary',
                 'query_builder' => function (EntityRepository $er) {
@@ -37,12 +41,20 @@ class ProjectType extends AbstractType
                 'label_attr' => ['class' => 'style_checkbox'],
 
             ))
-            /*->add('theme')*/
-            ->add('creationDate')
-            ->add('updateDate')
+            ->add('creationDate', DateType::class, array(
+                'widget' => 'single_text',
+                // this is actually the default format for single_text
+                'format' => 'yyyy-MM-dd',
+
+            ))
+            ->add('updateDate', DateType::class, array(
+                'widget' => 'single_text',
+                // this is actually the default format for single_text
+                'format' => 'yyyy-MM-dd',
+
+            ))
             ->add('images', FileType::class, [
-                'multiple' => true,
-            ])
+                'multiple' => true])
             ->add('projectDate', DateType::class, array(
                 'widget' => 'single_text',
                 // this is actually the default format for single_text
@@ -64,13 +76,33 @@ class ProjectType extends AbstractType
             ->add('contactOccupation')
             ->add('contactEmail')
             ->add('contactPhone')
-            ->add('file',FileType::class)
+            ->add('file')
             ->add('url')
             ->add('youtube')
             ->add('facebook')
             ->add('twitter')
             ->add('keyWords')
-            ->add('mayor');
+
+            ->add('keyWords', EntityType::class, array(
+                'class' => 'AppBundle:Dictionary',
+                'query_builder' => function (EntityRepository $er) {
+                    return $er->createQueryBuilder('u')
+                        ->setParameter('type', Dictionary::TYPE_KEYWORD)
+                        ->where('u.type = :type')
+                        ->orderBy('u.type', 'ASC');
+                },
+                'expanded' => true,
+                'multiple' => true,
+                'choice_label' => 'name',
+                'label_attr' => ['class' => 'style_checkbox'],
+
+            ))
+
+
+            ->add('mayor', EntityType::class, [
+                'class' => 'AppBundle\Entity\Mayor',
+                'choice_label' => 'town',
+            ]);
     }
 
     /**

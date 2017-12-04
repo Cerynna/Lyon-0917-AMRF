@@ -1,3 +1,9 @@
+{% if is_granted('ROLE_MAYOR') %}
+    {% set idMayor = app.user.mayor.id %}
+{% elseif is_granted('ROLE_PARTNER')%}
+    {% set idPartner = app.user.partner.id %}
+{% endif %}
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>

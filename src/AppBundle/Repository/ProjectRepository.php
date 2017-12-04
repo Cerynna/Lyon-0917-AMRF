@@ -2,6 +2,7 @@
 
 namespace AppBundle\Repository;
 
+
 /**
  * ProjectRepository
  *
@@ -13,13 +14,25 @@ class ProjectRepository extends \Doctrine\ORM\EntityRepository
 
     const MAX_PROJECT = 3;
 
-  /*  public function getLastProject()
+    public function getLastProject()
     {
         return $this->createQueryBuilder('p')
             ->orderBy("p.updateDate", "DESC")
             ->setMaxResults(self::MAX_PROJECT)
             ->getQuery()
             ->getResult();
-    }*/
+    }
+
+    public function getImageProject($idProject)
+    {
+        return $this->createQueryBuilder('p')
+            ->setParameter('id', $idProject)
+            ->where('p.id = :id')
+            ->select('p.images')
+            ->getQuery()
+            ->getResult();
+    }
+
+
     
 }

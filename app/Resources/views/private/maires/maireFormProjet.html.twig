@@ -53,10 +53,10 @@
 
                 <div class="form-group row scroll-in">
                     <div class="col-sm-4">
-                        {% set nbthema = form.theme|length %}
+                        {% set nbthema = form.themes|length %}
                         {% set col =  nbthema/3 %}
                         {% set col = col|round %}
-                        {% for thema in form.theme %}
+                        {% for thema in form.themes %}
                         {{ form_errors(thema) }}
                         <div>
                             <input type="checkbox" id="{{ thema.vars.id }}"

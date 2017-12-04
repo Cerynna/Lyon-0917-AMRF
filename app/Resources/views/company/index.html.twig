@@ -33,7 +33,13 @@
                 <td>{{ company.address }}</td>
                 <td>{{ company.zipCode }}</td>
                 <td>{{ company.city }}</td>
-                <td>{{ company.activities }}</td>
+                <td>
+                    {% if company.activities %}
+                        {% for activity in company.activities %}
+                            <span class="label label-primary"> {{ activity.name }}</span>
+                        {% endfor %}
+                    {% endif %}
+                </td>
                 <td>{{ company.presentation }}</td>
                 <td>{{ company.logo }}</td>
                 <td>{{ company.url }}</td>
