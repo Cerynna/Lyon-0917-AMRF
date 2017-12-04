@@ -2,6 +2,7 @@
 
 namespace AppBundle\Repository;
 
+
 /**
  * ProjectRepository
  *
@@ -20,6 +21,16 @@ class ProjectRepository extends \Doctrine\ORM\EntityRepository
             ->setMaxResults(self::MAX_PROJECT)
             ->getQuery();
         return $qb->getResult();
+    }
+
+    public function getImageProject($idProject)
+    {
+        return $this->createQueryBuilder('p')
+            ->setParameter('id', $idProject)
+            ->where('p.id = :id')
+            ->select('p.images')
+            ->getQuery()
+            ->getResult();
     }
 
 }

@@ -6,10 +6,15 @@ namespace AppBundle\Controller;
 use AppBundle\Entity\Project;
 use Doctrine\ORM\EntityManager;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
+use SensioLabs\Security\Exception\HttpException;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
+
+use Symfony\Component\Filesystem\Filesystem;
+use Symfony\Component\Filesystem\Exception\IOExceptionInterface;
 
 
 class PublicController extends Controller
@@ -21,10 +26,15 @@ class PublicController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
+        $user = $this->get('security.token_storage')->getToken()->getUser();
+        $test = $user->getMayor()->getId();
+
         $projects = $em->getRepository('AppBundle:Project')->getLastProject();
 
         return $this->render('public/index.html.twig', array(
             'projects' => $projects,
+            'user' => $user,
+            'test' => $test,
         ));
     }
 
@@ -128,8 +138,50 @@ class PublicController extends Controller
         $lastUsername = $authUtils->getLastUsername();
         return $this->render('public/login.html.twig', array(
             'last_username' => $lastUsername,
-            'error'         => $error,
+            'error' => $error,
         ));
     }
 
+
+    /**
+     * @Route("/deletefile/{fileName}", name="deletefile")
+     */
+    public function deleteFileAction(Request $request, $fileName)
+    {
+
+        if ($request->isXmlHttpRequest()) {
+            $em = $this->getDoctrine()->getManager();
+
+            $imageDelete = str_replace("-", "/", $fileName);
+            $imgExplode = explode('/', $imageDelete);
+            $project = $em->getRepository(Project::class)->find($imgExplode[2]);
+
+            if ($imgExplode[3] == 'photos'){
+                $imagesInDB = $em->getRepository('AppBundle:Project')->getImageProject($imgExplode[2]);
+                $newImagesDB = [];
+                foreach ($imagesInDB[0]['images'] as $imageInDB) {
+                    if ($imgExplode[4] != $imageInDB) {
+                        $newImagesDB[] = $imageInDB;
+                    }
+                }
+                $project->setImages($newImagesDB);
+
+            }
+            elseif ($imgExplode[3] == 'file')
+            {
+                $project = $em->getRepository(Project::class)->find($imgExplode[2]);
+                $project->setFile('');
+            }
+            $em->flush();
+            $fs = new Filesystem();
+            $fs->remove($imageDelete);
+
+
+
+            return new Response("Image supprimer " . $imageDelete . " - " . count($imageDelete) . " - " . $imgExplode[4]);
+        } else {
+            throw new HttpException('500', 'Invalid call');
+        }
+
+    }
 }
