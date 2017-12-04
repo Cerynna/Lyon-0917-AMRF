@@ -3,20 +3,17 @@
 namespace AppBundle\Controller;
 
 
-use AppBundle\Entity\Mayor;
-use AppBundle\Entity\Partner;
-use AppBundle\Entity\Company;
 use AppBundle\Entity\Project;
-
+use Doctrine\ORM\EntityManager;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
+
 class PublicController extends Controller
 {
-
     /**
      * @Route("/", name="home")
      */
@@ -29,6 +26,19 @@ class PublicController extends Controller
         return $this->render('public/index.html.twig', array(
             'projects' => $projects,
         ));
+    }
+
+    /**
+     * Shows the elements of a project in the ResumeProject Component
+     *
+     */
+    public function resumeProjectAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+        $projects = $em->getRepository("AppBundle:Project")->getLastProject();
+        return $this->render('components/resumeProject.html.twig', [
+            'projects'  => $projects
+        ]);
     }
 
     /**
