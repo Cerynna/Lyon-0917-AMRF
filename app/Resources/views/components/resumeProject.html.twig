@@ -1,66 +1,56 @@
 <div class="row resumeProject">
-    {% if options.pictures == "true" %}
+    {% if options.pictures == "true" and options.project.images is not empty %}
         <div class="col-sm-3 mini-galery">
+
             <div class="img-list text-center">
-                <img class="img-mini" src="{{ asset('/img/projets/' ~ options.id ~ '/2.jpg') }}"
-                     onmouseover="showImg('my-img{{ options.id }}','{{ asset('/img/projets/' ~ options.id ~ '/2.jpg') }}');"
-                     onmouseout="hideImg('my-img{{ options.id }}','{{ asset('/img/projets/' ~ options.id ~ '/1.jpg') }}');"/>
-                <img class="img-mini" src="{{ asset('/img/projets/' ~ options.id ~ '/3.jpg') }}"
-                     onmouseover="showImg('my-img{{ options.id }}','{{ asset('/img/projets/' ~ options.id ~ '/3.jpg') }}');"
-                     onmouseout="hideImg('my-img{{ options.id }}','{{ asset('/img/projets/' ~ options.id ~ '/1.jpg') }}');"/>
-                <img class="img-mini" src="{{ asset('/img/projets/' ~ options.id ~ '/1.jpg') }}"
-                     onmouseover="showImg('my-img{{ options.id }}','{{ asset('/img/projets/' ~ options.id ~ '/1.jpg') }}');"
-                     onmouseout="hideImg('my-img{{ options.id }}','{{ asset('/img/projets/' ~ options.id ~ '/1.jpg') }}');"/>
+                {% set imgBase = 'upload/project/' ~ options.project.id ~ '/photos/' ~ options.project.images.0 %}
+                {% for key, image in options.project.images %}
+                    {% if key != 0 %}
+                        {% set img = 'upload/project/' ~ options.project.id ~ '/photos/' ~ image %}
+                        <img class="img-mini" src="{{ asset(img) }}"
+                             onmouseover="showImg('my-img{{ options.project.id }}','{{ asset(img) }}');"
+                             onmouseout="hideImg('my-img{{ options.project.id }}','{{ asset(imgBase) }}');"/>
+                    {% endif %}
+                {% endfor %}
             </div>
             <div class="img-preview">
-                <img id="my-img{{ options.id }}" src="{{ asset('/img/projets/' ~ options.id ~ '/1.jpg') }}"
+
+                <img id="my-img{{ options.project.id }}" src="{{ asset(imgBase) }}"
                      class="img-big"/>
             </div>
-
         </div>
     {% endif %}
-    <div class="{% if options.pictures == "true" %} col-sm-9 {% else %}col-xs-12{% endif %}">
+    <div class="{% if options.pictures == "true" and options.project.images is not empty %} col-sm-9 {% else %}col-xs-12{% endif %}">
         <div class="row">
             <div class="col-xs-9">
-                <h3>Projet Application Mobile Court-voiturage</h3>
+                <h3>{{ options.project.title }}</h3>
             </div>
             <div class="col-xs-3 text-right">
-                <span class="label label-commune">05/2017</span>
+                <span class="label label-commune">{{ options.project.projectDate|date('m/Y') }}</span>
             </div>
         </div>
         <div class="row">
             {% if options.thema == "true" %}
                 <div class="col-xs-12 text-left hidden-xs" id="city">
-                    <span class="label label-commune">LES MOLIERES</span>
-                    <span class="label label-commune">Essonne</span>
+                    <span class="label label-commune">{{ options.project.mayor.town }}</span>
+                    <span class="label label-commune">{{ options.project.mayor.department }}</span>
 
                 </div>
                 <div class="col-xs-12 text-left hidden-xs" id="theme">
-                    <span class="label label-themat">Mobilité</span>
-                    <span class="label label-themat">Aménagement du territoire</span>
-                    <span class="label label-themat">Aménagement du territoire</span>
+                    {% for thema in options.project.themes %}
+                        <span class="label label-themat">{{ thema.name }}</span>
+                    {% endfor %}
                 </div>
             {% endif %}
             <div class="col-md-12">
-                {#{% if options.thema == "true" %}
-                    <h3 class="hidden-xs">Résumé du projet</h3>
-                {% endif %}#}
                 <p>
-                    {% set text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                    incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-                    exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute
-                    irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-                    pariatur." %}
+
                     {% if options.text is defined %}
                         {% if options.text != 0 %}
-                            {{ text|slice (0,options.text) }}...
+                            {{ options.project.descResume|slice (0,options.text) }}...
                         {% endif %}
                     {% else %}
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                        incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-                        exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute
-                        irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-                        pariatur.
+                        {{ options.project.descResume }}
                     {% endif %}
                 </p>
             </div>

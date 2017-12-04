@@ -34,10 +34,11 @@
                 <td>{{ company.zipCode }}</td>
                 <td>{{ company.city }}</td>
                 <td>
-                    {% for activity in company.activities %}
-                        {{ activity }}
-                    {% endfor %}
-
+                    {% if company.activities %}
+                        {% for activity in company.activities %}
+                            <span class="label label-primary"> {{ activity.name }}</span>
+                        {% endfor %}
+                    {% endif %}
                 </td>
                 <td>{{ company.presentation }}</td>
                 <td>{{ company.logo }}</td>

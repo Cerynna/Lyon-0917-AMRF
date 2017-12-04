@@ -1,7 +1,6 @@
 {% extends 'base.html.twig' %}
 {% block title %}Accueil{% endblock %}
 {% block body %}
-
     {% if is_granted('ROLE_MAYOR') %} JE SUIS UN MAYOR !!!! {% endif %}
     {% if is_granted('ROLE_PARTNER') %} JE SUIS UN PARTNER !!!! {% endif %}
     {% if is_granted('ROLE_ADMIN') %} JE SUIS UN ADMIN !!!! {% endif %}
@@ -12,18 +11,12 @@
     <h3 class="hidden-xs">Les dernières fiches projets</h3>
     <div id="myCarousel" class="carousel slide resumeProject jumbotron row" data-ride="carousel">
         <div class="carousel-inner">
-            <div class="item active">
-                {% set options = {'thema':'true','pictures':'true','update': 'false', 'more': 'false', 'id': 1, 'text': 300} %}
-                {% include 'components/resumeProject.html.twig' with options %}
-            </div>
-            <div class="item ">
-                {% set options = {'thema':'true','pictures':'true','update': 'false', 'more': 'false', 'id':2, 'text': 300} %}
-                {% include 'components/resumeProject.html.twig' with options %}
-            </div>
-            <div class="item ">
-                {% set options = {'thema':'true','pictures':'true','update': 'false', 'more': 'false', 'id':3, 'text': 300} %}
-                {% include 'components/resumeProject.html.twig' with options %}
-            </div>
+            {% for key, project in projects %}
+                <div class="item {% if key == 0 %} active {% endif %}">
+                    {% set options = {'thema':'true','pictures':'true','update': 'false', 'more': 'false', 'text': 300, 'project': project} %}
+                    {% include 'components/resumeProject.html.twig' with options %}
+                </div>
+            {% endfor %}
         </div>
     </div>
     <h3>Un outil collaboratif et participatif</h3>

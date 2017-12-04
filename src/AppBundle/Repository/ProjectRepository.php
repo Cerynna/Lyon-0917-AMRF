@@ -10,17 +10,16 @@ namespace AppBundle\Repository;
  */
 class ProjectRepository extends \Doctrine\ORM\EntityRepository
 {
-/*
+
     const MAX_PROJECT = 3;
 
     public function getLastProject()
     {
-
-        return $this->createQueryBuilder('p')
+        $qb = $this->createQueryBuilder('p')
             ->orderBy("p.updateDate", "DESC")
             ->setMaxResults(self::MAX_PROJECT)
-            ->getQuery()
-            ->getResult();
-    } */
+            ->getQuery();
+        return $qb->getResult();
+    }
 
 }
