@@ -3,10 +3,13 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Project;
+use AppBundle\Entity\Uploader;
+use AppBundle\Service\SlugService;
 use AppBundle\Service\UploadService;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 /**
@@ -39,20 +42,30 @@ class AdminProjectController extends Controller
      * @Route("/new", name="admin_project_new")
      * @Method({"GET", "POST"})
      */
-    public function newAction(Request $request)
+    public function newAction(Request $request, SlugService $slug)
     {
         $project = new Project();
         $form = $this->createForm('AppBundle\Form\ProjectType', $project);
+		$form->remove('slug');
         $form->handleRequest($request);
+
+        $uploaderImage = new Uploader();
+        $uplodImageForm = $this->createForm('AppBundle\Form\UploaderType', $uploaderImage, [
+            'block_name' => 'image',
+        ]);
+        $uplodImageForm->handleRequest($request);
+
+        $uploaderFile = new Uploader();
+        $uplodFileForm = $this->createForm('AppBundle\Form\UploaderType', $uploaderFile);
+        $uplodFileForm->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+			$project->setSlug($slug->slug($project->getTitle()));
             $em->persist($project);
             $em->flush();
-
-            return $this->redirectToRoute('admin_project_show', array(
+            return $this->redirectToRoute('admin_project_edit', array(
                 'id' => $project->getId(),
-                'test' => $form,
 
             ));
         }
@@ -60,13 +73,15 @@ class AdminProjectController extends Controller
         return $this->render('project/new.html.twig', array(
             'project' => $project,
             'form' => $form->createView(),
+            'upload_image_form' => $uplodImageForm->createView(),
+            'upload_file_form' => $uplodFileForm->createView(),
         ));
     }
 
     /**
      * Finds and displays a project entity.
      *
-     * @Route("/{id}", name="admin_project_show")
+     * @Route("/{slug}", name="admin_project_show")
      * @Method("GET")
      */
     public function showAction(Project $project)
@@ -82,17 +97,63 @@ class AdminProjectController extends Controller
     /**
      * Displays a form to edit an existing project entity.
      *
-     * @Route("/{id}/edit", name="admin_project_edit")
+     * @Route("/edit/{slug}/", name="admin_project_edit")
      * @Method({"GET", "POST"})
      */
-    public function editAction(Request $request, Project $project)
+    public function editAction(Request $request, Project $project, UploadService $uploadService, SlugService $slugs)
     {
         $deleteForm = $this->createDeleteForm($project);
+
         $editForm = $this->createForm('AppBundle\Form\ProjectType', $project);
+		$editForm->remove('slug');
+        $editForm->remove('images');
+        $editForm->remove('file');
         $editForm->handleRequest($request);
 
-        if ($editForm->isSubmitted() && $editForm->isValid()) {
+        $uploaderImage = new Uploader();
+        $uplodImageForm = $this->createForm('AppBundle\Form\UploaderType', $uploaderImage, [
+            'block_name' => 'image',
+        ]);
+        $uplodImageForm->handleRequest($request);
+
+        $uploaderFile = new Uploader();
+        $uplodFileForm = $this->createForm('AppBundle\Form\UploaderType', $uploaderFile);
+        $uplodFileForm->handleRequest($request);
+
+
+        if ($uplodFileForm->isSubmitted() && $uplodFileForm->isValid()) {
+            $file = $uploaderFile->getPath();
+            $fileNewDB = $uploadService->fileUpload($file, '/project/' . $project->getId() . '/file');
+            $project->setFile($fileNewDB);
             $this->getDoctrine()->getManager()->flush();
+			$project->setSlug($slugs->slug($project->getTitle()));
+            return $this->redirectToRoute('admin_project_edit', array(
+                'id' => $project->getId(),
+            ));
+        }
+
+        if ($uplodImageForm->isSubmitted() && $uplodImageForm->isValid()) {
+            $files = $uploaderImage->getPath();
+            $images = $project->getImages();
+            $dbimg = $images;
+            $dbimg[] = $uploadService->fileUpload($files, '/project/' . $project->getId() . '/photos');
+            $project->setImages($dbimg);
+            $this->getDoctrine()->getManager()->flush();
+            return $this->redirectToRoute('admin_project_edit', array(
+                'id' => $project->getId(),
+            ));
+        }
+
+
+        if ($editForm->isSubmitted() && $editForm->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+/*            $themes = $project->getThemes();
+            $project->resetThemes();
+            foreach ($themes as $theme) {
+                $project->addTheme($theme);
+            }*/
+            $em->persist($project);
+            $em->flush();
 
             return $this->redirectToRoute('admin_project_edit', array('id' => $project->getId()));
         }
@@ -100,6 +161,8 @@ class AdminProjectController extends Controller
         return $this->render('project/edit.html.twig', array(
             'project' => $project,
             'edit_form' => $editForm->createView(),
+            'upload_image_form' => $uplodImageForm->createView(),
+            'upload_file_form' => $uplodFileForm->createView(),
             'delete_form' => $deleteForm->createView(),
         ));
     }
@@ -136,7 +199,6 @@ class AdminProjectController extends Controller
         return $this->createFormBuilder()
             ->setAction($this->generateUrl('admin_project_delete', array('id' => $project->getId())))
             ->setMethod('DELETE')
-            ->getForm()
-        ;
+            ->getForm();
     }
 }

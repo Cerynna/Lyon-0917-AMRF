@@ -37,10 +37,10 @@ table > tbody > tr:nth-of-type(odd) {
 }
 
 table > tbody > tr:nth-of-type(even) {
-  background-color: rgba(58, 176, 202, 0.2);
+  background-color: lighten($color1, 70%);
 }
 
 thead {
-  background-color: #1e5d6b;
-  color: #FFF;
+  background-color: lighten($color1, 10%);
+  color:  lighten($color1, 100%);;
 }

@@ -3,6 +3,7 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Company;
+use AppBundle\Service\SlugService;
 use AppBundle\Service\UploadService;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -40,10 +41,11 @@ class AdminCompanyController extends Controller
      * @Route("/new", name="admin_company_new")
      * @Method({"GET", "POST"})
      */
-    public function newAction(Request $request, UploadService $upload)
+    public function newAction(Request $request, UploadService $upload,  SlugService $slug)
     {
         $company = new Company();
         $form = $this->createForm('AppBundle\Form\CompanyType', $company);
+		$form->remove('slug');
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -65,7 +67,7 @@ class AdminCompanyController extends Controller
     /**
      * Finds and displays a company entity.
      *
-     * @Route("/{id}", name="admin_company_show")
+     * @Route("/{slug}", name="admin_company_show")
      * @Method("GET")
      */
     public function showAction(Company $company)
@@ -81,19 +83,21 @@ class AdminCompanyController extends Controller
     /**
      * Displays a form to edit an existing company entity.
      *
-     * @Route("/{id}/edit", name="admin_company_edit")
+     * @Route("/edit/{slug}", name="admin_company_edit")
      * @Method({"GET", "POST"})
      */
-    public function editAction(Request $request, Company $company)
+    public function editAction(Request $request, Company $company, SlugService $slugs)
     {
         $deleteForm = $this->createDeleteForm($company);
         $editForm = $this->createForm('AppBundle\Form\CompanyType', $company);
+		$editForm->remove('slug');
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
+			$company->setSlug($slugs->slug($company->getName()));
 
-            return $this->redirectToRoute('admin_company_edit', array('id' => $company->getId()));
+			return $this->redirectToRoute('admin_company_edit', array('slug' => $company->getSlug()));
         }
 
         return $this->render('company/edit.html.twig', array(
