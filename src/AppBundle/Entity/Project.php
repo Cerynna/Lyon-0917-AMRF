@@ -3,6 +3,9 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\JoinColumn;
+use Doctrine\ORM\Mapping\JoinTable;
+use Doctrine\ORM\Mapping\ManyToMany;
 
 /**
  * Project
@@ -12,6 +15,11 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Project
 {
+
+    const TYPE_THEME = 1;
+    const TYPE_ACTIVITY = 2;
+    const TYPE_KEYWORD = 3;
+
     /**
      * @var int
      *
@@ -30,11 +38,15 @@ class Project
     private $title;
 
     /**
-     * @var string
+     * Many Project have many themes
      *
-     * @ORM\Column(name="theme", type="string", length=255, nullable=true)
+     * @ManyToMany(targetEntity="Dictionary")
+     * @JoinTable(name="project_theme",
+     *      joinColumns={@JoinColumn(name="id", referencedColumnName="id")},
+     *      inverseJoinColumns={@JoinColumn(name="themes", referencedColumnName="id")}
+     *      )
      */
-    private $theme;
+    private $themes;
 
     /**
      * @var \DateTime
@@ -51,11 +63,11 @@ class Project
     private $updateDate;
 
     /**
-     * @var string
+     * @var array
      *
-     * @ORM\Column(name="image", type="string", length=255, nullable=true)
+     * @ORM\Column(name="image", type="array", nullable=true)
      */
-    private $image;
+    private $images;
 
     /**
      * @var \DateTime
@@ -205,9 +217,13 @@ class Project
     private $twitter;
 
     /**
-     * @var string
+     * Many Project have many themes
      *
-     * @ORM\Column(name="keyWords", type="string", length=255, nullable=true)
+     * @ManyToMany(targetEntity="Dictionary")
+     * @JoinTable(name="project_keywords",
+     *      joinColumns={@JoinColumn(name="id", referencedColumnName="id")},
+     *      inverseJoinColumns={@JoinColumn(name="keyWords", referencedColumnName="id")}
+     *      )
      */
     private $keyWords;
 
@@ -216,17 +232,31 @@ class Project
      */
     private $mayor;
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="slug", type="string", length=255, nullable=true)
+     */
+    private $slug;
+
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->themes = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
     /**
      * Get id
      *
-     * @return int
+     * @return integer
      */
     public function getId()
     {
         return $this->id;
     }
-
 
     /**
      * Set title
@@ -250,30 +280,6 @@ class Project
     public function getTitle()
     {
         return $this->title;
-    }
-
-    /**
-     * Set theme
-     *
-     * @param string $theme
-     *
-     * @return Project
-     */
-    public function setTheme($theme)
-    {
-        $this->theme = $theme;
-
-        return $this;
-    }
-
-    /**
-     * Get theme
-     *
-     * @return string
-     */
-    public function getTheme()
-    {
-        return $this->theme;
     }
 
     /**
@@ -325,27 +331,27 @@ class Project
     }
 
     /**
-     * Set image
+     * Set images
      *
-     * @param string $image
+     * @param array $images
      *
      * @return Project
      */
-    public function setImage($image)
+    public function setImages($images)
     {
-        $this->image = $image;
+        $this->images = $images;
 
         return $this;
     }
 
     /**
-     * Get image
+     * Get images
      *
-     * @return string
+     * @return array
      */
-    public function getImage()
+    public function getImages()
     {
-        return $this->image;
+        return $this->images;
     }
 
     /**
@@ -855,7 +861,7 @@ class Project
     /**
      * Set keyWords
      *
-     * @param string $keyWords
+     * @param array $keyWords
      *
      * @return Project
      */
@@ -869,11 +875,45 @@ class Project
     /**
      * Get keyWords
      *
-     * @return string
+     * @return array
      */
     public function getKeyWords()
     {
         return $this->keyWords;
+    }
+
+    /**
+     * Add theme
+     *
+     * @param \AppBundle\Entity\Dictionary $theme
+     *
+     * @return Project
+     */
+    public function addTheme(\AppBundle\Entity\Dictionary $theme)
+    {
+        $this->themes[] = $theme;
+
+        return $this;
+    }
+
+    /**
+     * Remove theme
+     *
+     * @param \AppBundle\Entity\Dictionary $theme
+     */
+    public function removeTheme(\AppBundle\Entity\Dictionary $theme)
+    {
+        $this->themes->removeElement($theme);
+    }
+
+    /**
+     * Get themes
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getThemes()
+    {
+        return $this->themes;
     }
 
     /**
@@ -901,50 +941,50 @@ class Project
     }
 
     /**
-     * Set favorites
+     * Add keyWord
      *
-     * @param \AppBundle\Entity\Favorite $favorites
+     * @param \AppBundle\Entity\Dictionary $keyWord
      *
      * @return Project
      */
-    public function setFavorites(\AppBundle\Entity\Favorite $favorites = null)
+    public function addKeyWord(\AppBundle\Entity\Dictionary $keyWord)
     {
-        $this->favorites = $favorites;
+        $this->keyWords[] = $keyWord;
 
         return $this;
     }
 
     /**
-     * Get favorites
+     * Remove keyWord
      *
-     * @return \AppBundle\Entity\Favorite
+     * @param \AppBundle\Entity\Dictionary $keyWord
      */
-    public function getFavorites()
+    public function removeKeyWord(\AppBundle\Entity\Dictionary $keyWord)
     {
-        return $this->favorites;
+        $this->keyWords->removeElement($keyWord);
     }
 
     /**
-     * Set favoriteProject
+     * Set slug
      *
-     * @param \AppBundle\Entity\Favorite $favoriteProject
+     * @param string $slug
      *
      * @return Project
      */
-    public function setFavoriteProject(\AppBundle\Entity\Favorite $favoriteProject = null)
+    public function setSlug($slug)
     {
-        $this->favoriteProject = $favoriteProject;
+        $this->slug = $slug;
 
         return $this;
     }
 
     /**
-     * Get favoriteProject
+     * Get slug
      *
-     * @return \AppBundle\Entity\Favorite
+     * @return string
      */
-    public function getFavoriteProject()
+    public function getSlug()
     {
-        return $this->favoriteProject;
+        return $this->slug;
     }
 }

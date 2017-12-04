@@ -3,12 +3,12 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Project;
-use AppBundle\Service\UploadService;
+use AppBundle\Service\SlugService;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Project controller.
@@ -40,24 +40,24 @@ class AdminProjectController extends Controller
      * @Route("/new", name="admin_project_new")
      * @Method({"GET", "POST"})
      */
-    public function newAction(Request $request, UploadService $upload)
+    public function newAction(Request $request, SlugService $slug)
     {
         $project = new Project();
         $form = $this->createForm('AppBundle\Form\ProjectType', $project);
+        $form->remove('slug');
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $image = $project->getImage();
-            $project->setImage($upload->fileUpload($image, "/project/" . $project->getTitle(), "IMG"));
-            $file = $project->getFile();
-            $project->setFile($upload->fileUpload($file, "/project/" . $project->getTitle(), "PDF"));
-            $theme = $project->getTheme();
-            $project->setTheme(serialize($theme));
+            $project->setSlug($slug->slug($project->getTitle()));
             $em->persist($project);
             $em->flush();
 
-            return $this->redirectToRoute('admin_project_show', array('id' => $project->getId()));
+            return $this->redirectToRoute('admin_project_show', array(
+                'id' => $project->getId(),
+                'test' => $form,
+
+            ));
         }
 
         return $this->render('project/new.html.twig', array(
@@ -69,7 +69,7 @@ class AdminProjectController extends Controller
     /**
      * Finds and displays a project entity.
      *
-     * @Route("/{id}", name="admin_project_show")
+     * @Route("/{slug}", name="admin_project_show")
      * @Method("GET")
      */
     public function showAction(Project $project)
@@ -85,17 +85,20 @@ class AdminProjectController extends Controller
     /**
      * Displays a form to edit an existing project entity.
      *
-     * @Route("/{id}/edit", name="admin_project_edit")
+     * @Route("/edit/{slug}/", name="admin_project_edit")
      * @Method({"GET", "POST"})
      */
-    public function editAction(Request $request, Project $project,UploadedFile $upload)
+    public function editAction(Request $request, Project $project, SlugService $slugs)
     {
         $deleteForm = $this->createDeleteForm($project);
         $editForm = $this->createForm('AppBundle\Form\ProjectType', $project);
+        $editForm->remove('slug');
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
+            $project->setSlug($slugs->slug($project->getTitle()));
+
 
             return $this->redirectToRoute('admin_project_edit', array('id' => $project->getId()));
         }
@@ -139,7 +142,6 @@ class AdminProjectController extends Controller
         return $this->createFormBuilder()
             ->setAction($this->generateUrl('admin_project_delete', array('id' => $project->getId())))
             ->setMethod('DELETE')
-            ->getForm()
-        ;
+            ->getForm();
     }
 }

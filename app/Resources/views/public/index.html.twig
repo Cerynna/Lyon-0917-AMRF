@@ -1,6 +1,12 @@
 {% extends 'base.html.twig' %}
 {% block title %}Accueil{% endblock %}
 {% block body %}
+    {% if is_granted('ROLE_MAYOR') %} JE SUIS UN MAYOR !!!! {% endif %}
+    {% if is_granted('ROLE_PARTNER') %} JE SUIS UN PARTNER !!!! {% endif %}
+    {% if is_granted('ROLE_ADMIN') %} JE SUIS UN ADMIN !!!! {% endif %}
+    {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+        <a class="link" href="{{ path('logout') }}">Logout</a>
+    {% endif %}
     <h2>Bienvenue</h2>
     <h3 class="hidden-xs">Les dernières fiches projets</h3>
     <div id="myCarousel" class="carousel slide resumeProject jumbotron row" data-ride="carousel">

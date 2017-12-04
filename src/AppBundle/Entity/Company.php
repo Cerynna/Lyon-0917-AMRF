@@ -3,6 +3,9 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\JoinColumn;
+use Doctrine\ORM\Mapping\JoinTable;
+use Doctrine\ORM\Mapping\ManyToMany;
 
 /**
  * Company
@@ -51,9 +54,13 @@ class Company
     private $city;
 
     /**
-     * @var string
+     * Many Project have many themes
      *
-     * @ORM\Column(name="activities", type="string", length=255, nullable=true)
+     * @ManyToMany(targetEntity="Dictionary")
+     * @JoinTable(name="company_activity",
+     *      joinColumns={@JoinColumn(name="id", referencedColumnName="id")},
+     *      inverseJoinColumns={@JoinColumn(name="activity", referencedColumnName="id")}
+     *      )
      */
     private $activities;
 
@@ -127,6 +134,12 @@ class Company
      */
     private $contactEmail;
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="slug", type="string", length=255, nullable=true)
+     */
+    private $slug;
 
 
     /**
@@ -239,7 +252,7 @@ class Company
     /**
      * Set activities
      *
-     * @param string $activities
+     * @param array $activities
      *
      * @return Company
      */
@@ -253,7 +266,7 @@ class Company
     /**
      * Get activities
      *
-     * @return string
+     * @return array
      */
     public function getActivities()
     {
@@ -547,8 +560,66 @@ class Company
     {
         return $this->favoriteCompany;
     }
+
     public function __toString()
     {
         return $this->getName();
+    }
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->activities = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add activity
+     *
+     * @param \AppBundle\Entity\Dictionary $activity
+     *
+     * @return Company
+     */
+    public function addActivity(\AppBundle\Entity\Dictionary $activity)
+    {
+        $this->activities[] = $activity;
+
+        return $this;
+    }
+
+    /**
+     * Remove activity
+     *
+     * @param \AppBundle\Entity\Dictionary $activity
+     */
+    public function removeActivity(\AppBundle\Entity\Dictionary $activity)
+    {
+        $this->activities->removeElement($activity);
+    }
+
+
+    /**
+     * Set slug
+     *
+     * @param string $slug
+     *
+     * @return Company
+     */
+    public function setSlug($slug)
+    {
+        $this->slug = $slug;
+
+        return $this;
+    }
+
+    /**
+     * Get slug
+     *
+     * @return string
+     */
+    public function getSlug()
+    {
+        return $this->slug;
     }
 }

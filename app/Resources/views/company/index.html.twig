@@ -5,35 +5,47 @@
 
     <table>
         <thead>
-            <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>Address</th>
-                <th>Zipcode</th>
-                <th>City</th>
-                <th>Activities</th>
-                <th>Presentation</th>
-                <th>Logo</th>
-                <th>Url</th>
-                <th>Facebook</th>
-                <th>Linkedin</th>
-                <th>Twitter</th>
-                <th>Contactfirstname</th>
-                <th>Contactlastname</th>
-                <th>Contactphone</th>
-                <th>Contactemail</th>
-                <th>Actions</th>
-            </tr>
+        <tr>
+            <th>Id</th>
+            <th>Slug</th>
+            <th>Name</th>
+            <th>Address</th>
+            <th>Zipcode</th>
+            <th>City</th>
+            <th>Activities</th>
+            <th>Presentation</th>
+            <th>Logo</th>
+            <th>Url</th>
+            <th>Facebook</th>
+            <th>Linkedin</th>
+            <th>Twitter</th>
+            <th>Contactfirstname</th>
+            <th>Contactlastname</th>
+            <th>Contactphone</th>
+            <th>Contactemail</th>
+            <th>Actions</th>
+        </tr>
         </thead>
         <tbody>
         {% for company in companies %}
             <tr>
-                <td><a href="{{ path('admin_company_show', { 'id': company.id }) }}">{{ company.id }}</a></td>
+                <td>
+
+                    <a href="{{ path('admin_company_show', { 'slug': company.slug }) }}">{{ company.id }}</a>
+
+
+                </td>
                 <td>{{ company.name }}</td>
                 <td>{{ company.address }}</td>
                 <td>{{ company.zipCode }}</td>
                 <td>{{ company.city }}</td>
-                <td>{{ company.activities }}</td>
+                <td>
+                    {% if company.activities %}
+                        {% for activity in company.activities %}
+                            <span class="label label-primary"> {{ activity.name }}</span>
+                        {% endfor %}
+                    {% endif %}
+                </td>
                 <td>{{ company.presentation }}</td>
                 <td>{{ company.logo }}</td>
                 <td>{{ company.url }}</td>
@@ -47,10 +59,10 @@
                 <td>
                     <ul>
                         <li>
-                            <a href="{{ path('admin_company_show', { 'id': company.id }) }}">show</a>
+                            <a href="{{ path('admin_company_show', { 'slug': company.slug }) }}">show</a>
                         </li>
                         <li>
-                            <a href="{{ path('admin_company_edit', { 'id': company.id }) }}">edit</a>
+                            <a href="{{ path('admin_company_edit', { 'slug': company.slug }) }}">edit</a>
                         </li>
                     </ul>
                 </td>

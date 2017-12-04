@@ -5,118 +5,134 @@
 
     <table>
         <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ project.id }}</td>
-            </tr>
-            <tr>
-                <th>Title</th>
-                <td>{{ project.title }}</td>
-            </tr>
-            <tr>
-                <th>Theme</th>
-                <td>{{ project.theme }}</td>
-            </tr>
-            <tr>
-                <th>Creationdate</th>
-                <td>{% if project.creationDate %}{{ project.creationDate|date('Y-m-d H:i:s') }}{% endif %}</td>
-            </tr>
-            <tr>
-                <th>Updatedate</th>
-                <td>{% if project.updateDate %}{{ project.updateDate|date('Y-m-d H:i:s') }}{% endif %}</td>
-            </tr>
-            <tr>
-                <th>Image</th>
-                <td>{{ project.image }}</td>
-            </tr>
-            <tr>
-                <th>Projectdate</th>
-                <td>{% if project.projectDate %}{{ project.projectDate|date('Y-m-d H:i:s') }}{% endif %}</td>
-            </tr>
-            <tr>
-                <th>Projectduration</th>
-                <td>{{ project.projectDuration }}</td>
-            </tr>
-            <tr>
-                <th>Projectcost</th>
-                <td>{{ project.projectCost }}</td>
-            </tr>
-            <tr>
-                <th>Projectcofinance</th>
-                <td>{{ project.projectCoFinance }}</td>
-            </tr>
-            <tr>
-                <th>Descresume</th>
-                <td>{{ project.descResume }}</td>
-            </tr>
-            <tr>
-                <th>Desccontext</th>
-                <td>{{ project.descContext }}</td>
-            </tr>
-            <tr>
-                <th>Descgoal</th>
-                <td>{{ project.descGoal }}</td>
-            </tr>
-            <tr>
-                <th>Descprogress</th>
-                <td>{{ project.descProgress }}</td>
-            </tr>
-            <tr>
-                <th>Descpartners</th>
-                <td>{{ project.descPartners }}</td>
-            </tr>
-            <tr>
-                <th>Descresults</th>
-                <td>{{ project.descResults }}</td>
-            </tr>
-            <tr>
-                <th>Descdifficulties</th>
-                <td>{{ project.descDifficulties }}</td>
-            </tr>
-            <tr>
-                <th>Descadvices</th>
-                <td>{{ project.descAdvices }}</td>
-            </tr>
-            <tr>
-                <th>Contactname</th>
-                <td>{{ project.contactName }}</td>
-            </tr>
-            <tr>
-                <th>Contactoccupation</th>
-                <td>{{ project.contactOccupation }}</td>
-            </tr>
-            <tr>
-                <th>Contactemail</th>
-                <td>{{ project.contactEmail }}</td>
-            </tr>
-            <tr>
-                <th>Contactphone</th>
-                <td>{{ project.contactPhone }}</td>
-            </tr>
-            <tr>
-                <th>File</th>
-                <td>{{ project.file }}</td>
-            </tr>
-            <tr>
-                <th>Url</th>
-                <td>{{ project.url }}</td>
-            </tr>
-            <tr>
-                <th>Youtube</th>
-                <td>{{ project.youtube }}</td>
-            </tr>
-            <tr>
-                <th>Facebook</th>
-                <td>{{ project.facebook }}</td>
-            </tr>
-            <tr>
-                <th>Twitter</th>
-                <td>{{ project.twitter }}</td>
-            </tr>
-            <tr>
-                <th>Keywords</th>
-                <td>{{ project.keyWords }}</td>
-            </tr>
+        <tr>
+            <th>Id</th>
+            <td>{{ project.id }}</td>
+        </tr>
+        <tr>
+            <th>Title</th>
+            <td>{{ project.title }}</td>
+        </tr>
+        <tr>
+            <th>Slug</th>
+            <td>{{ project.slug }}</td>
+        </tr>
+        <tr>
+            <th>Theme</th>
+            <td>
+                {% for theme in project.themes %}
+                    <span class="label label-primary">{{ theme.name }}</span>
+                {% endfor %}
+            </td>
+        </tr>
+        <tr>
+            <th>Creationdate</th>
+            <td>{% if project.creationDate %}{{ project.creationDate|date('Y-m-d H:i:s') }}{% endif %}</td>
+        </tr>
+        <tr>
+            <th>Updatedate</th>
+            <td>{% if project.updateDate %}{{ project.updateDate|date('Y-m-d H:i:s') }}{% endif %}</td>
+        </tr>
+        <tr>
+            <th>Image</th>
+            <td>
+                {% for img in project.images %}
+                    <img src="{{ img }}" alt="" width="50px">
+                {% endfor %}
+            </td>
+        </tr>
+        <tr>
+            <th>Projectdate</th>
+            <td>{% if project.projectDate %}{{ project.projectDate|date('Y-m-d H:i:s') }}{% endif %}</td>
+        </tr>
+        <tr>
+            <th>Projectduration</th>
+            <td>{{ project.projectDuration }}</td>
+        </tr>
+        <tr>
+            <th>Projectcost</th>
+            <td>{{ project.projectCost }}</td>
+        </tr>
+        <tr>
+            <th>Projectcofinance</th>
+            <td>{{ project.projectCoFinance }}</td>
+        </tr>
+        <tr>
+            <th>Descresume</th>
+            <td>{{ project.descResume }}</td>
+        </tr>
+        <tr>
+            <th>Desccontext</th>
+            <td>{{ project.descContext }}</td>
+        </tr>
+        <tr>
+            <th>Descgoal</th>
+            <td>{{ project.descGoal }}</td>
+        </tr>
+        <tr>
+            <th>Descprogress</th>
+            <td>{{ project.descProgress }}</td>
+        </tr>
+        <tr>
+            <th>Descpartners</th>
+            <td>{{ project.descPartners }}</td>
+        </tr>
+        <tr>
+            <th>Descresults</th>
+            <td>{{ project.descResults }}</td>
+        </tr>
+        <tr>
+            <th>Descdifficulties</th>
+            <td>{{ project.descDifficulties }}</td>
+        </tr>
+        <tr>
+            <th>Descadvices</th>
+            <td>{{ project.descAdvices }}</td>
+        </tr>
+        <tr>
+            <th>Contactname</th>
+            <td>{{ project.contactName }}</td>
+        </tr>
+        <tr>
+            <th>Contactoccupation</th>
+            <td>{{ project.contactOccupation }}</td>
+        </tr>
+        <tr>
+            <th>Contactemail</th>
+            <td>{{ project.contactEmail }}</td>
+        </tr>
+        <tr>
+            <th>Contactphone</th>
+            <td>{{ project.contactPhone }}</td>
+        </tr>
+        <tr>
+            <th>File</th>
+            <td>{{ project.file }}</td>
+        </tr>
+        <tr>
+            <th>Url</th>
+            <td>{{ project.url }}</td>
+        </tr>
+        <tr>
+            <th>Youtube</th>
+            <td>{{ project.youtube }}</td>
+        </tr>
+        <tr>
+            <th>Facebook</th>
+            <td>{{ project.facebook }}</td>
+        </tr>
+        <tr>
+            <th>Twitter</th>
+            <td>{{ project.twitter }}</td>
+        </tr>
+        <tr>
+            <th>Keywords</th>
+            <td>
+                {% for keyword in project.keywords %}
+                    <span class="label label-primary">{{ keyword }}</span>
+                {% endfor %}
+            </td>
+        </tr>
         </tbody>
     </table>
 
@@ -125,11 +141,11 @@
             <a href="{{ path('admin_project_index') }}">Back to the list</a>
         </li>
         <li>
-            <a href="{{ path('admin_project_edit', { 'id': project.id }) }}">Edit</a>
+            <a href="{{ path('admin_project_edit', { 'slug': project.slug }) }}">Edit</a>
         </li>
         <li>
             {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
+            <input type="submit" value="Delete">
             {{ form_end(delete_form) }}
         </li>
     </ul>
