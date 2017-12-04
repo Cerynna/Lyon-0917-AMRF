@@ -68,7 +68,6 @@ class AdminUserController extends Controller
 
             return $this->redirectToRoute('admin_user_show', array('id' => $user->getId()));
         }
-
         return $this->render('user/new.html.twig', array(
             'user' => $user,
             'form' => $form->createView(),
