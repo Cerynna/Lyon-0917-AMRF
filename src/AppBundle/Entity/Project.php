@@ -232,6 +232,13 @@ class Project
      */
     private $mayor;
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="slug", type="string", length=255, nullable=true)
+     */
+    private $slug;
+
 
     /**
      * Constructor
@@ -955,5 +962,29 @@ class Project
     public function removeKeyWord(\AppBundle\Entity\Dictionary $keyWord)
     {
         $this->keyWords->removeElement($keyWord);
+    }
+
+    /**
+     * Set slug
+     *
+     * @param string $slug
+     *
+     * @return Project
+     */
+    public function setSlug($slug)
+    {
+        $this->slug = $slug;
+
+        return $this;
+    }
+
+    /**
+     * Get slug
+     *
+     * @return string
+     */
+    public function getSlug()
+    {
+        return $this->slug;
     }
 }

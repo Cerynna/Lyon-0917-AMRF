@@ -64,8 +64,10 @@
         <h4 data-toggle="collapse" data-target="#project_{{ key }}">
             <div class="row">
                 <div class="col-xs-1">
-                    <a href="{{ path('admin_project_show', { 'id': project.id }) }}"><i class="fa fa-eye fa-admin-mini"></i></a>
-                    <a href="{{ path('admin_project_edit', { 'id': project.id }) }}"><i class="fa fa-pencil fa-admin-mini"></i></a>
+                    <a href="{{ path('admin_project_show', { 'slug': project.slug }) }}"><i
+                                class="fa fa-eye fa-admin-mini"></i></a>
+                    <a href="{{ path('admin_project_edit', { 'slug': project.slug }) }}"><i
+                                class="fa fa-pencil fa-admin-mini"></i></a>
                 </div>
                 <div class="col-xs-5">
                     {{ project.title }} <span class="caret"></span>

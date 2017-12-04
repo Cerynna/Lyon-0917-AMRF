@@ -22,6 +22,7 @@ class ProjectType extends AbstractType
     {
         $builder
             ->add('title')
+            ->add('slug', TextType::class,array('mapped' => false,))
             ->add('themes', EntityType::class, array(
                 'class' => 'AppBundle:Dictionary',
                 'query_builder' => function (EntityRepository $er) {

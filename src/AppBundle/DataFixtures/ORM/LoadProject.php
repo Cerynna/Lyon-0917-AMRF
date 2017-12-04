@@ -7,6 +7,7 @@ use AppBundle\Entity\Partner;
 use AppBundle\Entity\Project;
 
 use AppBundle\Entity\User;
+use AppBundle\Service\SlugService;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\FixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
@@ -109,8 +110,10 @@ class LoadProject extends Fixture implements FixtureInterface
                 $dbimage[$j] = $faker->imageUrl($width = 150, $height = 150);
             }
             $imagefaker = $dbimage;
+            $slugificator = new SlugService();
+            $title = $faker->sentence($nbWords = 6, $variableNbWords = true);
             $projects[$i]
-                ->setTitle($faker->sentence($nbWords = 6, $variableNbWords = true))
+                ->setTitle($title)
 
 
 
@@ -118,6 +121,8 @@ class LoadProject extends Fixture implements FixtureInterface
                 ->setUpdateDate($faker->dateTime($max = 'now', $timezone = date_default_timezone_get()))
 
                 ->setImages($imagefaker)
+
+                ->setSlug($slugificator->slug($title))
 
                 ->setProjectDate($faker->dateTime($max = 'now', $timezone = date_default_timezone_get()))
                 ->setProjectDuration($faker->randomElement($array = array('1 mois', '6 mois', '1 ans', '100 ans')))
