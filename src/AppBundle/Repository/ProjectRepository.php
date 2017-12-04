@@ -17,9 +17,7 @@ class ProjectRepository extends \Doctrine\ORM\EntityRepository
     public function getLastProject()
     {
         $qb = $this->createQueryBuilder('p')
-
-            ->orderBy("p.creationDate", "DESC")
-
+            ->orderBy("p.updateDate", "DESC")
             ->setMaxResults(self::MAX_PROJECT)
             ->getQuery();
         return $qb->getResult();
@@ -35,6 +33,4 @@ class ProjectRepository extends \Doctrine\ORM\EntityRepository
             ->getResult();
     }
 
-
-    
 }
