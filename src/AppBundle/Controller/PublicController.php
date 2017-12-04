@@ -29,10 +29,15 @@ class PublicController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
+        $user = $this->get('security.token_storage')->getToken()->getUser();
+        $test = $user->getMayor()->getId();
+
         $projects = $em->getRepository('AppBundle:Project')->getLastProject();
 
         return $this->render('public/index.html.twig', array(
             'projects' => $projects,
+            'user' => $user,
+            'test' => $test,
         ));
     }
 

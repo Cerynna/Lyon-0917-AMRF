@@ -60,7 +60,9 @@
                         {{ form_errors(thema) }}
                         <div>
                             <input type="checkbox" id="{{ thema.vars.id }}"
-                                   name="{{ thema.vars.full_name }}" value="{{ thema.vars.value }}" class="check-limit">
+                                   name="{{ thema.vars.full_name }}" value="{{ thema.vars.value }}"
+                                    {% if thema.vars.checked == true %} checked="checked" {% endif %}
+                                   class="check-limit">
                             <label for="{{ thema.vars.id }}">{{ thema.vars.label }}</label>
                         </div>
                         {% if (loop.index == col) or (loop.index == col*2) %}

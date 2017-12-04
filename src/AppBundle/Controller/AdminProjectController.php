@@ -7,7 +7,8 @@ use AppBundle\Entity\Uploader;
 use AppBundle\Service\UploadService;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 /**
@@ -96,7 +97,7 @@ class AdminProjectController extends Controller
      * @Route("/{id}/edit", name="admin_project_edit")
      * @Method({"GET", "POST"})
      */
-    public function editAction(Request $request, Project $project, UploadService $uploadService )
+    public function editAction(Request $request, Project $project, UploadService $uploadService)
     {
         $deleteForm = $this->createDeleteForm($project);
 
@@ -141,6 +142,11 @@ class AdminProjectController extends Controller
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $em = $this->getDoctrine()->getManager();
+/*            $themes = $project->getThemes();
+            $project->resetThemes();
+            foreach ($themes as $theme) {
+                $project->addTheme($theme);
+            }*/
             $em->persist($project);
             $em->flush();
 
@@ -188,7 +194,6 @@ class AdminProjectController extends Controller
         return $this->createFormBuilder()
             ->setAction($this->generateUrl('admin_project_delete', array('id' => $project->getId())))
             ->setMethod('DELETE')
-            ->getForm()
-        ;
+            ->getForm();
     }
 }

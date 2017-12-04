@@ -16,11 +16,13 @@ class ProjectRepository extends \Doctrine\ORM\EntityRepository
 
     public function getLastProject()
     {
-        return $this->createQueryBuilder('p')
-            ->orderBy("p.updateDate", "DESC")
+        $qb = $this->createQueryBuilder('p')
+
+            ->orderBy("p.creationDate", "DESC")
+
             ->setMaxResults(self::MAX_PROJECT)
-            ->getQuery()
-            ->getResult();
+            ->getQuery();
+        return $qb->getResult();
     }
 
     public function getImageProject($idProject)
