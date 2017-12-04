@@ -60,7 +60,6 @@ class AdminProjectController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($project);
             $em->flush();
-dump($project);
             return $this->redirectToRoute('admin_project_edit', array(
                 'id' => $project->getId(),
 
@@ -100,6 +99,7 @@ dump($project);
     public function editAction(Request $request, Project $project, UploadService $uploadService )
     {
         $deleteForm = $this->createDeleteForm($project);
+
         $editForm = $this->createForm('AppBundle\Form\ProjectType', $project);
         $editForm->remove('images');
         $editForm->remove('file');

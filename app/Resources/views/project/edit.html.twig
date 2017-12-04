@@ -56,21 +56,22 @@
         <div id="modalFileUpload" class="modal fade" role="dialog">
             <div class="modal-dialog">
 
-                <!-- Modal content-->
                 <div class="modal-content">
                     <div class="modal-body">
-                        <i class="fa fa-times" data-dismiss="modal"></i>
-                        {{ form_start(upload_file_form) }}
-                        {{ form_widget(upload_file_form) }}
+                        <div class="row">
+                            <div class="col-sm-10">
+                                {{ form_start(upload_file_form) }}
+                                {{ form_label(upload_file_form.path, 'Télécharger un fichier depuis votre ordinateur') }}
+                                {{ form_widget(upload_file_form.path) }}
 
-                        {{ form_end(upload_file_form) }}
-
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                {{ form_end(upload_file_form) }}
+                            </div>
+                            <div class="col-sm-2 text-right">
+                                <i class="fa fa-times fa-admin-mini" data-dismiss="modal"></i>
+                            </div>
+                        </div>
                     </div>
                 </div>
-
             </div>
         </div>
     {% endif %}
@@ -172,7 +173,7 @@
         </div>
         <div class="col-sm-6">
             <h5>
-                <lable>Commune du projet</lable>
+                <label>Commune du projet</label>
             </h5>
             <div class="row">
                 <div class="col-sm-12">
@@ -262,7 +263,7 @@
                 </div>
                 <div class="col-sm-11">
                     <object data="{{ asset(pdf) }}" type="application/pdf" class="preview-pdf">
-                        <param name="filename" value="fichier.pdf"/>
+                        <param name="filename" value="{{ asset(pdf) }}"/>
                         <a href="{{ asset(pdf) }}" target="_parent" title="le fichier">Voir le fichier...</a>
                     </object>
                 </div>
@@ -342,10 +343,10 @@
                 url: "/deletefile/" + file,
                 success: function () {
                     location.reload();
-                    console.log("File Delete")
+                    console.log("File Delete");
                 },
                 error: function () {
-                    alert("la photo ne peu pas être supprimée")
+                    alert("la photo ne peu pas être supprimée");
                 }
             })
 

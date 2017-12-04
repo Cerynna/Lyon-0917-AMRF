@@ -135,10 +135,10 @@ class PublicController extends Controller
     {
 
         if ($request->isXmlHttpRequest()) {
+            $em = $this->getDoctrine()->getManager();
 
             $imageDelete = str_replace("-", "/", $fileName);
             $imgExplode = explode('/', $imageDelete);
-            $em = $this->getDoctrine()->getManager();
             $project = $em->getRepository(Project::class)->find($imgExplode[2]);
 
             if ($imgExplode[3] == 'photos'){
