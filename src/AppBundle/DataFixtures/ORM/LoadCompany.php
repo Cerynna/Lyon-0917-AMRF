@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: cerynna
- * Date: 22/11/17
- * Time: 11:54
- */
 
 namespace AppBundle\DataFixtures\ORM;
 

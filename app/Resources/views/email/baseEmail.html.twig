@@ -1,4 +1,3 @@
-
 <!doctype html>
 <html lang="en">
 <head>
@@ -7,27 +6,53 @@
             margin: 0;
             padding: 0;
         }
+
         .container {
             margin: 0;
             padding: 50px;
             width: 100%;
             min-height: 100%;
-            background: green;
         }
+
+        header {
+            background: #009E3D;
+            height: 100px;
+            width: 100%;
+        }
+
+        h1 {
+            color: white;
+            font-family: "ERASDEMI", sans-serif;
+            font-size: 3em;
+            margin-left: 250px;
+            padding-top: 15px;
+        }
+
         .content {
             width: 800px;
             max-height: 1200px;
-            margin: auto;
-            background-color: #fff;
+            margin: 50px auto auto auto;
+            background-color: lightgrey;
+            border-radius: 5px;
             padding: 30px;
             z-index: 1;
         }
+
         .footer {
             background: black;
             position: fixed;
-            bottom:0;
+            bottom: 0;
             width: 100vw;
             height: 50px;
+            color: white;
+        }
+
+        img {
+            height: 80px;
+            background: white;
+            margin: 10px;
+            border-radius: 5px;
+            float: left;
         }
     </style>
     <meta charset="UTF-8">
@@ -40,14 +65,26 @@
 
 
 <div class="container">
+    <header>
+        <div class="logo">
+            <img src="{{ asset('/img/AMRF.png') }}" alt="">
+        </div>
+        <h1>Le Wiki des Maires</h1>
+    </header>
     <div class="content">
-{% block body %}
+        {% block body %}
 
-{% endblock %}
+        {% endblock %}
+
+
     </div>
 </div>
 <div class="footer">
-
+    <a href="#">Retour au site Wiki des Maires</a>
+    <a href="http://www.amrf.fr">Site de l'AMRF</a>
+    <div class="rgpd">
+        <p>Mentions RGPD</p>
+    </div>
 </div>
 </body>
 </html>

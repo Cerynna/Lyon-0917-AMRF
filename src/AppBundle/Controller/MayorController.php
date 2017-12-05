@@ -16,6 +16,7 @@ use AppBundle\Entity\Project;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
@@ -67,35 +68,81 @@ class MayorController extends Controller
 
     /**
      * @Route("project/new", name="mayor_project_new")
+     * @Method({"GET", "POST"})
      */
-    public function mayorProjectNewAction(Request $request)
+    public function mayorProjectNewAction (Request $request)
     {
         $project = new Project();
         $form = $this->createForm('AppBundle\Form\ProjectType', $project);
+        $form->remove('creationDate');
+        $form->remove('updateDate');
+        $form->remove('image');
+        $form->remove('projectDate');
+        $form->remove('projectDuration');
+        $form->remove('projectCost');
+        $form->remove('projectCoFinance');
+        $form->remove('descResume');
+        $form->remove('descContext');
+        $form->remove('descGoal');
+        $form->remove('descProgress');
+        $form->remove('descPartners');
+        $form->remove('descResults');
+        $form->remove('descDifficulties');
+        $form->remove('creationDate');
+        $form->remove('creationDate');
+        $form->remove('creationDate');
+        $form->remove('creationDate');
+        $form->remove('creationDate');
+        $form->remove('creationDate');
+        $form->remove('creationDate');
+        $form->remove('creationDate');
+        $form->remove('creationDate');
+        $form->remove('creationDate');
         $form->handleRequest($request);
+        return $this->render(':private/maires:projectNew.html.twig', [
+            'form' => $form->createView(),
+        ]);
+    }
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
+    /**
+     * @Route("project/edit/{id}", name="mayor_project_edit")
+     * @Method({"GET", "POST"})
+     */
+    public function mayorProjectEditAction(Request $request, Project $project)
+    {
+        $user = $this->get('security.token_storage')->getToken()->getUser();
+        $idMayorConnect = $user->getMayor()->getId();
+        $idMayorProject = $project->getMayor()->getId();
 
-            $theme = $project->getTheme();
-            $dbthema = [];
-            foreach ($theme as $key => $value) {
 
-                $dbthema[] = $value->getValue();
+        if ($idMayorConnect === $idMayorProject) {
+            $form = $this->createForm('AppBundle\Form\ProjectType', $project);
+            $form->remove('images');
+            $form->remove('file');
+            $form->remove('creationDate');
+            $form->remove('updateDate');
+            $form->handleRequest($request);
+
+
+
+            if ($form->isSubmitted() && $form->isValid()) {
+                $em = $this->getDoctrine()->getManager();
+
+                $em->persist($project);
+                $em->flush();
+
+                return $this->redirectToRoute('mayor_project_edit', array('id' => $project->getId()));
             }
-            $themes = serialize($dbthema);
-            $project->setTheme($themes);
 
-            $em->persist($project);
-            $em->flush();
-
-            return $this->redirectToRoute('mayor_index', array('id' => $project->getId()));
+            return $this->render('private/maires/projectEdit.html.twig', array(
+                'project' => $project,
+                'form' => $form->createView(),
+            ));
+        }
+        else {
+            return $this->redirectToRoute('mayor_index');
         }
 
-        return $this->render('private/maires/maireFormProjet.html.twig', array(
-            'project' => $project,
-            'form' => $form->createView(),
-        ));
     }
 
     /**

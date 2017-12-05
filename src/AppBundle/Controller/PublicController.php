@@ -3,11 +3,8 @@
 namespace AppBundle\Controller;
 
 
-use AppBundle\Entity\Mayor;
-use AppBundle\Entity\Partner;
-use AppBundle\Entity\Company;
 use AppBundle\Entity\Project;
-
+use Doctrine\ORM\EntityManager;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use SensioLabs\Security\Exception\HttpException;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -19,21 +16,48 @@ use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\Filesystem\Exception\IOExceptionInterface;
 
+
 class PublicController extends Controller
 {
-
     /**
      * @Route("/", name="home")
      */
-    public function indexAction()
+   public function indexAction()
     {
         $em = $this->getDoctrine()->getManager();
 
+        /** Change that is a real code for Update LastLogin */
+        $user = $this->get('security.token_storage')->getToken()->getUser();
+        if (is_object($user))
+        {
+            $lastloginDB = $user->getLastLogin();
+            $today = new \DateTime('now');
+            $tomorow = $today->modify('+1 day');
+            if ($tomorow <= $lastloginDB) {
+                $user->setLastLogin($today);
+                $em->flush();
+            }
+        }
 
+        /** ------------------------------------------------ */
+
+        $projects = $em->getRepository('AppBundle:Project')->getLastProject();
 
         return $this->render('public/index.html.twig', array(
-
+            'projects' => $projects,
         ));
+    }
+    /**
+     * Shows the elements of a project in the ResumeProject Component
+     *
+     */
+    public function resumeProjectAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+        $projects = $em->getRepository("AppBundle:Project")->getLastProject();
+        return $this->render('components/resumeProject.html.twig', [
+            'projects'  => $projects
+        ]);
     }
 
     /**

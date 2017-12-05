@@ -29,6 +29,7 @@ class ProjectType extends AbstractType
                 ])
             ->add('themes', EntityType::class, array(
                 'class' => 'AppBundle:Dictionary',
+                /*'mapped' => false,*/
                 'query_builder' => function (EntityRepository $er) {
                     return $er->createQueryBuilder('u')
                         ->setParameter('type', Dictionary::TYPE_THEME)

@@ -13,7 +13,7 @@
                             class="fa fa-plus fa-admin"></i></a>
             </li>
             <li>
-                <a onclick="document.projet.submit();" data-toggle="tooltip" data-placement="right"
+                <a onclick="$('project').submit();" data-toggle="tooltip" data-placement="right"
                    title="Nouvel Utilisateur"><i class="fa fa-check fa-admin"></i></a>
             </li>
             <li>
@@ -320,7 +320,7 @@
 
 
     <input type="submit" value="Edit"/>
-    {{ form_end(edit_form) }}
+    {{ form_end(edit_form, {'render_rest': false}) }}
 
     <ul>
         <li>
@@ -343,7 +343,6 @@
                 url: "/deletefile/" + file,
                 success: function () {
                     location.reload();
-                    console.log("File Delete");
                 },
                 error: function () {
                     alert("la photo ne peu pas être supprimée");

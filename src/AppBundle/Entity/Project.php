@@ -238,6 +238,14 @@ class Project
      */
     public function __construct()
     {
+        $this->resetThemes();
+    }
+
+    /**
+     *
+     */
+    public function resetThemes()
+    {
         $this->themes = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
