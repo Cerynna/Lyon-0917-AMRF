@@ -134,7 +134,12 @@ class Company
      */
     private $contactEmail;
 
-
+	/**
+	 * @var string
+	 *
+	 * @ORM\Column(name="slug", type="string", length=255, nullable=true)
+	 */
+	private $slug;
 
     /**
      * Get id
@@ -588,5 +593,29 @@ class Company
     public function removeActivity(\AppBundle\Entity\Dictionary $activity)
     {
         $this->activities->removeElement($activity);
+    }
+
+    /**
+     * Set slug
+     *
+     * @param string $slug
+     *
+     * @return Company
+     */
+    public function setSlug($slug)
+    {
+        $this->slug = $slug;
+
+        return $this;
+    }
+
+    /**
+     * Get slug
+     *
+     * @return string
+     */
+    public function getSlug()
+    {
+        return $this->slug;
     }
 }

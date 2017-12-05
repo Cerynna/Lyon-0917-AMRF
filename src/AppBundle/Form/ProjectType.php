@@ -27,6 +27,7 @@ class ProjectType extends AbstractType
                     'required' => true,
                 ]
                 ])
+			->add('slug', TextType::class,array('mapped' => false,))
             ->add('themes', EntityType::class, array(
                 'class' => 'AppBundle:Dictionary',
                 /*'mapped' => false,*/

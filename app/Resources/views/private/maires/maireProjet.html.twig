@@ -19,11 +19,11 @@
             </ul>
         </div>
         <!-- Tab panes -->
-        <div class="hidden-xs tab-content">
+        {#<div class="hidden-xs tab-content">
             <div role="tabpanel" class="tab-pane active" id="home">
                 <h3>Mes projets en cours de saisie</h3>
                 <div class="jumbotron">
-                    {% set options = {'thema':'false','pictures':'false','update': 'true', 'more': 'true', 'id': 1, 'text': 0} %}
+                    {% set options = {'thema':'false','pictures':'false','update': 'true', 'more': 'true', 'id': 1, 'text': 0,} %}
                     {% include 'components/resumeProject.html.twig' with options %}
                 </div>
             </div>
@@ -43,10 +43,10 @@
                     {% include 'components/resumeProject.html.twig' with options %}
                 </div>
             </div>
-        </div>
+        </div>#}
 
         {#Swiper#}
-        <div class="visible-xs swiper-container">
+        {#<div class="visible-xs swiper-container">
             <div class="swiper-pagination"></div>
             <div class="swiper-wrapper">
                 <div class="swiper-slide">
@@ -70,10 +70,10 @@
                         {% include 'components/resumeProject.html.twig' with options %}
                     </div>
                 </div>
-            </div>{#swiper wrapper#}
+            </div>#}{#swiper wrapper#}{#
             <div class="swiper-button-next"></div>
             <div class="swiper-button-prev"></div>
-        </div>{#swiper container#}
+        </div>#}{#swiper container#}
     </div>
 {% endblock %}
 

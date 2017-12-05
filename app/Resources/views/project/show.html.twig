@@ -14,6 +14,10 @@
                 <td>{{ project.title }}</td>
             </tr>
             <tr>
+                <th>Slug</th>
+                <td>{{ project.slug }}</td>
+            </tr>
+            <tr>
                 <th>Theme</th>
                 <td>
                     {% for theme in project.themes %}
@@ -125,7 +129,7 @@
                 <th>Keywords</th>
                 <td>
                     {% for keyword in project.keywords %}
-                        <span class="label label-primary">{{ keyword }}</span>
+                        <span class="label label-primary">{{ keyword.name }}</span>
                     {% endfor %}
                 </td>
             </tr>
@@ -137,7 +141,7 @@
             <a href="{{ path('admin_project_index') }}">Back to the list</a>
         </li>
         <li>
-            <a href="{{ path('admin_project_edit', { 'id': project.id }) }}">Edit</a>
+            <a href="{{ path('admin_project_edit', { 'slug': project.slug }) }}">Edit</a>
         </li>
         <li>
             {{ form_start(delete_form) }}
