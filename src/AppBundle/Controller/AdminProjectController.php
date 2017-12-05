@@ -62,6 +62,9 @@ class AdminProjectController extends Controller
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
 			$project->setSlug($slug->slug($project->getTitle()));
+			$project->setCreationDate(new \DateTime('now'));
+			$project->setUpdateDate(new \DateTime('now'));
+			$project->setProjectDate(new \DateTime('now'));
             $em->persist($project);
             $em->flush();
             return $this->redirectToRoute('admin_project_edit', array(

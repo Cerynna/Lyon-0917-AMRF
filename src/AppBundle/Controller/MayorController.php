@@ -88,6 +88,7 @@ class MayorController extends Controller
             $project->setMayor($MayorConnect);
             $project->setCreationDate(new \DateTime('now'));
             $project->setUpdateDate(new \DateTime('now'));
+            $project->setProjectDate(new \DateTime('now'));
             $project->setSlug($slugService->slug($projectTitle->getTitle()));
 
 

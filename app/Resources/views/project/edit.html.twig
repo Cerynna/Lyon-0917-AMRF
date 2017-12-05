@@ -1,9 +1,6 @@
 {% extends 'private/admin/baseAdmin.html.twig' %}
 
 {% block body %}
- <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.3/css/bootstrapValidator.min.css"/>
-  <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.3/js/bootstrapValidator.min.js"></script>
-
     <div class="menu-admin menu-project">
         <ul>
             <li>
@@ -15,7 +12,7 @@
                    title="Nouveau Projet"><i
                             class="fa fa-plus fa-admin"></i></a>
             </li>
-            <li id="submitForm">
+            <li class="submitForm">
                 <a data-toggle="tooltip" data-placement="right"
                    title="Nouvel Utilisateur"><i class="fa fa-check fa-admin"></i></a>
             </li>
@@ -79,9 +76,8 @@
         </div>
     {% endif %}
 
-    {{ form_start(edit_form, {'attr': {
-        'data-toggle': 'validator',
-    }}) }}
+    {{ form_start(edit_form) }}
+
     <div class="form-group row" id="editProject">
         <div class="col-sm-6">
             <div class="col-sm-12">
@@ -91,14 +87,19 @@
                         'required': false,
                     }
                 }) }}
+                <div id="errorTitle"></div>
             </div>
-            <div class="col-sm-6">
+            <div class="col-sm-4">
                 <h5>{{ form_label(edit_form.creationDate) }}</h5>
                 {{ form_widget(edit_form.creationDate) }}
             </div>
-            <div class="col-sm-6">
+            <div class="col-sm-4">
                 <h5>{{ form_label(edit_form.updateDate) }}</h5>
                 {{ form_widget(edit_form.updateDate) }}
+            </div>
+            <div class="col-sm-4">
+                <h5>{{ form_label(edit_form.status) }}</h5>
+                {{ form_widget(edit_form.status) }}
             </div>
             <div class="col-sm-12">
                 <h5><label>Images</label></h5>
@@ -342,34 +343,18 @@
             {{ form_end(delete_form) }}
         </li>
     </ul>
-
 {% endblock %}
 {% block javascripts %}
     <script>
 
-        $( "li#submitForm" ).click(function() {
-            $( "form[name='{{ edit_form.vars.name }}']" ).submit();
-        })
-
-
-        $(document).ready(function() {
-            $("form[name='{{ edit_form.vars.name }}']").bootstrapValidator({
-                container: '#editProject',
-                feedbackIcons: {
-                    valid: 'glyphicon glyphicon-ok',
-                    invalid: 'glyphicon glyphicon-remove',
-                    validating: 'glyphicon glyphicon-refresh'
-                },
-                fields: {
-                    projet[title]: {
-                        validators: {
-                            notEmpty: {
-                                message: 'The full name is required and cannot be empty'
-                            }
-                        }
-                    }
-                }
-            });
+        $(".submitForm").click(function () {
+            var title = $("input[name='projet[title]']").val();
+            if (title !== '') {
+                $("form[name='{{ edit_form.vars.name }}']").submit();
+            }
+            else {
+                $("#errorTitle").html("<strong>Le titre est obligatoire!</strong>");
+            }
         });
 
 
@@ -382,6 +367,7 @@
                 },
                 error: function () {
                     alert("la photo ne peu pas être supprimée");
+
                 }
             })
 

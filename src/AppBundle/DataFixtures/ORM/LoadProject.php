@@ -113,17 +113,15 @@ class LoadProject extends Fixture implements FixtureInterface
 			$slugificator = new SlugService();
 			$title = $faker->sentence($nbWords = 6, $variableNbWords = true);
             $projects[$i]
+                ->setStatus(1)
                 ->setTitle($title)
 
 
 
                 ->setCreationDate($faker->dateTime($max = 'now', $timezone = date_default_timezone_get()))
                 ->setUpdateDate($faker->dateTime($max = 'now', $timezone = date_default_timezone_get()))
-
-                ->setImages($imagefaker)
-
+                ->setImages()
 				->setSlug($slugificator->slug($title))
-
 				->setProjectDate($faker->dateTime($max = 'now', $timezone = date_default_timezone_get()))
                 ->setProjectDuration($faker->randomElement($array = array('1 mois', '6 mois', '1 ans', '100 ans')))
                 ->setProjectCost($faker->numberBetween($min = 1000, $max = 50000))

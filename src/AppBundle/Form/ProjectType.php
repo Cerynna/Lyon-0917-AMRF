@@ -22,6 +22,13 @@ class ProjectType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
+            ->add('status', ChoiceType::class, [
+                'choices' => [
+                    'Brouillon' => Project::STATUS_DRAFT,
+                    'En attente' => Project::STATUS_WAITING,
+                    'Publier' => Project::STATUS_PUBLISH,
+                ],
+            ])
             ->add('title',TextType::class,[
                 'attr' => [
                     'required' => false,

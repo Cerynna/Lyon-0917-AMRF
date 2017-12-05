@@ -20,6 +20,10 @@ class Project
 	const TYPE_ACTIVITY = 2;
 	const TYPE_KEYWORD = 3;
 
+	const STATUS_DRAFT = 1;
+	const STATUS_WAITING = 2;
+	const STATUS_PUBLISH = 3;
+
 	/**
 	 * @var int
 	 *
@@ -29,6 +33,13 @@ class Project
 	 */
 	private $id;
 
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="status", type="integer")
+     *
+     */
+    private $status;
 
 	/**
 	 * @var string
@@ -265,6 +276,24 @@ class Project
 	{
 		return $this->id;
 	}
+
+    /**
+     * @return int
+     */
+    public function getStatus()
+    {
+        return $this->status;
+    }
+
+    /**
+     * @param int $status
+     * @return Project
+     */
+    public function setStatus($status)
+    {
+        $this->status = $status;
+        return $this;
+    }
 
 	/**
 	 * Set title
