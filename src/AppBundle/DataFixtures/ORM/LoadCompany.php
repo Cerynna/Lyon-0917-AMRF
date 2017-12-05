@@ -5,6 +5,7 @@ namespace AppBundle\DataFixtures\ORM;
 
 use AppBundle\Entity\Company;
 
+use AppBundle\Service\SlugService;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\FixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
@@ -20,8 +21,11 @@ class LoadCompany extends Fixture implements FixtureInterface
         $companies = [];
         for ($i = 0; $i < LoadUser::MAX_USER; $i++) {
             $companies[$i] = new Company();
+			$slugificator = new SlugService();
+			$name = $faker->company;
             $companies[$i]
-                ->setName($faker->company)
+                ->setName($name)
+				->setSlug($slugificator->slug($name))
                 ->setAddress($faker->streetAddress)
                 ->setZipCode($faker->postcode)
                 ->setCity($faker->city)

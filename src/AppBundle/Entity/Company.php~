@@ -134,7 +134,12 @@ class Company
      */
     private $contactEmail;
 
-
+	/**
+	 * @var string
+	 *
+	 * @ORM\Column(name="slug", type="string", length=255, nullable=true)
+	 */
+	private $slug;
 
     /**
      * Get id
@@ -557,5 +562,36 @@ class Company
     public function __toString()
     {
         return $this->getName();
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->activities = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add activity
+     *
+     * @param \AppBundle\Entity\Dictionary $activity
+     *
+     * @return Company
+     */
+    public function addActivity(\AppBundle\Entity\Dictionary $activity)
+    {
+        $this->activities[] = $activity;
+
+        return $this;
+    }
+
+    /**
+     * Remove activity
+     *
+     * @param \AppBundle\Entity\Dictionary $activity
+     */
+    public function removeActivity(\AppBundle\Entity\Dictionary $activity)
+    {
+        $this->activities->removeElement($activity);
     }
 }
