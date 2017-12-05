@@ -22,22 +22,31 @@ class PublicController extends Controller
     /**
      * @Route("/", name="home")
      */
-    public function indexAction()
+   public function indexAction()
     {
         $em = $this->getDoctrine()->getManager();
 
+        /** Change that is a real code for Update LastLogin */
         $user = $this->get('security.token_storage')->getToken()->getUser();
-        $test = $user->getMayor()->getId();
+        if (is_object($user))
+        {
+            $lastloginDB = $user->getLastLogin();
+            $today = new \DateTime('now');
+            $tomorow = $today->modify('+1 day');
+            if ($tomorow <= $lastloginDB) {
+                $user->setLastLogin($today);
+                $em->flush();
+            }
+        }
+
+        /** ------------------------------------------------ */
 
         $projects = $em->getRepository('AppBundle:Project')->getLastProject();
 
         return $this->render('public/index.html.twig', array(
             'projects' => $projects,
-            'user' => $user,
-            'test' => $test,
         ));
     }
-
     /**
      * Shows the elements of a project in the ResumeProject Component
      *

@@ -10,6 +10,7 @@ use Doctrine\Common\DataFixtures\FixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use Faker;
 
+
 class LoadCompany extends Fixture implements FixtureInterface
 {
     public function load(ObjectManager $em)

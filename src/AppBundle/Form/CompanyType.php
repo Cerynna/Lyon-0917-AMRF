@@ -6,6 +6,7 @@ use AppBundle\Entity\Dictionary;
 use Doctrine\ORM\EntityRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -37,7 +38,10 @@ class CompanyType extends AbstractType
 
             ))
             ->add('presentation')
-            ->add('logo')
+            ->add('logo',FileType::class, array(
+                'label'             => 'logo',
+                'data_class'    =>null,)
+            )
             ->add('url')
             ->add('facebook')
             ->add('linkedin')
