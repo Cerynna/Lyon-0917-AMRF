@@ -21,13 +21,13 @@
         <thead>
         <tr>
             <th>Actions</th>
-            <th>Id</th>
+            <th>ID</th>
             <th>Login</th>
             <th>Role</th>
             <th>Status</th>
             <th>Email</th>
-            <th>Creationdate</th>
-            <th>Lastlogin</th>
+            <th>{{ knp_pagination_sortable(users, 'Creation Date', 'u.creationDate') }}</th>
+            <th>{{ knp_pagination_sortable(users, 'Last login', 'u.login') }}</th>
             <th>Mayor_id</th>
 
         </tr>
@@ -57,6 +57,10 @@
         {% endfor %}
         </tbody>
     </table>
+
+    <div class="navigation text-center">
+        {{ knp_pagination_render(users) }}
+    </div>
 
 {% endblock %}
 {% block javascripts %}
