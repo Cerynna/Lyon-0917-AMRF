@@ -22,6 +22,7 @@ class PublicController extends Controller
     /**
      * @Route("/", name="home")
      */
+
 	public function indexAction()
 	{
 		$em = $this->getDoctrine()->getManager();
@@ -47,6 +48,32 @@ class PublicController extends Controller
 			'projects' => $projects,
 		));
 	}
+
+   public function indexAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        /** Change that is a real code for Update LastLogin */
+        $user = $this->get('security.token_storage')->getToken()->getUser();
+        if (is_object($user))
+        {
+            $lastloginDB = $user->getLastLogin();
+            $today = new \DateTime('now');
+            $tomorow = $today->modify('+1 day');
+            if ($tomorow <= $lastloginDB) {
+                $user->setLastLogin($today);
+                $em->flush();
+            }
+        }
+
+        /** ------------------------------------------------ */
+
+        $projects = $em->getRepository('AppBundle:Project')->getLastProject();
+
+        return $this->render('public/index.html.twig', array(
+            'projects' => $projects,
+        ));
+    }
 
     /**
      * Shows the elements of a project in the ResumeProject Component
