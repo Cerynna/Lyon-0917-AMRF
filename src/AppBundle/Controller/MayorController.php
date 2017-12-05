@@ -14,6 +14,7 @@ use AppBundle\Entity\Company;
 use AppBundle\Entity\Project;
 
 use AppBundle\Entity\TitleProject;
+use AppBundle\Service\SlugService;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -71,7 +72,7 @@ class MayorController extends Controller
      * @Route("project/new", name="mayor_project_new")
      * @Method({"GET", "POST"})
      */
-    public function mayorProjectNewAction (Request $request)
+    public function mayorProjectNewAction (Request $request, SlugService $slugService)
     {
         $projectTitle = new TitleProject();
         $form = $this->createForm('AppBundle\Form\TitleProjectType', $projectTitle);
@@ -87,6 +88,8 @@ class MayorController extends Controller
             $project->setMayor($MayorConnect);
             $project->setCreationDate(new \DateTime('now'));
             $project->setUpdateDate(new \DateTime('now'));
+            $project->setSlug($slugService->slug($projectTitle->getTitle()));
+
 
             $em = $this->getDoctrine()->getManager();
 
@@ -106,7 +109,7 @@ class MayorController extends Controller
      * @Route("project/edit/{id}", name="mayor_project_edit")
      * @Method({"GET", "POST"})
      */
-    public function mayorProjectEditAction(Request $request, Project $project)
+    public function mayorProjectEditAction(Request $request, Project $project, SlugService $slugService)
     {
         $user = $this->get('security.token_storage')->getToken()->getUser();
         $idMayorConnect = $user->getMayor()->getId();
@@ -125,7 +128,7 @@ class MayorController extends Controller
 
             if ($form->isSubmitted() && $form->isValid()) {
                 $em = $this->getDoctrine()->getManager();
-
+                $project->setSlug($slugService->slug($projectTitle->getTitle()));
                 $em->persist($project);
                 $em->flush();
 

@@ -24,7 +24,7 @@ class ProjectType extends AbstractType
         $builder
             ->add('title',TextType::class,[
                 'attr' => [
-                    'required' => true,
+                    'required' => false,
                 ]
                 ])
 			->add('slug', TextType::class,array('mapped' => false,))

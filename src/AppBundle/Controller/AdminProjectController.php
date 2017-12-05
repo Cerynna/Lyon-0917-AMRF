@@ -65,7 +65,7 @@ class AdminProjectController extends Controller
             $em->persist($project);
             $em->flush();
             return $this->redirectToRoute('admin_project_edit', array(
-                'id' => $project->getId(),
+                'slug' => $project->getSlug(),
 
             ));
         }
@@ -100,7 +100,7 @@ class AdminProjectController extends Controller
      * @Route("/edit/{slug}/", name="admin_project_edit")
      * @Method({"GET", "POST"})
      */
-    public function editAction(Request $request, Project $project, UploadService $uploadService, SlugService $slugs)
+    public function editAction(Request $request, Project $project, UploadService $uploadService, SlugService $slugService)
     {
         $deleteForm = $this->createDeleteForm($project);
 
@@ -128,7 +128,7 @@ class AdminProjectController extends Controller
             $this->getDoctrine()->getManager()->flush();
 			$project->setSlug($slugs->slug($project->getTitle()));
             return $this->redirectToRoute('admin_project_edit', array(
-                'id' => $project->getId(),
+                'slug' => $project->getSlug(),
             ));
         }
 
@@ -140,7 +140,7 @@ class AdminProjectController extends Controller
             $project->setImages($dbimg);
             $this->getDoctrine()->getManager()->flush();
             return $this->redirectToRoute('admin_project_edit', array(
-                'id' => $project->getId(),
+                'slug' => $project->getSlug(),
             ));
         }
 
@@ -152,10 +152,11 @@ class AdminProjectController extends Controller
             foreach ($themes as $theme) {
                 $project->addTheme($theme);
             }*/
+            $project->setSlug($slugService->slug($project->getTitle()));
             $em->persist($project);
             $em->flush();
 
-            return $this->redirectToRoute('admin_project_edit', array('id' => $project->getId()));
+            return $this->redirectToRoute('admin_project_edit', array('slug' => $project->getSlug()));
         }
 
         return $this->render('project/edit.html.twig', array(
