@@ -13,6 +13,7 @@ use AppBundle\Entity\Partner;
 use AppBundle\Entity\Company;
 use AppBundle\Entity\Project;
 
+use AppBundle\Entity\TitleProject;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -72,36 +73,33 @@ class MayorController extends Controller
      */
     public function mayorProjectNewAction (Request $request)
     {
-        $project = new Project();
-        $form = $this->createForm('AppBundle\Form\ProjectType', $project);
-        $form->remove('creationDate');
-        $form->remove('updateDate');
-        $form->remove('image');
-        $form->remove('projectDate');
-        $form->remove('projectDuration');
-        $form->remove('projectCost');
-        $form->remove('projectCoFinance');
-        $form->remove('descResume');
-        $form->remove('descContext');
-        $form->remove('descGoal');
-        $form->remove('descProgress');
-        $form->remove('descPartners');
-        $form->remove('descResults');
-        $form->remove('descDifficulties');
-        $form->remove('creationDate');
-        $form->remove('creationDate');
-        $form->remove('creationDate');
-        $form->remove('creationDate');
-        $form->remove('creationDate');
-        $form->remove('creationDate');
-        $form->remove('creationDate');
-        $form->remove('creationDate');
-        $form->remove('creationDate');
-        $form->remove('creationDate');
+        $projectTitle = new TitleProject();
+        $form = $this->createForm('AppBundle\Form\TitleProjectType', $projectTitle);
         $form->handleRequest($request);
+
+        $user = $this->get('security.token_storage')->getToken()->getUser();
+        $MayorConnect = $user->getMayor();
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            $project = new Project();
+            $project->setTitle($projectTitle->getTitle());
+            $project->setMayor($MayorConnect);
+            $project->setCreationDate(new \DateTime('now'));
+            $project->setUpdateDate(new \DateTime('now'));
+
+            $em = $this->getDoctrine()->getManager();
+
+            $em->persist($project);
+            $em->flush();
+            return $this->redirectToRoute('mayor_project_edit', array('id' => $project->getId()));
+        }
+
+
         return $this->render(':private/maires:projectNew.html.twig', [
             'form' => $form->createView(),
         ]);
+
     }
 
     /**

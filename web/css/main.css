@@ -1897,6 +1897,15 @@ a:hover, a:active {
   .modal-content .bck-part {
     width: 220px; }
 
+.item::-webkit-scrollbar {
+  display: none; }
+
+.item {
+  max-height: 30vh;
+  min-height: 30vh;
+  overflow: hidden;
+  overflow-y: scroll; }
+
 /*
 
 div {
