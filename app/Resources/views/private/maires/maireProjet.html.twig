@@ -28,7 +28,6 @@
                 <h3>Mes projets en cours de saisie</h3>
                 {% for project in projects %}
                     {% if project.status == 1 %}
-
                         <div class="jumbotron">
                             {% set options = {'thema':'false','pictures':'false','update': 'true', 'more': 'true', 'id': 1, 'text': 0, 'project': project } %}
                             {% include 'components/resumeProject.html.twig' with options %}
@@ -40,25 +39,19 @@
             <div role="tabpanel" class="tab-pane" id="envoye">
                 <h3>Mes projets envoyé</h3>
                 {% for project in projects %}
-
                     {% if project.status == 2 %}
-
                         <div class="jumbotron">
                             {% set options = {'thema':'false','pictures':'false','update': 'true', 'more': 'true', 'id': 1, 'text': 0, 'project': project } %}
                             {% include 'components/resumeProject.html.twig' with options %}
                         </div>
                     {% endif %}
                 {% endfor %}
-
-
             </div>
 
             <div role="tabpanel" class="tab-pane" id="ligne">
                 <h3>Mes projets en ligne</h3>
                 {% for project in projects %}
-
                     {% if project.status == 3 %}
-
                         <div class="jumbotron">
                             {% set options = {'thema':'false','pictures':'false','update': 'true', 'more': 'true', 'id': 1, 'text': 0, 'project': project } %}
                             {% include 'components/resumeProject.html.twig' with options %}
