@@ -2,6 +2,8 @@
 
 namespace AppBundle\Repository;
 
+use AppBundle\Entity\Project;
+
 
 /**
  * ProjectRepository
@@ -19,6 +21,16 @@ class ProjectRepository extends \Doctrine\ORM\EntityRepository
         $qb = $this->createQueryBuilder('p')
             ->orderBy("p.updateDate", "DESC")
             ->setMaxResults(self::MAX_PROJECT)
+            ->setParameter('status', Project::STATUS_PUBLISH)
+            ->where('p.status = :status')
+            ->getQuery();
+        return $qb->getResult();
+    }
+
+    public function getProjectOrderBY($field)
+    {
+        $qb = $this->createQueryBuilder('p')
+            ->orderBy("p.$field", "ASC")
             ->getQuery();
         return $qb->getResult();
     }

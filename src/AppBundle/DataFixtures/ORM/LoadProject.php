@@ -106,23 +106,27 @@ class LoadProject extends Fixture implements FixtureInterface
 
             $nbimage = rand(1,4);
             $dbimage = [];
-            for ($j = 0; $j < $nbimage; $j++) {
+            /*for ($j = 0; $j < $nbimage; $j++) {
                 $dbimage[$j] = $faker->imageUrl($width = 150, $height = 150);
-            }
+            }*/
             $imagefaker = $dbimage;
 			$slugificator = new SlugService();
 			$title = $faker->sentence($nbWords = 6, $variableNbWords = true);
+			$updateDate = $faker->dateTimeBetween($startDate = '-30 month', $endDate = 'now', $timezone = null);
             $projects[$i]
                 ->setStatus(1)
                 ->setTitle($title)
 
 
 
-                ->setCreationDate($faker->dateTime($max = 'now', $timezone = date_default_timezone_get()))
-                ->setUpdateDate($faker->dateTime($max = 'now', $timezone = date_default_timezone_get()))
-                ->setImages()
+                ->setCreationDate($faker->dateTimeBetween($startDate = '-30 month', $endDate = $updateDate, $timezone = null))
+                ->setUpdateDate($updateDate)
+
+
+                ->setImages($imagefaker)
 				->setSlug($slugificator->slug($title))
-				->setProjectDate($faker->dateTime($max = 'now', $timezone = date_default_timezone_get()))
+
+				->setProjectDate($faker->dateTimeBetween($startDate = '-30 month', $endDate = 'now', $timezone = null))
                 ->setProjectDuration($faker->randomElement($array = array('1 mois', '6 mois', '1 ans', '100 ans')))
                 ->setProjectCost($faker->numberBetween($min = 1000, $max = 50000))
                 ->setProjectCoFinance($faker->randomElement($array = array('Oui', 'Non')))

@@ -29,7 +29,8 @@ class AdminProjectController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $projects = $em->getRepository('AppBundle:Project')->findAll();
+        $projects = $em->getRepository('AppBundle:Project')->getProjectOrderBY('status');
+
 
         return $this->render('project/index.html.twig', array(
             'projects' => $projects,
@@ -129,7 +130,6 @@ class AdminProjectController extends Controller
             $fileNewDB = $uploadService->fileUpload($file, '/project/' . $project->getId() . '/file');
             $project->setFile($fileNewDB);
             $this->getDoctrine()->getManager()->flush();
-			$project->setSlug($slugs->slug($project->getTitle()));
             return $this->redirectToRoute('admin_project_edit', array(
                 'slug' => $project->getSlug(),
             ));
