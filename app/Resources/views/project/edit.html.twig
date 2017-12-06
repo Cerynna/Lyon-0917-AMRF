@@ -12,8 +12,8 @@
                    title="Nouveau Projet"><i
                             class="fa fa-plus fa-admin"></i></a>
             </li>
-            <li>
-                <a onclick="$('project').submit();" data-toggle="tooltip" data-placement="right"
+            <li class="submitForm">
+                <a data-toggle="tooltip" data-placement="right"
                    title="Nouvel Utilisateur"><i class="fa fa-check fa-admin"></i></a>
             </li>
             <li>
@@ -77,19 +77,29 @@
     {% endif %}
 
     {{ form_start(edit_form) }}
-    <div class="form-group row">
+
+    <div class="form-group row" id="editProject">
         <div class="col-sm-6">
             <div class="col-sm-12">
                 <h5>{{ form_label(edit_form.title, "Titre du projet *") }}</h5>
-                {{ form_widget(edit_form.title) }}
+                {{ form_widget(edit_form.title,{
+                    'attr': {
+                        'required': false,
+                    }
+                }) }}
+                <div id="errorTitle"></div>
             </div>
-            <div class="col-sm-6">
+            <div class="col-sm-4">
                 <h5>{{ form_label(edit_form.creationDate) }}</h5>
                 {{ form_widget(edit_form.creationDate) }}
             </div>
-            <div class="col-sm-6">
+            <div class="col-sm-4">
                 <h5>{{ form_label(edit_form.updateDate) }}</h5>
                 {{ form_widget(edit_form.updateDate) }}
+            </div>
+            <div class="col-sm-4">
+                <h5>{{ form_label(edit_form.status) }}</h5>
+                {{ form_widget(edit_form.status) }}
             </div>
             <div class="col-sm-12">
                 <h5><label>Images</label></h5>
@@ -320,6 +330,7 @@
 
 
     <input type="submit" value="Edit"/>
+    {{ form_widget(edit_form._token) }}
     {{ form_end(edit_form, {'render_rest': false}) }}
 
     <ul>
@@ -332,11 +343,21 @@
             {{ form_end(delete_form) }}
         </li>
     </ul>
-
 {% endblock %}
 {% block javascripts %}
-
     <script>
+
+        $(".submitForm").click(function () {
+            var title = $("input[name='projet[title]']").val();
+            if (title !== '') {
+                $("form[name='{{ edit_form.vars.name }}']").submit();
+            }
+            else {
+                $("#errorTitle").html("<strong>Le titre est obligatoire!</strong>");
+            }
+        });
+
+
         function deleteFile(file) {
             $.ajax({
                 type: "GET",
@@ -346,6 +367,7 @@
                 },
                 error: function () {
                     alert("la photo ne peu pas être supprimée");
+
                 }
             })
 

@@ -12,8 +12,8 @@
                title="Nouveau Projet"><i
                         class="fa fa-plus fa-admin"></i></a>
         </li>
-        <li>
-            <a onclick="document.projet.submit();" data-toggle="tooltip" data-placement="right"
+        <li class="submitForm">
+            <a data-toggle="tooltip" data-placement="right"
                title="Nouvel Utilisateur"><i class="fa fa-check fa-admin"></i></a>
         </li>
     </ul>
@@ -26,6 +26,7 @@
         <div class="col-sm-12">
             <h5>{{ form_label(form.title, "Titre du projet *") }}</h5>
             {{ form_widget(form.title) }}
+            <div id="errorTitle"></div>
         </div>
         <div class="col-sm-6">
             <h5>{{ form_label(form.creationDate) }}</h5>
@@ -42,7 +43,7 @@
                     <div class="row">
                         <div class="col-sm-12">
 
-                            <a onclick="document.projet.submit();" data-toggle="tooltip" data-placement="right"
+                            <a class="submitForm" data-toggle="tooltip" data-placement="right"
                                title="Il faut d'abord enregistrer le projet avant de pouvoir télécharger des photos"><i class="fa fa-upload fa-admin-big"></i></a>
                         </div>
                     </div>
@@ -193,8 +194,8 @@
         <div class="row">
             <div class="col-sm-12">
 
-                <a onclick="document.projet.submit();" data-toggle="tooltip" data-placement="right"
-                   title="Il faut d'abord enregistrer le projet avant de pouvoir télécharger des photos"><i class="fa fa-upload fa-admin-big"></i></a>
+                <a class="submitForm" data-toggle="tooltip" data-placement="right"
+                   title="Il faut d'abord enregistrer le projet avant de pouvoir télécharger un PDF"><i class="fa fa-upload fa-admin-big"></i></a>
             </div>
         </div>
 
@@ -254,4 +255,17 @@
         <a href="{{ path('admin_project_index') }}">Back to the list</a>
     </li>
 </ul>
+{% endblock %}
+{% block javascripts %}
+    <script>
+        $(".submitForm").click(function () {
+            var title = $("input[name='projet[title]']").val();
+            if (title !== '') {
+                $("form[name='{{ form.vars.name }}']").submit();
+            }
+            else {
+                $("#errorTitle").html("<strong>Le titre est obligatoire!</strong>");
+            }
+        });
+    </script>
 {% endblock %}
