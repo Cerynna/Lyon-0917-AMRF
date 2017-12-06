@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+{% block title %}Formulaire fiche projet{% endblock %}
+{% block navbar %}
+    {% include 'components/navbar.html.twig' %}
+{% endblock %}
+
+
+
+{% block body %}
+
+    {{ form_start(form) }}
+
+    <h2>CREER UNE FICHE PROJET</h2>
+    <!-- Nav tabs -->
+    {{ form_errors(form) }}
+
+    {{ form_widget(form) }}
+    {{ form_end(form) }}
+{% endblock %}
+{% block javascripts %}
+
+{% endblock %}

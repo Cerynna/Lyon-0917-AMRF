@@ -232,6 +232,7 @@ class Project
      */
     private $mayor;
 
+<<<<<<< HEAD
     /**
      * @var string
      *
@@ -239,6 +240,8 @@ class Project
      */
     private $slug;
 
+=======
+>>>>>>> ddfecefcf6da688ddce1d3ef087e865482eaaf9b
 
     /**
      * Constructor

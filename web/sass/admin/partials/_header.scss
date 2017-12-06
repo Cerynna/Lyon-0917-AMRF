@@ -1,4 +1,5 @@
 header {
+  border-bottom: 2px solid lighten($color1, 90%);
   font-size: 1em;
   @include colorback1($color1, 0%);
   @include colortext1($color1, 100%);

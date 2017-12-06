@@ -7,16 +7,17 @@
 
 @mixin boxShadow($height, $color) {
   box-shadow: $height $height $height $height $color;
-  /*box-shadow: 5px 5px  rgba(0, 0, 0, 0.6);*/
+}
+
+@mixin borderback1($pixel,$color,$pourcent) {
+  border: $pixel solid lighten($color, $pourcent);
 }
 
 @mixin colorback1($color,$pourcent) {
   background-color:  lighten($color, $pourcent);
-  /*box-shadow: 5px 5px  rgba(0, 0, 0, 0.6);*/
 }
 @mixin colortext1($color,$pourcent) {
   color:  lighten($color, $pourcent);
-  /*box-shadow: 5px 5px  rgba(0, 0, 0, 0.6);*/
 }
 
 

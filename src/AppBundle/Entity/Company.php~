@@ -134,6 +134,7 @@ class Company
      */
     private $contactEmail;
 
+<<<<<<< HEAD
     /**
      * @var string
      *
@@ -141,6 +142,8 @@ class Company
      */
     private $slug;
 
+=======
+>>>>>>> ddfecefcf6da688ddce1d3ef087e865482eaaf9b
 
 
     /**
@@ -565,6 +568,7 @@ class Company
     {
         return $this->getName();
     }
+<<<<<<< HEAD
     /**
      * Constructor
      */
@@ -621,4 +625,6 @@ class Company
     {
         return $this->slug;
     }
+=======
+>>>>>>> ddfecefcf6da688ddce1d3ef087e865482eaaf9b
 }

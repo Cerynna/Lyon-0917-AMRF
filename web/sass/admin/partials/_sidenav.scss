@@ -4,26 +4,50 @@ nav {
   position: fixed;
   left: 0;
   top: 50px;
-  @include colorback1($color1, 10%);
+  @include colorback1($color1, 0%);
   ul {
     font-size: 1.5em;
     list-style: none;
     li {
-      margin-bottom: 10px;
-      padding: 10px;
-      a {
-        @include colortext1($color1, 90%);
-
-      }
-      a:hover {
-        @include colortext1($color1, 20%);
-        text-decoration: none;
-      }
+      margin-bottom: 2px;
+padding: 0 !important;
     }
   }
 
-}
+  @for $i from 1 through length($backs) {
+    $c: nth($backs, $i);
+    $pourcent: 80 / $i;
+    $inverse: 100-($pourcent);
+    .sidenav-#{$c} {
+      color: green;
+      a{
+        color:lighten($color1, 100%);
+        text-decoration: none;
+        padding: 10px;
+        display:block;
+        width: 200px;
+        &:hover {
+          color:lighten($color1, 0%);
+        }
+      }
+      background: lighten($color1, 0%);
+      padding: 5px;
+      width: 200px;
+      &:hover {
+        background: lighten($color1, 80%);
+        color:lighten($color1, 0%);
+        cursor: pointer;
+      }
+    }
+    .active-#{$c} {
+      background: lighten($color1, 80%);
+      a{
+      color: lighten($color1, 0%);
+      }
+    }
 
+  }
+}
 
 /*
 .navLeft {
