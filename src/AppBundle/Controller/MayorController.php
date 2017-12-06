@@ -16,13 +16,13 @@ use AppBundle\Entity\Project;
 use AppBundle\Entity\TitleProject;
 use AppBundle\Form\SubmitToAdmin;
 use AppBundle\Service\SlugService;
+use AppBundle\Service\TabProjectService;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-const MAX_TAB = 5;
 
 /**
  * @Route("mayor/")
@@ -114,7 +114,7 @@ class MayorController extends Controller
      * @Route("project/edit/{slug}/{page}", name="mayor_project_edit", defaults={"page": "1"},)
      * @Method({"GET", "POST"})
      */
-    public function mayorProjectEditAction(Request $request, Project $project, SlugService $slugService)
+    public function mayorProjectEditAction(Request $request, Project $project, SlugService $slugService, TabProjectService $tabProjectService)
     {
 
         $user = $this->get('security.token_storage')->getToken()->getUser();
@@ -159,27 +159,17 @@ class MayorController extends Controller
                 $em->persist($project);
                 $em->flush();
 
-                if(isset($_POST['page'])){
-                    switch ($_POST['page']){
-                        case 'next':
-                                $page = $page + 1;
-                            break;
-                        case 'back':
-                                $page = $page - 1;
-                            break;
-                    }
+                if(!empty($_POST['page'])){
+                    $pageSend = $tabProjectService->findUrl($_POST['page'], $page);
                 }
-                if ($page > 5) {
-                    $page = 5;
-                }
-                if ($page < 1 ){
-                    $page =1;
+                else{
+                    $pageSend = $page;
                 }
 
-               /* return new Response("FORM SEND ". serialize($form->getData()) . " - " . $_POST['page'] . " - " . $page  );*/
+
                 return $this->redirectToRoute('mayor_project_edit', [
                     'slug' => $project->getSlug(),
-                    'page' => $page,
+                    'page' => $pageSend,
 
                 ]);
             }
@@ -189,6 +179,7 @@ class MayorController extends Controller
                 'project' => $project,
                 'form' => $form->createView(),
                 'form_toAdmin' => $formSubmitToAdmin->createView(),
+                'page' => $page,
             ));
         }
         else {
