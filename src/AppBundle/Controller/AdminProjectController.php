@@ -4,6 +4,7 @@ namespace AppBundle\Controller;
 
 use AppBundle\Entity\Project;
 use AppBundle\Entity\Uploader;
+use AppBundle\Service\SlugService;
 use AppBundle\Service\UploadService;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -28,7 +29,8 @@ class AdminProjectController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $projects = $em->getRepository('AppBundle:Project')->findAll();
+        $projects = $em->getRepository('AppBundle:Project')->getProjectOrderBY('status');
+
 
         return $this->render('project/index.html.twig', array(
             'projects' => $projects,
@@ -41,10 +43,11 @@ class AdminProjectController extends Controller
      * @Route("/new", name="admin_project_new")
      * @Method({"GET", "POST"})
      */
-    public function newAction(Request $request)
+    public function newAction(Request $request, SlugService $slug)
     {
         $project = new Project();
         $form = $this->createForm('AppBundle\Form\ProjectType', $project);
+		$form->remove('slug');
         $form->handleRequest($request);
 
         $uploaderImage = new Uploader();
@@ -59,10 +62,14 @@ class AdminProjectController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+			$project->setSlug($slug->slug($project->getTitle()));
+			$project->setCreationDate(new \DateTime('now'));
+			$project->setUpdateDate(new \DateTime('now'));
+			$project->setProjectDate(new \DateTime('now'));
             $em->persist($project);
             $em->flush();
             return $this->redirectToRoute('admin_project_edit', array(
-                'id' => $project->getId(),
+                'slug' => $project->getSlug(),
 
             ));
         }
@@ -78,7 +85,7 @@ class AdminProjectController extends Controller
     /**
      * Finds and displays a project entity.
      *
-     * @Route("/{id}", name="admin_project_show")
+     * @Route("/{slug}", name="admin_project_show")
      * @Method("GET")
      */
     public function showAction(Project $project)
@@ -94,14 +101,15 @@ class AdminProjectController extends Controller
     /**
      * Displays a form to edit an existing project entity.
      *
-     * @Route("/{id}/edit", name="admin_project_edit")
+     * @Route("/edit/{slug}/", name="admin_project_edit")
      * @Method({"GET", "POST"})
      */
-    public function editAction(Request $request, Project $project, UploadService $uploadService)
+    public function editAction(Request $request, Project $project, UploadService $uploadService, SlugService $slugService)
     {
         $deleteForm = $this->createDeleteForm($project);
 
         $editForm = $this->createForm('AppBundle\Form\ProjectType', $project);
+		$editForm->remove('slug');
         $editForm->remove('images');
         $editForm->remove('file');
         $editForm->handleRequest($request);
@@ -123,7 +131,7 @@ class AdminProjectController extends Controller
             $project->setFile($fileNewDB);
             $this->getDoctrine()->getManager()->flush();
             return $this->redirectToRoute('admin_project_edit', array(
-                'id' => $project->getId(),
+                'slug' => $project->getSlug(),
             ));
         }
 
@@ -135,7 +143,7 @@ class AdminProjectController extends Controller
             $project->setImages($dbimg);
             $this->getDoctrine()->getManager()->flush();
             return $this->redirectToRoute('admin_project_edit', array(
-                'id' => $project->getId(),
+                'slug' => $project->getSlug(),
             ));
         }
 
@@ -147,10 +155,11 @@ class AdminProjectController extends Controller
             foreach ($themes as $theme) {
                 $project->addTheme($theme);
             }*/
+            $project->setSlug($slugService->slug($project->getTitle()));
             $em->persist($project);
             $em->flush();
 
-            return $this->redirectToRoute('admin_project_edit', array('id' => $project->getId()));
+            return $this->redirectToRoute('admin_project_edit', array('slug' => $project->getSlug()));
         }
 
         return $this->render('project/edit.html.twig', array(

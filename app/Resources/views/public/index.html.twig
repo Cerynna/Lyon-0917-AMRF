@@ -7,7 +7,6 @@
     {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
         <a class="link" href="{{ path('logout') }}">Logout</a>
     {% endif %}#}
-    {
 
     <h2>Bienvenue</h2>
     <h3 class="hidden-xs">Les dernières fiches projets</h3>
@@ -15,7 +14,7 @@
         <div class="carousel-inner">
             {% for key, project in projects %}
                 <div class="item {% if key == 0 %} active {% endif %}">
-                    {% set options = {'thema':'true','pictures':'true','update': 'false', 'more': 'false', 'text': 300, 'project': project} %}
+                    {% set options = {'thema':'true','pictures':'true','update': 'false', 'more': 'false', 'project': project} %}
                     {% include 'components/resumeProject.html.twig' with options %}
                 </div>
              {% endfor %}

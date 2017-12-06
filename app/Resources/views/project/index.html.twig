@@ -64,13 +64,27 @@
         <h4 data-toggle="collapse" data-target="#project_{{ key }}">
             <div class="row">
                 <div class="col-xs-1">
-                    <a href="{{ path('admin_project_show', { 'id': project.id }) }}"><i class="fa fa-eye fa-admin-mini"></i></a>
-                    <a href="{{ path('admin_project_edit', { 'id': project.id }) }}"><i class="fa fa-pencil fa-admin-mini"></i></a>
+                    <a href="{{ path('admin_project_show', { 'slug': project.slug }) }}"><i
+                                class="fa fa-eye fa-admin-mini"></i></a>
+                    <a href="{{ path('admin_project_edit', { 'slug': project.slug }) }}"><i
+                                class="fa fa-pencil fa-admin-mini"></i></a>
                 </div>
-                <div class="col-xs-5">
+                <div class="col-xs-4">
                     {{ project.title }} <span class="caret"></span>
                 </div>
-                <div class="col-xs-6 text-right">
+                <div class="col-xs-1">
+
+                    {% if project.status == 1 %}
+                        <i class="fa fa-cog"></i> Brouillon
+                    {% elseif project.status == 2 %}
+                        <i class="fa fa-flag"></i> En attente
+                    {% elseif project.status == 3 %}
+                        <i class="fa fa-check"></i> Publier
+                    {% else %}
+                        <i class="fa fa-cog"></i> Brouillon
+                    {% endif %}
+                </div>
+                <div class="col-xs-3 text-right">
                     Crée : <span
                             class="label label-primary">{% if project.creationDate %}{{ project.creationDate|date('d-m-Y') }}{% endif %}</span>
                     Modifié : <span

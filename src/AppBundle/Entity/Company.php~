@@ -134,17 +134,12 @@ class Company
      */
     private $contactEmail;
 
-<<<<<<< HEAD
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="slug", type="string", length=255, nullable=true)
-     */
-    private $slug;
-
-=======
->>>>>>> ddfecefcf6da688ddce1d3ef087e865482eaaf9b
-
+	/**
+	 * @var string
+	 *
+	 * @ORM\Column(name="slug", type="string", length=255, nullable=true)
+	 */
+	private $slug;
 
     /**
      * Get id
@@ -568,7 +563,6 @@ class Company
     {
         return $this->getName();
     }
-<<<<<<< HEAD
     /**
      * Constructor
      */
@@ -601,7 +595,6 @@ class Company
         $this->activities->removeElement($activity);
     }
 
-
     /**
      * Set slug
      *
@@ -625,6 +618,4 @@ class Company
     {
         return $this->slug;
     }
-=======
->>>>>>> ddfecefcf6da688ddce1d3ef087e865482eaaf9b
 }
