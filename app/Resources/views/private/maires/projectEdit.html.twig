@@ -8,28 +8,35 @@
 
 
 {% block body %}
+    {% set max = app.request.uri|length %}
+    {% set page =  app.request.uri[(max-1):max] %}
+
+    {% if page matches '/^\\d+$/' and page  <= 5 %}
+    {% else %}
+        {% set page = 1 %}
+    {% endif %}
 
     {{ form_start(form) }}
-
+    <input id="page" name="page" type="text" class="hidden"/>
     <h2>CREER UNE FICHE PROJET</h2>
     <!-- Nav tabs -->
     {{ form_errors(form) }}
     <div class="row tabPannel">
         <ul class="list-inline text-center" role="tablist">
-            <li role="presentation" class=" tabLi active" id="projetMenu">
-                <a href="#projet" aria-controls="projet" role="tab" data-toggle="tab">Mon Projet</a>
+            <li role="presentation" class=" tabLi {% if page == 1 %} active {% endif %}" id="projetMenu">
+                <a href="{{ path('mayor_project_edit', { 'slug': project.slug, 'page': '1' }) }}">Mon Projet</a>
             </li>
-            <li role="presentation" id="realMenu" class="tabLi">
-                <a href="#realisation" aria-controls="realisation" role="tab" data-toggle="tab">Réalisation</a>
+            <li role="presentation" id="realMenu" class="tabLi {% if page == 2 %} active {% endif %}">
+                <a href="{{ path('mayor_project_edit', { 'slug': project.slug, 'page': '2' }) }}">Réalisation</a>
             </li>
-            <li role="presentation" id="descriptionMenu" class="tabLi">
-                <a href="#description" aria-controls="description" role="tab" data-toggle="tab">Description </a>
+            <li role="presentation" id="descriptionMenu" class="tabLi {% if page == 3 %} active {% endif %}">
+                <a href="{{ path('mayor_project_edit', { 'slug': project.slug, 'page': '3' }) }}">Description </a>
             </li>
-            <li role="presentation" id="infoMenu" class="tabLi">
-                <a href="#informations" aria-controls="informations" role="tab" data-toggle="tab">Informations</a>
+            <li role="presentation" id="infoMenu" class="tabLi {% if page == 4 %} active {% endif %}">
+                <a href="{{ path('mayor_project_edit', { 'slug': project.slug, 'page': '4' }) }}">Informations</a>
             </li>
-            <li role="presentation" id="previewMenu" class="tabLi">
-                <a href="#preview" aria-controls="preview" role="tab" data-toggle="tab">Aperçu</a>
+            <li role="presentation" id="previewMenu" class="tabLi {% if page == 5 %} active {% endif %}">
+                <a href="{{ path('mayor_project_edit', { 'slug': project.slug, 'page': '5' }) }}">Aperçu</a>
             </li>
         </ul>
         <div class="text-center">
@@ -38,7 +45,7 @@
 
 
         <div class="tab-content">
-            <div role="tabpanel" class="tab-pane active" id="projet">
+            <div role="tabpanel" class="tab-pane {% if page == 1 %} active {% endif %}" id="projet">
                 <div class="star">Le symbole * indique que cette information est nécessaire.</div>
                 <h3>Mon projet</h3>
                 <div class="form-group col-sm-12">
@@ -114,8 +121,7 @@
                         </button>
                     </div>
                     <div class="col-sm-4" align="center">
-                        <a href="#realisation" aria-controls="projet" role="tab" data-toggle="tab"
-                           onclick="changeActiveMenu('realMenu')">
+                        <a onclick="nextStep()">
                             <div class="btn">Etape suivante <i class=" fa fa-angle-right"
                                                                aria-hidden="true"></i>
                             </div>
@@ -123,7 +129,7 @@
                     </div>
                 </div>
             </div>
-            <div role="tabpanel" class="tab-pane" id="realisation">
+            <div role="tabpanel" class="tab-pane {% if page == 2 %} active {% endif %}" id="realisation">
                 <div class="star">Le symbole * indique que cette information est nécessaire.</div>
                 <h3>Réalisation</h3>
                 <div class="row">
@@ -172,8 +178,7 @@
                     </div>
                 </div>
                 <div class="form-group col-sm-4" align="left">
-                    <a href="#projet" aria-controls="projet" role="tab" data-toggle="tab"
-                       onclick="changeActiveMenu('projetMenu')">
+                    <a onclick="backStep()">
                         <div class="btn"><i class=" fa fa-angle-left" aria-hidden="true"></i>
                             Etape précédente
                         </div>
@@ -185,14 +190,13 @@
                     </button>
                 </div>
                 <div class="form-group col-sm-4" align="right">
-                    <a href="#description" aria-controls="description" role="tab" data-toggle="tab"
-                       onclick="changeActiveMenu('descriptionMenu')">
+                    <a onclick="nextStep()">
                         <div class="btn">Etape suivante <i class=" fa fa-angle-right"
                                                            aria-hidden="true"></i></div>
                     </a>
                 </div>
             </div>
-            <div role="tabpanel" class="tab-pane" id="description">
+            <div role="tabpanel" class="tab-pane {% if page == 3 %} active {% endif %}" id="description">
                 <div class="star">Le symbole * indique que cette information est nécessaire.</div>
                 <div class="form-group col-sm-12">
                     {{ form_label(form.descContext, "1/ Contexte *") }}
@@ -272,8 +276,7 @@
                               rows="4"></textarea>#}
                 </div>
                 <div class="form-group col-sm-4" align="left">
-                    <a href="#realisation" aria-controls="realisation" role="tab" data-toggle="tab"
-                       onclick="changeActiveMenu('realMenu')">
+                    <a onclick="backStep()">
                         <div class="btn"><i class=" fa fa-angle-left" aria-hidden="true"></i>
                             Etape précédente
                         </div>
@@ -285,14 +288,13 @@
                     </button>
                 </div>
                 <div class="form-group col-sm-4" align="right">
-                    <a href="#informations" aria-controls="informations" role="tab" data-toggle="tab"
-                       onclick="changeActiveMenu('infoMenu')">
+                    <a onclick="nextStep()">
                         <div class="btn">Etape suivante <i class=" fa fa-angle-right"
                                                            aria-hidden="true"></i></div>
                     </a>
                 </div>
             </div>
-            <div role="tabpanel" class="tab-pane" id="informations">
+            <div role="tabpanel" class="tab-pane {% if page == 4 %} active {% endif %}" id="informations">
                 <div class="star">Le symbole * indique que cette information est nécessaire.</div>
                 <h3>Personne en charge du projet</h3>
                 <div class="form-group col-sm-6">
@@ -358,8 +360,7 @@
                     <input id="url" type="url" class="form-control" placeholder="">#}
                 </div>
                 <div class="form-group col-sm-4" align="left">
-                    <a href="#description" aria-controls="description" role="tab" data-toggle="tab"
-                       onclick="changeActiveMenu('descriptionMenu')">
+                    <a onclick="backStep()">
                         <div class="btn"><i class=" fa fa-angle-left" aria-hidden="true"></i>
                             Etape précédente
                         </div>
@@ -371,25 +372,22 @@
                     </button>
                 </div>
                 <div class="form-group col-sm-4" align="right">
-                    <a href="#preview" aria-controls="preview" role="tab" data-toggle="tab"
-                       onclick="changeActiveMenu('previewMenu')">
+                    <a onclick="nextStep()">
                         <div class="btn">Etape suivante <i class=" fa fa-angle-right"
                                                            aria-hidden="true"></i></div>
                     </a>
                 </div>
             </div>
-            <div role="tabpanel" class="tab-pane" id="preview">
+            <div role="tabpanel" class="tab-pane {% if page == 5 %} active {% endif %}" id="preview">
                 <h3>Prévisualisez votre fiche</h3>
                 <p>Ici vous pouvez visualiser votre fiche telle qu'elle apparaîtra sur le site. Si elle vous
                     convient, cliquez sur "Soumettre", sinon, vous pouvez revenir au formulaire pour la
                     corriger.</p>
                 <div class="row">
                     <div class="form-group col-sm-4" align="left">
-                        <a href="#informations" aria-controls="informations" role="tab" data-toggle="tab"
-                           onclick="changeActiveMenu('infoMenu')">
+                        <a onclick="backStep()">
                             <div class="btn"><i class=" fa fa-angle-left" aria-hidden="true"></i>
-                                Etape
-                                précédente
+                                Etape précédente
                             </div>
                         </a>
                     </div>
@@ -397,45 +395,36 @@
                         <button class="btn" type="submit"><i class="fa fa-floppy-o" aria-hidden="true"></i>
                             <span class="hidden-sm">Enregistrer</span>
                         </button>
+                        {{ form_widget(form._token) }}
+
+                        {{ form_end(form, {'render_rest': false}) }}
                     </div>
                     <div class="form-group col-sm-4" align="right">
-                        <button class="btn"><i class="fa fa-envelope-o" aria-hidden="true"></i>
+                        {{ form_start(form_toAdmin) }}
+                        {{ form_widget(form_toAdmin) }}
+                        <button class="btn" type="submit"><i class="fa fa-envelope-o" aria-hidden="true"></i>
                             Soumettre votre fiche
                         </button>
+                        {{ form_end(form_toAdmin) }}
+
                     </div>
                 </div>
                 {% include 'components/projectComponent.html.twig' %}
-                <div class="form-group col-sm-4" align="left">
-                    <a href="#informations" aria-controls="informations" role="tab" data-toggle="tab"
-                       onclick="changeActiveMenu('infoMenu')">
-                        <div class="btn"><i class=" fa fa-angle-left" aria-hidden="true"></i>
-                            Etape
-                            précédente
-                        </div>
-                    </a>
-                </div>
-                <div class="form-group col-sm-4" align="left">
-                    <button class="btn" type="submit"><i class="fa fa-floppy-o" aria-hidden="true"></i>
-                        <span class="hidden-sm">Enregistrer</span>
-                    </button>
-                </div>
-                <div class="form-group col-sm-4" align="right">
-                    <button class="btn"><i class="fa fa-envelope-o" aria-hidden="true"></i>
-                        Soumettre votre fiche
-                    </button>
-                </div>
+
             </div>
         </div>
     </div>
-    {{ form_widget(form) }}
-    {{ form_end(form) }}
+
 {% endblock %}
 {% block javascripts %}
     <script>
-        function changeActiveMenu(idActive) {
-            $('.tabLi').removeClass('active');
-            $('#' + idActive).addClass('active');
+        function nextStep() {
+            $('#page').val('next');
+            $("form[name='{{ form.vars.name }}']").submit();
         }
-
+        function backStep() {
+            $('#page').val('back');
+            $("form[name='{{ form.vars.name }}']").submit();
+        }
     </script>
 {% endblock %}
