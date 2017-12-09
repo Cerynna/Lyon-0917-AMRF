@@ -8,6 +8,7 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\AppBundle;
 use AppBundle\Entity\Mayor;
 use AppBundle\Entity\Partner;
 use AppBundle\Entity\Company;
@@ -62,20 +63,29 @@ class MayorController extends Controller
     }
 
 
-
     /**
      * @Route("project", name="mayor_project")
      */
     public function mayorProjectAction()
+
     {
-        return $this->render('private/maires/maireProjet.html.twig');
+        $user = $this->get('security.token_storage')->getToken()->getUser();
+        $mayorid = $user->getMayor()->getid();
+
+        $em = $this->getDoctrine()->getManager();
+        $projects = $em->getRepository("AppBundle:Project")->getProjectByMayor($mayorid);
+
+
+        return $this->render('private/maires/maireProjet.html.twig', array(
+            'projects'=>$projects,
+        ));
     }
 
     /**
      * @Route("project/new", name="mayor_project_new")
      * @Method({"GET", "POST"})
      */
-    public function mayorProjectNewAction (Request $request, SlugService $slugService)
+    public function mayorProjectNewAction(Request $request, SlugService $slugService)
     {
         $projectTitle = new TitleProject();
         $form = $this->createForm('AppBundle\Form\TitleProjectType', $projectTitle);
@@ -151,6 +161,7 @@ class MayorController extends Controller
                     'slug' => $project->getSlug(),
                 ]);
             }
+
             if ($form->isSubmitted() && $form->isValid()) {
 
                 $project->setSlug($slugService->slug($project->getTitle()));
@@ -181,8 +192,7 @@ class MayorController extends Controller
                 'form_toAdmin' => $formSubmitToAdmin->createView(),
                 'page' => $page,
             ));
-        }
-        else {
+        } else {
             return $this->redirectToRoute('mayor_index');
         }
     }

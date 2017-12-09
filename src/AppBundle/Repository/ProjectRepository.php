@@ -45,4 +45,13 @@ class ProjectRepository extends \Doctrine\ORM\EntityRepository
             ->getResult();
     }
 
+    public function getProjectByMayor($mayorId)
+    {
+        $qb = $this->createQueryBuilder('p')
+            ->setParameter('mayor_id', $mayorId)
+            ->where("p.mayor = :mayor_id")
+            ->getQuery();
+        return $qb->getResult();
+    }
+
 }
