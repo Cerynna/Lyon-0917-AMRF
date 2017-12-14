@@ -370,7 +370,8 @@ class User implements UserInterface, \Serializable
     {
         $this->favorites = new \Doctrine\Common\Collections\ArrayCollection();
         $this->isActive = true;
-        $this->lastLogin = new \DateTime();
+        $this->lastLogin = new \DateTime('now');
+
         // may not be needed, see section on salt below
         // $this->salt = md5(uniqid('', true));
     }

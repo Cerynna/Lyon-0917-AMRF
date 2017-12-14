@@ -6,6 +6,7 @@ use AppBundle\Entity\User;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
@@ -17,7 +18,6 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 class AdminUserController extends Controller
 {
 
-
     /**
      * Lists all user entities.
      *
@@ -28,10 +28,11 @@ class AdminUserController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $users = $em->getRepository('AppBundle:User')->findAll();
+        $user = $em->getRepository('AppBundle:User')->findAll();
+
 
         return $this->render('user/index.html.twig', array(
-            'users' => $users,
+            'users' => $user,
         ));
     }
 
@@ -51,14 +52,16 @@ class AdminUserController extends Controller
 
             $password = $passwordEncoder->encodePassword($user, $user->getPassword());
             $user->setPassword($password);
+            $user->setCreationDate(new \DateTime('now'));
+            $user->setLastLogin(new \DateTime('now'));
 
-            if ($user->getRole() === User::USER_ROLE_MAYOR){
+            if ($user->getRole() === User::USER_ROLE_MAYOR) {
                 $user->setPartner(null);
             }
-            if ($user->getRole() === User::USER_ROLE_PARTNER){
+            if ($user->getRole() === User::USER_ROLE_PARTNER) {
                 $user->setMayor(null);
             }
-            if ($user->getRole() === User::USER_ROLE_ADMIN){
+            if ($user->getRole() === User::USER_ROLE_ADMIN) {
                 $user->setMayor(null);
                 $user->setPartner(null);
             }
@@ -100,17 +103,22 @@ class AdminUserController extends Controller
     {
         $deleteForm = $this->createDeleteForm($user);
         $editForm = $this->createForm('AppBundle\Form\UserType', $user);
+        //$editForm->remove('password');
         $editForm->handleRequest($request);
-
+        $userLog = $this->get('security.token_storage')->getToken()->getUser();
+        $passwordDB =  $userLog->getPassword();
         if ($editForm->isSubmitted() && $editForm->isValid()) {
 
-            $password = $passwordEncoder->encodePassword($user, $user->getPassword());
-            $user->setPassword($password);
+            if ($passwordDB != $user->getPassword()) {
+                $password = $passwordEncoder->encodePassword($user, $user->getPassword());
+                $user->setPassword($password);
+            }
+
 
             $this->getDoctrine()->getManager()->flush();
             $this->addFlash(
                 'notice',
-                'Le user n°'. $user->getLogin() . ' a été modifié.'
+                'Le user n°' . $user->getLogin() . ' a été modifié.'
             );
             return $this->redirectToRoute('admin_user_edit', array('id' => $user->getId()));
         }
@@ -154,7 +162,6 @@ class AdminUserController extends Controller
         return $this->createFormBuilder()
             ->setAction($this->generateUrl('admin_user_delete', array('id' => $user->getId())))
             ->setMethod('DELETE')
-            ->getForm()
-        ;
+            ->getForm();
     }
 }

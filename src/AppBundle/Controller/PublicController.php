@@ -4,8 +4,6 @@ namespace AppBundle\Controller;
 
 
 use AppBundle\Entity\Project;
-use Doctrine\ORM\EntityManager;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use SensioLabs\Security\Exception\HttpException;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -14,7 +12,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 use Symfony\Component\Filesystem\Filesystem;
-use Symfony\Component\Filesystem\Exception\IOExceptionInterface;
+
 
 
 class PublicController extends Controller
@@ -22,33 +20,6 @@ class PublicController extends Controller
     /**
      * @Route("/", name="home")
      */
-
-	public function indexAction()
-	{
-		$em = $this->getDoctrine()->getManager();
-
-		/** Change that is a real code for Update LastLogin */
-		$user = $this->get('security.token_storage')->getToken()->getUser();
-		if (is_object($user))
-		{
-			$lastloginDB = $user->getLastLogin();
-			$today = new \DateTime('now');
-			$tomorow = $today->modify('+1 day');
-			if ($tomorow <= $lastloginDB) {
-				$user->setLastLogin($today);
-				$em->flush();
-			}
-		}
-
-		/** ------------------------------------------------ */
-
-		$projects = $em->getRepository('AppBundle:Project')->getLastProject();
-
-		return $this->render('public/index.html.twig', array(
-			'projects' => $projects,
-		));
-	}
-
    public function indexAction()
     {
         $em = $this->getDoctrine()->getManager();
@@ -73,19 +44,6 @@ class PublicController extends Controller
         return $this->render('public/index.html.twig', array(
             'projects' => $projects,
         ));
-    }
-
-    /**
-     * Shows the elements of a project in the ResumeProject Component
-     *
-     */
-    public function resumeProjectAction()
-    {
-        $em = $this->getDoctrine()->getManager();
-        $projects = $em->getRepository("AppBundle:Project")->getLastProject();
-        return $this->render('components/resumeProject.html.twig', [
-            'projects'  => $projects
-        ]);
     }
 
     /**
@@ -193,7 +151,7 @@ class PublicController extends Controller
             $imgExplode = explode('/', $imageDelete);
             $project = $em->getRepository(Project::class)->find($imgExplode[2]);
 
-            if ($imgExplode[3] == 'photos'){
+            if ($imgExplode[3] == 'photos') {
                 $imagesInDB = $em->getRepository('AppBundle:Project')->getImageProject($imgExplode[2]);
                 $newImagesDB = [];
                 foreach ($imagesInDB[0]['images'] as $imageInDB) {
@@ -203,16 +161,13 @@ class PublicController extends Controller
                 }
                 $project->setImages($newImagesDB);
 
-            }
-            elseif ($imgExplode[3] == 'file')
-            {
+            } elseif ($imgExplode[3] == 'file') {
                 $project = $em->getRepository(Project::class)->find($imgExplode[2]);
                 $project->setFile('');
             }
             $em->flush();
             $fs = new Filesystem();
             $fs->remove($imageDelete);
-
 
 
             return new Response("Image supprimer " . $imageDelete . " - " . count($imageDelete) . " - " . $imgExplode[4]);

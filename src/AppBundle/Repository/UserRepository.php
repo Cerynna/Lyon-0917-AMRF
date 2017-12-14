@@ -10,12 +10,9 @@ namespace AppBundle\Repository;
  */
 class UserRepository extends \Doctrine\ORM\EntityRepository
 {
- /*   public function getUserPartner($idPartner)
-    {
-        return $this->createQueryBuilder('u')
-            ->where('u.partner_id = :idPartner')
-            ->setParameter('idPartner', $idPartner)
-            ->getQuery()
-            ->getResult();
-    }*/
+    public function setLastLogin() {
+
+    }
+
+
 }

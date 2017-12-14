@@ -13,6 +13,8 @@ use AppBundle\Entity\Partner;
 use AppBundle\Entity\Company;
 use AppBundle\Entity\Project;
 
+use AppBundle\Entity\TitleProject;
+use AppBundle\Service\SlugService;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -57,7 +59,6 @@ class MayorController extends Controller
     }
 
 
-
     /**
      * @Route("project", name="mayor_project")
      */
@@ -70,35 +71,31 @@ class MayorController extends Controller
      * @Route("project/new", name="mayor_project_new")
      * @Method({"GET", "POST"})
      */
-    public function mayorProjectNewAction (Request $request)
+    public function mayorProjectNewAction(Request $request, SlugService $slugService)
     {
-        $project = new Project();
-        $form = $this->createForm('AppBundle\Form\ProjectType', $project);
-        $form->remove('creationDate');
-        $form->remove('updateDate');
-        $form->remove('image');
-        $form->remove('projectDate');
-        $form->remove('projectDuration');
-        $form->remove('projectCost');
-        $form->remove('projectCoFinance');
-        $form->remove('descResume');
-        $form->remove('descContext');
-        $form->remove('descGoal');
-        $form->remove('descProgress');
-        $form->remove('descPartners');
-        $form->remove('descResults');
-        $form->remove('descDifficulties');
-        $form->remove('creationDate');
-        $form->remove('creationDate');
-        $form->remove('creationDate');
-        $form->remove('creationDate');
-        $form->remove('creationDate');
-        $form->remove('creationDate');
-        $form->remove('creationDate');
-        $form->remove('creationDate');
-        $form->remove('creationDate');
-        $form->remove('creationDate');
+        $projectTitle = new TitleProject();
+        $form = $this->createForm('AppBundle\Form\TitleProjectType', $projectTitle);
         $form->handleRequest($request);
+
+        $user = $this->get('security.token_storage')->getToken()->getUser();
+        $MayorConnect = $user->getMayor();
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            $project = new Project();
+            $project->setTitle($projectTitle->getTitle());
+            $project->setMayor($MayorConnect);
+            $project->setCreationDate(new \DateTime('now'));
+            $project->setUpdateDate(new \DateTime('now'));
+            $project->setProjectDate(new \DateTime('now'));
+            $project->setSlug($slugService->slug($projectTitle->getTitle()));
+
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($project);
+            $em->flush();
+            return $this->redirectToRoute('mayor_project_edit', array('id' => $project->getId()));
+        }
+
         return $this->render(':private/maires:projectNew.html.twig', [
             'form' => $form->createView(),
         ]);
@@ -108,7 +105,7 @@ class MayorController extends Controller
      * @Route("project/edit/{id}", name="mayor_project_edit")
      * @Method({"GET", "POST"})
      */
-    public function mayorProjectEditAction(Request $request, Project $project)
+    public function mayorProjectEditAction(Request $request, Project $project, SlugService $slugService)
     {
         $user = $this->get('security.token_storage')->getToken()->getUser();
         $idMayorConnect = $user->getMayor()->getId();
@@ -123,11 +120,9 @@ class MayorController extends Controller
             $form->remove('updateDate');
             $form->handleRequest($request);
 
-
-
             if ($form->isSubmitted() && $form->isValid()) {
                 $em = $this->getDoctrine()->getManager();
-
+                $project->setSlug($slugService->slug($projectTitle->getTitle()));
                 $em->persist($project);
                 $em->flush();
 
@@ -138,8 +133,7 @@ class MayorController extends Controller
                 'project' => $project,
                 'form' => $form->createView(),
             ));
-        }
-        else {
+        } else {
             return $this->redirectToRoute('mayor_index');
         }
 
