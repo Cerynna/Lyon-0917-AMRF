@@ -29,7 +29,8 @@ class AdminProjectController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $projects = $em->getRepository('AppBundle:Project')->findAll();
+        $projects = $em->getRepository('AppBundle:Project')->getProjectOrderBY('status');
+
 
         return $this->render('project/index.html.twig', array(
             'projects' => $projects,
@@ -62,10 +63,13 @@ class AdminProjectController extends Controller
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
 			$project->setSlug($slug->slug($project->getTitle()));
+			$project->setCreationDate(new \DateTime('now'));
+			$project->setUpdateDate(new \DateTime('now'));
+			$project->setProjectDate(new \DateTime('now'));
             $em->persist($project);
             $em->flush();
             return $this->redirectToRoute('admin_project_edit', array(
-                'id' => $project->getId(),
+                'slug' => $project->getSlug(),
 
             ));
         }
@@ -100,7 +104,7 @@ class AdminProjectController extends Controller
      * @Route("/edit/{slug}/", name="admin_project_edit")
      * @Method({"GET", "POST"})
      */
-    public function editAction(Request $request, Project $project, UploadService $uploadService, SlugService $slugs)
+    public function editAction(Request $request, Project $project, UploadService $uploadService, SlugService $slugService)
     {
         $deleteForm = $this->createDeleteForm($project);
 
@@ -111,9 +115,7 @@ class AdminProjectController extends Controller
         $editForm->handleRequest($request);
 
         $uploaderImage = new Uploader();
-        $uplodImageForm = $this->createForm('AppBundle\Form\UploaderType', $uploaderImage, [
-            'block_name' => 'image',
-        ]);
+        $uplodImageForm = $this->createForm('AppBundle\Form\UploaderType', $uploaderImage);
         $uplodImageForm->handleRequest($request);
 
         $uploaderFile = new Uploader();
@@ -126,9 +128,8 @@ class AdminProjectController extends Controller
             $fileNewDB = $uploadService->fileUpload($file, '/project/' . $project->getId() . '/file');
             $project->setFile($fileNewDB);
             $this->getDoctrine()->getManager()->flush();
-			$project->setSlug($slugs->slug($project->getTitle()));
             return $this->redirectToRoute('admin_project_edit', array(
-                'id' => $project->getId(),
+                'slug' => $project->getSlug(),
             ));
         }
 
@@ -140,7 +141,7 @@ class AdminProjectController extends Controller
             $project->setImages($dbimg);
             $this->getDoctrine()->getManager()->flush();
             return $this->redirectToRoute('admin_project_edit', array(
-                'id' => $project->getId(),
+                'slug' => $project->getSlug(),
             ));
         }
 
@@ -152,10 +153,11 @@ class AdminProjectController extends Controller
             foreach ($themes as $theme) {
                 $project->addTheme($theme);
             }*/
+            $project->setSlug($slugService->slug($project->getTitle()));
             $em->persist($project);
             $em->flush();
 
-            return $this->redirectToRoute('admin_project_edit', array('id' => $project->getId()));
+            return $this->redirectToRoute('admin_project_edit', array('slug' => $project->getSlug()));
         }
 
         return $this->render('project/edit.html.twig', array(

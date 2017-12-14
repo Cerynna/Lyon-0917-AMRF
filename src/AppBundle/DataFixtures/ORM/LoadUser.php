@@ -15,6 +15,7 @@ use Doctrine\Common\DataFixtures\FixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use Faker;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 
 class LoadUser extends Fixture implements FixtureInterface, ContainerAwareInterface
 {
@@ -85,5 +86,10 @@ class LoadUser extends Fixture implements FixtureInterface, ContainerAwareInterf
             LoadMayor::class,
             LoadPartner::class,
         );
+    }
+
+    public function setContainer(ContainerInterface $container = null)
+    {
+        $this->container = $container;
     }
 }

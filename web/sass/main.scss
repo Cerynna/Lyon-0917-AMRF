@@ -311,6 +311,13 @@ a:hover, a:active {
   }
 
 }
+.item::-webkit-scrollbar {
+  display: none;
+}
+.item {
+  height: 30vh;
+
+}
 /*
 
 div {

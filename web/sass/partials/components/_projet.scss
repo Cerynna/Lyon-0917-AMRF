@@ -1,7 +1,4 @@
 .project {
-  @include borderRadius(10px);
-  @include boxShadow(0.05em, rgba(0, 0, 0, 0.4));
-  padding: 15px 20px !important;
   img {
     border: 2px solid #FFF;
     @include borderRadius(5px);

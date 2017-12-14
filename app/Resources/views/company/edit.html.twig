@@ -4,10 +4,11 @@
     <h1>Company edit</h1>
 
     {{ form_start(edit_form) }}
+
         {{ form_widget(edit_form) }}
+    <img src="{{app.request.basepath}}/upload/company/{{ company.name }}/{{company.logo}}" alt="monimg" />
         <input type="submit" value="Edit" />
     {{ form_end(edit_form) }}
-
     <ul>
         <li>
             <a href="{{ path('admin_company_index') }}">Back to the list</a>

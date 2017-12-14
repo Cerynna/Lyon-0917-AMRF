@@ -22,9 +22,16 @@ class ProjectType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
+            ->add('status', ChoiceType::class, [
+                'choices' => [
+                    'Brouillon' => Project::STATUS_DRAFT,
+                    'En attente' => Project::STATUS_WAITING,
+                    'Publier' => Project::STATUS_PUBLISH,
+                ],
+            ])
             ->add('title',TextType::class,[
                 'attr' => [
-                    'required' => true,
+                    'required' => false,
                 ]
                 ])
 			->add('slug', TextType::class,array('mapped' => false,))
@@ -93,7 +100,7 @@ class ProjectType extends AbstractType
                         ->where('u.type = :type')
                         ->orderBy('u.type', 'ASC');
                 },
-                'expanded' => true,
+                'expanded' => false,
                 'multiple' => true,
                 'choice_label' => 'name',
                 'label_attr' => ['class' => 'style_checkbox'],
