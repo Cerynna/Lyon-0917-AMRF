@@ -45,7 +45,9 @@ class MayorController extends Controller
      */
     public function mayorProfilAction(Request $request)
     {
-        $mayor = new Mayor();
+
+        $user = $this->get('security.token_storage')->getToken()->getUser();
+        $mayor = $user->getMayor();
         $form = $this->createForm('AppBundle\Form\MayorType', $mayor);
         $form->handleRequest($request);
 
