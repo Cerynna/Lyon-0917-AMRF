@@ -16,6 +16,58 @@
         {% set page = 1 %}
     {% endif %}
 
+    {% if project.images|length < 4 %}
+        <div id="modalImageUpload" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-sm-10">
+                                {{ form_start(upload_image_form) }}
+                                {{ form_label(upload_image_form.path, 'Télécharger un fichier depuis votre ordinateur') }}
+                                {{ form_widget(upload_image_form.path) }}
+
+                                {{ form_end(upload_image_form) }}
+                            </div>
+                            <div class="col-sm-2 text-right">
+                                <i class="fa fa-times fa-admin-mini" data-dismiss="modal"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    {% endif %}
+
+    {% if project.file|length < 1 %}
+        <div id="modalFileUpload" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-sm-10">
+                                {{ form_start(upload_file_form) }}
+                                {{ form_label(upload_file_form.path, 'Télécharger un fichier depuis votre ordinateur') }}
+                                {{ form_widget(upload_file_form.path) }}
+
+                                {{ form_end(upload_file_form) }}
+                            </div>
+                            <div class="col-sm-2 text-right">
+                                <i class="fa fa-times fa-admin-mini" data-dismiss="modal"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+
+
+
     {{ form_start(form) }}
     <input id="page" name="page" type="text" class="hidden"/>
     <h2>CREER UNE FICHE PROJET</h2>
@@ -83,10 +135,10 @@
                     <div class="col-md-12">
                         <div class="form-group">
                             {{ form_label(form.keyWords, "Saississez jusqu'à 5 mots-clefs") }}
+                            <i>Ecrivez les premières lettres du mot et vérifiez qu'il apparaît dans la liste.</i>
                             {{ form_widget(form.keyWords, {'attr': {
-                                'placeholder': 'Ecrivez les premières lettres du mot et vérifiez qu\'il apparaît dans la liste.'} }) }}
-                            {#<input type="text" max="5" class="form-control" name="motsCle" id="motsCle"
-                                   placeholder="Ecrivez les premières lettres du mot et vérifiez qu'il apparaît dans la liste."/>#}
+                                'placeholder': 'Ecrivez les premières lettres du mot et vérifiez qu\'il apparaît dans la liste.',
+                            } }) }}
                         </div>
                     </div>
                 </div>
@@ -104,15 +156,29 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class=" col-sm-12">
-                        <h3>Illustrations</h3>
-                        <input type="hidden" name="MAX_FILE_SIZE" value="500000">
-                        <input type="file" id="photo" name="photo"/>
-                        <label for="photo">Téléchargez jusqu'à 4 images<br/>
-                            <p>le poids d'une image ne doit pas excéder ... ... Mo</p>
-                            <div class="btn2">Ajouter des images</div>
-                        </label>
-                    </div>
+
+                    <h3>Illustrations</h3>
+                    {% if project.images %}
+                        {% for key, image in project.images %}
+                            {% set img = 'upload/project/' ~ project.id ~ '/photos/' ~ image %}
+                            {% set imglink = 'upload-project-' ~ project.id ~ '-photos-' ~ image %}
+                            <div style="background-image: url('{{ asset(img) }}')"
+                                 class="imageProject col-sm-3{% if key == 0 %} imageCouv {% endif %}">
+                                <i class="fa fa-trash fa-mini" onclick="deleteFile('{{ imglink }}')"></i>
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+                    {% if project.images|length < 4 %}
+                        <div class="col-sm-{{ (3 - project.images|length) * 4 }}">
+                            <label for="photo">Téléchargez jusqu'à 4 images<br/>
+                                <p>le poids d'une image ne doit pas excéder ... ... Mo</p>
+                                <div class="btn2" data-toggle="modal" data-target="#modalImageUpload"><i
+                                            class="fa fa-upload fa-admin"></i> Ajouter des images
+                                </div>
+                            </label>
+                        </div>
+                    {% endif %}
+
                 </div>
                 <div class="row">
                     <div class="col-sm-4 col-sm-offset-4" align="center">
@@ -323,13 +389,24 @@
                 </div>
                 <h3>Ajout de fichiers</h3>
                 <div class="form-group col-sm-12">
-                    <input type="hidden" name="MAX_FILE_SIZE" value="500000">
-                    <input type="file" id="fichier" name="fichier"/>
-                    <label for="fichier">Vous pouvez ajouter un fichier apportant des informations plus détaillées
-                        (format accepté : PDF ) <br/>
-                        <p>le poids d'un fichier ne doit pas excéder ... ... Mo</p>
-                        <div class="btn2">Télécharger</div>
-                    </label>
+                    {% if project.file is empty %}
+                        <label>Vous pouvez ajouter un fichier apportant des informations plus détaillées
+                            (format accepté : PDF ) <br/>
+                            <p>le poids d'un fichier ne doit pas excéder ... ... Mo</p>
+                            <div class="btn2" data-toggle="modal" data-target="#modalFileUpload">Télécharger</div>
+                        </label>
+                    {% else %}
+                        {% set pdf = 'upload/project/' ~ project.id ~ '/file/' ~ project.file %}
+                        {% set pdflink = 'upload-project-' ~ project.id ~ '-file-' ~ project.file %}
+                        <i class="fa fa-trash-o fa-mini" onclick="deleteFile('{{ pdflink }}')"></i>
+                        <a href="{{ asset(pdf) }}" target="_blank"><i class="fa fa-eye fa-mini"></i></a>
+                        <br/>
+                        <object data="{{ asset(pdf) }}" type="application/pdf" class="preview-pdf" style="width: 100%">
+                            <param name="filename" value="{{ asset(pdf) }}"/>
+                            <a href="{{ asset(pdf) }}" target="_parent" title="le fichier">Voir le fichier...</a>
+                        </object>
+                    {% endif %}
+
                 </div>
                 <h3>Votre projet est visible en ligne ?</h3>
                 <label>Indiquez vos liens ci-dessous</label>
@@ -422,9 +499,29 @@
             $('#page').val('next');
             $("form[name='{{ form.vars.name }}']").submit();
         }
+
         function backStep() {
             $('#page').val('back');
             $("form[name='{{ form.vars.name }}']").submit();
+        }
+
+        $(document).ready(function () {
+            $('#projet_keyWords').select2();
+        });
+
+        function deleteFile(file) {
+            $.ajax({
+                type: "GET",
+                url: "/deletefile/" + file,
+                success: function () {
+                    location.reload();
+                },
+                error: function () {
+                    alert("la photo ne peu pas être supprimée");
+
+                }
+            })
+
         }
     </script>
 {% endblock %}

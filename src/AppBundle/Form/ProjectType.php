@@ -100,7 +100,7 @@ class ProjectType extends AbstractType
                         ->where('u.type = :type')
                         ->orderBy('u.type', 'ASC');
                 },
-                'expanded' => true,
+                'expanded' => false,
                 'multiple' => true,
                 'choice_label' => 'name',
                 'label_attr' => ['class' => 'style_checkbox'],

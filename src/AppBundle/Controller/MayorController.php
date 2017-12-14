@@ -8,16 +8,17 @@
 
 namespace AppBundle\Controller;
 
-use AppBundle\AppBundle;
 use AppBundle\Entity\Mayor;
 use AppBundle\Entity\Partner;
 use AppBundle\Entity\Company;
 use AppBundle\Entity\Project;
 
 use AppBundle\Entity\TitleProject;
+use AppBundle\Entity\Uploader;
 use AppBundle\Form\SubmitToAdmin;
 use AppBundle\Service\SlugService;
 use AppBundle\Service\TabProjectService;
+use AppBundle\Service\UploadService;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -44,7 +45,9 @@ class MayorController extends Controller
      */
     public function mayorProfilAction(Request $request)
     {
-        $mayor = new Mayor();
+
+        $user = $this->get('security.token_storage')->getToken()->getUser();
+        $mayor = $user->getMayor();
         $form = $this->createForm('AppBundle\Form\MayorType', $mayor);
         $form->handleRequest($request);
 
@@ -63,11 +66,11 @@ class MayorController extends Controller
     }
 
 
+
     /**
      * @Route("project", name="mayor_project")
      */
     public function mayorProjectAction()
-
     {
         $user = $this->get('security.token_storage')->getToken()->getUser();
         $mayorid = $user->getMayor()->getid();
@@ -124,7 +127,7 @@ class MayorController extends Controller
      * @Route("project/edit/{slug}/{page}", name="mayor_project_edit", defaults={"page": "1"},)
      * @Method({"GET", "POST"})
      */
-    public function mayorProjectEditAction(Request $request, Project $project, SlugService $slugService, TabProjectService $tabProjectService)
+    public function mayorProjectEditAction(Request $request, Project $project, SlugService $slugService, TabProjectService $tabProjectService, UploadService $uploadService)
     {
 
         $user = $this->get('security.token_storage')->getToken()->getUser();
@@ -148,10 +151,18 @@ class MayorController extends Controller
             $form->remove('updateDate');
             $form->handleRequest($request);
 
+            $uploaderFile = new Uploader();
+            $uplodFileForm = $this->createForm('AppBundle\Form\UploaderType', $uploaderFile);
+            $uplodFileForm->handleRequest($request);
+
 
             $submitToAdmin = new SubmitToAdmin();
             $formSubmitToAdmin = $this->createForm('AppBundle\Form\SubmitToAdmin', $submitToAdmin);
             $formSubmitToAdmin->handleRequest($request);
+
+            $uploaderImage = new Uploader();
+            $uplodImageForm = $this->createForm('AppBundle\Form\UploaderType', $uploaderImage);
+            $uplodImageForm->handleRequest($request);
 
             if ($formSubmitToAdmin->isSubmitted() && $formSubmitToAdmin->isValid()) {
                 $project->setStatus(Project::STATUS_WAITING);
@@ -161,6 +172,29 @@ class MayorController extends Controller
                     'slug' => $project->getSlug(),
                 ]);
             }
+
+            if ($uplodImageForm->isSubmitted() && $uplodImageForm->isValid()) {
+                $files = $uploaderImage->getPath();
+                $images = $project->getImages();
+                $dbimg = $images;
+                $dbimg[] = $uploadService->fileUpload($files, '/project/' . $project->getId() . '/photos');
+                $project->setImages($dbimg);
+                $this->getDoctrine()->getManager()->flush();
+                return $this->redirectToRoute('mayor_project_edit', array(
+                    'slug' => $project->getSlug(),
+                ));
+            }
+
+            if ($uplodFileForm->isSubmitted() && $uplodFileForm->isValid()) {
+                $file = $uploaderFile->getPath();
+                $fileNewDB = $uploadService->fileUpload($file, '/project/' . $project->getId() . '/file');
+                $project->setFile($fileNewDB);
+                $this->getDoctrine()->getManager()->flush();
+                return $this->redirectToRoute('mayor_project_edit', array(
+                    'slug' => $project->getSlug(),
+                ));
+            }
+
 
             if ($form->isSubmitted() && $form->isValid()) {
 
@@ -190,6 +224,8 @@ class MayorController extends Controller
                 'project' => $project,
                 'form' => $form->createView(),
                 'form_toAdmin' => $formSubmitToAdmin->createView(),
+                'upload_image_form' => $uplodImageForm->createView(),
+                'upload_file_form' => $uplodFileForm->createView(),
                 'page' => $page,
             ));
         } else {

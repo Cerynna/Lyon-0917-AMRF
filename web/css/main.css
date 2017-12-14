@@ -820,7 +820,7 @@ section {
   section .content {
     margin-top: 30px;
     /*margin-bottom: 50px;*/
-    background-color: #fff;
+    background-color: #FFFFFF;
     padding: 30px 50px;
     z-index: 1; }
   section h2 {
@@ -841,7 +841,7 @@ section {
     margin-bottom: 10px; }
   section h4 {
     font-family: "ERASDEMI", sans-serif;
-    font-size: 1.4em;
+    font-size: 1.1em;
     line-height: 1em;
     margin-top: 15px; }
   section h5 {
@@ -870,6 +870,60 @@ section {
     padding: 0 !important; }
   section .list-group-item .row {
     margin: 0 !important; }
+  section .imageProject {
+    position: relative;
+    min-height: 200px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-origin: content-box;
+    padding: 5px; }
+  section .imageCouv {
+    border: 2px rgba(0, 158, 61, 0.99) solid; }
+  section .fa-mini {
+    background: #FFFFFF;
+    color: rgba(0, 158, 61, 0.99);
+    border: 2px rgba(0, 158, 61, 0.99) solid;
+    font-size: 15px;
+    min-height: 30px;
+    min-width: 30px;
+    padding: 5px;
+    border-radius: 5px;
+    text-align: center;
+    vertical-align: middle;
+    margin-right: 1px;
+    margin-bottom: 5px;
+    cursor: pointer; }
+    section .fa-mini:hover {
+      background: rgba(0, 158, 61, 0.99);
+      color: #FFFFFF;
+      border: 2px #FFFFFF solid;
+      /*2f92a8*/ }
+  section .modal-content {
+    background-color: rgba(0, 158, 61, 0.99);
+    color: white; }
+    section .modal-content input[type="file"] {
+      height: 0;
+      width: 0;
+      overflow: hidden;
+      border: 0 solid #17608f; }
+    section .modal-content label {
+      background-color: #FFFFFF;
+      border: 2px solid rgba(0, 158, 61, 0.99);
+      color: rgba(0, 158, 61, 0.99);
+      min-width: 100%;
+      font-size: 1em;
+      min-height: 30px;
+      padding: 5px;
+      border-radius: 5px;
+      text-align: center;
+      vertical-align: middle;
+      margin-right: 1px;
+      cursor: pointer; }
+      section .modal-content label:hover {
+        background: rgba(0, 110, 45, 0.5);
+        color: #FFFFFF;
+        border: 2px solid #FFFFFF;
+        /*2f92a8*/ }
 
 section form {
   /* .cleIcon {
@@ -1550,13 +1604,15 @@ section form {
     .tabPannel ul a {
       color: rgba(0, 158, 61, 0.99);
       background-color: #FFFFFF;
-      padding: 20px;
       text-decoration: none; }
     .tabPannel ul .active a {
       background-color: #FFFFFF;
       border-bottom: 4px solid rgba(0, 158, 61, 0.99);
       color: rgba(0, 158, 61, 0.99);
       text-decoration: none; }
+
+.tabLi a {
+  padding: 20px; }
 
 .btnFavoris, .btnFavorisPart, .btnFavorisSelect {
   border: hidden;
@@ -1565,45 +1621,43 @@ section form {
   .btnFavoris i, .btnFavorisPart i, .btnFavorisSelect i {
     color: rgba(0, 158, 61, 0.99); }
 
-.project {
-  -webkit-border-radius: 10px;
-  -moz-border-radius: 10px;
-  -ms-border-radius: 10px;
-  border-radius: 10px;
-  box-shadow: 0.05em 0.05em 0.05em 0.05em rgba(0, 0, 0, 0.4);
-  /*box-shadow: 5px 5px  rgba(0, 0, 0, 0.6);*/
-  padding: 15px 20px !important; }
-  .project img {
-    border: 2px solid #FFF;
-    -webkit-border-radius: 5px;
-    -moz-border-radius: 5px;
-    -ms-border-radius: 5px;
-    border-radius: 5px; }
-  .project .img-big {
-    margin: 0;
-    -webkit-border-radius: 5px;
-    -moz-border-radius: 5px;
-    -ms-border-radius: 5px;
-    border-radius: 5px;
-    max-width: 100%;
-    max-height: 180px; }
-  .project .img-preview {
-    text-align: center;
-    height: 200px; }
-  .project .img-mini {
-    margin: 5px;
-    -webkit-border-radius: 2px;
-    -moz-border-radius: 2px;
-    -ms-border-radius: 2px;
-    border-radius: 2px;
-    transition: all .2s ease-in-out;
-    width: 50px; }
-  .project .img-mini:hover {
-    transform: scale(1.1); }
-  .project h3 {
-    line-height: normal; }
-  .project .row {
-    margin: 0 0 20px 0; }
+.project img {
+  border: 2px solid #FFF;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  border-radius: 5px; }
+
+.project .img-big {
+  margin: 0;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  border-radius: 5px;
+  max-width: 100%;
+  max-height: 180px; }
+
+.project .img-preview {
+  text-align: center;
+  height: 200px; }
+
+.project .img-mini {
+  margin: 5px;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  -ms-border-radius: 2px;
+  border-radius: 2px;
+  transition: all .2s ease-in-out;
+  width: 50px; }
+
+.project .img-mini:hover {
+  transform: scale(1.1); }
+
+.project h3 {
+  line-height: normal; }
+
+.project .row {
+  margin: 0 0 20px 0; }
 
 .swiper-container {
   width: 100%;
@@ -1901,10 +1955,7 @@ a:hover, a:active {
   display: none; }
 
 .item {
-  max-height: 30vh;
-  min-height: 30vh;
-  overflow: hidden;
-  overflow-y: scroll; }
+  height: 30vh; }
 
 /*
 

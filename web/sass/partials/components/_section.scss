@@ -5,7 +5,7 @@ section {
   .content {
     margin-top: 30px;
     /*margin-bottom: 50px;*/
-    background-color: #fff;
+    background-color: $color2;
     padding: 30px 50px;
     z-index: 1;
   }
@@ -32,7 +32,7 @@ section {
   }
   h4 {
     font-family: $font3, sans-serif;
-    font-size: 1.4em;
+    font-size: 1.1em;
     line-height: 1em;
     margin-top: 15px;
   }
@@ -74,6 +74,70 @@ section {
     }
     .row {
       margin: 0 !important;
+    }
+  }
+  .imageProject {
+    position: relative;
+    min-height: 200px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-origin: content-box;
+    padding: 5px;
+  }
+  .imageCouv {
+    border: 2px $color1 solid;
+  }
+  .fa-mini {
+    background: $color2;
+    color: $color1;
+    border: 2px $color1 solid;
+    font-size: 15px;
+    min-height: 30px;
+    min-width: 30px;
+    padding: 5px;
+    border-radius: 5px;
+    text-align: center;
+    vertical-align: middle;
+    margin-right: 1px;
+    margin-bottom: 5px;
+    cursor: pointer;
+    &:hover {
+      background: $color1;
+      color: $color2;
+      border: 2px $color2 solid;
+      /*2f92a8*/
+    }
+  }
+
+  .modal-content {
+    background-color: $color1;
+    color: white;
+    input[type="file"] {
+      height: 0;
+      width: 0;
+      overflow: hidden;
+      border: 0 solid #17608f;
+    }
+    label {
+      background-color: $color2;
+      border: 2px solid $color1;
+      color: $color1;
+      min-width: 100%;
+      font-size: 1em;
+      min-height: 30px;
+      padding: 5px;
+      border-radius: 5px;
+      text-align: center;
+      vertical-align: middle;
+      margin-right: 1px;
+      cursor: pointer;
+      &:hover {
+        background: $color6;
+        color: $color2;
+        border: 2px solid $color2;
+        /*2f92a8*/
+      }
+
     }
   }
 }
