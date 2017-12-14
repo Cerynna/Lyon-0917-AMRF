@@ -70,14 +70,23 @@ class MayorController extends Controller
      */
     public function mayorProjectAction()
     {
-        return $this->render('private/maires/maireProjet.html.twig');
+        $user = $this->get('security.token_storage')->getToken()->getUser();
+        $mayorid = $user->getMayor()->getid();
+
+        $em = $this->getDoctrine()->getManager();
+        $projects = $em->getRepository("AppBundle:Project")->getProjectByMayor($mayorid);
+
+
+        return $this->render('private/maires/maireProjet.html.twig', array(
+            'projects'=>$projects,
+        ));
     }
 
     /**
      * @Route("project/new", name="mayor_project_new")
      * @Method({"GET", "POST"})
      */
-    public function mayorProjectNewAction (Request $request, SlugService $slugService)
+    public function mayorProjectNewAction(Request $request, SlugService $slugService)
     {
         $projectTitle = new TitleProject();
         $form = $this->createForm('AppBundle\Form\TitleProjectType', $projectTitle);
@@ -217,8 +226,7 @@ class MayorController extends Controller
                 'upload_file_form' => $uplodFileForm->createView(),
                 'page' => $page,
             ));
-        }
-        else {
+        } else {
             return $this->redirectToRoute('mayor_index');
         }
     }
