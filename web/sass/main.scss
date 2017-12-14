@@ -315,10 +315,8 @@ a:hover, a:active {
   display: none;
 }
 .item {
-  max-height: 30vh;
-  min-height: 30vh;
-  overflow: hidden;
-  overflow-y: scroll;
+  height: 30vh;
+
 }
 /*
 

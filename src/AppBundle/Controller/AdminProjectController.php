@@ -115,9 +115,7 @@ class AdminProjectController extends Controller
         $editForm->handleRequest($request);
 
         $uploaderImage = new Uploader();
-        $uplodImageForm = $this->createForm('AppBundle\Form\UploaderType', $uploaderImage, [
-            'block_name' => 'image',
-        ]);
+        $uplodImageForm = $this->createForm('AppBundle\Form\UploaderType', $uploaderImage);
         $uplodImageForm->handleRequest($request);
 
         $uploaderFile = new Uploader();
