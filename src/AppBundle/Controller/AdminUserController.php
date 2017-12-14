@@ -30,9 +30,23 @@ class AdminUserController extends Controller
 
 		/*        $users = $em->getRepository('AppBundle:User')->findAll();*/
 
-		$dql = "SELECT u FROM AppBundle:User u";
-		$query = $em->createQuery($dql);
+		$queryBuilder = $em->getRepository('AppBundle:User')->createQueryBuilder('u');
 
+		if ($request->query->getAlnum('login')){
+			$queryBuilder
+				->andwhere('u.login LIKE :login')
+				->setParameter('login', '%' . $request->query->getAlnum('login') . '%');
+		}
+
+		if ($request->query->getAlnum('role')){
+			$queryBuilder
+				->andwhere('u.role LIKE :role')
+				->setParameter('role', "" . $request->query->getAlnum('role') . "");
+		}
+
+		$query = $queryBuilder->getQuery();
+
+		dump($query);
 
 		/**
 		 * @var $paginator \Knp\Component\Pager\Paginator

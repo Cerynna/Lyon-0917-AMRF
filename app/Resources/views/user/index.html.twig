@@ -16,6 +16,34 @@
     </div>
     <h1>Users list</h1>
 
+    <div>
+
+        <form action="{{ path('admin_user_index') }}" method="get" name="filter">
+
+
+            <label for="login">login</label>
+            <input name="login" type="text" onchange="sendFilter()">
+
+
+
+            <label for="mayor">1</label>
+            <input name="role" value="1" type="radio" onchange="sendFilter()">
+            <label for="partner">2</label>
+            <input name="role" value="2" type="radio" onchange="sendFilter()">
+            <label for="admin">3</label>
+            <input name="role" value="3" type="radio" onchange="sendFilter()">
+            <button type="submit" class="btn btn-default btn-sm">Filter</button>
+
+
+            {% set queryParams = app.request.query.all %}
+
+            {% if queryParams is not empty %}{{ app.request.query.get('login') }}{% endif %}
+
+            {{ dump(queryParams) }}
+
+        </form>
+
+    </div>
 
     <table>
         <thead>
@@ -65,6 +93,10 @@
 {% endblock %}
 {% block javascripts %}
     <script>
+        function sendFilter() {
+            $("form[name='filter']").submit();
+        }
+
         $(document).ready(function () {
             $('[data-toggle="tooltip"]').tooltip();
         });
