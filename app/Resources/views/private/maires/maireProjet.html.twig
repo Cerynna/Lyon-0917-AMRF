@@ -11,69 +11,102 @@
             <ul class="list-inline text-center" role="tablist">
                 <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab"
                                                           data-toggle="tab">En cours de saisie</a></li>
-                <li role="presentation"><a href="#envoye" aria-controls="projet" role="tab" data-toggle="tab">Envoyé(s)</a>
+                <li role="presentation"><a href="#envoye" aria-controls="projet" role="tab"
+                                           data-toggle="tab">Envoyé(s)</a>
                 </li>
-                <li role="presentation"><a href="#ligne" aria-controls="projet" role="tab" data-toggle="tab">En
-                        ligne</a>
+                <li role="presentation">
+                    <a href="#ligne" aria-controls="projet" role="tab" data-toggle="tab">
+                        En ligne
+                    </a>
                 </li>
             </ul>
         </div>
         <!-- Tab panes -->
         <div class="hidden-xs tab-content">
+
             <div role="tabpanel" class="tab-pane active" id="home">
                 <h3>Mes projets en cours de saisie</h3>
-                <div class="jumbotron">
-                    {% set options = {'thema':'false','pictures':'false','update': 'true', 'more': 'true', 'id': 1, 'text': 0,} %}
-                    {% include 'components/resumeProject.html.twig' with options %}
-                </div>
+                {% for project in projects %}
+                    {% if project.status == 1 %}
+                        <div class="jumbotron">
+                            {% set options = {'thema':'false','pictures':'false','update': 'true', 'more': 'true', 'id': 1, 'text': 0, 'project': project } %}
+                            {% include 'components/resumeProject.html.twig' with options %}
+                        </div>
+                    {% endif %}
+                {% endfor %}
             </div>
+
             <div role="tabpanel" class="tab-pane" id="envoye">
                 <h3>Mes projets envoyé</h3>
-                <div class="jumbotron">
-                    {% set options = {'thema':'false','pictures':'false','update': 'true', 'more': 'true', 'text': 0} %}
-                    {% include 'components/resumeProject.html.twig' with options %}
-                </div>
+                {% for project in projects %}
+                    {% if project.status == 2 %}
+                        <div class="jumbotron">
+                            {% set options = {'thema':'false','pictures':'false','update': 'true', 'more': 'true', 'id': 1, 'text': 0, 'project': project } %}
+                            {% include 'components/resumeProject.html.twig' with options %}
+                        </div>
+                    {% endif %}
+                {% endfor %}
             </div>
+
             <div role="tabpanel" class="tab-pane" id="ligne">
                 <h3>Mes projets en ligne</h3>
-                <div class="jumbotron">
-
-                    {% set options = {'thema':'false','pictures':'false','update': 'true', 'more': 'true', 'id': 2, 'text': 0} %}
-
-                    {% include 'components/resumeProject.html.twig' with options %}
-                </div>
+                {% for project in projects %}
+                    {% if project.status == 3 %}
+                        <div class="jumbotron">
+                            {% set options = {'thema':'false','pictures':'false','update': 'true', 'more': 'true', 'id': 1, 'text': 0, 'project': project } %}
+                            {% include 'components/resumeProject.html.twig' with options %}
+                        </div>
+                    {% endif %}
+                {% endfor %}
             </div>
-        </div>#}
+        </div>
 
-        {#Swiper#}
-        {#<div class="visible-xs swiper-container">
-            <div class="swiper-pagination"></div>
-            <div class="swiper-wrapper">
-                <div class="swiper-slide">
-                    <h3>Mes projets en cours de saisie</h3>
-                    <div class="jumbotron">
-                        {% set options = {'thema':'false','pictures':'false','update': 'true', 'more': 'true', 'text': 0} %}
-                        {% include 'components/resumeProject.html.twig' with options %}
+        {#        Swiper
+                <div class="visible-xs swiper-container">
+                    <div class="swiper-pagination"></div>
+                    <div class="swiper-wrapper">
+
+                        <div class="swiper-slide">
+                            <h3>Mes projets en cours de saisie</h3>
+                            {% for project in projects %}
+                                {% if project.status == 1 %}
+                                    <div class="jumbotron">
+                                        {% set options = {'thema':'false','pictures':'false','update': 'true', 'more': 'true', 'text': 0} %}
+                                    </div>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+
+                        <div class="swiper-slide">
+                            <h3>Mes projets envoyés</h3>
+                            {% for project in projects %}
+                                {% if project.status == 2 %}
+                                    <div class="jumbotron">
+                                        {% set options = {'thema':'false','pictures':'false','update': 'true', 'more': 'true', 'text': 0} %}
+                                        {% include 'components/resumeProject.html.twig' with options %}
+                                    </div>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+
+                        <div class="swiper-slide">
+                            <h3>Mes projets en ligne</h3>
+                            {% for project in projects %}
+                                {% if project.status == 3 %}
+                                    <div class="jumbotron">
+                                        {% set options = {'thema':'false','pictures':'false','update': 'true', 'more': 'true', 'text': 0} %}
+                                        {% include 'components/resumeProject.html.twig' with options %}
+                                    </div>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+
                     </div>
+                    swiper wrapper
+                    <div class="swiper-button-next"></div>
+                    <div class="swiper-button-prev"></div>
                 </div>
-                <div class="swiper-slide">
-                    <h3>Mes projets envoyés</h3>
-                    <div class="jumbotron">
-                        {% set options = {'thema':'false','pictures':'false','update': 'true', 'more': 'true', 'text': 0} %}
-                        {% include 'components/resumeProject.html.twig' with options %}
-                    </div>
-                </div>
-                <div class="swiper-slide">
-                    <h3>Mes projets en ligne</h3>
-                    <div class="jumbotron">
-                        {% set options = {'thema':'false','pictures':'false','update': 'true', 'more': 'true', 'text': 0} %}
-                        {% include 'components/resumeProject.html.twig' with options %}
-                    </div>
-                </div>
-            </div>#}{#swiper wrapper#}{#
-            <div class="swiper-button-next"></div>
-            <div class="swiper-button-prev"></div>
-        </div>#}{#swiper container#}
+                swiper container#}
     </div>
 {% endblock %}
 

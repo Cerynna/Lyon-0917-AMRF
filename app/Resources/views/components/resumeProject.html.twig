@@ -2,22 +2,22 @@
     {% if options.pictures == "true" and options.project.images is not empty %}
         <div class="col-sm-3 mini-galery">
 
-                <div class="img-list text-center">
-                    {% set imgBase = 'upload/project/' ~ options.project.id ~ '/photos/' ~ options.project.images.0 %}
-                    {% for key, image in options.project.images %}
-                        {% if key != 0 %}
+            <div class="img-list text-center">
+                {% set imgBase = 'upload/project/' ~ options.project.id ~ '/photos/' ~ options.project.images.0 %}
+                {% for key, image in options.project.images %}
+                    {% if key != 0 %}
                         {% set img = 'upload/project/' ~ options.project.id ~ '/photos/' ~ image %}
                         <img class="img-mini" src="{{ asset(img) }}"
                              onmouseover="showImg('my-img{{ options.project.id }}','{{ asset(img) }}');"
                              onmouseout="hideImg('my-img{{ options.project.id }}','{{ asset(imgBase) }}');"/>
                     {% endif %}
-                    {% endfor %}
-                </div>
-                <div class="img-preview">
+                {% endfor %}
+            </div>
+            <div class="img-preview">
 
-                    <img id="my-img{{ options.project.id }}" src="{{ asset(imgBase) }}"
-                         class="img-big"/>
-                </div>
+                <img id="my-img{{ options.project.id }}" src="{{ asset(imgBase) }}"
+                     class="img-big"/>
+            </div>
         </div>
     {% endif %}
     <div class="{% if options.pictures == "true" and options.project.images is not empty %} col-sm-9 {% else %}col-xs-12{% endif %}">
