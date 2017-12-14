@@ -112,8 +112,6 @@ class MayorController extends Controller
             $em->flush();
             return $this->redirectToRoute('mayor_project_edit', array('slug' => $project->getSlug()));
         }
-
-
         return $this->render(':private/maires:projectNew.html.twig', [
             'form' => $form->createView(),
         ]);
