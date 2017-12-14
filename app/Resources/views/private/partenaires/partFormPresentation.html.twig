@@ -310,8 +310,7 @@
         </div>
     </div>
     {{ form_row(form._token) }}
-    {{ form_widget(form) }}
-    {{ form_end(form) }}
+    {{ form_end(form, {'render_rest': false}) }}
 {% endblock %}
 {% block javascripts %}
     <script>
