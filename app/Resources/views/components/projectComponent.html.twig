@@ -1,18 +1,18 @@
-<div class="jumbotron project">
+<div class=" project">
     <div class="row">
         <div class="col-sm-4 text-left">
+
             <h3>Thématiques</h3>
-            <span class="label label-themat">Mobilité</span>
-            <span class="label label-themat">Numérique</span>
-            <span class="label label-themat">Aménagement du territoire</span>
+            {% for thema in project.themes %}
+                <span class="label label-themat">{{ thema.name }}</span>
+            {% endfor %}
         </div>
         <div class="col-sm-4 text-left">
             <h3>Mots-clefs</h3>
-            <span class="label label-motCle">covoiturage</span>
-            <span class="label label-motCle">court-voiturage</span>
-            <span class="label label-motCle">transports</span>
-            <span class="label label-motCle">voiture</span>
-            <span class="label label-motCle">lien</span>
+            {% for keyWord in project.keyWords %}
+                <span class="label label-motCle">{{ keyWord.name }}</span>
+            {% endfor %}
+
         </div>
         <div class="col-sm-4">
             <div class="col-sm-9">
@@ -32,31 +32,31 @@
         <div class="col-md-4">
             <div class="panel panel-default" id="cityName">
                 <div class="panel-heading text-left" role="tab" id="headingList">
-                    <h4>Commune : LES MOLIERES</h4>
+                    <h4>Commune : {{ project.mayor.town }}</h4>
                 </div>
                 <ul class="list-group">
                     <li class="list-group-item">
                         <div class="row">
                             <div class="col-xs-6 text-left">Département :</div>
-                            <div class="col-xs-6 text-right">Essonne</div>
+                            <div class="col-xs-6 text-right">{{ project.mayor.department }}</div>
                         </div>
                     </li>
                     <li class="list-group-item">
                         <div class="row">
                             <div class="col-xs-6 text-left">Code Postal :</div>
-                            <div class="col-xs-6 text-right">91xxx</div>
+                            <div class="col-xs-6 text-right">{{ project.mayor.zipCode }}</div>
                         </div>
                     </li>
                     <li class="list-group-item">
                         <div class="row">
                             <div class="col-xs-6 text-left">Population :</div>
-                            <div class="col-xs-6 text-right">2 000</div>
+                            <div class="col-xs-6 text-right">{{ project.mayor.population }}</div>
                         </div>
                     </li>
                     <li class="list-group-item">
                         <div class="row">
                             <div class="col-xs-6 text-left">Code INSEE :</div>
-                            <div class="col-xs-6 text-right">91411</div>
+                            <div class="col-xs-6 text-right">{{ project.mayor.insee }}</div>
                         </div>
                     </li>
                 </ul>
@@ -71,57 +71,56 @@
                     <li class="list-group-item">
                         <div class="row">
                             <div class="col-xs-6 text-left">Nom du Maire :</div>
-                            <div class="col-xs-6 text-right">Yvan LUBRANESKI</div>
+                            <div class="col-xs-6 text-right">{{ project.mayor.firstName }} {{ project.mayor.lastName }}</div>
                         </div>
                     </li>
                     <li class="list-group-item">
                         <div class="row">
                             <div class="col-xs-6 text-left">Tél Mairie :</div>
-                            <div class="col-xs-6 text-right">0160120799</div>
+                            <div class="col-xs-6 text-right">{{ project.mayor.phone }}</div>
                         </div>
                     </li>
                     <li class="list-group-item">
                         <div class="row">
                             <div class="col-xs-6 text-left">Tél mobile :</div>
-                            <div class="col-xs-6 text-right">@LesMolieres91</div>
+                            <div class="col-xs-6 text-right">{{ project.mayor.phone }}</div>
                         </div>
                     </li>
                     <li class="list-group-item">
                         <div class="row">
                             <div class="col-xs-6 text-left">Email</div>
-                            <div class="col-xs-6 text-right">...</div>
+                            <div class="col-xs-6 text-right">{{ project.mayor.email }}</div>
                         </div>
                     </li>
                     <li class="list-group-item text-center">
-                        <a href="#"><i class="fa fa-link"></i></a>
-                        <a href="#"><i class="fa fa-youtube-square"></i></a>
-                        <a href="#"><i class="fa fa-facebook-square"></i></a>
-                        <a href="#"><i class="fa fa-twitter-square"></i></a>
+                        <a href="{{ project.mayor.url }}"><i class="fa fa-link"></i></a>
+                        <a href="{{ project.mayor.google }}"><i class="fa fa-google"></i></a>
+                        <a href="{{ project.mayor.facebook }}"><i class="fa fa-facebook-square"></i></a>
+                        <a href="{{ project.mayor.twitter }}"><i class="fa fa-twitter-square"></i></a>
 
                     </li>
                 </ul>
             </div>
         </div>
         <div class="col-md-4 mini-galery">
+            {% if project.images %}
+                <div class="img-list text-center">
+                    {% set imgBase = 'upload/project/' ~ project.id ~ '/photos/' ~ project.images.0 %}
+                    {% for key, image in project.images %}
+                        {% if key != 0 %}
+                            {% set img = 'upload/project/' ~ project.id ~ '/photos/' ~ image %}
+                            <img class="img-mini" src="{{ asset(img) }}"
+                                 onmouseover="showImg('my-img{{ project.id }}','{{ asset(img) }}');"
+                                 onmouseout="hideImg('my-img{{ project.id }}','{{ asset(imgBase) }}');"/>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+                <div class="img-preview">
 
-            <ul class="list-group text-center">
-                <li>
-                    <img class="img-mini" src="{{ asset('/img/bck-2.jpg') }}" width="50px"
-                         onmouseover="showImg('my-img2','{{ asset('/img/bck-2.jpg') }}');"
-                         onmouseout="hideImg('my-img2','{{ asset('/img/bck-2.jpg') }}');"/>
-                    <img class="img-mini" src="{{ asset('/img/bck-3.jpg') }}" width="50px"
-                         onmouseover="showImg('my-img2','{{ asset('/img/bck-3.jpg') }}');"
-                         onmouseout="hideImg('my-img2','{{ asset('/img/bck-1.jpg') }}');"/>
-                    <img class="img-mini" src="{{ asset('/img/bck-4.jpg') }}" width="50px"
-                         onmouseover="showImg('my-img2','{{ asset('/img/bck-4.jpg') }}');"
-                         onmouseout="hideImg('my-img2','{{ asset('/img/bck-1.jpg') }}');"/>
-                </li>
-                <li class="img-preview">
-                    <img id="my-img2" src="{{ asset('/img/bck-1.jpg') }}" class="img-big"/>
-                </li>
-            </ul>
-
-
+                    <img id="my-img{{ project.id }}" src="{{ asset(imgBase) }}"
+                         class="img-big"/>
+                </div>
+            {% endif %}
         </div>
     </div>
     <div class="row">
@@ -131,8 +130,8 @@
                     <div class="panel-heading text-left" id="headingList">
                         <h4>Année de réalisation</h4>
                     </div>
-                    <div class="panel-body">
-                        2017
+                    <div class="panel-body text-right">
+                        {{ project.projectDate|date('m/Y') }}
                     </div>
                 </div>
             </div>
@@ -141,8 +140,8 @@
                     <div class="panel-heading text-left" id="headingList">
                         <h4>Durée</h4>
                     </div>
-                    <div class="panel-body">
-                        2017-2020
+                    <div class="panel-body text-right">
+                        {{ project.projectDuration }}
                     </div>
                 </div>
             </div>
@@ -151,8 +150,8 @@
                     <div class="panel-heading text-left" id="headingList">
                         <h4>Coût global</h4>
                     </div>
-                    <div class="panel-body">
-                        2000 €
+                    <div class="panel-body text-right">
+                        {{ project.projectCost }}
                     </div>
                 </div>
             </div>
@@ -161,8 +160,8 @@
                     <div class="panel-heading text-left" id="headingList">
                         <h4>Cofinancements</h4>
                     </div>
-                    <div class="panel-body">
-                        non
+                    <div class="panel-body text-right">
+                        {{ project.projectCoFinance }}
                     </div>
                 </div>
             </div>
@@ -171,74 +170,42 @@
     <div class="row">
         <h3>Résumé</h3>
         <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-            dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-            ex
-            ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-            fugiat
-            nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-            mollit
-            anim id est laborum.
+            {{ project.descResume }}
         </p>
         <div class="divider"></div>
         <h3>Contexte</h3>
         <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-            dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-            ex
-            ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-            fugiat
-            nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-            mollit
-            anim id est laborum.
+            {{ project.descContext }}
         </p>
         <div class="divider"></div>
         <h3>Objectifs</h3>
         <p>
-            Le maillage en transports collectifs étant faible, il y a un intérêt majeur à étudier des modes de
-            transports collectifs nouveaux et complémentaires.
-            Transformer le véhicule particulier en un mode nouveau de transport collectif
+            {{ project.descGoal }}
         </p>
         <div class="divider"></div>
         <h3>Déroulement</h3>
         <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-            dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-            ex
-            ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-            fugiat
-            nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-            mollit
-            anim id est laborum.
+            {{ project.descProgress }}
         </p>
         <div class="divider"></div>
         <h3>Partenaires mobilisés</h3>
         <p>
-            Parc Naturel Régional de la Haute Vallée de Chevreuse
+            {{ project.descPartners }}
         </p>
         <div class="divider"></div>
         <h3>Résultats obtenus</h3>
         <p>
-            En 4 mois, 80 inscrits sur la commune et déjà une quinzaine d'utilisateurs réguliers.
+            {{ project.descResults }}
         </p>
         <div class="divider"></div>
         <h3>Difficultés rencontrées</h3>
         <p>
-            Une masse critique d'utilisateurs est nécessaire pour que l'application propose à l'usager un grand
-            nombre
-            de choix. Le démarrage est donc long. Nous avons cependant bénéficié d'un partenariat entre
-            l'application
-            mobile et le Département au moment du lancement dans notre commune.
+            {{ project.descDifficulties }}
         </p>
         <div class="divider"></div>
         <h3>Conseils</h3>
         <p>
-            Voir les expériences alentours, choisir une application qui est utilisée dans des territoires voisins
-            et/ou
-            travailler un partenariat avec son EPCI, Parc Naturel, Syndicat de transports ou toute autre
-            organisation
-            publique pertinente.
-            Avoir un plan de communication articulé dans le temps et très visible
+            {{ project.descAdvices }}
         </p>
     </div>
     <div class="row">
@@ -247,11 +214,11 @@
                 Pour plus d'informations
             </div>
             <ul class="list-group">
-                <li class="list-group-item">Personne en charge du projet : Yvan LUBRANESKI - Frédéric FABRE</li>
-                <li class="list-group-item">Fonction : Maire et 1er Adjoint</li>
-                <li class="list-group-item">Email : lubraneski@gmail.com</li>
-                <li class="list-group-item">Téléphone : 686279986</li>
-                <li class="list-group-item">Documents complémentaires :</li>
+                <li class="list-group-item">Personne en charge du projet : {{ project.contactName }}</li>
+                <li class="list-group-item">Fonction : {{ project.contactOccupation }}</li>
+                <li class="list-group-item">Email : {{ project.contactEmail }}m</li>
+                <li class="list-group-item">Téléphone : {{ project.contactPhone }}</li>
+                <li class="list-group-item">Documents complémentaires : {{ project.file }}</li>
             </ul>
         </div>
     </div>

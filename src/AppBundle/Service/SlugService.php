@@ -11,7 +11,7 @@ namespace AppBundle\Service;
 
 class SlugService
 {
-	Public function slug($slug)
+	public function slug($slug)
 	{
 		// replace non letter or digits by -
 		$slug = preg_replace('~[^\pL\d]+~u', '-', $slug);

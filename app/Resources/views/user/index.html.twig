@@ -1,96 +1,108 @@
 {% extends 'private/admin/baseAdmin.html.twig' %}
 
 {% block body %}
-    <div class="menu-admin menu-user">
-        <ul>
-            <li>
-                <a href="{{ path('admin_user_index') }}" data-toggle="tooltip" data-placement="right"
-                   title="Liste Utilisateur"><i class="fa fa-users fa-admin"></i></a>
-            </li>
-            <li>
-                <a href="{{ path('admin_user_new') }}" data-toggle="tooltip" data-placement="right"
-                   title="Nouvel Utilisateur"><i
-                            class="fa fa-user-plus fa-admin"></i></a>
-            </li>
-        </ul>
-    </div>
-    <h1>Users list</h1>
+<div class="menu-admin menu-user">
+    <ul>
+        <li>
+            <a href="{{ path('admin_user_index') }}" data-toggle="tooltip" data-placement="right"
+               title="Liste Utilisateur"><i class="fa fa-users fa-admin"></i></a>
+        </li>
+        <li>
+            <a href="{{ path('admin_user_new') }}" data-toggle="tooltip" data-placement="right"
+               title="Nouvel Utilisateur"><i
+                        class="fa fa-user-plus fa-admin"></i></a>
+        </li>
+    </ul>
+</div>
+<h1>Users list</h1>
 
-    <div>
+<div>
 
-        <form action="{{ path('admin_user_index') }}" method="get" name="filter">
-
-
-            <label for="login">login</label>
-            <input name="login" type="text" onchange="sendFilter()">
+    <form action="{{ path('admin_user_index') }}" method="get" name="filter">
 
 
-
-            <label for="mayor">1</label>
-            <input name="role" value="1" type="radio" onchange="sendFilter()">
-            <label for="partner">2</label>
-            <input name="role" value="2" type="radio" onchange="sendFilter()">
-            <label for="admin">3</label>
-            <input name="role" value="3" type="radio" onchange="sendFilter()">
-            <button type="submit" class="btn btn-default btn-sm">Filter</button>
+        <label for="login">login</label>
+        <input value="{{ login }}" name="login" type="text" onchange="sendFilter()">
 
 
-            {% set queryParams = app.request.query.all %}
+        <label for="mayor">1</label>
+        <input
+                {% if role == 1 %}
+                checked
+                {% endif %}
+                name="role" value="1" type="radio" onchange="sendFilter()">
+        <label for="partner">2</label>
+        <input
+                {% if role == 2 %}
+                checked
+                {% endif %}
+                name="role" value="2" type="radio" onchange="sendFilter()">
+        <label for="admin">3</label>
+        <input
+                {% if role == 3 %}
+                checked
+                {% endif %}
+                name="role" value="3" type="radio" onchange="sendFilter()">
 
-            {% if queryParams is not empty %}{{ app.request.query.get('login') }}{% endif %}
+        <button type="submit" class="btn btn-default btn-sm">Filter</button>
 
-{#
-            {{ dump(queryParams) }}
-#}
 
-        </form>
+        {% set queryParams = app.request.query.all %}
 
-    </div>
+        {% if queryParams is not empty %}{{ app.request.query.get('login') }}{% endif %}
 
-    <table>
-        <thead>
+        {#
+                    {{ dump(queryParams) }}
+        #}
+
+    </form>
+
+</div>
+
+<table>
+    <thead>
+    <tr>
+        <th>Actions</th>
+        <th>ID</th>
+        <th>Login</th>
+        <th>Role</th>
+        <th>Status</th>
+        <th>Email</th>
+        <th>{{ knp_pagination_sortable(users, 'Creation Date', 'u.creationDate') }}</th>
+        <th>{{ knp_pagination_sortable(users, 'Last login', 'u.login') }}</th>
+        <th>Mayor_id</th>
+
+    </tr>
+    </thead>
+    <tbody>
+    {% for user in users %}
         <tr>
-            <th>Actions</th>
-            <th>ID</th>
-            <th>Login</th>
-            <th>Role</th>
-            <th>Status</th>
-            <th>Email</th>
-            <th>{{ knp_pagination_sortable(users, 'Creation Date', 'u.creationDate') }}</th>
-            <th>{{ knp_pagination_sortable(users, 'Last login', 'u.login') }}</th>
-            <th>Mayor_id</th>
+            <td>
+                <a href="{{ path('admin_user_show', { 'id': user.id }) }}" data-toggle="tooltip"
+                   data-placement="left" title="Voir"><i class="fa fa-eye fa-admin-mini"></i></a>
+                <a href="{{ path('admin_user_edit', { 'id': user.id }) }}" data-toggle="tooltip"
+                   data-placement="right" title="Editer"><i class="fa fa-pencil fa-admin-mini"></i></a>
+            </td>
+            <td><a href="{{ path('admin_user_show', { 'id': user.id }) }}">{{ user.id }}</a></td>
+            <td>{{ user.login }}</td>
+            <td>{{ user.role }}</td>
+            <td>{{ user.status }}</td>
+            <td>{{ user.email }}</td>
+            <td>{% if user.creationDate %}{{ user.creationDate|date('Y-m-d H:i:s') }}{% endif %}</td>
+            <td>{% if user.lastLogin %}{{ user.lastLogin|date('Y-m-d H:i:s') }}{% endif %}</td>
+            <td>
+                {% if user.mayor %}{{ user.mayor.id }}{% endif %}
+                {% if user.partner %}{{ user.partner.id }}{% endif %}
+            </td>
 
         </tr>
-        </thead>
-        <tbody>
-        {% for user in users %}
-            <tr>
-                <td>
-                    <a href="{{ path('admin_user_show', { 'id': user.id }) }}" data-toggle="tooltip"
-                       data-placement="left" title="Voir"><i class="fa fa-eye fa-admin-mini"></i></a>
-                    <a href="{{ path('admin_user_edit', { 'id': user.id }) }}" data-toggle="tooltip"
-                       data-placement="right" title="Editer"><i class="fa fa-pencil fa-admin-mini"></i></a>
-                </td>
-                <td><a href="{{ path('admin_user_show', { 'id': user.id }) }}">{{ user.id }}</a></td>
-                <td>{{ user.login }}</td>
-                <td>{{ user.role }}</td>
-                <td>{{ user.status }}</td>
-                <td>{{ user.email }}</td>
-                <td>{% if user.creationDate %}{{ user.creationDate|date('Y-m-d H:i:s') }}{% endif %}</td>
-                <td>{% if user.lastLogin %}{{ user.lastLogin|date('Y-m-d H:i:s') }}{% endif %}</td>
-                <td>
-                    {% if user.mayor %}{{ user.mayor.id }}{% endif %}
-                    {% if user.partner %}{{ user.partner.id }}{% endif %}
-                </td>
+    {% endfor %}
+    </tbody>
+</table>
 
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-
-    <div class="navigation text-center">
-        {{ knp_pagination_render(users) }}
-    </div>
+<div class="navigation text-center">
+    {{ knp_pagination_render(users) }}
+</div>
 
 {% endblock %}
 {% block javascripts %}

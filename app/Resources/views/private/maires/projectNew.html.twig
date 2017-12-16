@@ -11,10 +11,17 @@
     {{ form_start(form) }}
 
     <h2>CREER UNE FICHE PROJET</h2>
-    <!-- Nav tabs -->
-    {{ form_errors(form) }}
+    <p>Il faut donner un titre a votre projet pour pouvoir continuer</p>
+    <div class="row">
+        <div class="col-sm-12">
+            {{ form_errors(form) }}
+            {{ form_widget(form.title) }}
+        </div>
+        <div class="col-sm-12 text-right">
+            <button type="submit" class="btn">Etape suivante <i class=" fa fa-angle-right"></i></button>
+        </div>
+    </div>
 
-    {{ form_widget(form) }}
     {{ form_end(form) }}
 {% endblock %}
 {% block javascripts %}

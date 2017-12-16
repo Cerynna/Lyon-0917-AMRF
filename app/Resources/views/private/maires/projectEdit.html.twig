@@ -8,28 +8,87 @@
 
 
 {% block body %}
+    {% set max = app.request.uri|length %}
+    {% set page =  app.request.uri[(max-1):max] %}
+
+    {% if page matches '/^\\d+$/' and page  <= 5 %}
+    {% else %}
+        {% set page = 1 %}
+    {% endif %}
+
+    {% if project.images|length < 4 %}
+        <div id="modalImageUpload" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-sm-10">
+                                {{ form_start(upload_image_form) }}
+                                {{ form_label(upload_image_form.path, 'Télécharger un fichier depuis votre ordinateur') }}
+                                {{ form_widget(upload_image_form.path) }}
+
+                                {{ form_end(upload_image_form) }}
+                            </div>
+                            <div class="col-sm-2 text-right">
+                                <i class="fa fa-times fa-admin-mini" data-dismiss="modal"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    {% endif %}
+
+    {% if project.file|length < 1 %}
+        <div id="modalFileUpload" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-sm-10">
+                                {{ form_start(upload_file_form) }}
+                                {{ form_label(upload_file_form.path, 'Télécharger un fichier depuis votre ordinateur') }}
+                                {{ form_widget(upload_file_form.path) }}
+
+                                {{ form_end(upload_file_form) }}
+                            </div>
+                            <div class="col-sm-2 text-right">
+                                <i class="fa fa-times fa-admin-mini" data-dismiss="modal"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+
+
 
     {{ form_start(form) }}
-
+    <input id="page" name="page" type="text" class="hidden"/>
     <h2>CREER UNE FICHE PROJET</h2>
     <!-- Nav tabs -->
     {{ form_errors(form) }}
     <div class="row tabPannel">
         <ul class="list-inline text-center" role="tablist">
-            <li role="presentation" class=" tabLi active" id="projetMenu">
-                <a href="#projet" aria-controls="projet" role="tab" data-toggle="tab">Mon Projet</a>
+            <li role="presentation" class=" tabLi {% if page == 1 %} active {% endif %}" id="projetMenu">
+                <a href="{{ path('mayor_project_edit', { 'slug': project.slug, 'page': '1' }) }}">Mon Projet</a>
             </li>
-            <li role="presentation" id="realMenu" class="tabLi">
-                <a href="#realisation" aria-controls="realisation" role="tab" data-toggle="tab">Réalisation</a>
+            <li role="presentation" id="realMenu" class="tabLi {% if page == 2 %} active {% endif %}">
+                <a href="{{ path('mayor_project_edit', { 'slug': project.slug, 'page': '2' }) }}">Réalisation</a>
             </li>
-            <li role="presentation" id="descriptionMenu" class="tabLi">
-                <a href="#description" aria-controls="description" role="tab" data-toggle="tab">Description </a>
+            <li role="presentation" id="descriptionMenu" class="tabLi {% if page == 3 %} active {% endif %}">
+                <a href="{{ path('mayor_project_edit', { 'slug': project.slug, 'page': '3' }) }}">Description </a>
             </li>
-            <li role="presentation" id="infoMenu" class="tabLi">
-                <a href="#informations" aria-controls="informations" role="tab" data-toggle="tab">Informations</a>
+            <li role="presentation" id="infoMenu" class="tabLi {% if page == 4 %} active {% endif %}">
+                <a href="{{ path('mayor_project_edit', { 'slug': project.slug, 'page': '4' }) }}">Informations</a>
             </li>
-            <li role="presentation" id="previewMenu" class="tabLi">
-                <a href="#preview" aria-controls="preview" role="tab" data-toggle="tab">Aperçu</a>
+            <li role="presentation" id="previewMenu" class="tabLi {% if page == 5 %} active {% endif %}">
+                <a href="{{ path('mayor_project_edit', { 'slug': project.slug, 'page': '5' }) }}">Aperçu</a>
             </li>
         </ul>
         <div class="text-center">
@@ -38,7 +97,7 @@
 
 
         <div class="tab-content">
-            <div role="tabpanel" class="tab-pane active" id="projet">
+            <div role="tabpanel" class="tab-pane {% if page == 1 %} active {% endif %}" id="projet">
                 <div class="star">Le symbole * indique que cette information est nécessaire.</div>
                 <h3>Mon projet</h3>
                 <div class="form-group col-sm-12">
@@ -76,10 +135,10 @@
                     <div class="col-md-12">
                         <div class="form-group">
                             {{ form_label(form.keyWords, "Saississez jusqu'à 5 mots-clefs") }}
+                            <i>Ecrivez les premières lettres du mot et vérifiez qu'il apparaît dans la liste.</i>
                             {{ form_widget(form.keyWords, {'attr': {
-                                'placeholder': 'Ecrivez les premières lettres du mot et vérifiez qu\'il apparaît dans la liste.'} }) }}
-                            {#<input type="text" max="5" class="form-control" name="motsCle" id="motsCle"
-                                   placeholder="Ecrivez les premières lettres du mot et vérifiez qu'il apparaît dans la liste."/>#}
+                                'placeholder': 'Ecrivez les premières lettres du mot et vérifiez qu\'il apparaît dans la liste.',
+                            } }) }}
                         </div>
                     </div>
                 </div>
@@ -97,15 +156,29 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class=" col-sm-12">
-                        <h3>Illustrations</h3>
-                        <input type="hidden" name="MAX_FILE_SIZE" value="500000">
-                        <input type="file" id="photo" name="photo"/>
-                        <label for="photo">Téléchargez jusqu'à 4 images<br/>
-                            <p>le poids d'une image ne doit pas excéder ... ... Mo</p>
-                            <div class="btn2">Ajouter des images</div>
-                        </label>
-                    </div>
+
+                    <h3>Illustrations</h3>
+                    {% if project.images %}
+                        {% for key, image in project.images %}
+                            {% set img = 'upload/project/' ~ project.id ~ '/photos/' ~ image %}
+                            {% set imglink = 'upload-project-' ~ project.id ~ '-photos-' ~ image %}
+                            <div style="background-image: url('{{ asset(img) }}')"
+                                 class="imageProject col-sm-3{% if key == 0 %} imageCouv {% endif %}">
+                                <i class="fa fa-trash fa-mini" onclick="deleteFile('{{ imglink }}')"></i>
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+                    {% if project.images|length < 4 %}
+                        <div class="col-sm-{{ (3 - project.images|length) * 4 }}">
+                            <label for="photo">Téléchargez jusqu'à 4 images<br/>
+                                <p>le poids d'une image ne doit pas excéder ... ... Mo</p>
+                                <div class="btn2" data-toggle="modal" data-target="#modalImageUpload"><i
+                                            class="fa fa-upload fa-admin"></i> Ajouter des images
+                                </div>
+                            </label>
+                        </div>
+                    {% endif %}
+
                 </div>
                 <div class="row">
                     <div class="col-sm-4 col-sm-offset-4" align="center">
@@ -114,8 +187,7 @@
                         </button>
                     </div>
                     <div class="col-sm-4" align="center">
-                        <a href="#realisation" aria-controls="projet" role="tab" data-toggle="tab"
-                           onclick="changeActiveMenu('realMenu')">
+                        <a onclick="nextStep()">
                             <div class="btn">Etape suivante <i class=" fa fa-angle-right"
                                                                aria-hidden="true"></i>
                             </div>
@@ -123,7 +195,7 @@
                     </div>
                 </div>
             </div>
-            <div role="tabpanel" class="tab-pane" id="realisation">
+            <div role="tabpanel" class="tab-pane {% if page == 2 %} active {% endif %}" id="realisation">
                 <div class="star">Le symbole * indique que cette information est nécessaire.</div>
                 <h3>Réalisation</h3>
                 <div class="row">
@@ -172,8 +244,7 @@
                     </div>
                 </div>
                 <div class="form-group col-sm-4" align="left">
-                    <a href="#projet" aria-controls="projet" role="tab" data-toggle="tab"
-                       onclick="changeActiveMenu('projetMenu')">
+                    <a onclick="backStep()">
                         <div class="btn"><i class=" fa fa-angle-left" aria-hidden="true"></i>
                             Etape précédente
                         </div>
@@ -185,14 +256,13 @@
                     </button>
                 </div>
                 <div class="form-group col-sm-4" align="right">
-                    <a href="#description" aria-controls="description" role="tab" data-toggle="tab"
-                       onclick="changeActiveMenu('descriptionMenu')">
+                    <a onclick="nextStep()">
                         <div class="btn">Etape suivante <i class=" fa fa-angle-right"
                                                            aria-hidden="true"></i></div>
                     </a>
                 </div>
             </div>
-            <div role="tabpanel" class="tab-pane" id="description">
+            <div role="tabpanel" class="tab-pane {% if page == 3 %} active {% endif %}" id="description">
                 <div class="star">Le symbole * indique que cette information est nécessaire.</div>
                 <div class="form-group col-sm-12">
                     {{ form_label(form.descContext, "1/ Contexte *") }}
@@ -272,8 +342,7 @@
                               rows="4"></textarea>#}
                 </div>
                 <div class="form-group col-sm-4" align="left">
-                    <a href="#realisation" aria-controls="realisation" role="tab" data-toggle="tab"
-                       onclick="changeActiveMenu('realMenu')">
+                    <a onclick="backStep()">
                         <div class="btn"><i class=" fa fa-angle-left" aria-hidden="true"></i>
                             Etape précédente
                         </div>
@@ -285,14 +354,13 @@
                     </button>
                 </div>
                 <div class="form-group col-sm-4" align="right">
-                    <a href="#informations" aria-controls="informations" role="tab" data-toggle="tab"
-                       onclick="changeActiveMenu('infoMenu')">
+                    <a onclick="nextStep()">
                         <div class="btn">Etape suivante <i class=" fa fa-angle-right"
                                                            aria-hidden="true"></i></div>
                     </a>
                 </div>
             </div>
-            <div role="tabpanel" class="tab-pane" id="informations">
+            <div role="tabpanel" class="tab-pane {% if page == 4 %} active {% endif %}" id="informations">
                 <div class="star">Le symbole * indique que cette information est nécessaire.</div>
                 <h3>Personne en charge du projet</h3>
                 <div class="form-group col-sm-6">
@@ -321,13 +389,24 @@
                 </div>
                 <h3>Ajout de fichiers</h3>
                 <div class="form-group col-sm-12">
-                    <input type="hidden" name="MAX_FILE_SIZE" value="500000">
-                    <input type="file" id="fichier" name="fichier"/>
-                    <label for="fichier">Vous pouvez ajouter un fichier apportant des informations plus détaillées
-                        (format accepté : PDF ) <br/>
-                        <p>le poids d'un fichier ne doit pas excéder ... ... Mo</p>
-                        <div class="btn2">Télécharger</div>
-                    </label>
+                    {% if project.file is empty %}
+                        <label>Vous pouvez ajouter un fichier apportant des informations plus détaillées
+                            (format accepté : PDF ) <br/>
+                            <p>le poids d'un fichier ne doit pas excéder ... ... Mo</p>
+                            <div class="btn2" data-toggle="modal" data-target="#modalFileUpload">Télécharger</div>
+                        </label>
+                    {% else %}
+                        {% set pdf = 'upload/project/' ~ project.id ~ '/file/' ~ project.file %}
+                        {% set pdflink = 'upload-project-' ~ project.id ~ '-file-' ~ project.file %}
+                        <i class="fa fa-trash-o fa-mini" onclick="deleteFile('{{ pdflink }}')"></i>
+                        <a href="{{ asset(pdf) }}" target="_blank"><i class="fa fa-eye fa-mini"></i></a>
+                        <br/>
+                        <object data="{{ asset(pdf) }}" type="application/pdf" class="preview-pdf" style="width: 100%">
+                            <param name="filename" value="{{ asset(pdf) }}"/>
+                            <a href="{{ asset(pdf) }}" target="_parent" title="le fichier">Voir le fichier...</a>
+                        </object>
+                    {% endif %}
+
                 </div>
                 <h3>Votre projet est visible en ligne ?</h3>
                 <label>Indiquez vos liens ci-dessous</label>
@@ -358,8 +437,7 @@
                     <input id="url" type="url" class="form-control" placeholder="">#}
                 </div>
                 <div class="form-group col-sm-4" align="left">
-                    <a href="#description" aria-controls="description" role="tab" data-toggle="tab"
-                       onclick="changeActiveMenu('descriptionMenu')">
+                    <a onclick="backStep()">
                         <div class="btn"><i class=" fa fa-angle-left" aria-hidden="true"></i>
                             Etape précédente
                         </div>
@@ -371,25 +449,22 @@
                     </button>
                 </div>
                 <div class="form-group col-sm-4" align="right">
-                    <a href="#preview" aria-controls="preview" role="tab" data-toggle="tab"
-                       onclick="changeActiveMenu('previewMenu')">
+                    <a onclick="nextStep()">
                         <div class="btn">Etape suivante <i class=" fa fa-angle-right"
                                                            aria-hidden="true"></i></div>
                     </a>
                 </div>
             </div>
-            <div role="tabpanel" class="tab-pane" id="preview">
+            <div role="tabpanel" class="tab-pane {% if page == 5 %} active {% endif %}" id="preview">
                 <h3>Prévisualisez votre fiche</h3>
                 <p>Ici vous pouvez visualiser votre fiche telle qu'elle apparaîtra sur le site. Si elle vous
                     convient, cliquez sur "Soumettre", sinon, vous pouvez revenir au formulaire pour la
                     corriger.</p>
                 <div class="row">
                     <div class="form-group col-sm-4" align="left">
-                        <a href="#informations" aria-controls="informations" role="tab" data-toggle="tab"
-                           onclick="changeActiveMenu('infoMenu')">
+                        <a onclick="backStep()">
                             <div class="btn"><i class=" fa fa-angle-left" aria-hidden="true"></i>
-                                Etape
-                                précédente
+                                Etape précédente
                             </div>
                         </a>
                     </div>
@@ -397,45 +472,56 @@
                         <button class="btn" type="submit"><i class="fa fa-floppy-o" aria-hidden="true"></i>
                             <span class="hidden-sm">Enregistrer</span>
                         </button>
+                        {{ form_widget(form._token) }}
+
+                        {{ form_end(form, {'render_rest': false}) }}
                     </div>
                     <div class="form-group col-sm-4" align="right">
-                        <button class="btn"><i class="fa fa-envelope-o" aria-hidden="true"></i>
+                        {{ form_start(form_toAdmin) }}
+                        {{ form_widget(form_toAdmin) }}
+                        <button class="btn" type="submit"><i class="fa fa-envelope-o" aria-hidden="true"></i>
                             Soumettre votre fiche
                         </button>
+                        {{ form_end(form_toAdmin) }}
+
                     </div>
                 </div>
                 {% include 'components/projectComponent.html.twig' %}
-                <div class="form-group col-sm-4" align="left">
-                    <a href="#informations" aria-controls="informations" role="tab" data-toggle="tab"
-                       onclick="changeActiveMenu('infoMenu')">
-                        <div class="btn"><i class=" fa fa-angle-left" aria-hidden="true"></i>
-                            Etape
-                            précédente
-                        </div>
-                    </a>
-                </div>
-                <div class="form-group col-sm-4" align="left">
-                    <button class="btn" type="submit"><i class="fa fa-floppy-o" aria-hidden="true"></i>
-                        <span class="hidden-sm">Enregistrer</span>
-                    </button>
-                </div>
-                <div class="form-group col-sm-4" align="right">
-                    <button class="btn"><i class="fa fa-envelope-o" aria-hidden="true"></i>
-                        Soumettre votre fiche
-                    </button>
-                </div>
+
             </div>
         </div>
     </div>
-    {{ form_widget(form) }}
-    {{ form_end(form) }}
+
 {% endblock %}
 {% block javascripts %}
     <script>
-        function changeActiveMenu(idActive) {
-            $('.tabLi').removeClass('active');
-            $('#' + idActive).addClass('active');
+        function nextStep() {
+            $('#page').val('next');
+            $("form[name='{{ form.vars.name }}']").submit();
         }
 
+        function backStep() {
+            $('#page').val('back');
+            $("form[name='{{ form.vars.name }}']").submit();
+        }
+
+        $(document).ready(function () {
+            $('#projet_keyWords').select2();
+        });
+
+        function deleteFile(file) {
+            $.ajax({
+                type: "GET",
+                url: "/deletefile/" + file,
+                success: function () {
+                    location.reload();
+                },
+                error: function () {
+                    alert("la photo ne peu pas être supprimée");
+
+                }
+            })
+
+        }
     </script>
 {% endblock %}

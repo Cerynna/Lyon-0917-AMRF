@@ -6,6 +6,7 @@ use AppBundle\Entity\User;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
@@ -17,7 +18,15 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 class AdminUserController extends Controller
 {
 
+public $sort = [
+	'login' => "",
+	'role' => ""
+];
 
+public function getSort()
+{
+	return $this->sort;
+}
 	/**
 	 * Lists all user entities.
 	 *
@@ -44,9 +53,15 @@ class AdminUserController extends Controller
 				->setParameter('role', "" . $request->query->getAlnum('role') . "");
 		}
 
-		$query = $queryBuilder->getQuery();
+		if (isset ($_GET['login'])){
+			$this->sort['login'] = $_GET['login'];
+		}
 
-/*		dump($query);*/
+		if (isset($_GET['role'])){
+			$this->sort['role'] = $_GET['role'];
+		}
+
+		$query = $queryBuilder->getQuery();
 
 		/**
 		 * @var $paginator \Knp\Component\Pager\Paginator
@@ -61,7 +76,9 @@ class AdminUserController extends Controller
 /*		dump(get_class($paginator));*/
 
 		return $this->render('user/index.html.twig', array(
-			'users' => $result,
+			'users' 	=> $result,
+			'login' 	=> $this->sort['login'],
+			'role' 		=> $this->sort['role']
 		));
 	}
 

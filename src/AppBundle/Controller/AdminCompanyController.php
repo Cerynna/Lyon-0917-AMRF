@@ -55,7 +55,9 @@ class AdminCompanyController extends Controller
      * @Route("/new", name="admin_company_new")
      * @Method({"GET", "POST"})
      */
+
     public function newAction(Request $request, UploadService $upload,  SlugService $slug)
+
     {
         $company = new Company();
         $form = $this->createForm('AppBundle\Form\CompanyType', $company);
@@ -95,12 +97,29 @@ class AdminCompanyController extends Controller
     }
 
     /**
+     * Creates a form to delete a company entity.
+     *
+     * @param Company $company The company entity
+     *
+     * @return \Symfony\Component\Form\Form The form
+     */
+    private function createDeleteForm(Company $company)
+    {
+        return $this->createFormBuilder()
+            ->setAction($this->generateUrl('admin_company_delete', array('id' => $company->getId())))
+            ->setMethod('DELETE')
+            ->getForm();
+    }
+
+    /**
      * Displays a form to edit an existing company entity.
      *
      * @Route("/edit/{slug}", name="admin_company_edit")
      * @Method({"GET", "POST"})
      */
-    public function editAction(Request $request, Company $company, SlugService $slugs)
+
+    public function editAction(Request $request, Company $company, UploadService $upload, SlugService $slugs)
+
     {
         $deleteForm = $this->createDeleteForm($company);
         $editForm = $this->createForm('AppBundle\Form\CompanyType', $company);
@@ -108,11 +127,14 @@ class AdminCompanyController extends Controller
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
+            $logo = $company->getLogo();
+            $company->setLogo($upload->fileUpload($logo, "/company/" . $company->getName(), "IMG"));
             $this->getDoctrine()->getManager()->flush();
 			$company->setSlug($slugs->slug($company->getName()));
 
 			return $this->redirectToRoute('admin_company_edit', array('slug' => $company->getSlug()));
         }
+
 
         return $this->render('company/edit.html.twig', array(
             'company' => $company,
@@ -139,21 +161,5 @@ class AdminCompanyController extends Controller
         }
 
         return $this->redirectToRoute('admin_company_index');
-    }
-
-    /**
-     * Creates a form to delete a company entity.
-     *
-     * @param Company $company The company entity
-     *
-     * @return \Symfony\Component\Form\Form The form
-     */
-    private function createDeleteForm(Company $company)
-    {
-        return $this->createFormBuilder()
-            ->setAction($this->generateUrl('admin_company_delete', array('id' => $company->getId())))
-            ->setMethod('DELETE')
-            ->getForm()
-        ;
     }
 }
