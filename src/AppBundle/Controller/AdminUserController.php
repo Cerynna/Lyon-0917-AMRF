@@ -46,7 +46,7 @@ class AdminUserController extends Controller
 
 		$query = $queryBuilder->getQuery();
 
-		dump($query);
+/*		dump($query);*/
 
 		/**
 		 * @var $paginator \Knp\Component\Pager\Paginator
@@ -58,7 +58,7 @@ class AdminUserController extends Controller
 			$request->query->getInt('limit', 10)
 		);
 
-		dump(get_class($paginator));
+/*		dump(get_class($paginator));*/
 
 		return $this->render('user/index.html.twig', array(
 			'users' => $result,
