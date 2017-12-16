@@ -29,7 +29,7 @@ class AdminProjectController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-		$queryBuilder = $em->getRepository('AppBundle:Mayor')->createQueryBuilder('m');
+		$queryBuilder = $em->getRepository('AppBundle:Project')->createQueryBuilder('m');
 
 		$query = $queryBuilder->getQuery();
 

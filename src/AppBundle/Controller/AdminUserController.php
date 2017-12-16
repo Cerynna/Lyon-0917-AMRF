@@ -73,8 +73,6 @@ public function getSort()
 			$request->query->getInt('limit', 10)
 		);
 
-/*		dump(get_class($paginator));*/
-
 		return $this->render('user/index.html.twig', array(
 			'users' 	=> $result,
 			'login' 	=> $this->sort['login'],

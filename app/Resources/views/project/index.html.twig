@@ -84,7 +84,7 @@
                         <i class="fa fa-cog"></i> Brouillon
                     {% endif %}
                 </div>
-                <div class="col-xs-3 text-right">
+                <div class="col-xs-4 text-right">
                     Crée : <span
                             class="label label-primary">{% if project.creationDate %}{{ project.creationDate|date('d-m-Y') }}{% endif %}</span>
                     Modifié : <span
@@ -142,10 +142,15 @@
                             </tbody>
                         </table>
 
+
                     </div>
+
                 </div>
             </div>
+
+
         </div>
+
 
 
 
@@ -200,19 +205,11 @@
             </td>
         </tr>#}
     {% endfor %}
-
-
     {# </tbody>
  </table>
-
  <ul>
      <li>
          <a href="{{ path('admin_project_new') }}">Create a new project</a>
      </li>
  </ul>#}
-
-    <div class="navigation text-center">
-        {{ knp_pagination_render(projects) }}
-    </div>
-
 {% endblock %}
