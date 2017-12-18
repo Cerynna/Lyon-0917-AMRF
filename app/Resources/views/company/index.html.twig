@@ -3,83 +3,83 @@
 {% block body %}
 
 
-<div class="menu-admin menu-project">
-    <ul>
-        <li>
-            <a href="{{ path('admin_company_index') }}" data-toggle="tooltip" data-placement="right"
-               title="Liste Organisme"><i class="fa fa-archive fa-admin"></i></a>
-        </li>
-        <li>
-            <a href="{{ path('admin_company_new') }}" data-toggle="tooltip" data-placement="right"
-               title="Nouveau Organisme"><i
-                        class="fa fa-plus fa-admin"></i></a>
-        </li>
-    </ul>
-</div>
+    <div class="menu-admin menu-project">
+        <ul>
+            <li>
+                <a href="{{ path('admin_company_index') }}" data-toggle="tooltip" data-placement="right"
+                   title="Liste Organisme"><i class="fa fa-archive fa-admin"></i></a>
+            </li>
+            <li>
+                <a href="{{ path('admin_company_new') }}" data-toggle="tooltip" data-placement="right"
+                   title="Nouveau Organisme"><i
+                            class="fa fa-plus fa-admin"></i></a>
+            </li>
+        </ul>
+    </div>
 
-<h1>List Organisme</h1>
+    <h1>List Organisme</h1>
 
-{#
-<table>
-    <thead>
-    <tr>
-        <th>Id</th>
-        <th>Slug</th>
-        <th>Name</th>
-        <th>Address</th>
-        <th>Zipcode</th>
-        <th>City</th>
-        <th>Activities</th>
-        <th>Presentation</th>
-        <th>Logo</th>
-        <th>Url</th>
-        <th>Facebook</th>
-        <th>Linkedin</th>
-        <th>Twitter</th>
-        <th>Contactfirstname</th>
-        <th>Contactlastname</th>
-        <th>Contactphone</th>
-        <th>Contactemail</th>
-        <th>Actions</th>
-    </tr>
-    </thead>
-    <tbody>
-    {% for company in companies %}
-    <tr>
-        <td><a href="{{ path('admin_company_show', { 'slug': company.slug }) }}">{{ company.id }}</a></td>
-        <td>{{ company.name }}</td>
-        <td>{{ company.address }}</td>
-        <td>{{ company.zipCode }}</td>
-        <td>{{ company.city }}</td>
-        <td>
-            {% if company.activities %}
-                {% for activity in company.activities %}
-                    <span class="label label-primary"> {{ activity.name }}</span>
-                {% endfor %}
-            {% endif %}
-        </td>
-        <td>{{ company.presentation }}</td>
-        <td>{{ company.logo }}</td>
-        <td>{{ company.url }}</td>
-        <td>{{ company.facebook }}</td>
-        <td>{{ company.linkedin }}</td>
-        <td>{{ company.twitter }}</td>
-        <td>{{ company.contactFirstName }}</td>
-        <td>{{ company.contactLastName }}</td>
-        <td>{{ company.contactPhone }}</td>
-        <td>{{ company.contactEmail }}</td>
-        <td>
-            <ul>
-                <li>
-                    <a href="{{ path('admin_company_show', { 'slug': company.slug }) }}">show</a>
-                </li>
-                <li>
-                    <a href="{{ path('admin_company_edit', { 'slug': company.slug }) }}">edit</a>
-                </li>
-            </ul>
-        </td>
-    </tr>
-#}
+    {#
+    <table>
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Slug</th>
+            <th>Name</th>
+            <th>Address</th>
+            <th>Zipcode</th>
+            <th>City</th>
+            <th>Activities</th>
+            <th>Presentation</th>
+            <th>Logo</th>
+            <th>Url</th>
+            <th>Facebook</th>
+            <th>Linkedin</th>
+            <th>Twitter</th>
+            <th>Contactfirstname</th>
+            <th>Contactlastname</th>
+            <th>Contactphone</th>
+            <th>Contactemail</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for company in companies %}
+        <tr>
+            <td><a href="{{ path('admin_company_show', { 'slug': company.slug }) }}">{{ company.id }}</a></td>
+            <td>{{ company.name }}</td>
+            <td>{{ company.address }}</td>
+            <td>{{ company.zipCode }}</td>
+            <td>{{ company.city }}</td>
+            <td>
+                {% if company.activities %}
+                    {% for activity in company.activities %}
+                        <span class="label label-primary"> {{ activity.name }}</span>
+                    {% endfor %}
+                {% endif %}
+            </td>
+            <td>{{ company.presentation }}</td>
+            <td>{{ company.logo }}</td>
+            <td>{{ company.url }}</td>
+            <td>{{ company.facebook }}</td>
+            <td>{{ company.linkedin }}</td>
+            <td>{{ company.twitter }}</td>
+            <td>{{ company.contactFirstName }}</td>
+            <td>{{ company.contactLastName }}</td>
+            <td>{{ company.contactPhone }}</td>
+            <td>{{ company.contactEmail }}</td>
+            <td>
+                <ul>
+                    <li>
+                        <a href="{{ path('admin_company_show', { 'slug': company.slug }) }}">show</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('admin_company_edit', { 'slug': company.slug }) }}">edit</a>
+                    </li>
+                </ul>
+            </td>
+        </tr>
+    #}
 
 
     {% for key, company in companies %}
@@ -92,8 +92,15 @@
                     <a href="{{ path('admin_company_edit', { 'slug': company.slug }) }}"><i
                                 class="fa fa-pencil fa-admin-mini"></i></a>
                 </div>
-                <div class="col-xs-5">
+                <div class="col-xs-3">
                     {{ company.name }} <span class="caret"></span>
+                </div>
+
+
+                <div class="col-xs-5">
+                    {% for activity in company.activities %}
+                    <span class="label label-primary">{{ activity.name }}</span>
+                    {% endfor %}
                 </div>
             </div>
         </h4>
@@ -108,7 +115,7 @@
                         {% endfor %}
 
                     </div>
-                    <div class="col-xs-2">
+                    <div class="col-xs-3">
                         <a href="{{ company.url }}"><i class="fa fa-link fa-admin"></i></a>
                         <a href="{{ company.linkedin }}"><i class="fa fa-linkedin-square fa-admin"></i></a>
                         <a href="{{ company.facebook }}"><i class="fa fa-facebook-square fa-admin"></i></a>
