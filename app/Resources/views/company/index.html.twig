@@ -7,17 +7,17 @@
     <ul>
         <li>
             <a href="{{ path('admin_company_index') }}" data-toggle="tooltip" data-placement="right"
-               title="Liste Projets"><i class="fa fa-archive fa-admin"></i></a>
+               title="Liste Organisme"><i class="fa fa-archive fa-admin"></i></a>
         </li>
         <li>
             <a href="{{ path('admin_company_new') }}" data-toggle="tooltip" data-placement="right"
-               title="Nouveau Projet"><i
+               title="Nouveau Organisme"><i
                         class="fa fa-plus fa-admin"></i></a>
         </li>
     </ul>
 </div>
 
-<h1>Company list</h1>
+<h1>List Organisme</h1>
 
 {#
 <table>
@@ -142,11 +142,7 @@
             </div>
         </div>
 
-
     {% endfor %}
-    </tbody>
-</table>
-
     <div class="navigation text-center">
         {{ knp_pagination_render(companies) }}
     </div>
