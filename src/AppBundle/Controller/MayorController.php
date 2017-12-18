@@ -76,7 +76,7 @@ class MayorController extends Controller
         $mayorid = $user->getMayor()->getid();
 
         $em = $this->getDoctrine()->getManager();
-        $projects = $em->getRepository("Project")->getProjectByMayor($mayorid);
+        $projects = $em->getRepository("AppBundle:Project")->getProjectByMayor($mayorid);
 
 
         return $this->render('private/maires/maireProjet.html.twig', array(

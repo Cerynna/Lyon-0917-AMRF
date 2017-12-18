@@ -45,7 +45,7 @@ class AdminEmailController extends Controller
 
         ];
         $message[] = [
-            'to' => 'cerynna@gmail.com',
+            'to' => 'sthenoz@gmail.com',
             'type' => EmailService::TYPE_MAIL_CONTACT_ADMIN['key'],
         ];
         $message[] = [
