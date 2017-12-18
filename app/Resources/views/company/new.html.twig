@@ -1,16 +1,22 @@
 {% extends 'private/admin/baseAdmin.html.twig' %}
 
 {% block body %}
+    <div class="menu-admin menu-company">
+        <ul>
+            <li>
+                <a href="{{ path('admin_company_index') }}" data-toggle="tooltip" data-placement="right"
+                   title="Liste Organisme"><i class="fa fa-archive fa-admin"></i></a>
+            </li>
+            <li class="submitForm">
+                <a data-toggle="tooltip" data-placement="right"
+                   title="Nouvel Organisme"><i class="fa fa-check fa-admin"></i></a>
+            </li>
+        </ul>
+    </div>
     <h1>Company creation</h1>
 
     {{ form_start(form) }}
         {{ form_widget(form) }}
-        <input type="submit" value="Create" />
     {{ form_end(form) }}
 
-    <ul>
-        <li>
-            <a href="{{ path('admin_company_index') }}">Back to the list</a>
-        </li>
-    </ul>
 {% endblock %}
