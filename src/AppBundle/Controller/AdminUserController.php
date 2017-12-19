@@ -18,15 +18,16 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 class AdminUserController extends Controller
 {
 
-public $sort = [
-	'login' => "",
-	'role' => ""
-];
+	public $sort = [
+		'login' => "",
+		'role' => ""
+	];
 
-public function getSort()
-{
-	return $this->sort;
-}
+	public function getSort()
+	{
+		return $this->sort;
+	}
+
 	/**
 	 * Lists all user entities.
 	 *
@@ -39,25 +40,26 @@ public function getSort()
 
 		/*        $users = $em->getRepository('AppBundle:User')->findAll();*/
 
-		$queryBuilder = $em->getRepository('AppBundle:User')->createQueryBuilder('u');
+		$queryBuilder = $em->getRepository('AppBundle:User')
+			->createQueryBuilder('u');
 
-		if ($request->query->getAlnum('login')){
+		if ($request->query->getAlnum('login')) {
 			$queryBuilder
 				->andwhere('u.login LIKE :login')
 				->setParameter('login', '%' . $request->query->getAlnum('login') . '%');
 		}
 
-		if ($request->query->getAlnum('role')){
+		if ($request->query->getAlnum('role')) {
 			$queryBuilder
 				->andwhere('u.role LIKE :role')
 				->setParameter('role', "" . $request->query->getAlnum('role') . "");
 		}
 
-		if (isset ($_GET['login'])){
+		if (isset ($_GET['login'])) {
 			$this->sort['login'] = $_GET['login'];
 		}
 
-		if (isset($_GET['role'])){
+		if (isset($_GET['role'])) {
 			$this->sort['role'] = $_GET['role'];
 		}
 
@@ -74,9 +76,9 @@ public function getSort()
 		);
 
 		return $this->render('user/index.html.twig', array(
-			'users' 	=> $result,
-			'login' 	=> $this->sort['login'],
-			'role' 		=> $this->sort['role']
+			'users' => $result,
+			'login' => $this->sort['login'],
+			'role' => $this->sort['role']
 		));
 	}
 

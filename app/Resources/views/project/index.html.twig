@@ -2,7 +2,6 @@
 
 {% block body %}
 
-
     <div class="menu-admin menu-project">
         <ul>
             <li>
@@ -18,6 +17,42 @@
     </div>
     <h1>Projects list</h1>
 
+    <div class="jumbotron row">
+        <form action="{{ path('admin_project_index') }}" method="get" name="filter">
+            <div class="col-xs-12">
+                <label for="title">Title</label>
+                <input value="{{ title }}" name="title" type="text" onchange="sendFilter()">
+
+                <label for="name">Theme</label>
+                <input value="{{ value }}" type="checkbox" name="value" onchange="sendFilter()">
+
+                {#{{ include(':components:thematiques.html.twig') }}#}
+
+                <label for="brouillon">Brouillon</label>
+                <input {% if status == 1 %} checked {% endif %} name="status" value="1" type="checkbox" multiple
+                                                                onchange="sendFilter()">
+                <label for="attente">En attente</label>
+                <input {% if status == 2 %} checked {% endif %} name="status" value="2" type="checkbox" multiple
+                                                                onchange="sendFilter()">
+                <label for="publier">Publier</label>
+                <input {% if status == 3 %} checked {% endif %} name="status" value="3" type="checkbox" multiple
+                                                                onchange="sendFilter()">
+
+                <button type="submit" class="btn btn-default btn-sm"><i class="fa fa-search" aria-hidden="true"></i>
+                    Filter
+                </button>
+
+                <a href="{{ path('admin_project_index') }}" data-toggle="tooltip" data-placement="right"
+                   title="Liste Projets"><i class="fa fa-refresh"></i> RESET FILTER</a>
+
+
+                {% set queryParams = app.request.query.all %}
+
+                {% if queryParams is not empty %}{{ app.request.query.get('title') }}{% endif %}
+                {% if queryParams is not empty %}{{ app.request.query.get('value') }}{% endif %}
+            </div>
+        </form>
+    </div>
     {% for key, project in projects %}
 
         <h4 data-toggle="collapse" data-target="#project_{{ key }}">
@@ -105,67 +140,22 @@
         </div>
 
 
-
-
-        {#<tr>
-            <td>
-                <ul>
-                    <li>
-                        <a href="{{ path('admin_project_show', { 'id': project.id }) }}">show</a>
-                    </li>
-                    <li>
-                        <a href="{{ path('admin_project_edit', { 'id': project.id }) }}">edit</a>
-                    </li>
-                </ul>
-            </td>
-            <td><a href="{{ path('admin_project_show', { 'id': project.id }) }}">{{ project.id }}</a></td>
-            <td>{{ project.title }}</td>
-            <td>{{ project.theme }}</td>
-            <td>{% if project.creationDate %}{{ project.creationDate|date('d-m-Y') }}{% endif %}</td>
-            <td>{% if project.updateDate %}{{ project.updateDate|date('d-m-Y') }}{% endif %}</td>
-            <td>{{ project.image }}</td>
-            <td>{% if project.projectDate %}{{ project.projectDate|date('d-m-Y') }}{% endif %}</td>
-            <td>{{ project.projectDuration }}</td>
-            <td>{{ project.projectCost }}</td>
-            <td>{{ project.projectCoFinance }}</td>
-            <td>{{ project.descResume }}</td>
-            <td>{{ project.descContext }}</td>
-            <td>{{ project.descGoal }}</td>
-            <td>{{ project.descProgress }}</td>
-            <td>{{ project.descPartners }}</td>
-            <td>{{ project.descResults }}</td>
-            <td>{{ project.descDifficulties }}</td>
-            <td>{{ project.descAdvices }}</td>
-            <td>{{ project.contactName }}</td>
-            <td>{{ project.contactOccupation }}</td>
-            <td>{{ project.contactEmail }}</td>
-            <td>{{ project.contactPhone }}</td>
-            <td>{{ project.file }}</td>
-            <td>{{ project.url }}</td>
-            <td>{{ project.youtube }}</td>
-            <td>{{ project.facebook }}</td>
-            <td>{{ project.twitter }}</td>
-            <td>{{ project.keyWords }}</td>
-            <td>
-                <ul>
-                    <li>
-                        <a href="{{ path('admin_project_show', { 'id': project.id }) }}">show</a>
-                    </li>
-                    <li>
-                        <a href="{{ path('admin_project_edit', { 'id': project.id }) }}">edit</a>
-                    </li>
-                </ul>
-            </td>
-        </tr>#}
     {% endfor %}
     <div class="navigation text-center">
         {{ knp_pagination_render(projects) }}
     </div>
-    {# </tbody>
- </table>
- <ul>
-     <li>
-         <a href="{{ path('admin_project_new') }}">Create a new project</a>
-     </li>
- </ul>#}
+
+    <script>
+        function sendFilter() {
+            $("form[name='filter']").submit();
+        }
+
+        $(document).ready(function () {
+            $('[data-toggle="tooltip"]').tooltip();
+        });
+
+    </script>
+
+
+
 {% endblock %}
