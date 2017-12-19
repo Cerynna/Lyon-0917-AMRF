@@ -69,8 +69,13 @@ class PublicController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             $message = [
-                'to' => 'cerynna@gmail.com',
-                'type' => EmailService::TYPE_MAIL_EVENT['key'],
+                'to' => 'sthenoz@gmail.com',
+                'from' => $contact->getEmail(),
+                'type' => EmailService::TYPE_MAIL_CONTACT_ADMIN['key'],
+                'name' => $contact->getName(),
+                'firstName' => $contact->getFirstName(),
+                'statut' => $contact->getStatut(),
+                'phone' => $contact->getPhone(),
                 'object' => $contact->getSubject(),
                 'message' => $contact->getMessage(),
             ];
