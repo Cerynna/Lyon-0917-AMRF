@@ -3,6 +3,7 @@
 namespace AppBundle\Controller;
 
 
+use AppBundle\Entity\Contact;
 use AppBundle\Entity\Project;
 use AppBundle\Service\Email\EmailService;
 use SensioLabs\Security\Exception\HttpException;
@@ -60,19 +61,24 @@ class PublicController extends Controller
      */
     public function contactAction(Request $request, EmailService $emailService)
     {
-        $form = $this->createForm('AppBundle\Form\ContactType');
+        $contact = new Contact();
+        $form = $this->createForm('AppBundle\Form\ContactType',$contact);
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $message[] = [
-                'to' => 'sthenoz@gmail.com',
-                'type' => EmailService::TYPE_MAIL_CONTACT_ADMIN['key'],
-            ];
 
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $message = [
+                'to' => 'cerynna@gmail.com',
+                'type' => EmailService::TYPE_MAIL_EVENT['key'],
+                'object' => $contact->getSubject(),
+                'message' => $contact->getMessage(),
+            ];
             $emailService->sendEmail($message);
 
-            return $this->redirectToRoute('home');
+            //return $this->redirectToRoute('home');
         }
+
         return $this->render('public/contact.html.twig', array(
             'form' => $form->createView(),
         ));
