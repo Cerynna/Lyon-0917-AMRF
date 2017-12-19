@@ -65,9 +65,7 @@ class PublicController extends Controller
         $form = $this->createForm('AppBundle\Form\ContactType',$contact);
         $form->handleRequest($request);
 
-
-
-        if ($form->isSubmitted() && $form->isValid()) {
+        if ($form->isSubmitted() && $form->isValid() && $this->captchaverify($request->get('g-recaptcha-response'))) {
             $message = [
                 'to' => 'sthenoz@gmail.com',
                 'from' => $contact->getEmail(),
@@ -81,7 +79,26 @@ class PublicController extends Controller
             ];
             $emailService->sendEmail($message);
 
-            //return $this->redirectToRoute('home');
+            $messageconfirm = [
+                'to' => $contact->getEmail(),
+                'type' => EmailService::TYPE_MAIL_CONTACT_CONFIRM['key'],
+                'object' => $contact->getSubject(),
+                'message' => $contact->getMessage(),
+            ];
+            $emailService->sendEmail($messageconfirm);
+
+            $this->addFlash(
+                'notice',
+                'Votre message a bien été envoyé'
+            );
+
+            return $this->redirectToRoute('home');
+        }else {
+            $this->addFlash(
+                'notice',
+                'Votre message n\'a pas été envoyé, veuillez compléter le formulaire'
+            );
+
         }
 
         return $this->render('public/contact.html.twig', array(
@@ -203,5 +220,21 @@ class PublicController extends Controller
             throw new HttpException('500', 'Invalid call');
         }
 
+    }
+    public function captchaverify($recaptcha)
+    {
+        $url = "https://www.google.com/recaptcha/api/siteverify";
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_HEADER, 0);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
+        curl_setopt($ch, CURLOPT_POST, true);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, array(
+            "secret" => "6LfGgDYUAAAAAJw5_bYZMgSV1S5zhy4SZByMZ9G0", "response" => $recaptcha));
+        $response = curl_exec($ch);
+        curl_close($ch);
+        $data = json_decode($response);
+
+        return $data->success;
     }
 }
