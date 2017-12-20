@@ -16,7 +16,7 @@
     </div>
     <h1>Users list</h1>
 
-    <div>
+    <div class="jumbotron row">
 
         <form action="{{ path('admin_user_index') }}" method="get" name="filter">
 
@@ -31,7 +31,12 @@
             <label for="admin">Admin</label>
             <input {% if role == 3 %} checked {% endif %} name="role" value="3" type="radio" onchange="sendFilter()">
 
-            <button type="submit" class="btn btn-default btn-sm">Filter</button>
+            <button type="submit" class="btn btn-default btn-sm"><i class="fa fa-search" aria-hidden="true"></i>
+                Filter
+            </button>
+
+            <a href="{{ path('admin_user_index') }}" data-toggle="tooltip" data-placement="right"
+               title="Liste Users"><i class="fa fa-refresh"></i> RESET FILTER</a>
 
 
             {% set queryParams = app.request.query.all %}
