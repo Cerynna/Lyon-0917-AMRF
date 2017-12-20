@@ -6,6 +6,8 @@ use AppBundle\Entity\User;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Form\FormEvent;
+use Symfony\Component\Form\FormEvents;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class UserType extends AbstractType
@@ -15,7 +17,8 @@ class UserType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('login')
+        $builder
+            ->add('login')
             ->add('password')
             ->add('status')
             ->add('status', ChoiceType::class, array(
@@ -38,16 +41,17 @@ class UserType extends AbstractType
             ->add('mayor', MayorType::class)
             ->add('partner', PartnerType::class);
     }
-    
-    /**
-     * {@inheritdoc}
-     */
-    public function configureOptions(OptionsResolver $resolver)
-    {
-        $resolver->setDefaults(array(
-            'data_class' => 'AppBundle\Entity\User'
-        ));
-    }
+
+                /**
+                 * {@inheritdoc}
+                 */
+                public
+                function configureOptions(OptionsResolver $resolver)
+                {
+                    $resolver->setDefaults(array(
+                        'data_class' => 'AppBundle\Entity\User'
+                    ));
+                }
 
     /**
      * {@inheritdoc}
@@ -58,4 +62,4 @@ class UserType extends AbstractType
     }
 
 
-}
+            }

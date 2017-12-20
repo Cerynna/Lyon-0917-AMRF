@@ -33,29 +33,37 @@
                 <div role="tabpanel" class="tab-pane active" id="organisme">
                     <div class="star">Le symbole * indique que cette information est nécessaire.</div>
                     <h3>Organisme</h3>
+                    <div class="row">
                     <div class="col-lg-6 col-sm-6">
                         <div class="form-group">
                             {{ form_label(form.name, "Nom de l’organisme *") }}
                             {{ form_widget(form.name) }}
+                            <div class="errorForm">{{ form_errors(form.name) | striptags }}</div>
                         </div>
                     </div>
                     <div class="col-lg-6 col-sm-6">
                         <div class="form-group">
                             {{ form_label(form.address, "Adresse de l’organisme *") }}
                             {{ form_widget(form.address) }}
+                            <div class="errorForm">{{ form_errors(form.address) | striptags }}</div>
                         </div>
                     </div>
+                    </div>
+                    <div class="row">
                     <div class="col-lg-6 col-sm-6">
                         <div class="form-group">
                             {{ form_label(form.zipCode, "Code Postal *") }}
                             {{ form_widget(form.zipCode) }}
+                            <div class="errorForm">{{ form_errors(form.zipCode) | striptags }}</div>
                         </div>
                     </div>
                     <div class="col-lg-6 col-sm-6">
                         <div class="form-group">
-                            {{ form_label(form.zipCode, "Ville *") }}
+                            {{ form_label(form.city, "Ville *") }}
                             {{ form_widget(form.city) }}
+                            <div class="errorForm">{{ form_errors(form.city) | striptags }}</div>
                         </div>
+                    </div>
                     </div>
                     <div class="row">
                         <div class="form-group col-sm-4 col-sm-offset-4" align="center">
@@ -157,47 +165,58 @@
                             </div>
                         </div>
                     </div>
+                    <div class="row">
                     <div class=" col-xs-12">
                         <div class="form-group">
                             {{ form_label(form.presentation, "Présentation * (1200 caractères maximum)") }}
                             {{ form_widget(form.presentation, {'attr': {
                                 'placeholder': 'Présentez votre activité.'} }) }}
+                            <div class="errorForm">{{ form_errors(form.presentation) | striptags }}</div>
                         </div>
+                    </div>
                     </div>
                     <div class="col-xs-12">
                         <div class="form-group">
 
                             <input type="hidden" name="MAX_FILE_SIZE" value="500000">
                             <input type="file" id="photo" name="photo"/>
-                            <p>le poids du fichier ne doit pas excéder ... ... Mo</p>
                             <label for="photo">
                                 <div class="btn2">Ajouter un logo</div>
                             </label>
+                            <p>Le poids du fichier ne doit pas excéder ... ... Mo</p>
                         </div>
                     </div>
+                    <div class="row">
                     <div class="col-lg-6 col-sm-6">
                         <div class="form-group">
-                            <label for="amrf_publicrooterbundle_company_url">Site internet <span class="hidden-sm">(les utilisateurs seront renvoyés vers cette page)</span></label>
+                            {{ form_label(form.url, "Site internet") }}
                             {{ form_widget(form.url) }}
+                            <div class="errorForm">{{ form_errors(form.url) | striptags }}</div>
                         </div>
                     </div>
                     <div class="col-lg-6 col-sm-6">
                         <div class="form-group">
                             {{ form_label(form.facebook, " Facebook ") }}
                             {{ form_widget(form.facebook) }}
+                            <div class="errorForm">{{ form_errors(form.facebook) | striptags }}</div>
                         </div>
                     </div>
+                    </div>
+                    <div class="row">
                     <div class="col-lg-6 col-sm-6">
                         <div class="form-group">
                             {{ form_label(form.linkedin, "Linkedin ") }}
                             {{ form_widget(form.linkedin) }}
+                            <div class="errorForm">{{ form_errors(form.linkedin) | striptags }}</div>
                         </div>
                     </div>
                     <div class="col-lg-6 col-sm-6">
                         <div class="form-group">
                             {{ form_label(form.twitter, "Twitter ") }}
                             {{ form_widget(form.twitter) }}
+                            <div class="errorForm">{{ form_errors(form.twitter) | striptags }}</div>
                         </div>
+                    </div>
                     </div>
                     <div class="form-group col-sm-4" align="left">
                         <a href="#organisme" aria-controls="organisme" role="tab" data-toggle="tab"
@@ -223,29 +242,37 @@
                 <div role="tabpanel" class="tab-pane" id="contact">
                     <div class="star">Le symbole * indique que cette information est nécessaire.</div>
                     <h3>Contact</h3>
+                    <div class="row">
                     <div class="col-lg-6 col-sm-6">
                         <div class="form-group">
                             {{ form_label(form.contactLastName, "Nom du contact *") }}
                             {{ form_widget(form.contactLastName) }}
+                            <div class="errorForm">{{ form_errors(form.contactLastName) | striptags }}</div>
                         </div>
                     </div>
                     <div class="col-lg-6 col-sm-6">
                         <div class="form-group">
                             {{ form_label(form.contactFirstName, "Prenom du contact *") }}
                             {{ form_widget(form.contactFirstName) }}
+                            <div class="errorForm">{{ form_errors(form.contactFirstName) | striptags }}</div>
                         </div>
                     </div>
+                    </div>
+                    <div class="row">
                     <div class="col-lg-6 col-sm-6">
                         <div class="form-group">
                             {{ form_label(form.contactPhone, "Téléphone *") }}
                             {{ form_widget(form.contactPhone) }}
+                            <div class="errorForm">{{ form_errors(form.contactPhone) | striptags }}</div>
                         </div>
                     </div>
                     <div class="col-lg-6 col-sm-6">
                         <div class="form-group">
                             {{ form_label(form.contactEmail, "Email *") }}
                             {{ form_widget(form.contactEmail) }}
+                            <div class="errorForm">{{ form_errors(form.contactEmail) | striptags }}</div>
                         </div>
+                    </div>
                     </div>
                     <div class="form-group col-sm-4" align="left">
                         <a href="#description" aria-controls="description" role="tab" data-toggle="tab"

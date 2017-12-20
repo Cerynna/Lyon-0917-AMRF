@@ -56,8 +56,9 @@ class MayorController extends Controller
             $em->persist($mayor);
             $em->flush();
 
-            return $this->redirectToRoute('admin_mayor_show', array('id' => $mayor->getId()));
+            return $this->redirectToRoute('mayor_profil', array('id' => $mayor->getId()));
         }
+
 
         return $this->render('private/maires/maireProfil.html.twig', array(
             'mayor' => $mayor,
@@ -76,7 +77,7 @@ class MayorController extends Controller
         $mayorid = $user->getMayor()->getid();
 
         $em = $this->getDoctrine()->getManager();
-        $projects = $em->getRepository("Project")->getProjectByMayor($mayorid);
+        $projects = $em->getRepository("AppBundle:Project")->getProjectByMayor($mayorid);
 
 
         return $this->render('private/maires/maireProjet.html.twig', array(

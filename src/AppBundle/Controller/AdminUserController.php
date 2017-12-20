@@ -114,7 +114,6 @@ class AdminUserController extends Controller
                 $user->setPassword($password);
             }
 
-
             $this->getDoctrine()->getManager()->flush();
             $this->addFlash(
                 'notice',
