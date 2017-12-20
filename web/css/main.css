@@ -1587,6 +1587,21 @@ section form {
 .select2-container--classic.select2-container--open .select2-dropdown {
   border-color: rgba(0, 158, 61, 0.99); }
 
+.note-toolbar {
+  background: white !important; }
+  .note-toolbar button, .note-toolbar button:focus, .note-toolbar button:target, .note-toolbar button:active {
+    font-size: 1em;
+    margin: 0;
+    padding: 5px;
+    box-shadow: 0 0 0 0 #FFF;
+    /*box-shadow: 5px 5px  rgba(0, 0, 0, 0.6);*/ }
+    .note-toolbar button:hover, .note-toolbar button:focus:hover, .note-toolbar button:target:hover, .note-toolbar button:active:hover {
+      box-shadow: 0 0 0 0 #FFF;
+      /*box-shadow: 5px 5px  rgba(0, 0, 0, 0.6);*/
+      background: white !important;
+      border: 2px solid rgba(0, 158, 61, 0.99);
+      color: #2a2a2a; }
+
 .tabPannel {
   -webkit-border-radius: 6px;
   -moz-border-radius: 6px;
