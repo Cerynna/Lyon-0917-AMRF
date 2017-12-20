@@ -35,6 +35,10 @@
         </tbody>
     </table>
 
+    <div class="navigation text-center">
+        {{ knp_pagination_render(dictionaries) }}
+    </div>
+
     <ul>
         <li>
             <a href="{{ path('admin_dictionary_new') }}">Create a new dictionary</a>
