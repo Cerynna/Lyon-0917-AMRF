@@ -44,7 +44,12 @@ class AdminProjectController extends Controller
 		$queryBuilder = $em->getRepository('AppBundle:Project')
 			->createQueryBuilder('p');
 
-		if ($request->query->getAlnum('title')) {
+		$title 	= $em->getRepository('AppBundle:Project')->getTitle();
+		$status = $em->getRepository('AppBundle:Project')->getStatus();
+		$theme 	= $em->getRepository('AppBundle:Project')->getTheme();
+
+
+		/*if ($request->query->getAlnum('title')) {
 			$queryBuilder
 				->andwhere('p.title LIKE :title')
 				->setParameter('title', '%' . $request->query->getAlnum('title') . '%');
@@ -61,7 +66,7 @@ class AdminProjectController extends Controller
 				->join('p.themes', 'd')
 				->andwhere('d.value = :value')
 				->setParameter('value',	 $request->query->getAlnum('value'));
-		}
+		}*/
 
 		if (isset ($_GET['title'])) {
 			$this->sort['title'] = $_GET['title'];
@@ -76,7 +81,6 @@ class AdminProjectController extends Controller
 
 		$query = $queryBuilder->getQuery();
 
-		dump($request->query->getAlnum('value'));
 		dump($query->getSql());
 
 		/**
@@ -92,9 +96,9 @@ class AdminProjectController extends Controller
 
 		return $this->render('project/index.html.twig', array(
 			'projects' 		=> $result,
-			'title' 		=> $this->sort['title'],
-			'status'		=> $this->sort['status'],
-			'value' 		=> $this->sort['value']
+			'title' 		=> implode($title),
+			'status'		=> $status,
+			'value' 		=> implode($theme)
 		));
 	}
 

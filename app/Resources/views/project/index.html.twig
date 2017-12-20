@@ -28,15 +28,17 @@
 
                 {#{{ include(':components:thematiques.html.twig') }}#}
 
+                <input {% if status == 1 %} checked {% endif %} name="status" value="1" type="checkbox" multiple
+                >
                 <label for="brouillon">Brouillon</label>
-                <input {% if status == 1 %} checked {% endif %} name="status" value="1" type="radio" multiple
-                                                                onchange="sendFilter()">
+
+                <input {% if status == 2 %} checked {% endif %} name="status" value="2" type="checkbox" multiple
+                >
                 <label for="attente">En attente</label>
-                <input {% if status == 2 %} checked {% endif %} name="status" value="2" type="radio" multiple
-                                                                onchange="sendFilter()">
+
+                <input {% if status == 3 %} checked {% endif %} name="status" value="3" type="checkbox" multiple
+                >
                 <label for="publier">Publier</label>
-                <input {% if status == 3 %} checked {% endif %} name="status" value="3" type="radio" multiple
-                                                                onchange="sendFilter()">
 
                 <button type="submit" class="btn btn-default btn-sm"><i class="fa fa-search" aria-hidden="true"></i>
                     Filter
@@ -153,7 +155,6 @@
         $(document).ready(function () {
             $('[data-toggle="tooltip"]').tooltip();
         });
-
     </script>
 
 
