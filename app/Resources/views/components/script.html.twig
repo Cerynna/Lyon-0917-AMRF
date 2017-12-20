@@ -26,6 +26,19 @@
             ]
         });
     });
+    function deleteFile(file) {
+        $.ajax({
+            type: "GET",
+            url: "/deletefile/" + file,
+            success: function () {
+                location.reload();
+            },
+            error: function () {
+                alert("la photo ne peu pas être supprimée");
 
+            }
+        })
+
+    }
 </script>
 

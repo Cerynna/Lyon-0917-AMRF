@@ -1972,6 +1972,12 @@ a:hover, a:active {
 .item {
   height: 30vh; }
 
+.notice {
+  position: fixed;
+  margin: auto auto;
+  background: rgba(0, 158, 61, 0.99);
+  padding: 10px; }
+
 /*
 
 div {
