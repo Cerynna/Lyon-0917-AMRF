@@ -20,14 +20,28 @@ class AdminMayorController extends Controller
      * @Route("/", name="admin_mayor_index")
      * @Method("GET")
      */
-    public function indexAction()
+    public function indexAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $mayors = $em->getRepository('AppBundle:Mayor')->findAll();
+/*        $mayors = $em->getRepository('AppBundle:Mayor')->findAll();*/
+
+		$queryBuilder = $em->getRepository('AppBundle:Mayor')->createQueryBuilder('m');
+
+		$query = $queryBuilder->getQuery();
+
+		/**
+		 * @var $paginator \Knp\Component\Pager\Paginator
+		 */
+		$paginator = $this->get('knp_paginator');
+		$result = $paginator->paginate(
+			$query,
+			$request->query->getInt('page', 1),
+			$request->query->getInt('limit', 10)
+		);
 
         return $this->render('mayor/index.html.twig', array(
-            'mayors' => $mayors,
+            'mayors' => $result,
         ));
     }
 

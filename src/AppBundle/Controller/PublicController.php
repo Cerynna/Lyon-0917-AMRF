@@ -3,7 +3,9 @@
 namespace AppBundle\Controller;
 
 
+use AppBundle\Entity\Contact;
 use AppBundle\Entity\Project;
+use AppBundle\Service\Email\EmailService;
 use SensioLabs\Security\Exception\HttpException;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -57,9 +59,52 @@ class PublicController extends Controller
     /**
      * @Route("/contact", name="contact")
      */
-    public function contactAction()
+    public function contactAction(Request $request, EmailService $emailService)
     {
-        return $this->render('public/contact.html.twig');
+        $contact = new Contact();
+        $form = $this->createForm('AppBundle\Form\ContactType',$contact);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid() && $this->captchaverify($request->get('g-recaptcha-response'))) {
+            $message = [
+                'to' => 'sthenoz@gmail.com',
+                'from' => $contact->getEmail(),
+                'type' => EmailService::TYPE_MAIL_CONTACT_ADMIN['key'],
+                'name' => $contact->getName(),
+                'firstName' => $contact->getFirstName(),
+                'statut' => $contact->getStatut(),
+                'phone' => $contact->getPhone(),
+                'object' => $contact->getSubject(),
+                'message' => $contact->getMessage(),
+            ];
+            $emailService->sendEmail($message);
+
+            $messageconfirm = [
+                'to' => $contact->getEmail(),
+                'type' => EmailService::TYPE_MAIL_CONTACT_CONFIRM['key'],
+                'object' => $contact->getSubject(),
+                'message' => $contact->getMessage(),
+            ];
+            $emailService->sendEmail($messageconfirm);
+
+            $this->addFlash(
+                'notice',
+                'Votre message a bien été envoyé'
+            );
+
+            return $this->redirectToRoute('home');
+        }else {
+            $this->addFlash(
+                'notice',
+                'Votre message n\'a pas été envoyé, veuillez compléter le formulaire'
+            );
+
+        }
+
+        return $this->render('public/contact.html.twig', array(
+            'form' => $form->createView(),
+        ));
+
     }
 
     /**
@@ -175,5 +220,21 @@ class PublicController extends Controller
             throw new HttpException('500', 'Invalid call');
         }
 
+    }
+    public function captchaverify($recaptcha)
+    {
+        $url = "https://www.google.com/recaptcha/api/siteverify";
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_HEADER, 0);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
+        curl_setopt($ch, CURLOPT_POST, true);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, array(
+            "secret" => "6LfGgDYUAAAAAJw5_bYZMgSV1S5zhy4SZByMZ9G0", "response" => $recaptcha));
+        $response = curl_exec($ch);
+        curl_close($ch);
+        $data = json_decode($response);
+
+        return $data->success;
     }
 }

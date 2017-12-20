@@ -27,6 +27,7 @@
 @import 'partials/components/section';
 @import 'partials/components/form';
 @import 'partials/components/select2';
+@import 'partials/components/summernote';
 @import 'partials/components/tabPannel';
 @import 'partials/components/btnFavoris';
 @import 'partials/components/projet';
@@ -317,6 +318,13 @@ a:hover, a:active {
 .item {
   height: 30vh;
 
+}
+
+.notice {
+  position: fixed;
+  margin: auto auto;
+  background: $color1;
+  padding: 10px;
 }
 /*
 

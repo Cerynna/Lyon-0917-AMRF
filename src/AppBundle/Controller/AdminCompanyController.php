@@ -24,14 +24,28 @@ class AdminCompanyController extends Controller
      * @Route("/", name="admin_company_index")
      * @Method("GET")
      */
-    public function indexAction()
+    public function indexAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $companies = $em->getRepository('AppBundle:Company')->findAll();
+/*        $companies = $em->getRepository('AppBundle:Company')->findAll();*/
+
+		$queryBuilder = $em->getRepository('AppBundle:Company')->createQueryBuilder('m');
+
+		$query = $queryBuilder->getQuery();
+
+		/**
+		 * @var $paginator \Knp\Component\Pager\Paginator
+		 */
+		$paginator = $this->get('knp_paginator');
+		$result = $paginator->paginate(
+			$query,
+			$request->query->getInt('page', 1),
+			$request->query->getInt('limit', 10)
+		);
 
         return $this->render('company/index.html.twig', array(
-            'companies' => $companies,
+            'companies' => $result,
         ));
     }
 

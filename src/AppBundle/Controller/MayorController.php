@@ -73,10 +73,10 @@ class MayorController extends Controller
     public function mayorProjectAction()
     {
         $user = $this->get('security.token_storage')->getToken()->getUser();
-        $mayorId = $user->getMayor()->getid();
+        $mayorid = $user->getMayor()->getid();
 
         $em = $this->getDoctrine()->getManager();
-        $projects = $em->getRepository("AppBundle:Project")->getProjectByMayor($mayorId);
+        $projects = $em->getRepository("AppBundle:Project")->getProjectByMayor($mayorid);
 
 
         return $this->render('private/maires/maireProjet.html.twig', array(

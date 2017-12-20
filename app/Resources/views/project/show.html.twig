@@ -1,6 +1,30 @@
 {% extends 'private/admin/baseAdmin.html.twig' %}
 
 {% block body %}
+    <div class="menu-admin menu-project">
+        <ul>
+            <li>
+                <a href="{{ path('admin_project_index') }}" data-toggle="tooltip" data-placement="right"
+                   title="Liste Projets"><i class="fa fa-archive fa-admin"></i></a>
+            </li>
+            <li>
+                <a href="{{ path('admin_project_new') }}" data-toggle="tooltip" data-placement="right"
+                   title="Nouveau Projet"><i
+                            class="fa fa-plus fa-admin"></i></a>
+            </li>
+            <li class="submitForm">
+                <a data-toggle="tooltip" data-placement="right"
+                   title="Nouvel Utilisateur"><i class="fa fa-check fa-admin"></i></a>
+            </li>
+            <li>
+                {{ form_start(delete_form) }}
+                <button class="fa-admin" data-toggle="tooltip" data-placement="right"
+                        title="Supprimer l'Utilisateur" type="submit"><i class="fa fa-trash-o"></i></button>
+                {{ form_end(delete_form) }}
+
+            </li>
+        </ul>
+    </div>
     <h1>Project</h1>
 
     <table>
