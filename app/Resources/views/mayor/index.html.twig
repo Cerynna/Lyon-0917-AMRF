@@ -1,6 +1,22 @@
 {% extends 'private/admin/baseAdmin.html.twig' %}
 
 {% block body %}
+
+    <div class="menu-admin menu-project">
+        <ul>
+            <li>
+                <a href="{{ path('admin_mayor_index') }}" data-toggle="tooltip" data-placement="right"
+                   title="Liste Maires"><i class="fa fa-archive fa-admin"></i></a>
+            </li>
+            <li>
+                <a href="{{ path('admin_mayor_new') }}" data-toggle="tooltip" data-placement="right"
+                   title="Nouveau Maire"><i
+                            class="fa fa-plus fa-admin"></i></a>
+            </li>
+        </ul>
+    </div>
+
+
     <h1>Mayors list</h1>
 
     <table>
@@ -63,9 +79,8 @@
         </tbody>
     </table>
 
-    <ul>
-        <li>
-            <a href="{{ path('admin_mayor_new') }}">Create a new mayor</a>
-        </li>
-    </ul>
+    <div class="navigation text-center">
+        {{ knp_pagination_render(mayors) }}
+    </div>
+
 {% endblock %}
