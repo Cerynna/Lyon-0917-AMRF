@@ -3,6 +3,7 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Dictionary;
+use Doctrine\Common\Annotations\Reader;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
@@ -20,14 +21,28 @@ class AdminDictionaryController extends Controller
      * @Route("/", name="admin_dictionary_index")
      * @Method("GET")
      */
-    public function indexAction()
+    public function indexAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $dictionaries = $em->getRepository('AppBundle:Dictionary')->findAll();
+/*        $dictionaries = $em->getRepository('AppBundle:Dictionary')->findAll();*/
+
+		$queryBuilder = $em->getRepository('AppBundle:Dictionary')->createQueryBuilder('d');
+
+		$query = $queryBuilder->getQuery();
+
+		/**
+		 * @var $paginator \Knp\Component\Pager\Paginator
+		 */
+		$paginator = $this->get('knp_paginator');
+		$result = $paginator->paginate(
+			$query,
+			$request->query->getInt('page', 1),
+			$request->query->getInt('limit', 10)
+		);
 
         return $this->render('dictionary/index.html.twig', array(
-            'dictionaries' => $dictionaries,
+            'dictionaries' => $result,
         ));
     }
 
