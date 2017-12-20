@@ -1,15 +1,41 @@
 {% extends 'private/admin/baseAdmin.html.twig' %}
 
 {% block body %}
+    <div class="menu-admin menu-company">
+        <ul>
+            <li>
+                <a href="{{ path('admin_company_index') }}" data-toggle="tooltip" data-placement="right"
+                   title="Liste Organisme"><i class="fa fa-archive fa-admin"></i></a>
+            </li>
+            <li>
+                <a href="{{ path('admin_company_new') }}" data-toggle="tooltip" data-placement="right"
+                   title="Nouveau Organisme"><i
+                            class="fa fa-plus fa-admin"></i></a>
+            </li>
+            <li class="submitForm">
+                <a data-toggle="tooltip" data-placement="right"
+                   title="Nouvel Organisme"><i class="fa fa-check fa-admin"></i></a>
+            </li>
+            <li>
+                {{ form_start(delete_form) }}
+                <button class="fa-admin" data-toggle="tooltip" data-placement="right"
+                        title="Supprimer Organisme" type="submit"><i class="fa fa-trash-o"></i></button>
+                {{ form_end(delete_form) }}
+
+            </li>
+        </ul>
+    </div>
     <h1>Company edit</h1>
 
     {{ form_start(edit_form) }}
 
         {{ form_widget(edit_form) }}
     <img src="{{app.request.basepath}}/upload/company/{{ company.name }}/{{company.logo}}" alt="monimg" />
+{#
         <input type="submit" value="Edit" />
+#}
     {{ form_end(edit_form) }}
-    <ul>
+    {#<ul>
         <li>
             <a href="{{ path('admin_company_index') }}">Back to the list</a>
         </li>
@@ -18,5 +44,5 @@
                 <input type="submit" value="Delete">
             {{ form_end(delete_form) }}
         </li>
-    </ul>
+    </ul>#}
 {% endblock %}

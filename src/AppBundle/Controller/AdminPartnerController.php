@@ -20,14 +20,28 @@ class AdminPartnerController extends Controller
      * @Route("/", name="admin_partner_index")
      * @Method("GET")
      */
-    public function indexAction()
+    public function indexAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $partners = $em->getRepository('AppBundle:Partner')->findAll();
+/*        $partners = $em->getRepository('AppBundle:Partner')->findAll();*/
+
+		$queryBuilder = $em->getRepository('AppBundle:Partner')->createQueryBuilder('p');
+
+		$query = $queryBuilder->getQuery();
+
+		/**
+		 * @var $paginator \Knp\Component\Pager\Paginator
+		 */
+		$paginator = $this->get('knp_paginator');
+		$result = $paginator->paginate(
+			$query,
+			$request->query->getInt('page', 1),
+			$request->query->getInt('limit', 10)
+		);
 
         return $this->render('partner/index.html.twig', array(
-            'partners' => $partners,
+            'partners' => $result,
         ));
     }
 
