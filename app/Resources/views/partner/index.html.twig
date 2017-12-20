@@ -1,19 +1,34 @@
 {% extends 'private/admin/baseAdmin.html.twig' %}
 
 {% block body %}
+
+    <div class="menu-admin menu-project">
+        <ul>
+            <li>
+                <a href="{{ path('admin_partner_index') }}" data-toggle="tooltip" data-placement="right"
+                   title="Liste Partners"><i class="fa fa-archive fa-admin"></i></a>
+            </li>
+            <li>
+                <a href="{{ path('admin_partner_new') }}" data-toggle="tooltip" data-placement="right"
+                   title="Nouveau Partenaire"><i
+                            class="fa fa-plus fa-admin"></i></a>
+            </li>
+        </ul>
+    </div>
+
     <h1>Partners list</h1>
 
     <table>
         <thead>
-            <tr>
-                <th>Id</th>
-                <th>Firstname</th>
-                <th>Lastname</th>
-                <th>Occupation</th>
-                <th>Phone</th>
-                <th>Email</th>
-                <th>Actions</th>
-            </tr>
+        <tr>
+            <th>Id</th>
+            <th>Firstname</th>
+            <th>Lastname</th>
+            <th>Occupation</th>
+            <th>Phone</th>
+            <th>Email</th>
+            <th>Actions</th>
+        </tr>
         </thead>
         <tbody>
         {% for partner in partners %}
@@ -39,9 +54,8 @@
         </tbody>
     </table>
 
-    <ul>
-        <li>
-            <a href="{{ path('admin_partner_new') }}">Create a new partner</a>
-        </li>
-    </ul>
+    <div class="navigation text-center">
+        {{ knp_pagination_render(partners) }}
+    </div>
+
 {% endblock %}

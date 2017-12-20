@@ -7,7 +7,9 @@ use AppBundle\Entity\Partner;
 use AppBundle\Entity\Company;
 use AppBundle\Entity\Project;
 
+use AppBundle\Entity\Uploader;
 use AppBundle\Entity\User;
+use AppBundle\Service\UploadService;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -60,14 +62,28 @@ class PartnerController extends Controller
      * @Route("presentation", name="partner_press")
      * @Method({"GET", "POST"})
      */
-    public function partnerPressEditAction(Request $request)
+    public function partnerPressEditAction(Request $request, UploadService $uploadService)
     {
+
+        $uploaderImage = new Uploader();
+        $uplodImageForm = $this->createForm('AppBundle\Form\UploaderType', $uploaderImage);
+        $uplodImageForm->handleRequest($request);
+
         $partner = $this->get('security.token_storage')->getToken()->getUser()->getPartner();
         $company = $partner->getCompany();
 
         $form = $this->createForm('AppBundle\Form\CompanyType', $company);
         $form->handleRequest($request);
 
+        if ($uplodImageForm->isSubmitted() && $uplodImageForm->isValid()) {
+
+            $files = $uploaderImage->getPath();
+
+            $newLogo = $uploadService->fileUpload($files, '/company/' . $company->getId() . '/file' );
+            $company->setLogo($newLogo);
+            $this->getDoctrine()->getManager()->flush();
+            return $this->redirectToRoute('partner_press');
+        }
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
@@ -79,6 +95,7 @@ class PartnerController extends Controller
         return $this->render('private/partenaires/partFormPresentation.html.twig', array(
             'company' => $company,
             'form' => $form->createView(),
+            'upload_image_form' => $uplodImageForm->createView(),
         ));
     }
 

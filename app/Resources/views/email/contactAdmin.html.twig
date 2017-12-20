@@ -1,5 +1,20 @@
 {% extends 'email/baseEmail.html.twig' %}
     {% block body %}
-        {{ message }} HTML
+       Message en provenance de : {{ from }}
+
+        {{ name }} {{ firstName }} en tant que :  {{ statut }}
+
+        téléphone : {{ phone }}
+
+        Objet du message :
+
+        {{ object }}
+
+
+        Voici son message :
+
+        {{ message }}
+
+
     {% endblock %}
 

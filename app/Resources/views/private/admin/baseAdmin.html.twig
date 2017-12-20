@@ -7,6 +7,7 @@
     <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}"/>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}"/>
     <link rel="stylesheet" href="{{ asset('css/admin.css') }}"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -90,10 +91,22 @@
     </div>
 </section>
 <footer class="page-footer">
-    footer et cet fois pas un truc moche :D
+ <a href="{{ path('home') }}" >Retour au site</a>
 </footer>
 
 {% include 'components/script.html.twig' %}
+<script>
+    $(document).ready(function() {
+        $('textarea').summernote({
+            height: 150,
+            toolbar: [
+                // [groupName, [list of button]]
+                ['style', ['bold', 'italic', 'underline', 'clear']],
+                ['para', ['ul', 'ol']],
+            ]
+        });
+    });
+</script>
 {% block javascripts %}{% endblock %}
 </body>
 </html>

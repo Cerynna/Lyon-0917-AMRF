@@ -1,5 +1,17 @@
 {% extends 'email/baseEmail.html.twig' %}
     {% block body %}
-        {{ message }} HTML
+
+
+        <h3>Merci pour votre message, nous le traiterons dans les plus brefs délais!</h3>
+
+        Objet de votre message :
+
+        {{ object }}
+
+        Votre message envoyé :
+
+        {{ message }}
+
+
     {% endblock %}
 

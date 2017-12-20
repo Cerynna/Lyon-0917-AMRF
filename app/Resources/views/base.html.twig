@@ -21,6 +21,15 @@
         {% include 'components/navbar.html.twig'%}
     {% endblock %}
 </nav>
+
+{% for message in app.flashes('notice') %}
+    <div class="notice">
+        {{ message }}
+    </div>
+{% endfor %}
+
+
+
 <a href="#">
     <div class="scrollUp"><i class="fa fa-angle-up"></i></div>
 </a>
