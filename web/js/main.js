@@ -14,15 +14,23 @@ $(window).on('scroll', function () {
 });
 */
 
-/*
-$("input:checkbox").click(function() {
 
-    var bol = $("input:checkbox:checked").length >= 3;
-    $("input:checkbox").not(":checked").attr("disabled",bol);
-
+$("input.check-limit").click(function() {
+    var bol = $("input.check-limit:checked").length >= 3;
+    $("input.check-limit").not(":checked").attr("disabled",bol);
 });
-*/
 
+var last_valid_selection = null;
+
+$('.select-limit').change(function(event) {
+
+    if ($(this).val().length > 5) {
+
+        $(this).val(last_valid_selection);
+    } else {
+        last_valid_selection = $(this).val();
+    }
+});
 
 
 $(document).ready(function () {

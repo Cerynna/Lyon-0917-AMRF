@@ -214,11 +214,13 @@
                 Pour plus d'informations
             </div>
             <ul class="list-group">
+                {% set pdf = 'upload/project/' ~ project.id ~ '/file/' ~ project.file %}
+
                 <li class="list-group-item">Personne en charge du projet : {{ project.contactName }}</li>
                 <li class="list-group-item">Fonction : {{ project.contactOccupation }}</li>
                 <li class="list-group-item">Email : {{ project.contactEmail }}</li>
                 <li class="list-group-item">Téléphone : {{ project.contactPhone }}</li>
-                <li class="list-group-item">Documents complémentaires : {{ project.file }}</li>
+                <li class="list-group-item">Documents complémentaires : <a href="{{ asset(pdf) }}" target="_parent" title="le fichier">Voir le fichier PDF</a></li>
             </ul>
         </div>
     </div>

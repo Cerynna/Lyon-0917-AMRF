@@ -78,7 +78,7 @@ class PartnerController extends Controller
 
             $files = $uploaderImage->getPath();
 
-            $newLogo = $uploadService->fileUpload($files, '/company/' . $company->getId() . '/file' );
+            $newLogo = $uploadService->fileUpload($files, '/company/' . $company->getId() . '/file', "img" );
             $company->setLogo($newLogo);
             $this->getDoctrine()->getManager()->flush();
             return $this->redirectToRoute('partner_press');
