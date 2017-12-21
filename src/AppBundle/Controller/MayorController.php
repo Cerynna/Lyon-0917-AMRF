@@ -56,8 +56,9 @@ class MayorController extends Controller
             $em->persist($mayor);
             $em->flush();
 
-            return $this->redirectToRoute('admin_mayor_show', array('id' => $mayor->getId()));
+            return $this->redirectToRoute('mayor_profil', array('id' => $mayor->getId()));
         }
+
 
         return $this->render('private/maires/maireProfil.html.twig', array(
             'mayor' => $mayor,

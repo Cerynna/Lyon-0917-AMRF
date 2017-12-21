@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Partner
@@ -25,6 +26,20 @@ class Partner
      * @var string
      *
      * @ORM\Column(name="firstName", type="string", length=255, nullable=true)
+     * @Assert\NotBlank(
+     *     message= "Cette information est obligatoire"
+     * )
+     * @Assert\Type(
+     *     type= "string")
+     * @Assert\Length(
+     *     min= 2,
+     *     minMessage="Votre prénom doit comporter au moins 2 caractères"
+     * )
+     * @Assert\Regex(
+     *     pattern="/\d/",
+     *     match=false,
+     *     message="Votre prénom ne peut contenir de chiffre"
+     * )
      */
     private $firstName;
 
@@ -32,6 +47,21 @@ class Partner
      * @var string
      *
      * @ORM\Column(name="lastName", type="string", length=255, nullable=true)
+     *
+     * @Assert\NotBlank(
+     *     message= "Cette information est obligatoire"
+     * )
+     * @Assert\Type(
+     *     type= "string")
+     * @Assert\Length(
+     *     min= 2,
+     *     minMessage="Votre nom doit comporter au moins 2 caractères"
+     * )
+     * @Assert\Regex(
+     *     pattern="/\d/",
+     *     match=false,
+     *     message="Votre prénom ne peut contenir de chiffre"
+     * )
      */
     private $lastName;
 
@@ -40,6 +70,14 @@ class Partner
      * @var string
      *
      * @ORM\Column(name="occupation", type="string", length=255, nullable=true)
+     *
+     * @Assert\NotBlank(
+     *     message= "Cette information est obligatoire"
+     * )
+     * @Assert\Length(
+     *     min= 5,
+     *     minMessage="Votre fonction doit comporter au moins 5 caractères"
+     * )
      */
     private $occupation;
 
@@ -47,6 +85,15 @@ class Partner
      * @var string
      *
      * @ORM\Column(name="phone", type="string", length=255, nullable=true)
+     *
+     * @Assert\NotBlank(
+     *     message= "Cette information est obligatoire"
+     * )
+     * @Assert\Regex(
+     *     pattern="/^(?:0|\(?\+33\)?\s?|0033\s?)[1-79](?:[\.\-\s]?\d\d){4}$/",
+     *     match=true,
+     *     message="Veuillez entrer un numéro au format 0X XX XX XX XX"
+     * )
      */
     private $phone;
 
@@ -54,6 +101,14 @@ class Partner
      * @var string
      *
      * @ORM\Column(name="email", type="string", length=255, nullable=true)
+     *
+     * @Assert\NotBlank(
+     *     message= "Cette information est obligatoire"
+     * )
+     * @Assert\Email(
+     *     message = "Veuillez entrer une adresse email valide",
+     *     checkMX = true
+     * )
      */
     private $email;
 

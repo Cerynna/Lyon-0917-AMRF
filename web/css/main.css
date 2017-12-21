@@ -1039,6 +1039,12 @@ section form {
   section form .saveMe input[type="checkbox"]:empty ~ label:before {
     color: #FFFFFF;
     text-indent: 0.3em; }
+  section form .errorForm {
+    background: #f2dede;
+    color: #a94442;
+    border-radius: 5px;
+    margin-top: 5px;
+    padding-left: 10px; }
 
 .select2-container {
   box-sizing: border-box;
