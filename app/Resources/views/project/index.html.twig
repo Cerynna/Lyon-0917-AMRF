@@ -29,14 +29,17 @@
                 {#{{ include(':components:thematiques.html.twig') }}#}
 
                 <input {% if status == 1 %} checked {% endif %} name="status" value="1" type="checkbox" multiple
+                                                                onchange="sendFilter()"
                 >
                 <label for="brouillon">Brouillon</label>
 
                 <input {% if status == 2 %} checked {% endif %} name="status" value="2" type="checkbox" multiple
+                                                                onchange="sendFilter()"
                 >
                 <label for="attente">En attente</label>
 
                 <input {% if status == 3 %} checked {% endif %} name="status" value="3" type="checkbox" multiple
+                                                                onchange="sendFilter()"
                 >
                 <label for="publier">Publier</label>
 

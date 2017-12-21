@@ -54,28 +54,28 @@ class ProjectRepository extends \Doctrine\ORM\EntityRepository
         return $qb->getResult();
     }
 
-    public function getTitle()
+    public function getTitle($findTitle)
 	{
 		$qb = $this->createQueryBuilder('p')
-			->setParameter('title', Project::class)
+			->setParameter('title', $findTitle)
 			->where('p.title = :title')
 			->getQuery();
 		return $qb->getResult();
 	}
 
-	public function getStatus()
+	public function getStatus($findStatus)
 	{
 		$qb = $this->createQueryBuilder('p')
-			->setParameter('status', Project::class)
+			->setParameter('status', $findStatus)
 			->where('p.status = :status')
 			->getQuery();
 		return $qb->getResult();
 	}
 
-	public function getTheme()
+	public function getTheme($findTheme)
 	{
 		$qb = $this->createQueryBuilder('p')
-			->setParameter('value', Project::class)
+			->setParameter('value', $findTheme)
 			->join('p.themes', 'd')
 			->where('d.value = :value')
 			->getQuery();

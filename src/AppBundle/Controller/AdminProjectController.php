@@ -6,6 +6,7 @@ use AppBundle\Entity\Project;
 use AppBundle\Entity\Uploader;
 use AppBundle\Service\SlugService;
 use AppBundle\Service\UploadService;
+use AppBundle\Service\ProjectService;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -20,7 +21,7 @@ use Symfony\Component\HttpFoundation\Response;
 class AdminProjectController extends Controller
 {
 
-	public $sort = [
+	/*public $sort = [
 		'title' 		=> "",
 		'status' 		=> "",
 		'value' 		=> ""
@@ -29,7 +30,9 @@ class AdminProjectController extends Controller
 	public function getSort()
 	{
 		return $this->sort;
-	}
+	}*/
+
+
 
 	/**
 	 * Lists all project entities.
@@ -44,10 +47,12 @@ class AdminProjectController extends Controller
 		$queryBuilder = $em->getRepository('AppBundle:Project')
 			->createQueryBuilder('p');
 
-		$title 	= $em->getRepository('AppBundle:Project')->getTitle();
-		$status = $em->getRepository('AppBundle:Project')->getStatus();
-		$theme 	= $em->getRepository('AppBundle:Project')->getTheme();
+		$em->getRepository('AppBundle:Project')->getTitle($request->query->getAlnum('title'));
+		$em->getRepository('AppBundle:Project')->getStatus($request->query->getAlnum('title'));
+		$em->getRepository('AppBundle:Project')->getTheme($request->query->getAlnum('value'));
 
+
+		 $filter = $this->container->get('app.projectService');
 
 		/*if ($request->query->getAlnum('title')) {
 			$queryBuilder
@@ -66,7 +71,7 @@ class AdminProjectController extends Controller
 				->join('p.themes', 'd')
 				->andwhere('d.value = :value')
 				->setParameter('value',	 $request->query->getAlnum('value'));
-		}*/
+		}
 
 		if (isset ($_GET['title'])) {
 			$this->sort['title'] = $_GET['title'];
@@ -77,7 +82,7 @@ class AdminProjectController extends Controller
 		}
 		if (isset ($_GET['value'])) {
 			$this->sort['value'] = $_GET['value'];
-		}
+		}*/
 
 		$query = $queryBuilder->getQuery();
 
@@ -93,13 +98,13 @@ class AdminProjectController extends Controller
 			$request->query->getInt('limit', 10)
 		);
 
+		return $this->render('project/index.html.twig', [
+			'projects' 	=> $result,
+			'title' 	=> $filter->getTitle(),
+			'status' 	=> $filter->getStatus(),
+			'value' 	=> $filter->getValue()
+		]);
 
-		return $this->render('project/index.html.twig', array(
-			'projects' 		=> $result,
-			'title' 		=> implode($title),
-			'status'		=> $status,
-			'value' 		=> implode($theme)
-		));
 	}
 
 	/**
