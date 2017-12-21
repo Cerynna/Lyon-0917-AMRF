@@ -35,6 +35,10 @@
         </div>
     </div>
 </section>
+
+
+
+
 {% for message in app.flashes('notice') %}
     <div class="notice">
         <div class="notif">
@@ -43,7 +47,9 @@
     </div>
 {% endfor %}
 <footer class="page-footer">
-    {% include 'components/footer.html.twig' %}
+    {{ render(controller(
+    'AppBundle:Layout:footer'
+    )) }}
 </footer>
 {% include 'components/script.html.twig' %}
 {% block javascripts %}{% endblock %}

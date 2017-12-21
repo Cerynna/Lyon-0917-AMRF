@@ -23,11 +23,6 @@ use Symfony\Component\Filesystem\Filesystem;
 
 class PublicController extends Controller
 {
-    public function __construct(EntityManager $em, Session $session)
-    {
-        $array = ["footer"];
-        $session->set('footer', $em->getRepository('AppBundle:PublicPage')->getContentIndex($array)['footer']);
-    }
 
     /**
      * @Route("/", name="home")
@@ -140,7 +135,13 @@ class PublicController extends Controller
      */
     public function confidentialAction()
     {
-        return $this->render('public/confidential.html.twig');
+        $em = $this->getDoctrine()->getManager();
+        $array = ["cgu"];
+        $contents = $em->getRepository('AppBundle:PublicPage')->getContentIndex($array);
+
+        return $this->render('public/confidential.html.twig', array(
+            'contents' => $contents,
+        ));
     }
 
     /**
@@ -148,7 +149,13 @@ class PublicController extends Controller
      */
     public function mentionsAction()
     {
-        return $this->render('public/mentions.html.twig');
+        $em = $this->getDoctrine()->getManager();
+        $array = ["ml"];
+        $contents = $em->getRepository('AppBundle:PublicPage')->getContentIndex($array);
+
+        return $this->render('public/mentions.html.twig', array(
+            'contents' => $contents,
+        ));
     }
 
 
