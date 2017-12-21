@@ -56,8 +56,9 @@ class MayorController extends Controller
             $em->persist($mayor);
             $em->flush();
 
-            return $this->redirectToRoute('admin_mayor_show', array('id' => $mayor->getId()));
+            return $this->redirectToRoute('mayor_profil', array('id' => $mayor->getId()));
         }
+
 
         return $this->render('private/maires/maireProfil.html.twig', array(
             'mayor' => $mayor,
@@ -175,7 +176,7 @@ class MayorController extends Controller
                 $files = $uploaderImage->getPath();
                 $images = $project->getImages();
                 $dbimg = $images;
-                $dbimg[] = $uploadService->fileUpload($files, '/project/' . $project->getId() . '/photos');
+                $dbimg[] = $uploadService->fileUpload($files, '/project/' . $project->getId() . '/photos', "img");
                 $project->setImages($dbimg);
                 $this->getDoctrine()->getManager()->flush();
                 return $this->redirectToRoute('mayor_project_edit', array(
@@ -185,7 +186,7 @@ class MayorController extends Controller
 
             if ($uplodFileForm->isSubmitted() && $uplodFileForm->isValid()) {
                 $file = $uploaderFile->getPath();
-                $fileNewDB = $uploadService->fileUpload($file, '/project/' . $project->getId() . '/file');
+                $fileNewDB = $uploadService->fileUpload($file, '/project/' . $project->getId() . '/file', "file");
                 $project->setFile($fileNewDB);
                 $this->getDoctrine()->getManager()->flush();
                 return $this->redirectToRoute('mayor_project_edit', array(

@@ -19,7 +19,7 @@ class CompanyType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder->add('name')
-			->add('slug', TextType::class,array('mapped' => false,))
+		//	->add('slug', TextType::class,array('mapped' => false,))
             ->add('address')
             ->add('zipCode')
             ->add('city')

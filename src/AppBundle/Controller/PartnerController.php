@@ -13,6 +13,7 @@ use AppBundle\Service\UploadService;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
@@ -77,8 +78,10 @@ class PartnerController extends Controller
 
         if ($uplodImageForm->isSubmitted() && $uplodImageForm->isValid()) {
             $files = $uploaderImage->getPath();
-            $logo = $uploadService->fileUpload($files, '/company/' . $company->getId() . '/file');
-            $company->setLogo($logo);
+
+            $newLogo = $uploadService->fileUpload($files, '/company/' . $company->getId() . '/file', "img" );
+            $company->setLogo($newLogo);
+
             $this->getDoctrine()->getManager()->flush();
             return $this->redirectToRoute('partner_press');
         }

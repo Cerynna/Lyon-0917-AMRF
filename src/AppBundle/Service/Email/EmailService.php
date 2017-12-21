@@ -131,7 +131,7 @@ class EmailService
                         ]
                     ), 'text/html');
                 $message->addPart(
-                    $this->twig->render(self::TYPE_MAIL_CONTACT_CONFIRM['renderTxt'], [
+                       $this->twig->render(self::TYPE_MAIL_CONTACT_CONFIRM['renderTxt'], [
                         'message' => $mail['message'],
                         'object' => $mail['object'],
                     ]), 'text/plain');

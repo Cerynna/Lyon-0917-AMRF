@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping\JoinColumn;
 use Doctrine\ORM\Mapping\JoinTable;
 use Doctrine\ORM\Mapping\ManyToMany;
@@ -29,6 +30,11 @@ class Company
      * @var string
      *
      * @ORM\Column(name="name", type="string", length=255, nullable=true)
+     *
+     * @Assert\NotBlank(
+     *     message= "Cette information est obligatoire"
+     * )
+     *
      */
     private $name;
 
@@ -36,6 +42,10 @@ class Company
      * @var string
      *
      * @ORM\Column(name="address", type="string", length=255, nullable=true)
+     *
+     * @Assert\NotBlank(
+     *     message= "Cette information est obligatoire"
+     * )
      */
     private $address;
 
@@ -43,6 +53,14 @@ class Company
      * @var string
      *
      * @ORM\Column(name="zipCode", type="string", length=20, nullable=true)
+     * @Assert\NotBlank(
+     *     message= "Cette information est obligatoire"
+     * )
+     * @Assert\Regex(
+     *     pattern="/^(([0-8][0-9])|(9[0-5]))[0-9]{3}$/",
+     *     match=true,
+     *     message="Veuillez entrer un code postal à 5 chiffres"
+     * )
      */
     private $zipCode;
 
@@ -50,6 +68,17 @@ class Company
      * @var string
      *
      * @ORM\Column(name="city", type="string", length=255, nullable=true)
+     *
+     * @Assert\NotBlank(
+     *     message= "Cette information est obligatoire"
+     * )
+     * @Assert\Type(
+     *     type= "string")
+     * @Assert\Regex(
+     *     pattern="/\d/",
+     *     match=false,
+     *     message="La ville ne peut contenir de chiffre"
+     * )
      */
     private $city;
 
@@ -68,6 +97,15 @@ class Company
      * @var string
      *
      * @ORM\Column(name="presentation", type="text", nullable=true)
+     *
+     * @Assert\NotBlank(
+     *     message= "Cette information est obligatoire"
+     * )
+     * @Assert\Length(
+     *     max= 1200,
+     *     maxMessage="La description ne peut excéder 1200 caractères"
+     * )
+     *
      */
     private $presentation;
 
@@ -82,6 +120,9 @@ class Company
      * @var string
      *
      * @ORM\Column(name="url", type="string", length=255, nullable=true)
+     *
+     * @Assert\Url(
+     *     message="L'adresse internet n'est pas valide.")
      */
     private $url;
 
@@ -110,6 +151,21 @@ class Company
      * @var string
      *
      * @ORM\Column(name="contactFirstName", type="string", length=255, nullable=true)
+     *
+     * @Assert\NotBlank(
+     *     message= "Cette information est obligatoire"
+     * )
+     * @Assert\Type(
+     *     type= "string")
+     * @Assert\Length(
+     *     min= 2,
+     *     minMessage="Votre prénom doit comporter au moins 2 caractères"
+     * )
+     * @Assert\Regex(
+     *     pattern="/\d/",
+     *     match=false,
+     *     message="Votre prénom ne peut contenir de chiffre"
+     * )
      */
     private $contactFirstName;
 
@@ -117,6 +173,21 @@ class Company
      * @var string
      *
      * @ORM\Column(name="contactLastName", type="string", length=255, nullable=true)
+     *
+     * @Assert\NotBlank(
+     *     message= "Cette information est obligatoire"
+     * )
+     * @Assert\Type(
+     *     type= "string")
+     * @Assert\Length(
+     *     min= 2,
+     *     minMessage="Votre nom doit comporter au moins 2 caractères"
+     * )
+     * @Assert\Regex(
+     *     pattern="/\d/",
+     *     match=false,
+     *     message="Votre nom ne peut contenir de chiffre"
+     * )
      */
     private $contactLastName;
 
@@ -124,6 +195,15 @@ class Company
      * @var string
      *
      * @ORM\Column(name="contactPhone", type="string", length=255, nullable=true)
+     *
+     * @Assert\NotBlank(
+     *     message= "Cette information est obligatoire"
+     * )
+     * @Assert\Regex(
+     *     pattern="/^(?:0|\(?\+33\)?\s?|0033\s?)[1-79](?:[\.\-\s]?\d\d){4}$/",
+     *     match=true,
+     *     message="Veuillez entrer un numéro au format 0X XX XX XX XX"
+     * )
      */
     private $contactPhone;
 
@@ -131,6 +211,14 @@ class Company
      * @var string
      *
      * @ORM\Column(name="contactEmail", type="string", length=255, nullable=true)
+     *
+     * @Assert\NotBlank(
+     *     message= "Cette information est obligatoire"
+     * )
+     * @Assert\Email(
+     *     message = "Veuillez entrer une adresse email valide",
+     *     checkMX = true
+     * )
      */
     private $contactEmail;
 
