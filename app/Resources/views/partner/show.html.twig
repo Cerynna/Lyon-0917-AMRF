@@ -10,19 +10,19 @@
                 <td>{{ partner.id }}</td>
             </tr>
             <tr>
-                <th>Firstname</th>
+                <th>Prénom</th>
                 <td>{{ partner.firstName }}</td>
             </tr>
             <tr>
-                <th>Lastname</th>
+                <th>Nom</th>
                 <td>{{ partner.lastName }}</td>
             </tr>
             <tr>
-                <th>Occupation</th>
+                <th>poste</th>
                 <td>{{ partner.occupation }}</td>
             </tr>
             <tr>
-                <th>Phone</th>
+                <th>Téléphone</th>
                 <td>{{ partner.phone }}</td>
             </tr>
             <tr>
@@ -34,10 +34,10 @@
 
     <ul>
         <li>
-            <a href="{{ path('admin_partner_index') }}">Back to the list</a>
+            <a href="{{ path('admin_partner_index') }}">Retour à la liste</a>
         </li>
         <li>
-            <a href="{{ path('admin_partner_edit', { 'id': partner.id }) }}">Edit</a>
+            <a href="{{ path('admin_partner_edit', { 'id': partner.id }) }}">Edition</a>
         </li>
         <li>
             {{ form_start(delete_form) }}
