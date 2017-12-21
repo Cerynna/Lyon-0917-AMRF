@@ -6,10 +6,14 @@ namespace AppBundle\Controller;
 use AppBundle\Entity\Contact;
 use AppBundle\Entity\Project;
 use AppBundle\Service\Email\EmailService;
+
+
+use Doctrine\ORM\EntityManager;
 use SensioLabs\Security\Exception\HttpException;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
@@ -19,6 +23,7 @@ use Symfony\Component\Filesystem\Filesystem;
 
 class PublicController extends Controller
 {
+
     /**
      * @Route("/", name="home")
      */
@@ -38,13 +43,17 @@ class PublicController extends Controller
                 $em->flush();
             }
         }
-
         /** ------------------------------------------------ */
 
         $projects = $em->getRepository('AppBundle:Project')->getLastProject();
+        $array = ["main-1","main-2"];
+        $contents = $em->getRepository('AppBundle:PublicPage')->getContentIndex($array);
+
+
 
         return $this->render('public/index.html.twig', array(
             'projects' => $projects,
+            'contents' => $contents,
         ));
     }
 
@@ -53,7 +62,13 @@ class PublicController extends Controller
      */
     public function amrfAction()
     {
-        return $this->render('public/amrf.html.twig');
+        $em = $this->getDoctrine()->getManager();
+        $array = ["amrf-1","amrf-2","amrf-3"];
+        $contents = $em->getRepository('AppBundle:PublicPage')->getContentIndex($array);
+
+        return $this->render('public/amrf.html.twig', array(
+            'contents' => $contents,
+        ));
     }
 
     /**
@@ -93,10 +108,18 @@ class PublicController extends Controller
             );
 
             return $this->redirectToRoute('home');
-        }else {
+        }
+        elseif($form->isSubmitted() && !$form->isValid()) {
             $this->addFlash(
                 'notice',
                 'Votre message n\'a pas été envoyé, veuillez compléter le formulaire'
+            );
+
+        }
+        elseif($form->isSubmitted() && !$this->captchaverify($request->get('g-recaptcha-response'))) {
+            $this->addFlash(
+                'notice',
+                'Votre message n\'a pas été envoyé, veuillez remplir le CAPTCHA'
             );
 
         }
@@ -112,7 +135,13 @@ class PublicController extends Controller
      */
     public function confidentialAction()
     {
-        return $this->render('public/confidential.html.twig');
+        $em = $this->getDoctrine()->getManager();
+        $array = ["cgu"];
+        $contents = $em->getRepository('AppBundle:PublicPage')->getContentIndex($array);
+
+        return $this->render('public/confidential.html.twig', array(
+            'contents' => $contents,
+        ));
     }
 
     /**
@@ -120,7 +149,13 @@ class PublicController extends Controller
      */
     public function mentionsAction()
     {
-        return $this->render('public/mentions.html.twig');
+        $em = $this->getDoctrine()->getManager();
+        $array = ["ml"];
+        $contents = $em->getRepository('AppBundle:PublicPage')->getContentIndex($array);
+
+        return $this->render('public/mentions.html.twig', array(
+            'contents' => $contents,
+        ));
     }
 
 
@@ -135,11 +170,14 @@ class PublicController extends Controller
     }
 
     /**
-     * @Route("/project", name="sheet_project")
+     * @Route("/project/{slug}", name="sheet_project")
      */
-    public function projetAction()
+    public function projetAction(Project $project)
     {
-        return $this->render('private/projet.html.twig');
+
+        return $this->render('private/projet.html.twig', array(
+            'project' => $project,
+        ));
     }
 
     /**

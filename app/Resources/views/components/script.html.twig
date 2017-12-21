@@ -25,6 +25,11 @@
                 //['para', ['ul', 'ol']],
             ]
         });
+        setTimeout(function(){
+            $('.notice').fadeOut( "slow", function() {
+                // Animation complete.
+            });
+        }, 3000);
     });
     function deleteFile(file) {
         $.ajax({
