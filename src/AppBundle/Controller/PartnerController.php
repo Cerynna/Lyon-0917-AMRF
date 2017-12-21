@@ -73,14 +73,15 @@ class PartnerController extends Controller
         $company = $partner->getCompany();
 
         $form = $this->createForm('AppBundle\Form\CompanyType', $company);
+        $form->remove("logo");
         $form->handleRequest($request);
 
         if ($uplodImageForm->isSubmitted() && $uplodImageForm->isValid()) {
-
             $files = $uploaderImage->getPath();
 
             $newLogo = $uploadService->fileUpload($files, '/company/' . $company->getId() . '/file', "img" );
             $company->setLogo($newLogo);
+
             $this->getDoctrine()->getManager()->flush();
             return $this->redirectToRoute('partner_press');
         }
