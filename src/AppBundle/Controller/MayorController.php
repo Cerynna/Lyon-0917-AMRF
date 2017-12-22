@@ -8,6 +8,7 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\ChangePassword;
 use AppBundle\Entity\Mayor;
 use AppBundle\Entity\Partner;
 use AppBundle\Entity\Company;
@@ -24,6 +25,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 
 /**
@@ -43,7 +45,7 @@ class MayorController extends Controller
     /**
      * @Route("profil", name="mayor_profil")
      */
-    public function mayorProfilAction(Request $request)
+    public function mayorProfilAction(Request $request, UserPasswordEncoderInterface $passwordEncoder)
     {
 
         $user = $this->get('security.token_storage')->getToken()->getUser();
@@ -51,22 +53,41 @@ class MayorController extends Controller
         $form = $this->createForm('AppBundle\Form\MayorType', $mayor);
         $form->handleRequest($request);
 
+        $changePassword = new ChangePassword();
+        $form_password = $this->createForm('AppBundle\Form\ChangePasswordType', $changePassword);
+        $form_password->handleRequest($request);
+        $em = $this->getDoctrine()->getManager();
+
         if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
+
             $em->persist($mayor);
             $em->flush();
 
             return $this->redirectToRoute('mayor_profil', array('id' => $mayor->getId()));
+        }
+        if ($form_password->isSubmitted() && $form_password->isValid()) {
+            $encoderService = $this->get('security.password_encoder');
+            if ($encoderService->isPasswordValid($user, $changePassword->oldPassword)) {
+               $user->setPassword($changePassword->newPassword);
+               $em->persist($user);
+               $em->flush();
+                return $this->redirectToRoute('logout');
+            } else {
+                $this->addFlash(
+                    'notice',
+                    'Le mot de passe saisi ne correspond pas. Veuillez saisir à nouveau votre mot de passe'
+                );
+
+            }
         }
 
 
         return $this->render('private/maires/maireProfil.html.twig', array(
             'mayor' => $mayor,
             'form' => $form->createView(),
+            'form_password' => $form_password->createView(),
         ));
     }
-
-
 
     /**
      * @Route("project", name="mayor_project")
