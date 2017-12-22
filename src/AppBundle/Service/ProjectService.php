@@ -19,22 +19,13 @@ class ProjectService
 
 
 	public $title 	= "";
-	public $status 	= "";
+	public $status 	= [0 => "", 1 => "", 2 =>""];
 	public $theme	= "";
 
 
 	public function __construct()
 	{
-		if (isset ($_GET['title'])) {
-			$this->title = $_GET['title'];
-		}
 
-		if (isset ($_GET['status'])) {
-			$this->status = $_GET['status'];
-		}
-		if (isset ($_GET['value'])) {
-			$this->theme = $_GET['value'];
-		}
 	}
 
 	/**
@@ -46,9 +37,9 @@ class ProjectService
 	}
 
 	/**
-	 * @return string
+	 * @return array
 	 */
-	public function getStatus(): string
+	public function getStatus(): array
 	{
 		return $this->status;
 	}
@@ -60,5 +51,31 @@ class ProjectService
 	{
 		return $this->theme;
 	}
+
+	/**
+	 * @param $title
+	 */
+	public function setTitle($title)
+	{
+		$this->title = $title;
+	}
+
+	/**
+	 * @param $status
+	 */
+	public function setStatus($status)
+	{
+		$this->status = $status;
+	}
+
+	/**
+	 * @param string $theme
+	 */
+	public function setTheme(string $theme)
+	{
+		$this->theme = $theme;
+	}
+
+
 
 }

@@ -26,19 +26,19 @@
                 <label for="name">Theme</label>
                 <input value="{{ value }}" type="text" name="value" onchange="sendFilter()">
 
-                {#{{ include(':components:thematiques.html.twig') }}#}
+                {{ include(':components:thematiques.html.twig') }}
 
-                <input {% if status == 1 %} checked {% endif %} name="status" value="1" type="checkbox" multiple
+                <input {% if 1 in status %} checked {% endif %} name="status[]" value="1" id="brouillon" type="checkbox" multiple
                                                                 onchange="sendFilter()"
                 >
                 <label for="brouillon">Brouillon</label>
 
-                <input {% if status == 2 %} checked {% endif %} name="status" value="2" type="checkbox" multiple
+                <input {% if 2 in status %} checked {% endif %} name="status[]" value="2" id="attente" type="checkbox" multiple
                                                                 onchange="sendFilter()"
                 >
                 <label for="attente">En attente</label>
 
-                <input {% if status == 3 %} checked {% endif %} name="status" value="3" type="checkbox" multiple
+                <input {% if 3 in status %} checked {% endif %} name="status[]" value="3" id="publier" type="checkbox" multiple
                                                                 onchange="sendFilter()"
                 >
                 <label for="publier">Publier</label>
@@ -150,7 +150,7 @@
         {{ knp_pagination_render(projects) }}
     </div>
 
-    <script>
+    {#<script>
         function sendFilter() {
             $("form[name='filter']").submit();
         }
@@ -158,7 +158,7 @@
         $(document).ready(function () {
             $('[data-toggle="tooltip"]').tooltip();
         });
-    </script>
+    </script>#}
 
 
 

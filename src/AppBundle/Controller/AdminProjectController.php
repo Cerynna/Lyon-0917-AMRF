@@ -33,7 +33,6 @@ class AdminProjectController extends Controller
 	}*/
 
 
-
 	/**
 	 * Lists all project entities.
 	 *
@@ -47,25 +46,48 @@ class AdminProjectController extends Controller
 		$queryBuilder = $em->getRepository('AppBundle:Project')
 			->createQueryBuilder('p');
 
-		$em->getRepository('AppBundle:Project')->getTitle($request->query->getAlnum('title'));
-		$em->getRepository('AppBundle:Project')->getStatus($request->query->getAlnum('title'));
-		$em->getRepository('AppBundle:Project')->getTheme($request->query->getAlnum('value'));
+		$filter = $this->container->get('app.projectService');
+
+		if (isset ($_GET['title'])) {
+			$filter->setTitle($_GET['title']);
+		}
+
+		if (isset ($_GET['status'])) {
+			$filter->setStatus($_GET['status']);
+		}
+		if (isset ($_GET['value'])) {
+			$filter->setTheme($_GET['value']);
+		}
+
+/*		dump($_GET['status']);*/
+
+		/*$em->getRepository('AppBundle:Project')->getTitle($request->query->getAlnum('title'));
+		$em->getRepository('AppBundle:Project')->getStatus($request->query->getAlnum('status'));
+		$em->getRepository('AppBundle:Project')->getTheme($request->query->getAlnum('value'));*/
 
 
-		 $filter = $this->container->get('app.projectService');
+		if ($request->query->getAlnum('title')) {
+			$em->getRepository('AppBundle:Project')->queryTitle($queryBuilder, $request);
+		}
+
+		if ($request->query->getAlnum('status')) {
+			$em->getRepository('AppBundle:Project')->queryStatus($queryBuilder, $request, $filter->getStatus());
+		}
+
+		if ($request->query->getAlnum('value')) {
+			$em->getRepository('AppBundle:Project')->queryTheme($queryBuilder, $request);
+		}
 
 		/*if ($request->query->getAlnum('title')) {
 			$queryBuilder
 				->andwhere('p.title LIKE :title')
 				->setParameter('title', '%' . $request->query->getAlnum('title') . '%');
 		}
-
 		if ($request->query->getAlnum('status')) {
 			$queryBuilder
 				->andwhere('p.status LIKE :status')
 				->setParameter('status', $request->query->getAlnum('status'));
 		}
-
 		if ($request->query->getAlnum('value')) {
 			$queryBuilder
 				->join('p.themes', 'd')
@@ -98,11 +120,13 @@ class AdminProjectController extends Controller
 			$request->query->getInt('limit', 10)
 		);
 
+		dump($filter->getStatus());
+
 		return $this->render('project/index.html.twig', [
-			'projects' 	=> $result,
-			'title' 	=> $filter->getTitle(),
-			'status' 	=> $filter->getStatus(),
-			'value' 	=> $filter->getValue()
+			'projects' => $result,
+			'title' => $filter->getTitle(),
+			'status' => $filter->getStatus(),
+			'value' => $filter->getValue()
 		]);
 
 	}

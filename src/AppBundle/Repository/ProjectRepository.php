@@ -3,6 +3,7 @@
 namespace AppBundle\Repository;
 
 use AppBundle\Entity\Project;
+use Doctrine\ORM\Query\Expr\Orx;
 
 
 /**
@@ -14,47 +15,47 @@ use AppBundle\Entity\Project;
 class ProjectRepository extends \Doctrine\ORM\EntityRepository
 {
 
-    const MAX_PROJECT = 3;
+	const MAX_PROJECT = 3;
 
-    public function getLastProject()
-    {
-        $qb = $this->createQueryBuilder('p')
-            ->orderBy("p.updateDate", "DESC")
-            ->setMaxResults(self::MAX_PROJECT)
-            ->setParameter('status', Project::STATUS_PUBLISH)
-            ->where('p.status = :status')
-            ->getQuery();
-        return $qb->getResult();
-    }
+	public function getLastProject()
+	{
+		$qb = $this->createQueryBuilder('p')
+			->orderBy("p.updateDate", "DESC")
+			->setMaxResults(self::MAX_PROJECT)
+			->setParameter('status', Project::STATUS_PUBLISH)
+			->where('p.status = :status')
+			->getQuery();
+		return $qb->getResult();
+	}
 
-    public function getProjectOrderBY($field)
-    {
-        $qb = $this->createQueryBuilder('p')
-            ->orderBy("p.$field", "ASC")
-            ->getQuery();
-        return $qb->getResult();
-    }
+	public function getProjectOrderBY($field)
+	{
+		$qb = $this->createQueryBuilder('p')
+			->orderBy("p.$field", "ASC")
+			->getQuery();
+		return $qb->getResult();
+	}
 
-    public function getImageProject($idProject)
-    {
-        return $this->createQueryBuilder('p')
-            ->setParameter('id', $idProject)
-            ->where('p.id = :id')
-            ->select('p.images')
-            ->getQuery()
-            ->getResult();
-    }
+	public function getImageProject($idProject)
+	{
+		return $this->createQueryBuilder('p')
+			->setParameter('id', $idProject)
+			->where('p.id = :id')
+			->select('p.images')
+			->getQuery()
+			->getResult();
+	}
 
-    public function getProjectByMayor($mayorId)
-    {
-        $qb = $this->createQueryBuilder('p')
-            ->setParameter('mayor_id', $mayorId)
-            ->where('p.mayor = :mayor_id')
-            ->getQuery();
-        return $qb->getResult();
-    }
+	public function getProjectByMayor($mayorId)
+	{
+		$qb = $this->createQueryBuilder('p')
+			->setParameter('mayor_id', $mayorId)
+			->where('p.mayor = :mayor_id')
+			->getQuery();
+		return $qb->getResult();
+	}
 
-    public function getTitle($findTitle)
+	/*public function getTitle($findTitle)
 	{
 		$qb = $this->createQueryBuilder('p')
 			->setParameter('title', $findTitle)
@@ -80,6 +81,47 @@ class ProjectRepository extends \Doctrine\ORM\EntityRepository
 			->where('d.value = :value')
 			->getQuery();
 		return $qb->getResult();
+	}*/
+
+
+	public function queryTitle($queryBuilder, $request)
+	{
+		$queryBuilder
+			->andwhere('p.title LIKE :title')
+			->setParameter('title', '%' . $request->query->getAlnum('title') . '%');
+
 	}
+
+	public function queryStatus($queryBuilder, $request, $statuses)
+	{
+		$result = [];
+
+		if (array($statuses)) {
+
+			foreach ($statuses as $index => $status) {
+				$result[] = "p.status LIKE :string$index";
+				$queryBuilder->setParameter("string$index", $status);
+			}
+
+			if (empty($result)) {
+				throw new \LogicException('Error');
+			}
+
+			$queryBuilder
+				->andWhere(new Orx($result));
+			/*->setParameter('status', '%' . $request->query->getAlnum('status') . '%');*/
+		}
+	}
+
+	public function queryTheme($queryBuilder, $request)
+	{
+		$queryBuilder
+			->join('p.themes', 'd')
+			->andwhere('d.value = :value')
+			->setParameter('value', $request->query->getAlnum('value'));
+
+	}
+
+
 }
 
