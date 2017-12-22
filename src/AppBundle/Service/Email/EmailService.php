@@ -40,10 +40,15 @@ class EmailService
         'renderHtml' => 'email/project.html.twig',
         'renderTxt' => 'email/project.txt.twig',
     ];
-    const TYPE_MAIL_NEW_USER  = [
+    const TYPE_MAIL_NEW_USER = [
         'key' => 6,
         'renderHtml' => 'email/newUser.html.twig',
         'renderTxt' => 'email/newUser.txt.twig',
+    ];
+    const TYPE_MAIL_PROJECT_MODER = [
+        'key' => 7,
+        'renderHtml' => 'email/projectModer.html.twig',
+        'renderTxt' => 'email/projectModer.txt.twig',
     ];
 
     protected $mailer;
@@ -62,6 +67,7 @@ class EmailService
             ->setTo($mail['to'])
             ->setCharset('utf-8')
             ->setFrom(self::MAIL_FROM);
+
 
         switch ($mail['type']) {
             case self::TYPE_MAIL_EVENT['key']:
@@ -94,14 +100,27 @@ class EmailService
 
             case self::TYPE_MAIL_CONTACT_ADMIN['key']:
                 $message->setSubject("Quelqu'un vous a contacté via le Wiki des Maires");
+/*                $message->$mail['from'];*/
                 $message->setBody(
                     $this->twig->render(self::TYPE_MAIL_CONTACT_ADMIN['renderHtml'], [
                             'message' => $mail['message'],
-                        ]
+                            'name' => $mail['name'],
+                            'from' => $mail['from'],
+                            'firstName' => $mail['firstName'],
+                            'object' => $mail['object'],
+                            'statut' => $mail['statut'],
+                            'phone' => $mail['phone'],
+                            ]
                     ), 'text/html');
                 $message->addPart(
                     $this->twig->render(self::TYPE_MAIL_CONTACT_ADMIN['renderTxt'], [
                         'message' => $mail['message'],
+                        'name' => $mail['name'],
+                        'from' => $mail['from'],
+                        'firstName' => $mail['firstName'],
+                        'object' => $mail['object'],
+                        'statut' => $mail['statut'],
+                        'phone' => $mail['phone'],
                     ]), 'text/plain');
                 break;
 
@@ -111,11 +130,13 @@ class EmailService
                 $message->setBody(
                     $this->twig->render(self::TYPE_MAIL_CONTACT_CONFIRM['renderHtml'], [
                             'message' => $mail['message'],
+                            'object' => $mail['object'],
                         ]
                     ), 'text/html');
                 $message->addPart(
-                    $this->twig->render(self::TYPE_MAIL_CONTACT_CONFIRM['renderTxt'], [
+                       $this->twig->render(self::TYPE_MAIL_CONTACT_CONFIRM['renderTxt'], [
                         'message' => $mail['message'],
+                        'object' => $mail['object'],
                     ]), 'text/plain');
                 break;
 
@@ -143,6 +164,20 @@ class EmailService
                     ), 'text/html');
                 $message->addPart(
                     $this->twig->render(self::TYPE_MAIL_NEW_USER['renderTxt'], [
+                        'message' => $mail['message'],
+                    ]), 'text/plain');
+                break;
+
+
+            case self::TYPE_MAIL_PROJECT_MODER['key']:
+                $message->setSubject("Votre projet est envoyé pour modération");
+                $message->setBody(
+                    $this->twig->render(self::TYPE_MAIL_PROJECT_MODER['renderHtml'], [
+                            'message' => $mail['message'],
+                        ]
+                    ), 'text/html');
+                $message->addPart(
+                    $this->twig->render(self::TYPE_MAIL_PROJECT_MODER['renderTxt'], [
                         'message' => $mail['message'],
                     ]), 'text/plain');
                 break;

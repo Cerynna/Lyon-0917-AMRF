@@ -5,10 +5,28 @@
     {% include 'components/navbar.html.twig' with options %}
 {% endblock %}
 {% block body %}
-    {#{{ render(controller('AppBundle:AdminCompany:new')) }}#}
-    {# {{ form_start(edit_form) }}
-     {{ form_widget(form) }}
-     {{ form_end(edit_form) }}#}
+    <div id="modalImageUpload" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-sm-10">
+                            {{ form_start(upload_image_form) }}
+                            {{ form_label(upload_image_form.path, 'Télécharger un fichier depuis votre ordinateur') }}
+                            {{ form_widget(upload_image_form.path) }}
+
+                            {{ form_end(upload_image_form) }}
+                        </div>
+                        <div class="col-sm-2 text-right">
+                            <i class="fa fa-times fa-admin-mini" data-dismiss="modal"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     {{ form_start(form) }}
     <h2 class="center-align">Ma fiche Partenaire</h2>
     <!-- Nav tabs -->
@@ -33,29 +51,37 @@
                 <div role="tabpanel" class="tab-pane active" id="organisme">
                     <div class="star">Le symbole * indique que cette information est nécessaire.</div>
                     <h3>Organisme</h3>
+                    <div class="row">
                     <div class="col-lg-6 col-sm-6">
                         <div class="form-group">
                             {{ form_label(form.name, "Nom de l’organisme *") }}
                             {{ form_widget(form.name) }}
+                            <div class="errorForm">{{ form_errors(form.name) | striptags }}</div>
                         </div>
                     </div>
                     <div class="col-lg-6 col-sm-6">
                         <div class="form-group">
                             {{ form_label(form.address, "Adresse de l’organisme *") }}
                             {{ form_widget(form.address) }}
+                            <div class="errorForm">{{ form_errors(form.address) | striptags }}</div>
                         </div>
                     </div>
+                    </div>
+                    <div class="row">
                     <div class="col-lg-6 col-sm-6">
                         <div class="form-group">
                             {{ form_label(form.zipCode, "Code Postal *") }}
                             {{ form_widget(form.zipCode) }}
+                            <div class="errorForm">{{ form_errors(form.zipCode) | striptags }}</div>
                         </div>
                     </div>
                     <div class="col-lg-6 col-sm-6">
                         <div class="form-group">
-                            {{ form_label(form.zipCode, "Ville *") }}
+                            {{ form_label(form.city, "Ville *") }}
                             {{ form_widget(form.city) }}
+                            <div class="errorForm">{{ form_errors(form.city) | striptags }}</div>
                         </div>
+                    </div>
                     </div>
                     <div class="row">
                         <div class="form-group col-sm-4 col-sm-offset-4" align="center">
@@ -100,104 +126,78 @@
                                     {% endfor %}
                                 </div>
 
-                                {#<div class="col-xs-3">
-                                    <div><input name="secteur[]" class="form-control check-limit" type="checkbox"
-                                                id="alimentation"/> <label for="alimentation">Alimentation</label>
-                                    </div>
-                                    <div><input name="secteur[]" class="form-control check-limit" type="checkbox"
-                                                id="assurance"/> <label for="assurance">Assurance</label></div>
-                                    <div><input name="secteur[]" class="form-control check-limit" type="checkbox"
-                                                id="banque"/> <label for="banque">Banque</label></div>
-                                    <div><input name="secteur[]" class="form-control check-limit" type="checkbox"
-                                                id="collectivite"/> <label for="collectivite">Collectivité</label>
-                                    </div>
-                                    <div><input name="secteur[]" class="form-control check-limit" type="checkbox"
-                                                id="commerce"/> <label for="commerce">Commerce</label></div>
-
-                                </div>
-                                <div class="col-xs-3">
-                                    <div><input name="secteur[]" class="form-control check-limit" type="checkbox"
-                                                id="dechets"/> <label for="dechets">Déchets</label></div>
-                                    <div><input name="secteur[]" class="form-control check-limit" type="checkbox"
-                                                id="democratie locale"/> <label for="democratie locale">Démocratie
-                                            locale</label></div>
-                                    <div><input name="secteur[]" class="form-control check-limit" type="checkbox"
-                                                id="developpement local"/> <label for="developpement local">Développement
-                                            local</label></div>
-                                    <div><input name="secteur[]" class="form-control check-limit" type="checkbox"
-                                                id="economie"/> <label for="economie">Économie</label></div>
-                                    <div><input name="secteur[]" class="form-control check-limit" type="checkbox"
-                                                id="education"/> <label for="education">Éducation</label></div>
-                                </div>
-                                <div class="col-xs-3">
-                                    <div><input name="secteur[]" class="form-control check-limit" type="checkbox"
-                                                id="energie"/> <label for="energie">Énergie</label></div>
-                                    <div><input name="secteur[]" class="form-control check-limit" type="checkbox"
-                                                id="equipement"/> <label for="equipement">Équipement</label></div>
-                                    <div><input name="secteur[]" class="form-control check-limit" type="checkbox"
-                                                id="finances"/> <label for="finances">Finances</label></div>
-                                    <div><input name="secteur[]" class="form-control check-limit" type="checkbox"
-                                                id="formation"/> <label for="formation">Formation</label></div>
-                                    <div><input name="secteur[]" class="form-control check-limit" type="checkbox"
-                                                id="internet"/> <label for="internet">Internet</label></div>
-                                </div>
-                                <div class="col-xs-3">
-                                    <div><input name="secteur[]" class="form-control check-limit" type="checkbox"
-                                                id="numerique"/> <label for="numerique">Numérique</label></div>
-                                    <div><input name="secteur[]" class="form-control check-limit" type="checkbox"
-                                                id="sante"/> <label for="sante">Santé</label></div>
-                                    <div><input name="secteur[]" class="form-control check-limit" type="checkbox"
-                                                id="services publics"/> <label for="services publics">Services
-                                            publics</label></div>
-                                    <div><input name="secteur[]" class="form-control check-limit" type="checkbox"
-                                                id="social"/> <label for="social">Social</label></div>
-                                    <div><input name="secteur[]" class="form-control check-limit" type="checkbox"
-                                                id="telephonie"/> <label for="telephonie">Téléphonie</label></div>
-                                </div>#}
                             </div>
                         </div>
                     </div>
+                    <div class="row">
                     <div class=" col-xs-12">
                         <div class="form-group">
                             {{ form_label(form.presentation, "Présentation * (1200 caractères maximum)") }}
                             {{ form_widget(form.presentation, {'attr': {
+                                'class': 'summernote',
                                 'placeholder': 'Présentez votre activité.'} }) }}
+                            <div class="errorForm">{{ form_errors(form.presentation) | striptags }}</div>
                         </div>
+                    </div>
                     </div>
                     <div class="col-xs-12">
                         <div class="form-group">
 
-                            <input type="hidden" name="MAX_FILE_SIZE" value="500000">
-                            <input type="file" id="photo" name="photo"/>
-                            <p>le poids du fichier ne doit pas excéder ... ... Mo</p>
-                            <label for="photo">
-                                <div class="btn2">Ajouter un logo</div>
-                            </label>
+                            {% if company.logo %}
+                                    {% set img = 'upload/company/' ~ company.id ~ '/file/' ~ company.logo %}
+                                    {% set imglink = 'upload-company-' ~ company.id ~ '-file-' ~ company.logo %}
+                                    <div style="background-image: url('{{ asset(img) }}')"
+                                         class="imageProject col-sm-3">
+                                        <i class="fa fa-trash fa-mini" onclick="deleteFile('{{ imglink }}')"></i>
+                                    </div>
+
+                            {% endif %}
+                            {% if company.logo|length < 1 %}
+                                    <label for="photo">Téléchargez un logo pour votre organisme<br/>
+                                        <p>le poids d'une image ne doit pas excéder ... ... Mo</p>
+                                        <div class="btn2" data-toggle="modal" data-target="#modalImageUpload"><i
+                                                    class="fa fa-upload fa-admin"></i> Ajouter votre logo
+                                        </div>
+                                    </label>
+
+                            {% endif %}
+
+
+
+
                         </div>
                     </div>
+                    <div class="row">
                     <div class="col-lg-6 col-sm-6">
                         <div class="form-group">
-                            <label for="amrf_publicrooterbundle_company_url">Site internet <span class="hidden-sm">(les utilisateurs seront renvoyés vers cette page)</span></label>
+                            {{ form_label(form.url, "Site internet") }}
                             {{ form_widget(form.url) }}
+                            <div class="errorForm">{{ form_errors(form.url) | striptags }}</div>
                         </div>
                     </div>
                     <div class="col-lg-6 col-sm-6">
                         <div class="form-group">
                             {{ form_label(form.facebook, " Facebook ") }}
                             {{ form_widget(form.facebook) }}
+                            <div class="errorForm">{{ form_errors(form.facebook) | striptags }}</div>
                         </div>
                     </div>
+                    </div>
+                    <div class="row">
                     <div class="col-lg-6 col-sm-6">
                         <div class="form-group">
                             {{ form_label(form.linkedin, "Linkedin ") }}
                             {{ form_widget(form.linkedin) }}
+                            <div class="errorForm">{{ form_errors(form.linkedin) | striptags }}</div>
                         </div>
                     </div>
                     <div class="col-lg-6 col-sm-6">
                         <div class="form-group">
                             {{ form_label(form.twitter, "Twitter ") }}
                             {{ form_widget(form.twitter) }}
+                            <div class="errorForm">{{ form_errors(form.twitter) | striptags }}</div>
                         </div>
+                    </div>
                     </div>
                     <div class="form-group col-sm-4" align="left">
                         <a href="#organisme" aria-controls="organisme" role="tab" data-toggle="tab"
@@ -223,29 +223,37 @@
                 <div role="tabpanel" class="tab-pane" id="contact">
                     <div class="star">Le symbole * indique que cette information est nécessaire.</div>
                     <h3>Contact</h3>
+                    <div class="row">
                     <div class="col-lg-6 col-sm-6">
                         <div class="form-group">
                             {{ form_label(form.contactLastName, "Nom du contact *") }}
                             {{ form_widget(form.contactLastName) }}
+                            <div class="errorForm">{{ form_errors(form.contactLastName) | striptags }}</div>
                         </div>
                     </div>
                     <div class="col-lg-6 col-sm-6">
                         <div class="form-group">
                             {{ form_label(form.contactFirstName, "Prenom du contact *") }}
                             {{ form_widget(form.contactFirstName) }}
+                            <div class="errorForm">{{ form_errors(form.contactFirstName) | striptags }}</div>
                         </div>
                     </div>
+                    </div>
+                    <div class="row">
                     <div class="col-lg-6 col-sm-6">
                         <div class="form-group">
                             {{ form_label(form.contactPhone, "Téléphone *") }}
                             {{ form_widget(form.contactPhone) }}
+                            <div class="errorForm">{{ form_errors(form.contactPhone) | striptags }}</div>
                         </div>
                     </div>
                     <div class="col-lg-6 col-sm-6">
                         <div class="form-group">
                             {{ form_label(form.contactEmail, "Email *") }}
                             {{ form_widget(form.contactEmail) }}
+                            <div class="errorForm">{{ form_errors(form.contactEmail) | striptags }}</div>
                         </div>
+                    </div>
                     </div>
                     <div class="form-group col-sm-4" align="left">
                         <a href="#description" aria-controls="description" role="tab" data-toggle="tab"
@@ -283,10 +291,11 @@
                             <div class="row">
                                 <div class="panel-heading" role="tab">
                                     <div class="col-sm-4">
-                                        <img src="http://via.placeholder.com/70x70">
+                                        {% set logo = 'upload/company/' ~ company.id ~ '/file/' ~ company.logo %}
+                                        <img src="{{ asset(logo) }}">
                                     </div>
                                     <div class="col-sm-5">
-                                        <h3>Nom du partenaire</h3>
+                                        <h3>{{ company.name }}</h3>
                                     </div>
                                 </div>
                             </div>
@@ -317,6 +326,20 @@
         function changeActiveMenu(idActive) {
             $('.tabLi').removeClass('active');
             $('#' + idActive).addClass('active');
+        }
+        function deleteFile(file) {
+            $.ajax({
+                type: "GET",
+                url: "/deletefile/" + file,
+                success: function () {
+                    location.reload();
+                },
+                error: function () {
+                    alert("la photo ne peu pas être supprimée");
+
+                }
+            })
+
         }
     </script>
 {% endblock %}

@@ -10,15 +10,15 @@
                 <td>{{ mayor.id }}</td>
             </tr>
             <tr>
-                <th>Firstname</th>
+                <th>Prénom</th>
                 <td>{{ mayor.firstName }}</td>
             </tr>
             <tr>
-                <th>Lastname</th>
+                <th>Nom</th>
                 <td>{{ mayor.lastName }}</td>
             </tr>
             <tr>
-                <th>Address</th>
+                <th>Adresse</th>
                 <td>{{ mayor.address }}</td>
             </tr>
             <tr>
@@ -30,23 +30,23 @@
                 <td>{{ mayor.email }}</td>
             </tr>
             <tr>
-                <th>Phone</th>
+                <th>Téléphone</th>
                 <td>{{ mayor.phone }}</td>
             </tr>
             <tr>
-                <th>Town</th>
+                <th>ville</th>
                 <td>{{ mayor.town }}</td>
             </tr>
             <tr>
-                <th>Zipcode</th>
+                <th>Code postal</th>
                 <td>{{ mayor.zipCode }}</td>
             </tr>
             <tr>
-                <th>Department</th>
+                <th>Département</th>
                 <td>{{ mayor.department }}</td>
             </tr>
             <tr>
-                <th>Region</th>
+                <th>Région</th>
                 <td>{{ mayor.region }}</td>
             </tr>
             <tr>
@@ -82,10 +82,10 @@
 
     <ul>
         <li>
-            <a href="{{ path('admin_mayor_index') }}">Back to the list</a>
+            <a href="{{ path('admin_mayor_index') }}">Retour à la liste</a>
         </li>
         <li>
-            <a href="{{ path('admin_mayor_edit', { 'id': mayor.id }) }}">Edit</a>
+            <a href="{{ path('admin_mayor_edit', { 'id': mayor.id }) }}">Edition</a>
         </li>
         <li>
             {{ form_start(delete_form) }}

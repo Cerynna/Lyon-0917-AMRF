@@ -33,28 +33,38 @@ class AdminEmailController extends Controller
             'to' => 'cerynna@gmail.com',
             'type' => EmailService::TYPE_MAIL_EVENT['key'],
             'object' => 'Message d\'event',
-            'message' => 'Salut les moches',
+            'message' => 'test mail event',
         ];
         $message[] = [
             'to' => 'cerynna@gmail.com',
             'type' => EmailService::TYPE_MAIL_CONFIRM_PASSWORD['key'],
+            'message' => 'Test confirm password',
         ];
         $message[] = [
             'to' => 'cerynna@gmail.com',
             'type' => EmailService::TYPE_MAIL_CONTACT_CONFIRM['key'],
+            'message' => 'Test contact confirm',
 
         ];
         $message[] = [
             'to' => 'cerynna@gmail.com',
             'type' => EmailService::TYPE_MAIL_CONTACT_ADMIN['key'],
+            'message' => 'test formulaire',
         ];
         $message[] = [
             'to' => 'cerynna@gmail.com',
             'type' => EmailService::TYPE_MAIL_PROJECT_VALID['key'],
+            'message' => 'Test projet publié',
         ];
         $message[] = [
             'to' => 'cerynna@gmail.com',
             'type' => EmailService::TYPE_MAIL_NEW_USER['key'],
+            'message' => 'test new user',
+        ];
+        $message[] = [
+            'to' => 'cerynna@gmail.com',
+            'type' => EmailService::TYPE_MAIL_PROJECT_MODER['key'],
+            'message' => 'Test modération',
         ];
 
         foreach ($message as $mess) {

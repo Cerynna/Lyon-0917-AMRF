@@ -186,7 +186,7 @@ class AdminProjectController extends Controller
 
 		if ($uplodFileForm->isSubmitted() && $uplodFileForm->isValid()) {
 			$file = $uploaderFile->getPath();
-			$fileNewDB = $uploadService->fileUpload($file, '/project/' . $project->getId() . '/file');
+			$fileNewDB = $uploadService->fileUpload($file, '/project/' . $project->getId() . '/file', "file");
 			$project->setFile($fileNewDB);
 			$this->getDoctrine()->getManager()->flush();
 			return $this->redirectToRoute('admin_project_edit', array(
@@ -197,45 +197,39 @@ class AdminProjectController extends Controller
 		if ($uplodImageForm->isSubmitted() && $uplodImageForm->isValid()) {
 			$files = $uploaderImage->getPath();
 			$images = $project->getImages();
-			$dbimg = $images;
-			$dbimg[] = $uploadService->fileUpload($files, '/project/' . $project->getId() . '/photos');
-			$project->setImages($dbimg);
+            $images[] = $uploadService->fileUpload($files, '/project/' . $project->getId() . '/photos', "img");
+			$project->setImages($images);
 			$this->getDoctrine()->getManager()->flush();
-			return $this->redirectToRoute('admin_project_edit', array(
-				'slug' => $project->getSlug(),
-			));
-		}
+            /*return $this->redirectToRoute('admin_project_edit', array(
+                'slug' => $project->getSlug(),
+            ));*/
+        }
 
 
-		if ($editForm->isSubmitted() && $editForm->isValid()) {
-			$em = $this->getDoctrine()->getManager();
-			/*            $themes = $project->getthemes();
-						$project->resetthemes();
-						foreach ($themes as $themes) {
-							$project->addthemes($themes);
-						}*/
-			$project->setSlug($slugService->slug($project->getTitle()));
-			$em->persist($project);
-			$em->flush();
+        if ($editForm->isSubmitted() && $editForm->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $project->setSlug($slugService->slug($project->getTitle()));
+            $em->persist($project);
+            $em->flush();
 
-			return $this->redirectToRoute('admin_project_edit', array('slug' => $project->getSlug()));
-		}
+            return $this->redirectToRoute('admin_project_edit', array('slug' => $project->getSlug()));
+        }
 
-		return $this->render('project/edit.html.twig', array(
-			'project' => $project,
-			'edit_form' => $editForm->createView(),
-			'upload_image_form' => $uplodImageForm->createView(),
-			'upload_file_form' => $uplodFileForm->createView(),
-			'delete_form' => $deleteForm->createView(),
-		));
-	}
+        return $this->render('project/edit.html.twig', array(
+            'project' => $project,
+            'edit_form' => $editForm->createView(),
+            'upload_image_form' => $uplodImageForm->createView(),
+            'upload_file_form' => $uplodFileForm->createView(),
+            'delete_form' => $deleteForm->createView(),
+        ));
+    }
 
-	/**
-	 * Deletes a project entity.
-	 *
-	 * @Route("/{id}", name="admin_project_delete")
-	 * @Method("DELETE")
-	 */
+    /**
+     * Deletes a project entity.
+     *
+     * @Route("/{id}", name="admin_project_delete")
+     * @Method("DELETE")
+     */
 	public function deleteAction(Request $request, Project $project)
 	{
 		$form = $this->createDeleteForm($project);

@@ -287,6 +287,8 @@
                     {% set nbthema = edit_form.themes|length %}
                     {% set col =  nbthema/3 %}
                     {% set col = col|round %}
+
+
                     {% for thema in edit_form.themes %}
                     {{ form_errors(thema) }}
                     <div>

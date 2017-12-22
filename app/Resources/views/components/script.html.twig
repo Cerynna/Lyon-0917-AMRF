@@ -1,9 +1,13 @@
 <script src="https://code.jquery.com/jquery-3.2.1.min.js" type="text/javascript"></script>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js" integrity="sha256-T0Vest3yCU7pafRw9r+settMBX6JkKN06dqBnpQ8d30="
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"
+        integrity="sha256-T0Vest3yCU7pafRw9r+settMBX6JkKN06dqBnpQ8d30="
         crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.0.5/js/swiper.js"></script>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.4/js/select2.min.js"></script>
+
+<script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.js"></script>
+
 
 <script src="{{ asset('js/bootstrap.min.js') }}" type="text/javascript"></script>
 {#<script src="{{ asset('js/communeSelect.js') }}" type="text/javascript"></script>
@@ -11,4 +15,35 @@
 <script src="{{ asset('js/btnFavoris.js') }}" type="text/javascript"></script>
 <script src="{{ asset('js/jquery.sticky.js') }}" type="text/javascript"></script>
 <script src="{{ asset('js/main.js') }}" type="text/javascript"></script>
+<script>
+    $(document).ready(function () {
+        $('.summernote').summernote({
+            height: 150,
+            toolbar: [
+                // [groupName, [list of button]]
+                ['style', ['bold', 'italic', 'underline', 'clear']],
+                //['para', ['ul', 'ol']],
+            ]
+        });
+        setTimeout(function(){
+            $('.notice').fadeOut( "slow", function() {
+                // Animation complete.
+            });
+        }, 3000);
+    });
+    function deleteFile(file) {
+        $.ajax({
+            type: "GET",
+            url: "/deletefile/" + file,
+            success: function () {
+                location.reload();
+            },
+            error: function () {
+                alert("la photo ne peu pas être supprimée");
+
+            }
+        })
+
+    }
+</script>
 

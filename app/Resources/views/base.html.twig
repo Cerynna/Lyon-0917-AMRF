@@ -21,9 +21,12 @@
         {% include 'components/navbar.html.twig'%}
     {% endblock %}
 </nav>
+
+
 <a href="#">
     <div class="scrollUp"><i class="fa fa-angle-up"></i></div>
 </a>
+
 <section>
     <div class="container">
         <div class="content">
@@ -32,8 +35,21 @@
         </div>
     </div>
 </section>
+
+
+
+
+{% for message in app.flashes('notice') %}
+    <div class="notice">
+        <div class="notif">
+            {{ message }}
+        </div>
+    </div>
+{% endfor %}
 <footer class="page-footer">
-    {% include 'components/footer.html.twig' %}
+    {{ render(controller(
+    'AppBundle:Layout:footer'
+    )) }}
 </footer>
 {% include 'components/script.html.twig' %}
 {% block javascripts %}{% endblock %}
