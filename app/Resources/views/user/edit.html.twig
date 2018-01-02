@@ -13,7 +13,8 @@
                             class="fa fa-user-plus fa-admin"></i></a>
             </li>
             <li>
-                <a  onclick="document.amrf_publicrooterbundle_user.submit();" data-toggle="tooltip" data-placement="right"
+                <a onclick="document.amrf_publicrooterbundle_user.submit();" data-toggle="tooltip"
+                   data-placement="right"
                    title="Valider les modifications"><i class="fa fa-check fa-admin"></i></a>
             </li>
             <li>
@@ -21,26 +22,163 @@
                 <button class="fa-admin" data-toggle="tooltip" data-placement="right"
                         title="Supprimer l'Utilisateur" type="submit"><i class="fa fa-trash-o"></i></button>
                 {{ form_end(delete_form) }}
-
             </li>
 
         </ul>
     </div>
     <h1>User edit</h1>
 
-    {{ form_start(edit_form) }}
+    {#{{ form_start(edit_form) }}
     {{ form_widget(edit_form) }}
     <input type="submit" value="Edit"/>
-    {{ form_end(edit_form) }}
+    {{ form_end(edit_form) }}#}
 
-    <ul>
-        <li>
-            <a href="{{ path('admin_user_index') }}">Back to the list</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-            <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
+    {{ form_start(edit_form) }}
+
+    <div class="form-group row" id="editProject">
+        <div class="col-sm-6">
+            <div class="col-sm-12">
+                <h5>{{ form_label(edit_form.login, "User login") }}</h5>
+                {{ form_widget(edit_form.login) }}
+            </div>
+            <div class="col-sm-12">
+                <h5>{{ form_label(edit_form.password) }}</h5>
+                {{ form_widget(edit_form.password) }}
+            </div>
+            <div class="col-sm-12">
+                <h5>{{ form_label(edit_form.email) }}</h5>
+                {{ form_widget(edit_form.email) }}
+            </div>
+            <div class="col-sm-6">
+                <h5>{{ form_label(edit_form.role) }}</h5>
+                {{ form_widget(edit_form.role) }}
+            </div>
+            <div class="col-sm-6">
+                <h5>{{ form_label(edit_form.status) }}</h5>
+                {{ form_widget(edit_form.status) }}
+            </div>
+            <div class="col-sm-6">
+                <h5>{{ form_label(edit_form.creationDate) }}</h5>
+                {{ form_widget(edit_form.creationDate) }}
+            </div>
+            <div class="col-sm-6">
+                <h5>{{ form_label(edit_form.lastLogin) }}</h5>
+                {{ form_widget(edit_form.lastLogin) }}
+            </div>
+
+        </div>
+        {% if user.role == 1 %}
+            <div class="col-sm-6">
+                <div class="col-sm-12">
+                    <h5 class="text-center">Maire info</h5>
+                </div>
+                <div class="col-sm-4">
+                    <h5>{{ form_label(edit_form.mayor.firstName) }}</h5>
+                    {{ form_widget(edit_form.mayor.firstName) }}
+                </div>
+                <div class="col-sm-4">
+                    <h5>{{ form_label(edit_form.mayor.lastName) }}</h5>
+                    {{ form_widget(edit_form.mayor.lastName) }}
+                </div>
+                <div class="col-sm-4">
+                    <h5>{{ form_label(edit_form.mayor.insee) }}</h5>
+                    {{ form_widget(edit_form.mayor.insee) }}
+                </div>
+                <div class="col-sm-4">
+                    <h5>{{ form_label(edit_form.mayor.email) }}</h5>
+                    {{ form_widget(edit_form.mayor.email) }}
+                </div>
+                <div class="col-sm-4">
+                    <h5>{{ form_label(edit_form.mayor.phone) }}</h5>
+                    {{ form_widget(edit_form.mayor.phone) }}
+                </div>
+                <div class="col-sm-4">
+                    <h5>{{ form_label(edit_form.mayor.address) }}</h5>
+                    {{ form_widget(edit_form.mayor.address) }}
+                </div>
+                <div class="col-sm-4">
+                    <h5>{{ form_label(edit_form.mayor.town) }}</h5>
+                    {{ form_widget(edit_form.mayor.town) }}
+                </div>
+                <div class="col-sm-4">
+                    <h5>{{ form_label(edit_form.mayor.zipCode) }}</h5>
+                    {{ form_widget(edit_form.mayor.zipCode) }}
+                </div>
+                <div class="col-sm-4">
+                    <h5>{{ form_label(edit_form.mayor.department) }}</h5>
+                    {{ form_widget(edit_form.mayor.department) }}
+                </div>
+                <div class="col-sm-4">
+                    <h5>{{ form_label(edit_form.mayor.region) }}</h5>
+                    {{ form_widget(edit_form.mayor.region) }}
+                </div>
+                <div class="col-sm-4">
+                    <h5>{{ form_label(edit_form.mayor.latitude) }}</h5>
+                    {{ form_widget(edit_form.mayor.latitude) }}
+                </div>
+                <div class="col-sm-4">
+                    <h5>{{ form_label(edit_form.mayor.longitude) }}</h5>
+                    {{ form_widget(edit_form.mayor.longitude) }}
+                </div>
+                <div class="col-sm-4">
+                    <h5>{{ form_label(edit_form.mayor.population) }}</h5>
+                    {{ form_widget(edit_form.mayor.population) }}
+                </div>
+                <div class="col-sm-4">
+                    <h5>{{ form_label(edit_form.mayor.url) }}</h5>
+                    {{ form_widget(edit_form.mayor.url) }}
+                </div>
+                <div class="col-sm-4">
+                    <h5>{{ form_label(edit_form.mayor.facebook) }}</h5>
+                    {{ form_widget(edit_form.mayor.facebook) }}
+                </div>
+                <div class="col-sm-4">
+                    <h5>{{ form_label(edit_form.mayor.twitter) }}</h5>
+                    {{ form_widget(edit_form.mayor.twitter) }}
+                </div>
+                <div class="col-sm-4">
+                    <h5>{{ form_label(edit_form.mayor.google) }}</h5>
+                    {{ form_widget(edit_form.mayor.google) }}
+                </div>
+            </div>
+        {% endif %}
+        {% if user.role == 2 %}
+            <div class="col-sm-6">
+                <div class="col-sm-12">
+                    <h5 class="text-center">Partner info</h5>
+                </div>
+                <div class="col-sm-4">
+                    <h5>{{ form_label(edit_form.partner.firstName) }}</h5>
+                    {{ form_widget(edit_form.partner.firstName) }}
+                </div>
+                <div class="col-sm-4">
+                    <h5>{{ form_label(edit_form.partner.lastName) }}</h5>
+                    {{ form_widget(edit_form.partner.lastName) }}
+                </div>
+                <div class="col-sm-4">
+                    <h5>{{ form_label(edit_form.partner.occupation) }}</h5>
+                    {{ form_widget(edit_form.partner.occupation) }}
+                </div>
+                <div class="col-sm-4">
+                    <h5>{{ form_label(edit_form.partner.email) }}</h5>
+                    {{ form_widget(edit_form.partner.email) }}
+                </div>
+                <div class="col-sm-4">
+                    <h5>{{ form_label(edit_form.partner.phone) }}</h5>
+                    {{ form_widget(edit_form.partner.phone) }}
+                </div>
+                <div class="col-sm-4">
+                    <h5>{{ form_label(edit_form.partner.company) }}</h5>
+                    {{ form_widget(edit_form.partner.company) }}
+                    <a href="{{ path('admin_company_index') }}" data-toggle="tooltip" data-placement="right"
+                       title="Liste Organisme"><i class="fa  fa-forward fa-admin"></i></a>
+                </div>
+            </div>
+        {% endif %}
+
+    </div>
+{%     dump(user.role) %}
+
+    {{ form_end(edit_form, {'render_rest': false}) }}
+
 {% endblock %}
