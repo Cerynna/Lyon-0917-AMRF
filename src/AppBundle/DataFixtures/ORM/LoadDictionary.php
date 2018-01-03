@@ -6,7 +6,7 @@
  * Time: 21:38
  */
 
-
+/*
 namespace AppBundle\DataFixtures\ORM;
 
 use AppBundle\Entity\Dictionary;
@@ -163,4 +163,4 @@ class LoadDictionary extends Fixture implements FixtureInterface
 
 
     }
-}
+}*/
