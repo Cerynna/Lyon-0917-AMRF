@@ -310,14 +310,12 @@ a:hover, a:active {
   .bck-part {
     width: 220px;
   }
-
 }
 .item::-webkit-scrollbar {
   display: none;
 }
 .item {
   height: 30vh;
-
 }
 
 .notice {
@@ -327,13 +325,13 @@ a:hover, a:active {
   text-align: center;
   z-index: 1000;
   position: fixed;
-  background: rgba(0, 158, 61, 0.75);
+  background: $color6;
   top: 0px;
-  width: 100%;
+  width: 100vw;
   .notif {
-    width: 600px;
+    width: 50vw;
     height: 100vh;
-    padding-top: 250px;
+    padding-top: 25vh;
     margin: 0 auto;
   }
 }

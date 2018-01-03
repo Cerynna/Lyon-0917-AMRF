@@ -1990,13 +1990,13 @@ a:hover, a:active {
   text-align: center;
   z-index: 1000;
   position: fixed;
-  background: rgba(0, 158, 61, 0.75);
+  background: rgba(0, 110, 45, 0.5);
   top: 0px;
-  width: 100%; }
+  width: 100vw; }
   .notice .notif {
-    width: 600px;
+    width: 50vw;
     height: 100vh;
-    padding-top: 250px;
+    padding-top: 25vh;
     margin: 0 auto; }
 
 /*
