@@ -42,7 +42,7 @@
 {% for message in app.flashes('notice') %}
     <div class="notice">
         <div class="notif">
-            {{ message }}
+            {{ message|raw }}
         </div>
     </div>
 {% endfor %}

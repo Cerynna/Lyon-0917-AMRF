@@ -119,7 +119,7 @@ class PublicController extends Controller
         elseif($form->isSubmitted() && !$this->captchaverify($request->get('g-recaptcha-response'))) {
             $this->addFlash(
                 'notice',
-                'Votre message n\'a pas été envoyé, veuillez remplir le CAPTCHA'
+                '<p>Votre message n\'a pas été envoyé,</p><p>veuillez remplir le CAPTCHA</p>'
             );
 
         }

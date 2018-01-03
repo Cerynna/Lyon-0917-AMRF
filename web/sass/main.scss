@@ -322,18 +322,19 @@ a:hover, a:active {
 
 .notice {
   color: $color2;
-  font-size: 1.2em;
+  font-size: 1.8em;
+  font-weight: bold;
   text-align: center;
   z-index: 1000;
   position: fixed;
-  top: 200px;
+  background: rgba(0, 158, 61, 0.75);
+  top: 0px;
   width: 100%;
   .notif {
     width: 600px;
-    padding: 10px;
-    background: green;
+    height: 100vh;
+    padding-top: 250px;
     margin: 0 auto;
-    @include boxShadow(0.05em, rgba(0, 0, 0, 0.2));
   }
 }
 /*

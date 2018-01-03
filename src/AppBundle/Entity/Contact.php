@@ -7,66 +7,56 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Contact
  *
- * @ORM\Table(name="contact")
- * @ORM\Entity(repositoryClass="AppBundle\Repository\ContactRepository")
+ * 
  */
 class Contact
 {
     /**
      * @var int
      *
-     * @ORM\Column(name="id", type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
+     * 
      */
     private $id;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="name", type="string", length=255)
      */
     private $name;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="firstName", type="string", length=255)
      */
     private $firstName;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="email", type="string", length=255)
      */
     private $email;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="phone", type="string", length=255)
      */
     private $phone;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="subject", type="string", length=255)
      */
     private $subject;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="statut", type="string", length=255)
      */
     private $statut;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="message", type="text")
      */
     private $message;
 
