@@ -5,10 +5,12 @@ namespace AppBundle\Controller;
 
 use AppBundle\Entity\Contact;
 use AppBundle\Entity\Project;
+use AppBundle\Entity\Search;
 use AppBundle\Service\Email\EmailService;
 
 
 use Doctrine\ORM\EntityManager;
+use function dump;
 use SensioLabs\Security\Exception\HttpException;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -20,21 +22,19 @@ use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 use Symfony\Component\Filesystem\Filesystem;
 
 
-
 class PublicController extends Controller
 {
 
     /**
      * @Route("/", name="home")
      */
-   public function indexAction()
+    public function indexAction()
     {
         $em = $this->getDoctrine()->getManager();
 
         /** Change that is a real code for Update LastLogin */
         $user = $this->get('security.token_storage')->getToken()->getUser();
-        if (is_object($user))
-        {
+        if (is_object($user)) {
             $lastloginDB = $user->getLastLogin();
             $today = new \DateTime('now');
             $tomorow = $today->modify('+1 day');
@@ -46,9 +46,8 @@ class PublicController extends Controller
         /** ------------------------------------------------ */
 
         $projects = $em->getRepository('AppBundle:Project')->getLastProject();
-        $array = ["main-1","main-2"];
+        $array = ["main-1", "main-2"];
         $contents = $em->getRepository('AppBundle:PublicPage')->getContentIndex($array);
-
 
 
         return $this->render('public/index.html.twig', array(
@@ -63,7 +62,7 @@ class PublicController extends Controller
     public function amrfAction()
     {
         $em = $this->getDoctrine()->getManager();
-        $array = ["amrf-1","amrf-2","amrf-3"];
+        $array = ["amrf-1", "amrf-2", "amrf-3"];
         $contents = $em->getRepository('AppBundle:PublicPage')->getContentIndex($array);
 
         return $this->render('public/amrf.html.twig', array(
@@ -77,7 +76,7 @@ class PublicController extends Controller
     public function contactAction(Request $request, EmailService $emailService)
     {
         $contact = new Contact();
-        $form = $this->createForm('AppBundle\Form\ContactType',$contact);
+        $form = $this->createForm('AppBundle\Form\ContactType', $contact);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid() && $this->captchaverify($request->get('g-recaptcha-response'))) {
@@ -108,15 +107,13 @@ class PublicController extends Controller
             );
 
             return $this->redirectToRoute('home');
-        }
-        elseif($form->isSubmitted() && !$form->isValid()) {
+        } elseif ($form->isSubmitted() && !$form->isValid()) {
             $this->addFlash(
                 'notice',
                 'Votre message n\'a pas été envoyé, veuillez compléter le formulaire'
             );
 
-        }
-        elseif($form->isSubmitted() && !$this->captchaverify($request->get('g-recaptcha-response'))) {
+        } elseif ($form->isSubmitted() && !$this->captchaverify($request->get('g-recaptcha-response'))) {
             $this->addFlash(
                 'notice',
                 'Votre message n\'a pas été envoyé, veuillez remplir le CAPTCHA'
@@ -164,9 +161,57 @@ class PublicController extends Controller
     /**
      * @Route("/search", name="search")
      */
-    public function searchAction()
+    public function searchAction(Request $request)
     {
-        return $this->render('private/search.html.twig');
+        $search = new Search();
+        $form = $this->createForm('AppBundle\Form\SearchType', $search);
+        $form->handleRequest($request);
+
+        $em = $this->getDoctrine()->getManager();
+
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            $themas = [];
+            foreach ($search->getThemas() as $thematique) {
+                $themas[] = $thematique->getId();
+            }
+            $keywords = [];
+            foreach ($search->getKeywords() as $keyword) {
+                $keywords[] = $keyword->getId();
+            }
+
+            $finder['table'] = 'project';
+            if (!empty($search->getTexts())) {
+                $finder['texts'] = $search->getTexts();
+            }
+            if (!empty($themas)) {
+                $finder['themas'] = $themas;
+            }
+            if (!empty($keywords)) {
+                $finder['keywords'] = $keywords;
+            }
+            if (!empty($search->getCommune())) {
+                $finder['localisation'][Project::LOCALISATION_COMMUNE] = $search->getCommune();
+            }
+            if (!empty($search->getDepartement())) {
+                $finder['localisation'][Project::LOCALISATION_DEPARTEMENT] = $search->getDepartement();
+            }
+            if (!empty($search->getRegion())) {
+                $finder['localisation'][Project::LOCALISATION_REGION] = $search->getRegion();
+            }
+
+            $result = $em->getRepository('AppBundle:Project')->findByPertinence($finder);
+
+            return $this->render('private/search.html.twig', [
+                'result' => $result,
+                'form' => $form->createView(),
+            ]);
+        }
+
+        return $this->render('private/search.html.twig', [
+            'form' => $form->createView(),
+        ]);
     }
 
     /**
@@ -259,6 +304,7 @@ class PublicController extends Controller
         }
 
     }
+
     public function captchaverify($recaptcha)
     {
         $url = "https://www.google.com/recaptcha/api/siteverify";

@@ -5,105 +5,178 @@
     {% include 'components/navbar.html.twig' with options %}
 {% endblock %}
 {% block body %}
-    <h2>RECHERCHE DE PROJETS</h2>
-    {#<h3>Recherche</h3>#}
-    <form action="" method="post">
-        <div class="jumbotron">
-            <div class="input-group col-md-12">
-                <input type="text" class="search form-control" autofocus/>
-                <span class="input-group-addon">
-                    <button type="submit" class="btn btn-search"><i class="fa fa-search"></i></button>
-                </span>
-            </div>
-        </div>
-        <div class="jumbotron">
-            <div class="panel-group" id="more" role="tablist" aria-multiselectable="true">
-                <a data-toggle="collapse" data-parent="#more" href="#collapseMore"
-                   aria-expanded="true" aria-controls="collapseMore">
-                    <div class="panel-heading text-center" role="tab" id="headingMore">
-                        <h3>Recherche avancée <i class="fa fa-angle-double-down"></i></h3>
-                    </div>
-                </a>
-                <div id="collapseMore" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingMore">
-                    <div class="choose">Vous pouvez selectionner de 1 à 3 thématiques</div>
-                    {% include 'components/thematiques.html.twig' %}
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="choose">Et / Ou saisir un ou plusieurs mots-clefs</div>
-                            <select class="form-control mots" name="motsCle[]" multiple="multiple">
-                                <option></option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-12 text-center">
-                            <div class="col-md-12 choose">
-                                <span>Et / Ou choisir une Région ou un Département ou une Commune</span>
-                            </div>
-                            <div class="col-sm-4 form-group text-center relativeDiv">
-                                <label for="region">Région</label>
-                                <input name="region" id="region" class="form-control" autocomplete="off"/>
-                                <ul class="result result_region" onmouseleave="cleanSearch()"></ul>
-                            </div>
-                            <div class="col-sm-4 form-group text-center relativeDiv">
-                                <label for="departement">Département</label>
-                                <input name="departement" id="departement" class="form-control" autocomplete="off" />
-                                <ul class="result result_departement" onmouseleave="cleanSearch()"></ul>
-                            </div>
-                            <div class="col-sm-4 form-group text-center relativeDiv">
-                                <label for="commune">Commune</label>
-                                <input name="commune" id="commune" class="form-control" autocomplete="off" />
-                                <ul class="result result_commune" onmouseleave="cleanSearch()"></ul>
-                            </div>
 
-                            <div class=" col-md-12 text-center">
-                                <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i> Recherche
-                                </button>
-                            </div>
+    {{ form_start(form) }}
+
+    <h2>RECHERCHE DE PROJETS</h2>
+    <div class="jumbotron">
+        <div class="input-group col-md-12">
+            {{ form_widget(form.texts, { 'attr' : {
+                'class' : 'search'
+            }}) }}
+            <span class="input-group-addon">
+                      <button type="submit" class="btn btn-search"><i class="fa fa-search"></i></button>
+                  </span>
+        </div>
+    </div>
+    <div class="jumbotron">
+        <div class="panel-group" id="more" role="tablist" aria-multiselectable="true">
+            <a data-toggle="collapse" data-parent="#more" href="#collapseMore"
+               aria-expanded="true" aria-controls="collapseMore">
+                <div class="panel-heading text-center" role="tab" id="headingMore">
+                    <h3>Recherche avancée <i class="fa fa-angle-double-down"></i></h3>
+                </div>
+            </a>
+            <div id="collapseMore" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingMore">
+                <div class="choose">Vous pouvez selectionner de 1 à 3 thématiques</div>
+                <div class="row">
+                    <div class="col-sm-4">
+                        {% set nbthema = form.themas|length %}
+                        {% set col =  nbthema/3 %}
+                        {% set col = col|round %}
+
+
+                        {% for thema in form.themas %}
+                        {{ form_errors(thema) }}
+                        <div>
+                            <input type="checkbox" id="{{ thema.vars.id }}"
+                                   name="{{ thema.vars.full_name }}" value="{{ thema.vars.value }}"
+                                    {% if thema.vars.checked == true %} checked="checked" {% endif %} >
+                            <label for="{{ thema.vars.id }}">{{ thema.vars.label|slice(0,20) }}</label>
                         </div>
-                        {#<iframe class="hidden-xs" width="100%" height="350" frameborder="0" scrolling="no" marginheight="0"
-                                marginwidth="0"
-                                src="http://www.openstreetmap.org/export/embed.html?bbox=-4.932861328125001%2C43.59630591596551%2C9.569091796875002%2C50.00067775723633&amp;layer=mapnik"
-                                style="border: 0 solid black"></iframe>#}
+                        {% if (loop.index == col) or (loop.index == col*2) %}
+                    </div>
+                    <div class="col-sm-4">
+                        {% endif %}
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="choose">Et / Ou saisir un ou plusieurs mots-clefs</div>
+                        {{ form_widget(form.keywords, {'attr': {
+                            'placeholder': 'Ecrivez les premières lettres du mot et vérifiez qu\'il apparaît dans la liste.',
+                        } }) }}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 text-center">
+                        <div class="col-md-12 choose">
+                            <span>Et / Ou choisir une Région ou un Département ou une Commune</span>
+                        </div>
+                        <div class="col-sm-4 form-group text-center relativeDiv">
+                            <label for="region">Région</label>
+                            {{ form_widget(form.region) }}
+                            <ul class="result result_region" onmouseleave="cleanSearch()"></ul>
+                        </div>
+                        <div class="col-sm-4 form-group text-center relativeDiv">
+                            <label for="departement">Département</label>
+                            {{ form_widget(form.departement) }}
+                            <ul class="result result_departement" onmouseleave="cleanSearch()"></ul>
+                        </div>
+                        <div class="col-sm-4 form-group text-center relativeDiv">
+                            <label for="commune">Commune</label>
+                            {{ form_widget(form.commune) }}
+                            <ul class="result result_commune" onmouseleave="cleanSearch()"></ul>
+                        </div>
+
+                        <div class=" col-md-12 text-center">
+                            <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i> Recherche
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </form>
-    <hr/>
-    <h3>Résultat(s) de votre recherche</h3>
+    </div>
+    {{ form_widget(form._token) }}
+    {{ form_end(form, {'render_rest': false}) }}
 
-{#    <div class="jumbotron">
-        {% set options = {'thema':'true','pictures':'true','update': 'false', 'more': 'true', 'id': 1, 'text': 210} %}
-        {% include 'components/resumeProject.html.twig' with options %}
-    </div>
-    <div class="jumbotron">
-        {% set options = {'thema':'true','pictures':'true','update': 'false', 'more': 'true', 'id': 2, 'text': 210} %}
-        {% include 'components/resumeProject.html.twig' with options %}
-    </div>
-    <div class="jumbotron">
-        {% set options = {'thema':'true','pictures':'true','update': 'false', 'more': 'true', 'id': 3, 'text': 210} %}
-        {% include 'components/resumeProject.html.twig' with options %}
-    </div>#}
+    {% if result is defined %}
+        <hr/>
+        <h3>{{ result|length }} résultats pour votre recherche</h3>
+
+        <div class="jumbotron">
+            <div id="map"></div>
+        </div>
+        <script>
+            var locations = [];
+        </script>
+        {% for key, project in result %}
+
+            {% if project.project.0.status == 3 %}
+                <a class="anchor" id="result-{{ project.project.0.id }}"></a>
+                <div class="jumbotron row"  >
+                    {% set options = {'thema':'true','pictures':'true','update': 'false', 'more': 'true', 'project': project.project.0} %}
+                    {% include 'components/resumeProject.html.twig' with options %}
+                    <script>
+                        var content = "<h4>{{ project.project.0.title }}</h4>" +
+                            "{{ project.project.0.mayor.town }}<br />" +
+                            "{{ project.project.0.mayor.zipCode }}<br />" +
+                            "{#{{ project.project.0.projectDate|date("d-M-Y") }}#}<br />" +
+                            "<a href=\"{{ path('sheet_project', {'slug': project.project.0.slug }) }}\">" +
+                            "Voir la fiche" +
+                            "</a><br />" +
+                            "<a href='#result-{{ project.project.0.id }}'>Voir le Resultat</a>";
+
+                        locations.push([content,{{ project.project.0.mayor.latitude }}, {{ project.project.0.mayor.longitude }}, 4,{{ project.project.0.id }}]);
+                    </script>
+                </div>
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+
 
 
 
 {% endblock %}
 {% block javascripts %}
+    <script async defer
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDIspPVYdG_w8m6VsJ0ZG8mO8u52pcV4_0&callback=initMap">
+    </script>
     <script>
-        $('#region').keyup(function() {
-            var valuesInput = $( "#region" ).val();
+        function initMap() {
+            var infowindow = new google.maps.InfoWindow();
+
+            var marker, i;
+            var france = {lat: 46.746228, lng: 2.459324};
+            var map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 6,
+                center: france
+            });
+            for (i = 0; i < locations.length; i++) {
+                marker = new google.maps.Marker({
+                    position: new google.maps.LatLng(locations[i][1], locations[i][2]),
+                    map: map
+                });
+                google.maps.event.addListener(marker, 'click', (function (marker, i) {
+                    return function () {
+                        infowindow.setContent(locations[i][0]);
+                        infowindow.open(map, marker);
+                    }
+                })(marker, i));
+            }
+
+        }
+
+        $(document).ready(function () {
+            $('#search_keywords').select2();
+        });
+
+        $('#search_region').keyup(function () {
+            var valuesInput = $("#search_region").val();
             $('.result_region').text("");
             $.ajax({
-                type:"GET",
-                url:"https://geo.api.gouv.fr/regions?nom=" + valuesInput,
-                success: function(data) {
+                type: "GET",
+                url: "https://geo.api.gouv.fr/regions?nom=" + valuesInput,
+                success: function (data) {
                     var limit = data.length;
 
                     for (var iter = 0; iter < limit; iter++) {
                         var resultNom = JSON.stringify(data[iter].nom).replace(/\"/g, '');
+                        var resultCode = JSON.stringify(data[iter].code).replace(/\"/g, '');
 
-                        $('.result_region').append('<li onclick="completInput(\'region\',$(this).text())">' + resultNom + "</li>");
+                        $('.result_region').append('<li onclick="completInput(\'search_region\',$(this).text())">' + resultCode + " - " + resultNom + "</li>");
                     }
                 },
                 dataType: 'json',
@@ -111,23 +184,22 @@
 
         });
 
-        $('#departement').keyup(function() {
-            var valuesInput = $( "#departement" ).val();
+        $('#search_departement').keyup(function () {
+            var valuesInput = $("#search_departement").val();
             $('.resultdepartement').text("");
 
-            if (isNaN(valuesInput))
-            {
+            if (isNaN(valuesInput)) {
                 $.ajax({
-                    type:"GET",
-                    url:"https://geo.api.gouv.fr/departements?nom=" + valuesInput,
-                    success: function(data) {
+                    type: "GET",
+                    url: "https://geo.api.gouv.fr/departements?nom=" + valuesInput,
+                    success: function (data) {
                         var limit = data.length;
 
                         for (var iter = 0; iter < limit; iter++) {
                             var resultNom = JSON.stringify(data[iter].nom).replace(/\"/g, '');
                             var resultCode = JSON.stringify(data[iter].code).replace(/\"/g, '');
 
-                            $('.result_departement').append('<li onclick="completInput(\'departement\',$(this).text())">' + resultCode + " - " + resultNom + "</li>");
+                            $('.result_departement').append('<li onclick="completInput(\'search_departement\',$(this).text())">' + resultCode + " - " + resultNom + "</li>");
 
                         }
                     },
@@ -136,16 +208,16 @@
             }
             else {
                 $.ajax({
-                    type:"GET",
-                    url:"https://geo.api.gouv.fr/departements?code=" + valuesInput,
-                    success: function(data) {
+                    type: "GET",
+                    url: "https://geo.api.gouv.fr/departements?code=" + valuesInput,
+                    success: function (data) {
                         var limit = data.length;
 
                         for (var iter = 0; iter < limit; iter++) {
                             var resultNom = JSON.stringify(data[iter].nom).replace(/\"/g, '');
                             var resultCode = JSON.stringify(data[iter].code).replace(/\"/g, '');
 
-                            $('.result_departement').append('<li onclick="completInput(\'departement\',$(this).text())">' + resultCode + " - " + resultNom + "</li>");
+                            $('.result_departement').append('<li onclick="completInput(\'search_departement\',$(this).text())">' + resultCode + " - " + resultNom + "</li>");
                         }
                     },
                     dataType: 'json',
@@ -153,27 +225,25 @@
             }
         });
 
-        $('#commune').keyup(function() {
-            var valuesInput = $( "#commune" ).val();
+        $('#search_commune').keyup(function () {
+            var valuesInput = $("#search_commune").val();
             var nbCarac = valuesInput.length;
             $('.result_commune').text("");
 
 
-            if(nbCarac > 2)
-            {
-                if (isNaN(valuesInput))
-                {
+            if (nbCarac > 2) {
+                if (isNaN(valuesInput)) {
                     $.ajax({
-                        type:"GET",
-                        url:"https://geo.api.gouv.fr/communes?nom=" + valuesInput,
-                        success: function(data) {
+                        type: "GET",
+                        url: "https://geo.api.gouv.fr/communes?nom=" + valuesInput,
+                        success: function (data) {
                             var limit = data.length;
 
                             for (var iter = 0; iter < limit; iter++) {
                                 var resultNom = JSON.stringify(data[iter].nom).replace(/\"/g, '');
                                 var resultCode = JSON.stringify(data[iter].codesPostaux).replace(/\"/g, '').replace('[', '').replace(']', '');
 
-                                $('.result_commune').append('<li onclick="completInput(\'commune\',$(this).text())">' + resultCode + " - " + resultNom + "</li>");
+                                $('.result_commune').append('<li onclick="completInput(\'search_commune\',$(this).text())">' + resultCode + " - " + resultNom + "</li>");
                             }
                         },
                         dataType: 'json',
@@ -181,9 +251,9 @@
                 }
                 else {
                     $.ajax({
-                        type:"GET",
-                        url:"https://geo.api.gouv.fr/communes?codePostal=" + valuesInput,
-                        success: function(data) {
+                        type: "GET",
+                        url: "https://geo.api.gouv.fr/communes?codePostal=" + valuesInput,
+                        success: function (data) {
                             var limit = data.length;
 
                             for (var iter = 0; iter < limit; iter++) {
@@ -191,7 +261,7 @@
                                 var resultCode = JSON.stringify(data[iter].codesPostaux).replace(/\"/g, '').replace('[', '').replace(']', '');
 
 
-                                $('.result_commune').append('<li onclick="completInput(\'commune\',$(this).text())">' + resultCode + " - " + resultNom + "</li>");
+                                $('.result_commune').append('<li onclick="completInput(\'search_commune\',$(this).text())">' + resultCode + " - " + resultNom + "</li>");
                             }
                         },
                         dataType: 'json',
@@ -203,7 +273,7 @@
 
         function completInput(id, value) {
             document.getElementById(id).value = value;
-            $('.result'+id).text("");
+            $('.result' + id).text("");
         }
 
         function cleanSearch() {

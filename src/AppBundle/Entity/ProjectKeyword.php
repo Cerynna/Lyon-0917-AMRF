@@ -14,7 +14,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Project
  *
- *
+ * @ORM\Table(name="project_keywords")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\ProjectRepository")
  */
 class ProjectKeyword
