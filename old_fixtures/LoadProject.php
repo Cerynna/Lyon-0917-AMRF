@@ -1,5 +1,5 @@
 <?php
-
+/*
 namespace AppBundle\DataFixtures\ORM;
 
 use AppBundle\Entity\Mayor;
@@ -106,9 +106,6 @@ class LoadProject extends Fixture implements FixtureInterface
 
             $nbimage = rand(1,4);
             $dbimage = [];
-            /*for ($j = 0; $j < $nbimage; $j++) {
-                $dbimage[$j] = $faker->imageUrl($width = 150, $height = 150);
-            }*/
             $imagefaker = $dbimage;
 			$slugificator = new SlugService();
 			$title = $faker->sentence($nbWords = 6, $variableNbWords = true);
@@ -157,4 +154,6 @@ class LoadProject extends Fixture implements FixtureInterface
         $em->flush();
     }
 
+
 }
+*/

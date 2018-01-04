@@ -76,13 +76,12 @@
                 <td>{{ user.role }}</td>
                 <td>{{ user.status }}</td>
                 <td>{{ user.email }}</td>
-                <td>{% if user.creationDate %}{{ user.creationDate|date('Y-m-d H:i:s') }}{% endif %}</td>
-                <td>{% if user.lastLogin %}{{ user.lastLogin|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if user.creationDate %}{{ user.creationDate|date('Y-m-d') }}{% endif %}</td>
+                <td>{% if user.lastLogin %}{{ user.lastLogin|date('Y-m-d') }}{% endif %}</td>
                 <td>
                     {% if user.mayor %}{{ user.mayor.id }}{% endif %}
                     {% if user.partner %}{{ user.partner.id }}{% endif %}
                 </td>
-
             </tr>
         {% endfor %}
         </tbody>
