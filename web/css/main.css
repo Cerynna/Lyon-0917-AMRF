@@ -943,15 +943,21 @@ section form {
     -ms-border-radius: 5px;
     border-radius: 5px; }
   section form .form-control:focus {
-    border: 2px solid rgba(0, 158, 61, 0.99);
     box-shadow: none; }
   section form .textarea {
     width: 100%;
     margin-left: auto;
     margin-right: auto; }
+  section form .textarea:focus:invalid {
+    border-color: #ff0000; }
   section form input {
-    border: 1px solid rgba(0, 158, 61, 0.99);
     width: 100% !important; }
+  section form input:focus:invalid {
+    border-color: #ff0000; }
+  section form input:focus:invalid + .errorForm {
+    display: block; }
+  section form input:focus:valid {
+    border: 2px solid rgba(0, 158, 61, 0.99); }
   section form label {
     width: 100%;
     font-size: 1.0em; }

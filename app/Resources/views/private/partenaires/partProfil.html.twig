@@ -98,7 +98,7 @@
             </div>
         </div>
         <div class="col-lg-12 col-md-12 text-center">
-            <button class="btn" id="btnSubmit" type="submit">Sauvegarder</button>
+            <button class="btn btnSubmit" id="btnSubmit" type="submit">Sauvegarder</button>
         </div>
     </div>
     {{ form_widget(form) }}
@@ -114,6 +114,7 @@
         var phone = document.getElementById("partner_phone");
         var occupation = document.getElementById("partner_occupation");
         var submit = document.getElementById("btnSubmit");
+        console.log(submit);
 
         submit.addEventListener("click", function () {
             var messageFirstName = "";
@@ -122,22 +123,14 @@
             var messageOccupation = "";
 
 //verif firstname
-            if(firstName.value.length < 2) {
-                messageFirstName += "Votre prénom doit comporter au moins 2 caractères. ";
-
-            }
             if(firstName.validity.patternMismatch) {
-                messageFirstName += "Votre prénom ne peut contenir de chiffre.";
+                messageFirstName += "Votre nom doit comporter au moins 2 caractères et ne peut contenir de chiffre.";
 
             }
 //verif lastname
 
-            if(lastName.value.length < 2) {
-                messageLastName += "Votre nom doit comporter au moins 2 caractères. ";
-
-            }
             if(lastName.validity.patternMismatch) {
-                messageLastName += "Votre nom ne peut contenir de chiffre.";
+                messageLastName += "Votre nom doit comporter au moins 2 caractères et ne peut contenir de chiffre.";
 
             }
 //verif phone

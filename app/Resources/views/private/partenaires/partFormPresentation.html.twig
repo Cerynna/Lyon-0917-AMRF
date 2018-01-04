@@ -7,7 +7,6 @@
 {% block body %}
     <div id="modalImageUpload" class="modal fade" role="dialog">
         <div class="modal-dialog">
-
             <div class="modal-content">
                 <div class="modal-body">
                     <div class="row">
@@ -15,7 +14,6 @@
                             {{ form_start(upload_image_form) }}
                             {{ form_label(upload_image_form.path, 'Télécharger un fichier depuis votre ordinateur') }}
                             {{ form_widget(upload_image_form.path) }}
-
                             {{ form_end(upload_image_form) }}
                         </div>
                         <div class="col-sm-2 text-right">
@@ -85,8 +83,8 @@
                     </div>
                     <div class="row">
                         <div class="form-group col-sm-4 col-sm-offset-4" align="center">
-                            <button type="submit" class="btn"><i class="fa fa-floppy-o" aria-hidden="true"></i>
-                                Enregistrer en brouillon
+                            <button type="submit" class="btn btnSubmit"><i class="fa fa-floppy-o" aria-hidden="true"></i>
+                                Enregistrer
                             </button>
                         </div>
                         <div class="form-group col-sm-4" align="right">
@@ -106,7 +104,6 @@
                         <div class="form-group">
                             {{ form_label(form.activities, "Secteur d'activité *") }}
                             <div class="row scroll-in">
-
                                 <div class="col-sm-3">
                                     {% set nbthema = form.activities|length %}
                                     {% set col =  nbthema/4 %}
@@ -125,7 +122,6 @@
                                     {% endif %}
                                     {% endfor %}
                                 </div>
-
                             </div>
                         </div>
                     </div>
@@ -159,11 +155,7 @@
                                                     class="fa fa-upload fa-admin"></i> Ajouter votre logo
                                         </div>
                                     </label>
-
                             {% endif %}
-
-
-
 
                         </div>
                     </div>
@@ -208,8 +200,8 @@
                         </a>
                     </div>
                     <div class="form-group col-sm-4" align="center">
-                        <button type="submit" class="btn"><i class="fa fa-floppy-o" aria-hidden="true"></i>
-                            Enregistrer en brouillon
+                        <button type="submit" class="btn btnSubmit"><i class="fa fa-floppy-o" aria-hidden="true"></i>
+                            Enregistrer
                         </button>
                     </div>
                     <div class="form-group col-sm-4" align="right">
@@ -265,8 +257,8 @@
                         </a>
                     </div>
                     <div class="form-group col-sm-4" align="center">
-                        <button type="submit" class="btn"><i class="fa fa-floppy-o" aria-hidden="true"></i>
-                            Enregistrer en brouillon
+                        <button type="submit"  class="btn btnSubmit"><i class="fa fa-floppy-o" aria-hidden="true"></i>
+                            Enregistrer
                         </button>
                     </div>
                     <div class="form-group col-sm-4" align="right">
@@ -311,7 +303,7 @@
                             </a>
                         </div>
                         <div class="form-group col-sm-6" align="right">
-                            <button type="submit" class="btn">Publier votre fiche</button>
+                            <button type="submit"  class="btn btnSubmit">Publier votre fiche</button>
                         </div>
                     </div>
                 </div>
@@ -339,7 +331,28 @@
 
                 }
             })
-
         }
+
+        var submit = document.getElementsByClassName("btn");
+        var contactLastName = document.getElementById("company_contactLastName");
+        console.log(submit);
+
+        submit.addEventListener("click", function () {
+            var messageLastName = "";
+
+//verif lastname
+
+            if(contactLastName.value.length < 2) {
+                messageLastName += "Votre nom doit comporter au moins 2 caractères. ";
+
+            }
+            if(contactLastName.validity.patternMismatch) {
+                messageLastName += "Votre nom ne peut contenir de chiffre.";
+
+            }
+
+            contactLastName.setCustomValidity(messageLastName);
+
+        });
     </script>
 {% endblock %}

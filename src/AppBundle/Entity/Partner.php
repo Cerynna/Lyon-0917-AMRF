@@ -36,8 +36,8 @@ class Partner
      *     minMessage="Votre prénom doit comporter au moins 2 caractères"
      * )
      * @Assert\Regex(
-     *     pattern="/\d/",
-     *     match=false,
+     *     pattern="/[^0-9]{2}/",
+     *     match=true,
      *     message="Votre prénom ne peut contenir de chiffre"
      * )
      */
@@ -54,12 +54,12 @@ class Partner
      * @Assert\Type(
      *     type= "string")
      * @Assert\Length(
-     *     min= 2,
+     *     min=2,
      *     minMessage="Votre nom doit comporter au moins 2 caractères"
      * )
      * @Assert\Regex(
-     *     pattern="/\d/",
-     *     match=false,
+     *     pattern="/[^0-9]{2}/",
+     *     match=true,
      *     message="Votre prénom ne peut contenir de chiffre"
      * )
      */
