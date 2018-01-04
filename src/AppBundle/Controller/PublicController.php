@@ -36,7 +36,7 @@ class PublicController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         /** Change that is a real code for Update LastLogin */
-        $user = $this->get('security.token_storage')->getToken()->getUser();
+        $user = $this->getUser();
         if (is_object($user)) {
             $lastloginDB = $user->getLastLogin();
             $today = new \DateTime('now');
@@ -84,7 +84,7 @@ class PublicController extends Controller
 
         if ($form->isSubmitted() && $form->isValid() && $this->captchaverify($request->get('g-recaptcha-response'))) {
             $message = [
-                'to' => 'sthenoz@gmail.com',
+                'to' => 'wcsprojetmaire@gmail.com',
                 'from' => $contact->getEmail(),
                 'type' => EmailService::TYPE_MAIL_CONTACT_ADMIN['key'],
                 'name' => $contact->getName(),

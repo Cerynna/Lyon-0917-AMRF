@@ -12,6 +12,15 @@ namespace AppBundle\Entity;
 class TitleProject
 {
 
+    /**
+     * @var string
+     * @Assert\Type(
+     *     type= "string")
+     * @Assert\Length(
+     *     min= 5,
+     *     minMessage="Le titre doit comporter au moins 5 caractères"
+     * )
+     */
     private $title;
 
     /**
