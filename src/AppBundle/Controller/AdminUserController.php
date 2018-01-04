@@ -109,6 +109,8 @@ class AdminUserController extends Controller
 				$user->setMayor(null);
 				$user->setPartner(null);
 			}
+
+
 			$em = $this->getDoctrine()->getManager();
 			$em->persist($user);
 			$em->flush();

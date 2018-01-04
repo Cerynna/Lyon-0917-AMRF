@@ -41,11 +41,15 @@ class MayorController extends Controller
 
     /**
      * @Route("profil", name="mayor_profil")
+     * @param Request $request
+     * @param UserPasswordEncoderInterface $passwordEncoder
+     * @param EmailService $emailService
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
     public function mayorProfilAction(Request $request, UserPasswordEncoderInterface $passwordEncoder, EmailService $emailService)
     {
 
-        $user = $this->get('security.token_storage')->getToken()->getUser();
+        $user = $this->getUser();
         $mayor = $user->getMayor();
         $form = $this->createForm('AppBundle\Form\MayorType', $mayor);
         $form->handleRequest($request);
@@ -99,10 +103,12 @@ class MayorController extends Controller
 
     /**
      * @Route("project", name="mayor_project")
+     *
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function mayorProjectAction()
     {
-        $user = $this->get('security.token_storage')->getToken()->getUser();
+        $user = $this->getUser();
         $mayorid = $user->getMayor()->getid();
 
         $em = $this->getDoctrine()->getManager();
@@ -117,6 +123,10 @@ class MayorController extends Controller
     /**
      * @Route("project/new", name="mayor_project_new")
      * @Method({"GET", "POST"})
+
+     * @param Request $request
+     * @param SlugService $slugService
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
     public function mayorProjectNewAction(Request $request, SlugService $slugService)
     {
@@ -124,7 +134,7 @@ class MayorController extends Controller
         $form = $this->createForm('AppBundle\Form\TitleProjectType', $projectTitle);
         $form->handleRequest($request);
 
-        $user = $this->get('security.token_storage')->getToken()->getUser();
+        $user = $this->getUser();
         $MayorConnect = $user->getMayor();
 
 
@@ -154,11 +164,18 @@ class MayorController extends Controller
     /**
      * @Route("project/edit/{slug}/{page}", name="mayor_project_edit", defaults={"page": "1"},)
      * @Method({"GET", "POST"})
+
+     * @param Request $request
+     * @param Project $project
+     * @param SlugService $slugService
+     * @param TabProjectService $tabProjectService
+     * @param UploadService $uploadService
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
     public function mayorProjectEditAction(Request $request, Project $project, SlugService $slugService, TabProjectService $tabProjectService, UploadService $uploadService)
     {
 
-        $user = $this->get('security.token_storage')->getToken()->getUser();
+        $user = $this->getUser();
         $idMayorConnect = $user->getMayor();
         $idMayorProject = $project->getMayor();
 

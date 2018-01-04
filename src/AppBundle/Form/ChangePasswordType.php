@@ -20,13 +20,13 @@ class ChangePasswordType extends AbstractType
         $builder
             ->add('oldPassword', TextType::class, array('label' => 'Ancien mot de passe'))
             ->add('newPassword', RepeatedType::class, array(
-            'type' => PasswordType::class,
-            'invalid_message' => 'Les mots de passe doivent correspondre',
-            'options' => array('attr' => array('class' => 'password-field')),
-            'required' => true,
-            'first_options'  => array('label' => 'Nouveau mot de passe'),
-            'second_options' => array('label' => 'Confirmez votre mot de passe'),
-        ));
+                'type' => PasswordType::class,
+                'invalid_message' => 'Les mots de passe doivent correspondre',
+                'options' => array('attr' => array('class' => 'password-field')),
+                'required' => true,
+                'first_options' => array('label' => 'Nouveau mot de passe'),
+                'second_options' => array('label' => 'Confirmez votre mot de passe'),
+            ));
     }
 
     public function setDefaultOptions(OptionsResolver $resolver)

@@ -33,7 +33,7 @@ class ChangePassword
      *     message="Votre mot de passe doit comporter au moins 7 caractères, une majuscule, une minuscule et un chiffre"
      * )
      * @Assert\Expression("value != this.login",
-     *     message="Votre mot de passe doit être différent de votre n°INSEE ou votre SIRET"
+     *     message="Votre mot de passe doit être différent de votre n°INSEE ou votre SIREN"
      * )
      */
     public $newPassword;
