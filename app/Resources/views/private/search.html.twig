@@ -102,7 +102,8 @@
 
     {% if result is defined %}
         <hr/>
-        <h3>{{ result|length }} projet{% if result|length > 1 %}s{% endif %} pour votre recherche</h3>
+
+        <h3>{{ result.getTotalItemCount }} projet{% if result.getTotalItemCount > 1 %}s{% endif %} pour votre recherche</h3>
 
         <div class="jumbotron">
             <div id="map"></div>
@@ -134,7 +135,9 @@
             {% endif %}
         {% endfor %}
     {% endif %}
-
+{#    <div class="navigation text-center">
+        {{ knp_pagination_render(result) }}
+    </div>#}
 
 
 

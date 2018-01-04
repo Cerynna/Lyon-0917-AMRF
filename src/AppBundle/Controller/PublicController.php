@@ -9,12 +9,11 @@ use AppBundle\Entity\Dictionary;
 use AppBundle\Entity\Project;
 use AppBundle\Entity\Search;
 use AppBundle\Service\EmailService;
+use AppBundle\Service\SearchService;
 
 
-use function array_merge;
-use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
-use function in_array;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use SensioLabs\Security\Exception\HttpException;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -164,7 +163,7 @@ class PublicController extends Controller
     /**
      * @Route("/search", name="search")
      */
-    public function searchAction(Request $request)
+    public function searchAction(Request $request, SearchService $searchService)
     {
         $search = new Search();
         $form = $this->createForm('AppBundle\Form\SearchType', $search);
@@ -204,10 +203,20 @@ class PublicController extends Controller
                 $finder['localisation'][Project::LOCALISATION_REGION] = $search->getRegion();
             }
 
-            $result = $em->getRepository('AppBundle:Project')->findByPertinence($finder);
+            $result = $searchService->findByPertinence($finder);
+            /**
+             * @var $paginator \Knp\Component\Pager\Paginator
+             */
+            $paginator = $this->get('knp_paginator');
+            $resultats = $paginator->paginate(
+                $result,
+                $request->query->getInt('page', 1),
+                $request->query->getInt('limit', 10)
+            );
+
 
             return $this->render('private/search.html.twig', [
-                'result' => $result,
+                'result' => $resultats,
                 'form' => $form->createView(),
             ]);
         }

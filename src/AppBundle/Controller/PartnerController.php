@@ -10,7 +10,7 @@ use AppBundle\Entity\Project;
 
 use AppBundle\Entity\Uploader;
 use AppBundle\Entity\User;
-use AppBundle\Service\Email\EmailService;
+use AppBundle\Service\EmailService;
 use AppBundle\Service\UploadService;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;

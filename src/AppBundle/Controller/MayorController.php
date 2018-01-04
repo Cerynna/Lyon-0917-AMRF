@@ -14,7 +14,7 @@ use AppBundle\Entity\Project;
 use AppBundle\Entity\TitleProject;
 use AppBundle\Entity\Uploader;
 use AppBundle\Form\SubmitToAdmin;
-use AppBundle\Service\Email\EmailService;
+use AppBundle\Service\EmailService;
 use AppBundle\Service\SlugService;
 use AppBundle\Service\TabProjectService;
 use AppBundle\Service\UploadService;

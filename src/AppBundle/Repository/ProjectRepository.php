@@ -19,7 +19,7 @@ class ProjectRepository extends \Doctrine\ORM\EntityRepository
 
     const MAX_PROJECT = 3;
 
-    const CHAMPS = ["title", "descResume", "descContext", "descGoal", "descProgress", "descPartners", "descResults", "descDifficulties", "descAdvices"];
+    const CHAMPS = ["title", "descResume"];
 
     public function getLastProject()
     {
