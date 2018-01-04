@@ -19,6 +19,9 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 
 class LoadUser extends Fixture implements FixtureInterface, ContainerAwareInterface
 {
+
+    private $container;
+
     const MAX_USER = 20;
     public function load(ObjectManager $em)
     {
@@ -26,12 +29,12 @@ class LoadUser extends Fixture implements FixtureInterface, ContainerAwareInterf
 
         $roles = array(User::USER_ROLE_MAYOR, User::USER_ROLE_PARTNER);
         $status = array(User::USER_STATUS_ACTIF, User::USER_STATUS_INACTIF);
-
+/*
         $users = [];
 
         $role = $faker->randomElement($roles);
         $insee = $faker->numberBetween($min = 10000, $max = 99999);
-
+*/
         $encoder = $this->container->get('security.password_encoder');
 
         $admin = new User();
@@ -44,7 +47,7 @@ class LoadUser extends Fixture implements FixtureInterface, ContainerAwareInterf
             ->setCreationDate($faker->dateTime($max = 'now', $timezone = date_default_timezone_get()))
             ->setLastLogin($faker->dateTime($max = 'now', $timezone = date_default_timezone_get()));
         $em->persist($admin);
-
+/*
         for ($i = 0; $i < self::MAX_USER; $i++) {
             $users[$i] = new User();
             $role = $faker->randomElement($roles);
@@ -76,20 +79,15 @@ class LoadUser extends Fixture implements FixtureInterface, ContainerAwareInterf
 
             $em->persist($users[$i]);
         }
-
+*/
         $em->flush();
     }
 
-    public function getDependencies()
-    {
-        return array(
-            LoadMayor::class,
-            LoadPartner::class,
-        );
-    }
+
 
     public function setContainer(ContainerInterface $container = null)
     {
         $this->container = $container;
     }
+
 }

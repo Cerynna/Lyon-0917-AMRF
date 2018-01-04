@@ -1,0 +1,29 @@
+{% extends 'private/admin/baseAdmin.html.twig' %}
+{% block title %}Admin ParserCSV{% endblock %}
+{% block body %}
+    <div class="menu-admin menu-project">
+        <ul>
+            <li>
+                <a href="{{ path('ResultParse', {'timer': 0}) }}" data-toggle="tooltip" data-placement="right"
+                   title="Resultat Precedent"><i class="fa fa-archive fa-admin"></i></a>
+            </li>
+            <li>
+                <a href="{{ path('ParserCSV') }}" data-toggle="tooltip" data-placement="right"
+                   title="Parser le CSV"><i
+                            class="fa fa-plus fa-admin"></i></a>
+            </li>
+        </ul>
+    </div>
+    <h1>ParserCSV</h1>
+
+    {% if timer is defined %}
+        {{ dump(timer) }}
+        {{ dump(csv) }}
+
+        <object ID=data classid="clsid:333C7BC4-460F-11D0-BC04-0080C7055A83" style="width: 200px; height: 200px;">
+            <param nAme="DataURL" value="test.csv">
+            <param nAme="UseHeader" value="true">
+        </object>
+
+    {% endif %}
+{% endblock %}

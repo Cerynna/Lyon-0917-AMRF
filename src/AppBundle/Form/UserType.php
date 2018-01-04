@@ -22,14 +22,14 @@ class UserType extends AbstractType
             ->add('password')
             ->add('status')
             ->add('status', ChoiceType::class, array(
-                'choices'  => array(
+                'choices' => array(
                     'Inactif' => User::USER_STATUS_INACTIF,
                     'Actif' => User::USER_STATUS_ACTIF,
                     'Delete' => User::USER_STATUS_DELETE,
                 ),
             ))
             ->add('role', ChoiceType::class, array(
-                'choices'  => array(
+                'choices' => array(
                     'Maire' => User::USER_ROLE_MAYOR,
                     'Partenaire' => User::USER_ROLE_PARTNER,
                     'Admin' => User::USER_ROLE_ADMIN,
@@ -42,16 +42,16 @@ class UserType extends AbstractType
             ->add('partner', PartnerType::class);
     }
 
-                /**
-                 * {@inheritdoc}
-                 */
-                public
-                function configureOptions(OptionsResolver $resolver)
-                {
-                    $resolver->setDefaults(array(
-                        'data_class' => 'AppBundle\Entity\User'
-                    ));
-                }
+    /**
+     * {@inheritdoc}
+     */
+    public
+    function configureOptions(OptionsResolver $resolver)
+    {
+        $resolver->setDefaults(array(
+            'data_class' => 'AppBundle\Entity\User'
+        ));
+    }
 
     /**
      * {@inheritdoc}
@@ -62,4 +62,6 @@ class UserType extends AbstractType
     }
 
 
-            }
+}
+
+

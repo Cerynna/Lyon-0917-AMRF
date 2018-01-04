@@ -27,16 +27,18 @@
                 <input value="{{ value }}" type="text" name="value" onchange="sendFilter()">
 
                 {#{{ include(':components:thematiques.html.twig') }}#}
-
-                <label for="brouillon">Brouillon</label>
                 <input {% if status == 1 %} checked {% endif %} name="status" value="1" type="radio" multiple
                                                                 onchange="sendFilter()">
-                <label for="attente">En attente</label>
+                <label for="brouillon">Brouillon</label>
+
                 <input {% if status == 2 %} checked {% endif %} name="status" value="2" type="radio" multiple
                                                                 onchange="sendFilter()">
-                <label for="publier">Publier</label>
+                <label for="attente">En attente</label>
+
                 <input {% if status == 3 %} checked {% endif %} name="status" value="3" type="radio" multiple
                                                                 onchange="sendFilter()">
+                <label for="publier">Publier</label>
+
 
                 <button type="submit" class="btn btn-default btn-sm"><i class="fa fa-search" aria-hidden="true"></i>
                     Filter
@@ -54,8 +56,7 @@
         </form>
     </div>
     {% for key, project in projects %}
-
-        <h4 data-toggle="collapse" data-target="#project_{{ key }}">
+        <h5 data-toggle="collapse" data-target="#project_{{ key }}">
             <div class="row">
                 <div class="col-xs-1">
                     <a href="{{ path('admin_project_show', { 'slug': project.slug }) }}"><i
@@ -63,31 +64,48 @@
                     <a href="{{ path('admin_project_edit', { 'slug': project.slug }) }}"><i
                                 class="fa fa-pencil fa-admin-mini"></i></a>
                 </div>
-                <div class="col-xs-4">
-                    {{ project.title }} <span class="caret"></span>
-                </div>
                 <div class="col-xs-1">
-
                     {% if project.status == 1 %}
-                        <i class="fa fa-cog"></i> Brouillon
+                        <span class="label label-primary"><i class="fa fa-cog"></i> Brouillon</span>
                     {% elseif project.status == 2 %}
-                        <i class="fa fa-flag"></i> En attente
+                        <span class="label label-primary"><i class="fa fa-flag"></i> En attente</span>
                     {% elseif project.status == 3 %}
-                        <i class="fa fa-check"></i> Publier
+                        <span class="label label-primary"><i class="fa fa-check"></i> Publier</span>
                     {% else %}
-                        <i class="fa fa-cog"></i> Brouillon
+                        <span class="label label-primary"><i class="fa fa-cog"></i> Brouillon</span>
                     {% endif %}
                 </div>
-                <div class="col-xs-4 text-right">
-                    Crée : <span
-                            class="label label-primary">{% if project.creationDate %}{{ project.creationDate|date('d-m-Y') }}{% endif %}</span>
-                    Modifié : <span
-                            class="label label-primary">{% if project.updateDate %}{{ project.updateDate|date('d-m-Y') }}{% endif %}</span>
-
+                <div class="col-xs-2">
+                    {{ project.title|slice(0,20) }}
+                </div>
+                <div class="col-xs-3">
+                    {% for theme in project.themes %}
+                        <span class="label label-primary">{{ theme.name }}</span>
+                    {% endfor %}
+                </div>
+                <div class="col-xs-2">
+                    <span class="label label-success">{{ project.mayor.zipCode }}</span>
+                    <span class="label label-success">{{ project.mayor.town|slice(0,30) }}</span>
+                </div>
+                <div class="col-xs-1">
+                    <span class="label label-primary">
+                        <i class="fa fa-calendar-o"></i>
+                        {% if project.creationDate %}{{ project.creationDate|date('d-m-Y') }}{% endif %}
+                    </span>
+                </div>
+                <div class="col-xs-1">
+                    <span class="label label-primary">
+                        <i class="fa fa-calendar-plus-o"></i>
+                        {% if project.updateDate %}{{ project.updateDate|date('d-m-Y') }}{% endif %}
+                    </span>
+                </div>
+                <div class="col-xs-1 text-right">
+                    <span class="caret"></span>
                 </div>
             </div>
 
-        </h4>
+
+        </h5>
 
         <div id="project_{{ key }}" class="collapse">
 
