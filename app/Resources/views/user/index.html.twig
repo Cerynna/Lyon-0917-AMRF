@@ -24,12 +24,12 @@
             <label for="login">Login</label>
             <input value="{{ login }}" name="login" type="text" onchange="sendFilter()">
 
-            <label for="mayor">Maire</label>
             <input {% if role == 1 %} checked {% endif %} name="role" value="1" type="radio" onchange="sendFilter()">
-            <label for="partner">Partenaire</label>
+            <label for="mayor">Maire</label>
             <input {% if role == 2 %} checked {% endif %} name="role" value="2" type="radio" onchange="sendFilter()">
-            <label for="admin">Admin</label>
+            <label for="partner">Partenaire</label>
             <input {% if role == 3 %} checked {% endif %} name="role" value="3" type="radio" onchange="sendFilter()">
+            <label for="admin">Admin</label>
 
             <button type="submit" class="btn btn-default btn-sm"><i class="fa fa-search" aria-hidden="true"></i>
                 Filter

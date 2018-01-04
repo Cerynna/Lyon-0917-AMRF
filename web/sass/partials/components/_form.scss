@@ -1,5 +1,33 @@
 section {
   form {
+
+    .pagination > li {
+
+      input[type=radio] + label {
+        background: $color2;
+        color: $color1;
+        // border: 1px solid $color1;
+        margin: -2px;
+        padding: 10px 5px;
+        display: inline;
+        line-height: 1.5em;
+        font-size: 1.2em;
+        i{
+          padding: 0 5px 0 0;
+          font-size: 1em;
+        }
+        &:hover{
+          background: $color1;
+          color: $color2;
+        }
+      }
+      input[type=radio]:checked + label {
+        background: $color1;
+        color: $color2;
+        //border: 1px solid $color2;
+
+      }
+    }
     .select2 {
       width: 100% !important;
     }
@@ -148,11 +176,12 @@ section {
     .errorForm {
       background: #f2dede;
       color: #a94442;
-      border-radius : 5px;
+      border-radius: 5px;
       margin-top: 5px;
       padding-left: 10px;
     }
   }
+
 }
 
 

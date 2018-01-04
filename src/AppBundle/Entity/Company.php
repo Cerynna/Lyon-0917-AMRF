@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping\JoinColumn;
@@ -353,7 +354,7 @@ class Company
     /**
      * Get activities
      *
-     * @return array
+     * @return ArrayCollection
      */
     public function getActivities()
     {
@@ -600,57 +601,6 @@ class Company
         return $this->contactEmail;
     }
 
-    /**
-     * Set favorites
-     *
-     * @param \AppBundle\Entity\Favorite $favorites
-     *
-     * @return Company
-     */
-    public function setFavorites(\AppBundle\Entity\Favorite $favorites = null)
-    {
-        $this->favorites = $favorites;
-
-        return $this;
-    }
-
-    /**
-     * Get favorites
-     *
-     * @return \AppBundle\Entity\Favorite
-     */
-    public function getFavorites()
-    {
-        return $this->favorites;
-    }
-
-    /**
-     * Set favoriteCompany
-     *
-     * @param \AppBundle\Entity\Favorite $favoriteCompany
-     *
-     * @return Company
-     */
-    public function setFavoriteCompany(\AppBundle\Entity\Favorite $favoriteCompany = null)
-    {
-        $this->favoriteCompany = $favoriteCompany;
-
-        return $this;
-    }
-
-    /**
-     * Get favoriteCompany
-     *
-     * @return \AppBundle\Entity\Favorite
-     */
-    public function getFavoriteCompany()
-    {
-        return $this->favoriteCompany;
-    }
-    public function __toString()
-    {
-        return $this->getName();
-    }
     /**
      * Constructor
      */
