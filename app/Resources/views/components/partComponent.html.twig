@@ -1,39 +1,30 @@
 <div class="panel-body row ">
     <div class="col-xs-12 col-md-8">
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corporis enim ipsam iure placeat provident soluta
-            velit? Accusamus at, beatae dolorem facere ipsum nobis porro provident qui sit voluptatem? Dicta,
-            impedit!</p>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corporis enim ipsam iure placeat provident soluta
-            velit? Accusamus at, beatae dolorem facere ipsum nobis porro provident qui sit voluptatem? Dicta,
-            impedit!</p>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corporis enim ipsam iure placeat provident soluta
-            velit? Accusamus at, beatae dolorem facere ipsum nobis porro provident qui sit voluptatem? Dicta,
-            impedit!</p>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corporis enim ipsam iure placeat provident soluta
-            velit? Accusamus at, beatae dolorem facere ipsum nobis porro provident qui sit voluptatem? Dicta,
-            impedit!</p>
+        <p>{{ company.presentation }}</p>
     </div>
     <div class="col-xs-12  col-sm-4 partAsideBlock">
+
         <h4>Adresse</h4>
         <ul>
-            <li>25 rue de l'avenue</li>
-            <li>65432 Ville</li>
+            <li>{{ company.address }}</li>
+            <li>{{ company.zipCode }} {{ company.city }}</li>
         </ul>
         <h4>Contact</h4>
         <ul>
             <li><i class="fa fa-user" aria-hidden="true"></i>
-                Nom Prénom
+
+                {{ company.contactLastName }} {{ company.contactFirstName }}
             </li>
             <li><i class="fa fa-at"></i>
-                Mail
+                {{ company.contactEmail }}
             </li>
             <li><i class="fa fa-phone" aria-hidden="true"></i>
-                Téléphone
+                {{ company.contactPhone }}
             </li>
-            <li><i class="fa fa-link"></i> Site internet</li>
-            <li><i class="fa fa-facebook-square"></i> Facebook</li>
-            <li><i class="fa fa-twitter-square"></i> Twitter</li>
-            <li><i class="fa fa-linkedin-square"></i> Linkedin</li>
+            <li><i class="fa fa-link"></i>{{ company.url }}</li>
+            <li><i class="fa fa-facebook-square"></i> {{ company.facebook }}</li>
+            <li><i class="fa fa-twitter-square"></i> {{ company.Twitter }}</li>
+            <li><i class="fa fa-linkedin-square"></i>{{ company.Linkedin }} </li>
         </ul>
         <h4>Ajouter aux favoris</h4>
         <button type="button" id="btnFavoris" class="btnFavoris">

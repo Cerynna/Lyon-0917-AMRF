@@ -17,66 +17,55 @@
     <div class="col-md-2">
         <h3><i class="fa fa-user"></i> Admin</h3>
     </div>
-    <div class="col-md-offset-6 col-md-4  text-right">
-        <button class="btn btn-badge" type="button">
-            Projets <span class="badge">4</span>
-        </button>
-        <button class="btn btn-badge" type="button">
-            Maires <span class="badge">4</span>
-        </button>
-        <button class="btn btn-badge" type="button">
-            Partenaires<span class="badge">4</span>
-        </button>
-    </div>
 </header>
 <nav>
     <ul>
         <li class="sidenav-user {% if app.request.attributes.get('_route') | slice(0, 10) == 'admin_user' %} active-user {% endif %}"
         >
             <a href="{{ path('admin_user_index') }}">
-                <i class="fa fa-address-book"></i> User
-            </a>
-        </li>
-        <li class="sidenav-publicpage {% if app.request.attributes.get('_route') | slice(0, 16) == 'admin_publicpage' %} active-publicpage {% endif %}"
-        >
-            <a href="{{ path('admin_publicpage_index') }}">
-                <i class="fa fa-address-book"></i> Page Public
-            </a>
-        </li>
-        <li class="sidenav-project {% if app.request.attributes.get('_route') | slice(0, 13) == 'admin_project' %} active-project {% endif %}"
-        >
-            <a href="{{ path('admin_project_index') }}">
-                <i class="fa fa-address-book-o"></i> Project
-            </a>
-        </li>
-        <li class="sidenav-partner {% if app.request.attributes.get('_route') | slice(0, 12) == 'admin_partner' %} active-partner {% endif %}"
-        >
-            <a href="{{ path('admin_partner_index') }}">
-                <i class="fa fa-folder-open"></i> Partenaires
+                <i class="fa fa-users"></i> Users
             </a>
         </li>
         <li class="sidenav-mayor {% if app.request.attributes.get('_route') | slice(0, 11) == 'admin_mayor' %} active-mayor {% endif %}"
         >
             <a href="{{ path('admin_mayor_index') }}">
-                <i class="fa fa-edit"></i> Maires
+                <i class="fa fa-university"></i> Maires
             </a>
         </li>
-        <li class="sidenav-favorite {% if app.request.attributes.get('_route') | slice(0, 14) == 'admin_favorite' %} active-favorite {% endif %}"
+        <li class="sidenav-partner {% if app.request.attributes.get('_route') | slice(0, 12) == 'admin_partner' %} active-partner {% endif %}"
         >
-            <a href="{{ path('admin_favorite_index') }}">
-                <i class="fa fa-bar-chart"></i> Favoris
+            <a href="{{ path('admin_partner_index') }}">
+                <i class="fa fa-building"></i> Partenaires
+            </a>
+        </li>
+        <li class="sidenav-project {% if app.request.attributes.get('_route') | slice(0, 13) == 'admin_project' %} active-project {% endif %}"
+        >
+            <a href="{{ path('admin_project_index') }}">
+                <i class="fa fa-file-text "></i> Projets
             </a>
         </li>
         <li class="sidenav-company {% if app.request.attributes.get('_route') | slice(0, 13) == 'admin_company' %} active-company {% endif %}"
         >
             <a href="{{ path('admin_company_index') }}">
-                <i class="fa fa-bar-chart"></i> Organisme
+                <i class="fa fa-industry "></i> Organismes
+            </a>
+        </li>
+        <li class="sidenav-publicpage {% if app.request.attributes.get('_route') | slice(0, 16) == 'admin_publicpage' %} active-publicpage {% endif %}"
+        >
+            <a href="{{ path('admin_publicpage_index') }}">
+                <i class="fa fa-columns"></i> Pages publiques
+            </a>
+        </li>
+        <li class="sidenav-favorite {% if app.request.attributes.get('_route') | slice(0, 14) == 'admin_favorite' %} active-favorite {% endif %}"
+        >
+            <a href="{{ path('admin_favorite_index') }}">
+                <i class="fa fa-star"></i> Favoris
             </a>
         </li>
         <li class="sidenav-dictionary {% if app.request.attributes.get('_route') | slice(0, 16) == 'admin_dictionary' %} active-dictionary {% endif %}"
         >
             <a href="{{ path('admin_dictionary_index') }}">
-                <i class="fa fa-bar-chart"></i> Dictionary
+                <i class="fa fa-book"></i> Dictionnaire
             </a>
         </li>
     </ul>
@@ -91,7 +80,9 @@
     </div>
 </section>
 <footer class="page-footer">
- <a href="{{ path('home') }}" >Retour au site</a>
+
+    <a href="{{ path('home') }}">Retour sur le Wiki des maires</a>
+
 </footer>
 
 {% include 'components/script.html.twig' %}
@@ -103,6 +94,8 @@
                 // [groupName, [list of button]]
                 ['style', ['bold', 'italic', 'underline', 'clear']],
                 ['para', ['ul', 'ol']],
+                ['misc', ['codeview']]
+
             ]
         });
     });

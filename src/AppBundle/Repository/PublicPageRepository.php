@@ -2,6 +2,9 @@
 
 namespace AppBundle\Repository;
 
+use function array_push;
+use function get_object_vars;
+
 /**
  * PublicPageRepository
  *
@@ -10,4 +13,29 @@ namespace AppBundle\Repository;
  */
 class PublicPageRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function getContentIndex(array $args)
+    {
+
+        $result = [];
+        foreach ($args as $arg) {
+            $qb = $this->createQueryBuilder('c');
+            $qb->setParameter('name', $arg);
+            $qb->where('c.name = :name');
+            $query = $qb->getQuery();
+            $result[$arg] = $query->getResult();
+        }
+
+        foreach ($result as $argument => $objects)
+        {
+            foreach ($objects as $key => $object)
+            {
+                $realResult[$argument] = $object;
+            }
+        }
+        return $realResult;
+
+
+    }
+
+
 }

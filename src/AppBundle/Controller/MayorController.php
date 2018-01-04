@@ -9,21 +9,18 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\ChangePassword;
-use AppBundle\Entity\Mayor;
-use AppBundle\Entity\Partner;
-use AppBundle\Entity\Company;
 use AppBundle\Entity\Project;
 
 use AppBundle\Entity\TitleProject;
 use AppBundle\Entity\Uploader;
 use AppBundle\Form\SubmitToAdmin;
+use AppBundle\Service\Email\EmailService;
 use AppBundle\Service\SlugService;
 use AppBundle\Service\TabProjectService;
 use AppBundle\Service\UploadService;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
@@ -45,7 +42,7 @@ class MayorController extends Controller
     /**
      * @Route("profil", name="mayor_profil")
      */
-    public function mayorProfilAction(Request $request, UserPasswordEncoderInterface $passwordEncoder)
+    public function mayorProfilAction(Request $request, UserPasswordEncoderInterface $passwordEncoder, EmailService $emailService)
     {
 
         $user = $this->get('security.token_storage')->getToken()->getUser();
@@ -54,13 +51,13 @@ class MayorController extends Controller
         $form->handleRequest($request);
 
         $changePassword = new ChangePassword();
+        $changePassword->setLogin($user->getLogin());
         $form_password = $this->createForm('AppBundle\Form\ChangePasswordType', $changePassword);
         $form_password->handleRequest($request);
         $em = $this->getDoctrine()->getManager();
 
         if ($form->isSubmitted() && $form->isValid()) {
-
-            $em->persist($mayor);
+            $em->persist($user);
             $em->flush();
 
             return $this->redirectToRoute('mayor_profil', array('id' => $mayor->getId()));
@@ -68,16 +65,27 @@ class MayorController extends Controller
         if ($form_password->isSubmitted() && $form_password->isValid()) {
             $encoderService = $this->get('security.password_encoder');
             if ($encoderService->isPasswordValid($user, $changePassword->oldPassword)) {
-               $user->setPassword($changePassword->newPassword);
+               $user->setPassword($encoderService->encodePassword($user, $changePassword->newPassword));
                $em->persist($user);
                $em->flush();
+
+                $messageconfirm = [
+                    'to' => $user->getEmail(),
+                    'type' => EmailService::TYPE_MAIL_CONFIRM_PASSWORD['key'],
+                    'login' => $user->getLogin(),
+                ];
+                $emailService->sendEmail($messageconfirm);
+
+                $this->addFlash(
+                    'notice',
+                    'Votre nouveau mot de passe a bien été enregistré. Merci de vous reconnecter'
+                );
                 return $this->redirectToRoute('logout');
             } else {
                 $this->addFlash(
                     'notice',
                     'Le mot de passe saisi ne correspond pas. Veuillez saisir à nouveau votre mot de passe'
                 );
-
             }
         }
 
@@ -197,7 +205,7 @@ class MayorController extends Controller
                 $files = $uploaderImage->getPath();
                 $images = $project->getImages();
                 $dbimg = $images;
-                $dbimg[] = $uploadService->fileUpload($files, '/project/' . $project->getId() . '/photos');
+                $dbimg[] = $uploadService->fileUpload($files, '/project/' . $project->getId() . '/photos', "img");
                 $project->setImages($dbimg);
                 $this->getDoctrine()->getManager()->flush();
                 return $this->redirectToRoute('mayor_project_edit', array(
@@ -207,7 +215,7 @@ class MayorController extends Controller
 
             if ($uplodFileForm->isSubmitted() && $uplodFileForm->isValid()) {
                 $file = $uploaderFile->getPath();
-                $fileNewDB = $uploadService->fileUpload($file, '/project/' . $project->getId() . '/file');
+                $fileNewDB = $uploadService->fileUpload($file, '/project/' . $project->getId() . '/file', "file");
                 $project->setFile($fileNewDB);
                 $this->getDoctrine()->getManager()->flush();
                 return $this->redirectToRoute('mayor_project_edit', array(

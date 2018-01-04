@@ -55,7 +55,7 @@
             </div>
             <div class=" col-md-offset-6 col-md-3 col-xs-6 text-right">
                 {% if options.update == "true" %}
-                    <a href="{{ path('mayor_project_new') }}">
+                    <a href="{{ path('mayor_project_edit', {'slug': project.slug }) }}">
                         <div class="btn hidden-xs" role="button">
                             Modifier la fiche
                         </div>
@@ -64,7 +64,7 @@
             </div>
             <div class="col-md-3 col-xs-6 text-right">
                 {% if options.more == "true" %}
-                    <a href="{{ path('sheet_project') }}">
+                    <a href="{{ path('sheet_project', {'slug': project.slug }) }}">
                         <div class="btn" role="button">
                             Voir la fiche
                         </div>

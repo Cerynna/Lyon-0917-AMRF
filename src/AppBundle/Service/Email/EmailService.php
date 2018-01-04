@@ -45,6 +45,11 @@ class EmailService
         'renderHtml' => 'email/newUser.html.twig',
         'renderTxt' => 'email/newUser.txt.twig',
     ];
+    const TYPE_MAIL_PROJECT_MODER = [
+        'key' => 7,
+        'renderHtml' => 'email/projectModer.html.twig',
+        'renderTxt' => 'email/projectModer.txt.twig',
+    ];
 
     protected $mailer;
 
@@ -58,8 +63,6 @@ class EmailService
 
     public function sendEmail($mail)
     {
-        var_dump($mail);
-
         $message = \Swift_Message::newInstance()
             ->setTo($mail['to'])
             ->setCharset('utf-8')
@@ -85,12 +88,12 @@ class EmailService
                 $message->setSubject("Confirmation du changement de mot de passe");
                 $message->setBody(
                     $this->twig->render(self::TYPE_MAIL_CONFIRM_PASSWORD['renderHtml'], [
-                            'message' => $mail['message'],
+                            'login' => $mail['login'],
                         ]
                     ), 'text/html');
                 $message->addPart(
                     $this->twig->render(self::TYPE_MAIL_CONFIRM_PASSWORD['renderTxt'], [
-                        'message' => $mail['message'],
+                        'login' => $mail['login'],
                     ]), 'text/plain');
                 break;
 
@@ -161,6 +164,20 @@ class EmailService
                     ), 'text/html');
                 $message->addPart(
                     $this->twig->render(self::TYPE_MAIL_NEW_USER['renderTxt'], [
+                        'message' => $mail['message'],
+                    ]), 'text/plain');
+                break;
+
+
+            case self::TYPE_MAIL_PROJECT_MODER['key']:
+                $message->setSubject("Votre projet est envoyé pour modération");
+                $message->setBody(
+                    $this->twig->render(self::TYPE_MAIL_PROJECT_MODER['renderHtml'], [
+                            'message' => $mail['message'],
+                        ]
+                    ), 'text/html');
+                $message->addPart(
+                    $this->twig->render(self::TYPE_MAIL_PROJECT_MODER['renderTxt'], [
                         'message' => $mail['message'],
                     ]), 'text/plain');
                 break;

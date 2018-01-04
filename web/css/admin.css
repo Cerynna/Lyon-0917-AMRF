@@ -1235,6 +1235,9 @@ footer {
   padding: 10px 10px;
   z-index: 200;
   position: fixed; }
+  footer a {
+    text-decoration: none;
+    color: #FFF; }
 
 body {
   background: white;

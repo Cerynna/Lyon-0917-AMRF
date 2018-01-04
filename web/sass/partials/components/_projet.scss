@@ -29,4 +29,11 @@
   .row {
     margin: 0 0 20px 0;
   }
+  .list-group-item {
+    a{
+      color: $color1;
+      font-weight: bold;
+      text-decoration: underline;
+    }
+  }
 }
