@@ -55,6 +55,10 @@ class MayorController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($mayor);
             $em->flush();
+            $this->addFlash(
+                'notice',
+                '<p>Vos informations ont bien été enregistrées</p>'
+            );
 
             return $this->redirectToRoute('mayor_profil', array('id' => $mayor->getId()));
         }
@@ -167,6 +171,10 @@ class MayorController extends Controller
                 $project->setStatus(Project::STATUS_WAITING);
                 $em->persist($project);
                 $em->flush();
+                $this->addFlash(
+                    'notice',
+                    '<p>Votre Projet est envoyé pour modération avant la publication</p>'
+                );
                 return $this->redirectToRoute('mayor_project_edit', [
                     'slug' => $project->getSlug(),
                 ]);
@@ -209,7 +217,10 @@ class MayorController extends Controller
                 else{
                     $pageSend = $page;
                 }
-
+                $this->addFlash(
+                    'notice',
+                    '<p>Vos informations ont bien été enregistrées</p>'
+                );
 
                 return $this->redirectToRoute('mayor_project_edit', [
                     'slug' => $project->getSlug(),

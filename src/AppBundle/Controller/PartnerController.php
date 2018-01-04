@@ -48,6 +48,10 @@ class PartnerController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($partner);
             $em->flush();
+            $this->addFlash(
+                'notice',
+                '<p>Vos informations ont bien été enregistrées</p>'
+            );
 
             return $this->redirectToRoute('partner_profil');
         }
@@ -90,6 +94,10 @@ class PartnerController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($company);
             $em->flush();
+            $this->addFlash(
+                'notice',
+                '<p>Vos informations ont bien été enregistrées</p>'
+            );
 
             return $this->redirectToRoute('partner_press');
         }
