@@ -170,14 +170,14 @@
                 <div class="col-sm-4">
                     <h5>{{ form_label(edit_form.partner.company) }}</h5>
                     {{ form_widget(edit_form.partner.company) }}
-                    <a href="{{ path('admin_company_index' }}" data-toggle="tooltip" data-placement="right"
+                    <a href="{{ path('admin_company_index')}}" data-toggle="tooltip" data-placement="right"
                        title="Liste Organisme"><i class="fa  fa-forward fa-admin"></i></a>
                 </div>
             </div>
         {% endif %}
 
     </div>
-{%     dump(user.role) %}
+    {{ form_widget(edit_form._token) }}
 
     {{ form_end(edit_form, {'render_rest': false}) }}
 

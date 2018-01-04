@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Contact
@@ -25,6 +26,10 @@ class Contact
      * @var string
      *
      * @ORM\Column(name="name", type="string", length=255)
+     * @Assert\Type(
+     *     type= "string")
+     * @Assert\NotBlank(
+     *     message= "Cette information est obligatoire")
      */
     private $name;
 
@@ -32,6 +37,10 @@ class Contact
      * @var string
      *
      * @ORM\Column(name="firstName", type="string", length=255)
+     * @Assert\Type(
+     *     type= "string")
+     * @Assert\NotBlank(
+     *     message= "Cette information est obligatoire")
      */
     private $firstName;
 
@@ -39,6 +48,15 @@ class Contact
      * @var string
      *
      * @ORM\Column(name="email", type="string", length=255)
+     * @Assert\Type(
+     *     type= "string")
+     * @Assert\NotBlank(
+     *     message= "Cette information est obligatoire"
+     * )
+     * @Assert\Email(
+     *     message = "Veuillez entrer une adresse email valide",
+     *     checkMX = true
+     * )
      */
     private $email;
 
@@ -46,6 +64,13 @@ class Contact
      * @var string
      *
      * @ORM\Column(name="phone", type="string", length=255)
+     * @Assert\Type(
+     *     type= "string")
+     * @Assert\Regex(
+     *     pattern="/^(?:0|\(?\+33\)?\s?|0033\s?)[1-79](?:[\.\-\s]?\d\d){4}$/",
+     *     match=true,
+     *     message="Veuillez entrer un numéro au format 0X XX XX XX XX"
+     * )
      */
     private $phone;
 
@@ -67,6 +92,12 @@ class Contact
      * @var string
      *
      * @ORM\Column(name="message", type="text")
+     * @Assert\Type(
+     *     type= "string")
+     * @Assert\Length(
+     *     max= 5000,
+     *     maxMessage="La description ne peut excéder 5000 caractères"
+     * )
      */
     private $message;
 
