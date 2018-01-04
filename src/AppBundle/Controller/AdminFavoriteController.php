@@ -5,7 +5,9 @@ namespace AppBundle\Controller;
 use AppBundle\Entity\Favorite;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Favorite controller.
@@ -42,6 +44,15 @@ class AdminFavoriteController extends Controller
         $favorite = new Favorite();
         $form = $this->createForm('AppBundle\Form\FavoriteType', $favorite);
         $form->handleRequest($request);
+
+		if ($request->isXMLHttpRequest()) {
+			$content = $request->getContent();
+			if (!empty($content)) {
+				$favorite->setUser('');
+				$favorite->setProject('');
+				$favorite->setCompany('');
+			}
+		}
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
@@ -133,4 +144,5 @@ class AdminFavoriteController extends Controller
             ->getForm()
         ;
     }
+
 }
