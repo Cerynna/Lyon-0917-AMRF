@@ -228,13 +228,12 @@
 
 <script>
 
-    $(document).ready(function($){
+    $(document).ready(function(){
         $('#btnFavoris').on('click', function(e){
             e.preventDefault();
             $.ajax({
-                url: 'FavoriteRepository.php',
+                url: '{{ path('admin_favorite_new') }}',
                 type: 'POST',
-                data: {liked: true, url_slug: $(location).attr('href')},
                 cache: false,
                 success: function(data){
                     alert(data);
@@ -242,5 +241,23 @@
             });
         });
     });
+
+
+    function favorite() {
+        var xhr = new XMLHttpRequest();
+        xhr.open('GET', '{{ path('admin_favorite_new') }}', true);
+        xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
+        xhr.onreadystatechange = function () {
+            if(xhr.readyState == 4 && xhr.status == 200) {
+                var result = xhr.responseText;
+                console.log('Result: ' + result);
+            }
+        };
+        xhr.send();
+    }
+
+    var button = document.getElementById("btnFavorites");
+    button.item().addEventListener("click", favorite);
+
 
 </script>
