@@ -3,6 +3,9 @@
 namespace AppBundle\Repository;
 
 use AppBundle\Entity\Project;
+use function array_merge;
+use function array_push;
+use function in_array;
 
 
 /**
@@ -15,6 +18,8 @@ class ProjectRepository extends \Doctrine\ORM\EntityRepository
 {
 
     const MAX_PROJECT = 3;
+
+    const CHAMPS = ["title", "descResume", "descContext", "descGoal", "descProgress", "descPartners", "descResults", "descDifficulties", "descAdvices"];
 
     public function getLastProject()
     {
@@ -35,6 +40,15 @@ class ProjectRepository extends \Doctrine\ORM\EntityRepository
         return $qb->getResult();
     }
 
+    public function projectById($idProject)
+    {
+        return $this->createQueryBuilder('p')
+            ->setParameter('id', $idProject)
+            ->where('p.id = :id')
+            ->getQuery()
+            ->getResult();
+    }
+
     public function getImageProject($idProject)
     {
         return $this->createQueryBuilder('p')
@@ -52,5 +66,209 @@ class ProjectRepository extends \Doctrine\ORM\EntityRepository
             ->where('p.mayor = :mayor_id')
             ->getQuery();
         return $qb->getResult();
+    }
+
+    public function findByTextPertinence($texts, $champs)
+    {
+        $results = [];
+        $texts = explode(' ', $texts);
+        $qb = $this->createQueryBuilder('p');
+        foreach ($texts as $text) {
+            if (strlen($text) > 2) {
+                $qb->select('p.id');
+                $qb->setParameter('text', '%' . $text . '%');
+                foreach ($champs as $champ) {
+                    $qb->where("p.$champ LIKE :text");
+                    $qb->andWhere('p.status = ' . Project::STATUS_PUBLISH);
+                    $query = $qb->getQuery();
+                    $results[count($results) + 1] = $query->getResult();
+                    if (empty ($results[count($results)])) {
+                        unset($results[count($results)]);
+                    }
+                }
+            }
+        }
+        return $results;
+    }
+
+    public function findByThemaPertinence($themas)
+    {
+        $results = "";
+        foreach ($themas as $thema) {
+            $results[] = $this->getEntityManager()
+                ->createQuery('SELECT pt FROM AppBundle:ProjectTheme pt WHERE pt.themes = ' . $thema)
+                ->getResult();
+        }
+        $cleanResult = "";
+        foreach ($results as $key => $project) {
+            $i = 0;
+            $cleanResult[$i] = [];
+            foreach ($project as $test) {
+                array_push($cleanResult[$i], ['id' => $test->getId()]);
+            }
+            $i++;
+        }
+
+        return $cleanResult;
+    }
+
+    public function findByKeywordPertinence($themas)
+    {
+        $results = "";
+        foreach ($themas as $thema) {
+            $results[] = $this->getEntityManager()
+                ->createQuery('SELECT pk FROM AppBundle:ProjectKeyword pk WHERE pk.keyword = ' . $thema)
+                ->getResult();
+        }
+        $cleanResult = "";
+        foreach ($results as $key => $project) {
+            $i = 0;
+            $cleanResult[$i] = [];
+            foreach ($project as $test) {
+                array_push($cleanResult[$i], ['id' => $test->getId()]);
+            }
+            $i++;
+        }
+
+        return $cleanResult;
+    }
+
+    public function findByLocalisationPertinence($locals)
+    {
+        $results = [];
+        foreach ($locals as $key => $values) {
+            switch ($key) {
+                case Project::LOCALISATION_COMMUNE:
+                    $value = explode(' ', $values);
+                    $mayorIds = $this->getEntityManager()
+                        ->createQuery('SELECT pm.id FROM AppBundle:Mayor pm WHERE pm.zipCode = ' . $value[0])
+                        ->getResult();
+
+                    foreach ($mayorIds as $value) {
+                        $qb = $this->createQueryBuilder('p');
+                        $qb->select('p.id')
+                            ->setParameter('mayor', $value['id'])
+                            ->where('p.mayor = :mayor')
+                            ->getQuery();
+                        $query = $qb->getQuery();
+                        $results[] = $query->getResult();
+                    }
+
+
+                    break;
+                case Project::LOCALISATION_DEPARTEMENT:
+                    $value = explode(' ', $values);
+                    $mayorIds = $this->getEntityManager()
+                        ->createQuery('SELECT pm.id FROM AppBundle:Mayor pm WHERE pm.department = ' . $value[0])
+                        ->getResult();
+
+
+                    foreach ($mayorIds as $value) {
+                        $qb = $this->createQueryBuilder('p');
+                        $qb->select('p.id')
+                            ->setParameter('mayor', $value['id'])
+                            ->where('p.mayor = :mayor')
+                            ->getQuery();
+                        $query = $qb->getQuery();
+                        $results[] = $query->getResult();
+                    }
+
+                    break;
+                case Project::LOCALISATION_REGION:
+                    $value = explode(' ', $values);
+                    $mayorIds = $this->getEntityManager()
+                        ->createQuery('SELECT pm.id FROM AppBundle:Mayor pm WHERE pm.region = ' . $value[0])
+                        ->getResult();
+
+                    foreach ($mayorIds as $value) {
+                        $qb = $this->createQueryBuilder('p');
+                        $qb->select('p.id')
+                            ->setParameter('mayor', $value['id'])
+                            ->where('p.mayor = :mayor')
+                            ->getQuery();
+                        $query = $qb->getQuery();
+                        $results[] = $query->getResult();
+                    }
+
+
+                    break;
+            }
+        }
+        return $results;
+    }
+
+    public function findByPertinence($array)
+    {
+        $results = [];
+        if (isset($array['texts'])) {
+            $resultsText = $this->findByTextPertinence($array['texts'], self::CHAMPS);
+            $results = array_merge($results, $resultsText);
+        }
+        if (isset($array['themas'])) {
+            $resultThema = $this->findByThemaPertinence($array['themas']);
+            $results = array_merge($results, $resultThema);
+        }
+        if (isset($array['keywords'])) {
+            $resultKeywords = $this->findByKeywordPertinence($array['keywords']);
+            $results = array_merge($results, $resultKeywords);
+        }
+
+        if (isset($array['localisation'])) {
+            $resultLocalisation = $this->findByLocalisationPertinence($array['localisation']);
+            $clearLocation = $this->arrayCleaner($resultLocalisation);
+            $resultsClear = "";
+            if (!empty($results)) {
+                foreach ($results[0] as $arrayID) {
+                    if (in_array($arrayID['id'], $clearLocation)) {
+                        $resultsClear[] = array_merge([], [$arrayID]);
+
+                    }
+                }
+                $results = $resultsClear;
+            } else {
+                $results = array_merge($results, $resultLocalisation);
+            }
+        }
+        $arrayIDs = [];
+        if (!empty($results)) {
+            foreach ($results as $arrayID) {
+                foreach ($arrayID as $key => $idUnique) {
+                    if (array_key_exists($idUnique["id"], $arrayIDs)) {
+                        $arrayIDs[$idUnique["id"]] = $arrayIDs[$idUnique["id"]] + 1;
+                    } else {
+                        $arrayIDs[$idUnique["id"]] = 1;
+                    }
+
+                }
+            }
+            arsort($arrayIDs);
+            $projectByPertinence = [];
+            $i = 0;
+            foreach ($arrayIDs as $id => $nbResult) {
+                $projectByPertinence[$i][$array['table']] = $this->projectById($id);
+                $projectByPertinence[$i]['nb'] = $nbResult;
+
+                $i++;
+            }
+
+
+            return $projectByPertinence;
+        } else {
+            return false;
+        }
+
+
+    }
+
+    public function arrayCleaner($array)
+    {
+        $result = [];
+        foreach ($array as $key => $value) {
+            if ($value !== []) {
+                array_push($result, $value[0]['id']);
+            }
+        }
+
+        return $result;
     }
 }

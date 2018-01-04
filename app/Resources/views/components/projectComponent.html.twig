@@ -82,14 +82,8 @@
                     </li>
                     <li class="list-group-item">
                         <div class="row">
-                            <div class="col-xs-6 text-left">Tél mobile :</div>
-                            <div class="col-xs-6 text-right">{{ project.mayor.phone }}</div>
-                        </div>
-                    </li>
-                    <li class="list-group-item">
-                        <div class="row">
-                            <div class="col-xs-6 text-left">Email</div>
-                            <div class="col-xs-6 text-right">{{ project.mayor.email }}</div>
+                            <div class="col-xs-3 text-left">Email</div>
+                            <div class="col-xs-9 text-right">{{ project.mayor.email }}</div>
                         </div>
                     </li>
                     <li class="list-group-item text-center">
@@ -97,7 +91,6 @@
                         <a href="{{ project.mayor.google }}"><i class="fa fa-google"></i></a>
                         <a href="{{ project.mayor.facebook }}"><i class="fa fa-facebook-square"></i></a>
                         <a href="{{ project.mayor.twitter }}"><i class="fa fa-twitter-square"></i></a>
-
                     </li>
                 </ul>
             </div>
@@ -170,42 +163,42 @@
     <div class="row">
         <h3>Résumé</h3>
         <p>
-            {{ project.descResume }}
+            {{ project.descResume|raw }}
         </p>
         <div class="divider"></div>
         <h3>Contexte</h3>
         <p>
-            {{ project.descContext }}
+            {{ project.descContext|raw }}
         </p>
         <div class="divider"></div>
         <h3>Objectifs</h3>
         <p>
-            {{ project.descGoal }}
+            {{ project.descGoal|raw }}
         </p>
         <div class="divider"></div>
         <h3>Déroulement</h3>
         <p>
-            {{ project.descProgress }}
+            {{ project.descProgress|raw }}
         </p>
         <div class="divider"></div>
         <h3>Partenaires mobilisés</h3>
         <p>
-            {{ project.descPartners }}
+            {{ project.descPartners|raw }}
         </p>
         <div class="divider"></div>
         <h3>Résultats obtenus</h3>
         <p>
-            {{ project.descResults }}
+            {{ project.descResults|raw }}
         </p>
         <div class="divider"></div>
         <h3>Difficultés rencontrées</h3>
         <p>
-            {{ project.descDifficulties }}
+            {{ project.descDifficulties|raw }}
         </p>
         <div class="divider"></div>
         <h3>Conseils</h3>
         <p>
-            {{ project.descAdvices }}
+            {{ project.descAdvices|raw }}
         </p>
     </div>
     <div class="row">
@@ -225,3 +218,39 @@
         </div>
     </div>
 </div>
+
+<script>
+
+    $(document).ready(function(){
+        $('#btnFavoris').on('click', function(e){
+            e.preventDefault();
+            $.ajax({
+                url: '{{ path('admin_favorite_new') }}',
+                type: 'POST',
+                cache: false,
+                success: function(data){
+                    alert(data);
+                }
+            });
+        });
+    });
+
+
+    function favorite() {
+        var xhr = new XMLHttpRequest();
+        xhr.open('GET', '{{ path('admin_favorite_new') }}', true);
+        xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
+        xhr.onreadystatechange = function () {
+            if(xhr.readyState == 4 && xhr.status == 200) {
+                var result = xhr.responseText;
+                console.log('Result: ' + result);
+            }
+        };
+        xhr.send();
+    }
+
+    var button = document.getElementById("btnFavorites");
+    button.item().addEventListener("click", favorite);
+
+
+</script>

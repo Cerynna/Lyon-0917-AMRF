@@ -180,6 +180,9 @@ a:hover, a:active {
   p {
     padding: 0 10px;
   }
+  &:target {
+    border: 5px solid $color6;
+  }
 }
 
 .divider {
@@ -242,7 +245,7 @@ a:hover, a:active {
   padding: 0;
   max-height: 100px;
   min-height: 0;
-  min-width:0;
+  min-width: 0;
   width: auto;
   overflow: hidden;
   overflow-y: scroll;
@@ -302,6 +305,7 @@ a:hover, a:active {
     margin-left: 5px;
   }
 }
+
 .modal-content {
   margin: 0 auto !important;
   .bck-maire {
@@ -311,9 +315,11 @@ a:hover, a:active {
     width: 220px;
   }
 }
+
 .item::-webkit-scrollbar {
   display: none;
 }
+
 .item {
   height: 30vh;
 }
@@ -334,6 +340,20 @@ a:hover, a:active {
     padding-top: 25vh;
     margin: 0 auto;
   }
+}
+
+#map {
+  height: 600px;
+  width: 100%;
+  a {
+    color: #000;
+  }
+}
+a.anchor {
+  display: block;
+  position: relative;
+  top: -250px;
+  visibility: hidden;
 }
 /*
 

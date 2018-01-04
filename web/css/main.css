@@ -1869,6 +1869,8 @@ a:hover, a:active {
   /*box-shadow: 5px 5px  rgba(0, 0, 0, 0.6);*/ }
   .jumbotron p {
     padding: 0 10px; }
+  .jumbotron:target {
+    border: 5px solid rgba(0, 110, 45, 0.5); }
 
 .divider {
   border: 1px solid #ffffff !important;
@@ -2004,6 +2006,18 @@ a:hover, a:active {
     height: 100vh;
     padding-top: 25vh;
     margin: 0 auto; }
+
+#map {
+  height: 600px;
+  width: 100%; }
+  #map a {
+    color: #000; }
+
+a.anchor {
+  display: block;
+  position: relative;
+  top: -250px;
+  visibility: hidden; }
 
 /*
 

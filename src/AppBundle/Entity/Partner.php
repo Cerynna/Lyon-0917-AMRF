@@ -129,6 +129,15 @@ class Partner
         return $this->id;
     }
 
+    /**
+     * Get firstName
+     *
+     * @return string
+     */
+    public function getFirstName()
+    {
+        return $this->firstName;
+    }
 
     /**
      * Set firstName
@@ -145,13 +154,13 @@ class Partner
     }
 
     /**
-     * Get firstName
+     * Get lastName
      *
      * @return string
      */
-    public function getFirstName()
+    public function getLastName()
     {
-        return $this->firstName;
+        return $this->lastName;
     }
 
     /**
@@ -169,15 +178,14 @@ class Partner
     }
 
     /**
-     * Get lastName
+     * Get occupation
      *
      * @return string
      */
-    public function getLastName()
+    public function getOccupation()
     {
-        return $this->lastName;
+        return $this->occupation;
     }
-
 
     /**
      * Set occupation
@@ -194,13 +202,13 @@ class Partner
     }
 
     /**
-     * Get occupation
+     * Get phone
      *
      * @return string
      */
-    public function getOccupation()
+    public function getPhone()
     {
-        return $this->occupation;
+        return $this->phone;
     }
 
     /**
@@ -218,13 +226,13 @@ class Partner
     }
 
     /**
-     * Get phone
+     * Get email
      *
      * @return string
      */
-    public function getPhone()
+    public function getEmail()
     {
-        return $this->phone;
+        return $this->email;
     }
 
     /**
@@ -242,13 +250,13 @@ class Partner
     }
 
     /**
-     * Get email
+     * Get company
      *
-     * @return string
+     * @return \AppBundle\Entity\Company
      */
-    public function getEmail()
+    public function getCompany()
     {
-        return $this->email;
+        return $this->company;
     }
 
     /**
@@ -263,15 +271,5 @@ class Partner
         $this->company = $company;
 
         return $this;
-    }
-
-    /**
-     * Get company
-     *
-     * @return \AppBundle\Entity\Company
-     */
-    public function getCompany()
-    {
-        return $this->company;
     }
 }
