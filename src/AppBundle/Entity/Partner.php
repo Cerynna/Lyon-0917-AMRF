@@ -36,8 +36,8 @@ class Partner
      *     minMessage="Votre prénom doit comporter au moins 2 caractères"
      * )
      * @Assert\Regex(
-     *     pattern="/[^0-9]{2}/",
-     *     match=true,
+     *      pattern="/[0-9]/",
+     *     match=false,
      *     message="Votre prénom ne peut contenir de chiffre"
      * )
      */
@@ -58,15 +58,17 @@ class Partner
      *     minMessage="Votre nom doit comporter au moins 2 caractères"
      * )
      * @Assert\Regex(
-     *     pattern="/[^0-9]{2}/",
-     *     match=true,
+     *     pattern="/([0-9])/",
+     *     match=false,
      *     message="Votre prénom ne peut contenir de chiffre"
      * )
+     *
      */
     private $lastName;
 
 
     /**
+     *
      * @var string
      *
      * @ORM\Column(name="occupation", type="string", length=255, nullable=true)
