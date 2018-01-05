@@ -6,7 +6,7 @@
  * Time: 10:15
  */
 
-namespace AppBundle\Service\Email;
+namespace AppBundle\Service;
 
 
 class EmailService

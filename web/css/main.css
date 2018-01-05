@@ -823,6 +823,29 @@ section {
     background-color: #ffffff;
     padding: 30px 50px;
     z-index: 1; }
+  section .pagination li.active span {
+    background: rgba(0, 158, 61, 0.99);
+    border: none;
+    border-color: rgba(0, 158, 61, 0.99);
+    border-radius: 2px; }
+    section .pagination li.active span:hover {
+      background: rgba(0, 110, 45, 0.5);
+      border-color: rgba(0, 158, 61, 0.99); }
+  section .pagination li.disabled span {
+    color: #cbcbcb !important;
+    border: none;
+    border-color: #cbcbcb; }
+    section .pagination li.disabled span:hover {
+      border-color: #cbcbcb; }
+  section .pagination li a {
+    border: none;
+    color: rgba(0, 158, 61, 0.99) !important;
+    border-color: rgba(0, 158, 61, 0.99); }
+    section .pagination li a:hover {
+      color: #ffffff !important;
+      background: rgba(0, 158, 61, 0.99);
+      border-color: rgba(0, 158, 61, 0.99);
+      border-radius: 2px; }
   section h2 {
     color: rgba(0, 158, 61, 0.99);
     font-family: "ERASDEMI", sans-serif;
@@ -930,6 +953,23 @@ section form {
        width: 200px;
        height: 200px;
      }*/ }
+  section form .pagination > li input[type=radio] + label {
+    background: #ffffff;
+    color: rgba(0, 158, 61, 0.99);
+    margin: -2px;
+    padding: 10px 5px;
+    display: inline;
+    line-height: 1.5em;
+    font-size: 1.2em; }
+    section form .pagination > li input[type=radio] + label i {
+      padding: 0 5px 0 0;
+      font-size: 1em; }
+    section form .pagination > li input[type=radio] + label:hover {
+      background: rgba(0, 158, 61, 0.99);
+      color: #ffffff; }
+  section form .pagination > li input[type=radio]:checked + label {
+    background: rgba(0, 158, 61, 0.99);
+    color: #ffffff; }
   section form .select2 {
     width: 100% !important; }
   section form .search {
@@ -1051,9 +1091,6 @@ section form {
     border-radius: 5px;
     margin-top: 5px;
     padding-left: 10px; }
-  section form .chgPwd {
-    display: inline-block;
-    width: 30%; }
 
 .select2-container {
   box-sizing: border-box;

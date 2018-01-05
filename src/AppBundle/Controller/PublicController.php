@@ -3,19 +3,21 @@
 namespace AppBundle\Controller;
 
 
+use AppBundle\Entity\Company;
 use AppBundle\Entity\Contact;
+use AppBundle\Entity\Dictionary;
 use AppBundle\Entity\Project;
 use AppBundle\Entity\Search;
-use AppBundle\Service\Email\EmailService;
+use AppBundle\Service\EmailService;
+use AppBundle\Service\SearchService;
 
 
-use Doctrine\ORM\EntityManager;
-use function dump;
+use Doctrine\ORM\EntityManagerInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use SensioLabs\Security\Exception\HttpException;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
@@ -161,7 +163,7 @@ class PublicController extends Controller
     /**
      * @Route("/search", name="search")
      */
-    public function searchAction(Request $request)
+    public function searchAction(Request $request, SearchService $searchService)
     {
         $search = new Search();
         $form = $this->createForm('AppBundle\Form\SearchType', $search);
@@ -201,10 +203,20 @@ class PublicController extends Controller
                 $finder['localisation'][Project::LOCALISATION_REGION] = $search->getRegion();
             }
 
-            $result = $em->getRepository('AppBundle:Project')->findByPertinence($finder);
+            $result = $searchService->findByPertinence($finder);
+            /**
+             * @var $paginator \Knp\Component\Pager\Paginator
+             */
+            $paginator = $this->get('knp_paginator');
+            $resultats = $paginator->paginate(
+                $result,
+                $request->query->getInt('page', 1),
+                $request->query->getInt('limit', 10)
+            );
+
 
             return $this->render('private/search.html.twig', [
-                'result' => $result,
+                'result' => $resultats,
                 'form' => $form->createView(),
             ]);
         }
@@ -228,9 +240,75 @@ class PublicController extends Controller
     /**
      * @Route("/directory", name="directory")
      */
-    public function partListeAction()
+    public function partListeAction(Request $request, EntityManagerInterface $entityManager)
     {
-        return $this->render('private/annuaire.html.twig');
+        $em = $this->getDoctrine()->getManager();
+
+        $reposCompany = $em->getRepository("AppBundle:Company");
+        $companies = $reposCompany->findAll();
+
+        $reposDictionary = $em->getRepository("AppBundle:Dictionary");
+        $activities = $reposDictionary->findByType(Dictionary::TYPE_ACTIVITY);
+
+        $queryBuilder = $em->getRepository('AppBundle:Company')
+            ->createQueryBuilder('c');
+        $filter['activity'] = [];
+        $filter['alphabet'] = [];
+        $cleanResult = [];
+        if ($request->query->getAlnum('activity')) {
+            $filter['activity'] = $request->query->getAlnum('activity');
+
+            $activitiesArray = $request->query->getAlnum('activity');
+
+            $results = [];
+            foreach ($activitiesArray as $activity) {
+                $sql = " SELECT id FROM company_activity WHERE activity = " . $activity;
+                $stmt = $entityManager->getConnection()->prepare($sql);
+                $stmt->execute();
+                array_push($results, $stmt->fetchAll());
+            }
+            foreach ($results as $key => $companies) {
+                foreach ($companies as $id) {
+                    $cleanResult[] = $id["id"];
+                }
+            }
+        }
+        foreach ($cleanResult as $key => $resultCompany) {
+            $queryBuilder
+                ->orWhere('c.id = :id'.$key)
+                ->setParameter('id'.$key, $resultCompany);
+        }
+
+
+        if ($request->query->getAlnum('alphabet')) {
+            $filter['alphabet'] = $request->query->getAlnum('alphabet');
+            $queryBuilder
+                ->andwhere('c.name LIKE :name')
+                ->setParameter('name', $request->query->getAlnum('alphabet') . '%');
+
+        }
+        $query = $queryBuilder->orderBy('c.name', 'ASC')->getQuery();
+
+        /**
+         * @var $paginator \Knp\Component\Pager\Paginator
+         */
+        $paginator = $this->get('knp_paginator');
+        $result = $paginator->paginate(
+            $query,
+            $request->query->getInt('page', 1),
+            $request->query->getInt('limit', 10)
+        );
+
+
+
+
+        return $this->render('private/annuaire.html.twig', [
+            "companies" => $result,
+            "activities" => $activities,
+            "filter" => $filter,
+        ]);
+
+
     }
 
     //PARTIE ADMIN
@@ -279,24 +357,33 @@ class PublicController extends Controller
             $imgExplode = explode('/', $imageDelete);
             $project = $em->getRepository(Project::class)->find($imgExplode[2]);
 
-            if ($imgExplode[3] == 'photos') {
-                $imagesInDB = $em->getRepository('AppBundle:Project')->getImageProject($imgExplode[2]);
-                $newImagesDB = [];
-                foreach ($imagesInDB[0]['images'] as $imageInDB) {
-                    if ($imgExplode[4] != $imageInDB) {
-                        $newImagesDB[] = $imageInDB;
+            if ($imgExplode[1] == "project") {
+                if ($imgExplode[3] == 'photos') {
+                    $imagesInDB = $em->getRepository('AppBundle:Project')->getImageProject($imgExplode[2]);
+                    $newImagesDB = [];
+                    foreach ($imagesInDB[0]['images'] as $imageInDB) {
+                        if ($imgExplode[4] != $imageInDB) {
+                            $newImagesDB[] = $imageInDB;
+                        }
                     }
-                }
-                $project->setImages($newImagesDB);
+                    $project->setImages($newImagesDB);
 
-            } elseif ($imgExplode[3] == 'file') {
-                $project = $em->getRepository(Project::class)->find($imgExplode[2]);
-                $project->setFile('');
+                } elseif ($imgExplode[3] == 'file') {
+                    $project = $em->getRepository(Project::class)->find($imgExplode[2]);
+                    $project->setFile('');
+                }
+                $em->flush();
+                $fs = new Filesystem();
+                $fs->remove($imageDelete);
+            }
+
+            if ($imgExplode[1] == "company") {
+                $company = $em->getRepository(Company::class)->find($imgExplode[2]);
+                $company->setLogo('');
             }
             $em->flush();
             $fs = new Filesystem();
             $fs->remove($imageDelete);
-
 
             return new Response("Image supprimer " . $imageDelete . " - " . count($imageDelete) . " - " . $imgExplode[4]);
         } else {

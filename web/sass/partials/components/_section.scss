@@ -9,6 +9,40 @@ section {
     padding: 30px 50px;
     z-index: 1;
   }
+  .pagination {
+    li.active span {
+      background: $color1;
+      border: none;
+      border-color: $color1;
+      border-radius: 2px;
+      &:hover {
+        background: $color6;
+        border-color: $color1;
+      }
+    }
+    li.disabled span {
+      color: $color4 !important;
+      border: none;
+      border-color: $color4;
+      &:hover {
+        border-color: $color4;
+      }
+    }
+
+    li {
+      a {
+        border: none;
+        color: $color1 !important;
+        border-color: $color1;
+        &:hover {
+          color: $color2 !important;
+          background: $color1;
+          border-color: $color1;
+          border-radius: 2px;
+        }
+      }
+    }
+  }
   h2 {
     color: $color1;
     font-family: $font3, sans-serif;
