@@ -315,3 +315,78 @@
     </div>
     </div>
 {% endblock %}
+{% block javascripts %}
+    <script>
+
+        var firstName = document.getElementById("mayor_firstName");
+        var lastName = document.getElementById("mayor_lastName");
+        var phone = document.getElementById("mayor_phone");
+        var town = document.getElementById("mayor_town");
+        var zipCode = document.getElementById("mayor_zipCode");
+        var population = document.getElementById("mayor_population");
+        var submit = document.getElementById("btnSubmit");
+
+       submit.addEventListener("click", function () {
+           var messageFirstName = "";
+           var messageLastName = "";
+           var messagePhone = "";
+           var messageTown = "";
+           var messageZipCode = "";
+           var messagePopulation = "";
+
+//verif firstname
+           if(firstName.value.length < 2) {
+               messageFirstName += "Votre prénom doit comporter au moins 2 caractères. ";
+
+           }
+           if(firstName.validity.patternMismatch) {
+               messageFirstName += "Votre prénom ne peut contenir de chiffre.";
+
+           }
+//verif lastname
+
+           if(lastName.value.length < 2) {
+               messageLastName += "Votre nom doit comporter au moins 2 caractères. ";
+
+           }
+           if(lastName.validity.patternMismatch) {
+               messageLastName += "Votre nom ne peut contenir de chiffre.";
+
+           }
+//verif phone
+
+           if(phone.validity.patternMismatch) {
+               messagePhone += "Veuillez entrer un numéro au format 0X XX XX XX XX";
+
+           }
+
+//verif commune
+           if(town.validity.patternMismatch) {
+               messageTown += "Le nom de votre ville ne peut contenir de chiffre";
+
+           }
+
+//verif zipcode
+           if(zipCode.validity.patternMismatch) {
+               messageZipCode += "Veuillez entrer un code postal à 5 chiffres";
+
+           }
+
+//verif population
+           if(population.value > 9999) {
+               messagePopulation += "La population ne peut pas excéder 9999 habitants";
+
+           }
+
+           firstName.setCustomValidity(messageFirstName);
+           lastName.setCustomValidity(messageLastName);
+           phone.setCustomValidity(messagePhone);
+           town.setCustomValidity(messageTown);
+           zipCode.setCustomValidity(messageZipCode);
+           population.setCustomValidity(messagePopulation);
+
+        });
+
+
+    </script>
+{% endblock %}
