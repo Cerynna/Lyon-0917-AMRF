@@ -6,7 +6,7 @@
  * Time: 10:15
  */
 
-namespace AppBundle\Service\Email;
+namespace AppBundle\Service;
 
 
 class EmailService
@@ -88,12 +88,12 @@ class EmailService
                 $message->setSubject("Confirmation du changement de mot de passe");
                 $message->setBody(
                     $this->twig->render(self::TYPE_MAIL_CONFIRM_PASSWORD['renderHtml'], [
-                            'message' => $mail['message'],
+                            'login' => $mail['login'],
                         ]
                     ), 'text/html');
                 $message->addPart(
                     $this->twig->render(self::TYPE_MAIL_CONFIRM_PASSWORD['renderTxt'], [
-                        'message' => $mail['message'],
+                        'login' => $mail['login'],
                     ]), 'text/plain');
                 break;
 

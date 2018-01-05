@@ -27,15 +27,18 @@
                 <input value="{{ value }}" type="text" name="value" onchange="sendFilter()">
 
                 {#{{ include(':components:thematiques.html.twig') }}#}
-                <input {% if status == 1 %} checked {% endif %} name="status" value="1" type="radio" multiple
+                <input {% if status == 1 %} checked {% endif %} name="status" id="brouillon" value="1" type="radio"
+                                                                multiple
                                                                 onchange="sendFilter()">
                 <label for="brouillon">Brouillon</label>
 
-                <input {% if status == 2 %} checked {% endif %} name="status" value="2" type="radio" multiple
+                <input {% if status == 2 %} checked {% endif %} name="status" id="attente" value="2" type="radio"
+                                                                multiple
                                                                 onchange="sendFilter()">
                 <label for="attente">En attente</label>
 
-                <input {% if status == 3 %} checked {% endif %} name="status" value="3" type="radio" multiple
+                <input {% if status == 3 %} checked {% endif %} name="status" id="publier" value="3" type="radio"
+                                                                multiple
                                                                 onchange="sendFilter()">
                 <label for="publier">Publier</label>
 
@@ -45,9 +48,9 @@
                 </button>
 
                 <a href="{{ path('admin_project_index') }}" data-toggle="tooltip" data-placement="right"
-                   title="Liste Projets"><i class="fa fa-refresh"></i> RESET FILTER</a>
+                   title="Reset des filtres"><i class="fa fa-refresh"></i> RESET FILTER</a>
 
-
+                {#  C'est quoi ca ? #}
                 {% set queryParams = app.request.query.all %}
 
                 {% if queryParams is not empty %}{{ app.request.query.get('title') }}{% endif %}

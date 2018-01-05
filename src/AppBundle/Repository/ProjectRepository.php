@@ -19,7 +19,7 @@ class ProjectRepository extends \Doctrine\ORM\EntityRepository
 
     const MAX_PROJECT = 3;
 
-    const CHAMPS = ["title", "descResume", "descContext", "descGoal", "descProgress", "descPartners", "descResults", "descDifficulties", "descAdvices"];
+    const CHAMPS = ["title", "descResume"];
 
     public function getLastProject()
     {
@@ -95,16 +95,20 @@ class ProjectRepository extends \Doctrine\ORM\EntityRepository
     {
         $results = "";
         foreach ($themas as $thema) {
-            $results[] = $this->getEntityManager()
-                ->createQuery('SELECT pt FROM AppBundle:ProjectTheme pt WHERE pt.themes = ' . $thema)
-                ->getResult();
+
+            $sql = " SELECT id FROM project_theme WHERE themes = $thema";
+            $em = $this->getEntityManager();
+            $stmt = $em->getConnection()->prepare($sql);
+            $stmt->execute();
+            $results =  $stmt->fetchAll();
+
         }
         $cleanResult = "";
         foreach ($results as $key => $project) {
             $i = 0;
             $cleanResult[$i] = [];
-            foreach ($project as $test) {
-                array_push($cleanResult[$i], ['id' => $test->getId()]);
+            foreach ($project as $id) {
+                array_push($cleanResult[$i], ['id' => $id]);
             }
             $i++;
         }
@@ -116,16 +120,21 @@ class ProjectRepository extends \Doctrine\ORM\EntityRepository
     {
         $results = "";
         foreach ($themas as $thema) {
-            $results[] = $this->getEntityManager()
-                ->createQuery('SELECT pk FROM AppBundle:ProjectKeyword pk WHERE pk.keyword = ' . $thema)
-                ->getResult();
+
+            $sql = " SELECT id FROM project_keywords WHERE keyWords = $thema";
+            $em = $this->getEntityManager();
+            $stmt = $em->getConnection()->prepare($sql);
+            $stmt->execute();
+            $results =  $stmt->fetchAll();
+
+
         }
         $cleanResult = "";
         foreach ($results as $key => $project) {
             $i = 0;
             $cleanResult[$i] = [];
-            foreach ($project as $test) {
-                array_push($cleanResult[$i], ['id' => $test->getId()]);
+            foreach ($project as $id) {
+                array_push($cleanResult[$i], ['id' => $id]);
             }
             $i++;
         }
@@ -197,68 +206,7 @@ class ProjectRepository extends \Doctrine\ORM\EntityRepository
         return $results;
     }
 
-    public function findByPertinence($array)
-    {
-        $results = [];
-        if (isset($array['texts'])) {
-            $resultsText = $this->findByTextPertinence($array['texts'], self::CHAMPS);
-            $results = array_merge($results, $resultsText);
-        }
-        if (isset($array['themas'])) {
-            $resultThema = $this->findByThemaPertinence($array['themas']);
-            $results = array_merge($results, $resultThema);
-        }
-        if (isset($array['keywords'])) {
-            $resultKeywords = $this->findByKeywordPertinence($array['keywords']);
-            $results = array_merge($results, $resultKeywords);
-        }
 
-        if (isset($array['localisation'])) {
-            $resultLocalisation = $this->findByLocalisationPertinence($array['localisation']);
-            $clearLocation = $this->arrayCleaner($resultLocalisation);
-            $resultsClear = "";
-            if (!empty($results)) {
-                foreach ($results[0] as $arrayID) {
-                    if (in_array($arrayID['id'], $clearLocation)) {
-                        $resultsClear[] = array_merge([], [$arrayID]);
-
-                    }
-                }
-                $results = $resultsClear;
-            } else {
-                $results = array_merge($results, $resultLocalisation);
-            }
-        }
-        $arrayIDs = [];
-        if (!empty($results)) {
-            foreach ($results as $arrayID) {
-                foreach ($arrayID as $key => $idUnique) {
-                    if (array_key_exists($idUnique["id"], $arrayIDs)) {
-                        $arrayIDs[$idUnique["id"]] = $arrayIDs[$idUnique["id"]] + 1;
-                    } else {
-                        $arrayIDs[$idUnique["id"]] = 1;
-                    }
-
-                }
-            }
-            arsort($arrayIDs);
-            $projectByPertinence = [];
-            $i = 0;
-            foreach ($arrayIDs as $id => $nbResult) {
-                $projectByPertinence[$i][$array['table']] = $this->projectById($id);
-                $projectByPertinence[$i]['nb'] = $nbResult;
-
-                $i++;
-            }
-
-
-            return $projectByPertinence;
-        } else {
-            return false;
-        }
-
-
-    }
 
     public function arrayCleaner($array)
     {

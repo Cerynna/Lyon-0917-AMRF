@@ -6,7 +6,6 @@
 {% endblock %}
 
 
-
 {% block body %}
     {% set max = app.request.uri|length %}
     {% set page =  app.request.uri[(max-1):max] %}
@@ -65,8 +64,6 @@
             </div>
         </div>
     {% endif %}
-
-
 
     {{ form_start(form) }}
     <input id="page" name="page" type="text" class="hidden"/>
