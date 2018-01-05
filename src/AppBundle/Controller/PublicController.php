@@ -33,7 +33,7 @@ class PublicController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         /** Change that is a real code for Update LastLogin */
-        $user = $this->get('security.token_storage')->getToken()->getUser();
+        $user = $this->getUser();
         if (is_object($user)) {
             $lastloginDB = $user->getLastLogin();
             $today = new \DateTime('now');

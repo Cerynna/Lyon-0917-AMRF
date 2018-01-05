@@ -1045,6 +1045,9 @@ section form {
     border-radius: 5px;
     margin-top: 5px;
     padding-left: 10px; }
+  section form .chgPwd {
+    display: inline-block;
+    width: 30%; }
 
 .select2-container {
   box-sizing: border-box;

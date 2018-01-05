@@ -9,94 +9,226 @@
     <h2>Mon profil</h2>
     <!-- Nav tabs -->
     <div class="row tabPannel">
-            <ul class="hidden-xs list-inline text-center" role="tablist">
-                <li role="presentation" class="tabLi active">
-                    <a href="#profil" aria-controls="profil" role="tab" data-toggle="tab">Mon Profil</a>
-                </li>
-                <li role="presentation" class="tabLi">
-                    <a href="#mairie" aria-controls="mairie" role="tab" data-toggle="tab">Ma Mairie</a>
-                </li>
-                <li role="presentation" class="tabLi">
-                    <a href="#reseau" aria-controls="reseau" role="tab" data-toggle="tab">Réseaux Sociaux</a>
-                </li>
-                <li role="presentation" class="tabLi">
-                    <a href="#settings" aria-controls="settings" role="tab" data-toggle="tab">Mot de Passe</a>
-                </li>
-            </ul>
-            <!-- Tab panes -->
-            <div class="hidden-xs tab-content">
-                <div role="tabpanel" class="tab-pane active" id="profil">
-                    <div class="star">Le symbole * indique que cette information est nécessaire.</div>
-                    <h3>Mon profil</h3>
-                    <div class="row">
-                        <div class="col-lg-6 col-sm-6">
-                            <div class="form-group">
-                                {{ form_label(form.firstName, "Prénom *") }}
-                                {{ form_widget(form.firstName) }}
-                                <div class="errorForm">{{ form_errors(form.firstName) | striptags }}</div>
 
-                            </div>
-                        </div>
-                        <div class="col-lg-6 col-sm-6">
-                            <div class="form-group">
-                                {{ form_label(form.lastName, "Nom *") }}
-                                {{ form_widget(form.lastName) }}
-                                <div class="errorForm">{{ form_errors(form.lastName) | striptags }}</div>
-                            </div>
+        <ul class="hidden-xs list-inline text-center" role="tablist">
+            <li role="presentation" class="tabLi active">
+                <a href="#profil" aria-controls="profil" role="tab" data-toggle="tab">Mon Profil</a>
+            </li>
+            <li role="presentation" class="tabLi">
+                <a href="#mairie" aria-controls="mairie" role="tab" data-toggle="tab">Ma Mairie</a>
+            </li>
+            <li role="presentation" class="tabLi">
+                <a href="#reseau" aria-controls="reseau" role="tab" data-toggle="tab">Réseaux Sociaux</a>
+            </li>
+            <li role="presentation" class="tabLi">
+                <a href="#settings" aria-controls="settings" role="tab" data-toggle="tab">Mot de Passe</a>
+            </li>
+        </ul>
+        <!-- Tab panes -->
+        <div class="hidden-xs tab-content">
+            <div role="tabpanel" class="tab-pane active" id="profil">
+                <div class="star">Le symbole * indique que cette information est nécessaire.</div>
+                <h3>Mon profil</h3>
+                <div class="row">
+                    <div class="col-lg-6 col-sm-6">
+                        <div class="form-group">
+                            {{ form_label(form.firstName, "Prénom *") }}
+                            {{ form_widget(form.firstName) }}
+                            <div class="errorForm">{{ form_errors(form.firstName) | striptags }}</div>
+
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-lg-6 col-sm-6">
-                            <div class="form-group">
-                                {{ form_label(form.phone, "Téléphone *") }}
-                                {{ form_widget(form.phone) }}
-                                <div class="errorForm">{{ form_errors(form.phone) | striptags }}
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-6 col-sm-6">
-                            <div class="form-group">
-                                {{ form_label(form.email, "Email *") }}
-                                {{ form_widget(form.email) }}
-                                <div class="errorForm">{{ form_errors(form.email) | striptags }}</div>
-                            </div>
+                    <div class="col-lg-6 col-sm-6">
+                        <div class="form-group">
+                            {{ form_label(form.lastName, "Nom *") }}
+                            {{ form_widget(form.lastName) }}
+                            <div class="errorForm">{{ form_errors(form.lastName) | striptags }}</div>
                         </div>
                     </div>
                 </div>
-                <div role="tabpanel" class="tab-pane" id="mairie">
-                    <div class="star">Le symbole * indique que cette information est nécessaire.</div>
-                    <h3>Ma Mairie</h3>
-                    <div class="row">
+                <div class="row">
+                    <div class="col-lg-6 col-sm-6">
+                        <div class="form-group">
+                            {{ form_label(form.phone, "Téléphone *") }}
+                            {{ form_widget(form.phone) }}
+                            <div class="errorForm">{{ form_errors(form.phone) | striptags }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-sm-6">
+                        <div class="form-group">
+                            {{ form_label(form.email, "Email *") }}
+                            {{ form_widget(form.email) }}
+                            <div class="errorForm">{{ form_errors(form.email) | striptags }}</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-12 col-md-12 text-center">
+                    <button class="btn" type="submit">Enregistrer vos informations</button>
+                </div>
+            </div>
+            <div role="tabpanel" class="tab-pane" id="mairie">
+                <div class="star">Le symbole * indique que cette information est nécessaire.</div>
+                <h3>Ma Mairie</h3>
+                <div class="row">
+                    <div class="col-lg-6 col-sm-6">
+                        <div class="form-group">
+                            {{ form_label(form.town, "Commune *") }}
+                            {{ form_widget(form.town) }}
+                            <div class="errorForm">{{ form_errors(form.town) | striptags }}</div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-sm-6">
+                        <div class="form-group">
+                            {{ form_label(form.zipCode, "Code Postal *") }}
+                            {{ form_widget(form.zipCode) }}
+                            <div class="errorForm">{{ form_errors(form.zipCode) | striptags }}</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12 col-sm-12">
+                        <div class="form-group">
+                            {{ form_label(form.address, "Adresse de la Mairie *") }}
+                            {{ form_widget(form.address) }}
+                            <div class="errorForm">{{ form_errors(form.address) | striptags }}</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6 col-sm-6">
+                        <div class="form-group">
+                            {{ form_label(form.population, "Nombre d'habitants") }}
+                            {{ form_widget(form.population) }}
+                            <div class="errorForm">{{ form_errors(form.population) | striptags }}</div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-sm-6">
+                        <div class="form-group">
+                            {{ form_label(form.insee, "Numéro INSEE") }}
+                            {{ form_widget(form.insee, { 'attr':{'disabled':'disabled'} }) }}
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-12 col-md-12 text-center">
+                    <button class="btn" type="submit">Enregistrer vos informations</button>
+                </div>
+            </div>
+            <div role="tabpanel" class="tab-pane" id="reseau">
+                <div class="star">Le symbole * indique que cette information est nécessaire.</div>
+                <h3>Reseaux Sociaux</h3>
+                <div class="row>">
+                    <div class="col-lg-6 col-sm-6">
+                        <div class="form-group">
+                            {{ form_label(form.url, "Site Internet") }}
+                            {{ form_widget(form.url) }}
+                            <div class="errorForm">{{ form_errors(form.url) | striptags }}</div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-sm-6">
+                        <div class="form-group">
+                            {{ form_label(form.facebook, "Compte Facebook") }}
+                            {{ form_widget(form.facebook) }}
+                            <div class="errorForm">{{ form_errors(form.facebook) | striptags }}</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6 col-sm-6">
+                        <div class="form-group">
+                            {{ form_label(form.google, "Compte Google+") }}
+                            {{ form_widget(form.google) }}
+                            <div class="errorForm">{{ form_errors(form.google) | striptags }}</div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-sm-6">
+                        <div class="form-group">
+                            {{ form_label(form.twitter, "Compte Twitter") }}
+                            {{ form_widget(form.twitter) }}
+                            <div class="errorForm">{{ form_errors(form.twitter) | striptags }}</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-12 col-md-12 text-center">
+                    <button class="btn" type="submit">Enregistrer vos informations</button>
+                </div>
+            </div>
+
+            {{ form_widget(form) }}
+            {{ form_end(form) }}
+
+            <div role="tabpanel" class="tab-pane" id="settings">
+                <div class="star">Le symbole * indique que cette information est nécessaire.</div>
+                <h3>Changer mon mot de passe</h3>
+                <div class="col-lg-6 col-sm-6">
+
+                    {{ form_start(form_password) }}
+                    {{ form_widget(form_password) }}
+
+
+                    <div class="col-lg-12 col-md-12 text-center">
+                        <button class="btn" type="submit">Valider votre mot de passe</button>
+                    </div>
+                    {{ form_end(form_password) }}
+
+                </div>
+            </div>
+            {#Swiper#}
+            {#<div class="visible-xs swiper-container">
+                <div class="swiper-pagination"></div>
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <h3>Mon profil</h3>
+                        <div class="">
+                            <div class="form-group col-xs-12">
+                                {{ form_label(form.firstName, "Nom *") }}
+                                {{ form_widget(form.firstName) }}
+                            </div>
+                        </div>
+                        <div class="">
+                            <div class="form-group col-xs-12">
+                                {{ form_label(form.lastName, "Prénom *") }}
+                                {{ form_widget(form.lastName) }}
+                            </div>
+                        </div>
+                        <div class="">
+                            <div class="form-group col-xs-12">
+                                {{ form_label(form.phone, "Téléphone *") }}
+                                {{ form_widget(form.phone) }}
+                            </div>
+                        </div>
+                        <div class="">
+                            <div class="form-group col-xs-12">
+                                {{ form_label(form.email, "Email *") }}
+                                {{ form_widget(form.email) }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <h3>Ma Mairie</h3>
                         <div class="col-lg-6 col-sm-6">
                             <div class="form-group">
                                 {{ form_label(form.town, "Commune *") }}
                                 {{ form_widget(form.town) }}
-                                <div class="errorForm">{{ form_errors(form.town) | striptags }}</div>
                             </div>
                         </div>
                         <div class="col-lg-6 col-sm-6">
                             <div class="form-group">
                                 {{ form_label(form.zipCode, "Code Postal *") }}
                                 {{ form_widget(form.zipCode) }}
-                                <div class="errorForm">{{ form_errors(form.zipCode) | striptags }}</div>
                             </div>
                         </div>
-                    </div>
-                    <div class="row">
                         <div class="col-lg-12 col-sm-12">
                             <div class="form-group">
                                 {{ form_label(form.address, "Adresse de la Mairie *") }}
                                 {{ form_widget(form.address) }}
-                                <div class="errorForm">{{ form_errors(form.address) | striptags }}</div>
                             </div>
                         </div>
-                    </div>
-                    <div class="row">
                         <div class="col-lg-6 col-sm-6">
                             <div class="form-group">
                                 {{ form_label(form.population, "Nombre d'habitants") }}
                                 {{ form_widget(form.population) }}
-                                <div class="errorForm">{{ form_errors(form.population) | striptags }}</div>
+                                {{ form_errors(form.population) }}
                             </div>
                         </div>
                         <div class="col-lg-6 col-sm-6">
@@ -106,214 +238,80 @@
                             </div>
                         </div>
                     </div>
-                </div>
-                <div role="tabpanel" class="tab-pane" id="reseau">
-                    <div class="star">Le symbole * indique que cette information est nécessaire.</div>
-                    <h3>Reseaux Sociaux</h3>
-                    <div class="row>">
+                    <div class="swiper-slide">
+                        <h3>Reseaux Sociaux</h3>
                         <div class="col-lg-6 col-sm-6">
                             <div class="form-group">
                                 {{ form_label(form.url, "Site Internet") }}
                                 {{ form_widget(form.url) }}
-                                <div class="errorForm">{{ form_errors(form.url) | striptags }}</div>
                             </div>
                         </div>
                         <div class="col-lg-6 col-sm-6">
                             <div class="form-group">
                                 {{ form_label(form.facebook, "Compte Facebook") }}
                                 {{ form_widget(form.facebook) }}
-                                <div class="errorForm">{{ form_errors(form.facebook) | striptags }}</div>
                             </div>
                         </div>
-                    </div>
-                    <div class="row">
                         <div class="col-lg-6 col-sm-6">
                             <div class="form-group">
                                 {{ form_label(form.google, "Compte Google+") }}
                                 {{ form_widget(form.google) }}
-                                <div class="errorForm">{{ form_errors(form.google) | striptags }}</div>
                             </div>
                         </div>
                         <div class="col-lg-6 col-sm-6">
                             <div class="form-group">
                                 {{ form_label(form.twitter, "Compte Twitter") }}
                                 {{ form_widget(form.twitter) }}
-                                <div class="errorForm">{{ form_errors(form.twitter) | striptags }}</div>
                             </div>
                         </div>
                     </div>
+                    <div class="swiper-slide">
+                        <h3>Changer mon mot de passe</h3>
+                        <div class="col-lg-4 col-sm-4">
+                            <div class="form-group">
+                                <label for="oldpsw">Ancien mot de passe</label>
+                                <input name="oldpsw" type="password" class="form-control" data-error="wrong"
+                                       data-success="right">
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-sm-4">
+                            <div class="form-group">
+                                <label for="password">Nouveau mot de passe</label>
+                                <input name="newPass[]" type="password" class="form-control" data-error="wrong"
+                                       data-success="right">
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-sm-4">
+                            <div class="form-group">
+                                <label for="password">Confirmation</label>
+                                <input type="password" name="newPass[]" class="form-control" data-error="wrong"
+                                       data-success="right">
+                            </div>
+                        </div>
+                        <div class="form-group hidden">
+                            {{ form_label(form.department, "departement") }}
+                            {{ form_widget(form.department) }}
+                        </div>
+                        <div class="form-group hidden">
+                            {{ form_label(form.region, "Compte region") }}
+                            {{ form_widget(form.region) }}
+                        </div>
+                        <div class="form-group hidden">
+                            {{ form_label(form.latitude, "Compte latitude") }}
+                            {{ form_widget(form.latitude) }}
+                        </div>
+                        <div class="form-group hidden">
+                            {{ form_label(form.longitude, "Compte longtitude") }}
+                            {{ form_widget(form.longitude) }}
+                        </div>
+                    </div>
                 </div>
-                <div role="tabpanel" class="tab-pane" id="settings">
-                    <div class="star">Le symbole * indique que cette information est nécessaire.</div>
-                    <h3>Changer mon mot de passe</h3>
-                    <div class="col-lg-4 col-sm-4">
-                        <div class="form-group">
-                            {#twig form#}
-                            <label for="oldpsw">Ancien mot de passe *</label>
-                            <input name="oldpsw" type="password" class="form-control" data-error="wrong"
-                                   data-success="right">
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-sm-4">
-                        <div class="form-group">
-                            {#twig form#}
-                            <label for="password">Nouveau mot de passe *</label>
-                            <input name="newPass[]" type="password" class="form-control" data-error="wrong"
-                                   data-success="right">
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-sm-4">
-                        <div class="form-group">
-                            {#twig form#}
-                            <label for="password">Confirmer le nouveau mot de passe *</label>
-                            <input type="password" name="newPass[]" class="form-control" data-error="wrong"
-                                   data-success="right">
-                        </div>
-                    </div>
-                </div>
+                <div class="swiper-button-next"></div>
+                <div class="swiper-button-prev"></div>
+            </div>#}
 
 
-                {#Swiper#}
-                <div class="visible-xs swiper-container">
-                    <div class="swiper-pagination"></div>
-                    <div class="swiper-wrapper">
-                        <div class="swiper-slide">
-                            <h3>Mon profil</h3>
-                            <div class="">
-                                <div class="form-group col-xs-12">
-                                    {{ form_label(form.firstName, "Nom *") }}
-                                    {{ form_widget(form.firstName) }}
-                                </div>
-                            </div>
-                            <div class="">
-                                <div class="form-group col-xs-12">
-                                    {{ form_label(form.lastName, "Prénom *") }}
-                                    {{ form_widget(form.lastName) }}
-                                </div>
-                            </div>
-                            <div class="">
-                                <div class="form-group col-xs-12">
-                                    {{ form_label(form.phone, "Téléphone *") }}
-                                    {{ form_widget(form.phone) }}
-                                </div>
-                            </div>
-                            <div class="">
-                                <div class="form-group col-xs-12">
-                                    {{ form_label(form.email, "Email *") }}
-                                    {{ form_widget(form.email) }}
-                                </div>
-                            </div>
-                        </div>
-                        <div class="swiper-slide">
-                            <h3>Ma Mairie</h3>
-                            <div class="col-lg-6 col-sm-6">
-                                <div class="form-group">
-                                    {{ form_label(form.town, "Commune *") }}
-                                    {{ form_widget(form.town) }}
-                                </div>
-                            </div>
-                            <div class="col-lg-6 col-sm-6">
-                                <div class="form-group">
-                                    {{ form_label(form.zipCode, "Code Postal *") }}
-                                    {{ form_widget(form.zipCode) }}
-                                </div>
-                            </div>
-                            <div class="col-lg-12 col-sm-12">
-                                <div class="form-group">
-                                    {{ form_label(form.address, "Adresse de la Mairie *") }}
-                                    {{ form_widget(form.address) }}
-                                </div>
-                            </div>
-                            <div class="col-lg-6 col-sm-6">
-                                <div class="form-group">
-                                    {{ form_label(form.population, "Nombre d'habitants") }}
-                                    {{ form_widget(form.population) }}
-                                    {{ form_errors(form.population) }}
-                                </div>
-                            </div>
-                            <div class="col-lg-6 col-sm-6">
-                                <div class="form-group">
-                                    {{ form_label(form.insee, "Numéro INSEE") }}
-                                    {{ form_widget(form.insee, { 'attr':{'disabled':'disabled'} }) }}
-                                </div>
-                            </div>
-                        </div>
-                        <div class="swiper-slide">
-                            <h3>Reseaux Sociaux</h3>
-                            <div class="col-lg-6 col-sm-6">
-                                <div class="form-group">
-                                    {{ form_label(form.url, "Site Internet") }}
-                                    {{ form_widget(form.url) }}
-                                </div>
-                            </div>
-                            <div class="col-lg-6 col-sm-6">
-                                <div class="form-group">
-                                    {{ form_label(form.facebook, "Compte Facebook") }}
-                                    {{ form_widget(form.facebook) }}
-                                </div>
-                            </div>
-                            <div class="col-lg-6 col-sm-6">
-                                <div class="form-group">
-                                    {{ form_label(form.google, "Compte Google+") }}
-                                    {{ form_widget(form.google) }}
-                                </div>
-                            </div>
-                            <div class="col-lg-6 col-sm-6">
-                                <div class="form-group">
-                                    {{ form_label(form.twitter, "Compte Twitter") }}
-                                    {{ form_widget(form.twitter) }}
-                                </div>
-                            </div>
-                        </div>
-                        <div class="swiper-slide">
-                            <h3>Changer mon mot de passe</h3>
-                            <div class="col-lg-4 col-sm-4">
-                                <div class="form-group">
-                                    <label for="oldpsw">Ancien mot de passe</label>
-                                    <input name="oldpsw" type="password" class="form-control" data-error="wrong"
-                                           data-success="right">
-                                </div>
-                            </div>
-                            <div class="col-lg-4 col-sm-4">
-                                <div class="form-group">
-                                    <label for="password">Nouveau mot de passe</label>
-                                    <input name="newPass[]" type="password" class="form-control" data-error="wrong"
-                                           data-success="right">
-                                </div>
-                            </div>
-                            <div class="col-lg-4 col-sm-4">
-                                <div class="form-group">
-                                    <label for="password">Confirmation</label>
-                                    <input type="password" name="newPass[]" class="form-control" data-error="wrong"
-                                           data-success="right">
-                                </div>
-                            </div>
-                            <div class="form-group hidden">
-                                {{ form_label(form.department, "departement") }}
-                                {{ form_widget(form.department) }}
-                            </div>
-                            <div class="form-group hidden">
-                                {{ form_label(form.region, "Compte region") }}
-                                {{ form_widget(form.region) }}
-                            </div>
-                            <div class="form-group hidden">
-                                {{ form_label(form.latitude, "Compte latitude") }}
-                                {{ form_widget(form.latitude) }}
-                            </div>
-                            <div class="form-group hidden">
-                                {{ form_label(form.longitude, "Compte longtitude") }}
-                                {{ form_widget(form.longitude) }}
-                            </div>
-                        </div>
-                    </div>
-                    <div class="swiper-button-next"></div>
-                    <div class="swiper-button-prev"></div>
-                </div>
-                <div class="col-lg-12 col-md-12 text-center">
-                    <button class="btn" type="submit">Sauvegarder</button>
-                </div>
-            </div>
-        {{ form_widget(form) }}
-        {{ form_end(form) }}
+        </div>
+    </div>
     </div>
 {% endblock %}
