@@ -301,7 +301,6 @@ class PublicController extends Controller
 
 
 
-
         return $this->render('private/annuaire.html.twig', [
             "companies" => $result,
             "activities" => $activities,
