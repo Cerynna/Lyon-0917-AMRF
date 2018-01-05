@@ -9,6 +9,7 @@
     <h2>Mon profil</h2>
     <!-- Nav tabs -->
     <div class="row tabPannel">
+
         <ul class="hidden-xs list-inline text-center" role="tablist">
             <li role="presentation" class="tabLi active">
                 <a href="#profil" aria-controls="profil" role="tab" data-toggle="tab">Mon Profil</a>
@@ -62,6 +63,9 @@
                         </div>
                     </div>
                 </div>
+                <div class="col-lg-12 col-md-12 text-center">
+                    <button class="btn" type="submit">Enregistrer vos informations</button>
+                </div>
             </div>
             <div role="tabpanel" class="tab-pane" id="mairie">
                 <div class="star">Le symbole * indique que cette information est nécessaire.</div>
@@ -106,6 +110,9 @@
                         </div>
                     </div>
                 </div>
+                <div class="col-lg-12 col-md-12 text-center">
+                    <button class="btn" type="submit">Enregistrer vos informations</button>
+                </div>
             </div>
             <div role="tabpanel" class="tab-pane" id="reseau">
                 <div class="star">Le symbole * indique que cette information est nécessaire.</div>
@@ -142,39 +149,32 @@
                         </div>
                     </div>
                 </div>
+                <div class="col-lg-12 col-md-12 text-center">
+                    <button class="btn" type="submit">Enregistrer vos informations</button>
+                </div>
             </div>
+
+            {{ form_widget(form) }}
+            {{ form_end(form) }}
+
             <div role="tabpanel" class="tab-pane" id="settings">
                 <div class="star">Le symbole * indique que cette information est nécessaire.</div>
                 <h3>Changer mon mot de passe</h3>
-                <div class="col-lg-4 col-sm-4">
-                    <div class="form-group">
-                        {#twig form#}
-                        <label for="oldpsw">Ancien mot de passe *</label>
-                        <input name="oldpsw" type="password" class="form-control" data-error="wrong"
-                               data-success="right">
+                <div class="col-lg-6 col-sm-6">
+
+                    {{ form_start(form_password) }}
+                    {{ form_widget(form_password) }}
+
+
+                    <div class="col-lg-12 col-md-12 text-center">
+                        <button class="btn" type="submit">Valider votre mot de passe</button>
                     </div>
-                </div>
-                <div class="col-lg-4 col-sm-4">
-                    <div class="form-group">
-                        {#twig form#}
-                        <label for="password">Nouveau mot de passe *</label>
-                        <input name="newPass[]" type="password" class="form-control" data-error="wrong"
-                               data-success="right">
-                    </div>
-                </div>
-                <div class="col-lg-4 col-sm-4">
-                    <div class="form-group">
-                        {#twig form#}
-                        <label for="password">Confirmer le nouveau mot de passe *</label>
-                        <input type="password" name="newPass[]" class="form-control" data-error="wrong"
-                               data-success="right">
-                    </div>
+                    {{ form_end(form_password) }}
+
                 </div>
             </div>
-
-
             {#Swiper#}
-            <div class="visible-xs swiper-container">
+            {#<div class="visible-xs swiper-container">
                 <div class="swiper-pagination"></div>
                 <div class="swiper-wrapper">
                     <div class="swiper-slide">
@@ -308,13 +308,11 @@
                 </div>
                 <div class="swiper-button-next"></div>
                 <div class="swiper-button-prev"></div>
-            </div>
-            <div class="col-lg-12 col-md-12 text-center">
-                <button class="btn" id="btnSubmit" type="submit">Sauvegarder</button>
-            </div>
+            </div>#}
+
+
         </div>
-        {{ form_widget(form) }}
-        {{ form_end(form) }}
+    </div>
     </div>
 {% endblock %}
 {% block javascripts %}

@@ -30,7 +30,8 @@ class Company
      * @var string
      *
      * @ORM\Column(name="name", type="string", length=255, nullable=true)
-     *
+     * @Assert\Type(
+     *     type= "string")
      * @Assert\NotBlank(
      *     message= "Cette information est obligatoire"
      * )
@@ -42,7 +43,8 @@ class Company
      * @var string
      *
      * @ORM\Column(name="address", type="string", length=255, nullable=true)
-     *
+     * @Assert\Type(
+     *     type= "string")
      * @Assert\NotBlank(
      *     message= "Cette information est obligatoire"
      * )
@@ -56,6 +58,8 @@ class Company
      * @Assert\NotBlank(
      *     message= "Cette information est obligatoire"
      * )
+     * @Assert\Type(
+     *     type= "string")
      * @Assert\Regex(
      *     pattern="/^(([0-8][0-9])|(9[0-5]))[0-9]{3}$/",
      *     match=true,
@@ -72,6 +76,7 @@ class Company
      * @Assert\NotBlank(
      *     message= "Cette information est obligatoire"
      * )
+     *
      * @Assert\Type(
      *     type= "string")
      * @Assert\Regex(
@@ -97,7 +102,8 @@ class Company
      * @var string
      *
      * @ORM\Column(name="presentation", type="text", nullable=true)
-     *
+     * @Assert\Type(
+     *     type= "string")
      * @Assert\NotBlank(
      *     message= "Cette information est obligatoire"
      * )
@@ -120,7 +126,8 @@ class Company
      * @var string
      *
      * @ORM\Column(name="url", type="string", length=255, nullable=true)
-     *
+     * @Assert\Type(
+     *     type= "string")
      * @Assert\Url(
      *     message="L'adresse internet n'est pas valide.")
      */
@@ -130,6 +137,8 @@ class Company
      * @var string
      *
      * @ORM\Column(name="facebook", type="string", length=255, nullable=true)
+     * @Assert\Type(
+     *     type= "string")
      */
     private $facebook;
 
@@ -144,6 +153,8 @@ class Company
      * @var string
      *
      * @ORM\Column(name="twitter", type="string", length=255, nullable=true)
+     * @Assert\Type(
+     *     type= "string")
      */
     private $twitter;
 
