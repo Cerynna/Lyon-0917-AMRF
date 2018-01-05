@@ -45,15 +45,6 @@ class AdminFavoriteController extends Controller
         $form = $this->createForm('AppBundle\Form\FavoriteType', $favorite);
         $form->handleRequest($request);
 
-		if ($request->isXMLHttpRequest()) {
-			$content = $request->getContent();
-			if (!empty($content)) {
-				$favorite->setUser('');
-				$favorite->setProject('');
-				$favorite->setCompany('');
-			}
-		}
-
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->persist($favorite);

@@ -10,4 +10,13 @@ namespace AppBundle\Repository;
  */
 class CompanyRepository extends \Doctrine\ORM\EntityRepository
 {
+	public function companyById($idCompany)
+	{
+		return $this->createQueryBuilder('c')
+			->setParameter('id', $idCompany)
+			->where('c.id = :id')
+			->getQuery()
+			->getResult();
+	}
+
 }
