@@ -55,6 +55,10 @@ class PartnerController extends Controller
         if ($form->isSubmitted() && $form->isValid()) {
             $em->persist($user);
             $em->flush();
+            $this->addFlash(
+                'notice',
+                '<p>Vos informations ont bien été enregistrées</p>'
+            );
 
             return $this->redirectToRoute('partner_profil', array('id' => $partner->getId()));
         }
@@ -130,6 +134,10 @@ class PartnerController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($company);
             $em->flush();
+            $this->addFlash(
+                'notice',
+                '<p>Vos informations ont bien été enregistrées</p>'
+            );
 
             return $this->redirectToRoute('partner_press');
         }
