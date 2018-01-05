@@ -472,10 +472,6 @@ h5 {
   padding: 7px 10px;
   font-size: 1em;
   margin: 10px auto  2px auto; }
-  h5 [class*="col-"] {
-    height: 35px;
-    border: 1px solid black !important;
-    font-size: 1.2em; }
 
 .jumbotron {
   background-color: white;
