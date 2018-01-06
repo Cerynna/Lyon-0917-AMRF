@@ -20,14 +20,11 @@
             </div>
             <div class="col-sm-3 text-right">
 
-
-
-                <button type="button" id="addFavorite" class="btnFavoris {% if favoris == 1 %}hidden{% endif %}">
+                <button type="button" id="addFavorite" class="btnFavoris {% if favorite == 1 %}hidden{% endif %}">
                     <i class="fa fa-star-o" onclick="addFavorite()"></i>
                 </button>
 
-
-                <button type="button" id="btnFavorisDel" class="btnFavoris {% if favoris == 0 %}hidden{% endif %}">
+                <button type="button" id="btnFavorisDel" class="btnFavoris {% if favorite == 0 %}hidden{% endif %}">
                     <i class="fa fa-star" onclick="delFavorite()"></i>
                 </button>
 

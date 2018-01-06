@@ -223,13 +223,13 @@ class PublicController extends Controller
 		$em = $this->getDoctrine()->getManager();
 		$idUser = $this->getUser()->getId();
 		$idProject = $project->getId();
-		$favoris = $em->getRepository("AppBundle:Favorite")->getFavorite("project", $idProject, $idUser);
+		$favorite = $em->getRepository("AppBundle:Favorite")->getFavorite("project", $idProject, $idUser);
 
-		(!empty($favoris) ? $favo = 1 : $favo = 0);
+		(!empty($favorite) ? $favo = 1 : $favo = 0);
 
 		return $this->render('private/projet.html.twig', array(
 			'project' => $project,
-			'favoris' => $favo,
+			'favorite' => $favo,
 		));
 	}
 
