@@ -42,6 +42,17 @@ class User implements UserInterface, \Serializable
      * @var string
      *
      * @ORM\Column(name="login", type="string", length=255, unique=true)
+     * @Assert\NotBlank(
+     *     message= "Cette information est obligatoire"
+     * )
+     * @Assert\Type(
+     *     type= "string")
+     * @Assert\Length(
+     *     min= 5,
+     *     max= 9,
+     *     minMessage="Le login doit comporter 5 chiffres (INSEE) ou 9 chiffres (SIREN)",
+     *     maxMessage="Le login doit comporter 5 chiffres (INSEE) ou 9 chiffres (SIREN)"
+     * )
      */
     private $login;
 
@@ -49,6 +60,7 @@ class User implements UserInterface, \Serializable
      * @var string
      *
      * @ORM\Column(name="password", type="string", length=255)
+     *
      */
     private $password;
 
@@ -70,8 +82,13 @@ class User implements UserInterface, \Serializable
      * @var string
      *
      * @ORM\Column(name="email", type="string", length=255, unique=true)
-     * @Assert\Email()
-     * @Assert\NotBlank()
+     * @Assert\NotBlank(
+     *     message= "Cette information est obligatoire"
+     * )
+     * @Assert\Email(
+     *     message = "Veuillez entrer une adresse email valide",
+     *     checkMX = true
+     * )
      *
      */
     private $email;

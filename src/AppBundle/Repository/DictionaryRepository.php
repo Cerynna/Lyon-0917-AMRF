@@ -11,4 +11,13 @@ namespace AppBundle\Repository;
 class DictionaryRepository extends \Doctrine\ORM\EntityRepository
 {
 
+    public function findByType($type){
+            return $this->createQueryBuilder('d')
+                ->setParameter('type', $type)
+                ->where('d.type = :type')
+                ->getQuery()
+                ->getResult();
+
+    }
+
 }

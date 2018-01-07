@@ -53,6 +53,7 @@ class ParserCSVController extends Controller
                     $mayor->setPopulation($parser->getPopulation());
 
                     $encoder = $this->container->get('security.password_encoder');
+                    
                     $user->setLogin($parser->getInsee() . $parser->getZipCode());
                     $user->setPassword($encoder->encodePassword($user, $parser->getInsee()));
                     $user->setRole($user::USER_ROLE_MAYOR);
@@ -83,15 +84,14 @@ class ParserCSVController extends Controller
     }
 
     /**
-     * @Route("/resultparse/{timer}", name="ResultParse")
+     * @Route("/resultparse/", name="ResultParse")
      */
-    public function resultAction($timer)
+    public function resultAction()
     {
 
         $csv = array_map('str_getcsv', file('ReportNOT.csv'));
 
         return $this->render('ParserCSV/index.html.twig', [
-            'timer' => $timer,
             'csv' => $csv
         ]);
     }

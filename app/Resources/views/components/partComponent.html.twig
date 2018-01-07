@@ -21,10 +21,10 @@
             <li><i class="fa fa-phone" aria-hidden="true"></i>
                 {{ company.contactPhone }}
             </li>
-            <li><i class="fa fa-link"></i>{{ company.url }}</li>
+            <li><i class="fa fa-link"></i> {{ company.url }}</li>
             <li><i class="fa fa-facebook-square"></i> {{ company.facebook }}</li>
-            <li><i class="fa fa-twitter-square"></i> {{ company.Twitter }}</li>
-            <li><i class="fa fa-linkedin-square"></i>{{ company.Linkedin }} </li>
+            <li><i class="fa fa-twitter-square"></i> {{ company.twitter }}</li>
+            <li><i class="fa fa-linkedin-square"></i> {{ company.linkedin }} </li>
         </ul>
         <h4>Ajouter aux favoris</h4>
 
@@ -45,7 +45,7 @@
     function addFavorite() {
         $.ajax({
             type: 'POST',
-            url: '/addFavorite/project/{{ project.id }}',
+            url: '/addFavorite/company/{{ company.id }}',
             data: $('#addFavorite'),
             success: function (response) {
                 $('#success').html(response);
@@ -59,7 +59,7 @@
     function delFavorite() {
         $.ajax({
             type: 'POST',
-            url: '/delFavorite/project/{{ project.id }}',
+            url: '/delFavorite/company/{{ company.id }}',
             data: $('#btnFavorisDel'),
             success: function (response) {
                 $('#success').html(response);
