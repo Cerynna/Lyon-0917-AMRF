@@ -41,7 +41,7 @@
                     <div class="col-lg-6 col-sm-6">
                         <div class="form-group">
                             {{ form_label(form.company, "Organisme *") }}
-                            {{ form_widget(form.company) }}
+                            {{ form_widget(form.company, { 'attr':{'disabled':'disabled'} }) }}
                             <div class="errorForm">{{ form_errors(form.company) | striptags }}</div>
                         </div>
                     </div>

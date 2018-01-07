@@ -33,3 +33,7 @@ services:
     AppBundle\Service\UploadService:
         arguments:
             $kernelRootDir: %kernel.project_dir%/web/upload
+
+    AppBundle\Service\ValidProjectService:
+            arguments:
+                $kernelRootDir: %kernel.project_dir%/web/upload
