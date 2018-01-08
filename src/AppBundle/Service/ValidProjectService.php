@@ -216,6 +216,11 @@ class ValidProjectService
     {
         if ($email == null) {
             $this->setErreur("L'email de la personne qui a pris en charge le projet ne peu pas etre vide");
+        } else {
+            $pattern = '/^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/';
+            if (preg_match($pattern, $email) == 0) {
+                $this->setErreur("L'email de la personne qui a pris en charge le projet n'est pas valide");
+            }
         }
     }
 
@@ -223,6 +228,11 @@ class ValidProjectService
     {
         if ($phone == null) {
             $this->setErreur("Le n° de téléphone de la personne qui a pris en charge le projet ne peu pas etre vide");
+        } else {
+            $pattern = '/^(?:(?:\+|00)33|0)\s*[1-9](?:[\s.-]*\d{2}){4}$/';
+            if (preg_match($pattern, $phone) == 0) {
+                $this->setErreur("Le n° de téléphone de la personne qui a pris en charge le projet n'est pas valide");
+            }
         }
     }
 

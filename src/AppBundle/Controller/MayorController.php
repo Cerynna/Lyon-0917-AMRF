@@ -196,8 +196,6 @@ class MayorController extends Controller
         if (!is_numeric($page)) {
             $page = 1;
         }
-
-
         if ($idMayorConnect->getId() === $idMayorProject->getId()) {
             $em = $this->getDoctrine()->getManager();
             $form = $this->createForm('AppBundle\Form\ProjectType', $project);
@@ -236,7 +234,7 @@ class MayorController extends Controller
                         'page' => $page,
                         'erreurs' => $projectService->getErreur(),
                     ));
-                }else{
+                } else {
                     $project->setStatus(Project::STATUS_WAITING);
                     $em->persist($project);
                     $em->flush();
