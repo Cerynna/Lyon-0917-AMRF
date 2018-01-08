@@ -6,7 +6,6 @@ namespace AppBundle\Controller;
 use AppBundle\Entity\Company;
 use AppBundle\Entity\Contact;
 use AppBundle\Entity\Dictionary;
-use AppBundle\Entity\Favorite;
 use AppBundle\Entity\Project;
 use AppBundle\Entity\Search;
 use AppBundle\Service\EmailService;
@@ -25,15 +24,20 @@ use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 use Symfony\Component\Filesystem\Filesystem;
 
 
+/**
+ * Class PublicController
+ * @package AppBundle\Controller
+ */
 class PublicController extends Controller
 {
 
-	/**
-	 * @Route("/", name="home")
-	 */
-	public function indexAction()
-	{
-		$em = $this->getDoctrine()->getManager();
+    /**
+     * @Route("/", name="home")
+     * @return Response
+     */
+    public function indexAction()
+    {
+        $em = $this->getDoctrine()->getManager();
 
         /** Change that is a real code for Update LastLogin */
         $user = $this->getUser();
@@ -61,6 +65,7 @@ class PublicController extends Controller
 
     /**
      * @Route("/amrf", name="amrf")
+     * @return Response
      */
     public function amrfAction()
     {
@@ -75,6 +80,9 @@ class PublicController extends Controller
 
     /**
      * @Route("/contact", name="contact")
+     * @param Request $request
+     * @param EmailService $emailService
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
      */
     public function contactAction(Request $request, EmailService $emailService)
     {
@@ -121,17 +129,16 @@ class PublicController extends Controller
                 'notice',
                 '<p>Votre message n\'a pas été envoyé,</p><p>veuillez remplir le CAPTCHA</p>'
             );
-
         }
 
         return $this->render('public/contact.html.twig', array(
             'form' => $form->createView(),
         ));
-
     }
 
     /**
      * @Route("/confidential", name="confidential")
+     * @return Response
      */
     public function confidentialAction()
     {
@@ -146,6 +153,7 @@ class PublicController extends Controller
 
     /**
      * @Route("/mentions", name="mentions")
+     * @return Response
      */
     public function mentionsAction()
     {
@@ -163,6 +171,9 @@ class PublicController extends Controller
 
     /**
      * @Route("/search", name="search")
+     * @param Request $request
+     * @param SearchService $searchService
+     * @return Response
      */
     public function searchAction(Request $request, SearchService $searchService)
     {
@@ -227,9 +238,11 @@ class PublicController extends Controller
         ]);
     }
 
-	/**
-	 * @Route("/project/{slug}", name="sheet_project")
-	 */
+    /**
+     * @Route("/project/{slug}", name="sheet_project")
+     * @param Project $project
+     * @return Response
+     */
 	public function projetAction(Project $project)
 	{
 		$em = $this->getDoctrine()->getManager();
@@ -247,6 +260,9 @@ class PublicController extends Controller
 
     /**
      * @Route("/directory", name="directory")
+     * @param Request $request
+     * @param EntityManagerInterface $entityManager
+     * @return Response
      */
     public function partListeAction(Request $request, EntityManagerInterface $entityManager)
     {
@@ -283,18 +299,17 @@ class PublicController extends Controller
         }
         foreach ($cleanResult as $key => $resultCompany) {
             $queryBuilder
-                ->orWhere('c.id = :id'.$key)
-                ->setParameter('id'.$key, $resultCompany);
+                ->orWhere('c.id = :id' . $key)
+                ->setParameter('id' . $key, $resultCompany);
         }
-
 
         if ($request->query->getAlnum('alphabet')) {
             $filter['alphabet'] = $request->query->getAlnum('alphabet');
             $queryBuilder
                 ->andwhere('c.name LIKE :name')
                 ->setParameter('name', $request->query->getAlnum('alphabet') . '%');
-
         }
+
         $query = $queryBuilder->orderBy('c.name', 'ASC')->getQuery();
 
         /**
@@ -307,21 +322,18 @@ class PublicController extends Controller
             $request->query->getInt('limit', 10)
         );
 
-
-
         return $this->render('private/annuaire.html.twig', [
             "companies" => $result,
             "activities" => $activities,
             "filter" => $filter,
         ]);
-
-
     }
 
     //PARTIE ADMIN
 
     /**
      * @Route("/admin/", name="admin_index")
+     * @return Response
      */
     public function adminIndexAction()
     {
@@ -344,6 +356,8 @@ class PublicController extends Controller
 
     /**
      * @Route("/login", name="login")
+     * @param AuthenticationUtils $authUtils
+     * @return Response
      */
     public function loginAction(AuthenticationUtils $authUtils)
     {
@@ -422,6 +436,9 @@ class PublicController extends Controller
 
     /**
      * @Route("/deletefile/{fileName}", name="deletefile")
+     * @param Request $request
+     * @param $fileName
+     * @return Response
      */
     public function deleteFileAction(Request $request, $fileName)
     {
@@ -465,9 +482,12 @@ class PublicController extends Controller
         } else {
             throw new HttpException('500', 'Invalid call');
         }
-
     }
 
+    /**
+     * @param $recaptcha
+     * @return mixed
+     */
     public function captchaverify($recaptcha)
     {
         $url = "https://www.google.com/recaptcha/api/siteverify";

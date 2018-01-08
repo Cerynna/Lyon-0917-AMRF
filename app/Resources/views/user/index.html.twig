@@ -20,7 +20,6 @@
 
         <form action="{{ path('admin_user_index') }}" method="get" name="filter">
 
-
             <label for="login">Login</label>
             <input value="{{ login }}" name="login" type="text" onchange="sendFilter()">
 
@@ -38,15 +37,12 @@
             <a href="{{ path('admin_user_index') }}" data-toggle="tooltip" data-placement="right"
                title="Liste Users"><i class="fa fa-refresh"></i> RESET FILTER</a>
 
-
             {% set queryParams = app.request.query.all %}
 
             {% if queryParams is not empty %}{{ app.request.query.get('login') }}{% endif %}
 
         </form>
-
     </div>
-
     <table>
         <thead>
         <tr>
@@ -59,7 +55,6 @@
             <th>{{ knp_pagination_sortable(users, 'Creation Date', 'u.creationDate') }}</th>
             <th>{{ knp_pagination_sortable(users, 'Last login', 'u.login') }}</th>
             <th>Mayor_id</th>
-
         </tr>
         </thead>
         <tbody>

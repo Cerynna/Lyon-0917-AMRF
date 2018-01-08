@@ -1,6 +1,6 @@
 {% if is_granted('ROLE_MAYOR') %}
     {% set idMayor = app.user.mayor.id %}
-{% elseif is_granted('ROLE_PARTNER')%}
+{% elseif is_granted('ROLE_PARTNER') %}
     {% set idPartner = app.user.partner.id %}
 {% endif %}
 <!DOCTYPE html>
@@ -18,15 +18,12 @@
 </header>
 <nav id="navbar">
     {% block navbar %}
-        {% include 'components/navbar.html.twig'%}
+        {% include 'components/navbar.html.twig' %}
     {% endblock %}
 </nav>
-
-
 <a href="#">
     <div class="scrollUp"><i class="fa fa-angle-up"></i></div>
 </a>
-
 <section>
     <div class="container">
         <div class="content">

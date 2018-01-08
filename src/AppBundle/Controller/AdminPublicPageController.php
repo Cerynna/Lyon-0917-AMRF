@@ -12,6 +12,9 @@ use Symfony\Component\HttpFoundation\Request;
  * Publicpage controller.
  *
  * @Route("admin/publicpage")
+
+ * Class AdminPublicPageController
+ * @package AppBundle\Controller
  */
 class AdminPublicPageController extends Controller
 {
@@ -20,6 +23,7 @@ class AdminPublicPageController extends Controller
      *
      * @Route("/", name="admin_publicpage_index")
      * @Method("GET")
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function indexAction()
     {
@@ -37,6 +41,8 @@ class AdminPublicPageController extends Controller
      *
      * @Route("/new", name="admin_publicpage_new")
      * @Method({"GET", "POST"})
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
     public function newAction(Request $request)
     {
@@ -63,6 +69,8 @@ class AdminPublicPageController extends Controller
      *
      * @Route("/{id}", name="admin_publicpage_show")
      * @Method("GET")
+     * @param PublicPage $publicPage
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function showAction(PublicPage $publicPage)
     {
@@ -79,6 +87,9 @@ class AdminPublicPageController extends Controller
      *
      * @Route("/{id}/edit", name="admin_publicpage_edit")
      * @Method({"GET", "POST"})
+     * @param Request $request
+     * @param PublicPage $publicPage
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
     public function editAction(Request $request, PublicPage $publicPage)
     {
@@ -104,6 +115,9 @@ class AdminPublicPageController extends Controller
      *
      * @Route("/{id}", name="admin_publicpage_delete")
      * @Method("DELETE")
+     * @param Request $request
+     * @param PublicPage $publicPage
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
      */
     public function deleteAction(Request $request, PublicPage $publicPage)
     {
@@ -125,6 +139,8 @@ class AdminPublicPageController extends Controller
      * @param PublicPage $publicPage The publicPage entity
      *
      * @return \Symfony\Component\Form\Form The form
+     * @param PublicPage $publicPage
+     * @return \Symfony\Component\Form\FormInterface
      */
     private function createDeleteForm(PublicPage $publicPage)
     {

@@ -7,11 +7,18 @@
  */
 
 namespace AppBundle\Controller;
+
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
+/**
+ * Class LayoutController
+ * @package AppBundle\Controller
+ */
 class LayoutController extends Controller
 {
-
+    /**
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
     public function footerAction()
     {
         $em = $this->getDoctrine()->getManager();
@@ -22,5 +29,4 @@ class LayoutController extends Controller
             'footer' => $footer,
         ));
     }
-
 }
