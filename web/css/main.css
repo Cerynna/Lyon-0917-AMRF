@@ -733,6 +733,8 @@ nav {
     padding-right: 50px;
     padding-left: 50px;
     font-size: 2em !important; }
+  .bck-maire .pass {
+    width: auto; }
   .bck-maire p {
     margin-top: 10px;
     padding: 10px;
@@ -781,6 +783,8 @@ nav {
     padding-right: 50px;
     padding-left: 50px;
     font-size: 2em !important; }
+  .bck-part .pass {
+    width: auto; }
   .bck-part p {
     margin-top: 10px;
     padding: 10px;
@@ -1064,7 +1068,8 @@ section form {
     display: none; }
   section form .star {
     text-align: center;
-    font-style: italic; }
+    font-style: italic;
+    padding-bottom: 20px; }
   section form .result {
     position: absolute;
     background: #ffffff;
