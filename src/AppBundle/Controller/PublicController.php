@@ -230,18 +230,18 @@ class PublicController extends Controller
 	/**
 	 * @Route("/project/{slug}", name="sheet_project")
 	 */
-	public function projetAction(Project $project, Favorite $favorite)
+	public function projetAction(Project $project)
 	{
 		$em = $this->getDoctrine()->getManager();
 		$idUser = $this->getUser()->getId();
 		$idProject = $project->getId();
-		$favorite = $em->getRepository("AppBundle:Favorite")->getFavorite("project", $idProject, $idUser);
+		$favorites = $em->getRepository("AppBundle:Favorite")->getFavorite("project", $idProject, $idUser);
 
-		(!empty($favorite) ? $favo = 1 : $favo = 0);
+		(!empty($favorites) ? $favorie = 1 : $favorie = 0);
 
 		return $this->render('private/projet.html.twig', array(
 			'project' => $project,
-			'favorite' => $favo,
+			'favorite' => $favorie,
 		));
 	}
 
