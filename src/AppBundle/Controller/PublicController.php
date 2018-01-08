@@ -6,6 +6,7 @@ namespace AppBundle\Controller;
 use AppBundle\Entity\Company;
 use AppBundle\Entity\Contact;
 use AppBundle\Entity\Dictionary;
+use AppBundle\Entity\Favorite;
 use AppBundle\Entity\Project;
 use AppBundle\Entity\Search;
 use AppBundle\Service\EmailService;
@@ -231,9 +232,16 @@ class PublicController extends Controller
      */
     public function projetAction(Project $project)
     {
+        $em = $this->getDoctrine()->getManager();
+        $idUser = $this->getUser()->getId();
+        $idProject = $project->getId();
+        $favorites = $em->getRepository("AppBundle:Favorite")->getFavorite("project", $idProject, $idUser);
+
+        (!empty($favorites) ? $favorie = 1 : $favorie = 0);
 
         return $this->render('private/projet.html.twig', array(
             'project' => $project,
+            'favorite' => $favorie,
         ));
     }
 
@@ -398,6 +406,61 @@ class PublicController extends Controller
 
     }
 
+    public function addFavorite(Request $request, $type, $idType)
+    {
+        $idUser = $this->getUser();
+
+        $favorite = new Favorite();
+
+        $favorite->setUser($idUser);
+
+        if ($request->isXmlHttpRequest()) {
+            $em = $this->getDoctrine()->getManager();
+
+            if ($type == "project") {
+                $project = $this->getDoctrine()->getRepository("AppBundle:Project")->projectById($idType);
+
+                $favorite->setProject($project[0]);
+                $favorite->setCompany(null);
+            }
+            if ($type == "company") {
+                $company = $this->getDoctrine()->getRepository("AppBundle:Company")->companyById($idType);
+
+                $favorite->setCompany($company[0]);
+                $favorite->setProject(null);
+            }
+
+            $em->persist($favorite);
+            $em->flush();
+
+            return new Response("Favorie Ajouté ");
+
+        } else {
+            throw new HttpException(500, 'Invalid call');
+        }
+
+    }
+
+    /**
+     * @Route("/delFavorite/{type}/{idType}", name="delFavorite")
+     */
+    public function delFavorite(Request $request, $type, $idType)
+    {
+        $idUser = $this->getUser();
+
+        if ($request->isXmlHttpRequest()) {
+            $em = $this->getDoctrine()->getManager();
+            $favoris = $em->getRepository("AppBundle:Favorite")->getFavorite($type, $idType, $idUser->getId());
+            dump($favoris);
+            $em->remove($favoris[0]);
+
+            $em->flush();
+
+            return new Response("Favorie Suprrimé ");
+        } else {
+            throw new HttpException(500, 'Invalid call');
+        }
+    }
     public function captchaverify($recaptcha)
     {
         $url = "https://www.google.com/recaptcha/api/siteverify";

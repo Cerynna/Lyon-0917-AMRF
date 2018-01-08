@@ -18,4 +18,14 @@ class FavoriteRepository extends \Doctrine\ORM\EntityRepository
             ->getQuery()
             ->getResult();
     }
+    public function getFavorite($type, $idType, $idUser)
+    {
+        return $this->createQueryBuilder('f')
+            ->setParameter('idUser', $idUser)
+            ->setParameter('idType', $idType)
+            ->where('f.user = :idUser')
+            ->andWhere('f.' . $type . ' = :idType')
+            ->getQuery()
+            ->getResult();
+    }
 }

@@ -19,11 +19,12 @@
                 <h3>Mettre en favori</h3>
             </div>
             <div class="col-sm-3 text-right">
-                <button type="button" id="btnFavoris" class="btnFavoris">
-                    <a href="#"></a><i class="fa fa-star-o"></i>
+                <button type="button" id="addFavorite" class="btnFavoris {% if favorite is defined and favorite == 1   %}hidden{% endif %}">
+                    <i class="fa fa-star-o" onclick="addFavorite()"></i>
                 </button>
-                <button type="button" id="btnFavorisSelect" class="btnFavoris hidden">
-                    <a href="#"></a><i class="fa fa-star"></i>
+
+                <button type="button" id="btnFavorisDel" class="btnFavoris {% if favorite is defined and favorite == 0  %}hidden{% endif %}">
+                    <i class="fa fa-star" onclick="delFavorite()"></i>
                 </button>
             </div>
         </div>
@@ -213,44 +214,41 @@
                 <li class="list-group-item">Fonction : {{ project.contactOccupation }}</li>
                 <li class="list-group-item">Email : {{ project.contactEmail }}</li>
                 <li class="list-group-item">Téléphone : {{ project.contactPhone }}</li>
-                <li class="list-group-item">Documents complémentaires : <a href="{{ asset(pdf) }}" target="_parent" title="le fichier">Voir le fichier PDF</a></li>
+                <li class="list-group-item">Documents complémentaires : <a href="{{ asset(pdf) }}" target="_parent"
+                                                                           title="le fichier">Voir le fichier PDF</a>
+                </li>
             </ul>
         </div>
     </div>
 </div>
 
 <script>
-
-    $(document).ready(function(){
-        $('#btnFavoris').on('click', function(e){
-            e.preventDefault();
-            $.ajax({
-                url: '{{ path('admin_favorite_new') }}',
-                type: 'POST',
-                cache: false,
-                success: function(data){
-                    alert(data);
-                }
-            });
-        });
-    });
-
-
-    function favorite() {
-        var xhr = new XMLHttpRequest();
-        xhr.open('GET', '{{ path('admin_favorite_new') }}', true);
-        xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
-        xhr.onreadystatechange = function () {
-            if(xhr.readyState == 4 && xhr.status == 200) {
-                var result = xhr.responseText;
-                console.log('Result: ' + result);
+    function addFavorite() {
+        $.ajax({
+            type: 'POST',
+            url: '/addFavorite/project/{{ project.id }}',
+            data: $('#addFavorite'),
+            success: function (response) {
+                $('#success').html(response);
             }
-        };
-        xhr.send();
+        });
+
+        $("#addFavorite").addClass("hidden");
+        $("#btnFavorisDel").removeClass("hidden");
     }
 
-    var button = document.getElementById("btnFavorites");
-    button.item().addEventListener("click", favorite);
+    function delFavorite() {
+        $.ajax({
+            type: 'POST',
+            url: '/delFavorite/project/{{ project.id }}',
+            data: $('#btnFavorisDel'),
+            success: function (response) {
+                $('#success').html(response);
+            }
+        });
+        $("#btnFavorisDel").addClass("hidden");
+        $("#addFavorite").removeClass("hidden");
+    }
 
 
 </script>
