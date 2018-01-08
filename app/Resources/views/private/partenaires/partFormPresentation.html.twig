@@ -279,16 +279,22 @@
                     <p>
                         Auquel cas, vous pouvez revenir en arrière pour la rectifier.
                     </p>
-                    <div class="row jumbotron">
+                    <div class="row">
                         <div class="panel panel-default">
                             <div class="row">
                                 <div class="panel-heading" role="tab">
-                                    <div class="col-sm-4">
-                                        {% set logo = 'upload/company/' ~ company.id ~ '/file/' ~ company.logo %}
-                                        <img src="{{ asset(logo) }}">
+                                    <div class="col-xs-2 text-center">
+                                        <img src="{{ asset("upload/company/1/file/"~ company.logo ) }}" height="70px">
                                     </div>
-                                    <div class="col-sm-5">
+                                    <div class="col-xs-5">
                                         <h3>{{ company.name }}</h3>
+                                        {% for activity in company.activities %}
+                                            <span class="label label-success">{{ activity.name }}</span>
+                                        {% endfor %}
+                                    </div>
+                                    <div class="col-xs-5 text-center">
+
+
                                     </div>
                                 </div>
                             </div>

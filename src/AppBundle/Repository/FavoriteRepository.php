@@ -11,6 +11,7 @@ namespace AppBundle\Repository;
 class FavoriteRepository extends \Doctrine\ORM\EntityRepository
 {
 
+
 	public function getFavorite($type, $idType, $idUser)
 	{
 		return $this->createQueryBuilder('f')
@@ -21,5 +22,15 @@ class FavoriteRepository extends \Doctrine\ORM\EntityRepository
 			->getQuery()
 			->getResult();
 	}
+
+
+    public function getFavoriteByUserId($idUser)
+    {
+        return $this->createQueryBuilder('f')
+            ->setParameter('idUser', $idUser)
+            ->where('f.user = :idUser')
+            ->getQuery()
+            ->getResult();
+    }
 
 }

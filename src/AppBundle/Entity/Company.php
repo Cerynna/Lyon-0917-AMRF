@@ -674,4 +674,9 @@ class Company
     {
         return $this->slug;
     }
+
+    public function __toString()
+    {
+        return $this->name;
+    }
 }

@@ -2,6 +2,7 @@
 
 namespace AppBundle\Form;
 
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -18,7 +19,10 @@ class PartnerType extends AbstractType
             ->add('occupation')
             ->add('phone')
             ->add('email')
-            ->add('company');
+            ->add('company', EntityType::class, [
+                'class' => 'AppBundle\Entity\Company',
+                'choice_label' => 'name',
+            ]);
     }
     
     /**
