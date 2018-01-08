@@ -1,23 +1,40 @@
 h5 {
   font-size: 1.5em;
 }
-
-.containerConnect .card {
-  width: 100%;
-  margin: 20px;
-  padding: 20px;
-}
-
-.formConnect {
-  width: 100%;
-  padding: 20px 20px 0px 20px;
-  @include borderRadius(5px);
-}
-
-.containerConnect {
+.containerConnect{
   display: flex;
   flex-direction: row;
   justify-content: space-around;
+input{
+  width:90%;
+  margin-left: 5%;
+  margin-right: 5%;
+}
+  [class*="col-"]{
+    padding: 5px;
+  }
+  .card {
+    width: 100%;
+    margin: 20px;
+    padding: 10px;
+  }
+  .row{
+    width: 100%;
+  }
+  .maire {
+    background: rgba(144, 202, 249, 1);
+    width: 100%;
+  }
+  .part {
+    background: rgba(139, 175, 139, 1);
+    width: 100%;
+  }
+}
+
+
+.formConnect {
+  width: 100%;
+  @include borderRadius(5px);
 }
 
 .form-control:focus {

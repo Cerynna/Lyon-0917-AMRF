@@ -216,21 +216,28 @@ class PublicController extends Controller
             }
 
             $result = $searchService->findByPertinence($finder);
-            /**
-             * @var $paginator \Knp\Component\Pager\Paginator
-             */
-            $paginator = $this->get('knp_paginator');
-            $resultats = $paginator->paginate(
-                $result,
-                $request->query->getInt('page', 1),
-                $request->query->getInt('limit', 10)
-            );
 
 
-            return $this->render('private/search.html.twig', [
-                'result' => $resultats,
-                'form' => $form->createView(),
-            ]);
+            if ($result != null) {
+                /**
+                 * @var $paginator \Knp\Component\Pager\Paginator
+                 */
+                $paginator = $this->get('knp_paginator');
+                $resultats = $paginator->paginate(
+                    $result,
+                    $request->query->getInt('page', 1),
+                    $request->query->getInt('limit', 10)
+                );
+                return $this->render('private/search.html.twig', [
+                    'result' => $resultats,
+                    'form' => $form->createView(),
+                ]);
+            }else {
+                $this->addFlash(
+                    'notice',
+                    'Aucun resultat pour votre recherche'
+                );
+            }
         }
 
         return $this->render('private/search.html.twig', [
@@ -243,20 +250,20 @@ class PublicController extends Controller
      * @param Project $project
      * @return Response
      */
-	public function projetAction(Project $project)
-	{
-		$em = $this->getDoctrine()->getManager();
-		$idUser = $this->getUser()->getId();
-		$idProject = $project->getId();
-		$favorites = $em->getRepository("AppBundle:Favorite")->getFavorite("project", $idProject, $idUser);
+    public function projetAction(Project $project)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $idUser = $this->getUser()->getId();
+        $idProject = $project->getId();
+        $favorites = $em->getRepository("AppBundle:Favorite")->getFavorite("project", $idProject, $idUser);
 
-		(!empty($favorites) ? $favorie = 1 : $favorie = 0);
+        (!empty($favorites) ? $favorie = 1 : $favorie = 0);
 
-		return $this->render('private/projet.html.twig', array(
-			'project' => $project,
-			'favorite' => $favorie,
-		));
-	}
+        return $this->render('private/projet.html.twig', array(
+            'project' => $project,
+            'favorite' => $favorie,
+        ));
+    }
 
     /**
      * @Route("/directory", name="directory")
@@ -343,8 +350,8 @@ class PublicController extends Controller
 
 
         return $this->render('private/admin/adminIndex.html.twig', [
-                'stats' => $stats,
-            ]);
+            'stats' => $stats,
+        ]);
     }
 
     /**
@@ -363,75 +370,83 @@ class PublicController extends Controller
     {
         // get the login error if there is one
         $error = $authUtils->getLastAuthenticationError();
+        if (!empty($error))
+        {
+            $this->addFlash(
+                'notice',
+                'Votre login ou votre mot de passe est invalide'
+            );
+        }
         // last username entered by the user
         $lastUsername = $authUtils->getLastUsername();
+
         return $this->render('public/login.html.twig', array(
             'last_username' => $lastUsername,
             'error' => $error,
         ));
     }
 
-	/**
-	 * @Route("/addFavorite/{type}/{idType}", name="addFavorite")
-	 */
+    /**
+     * @Route("/addFavorite/{type}/{idType}", name="addFavorite")
+     */
 
-	public function addFavorite(Request $request, $type, $idType)
-	{
+    public function addFavorite(Request $request, $type, $idType)
+    {
 
-		$idUser = $this->get('security.token_storage')->getToken()->getUser();
+        $idUser = $this->get('security.token_storage')->getToken()->getUser();
 
-		$favorite = new Favorite();
+        $favorite = new Favorite();
 
-		$favorite->setUser($idUser);
+        $favorite->setUser($idUser);
 
-		if ($request->isXmlHttpRequest()) {
-		$em = $this->getDoctrine()->getManager();
+        if ($request->isXmlHttpRequest()) {
+            $em = $this->getDoctrine()->getManager();
 
-		if ($type == "project") {
-			$project = $this->getDoctrine()->getRepository("AppBundle:Project")->projectById($idType);
+            if ($type == "project") {
+                $project = $this->getDoctrine()->getRepository("AppBundle:Project")->projectById($idType);
 
-			$favorite->setProject($project[0]);
-			$favorite->setCompany(null);
-		}
-		if ($type == "company") {
-			$company = $this->getDoctrine()->getRepository("AppBundle:Company")->companyById($idType);
+                $favorite->setProject($project[0]);
+                $favorite->setCompany(null);
+            }
+            if ($type == "company") {
+                $company = $this->getDoctrine()->getRepository("AppBundle:Company")->companyById($idType);
 
-			$favorite->setCompany($company[0]);
-			$favorite->setProject(null);
-		}
+                $favorite->setCompany($company[0]);
+                $favorite->setProject(null);
+            }
 
-		$em->persist($favorite);
-/*		dump($favorite);*/
-		$em->flush();
+            $em->persist($favorite);
+            /*		dump($favorite);*/
+            $em->flush();
 
-		return new Response("Favorie Ajouté ");
+            return new Response("Favorie Ajouté ");
 
-		} else {
-			throw new HttpException(500, 'Invalid call');
-		}
+        } else {
+            throw new HttpException(500, 'Invalid call');
+        }
 
-	}
+    }
 
-	/**
-	 * @Route("/delFavorite/{type}/{idType}", name="delFavorite")
-	 */
-	public function delFavorite(Request $request, $type, $idType)
-	{
-		$idUser = $this->getUser();
+    /**
+     * @Route("/delFavorite/{type}/{idType}", name="delFavorite")
+     */
+    public function delFavorite(Request $request, $type, $idType)
+    {
+        $idUser = $this->getUser();
 
-		if ($request->isXmlHttpRequest()) {
-			$em = $this->getDoctrine()->getManager();
-			$favoris = $em->getRepository("AppBundle:Favorite")->getFavorite($type, $idType, $idUser->getId());
-			dump($favoris);
-			$em->remove($favoris[0]);
+        if ($request->isXmlHttpRequest()) {
+            $em = $this->getDoctrine()->getManager();
+            $favoris = $em->getRepository("AppBundle:Favorite")->getFavorite($type, $idType, $idUser->getId());
+            dump($favoris);
+            $em->remove($favoris[0]);
 
-			$em->flush();
+            $em->flush();
 
-			return new Response("Favorie Suprrimé ");
-		} else {
-			throw new HttpException(500, 'Invalid call');
-		}
-	}
+            return new Response("Favorie Suprrimé ");
+        } else {
+            throw new HttpException(500, 'Invalid call');
+        }
+    }
 
 
     /**

@@ -66,7 +66,23 @@ class ParserCSV
                     $this->setInsee($this->resultApiGouv[0]['code']);
                     $this->setZipCode($this->resultApiGouv[0]['codesPostaux'][0]);
                     $this->setStatus(true);
-                    $this->setEmail($data[2]);
+
+                    if (empty($data[2])){
+                        $this->setEmail($this->resultApiGouv[0]['code'] ."@exemple.com" );
+                        $result[$this->rowRequest]["nom"] = $data[1];
+                        $result[$this->rowRequest]["insee"] = $data[3];
+                        $result[$this->rowRequest]["erreur"] = "Aucun Email renseigné pour cet utilisateur";
+
+                        $fp = fopen('ReportNOT.csv', 'a');
+                        fputcsv($fp, $result[$this->rowRequest]);
+                        fclose($fp);
+                    } else {
+
+                        $this->setEmail($data[2]);
+                    }
+
+
+
                     $this->setTel($data[4]);
                     $this->setCommune($this->resultApiGouv[0]['nom']);
                     $this->setDepartment($this->resultApiGouv[0]['codeDepartement']);
