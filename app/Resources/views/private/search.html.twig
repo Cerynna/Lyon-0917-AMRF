@@ -12,7 +12,8 @@
     <div class="jumbotron">
         <div class="input-group col-md-12">
             {{ form_widget(form.texts, { 'attr' : {
-                'class' : 'search'
+                'class' : 'search',
+                'autocomplete': 'off',
             }}) }}
             <span class="input-group-addon">
                       <button type="submit" class="btn btn-search"><i class="fa fa-search"></i></button>
@@ -56,6 +57,7 @@
                         <div class="choose">Et / Ou saisir un ou plusieurs mots-clefs</div>
                         {{ form_widget(form.keywords, {'attr': {
                             'placeholder': 'Ecrivez les premières lettres du mot et vérifiez qu\'il apparaît dans la liste.',
+                            'autocomplete': 'off',
                         } }) }}
                     </div>
                 </div>
@@ -66,17 +68,23 @@
                         </div>
                         <div class="col-sm-4 form-group text-center relativeDiv">
                             <label for="region">Région</label>
-                            {{ form_widget(form.region) }}
+                            {{ form_widget(form.region, {'attr': {
+                                'autocomplete': 'off',
+                            } }) }}
                             <ul class="result result_region" onmouseleave="cleanSearch()"></ul>
                         </div>
                         <div class="col-sm-4 form-group text-center relativeDiv">
                             <label for="departement">Département</label>
-                            {{ form_widget(form.departement) }}
+                            {{ form_widget(form.departement, {'attr': {
+                                'autocomplete': 'off',
+                            } }) }}
                             <ul class="result result_departement" onmouseleave="cleanSearch()"></ul>
                         </div>
                         <div class="col-sm-4 form-group text-center relativeDiv">
                             <label for="commune">Commune</label>
-                            {{ form_widget(form.commune) }}
+                            {{ form_widget(form.commune, {'attr': {
+                                'autocomplete': 'off',
+                            } }) }}
                             <ul class="result result_commune" onmouseleave="cleanSearch()"></ul>
                         </div>
 
@@ -94,7 +102,8 @@
 
     {% if result is defined %}
         <hr/>
-        <h3>{{ result|length }} résultats pour votre recherche</h3>
+
+        <h3>{{ result.getTotalItemCount }} projet{% if result.getTotalItemCount > 1 %}s{% endif %} pour votre recherche</h3>
 
         <div class="jumbotron">
             <div id="map"></div>
@@ -107,6 +116,7 @@
             {% if project.project.0.status == 3 %}
                 <a class="anchor" id="result-{{ project.project.0.id }}"></a>
                 <div class="jumbotron row"  >
+                    {{ project.nb }}
                     {% set options = {'thema':'true','pictures':'true','update': 'false', 'more': 'true', 'project': project.project.0} %}
                     {% include 'components/resumeProject.html.twig' with options %}
                     <script>
@@ -125,7 +135,9 @@
             {% endif %}
         {% endfor %}
     {% endif %}
-
+{#    <div class="navigation text-center">
+        {{ knp_pagination_render(result) }}
+    </div>#}
 
 
 

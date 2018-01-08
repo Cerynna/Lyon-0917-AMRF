@@ -13,7 +13,7 @@ use AppBundle\Entity\Project;
 use AppBundle\Entity\TitleProject;
 use AppBundle\Entity\Uploader;
 use AppBundle\Form\SubmitToAdmin;
-use AppBundle\Service\Email\EmailService;
+use AppBundle\Service\EmailService;
 use AppBundle\Service\SlugService;
 use AppBundle\Service\TabProjectService;
 use AppBundle\Service\UploadService;
@@ -56,6 +56,10 @@ class MayorController extends Controller
         if ($form->isSubmitted() && $form->isValid()) {
             $em->persist($user);
             $em->flush();
+            $this->addFlash(
+                'notice',
+                '<p>Vos informations ont bien été enregistrées</p>'
+            );
 
             return $this->redirectToRoute('mayor_profil', array('id' => $mayor->getId()));
         }
@@ -178,6 +182,10 @@ class MayorController extends Controller
                 $project->setStatus(Project::STATUS_WAITING);
                 $em->persist($project);
                 $em->flush();
+                $this->addFlash(
+                    'notice',
+                    '<p>Votre Projet est envoyé pour modération avant la publication</p>'
+                );
                 return $this->redirectToRoute('mayor_project_edit', [
                     'slug' => $project->getSlug(),
                 ]);
@@ -220,7 +228,10 @@ class MayorController extends Controller
                 else{
                     $pageSend = $page;
                 }
-
+                $this->addFlash(
+                    'notice',
+                    '<p>Vos informations ont bien été enregistrées</p>'
+                );
 
                 return $this->redirectToRoute('mayor_project_edit', [
                     'slug' => $project->getSlug(),

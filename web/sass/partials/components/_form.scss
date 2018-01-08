@@ -1,5 +1,33 @@
 section {
   form {
+
+    .pagination > li {
+
+      input[type=radio] + label {
+        background: $color2;
+        color: $color1;
+        // border: 1px solid $color1;
+        margin: -2px;
+        padding: 10px 5px;
+        display: inline;
+        line-height: 1.5em;
+        font-size: 1.2em;
+        i{
+          padding: 0 5px 0 0;
+          font-size: 1em;
+        }
+        &:hover{
+          background: $color1;
+          color: $color2;
+        }
+      }
+      input[type=radio]:checked + label {
+        background: $color1;
+        color: $color2;
+        //border: 1px solid $color2;
+
+      }
+    }
     .select2 {
       width: 100% !important;
     }
@@ -13,7 +41,7 @@ section {
       @include borderRadius(5px)
     }
     .form-control:focus {
-      border: 2px solid $color1;
+      //border: 2px solid $color1;
       box-shadow: none;
     }
     .textarea {
@@ -21,10 +49,23 @@ section {
       margin-left: auto;
       margin-right: auto;
     }
+    .textarea:focus:invalid{
+      border-color: #ff0000;
+    }
     input {
-      border: 1px solid $color1;
+      //border: 1px solid $color1;
       width: 100% !important;
     }
+    input:focus:invalid{
+      border-color: #ff0000;
+    }
+    input:focus:invalid + .errorForm{
+      display: block;
+    }
+    input:focus:valid{
+      border: 2px solid $color1;
+    }
+
     label {
       width: 100%;
       font-size: 1.0em;
@@ -92,6 +133,7 @@ section {
     .star { //phrase symbole obligatoire
       text-align: center;
       font-style: italic;
+      padding-bottom: 20px;
     }
     .result {
       position: absolute;
@@ -148,13 +190,14 @@ section {
     .errorForm {
       background: #f2dede;
       color: #a94442;
-      border-radius : 5px;
+      border-radius: 5px;
       margin-top: 5px;
       padding-left: 10px;
     }
 
 
   }
+
 }
 
 

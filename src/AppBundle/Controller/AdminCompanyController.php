@@ -3,6 +3,7 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Company;
+use AppBundle\Entity\Uploader;
 use AppBundle\Service\SlugService;
 use AppBundle\Service\UploadService;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -28,21 +29,21 @@ class AdminCompanyController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-/*        $companies = $em->getRepository('AppBundle:Company')->findAll();*/
+        /*        $companies = $em->getRepository('AppBundle:Company')->findAll();*/
 
-		$queryBuilder = $em->getRepository('AppBundle:Company')->createQueryBuilder('m');
+        $queryBuilder = $em->getRepository('AppBundle:Company')->createQueryBuilder('m');
 
-		$query = $queryBuilder->getQuery();
+        $query = $queryBuilder->getQuery();
 
-		/**
-		 * @var $paginator \Knp\Component\Pager\Paginator
-		 */
-		$paginator = $this->get('knp_paginator');
-		$result = $paginator->paginate(
-			$query,
-			$request->query->getInt('page', 1),
-			$request->query->getInt('limit', 10)
-		);
+        /**
+         * @var $paginator \Knp\Component\Pager\Paginator
+         */
+        $paginator = $this->get('knp_paginator');
+        $result = $paginator->paginate(
+            $query,
+            $request->query->getInt('page', 1),
+            $request->query->getInt('limit', 10)
+        );
 
         return $this->render('company/index.html.twig', array(
             'companies' => $result,
@@ -56,12 +57,12 @@ class AdminCompanyController extends Controller
      * @Method({"GET", "POST"})
      */
 
-    public function newAction(Request $request, UploadService $upload,  SlugService $slug)
+    public function newAction(Request $request, UploadService $upload, SlugService $slug)
 
     {
         $company = new Company();
         $form = $this->createForm('AppBundle\Form\CompanyType', $company);
-		$form->remove('slug');
+        $form->remove('slug');
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -123,22 +124,41 @@ class AdminCompanyController extends Controller
     {
         $deleteForm = $this->createDeleteForm($company);
         $editForm = $this->createForm('AppBundle\Form\CompanyType', $company);
-		$editForm->remove('slug');
+        $editForm->remove('slug');
+        $editForm->remove('logo');
         $editForm->handleRequest($request);
 
+        $uploaderImage = new Uploader();
+        $uplodImageForm = $this->createForm('AppBundle\Form\UploaderType', $uploaderImage);
+        $uplodImageForm->handleRequest($request);
+
+        dump($company);
+
         if ($editForm->isSubmitted() && $editForm->isValid()) {
-            $logo = $company->getLogo();
-            $company->setLogo($upload->fileUpload($logo, "/company/" . $company->getName(), "img"));
-            $this->getDoctrine()->getManager()->flush();
-			$company->setSlug($slugs->slug($company->getName()));
+            $em = $this->getDoctrine()->getManager();
+            dump($company);
 
-			return $this->redirectToRoute('admin_company_edit', array('slug' => $company->getSlug()));
+            $company->setSlug($slugs->slug($company->getName()));
+
+
+
+            $em->persist($company);
+            $em->flush();
+            //return $this->redirectToRoute('admin_company_edit', array('slug' => $company->getSlug()));
         }
+        if ($uplodImageForm->isSubmitted() && $uplodImageForm->isValid()) {
+            $files = $uploaderImage->getPath();
+            $newLogo = $upload->fileUpload($files, '/company/' . $company->getId() . '/file', "img");
+            $company->setLogo($newLogo);
+            $this->getDoctrine()->getManager()->flush();
 
+            return $this->redirectToRoute('admin_company_edit', array('slug' => $company->getSlug()));
+        }
 
         return $this->render('company/edit.html.twig', array(
             'company' => $company,
             'edit_form' => $editForm->createView(),
+            'upload_image_form' => $uplodImageForm->createView(),
             'delete_form' => $deleteForm->createView(),
         ));
     }

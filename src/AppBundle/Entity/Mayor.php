@@ -127,7 +127,7 @@ class Mayor
      * @Assert\Regex(
      *     pattern="/\d/",
      *     match=false,
-     *     message="La ville ne peut contenir de chiffre"
+     *     message="Le nom de votre ville ne peut contenir de chiffre"
      * )
      */
     private $town;

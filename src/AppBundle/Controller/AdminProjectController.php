@@ -76,8 +76,6 @@ class AdminProjectController extends Controller
 
 		$query = $queryBuilder->getQuery();
 
-		dump($request->query->getAlnum('value'));
-		dump($query->getSql());
 
 		/**
 		 * @var $paginator \Knp\Component\Pager\Paginator

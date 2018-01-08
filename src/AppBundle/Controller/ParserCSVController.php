@@ -53,6 +53,7 @@ class ParserCSVController extends Controller
                     $mayor->setPopulation($parser->getPopulation());
 
                     $encoder = $this->container->get('security.password_encoder');
+                    
                     $user->setLogin($parser->getInsee() . $parser->getZipCode());
                     $user->setPassword($encoder->encodePassword($user, $parser->getInsee()));
                     $user->setRole($user::USER_ROLE_MAYOR);
