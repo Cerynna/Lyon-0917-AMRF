@@ -46,7 +46,6 @@
                             {{ form_label(form.firstName, "Prénom *") }}
                             {{ form_widget(form.firstName) }}
                             <div class="errorForm">{{ form_errors(form.firstName) | striptags }}</div>
-
                         </div>
                     </div>
                     <div class="col-lg-6 col-sm-6">
@@ -196,7 +195,7 @@
             if (firstName.validity.patternMismatch) {
                 messageFirstName += "Votre prénom ne peut contenir de chiffre.";
 
-            }
+           }
 //verif lastname
 
             if (lastName.value.length < 2) {
@@ -240,7 +239,5 @@
             population.setCustomValidity(messagePopulation);
 
         });
-
-
     </script>
 {% endblock %}

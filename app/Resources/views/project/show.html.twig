@@ -29,95 +29,93 @@
     </div>
     <h1>Project</h1>
 
-
     <div class="col-sm-6">
-            <div class="col-sm-4">
-                <h5>Id</h5>
-                <span>{{ project.id }}</span>
-            </div>
-            <div class="col-sm-4">
-                <h5>Titre</h5>
-                <span>{{ project.title }}</span>
-            </div>
-            <div class="col-sm-4">
-                <h5>Slug</h5>
-                <span>{{ project.slug }}</span>
-            </div>
-            <div class="col-sm-4">
-                <h5>Thème</h5>
-                <span>
+        <div class="col-sm-4">
+            <h5>Id</h5>
+            <span>{{ project.id }}</span>
+        </div>
+        <div class="col-sm-4">
+            <h5>Titre</h5>
+            <span>{{ project.title }}</span>
+        </div>
+        <div class="col-sm-4">
+            <h5>Slug</h5>
+            <span>{{ project.slug }}</span>
+        </div>
+        <div class="col-sm-4">
+            <h5>Thème</h5>
+            <span>
                     {% for theme in project.themes %}
                         <span class="label label-primary">{{ theme.name }}</span>
                     {% endfor %}
                 </span>
-            </div>
-            <div class="col-sm-4">
-                <h5>Creation date</h5>
-                <span>{% if project.creationDate %}{{ project.creationDate|date('Y-m-d') }}{% endif %}</span>
-            </div>
-            <div class="col-sm-4">
-                <h5>Update date</h5>
-                <span>{% if project.updateDate %}{{ project.updateDate|date('Y-m-d') }}{% endif %}</span>
-            </div>
-            <div class="col-sm-12">
-                <h5>Image</h5>
-                <span>
+        </div>
+        <div class="col-sm-4">
+            <h5>Creation date</h5>
+            <span>{% if project.creationDate %}{{ project.creationDate|date('Y-m-d') }}{% endif %}</span>
+        </div>
+        <div class="col-sm-4">
+            <h5>Update date</h5>
+            <span>{% if project.updateDate %}{{ project.updateDate|date('Y-m-d') }}{% endif %}</span>
+        </div>
+        <div class="col-sm-12">
+            <h5>Image</h5>
+            <span>
                     {% for image in project.images %}
                         <img src="{{ image }}" alt="" width="150px">
                     {% endfor %}
                 </span>
-            </div>
-
-            <div class="col-sm-6">
-                <h5>Date du projet</h5>
-                <span>{% if project.projectDate %}{{ project.projectDate|date('Y-m-d') }}{% endif %}</span>
-            </div>
-            <div class="col-sm-6">
-                <h5>Durée du projet</h5>
-                <span>{{ project.projectDuration }}</span>
-            </div>
-            <div class="col-sm-6">
-                <h5>Coût du projet</h5>
-                <span>{{ project.projectCost }}</span>
-            </div>
-            <div class="col-sm-6">
-                <h5>Financement</h5>
-                <span>{{ project.projectCoFinance }}</span>
-            </div>
-            <div class="col-sm-12">
-                <h5>Résumé</h5>
-                <span>{{ project.descResume }}</span>
-            </div>
-
-            <div class="col-sm-12">
-                <h5>Contexte</h5>
-                <span>{{ project.descContext }}</span>
-            </div>
-            <div class="col-sm-12">
-                <h5>Objectifs</h5>
-                <span>{{ project.descGoal }}</span>
-            </div>
-            <div class="col-sm-12">
-                <h5>Déroulement</h5>
-                <span>{{ project.descProgress }}</span>
-            </div>
-            <div class="col-sm-12">
-                <h5>Partenaires mobilisés</h5>
-                <span>{{ project.descPartners }}</span>
-            </div>
-            <div class="col-sm-12">
-                <h5>Résultats obtenus</h5>
-                <span>{{ project.descResults }}</span>
-            </div>
-            <div class="col-sm-12">
-                <h5>Difficultés rencontrées</h5>
-                <span>{{ project.descDifficulties }}</span>
-            </div>
-            <div class="col-sm-12">
-                <h5>Conseils</h5>
-                <span>{{ project.descAdvices }}</span>
-            </div>
         </div>
+        <div class="col-sm-6">
+            <h5>Date du projet</h5>
+            <span>{% if project.projectDate %}{{ project.projectDate|date('Y-m-d') }}{% endif %}</span>
+        </div>
+        <div class="col-sm-6">
+            <h5>Durée du projet</h5>
+            <span>{{ project.projectDuration }}</span>
+        </div>
+        <div class="col-sm-6">
+            <h5>Coût du projet</h5>
+            <span>{{ project.projectCost }}</span>
+        </div>
+        <div class="col-sm-6">
+            <h5>Financement</h5>
+            <span>{{ project.projectCoFinance }}</span>
+        </div>
+        <div class="col-sm-12">
+            <h5>Résumé</h5>
+            <span>{{ project.descResume }}</span>
+        </div>
+
+        <div class="col-sm-12">
+            <h5>Contexte</h5>
+            <span>{{ project.descContext }}</span>
+        </div>
+        <div class="col-sm-12">
+            <h5>Objectifs</h5>
+            <span>{{ project.descGoal }}</span>
+        </div>
+        <div class="col-sm-12">
+            <h5>Déroulement</h5>
+            <span>{{ project.descProgress }}</span>
+        </div>
+        <div class="col-sm-12">
+            <h5>Partenaires mobilisés</h5>
+            <span>{{ project.descPartners }}</span>
+        </div>
+        <div class="col-sm-12">
+            <h5>Résultats obtenus</h5>
+            <span>{{ project.descResults }}</span>
+        </div>
+        <div class="col-sm-12">
+            <h5>Difficultés rencontrées</h5>
+            <span>{{ project.descDifficulties }}</span>
+        </div>
+        <div class="col-sm-12">
+            <h5>Conseils</h5>
+            <span>{{ project.descAdvices }}</span>
+        </div>
+    </div>
     <div class="col-sm-6">
         <div class="col-sm-4">
             <h5>Contact nom</h5>
@@ -164,6 +162,4 @@
                 </span>
         </div>
     </div>
-
-
 {% endblock %}

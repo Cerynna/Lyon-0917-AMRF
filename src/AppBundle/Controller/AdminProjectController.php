@@ -14,8 +14,9 @@ use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Project controller.
- *
+ * Class AdminProjectController
  * @Route("admin/project")
+ * @package AppBundle\Controller
  */
 class AdminProjectController extends Controller
 {
@@ -36,7 +37,9 @@ class AdminProjectController extends Controller
 	 *
 	 * @Route("/", name="admin_project_index")
 	 * @Method("GET")
-	 */
+     * @param Request $request
+     * @return Response
+     */
 	public function indexAction(Request $request)
 	{
 		$em = $this->getDoctrine()->getManager();
@@ -76,7 +79,6 @@ class AdminProjectController extends Controller
 
 		$query = $queryBuilder->getQuery();
 
-
 		/**
 		 * @var $paginator \Knp\Component\Pager\Paginator
 		 */
@@ -86,7 +88,6 @@ class AdminProjectController extends Controller
 			$request->query->getInt('page', 1),
 			$request->query->getInt('limit', 10)
 		);
-
 
 		return $this->render('project/index.html.twig', array(
 			'projects' 		=> $result,
@@ -101,7 +102,10 @@ class AdminProjectController extends Controller
 	 *
 	 * @Route("/new", name="admin_project_new")
 	 * @Method({"GET", "POST"})
-	 */
+     * @param Request $request
+     * @param SlugService $slug
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
+     */
 	public function newAction(Request $request, SlugService $slug)
 	{
 		$project = new Project();
@@ -129,7 +133,6 @@ class AdminProjectController extends Controller
 			$em->flush();
 			return $this->redirectToRoute('admin_project_edit', array(
 				'slug' => $project->getSlug(),
-
 			));
 		}
 
@@ -146,7 +149,10 @@ class AdminProjectController extends Controller
 	 *
 	 * @Route("/{slug}", name="admin_project_show")
 	 * @Method("GET")
-	 */
+
+     * @param Project $project
+     * @return Response
+     */
 	public function showAction(Project $project)
 	{
 		$deleteForm = $this->createDeleteForm($project);
@@ -162,7 +168,13 @@ class AdminProjectController extends Controller
 	 *
 	 * @Route("/edit/{slug}/", name="admin_project_edit")
 	 * @Method({"GET", "POST"})
-	 */
+
+     * @param Request $request
+     * @param Project $project
+     * @param UploadService $uploadService
+     * @param SlugService $slugService
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
+     */
 	public function editAction(Request $request, Project $project, UploadService $uploadService, SlugService $slugService)
 	{
 		$deleteForm = $this->createDeleteForm($project);
@@ -203,7 +215,6 @@ class AdminProjectController extends Controller
             ));*/
         }
 
-
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $project->setSlug($slugService->slug($project->getTitle()));
@@ -227,6 +238,9 @@ class AdminProjectController extends Controller
      *
      * @Route("/{id}", name="admin_project_delete")
      * @Method("DELETE")
+     * @param Request $request
+     * @param Project $project
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
      */
 	public function deleteAction(Request $request, Project $project)
 	{
@@ -248,7 +262,10 @@ class AdminProjectController extends Controller
 	 * @param Project $project The project entity
 	 *
 	 * @return \Symfony\Component\Form\Form The form
-	 */
+
+     * @param Project $project
+     * @return \Symfony\Component\Form\FormInterface
+     */
 	private function createDeleteForm(Project $project)
 	{
 		return $this->createFormBuilder()

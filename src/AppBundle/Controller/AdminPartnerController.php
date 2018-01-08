@@ -5,7 +5,8 @@ namespace AppBundle\Controller;
 use AppBundle\Entity\Partner;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Partner controller.
@@ -19,26 +20,24 @@ class AdminPartnerController extends Controller
      *
      * @Route("/", name="admin_partner_index")
      * @Method("GET")
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function indexAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
+        $queryBuilder = $em->getRepository('AppBundle:Partner')->createQueryBuilder('p');
+        $query = $queryBuilder->getQuery();
 
-/*        $partners = $em->getRepository('AppBundle:Partner')->findAll();*/
-
-		$queryBuilder = $em->getRepository('AppBundle:Partner')->createQueryBuilder('p');
-
-		$query = $queryBuilder->getQuery();
-
-		/**
-		 * @var $paginator \Knp\Component\Pager\Paginator
-		 */
-		$paginator = $this->get('knp_paginator');
-		$result = $paginator->paginate(
-			$query,
-			$request->query->getInt('page', 1),
-			$request->query->getInt('limit', 10)
-		);
+        /**
+         * @var $paginator \Knp\Component\Pager\Paginator
+         */
+        $paginator = $this->get('knp_paginator');
+        $result = $paginator->paginate(
+            $query,
+            $request->query->getInt('page', 1),
+            $request->query->getInt('limit', 10)
+        );
 
         return $this->render('partner/index.html.twig', array(
             'partners' => $result,
@@ -50,6 +49,8 @@ class AdminPartnerController extends Controller
      *
      * @Route("/new", name="admin_partner_new")
      * @Method({"GET", "POST"})
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
     public function newAction(Request $request)
     {
@@ -76,6 +77,8 @@ class AdminPartnerController extends Controller
      *
      * @Route("/{id}", name="admin_partner_show")
      * @Method("GET")
+     * @param Partner $partner
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function showAction(Partner $partner)
     {
@@ -92,6 +95,9 @@ class AdminPartnerController extends Controller
      *
      * @Route("/{id}/edit", name="admin_partner_edit")
      * @Method({"GET", "POST"})
+     * @param Request $request
+     * @param Partner $partner
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
     public function editAction(Request $request, Partner $partner)
     {
@@ -117,6 +123,9 @@ class AdminPartnerController extends Controller
      *
      * @Route("/{id}", name="admin_partner_delete")
      * @Method("DELETE")
+     * @param Request $request
+     * @param Partner $partner
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
      */
     public function deleteAction(Request $request, Partner $partner)
     {
@@ -128,7 +137,6 @@ class AdminPartnerController extends Controller
             $em->remove($partner);
             $em->flush();
         }
-
         return $this->redirectToRoute('admin_partner_index');
     }
 
@@ -138,13 +146,14 @@ class AdminPartnerController extends Controller
      * @param Partner $partner The partner entity
      *
      * @return \Symfony\Component\Form\Form The form
+     * @param Partner $partner
+     * @return \Symfony\Component\Form\FormInterface
      */
     private function createDeleteForm(Partner $partner)
     {
         return $this->createFormBuilder()
             ->setAction($this->generateUrl('admin_partner_delete', array('id' => $partner->getId())))
             ->setMethod('DELETE')
-            ->getForm()
-        ;
+            ->getForm();
     }
 }

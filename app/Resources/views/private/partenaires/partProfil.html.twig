@@ -81,12 +81,10 @@
             <button class="btn btnSubmit" id="btnSubmit" type="submit">Sauvegarder</button>
         </div>
     </div>
-
 {% endblock %}
 
 {% block javascripts %}
     <script>
-
         var firstName = document.getElementById("partner_firstName");
         var lastName = document.getElementById("partner_lastName");
         var phone = document.getElementById("partner_phone");
@@ -136,6 +134,5 @@
             phone.setCustomValidity(messagePhone);
             occupation.setCustomValidity(messageOccupation);
         });
-
     </script>
 {% endblock %}

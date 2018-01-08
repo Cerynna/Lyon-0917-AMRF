@@ -41,18 +41,16 @@ class PasswordController extends Controller
         $changePassword = new ChangePassword();
         //$changePassword->setLogin($user->getLogin());
 
-
         $form_password = $this->createForm('AppBundle\Form\ChangePasswordType', $changePassword);
         $form_password->handleRequest($request);
 
         if ($form_password->isSubmitted() && $form_password->isValid()) {
-
             $passwordService = $changePassService->changePassword($user, $changePassword->oldPassword, $changePassword->newPassword);
 
                 $this->addFlash(
                     'notice',
-                    $passwordService['message']
-                );
+                    $passwordService['message']);
+
                 if($passwordService['redirect'] == true)
                 {
                     return $this->redirectToRoute('logout');
@@ -63,5 +61,4 @@ class PasswordController extends Controller
             'form_password' => $form_password->createView(),
         ));
     }
-
 }

@@ -1,246 +1,250 @@
 {% extends 'private/admin/baseAdmin.html.twig' %}
 
 {% block body %}
-<div class="menu-admin menu-project">
-    <ul>
-        <li>
-            <a href="{{ path('admin_project_index') }}" data-toggle="tooltip" data-placement="right"
-               title="Liste Projets"><i class="fa fa-archive fa-admin"></i></a>
-        </li>
-        <li>
-            <a href="{{ path('admin_project_new') }}" data-toggle="tooltip" data-placement="right"
-               title="Nouveau Projet"><i
-                        class="fa fa-plus fa-admin"></i></a>
-        </li>
-        <li class="submitForm">
-            <a data-toggle="tooltip" data-placement="right"
-               title="Nouvel Utilisateur"><i class="fa fa-check fa-admin"></i></a>
-        </li>
-    </ul>
-</div>
-<h1>Project creation</h1>
+    <div class="menu-admin menu-project">
+        <ul>
+            <li>
+                <a href="{{ path('admin_project_index') }}" data-toggle="tooltip" data-placement="right"
+                   title="Liste Projets"><i class="fa fa-archive fa-admin"></i></a>
+            </li>
+            <li>
+                <a href="{{ path('admin_project_new') }}" data-toggle="tooltip" data-placement="right"
+                   title="Nouveau Projet"><i
+                            class="fa fa-plus fa-admin"></i></a>
+            </li>
+            <li class="submitForm">
+                <a data-toggle="tooltip" data-placement="right"
+                   title="Nouvel Utilisateur"><i class="fa fa-check fa-admin"></i></a>
+            </li>
+        </ul>
+    </div>
+    <h1>Project creation</h1>
 
     {{ form_start(form) }}
-<div class="form-group row">
-    <div class="col-sm-6">
-        <div class="col-sm-12">
-            <h5>{{ form_label(form.title, "Titre du projet *") }}</h5>
-            {{ form_widget(form.title) }}
-            <div id="errorTitle"></div>
-        </div>
+    <div class="form-group row">
         <div class="col-sm-6">
-            <h5>{{ form_label(form.creationDate) }}</h5>
-            {{ form_widget(form.creationDate) }}
-        </div>
-        <div class="col-sm-6">
-            <h5>{{ form_label(form.updateDate) }}</h5>
-            {{ form_widget(form.updateDate) }}
-        </div>
-        <div class="col-sm-12">
-            <h5><label>Images</label></h5>
+            <div class="col-sm-12">
+                <h5>{{ form_label(form.title, "Titre du projet *") }}</h5>
+                {{ form_widget(form.title) }}
+                <div id="errorTitle"></div>
+            </div>
+            <div class="col-sm-6">
+                <h5>{{ form_label(form.creationDate) }}</h5>
+                {{ form_widget(form.creationDate) }}
+            </div>
+            <div class="col-sm-6">
+                <h5>{{ form_label(form.updateDate) }}</h5>
+                {{ form_widget(form.updateDate) }}
+            </div>
+            <div class="col-sm-12">
+                <h5><label>Images</label></h5>
+                <div class="row">
+                    <div class="col-sm-12">
 
-
-                    <div class="row">
-                        <div class="col-sm-12">
-
-                            <a class="submitForm" data-toggle="tooltip" data-placement="right"
-                               title="Il faut d'abord enregistrer le projet avant de pouvoir télécharger des photos"><i class="fa fa-upload fa-admin-big"></i></a>
-                        </div>
+                        <a class="submitForm" data-toggle="tooltip" data-placement="right"
+                           title="Il faut d'abord enregistrer le projet avant de pouvoir télécharger des photos"><i
+                                    class="fa fa-upload fa-admin-big"></i></a>
                     </div>
-
-
-
-        </div>
-        <div class="col-sm-12">
-            <div class="col-sm-3">
-                <h5>{{ form_label(form.projectDate) }}</h5>
-                {{ form_widget(form.projectDate) }}
-            </div>
-            <div class="col-sm-3">
-                <h5>{{ form_label(form.projectCoFinance) }}</h5>
-                {{ form_widget(form.projectCoFinance) }}
-            </div>
-            <div class="col-sm-3">
-                <h5>{{ form_label(form.projectDuration) }}</h5>
-                {{ form_widget(form.projectDuration) }}
-            </div>
-            <div class="col-sm-3">
-                <h5>{{ form_label(form.projectCost) }}</h5>
-                {{ form_widget(form.projectCost) }}
-            </div>
-        </div>
-        <div class="col-sm-12">
-            <h5>{{ form_label(form.descResume) }}</h5>
-            {{ form_widget(form.descResume, {'attr': {
-                'rows':'3'} }) }}
-
-        </div>
-        <div class="col-sm-12">
-            <h5>{{ form_label(form.descContext) }}</h5>
-            {{ form_widget(form.descContext, {'attr': {
-                'rows':'4'} }) }}
-        </div>
-        <div class="col-sm-12">
-            <h5>{{ form_label(form.descGoal) }}</h5>
-            {{ form_widget(form.descGoal, {'attr': {
-                'rows':'4'} }) }}
-        </div>
-        <div class="col-sm-12">
-            <h5>{{ form_label(form.descProgress) }}</h5>
-            {{ form_widget(form.descProgress, {'attr': {
-                'rows':'7'} }) }}
-        </div>
-        <div class="col-sm-12">
-            <h5>{{ form_label(form.descPartners) }}</h5>
-            {{ form_widget(form.descPartners, {'attr': {
-                'rows':'4'} }) }}
-        </div>
-        <div class="col-sm-12">
-            <h5>{{ form_label(form.descResults) }}</h5>
-            {{ form_widget(form.descResults, {'attr': {
-                'rows':'4'} }) }}
-        </div>
-        <div class="col-sm-12">
-            <h5>{{ form_label(form.descDifficulties) }}</h5>
-            {{ form_widget(form.descDifficulties, {'attr': {
-                'rows':'4'} }) }}
-        </div>
-        <div class="col-sm-12">
-            <h5>{{ form_label(form.descAdvices) }}</h5>
-            {{ form_widget(form.descAdvices, {'attr': {
-                'rows':'4'} }) }}
-        </div>
-
-
-    </div>
-    <div class="col-sm-6">
-        <h5>
-            <lable>Commune du projet</lable>
-        </h5>
-        <div class="row">
-            <div class="col-sm-12">
-                {{ form_widget(form.mayor) }}
-            </div>
-        </div>
-
-
-        <h5><label>Liens</label></h5>
-        <div class="row">
-            <div class="col-sm-1">
-                <i class="fa fa-link fa-admin-mini"></i>
-            </div>
-            <div class="col-sm-11">
-                {{ form_widget(form.url) }}
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-sm-1">
-                <i class="fa fa-youtube fa-admin-mini"></i>
-            </div>
-            <div class="col-sm-11">
-                {{ form_widget(form.youtube) }}
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-sm-1">
-                <i class="fa fa-facebook fa-admin-mini"></i>
-            </div>
-            <div class="col-sm-11">
-                {{ form_widget(form.facebook) }}
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-sm-1">
-                <i class="fa fa-twitter fa-admin-mini"></i>
-            </div>
-            <div class="col-sm-11">
-                {{ form_widget(form.twitter) }}
-            </div>
-        </div>
-        <h5><label>Contact</label></h5>
-        <div class="row">
-            <div class="col-sm-3">
-                Nom/Prenom :
-            </div>
-            <div class="col-sm-9">
-                {{ form_widget(form.contactName) }}
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-sm-3">
-                Metier :
-            </div>
-            <div class="col-sm-9">
-                {{ form_widget(form.contactOccupation) }}
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-sm-3">
-                Email :
-            </div>
-            <div class="col-sm-9">
-                {{ form_widget(form.contactEmail) }}
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-sm-3">
-                Téléphone :
-            </div>
-            <div class="col-sm-9">
-                {{ form_widget(form.contactPhone) }}
-            </div>
-        </div>
-        <h5><label>Fichier PDF</label></h5>
-        <div class="row">
-            <div class="col-sm-12">
-
-                <a class="submitForm" data-toggle="tooltip" data-placement="right"
-                   title="Il faut d'abord enregistrer le projet avant de pouvoir télécharger un PDF"><i class="fa fa-upload fa-admin-big"></i></a>
-            </div>
-        </div>
-
-        <h5><label>Thematiques</label></h5>
-        <div class="row">
-            <div class="col-sm-4">
-                {% set nbthema = form.themes|length %}
-                {% set col =  nbthema/3 %}
-                {% set col = col|round %}
-                {% for thema in form.themes %}
-                {{ form_errors(thema) }}
-                <div>
-                    <input type="checkbox" id="{{ thema.vars.id }}"
-                           name="{{ thema.vars.full_name }}" value="{{ thema.vars.value }}"
-                            {% if thema.vars.checked == true %} checked="checked" {% endif %} >
-                    <label for="{{ thema.vars.id }}">{{ thema.vars.label|slice(0,20) }}</label>
                 </div>
-                {% if (loop.index == col) or (loop.index == col*2) %}
             </div>
-            <div class="col-sm-4">
-                {% endif %}
-                {% endfor %}
+            <div class="col-sm-12">
+                <div class="col-sm-3">
+                    <h5>{{ form_label(form.projectDate) }}</h5>
+                    {{ form_widget(form.projectDate) }}
+                </div>
+                <div class="col-sm-3">
+                    <h5>{{ form_label(form.projectCoFinance) }}</h5>
+                    {{ form_widget(form.projectCoFinance) }}
+                </div>
+                <div class="col-sm-3">
+                    <h5>{{ form_label(form.projectDuration) }}</h5>
+                    {{ form_widget(form.projectDuration) }}
+                </div>
+                <div class="col-sm-3">
+                    <h5>{{ form_label(form.projectCost) }}</h5>
+                    {{ form_widget(form.projectCost) }}
+                </div>
             </div>
-        </div>
-        <h5><label>Mots Clé</label></h5>
-        <div class="row">
-            {{ form_label(edit_form.keyWords, "Saississez jusqu'à 5 mots-clefs") }}
-            <i>Ecrivez les premières lettres du mot et vérifiez qu'il apparaît dans la liste.</i>
-            {{ form_widget(edit_form.keyWords, {'attr': {
-                'placeholder': 'Ecrivez les premières lettres du mot et vérifiez qu\'il apparaît dans la liste.',
-            } }) }}
-        </div>
+            <div class="col-sm-12">
+                <h5>{{ form_label(form.descResume) }}</h5>
+                {{ form_widget(form.descResume, {'attr': {
+                    'rows':'3'} }) }}
 
+            </div>
+            <div class="col-sm-12">
+                <h5>{{ form_label(form.descContext) }}</h5>
+                {{ form_widget(form.descContext, {'attr': {
+                    'rows':'4'} }) }}
+            </div>
+            <div class="col-sm-12">
+                <h5>{{ form_label(form.descGoal) }}</h5>
+                {{ form_widget(form.descGoal, {'attr': {
+                    'rows':'4'} }) }}
+            </div>
+            <div class="col-sm-12">
+                <h5>{{ form_label(form.descProgress) }}</h5>
+                {{ form_widget(form.descProgress, {'attr': {
+                    'rows':'7'} }) }}
+            </div>
+            <div class="col-sm-12">
+                <h5>{{ form_label(form.descPartners) }}</h5>
+                {{ form_widget(form.descPartners, {'attr': {
+                    'rows':'4'} }) }}
+            </div>
+            <div class="col-sm-12">
+                <h5>{{ form_label(form.descResults) }}</h5>
+                {{ form_widget(form.descResults, {'attr': {
+                    'rows':'4'} }) }}
+            </div>
+            <div class="col-sm-12">
+                <h5>{{ form_label(form.descDifficulties) }}</h5>
+                {{ form_widget(form.descDifficulties, {'attr': {
+                    'rows':'4'} }) }}
+            </div>
+            <div class="col-sm-12">
+                <h5>{{ form_label(form.descAdvices) }}</h5>
+                {{ form_widget(form.descAdvices, {'attr': {
+                    'rows':'4'} }) }}
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <h5>
+                <lable>Commune du projet</lable>
+            </h5>
+            <div class="row">
+                <div class="col-sm-12">
+                    {{ form_widget(form.mayor) }}
+                </div>
+            </div>
+            <h5><label>Liens</label></h5>
+            <div class="row">
+                <div class="col-sm-1">
+                    <i class="fa fa-link fa-admin-mini"></i>
+                </div>
+                <div class="col-sm-11">
+                    {{ form_widget(form.url) }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-1">
+                    <i class="fa fa-youtube fa-admin-mini"></i>
+                </div>
+                <div class="col-sm-11">
+                    {{ form_widget(form.youtube) }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-1">
+                    <i class="fa fa-facebook fa-admin-mini"></i>
+                </div>
+                <div class="col-sm-11">
+                    {{ form_widget(form.facebook) }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-1">
+                    <i class="fa fa-twitter fa-admin-mini"></i>
+                </div>
+                <div class="col-sm-11">
+                    {{ form_widget(form.twitter) }}
+                </div>
+            </div>
+            <h5><label>Contact</label></h5>
+            <div class="row">
+                <div class="col-sm-3">
+                    Nom/Prenom :
+                </div>
+                <div class="col-sm-9">
+                    {{ form_widget(form.contactName) }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-3">
+                    Metier :
+                </div>
+                <div class="col-sm-9">
+                    {{ form_widget(form.contactOccupation) }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-3">
+                    Email :
+                </div>
+                <div class="col-sm-9">
+                    {{ form_widget(form.contactEmail) }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-3">
+                    Téléphone :
+                </div>
+                <div class="col-sm-9">
+                    {{ form_widget(form.contactPhone) }}
+                </div>
+            </div>
+            <h5><label>Fichier PDF</label></h5>
+            <div class="row">
+                <div class="col-sm-12">
+
+                    <a class="submitForm" data-toggle="tooltip" data-placement="right"
+                       title="Il faut d'abord enregistrer le projet avant de pouvoir télécharger un PDF"><i
+                                class="fa fa-upload fa-admin-big"></i></a>
+                </div>
+            </div>
+
+            <h5><label>Thematiques</label></h5>
+            <div class="row">
+                <div class="col-sm-4">
+                    {% set nbthema = form.themes|length %}
+                    {% set col =  nbthema/3 %}
+                    {% set col = col|round %}
+                    {% for thema in form.themes %}
+                    {{ form_errors(thema) }}
+                    <div>
+                        <input type="checkbox" id="{{ thema.vars.id }}"
+                               name="{{ thema.vars.full_name }}" value="{{ thema.vars.value }}"
+                                {% if thema.vars.checked == true %} checked="checked" {% endif %} >
+                        <label for="{{ thema.vars.id }}">{{ thema.vars.label|slice(0,20) }}</label>
+                    </div>
+                    {% if (loop.index == col) or (loop.index == col*2) %}
+                </div>
+                <div class="col-sm-4">
+                    {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+            <h5><label>Mots Clé</label></h5>
+            <div class="row">
+                <div class="col-sm-4">
+                    {% set nbKeyword = form.keyWords|length %}
+                    {% set col =  nbKeyword/3 %}
+                    {% set col = col|round %}
+                    {% for keyWord in form.keyWords %}
+                    {{ form_errors(keyWord) }}
+                    <div>
+                        <input type="checkbox" id="{{ keyWord.vars.id }}"
+                               name="{{ keyWord.vars.full_name }}" value="{{ keyWord.vars.value }}"
+                                {% if keyWord.vars.checked == true %} checked {% endif %}>
+                        <label for="{{ keyWord.vars.id }}">{{ keyWord.vars.label|slice(0,20) }}</label>
+                    </div>
+                    {% if (loop.index == col) or (loop.index == col*2) or (loop.index == col*3) %}
+                </div>
+                <div class="col-sm-4">
+                    {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
     </div>
 
-</div>
+    <input type="submit" value="Edit"/>
+    {{ form_end(form) }}
 
-    {{ form_widget(form._token) }}
-    {{ form_end(form, {'render_rest': false}) }}
-
-<ul>
-    <li>
-        <a href="{{ path('admin_project_index') }}">Back to the list</a>
-    </li>
-</ul>
+    <ul>
+        <li>
+            <a href="{{ path('admin_project_index') }}">Back to the list</a>
+        </li>
+    </ul>
 {% endblock %}
 {% block javascripts %}
     <script>

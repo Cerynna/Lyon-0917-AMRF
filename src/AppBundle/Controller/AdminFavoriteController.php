@@ -13,6 +13,7 @@ use Symfony\Component\HttpFoundation\Request;
  * Favorite controller.
  *
  * @Route("admin/favorite")
+ * @package AppBundle\Controller
  */
 class AdminFavoriteController extends Controller
 {
@@ -21,6 +22,7 @@ class AdminFavoriteController extends Controller
      *
      * @Route("/", name="admin_favorite_index")
      * @Method("GET")
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function indexAction()
     {
@@ -38,12 +40,23 @@ class AdminFavoriteController extends Controller
      *
      * @Route("/new", name="admin_favorite_new")
      * @Method({"GET", "POST"})
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
     public function newAction(Request $request)
     {
         $favorite = new Favorite();
         $form = $this->createForm('AppBundle\Form\FavoriteType', $favorite);
         $form->handleRequest($request);
+
+        if ($request->isXMLHttpRequest()) {
+            $content = $request->getContent();
+            if (!empty($content)) {
+                $favorite->setUser('');
+                $favorite->setProject('');
+                $favorite->setCompany('');
+            }
+        }
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
@@ -64,6 +77,8 @@ class AdminFavoriteController extends Controller
      *
      * @Route("/{id}", name="admin_favorite_show")
      * @Method("GET")
+     * @param Favorite $favorite
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function showAction(Favorite $favorite)
     {
@@ -80,6 +95,9 @@ class AdminFavoriteController extends Controller
      *
      * @Route("/{id}/edit", name="admin_favorite_edit")
      * @Method({"GET", "POST"})
+     * @param Request $request
+     * @param Favorite $favorite
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
     public function editAction(Request $request, Favorite $favorite)
     {
@@ -105,6 +123,9 @@ class AdminFavoriteController extends Controller
      *
      * @Route("/{id}", name="admin_favorite_delete")
      * @Method("DELETE")
+     * @param Request $request
+     * @param Favorite $favorite
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
      */
     public function deleteAction(Request $request, Favorite $favorite)
     {
@@ -132,8 +153,7 @@ class AdminFavoriteController extends Controller
         return $this->createFormBuilder()
             ->setAction($this->generateUrl('admin_favorite_delete', array('id' => $favorite->getId())))
             ->setMethod('DELETE')
-            ->getForm()
-        ;
+            ->getForm();
     }
 
 }

@@ -14,15 +14,22 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
  * User controller.
  *
  * @Route("admin/user")
+ * Class AdminUserController
+ * @package AppBundle\Controller
  */
 class AdminUserController extends Controller
 {
-
+    /**
+     * @var array
+     */
     public $sort = [
         'login' => "",
         'role' => ""
     ];
 
+    /**
+     * @return array
+     */
     public function getSort()
     {
         return $this->sort;
@@ -87,6 +94,9 @@ class AdminUserController extends Controller
      *
      * @Route("/new", name="admin_user_new")
      * @Method({"GET", "POST"})
+     * @param Request $request
+     * @param UserPasswordEncoderInterface $passwordEncoder
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
     public function newAction(Request $request, UserPasswordEncoderInterface $passwordEncoder)
     {
@@ -109,7 +119,6 @@ class AdminUserController extends Controller
 				$user->setMayor(null);
 				$user->setPartner(null);
 			}
-
 
 			$em = $this->getDoctrine()->getManager();
 			$em->persist($user);
@@ -141,6 +150,8 @@ class AdminUserController extends Controller
      *
      * @Route("/{id}", name="admin_user_show")
      * @Method("GET")
+     * @param User $user
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function showAction(User $user)
     {
@@ -157,6 +168,10 @@ class AdminUserController extends Controller
      *
      * @Route("/{id}/edit", name="admin_user_edit")
      * @Method({"GET", "POST"})
+     * @param Request $request
+     * @param User $user
+     * @param UserPasswordEncoderInterface $passwordEncoder
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
     public function editAction(Request $request, User $user, UserPasswordEncoderInterface $passwordEncoder)
     {
@@ -189,6 +204,9 @@ class AdminUserController extends Controller
      *
      * @Route("/{id}", name="admin_user_delete")
      * @Method("DELETE")
+     * @param Request $request
+     * @param User $user
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
      */
     public function deleteAction(Request $request, User $user)
     {
@@ -210,6 +228,8 @@ class AdminUserController extends Controller
      * @param User $user The user entity
      *
      * @return \Symfony\Component\Form\Form The form
+     * @param User $user
+     * @return \Symfony\Component\Form\FormInterface
      */
     private function createDeleteForm(User $user)
     {
