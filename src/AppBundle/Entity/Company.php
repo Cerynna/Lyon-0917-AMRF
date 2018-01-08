@@ -674,4 +674,5 @@ class Company
     {
         return $this->slug;
     }
+
 }

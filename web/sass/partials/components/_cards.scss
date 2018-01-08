@@ -1,7 +1,8 @@
 .bck-maire {
   margin-bottom: 20px;
   background: rgba(144, 202, 249, 1);
-  min-height: 330px;
+  min-height: 380px;
+  padding: 10px 0;
   @include borderRadius(5px);
   div > a {
     color: rgb(54, 80, 105) !important;
@@ -36,6 +37,9 @@
     padding-left: 50px;
     font-size: 2em !important;
   }
+  .pass {
+    width: auto;
+  }
 
   p {
     margin-top: 10px;
@@ -56,7 +60,8 @@
 .bck-part {
   margin-bottom: 20px;
   background: rgba(139, 175, 139, 1);
-  min-height: 330px;
+  min-height: 380px;
+  padding: 10px 0;
   @include borderRadius(5px);
 
   div > a {
@@ -92,7 +97,9 @@
     padding-left: 50px;
     font-size: 2em !important;
   }
-
+  .pass {
+    width: auto;
+  }
 
   p {
     margin-top: 10px;
