@@ -11,11 +11,12 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
 
-
 /**
  * Company controller.
  *
  * @Route("admin/company")
+ * Class AdminCompanyController
+ * @package AppBundle\Controller
  */
 class AdminCompanyController extends Controller
 {
@@ -24,15 +25,13 @@ class AdminCompanyController extends Controller
      *
      * @Route("/", name="admin_company_index")
      * @Method("GET")
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function indexAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
-
-        /*        $companies = $em->getRepository('AppBundle:Company')->findAll();*/
-
         $queryBuilder = $em->getRepository('AppBundle:Company')->createQueryBuilder('m');
-
         $query = $queryBuilder->getQuery();
 
         /**
@@ -55,10 +54,12 @@ class AdminCompanyController extends Controller
      *
      * @Route("/new", name="admin_company_new")
      * @Method({"GET", "POST"})
+     * @param Request $request
+     * @param UploadService $upload
+     * @param SlugService $slug
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
-
     public function newAction(Request $request, UploadService $upload, SlugService $slug)
-
     {
         $company = new Company();
         $form = $this->createForm('AppBundle\Form\CompanyType', $company);
@@ -89,6 +90,8 @@ class AdminCompanyController extends Controller
      *
      * @Route("/{slug}", name="admin_company_show")
      * @Method("GET")
+     * @param Company $company
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function showAction(Company $company)
     {
@@ -120,10 +123,13 @@ class AdminCompanyController extends Controller
      *
      * @Route("/edit/{slug}", name="admin_company_edit")
      * @Method({"GET", "POST"})
+     * @param Request $request
+     * @param Company $company
+     * @param UploadService $upload
+     * @param SlugService $slugs
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
-
     public function editAction(Request $request, Company $company, UploadService $upload, SlugService $slugs)
-
     {
         $deleteForm = $this->createDeleteForm($company);
         $editForm = $this->createForm('AppBundle\Form\CompanyType', $company);
@@ -135,18 +141,12 @@ class AdminCompanyController extends Controller
         $uplodImageForm = $this->createForm('AppBundle\Form\UploaderType', $uploaderImage);
         $uplodImageForm->handleRequest($request);
 
-        dump($company);
-
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            dump($company);
 
             $company->setSlug($slugs->slug($company->getName()));
-
-
             $em->persist($company);
             $em->flush();
-            //return $this->redirectToRoute('admin_company_edit', array('slug' => $company->getSlug()));
         }
         if ($uplodImageForm->isSubmitted() && $uplodImageForm->isValid()) {
             $files = $uploaderImage->getPath();
@@ -170,6 +170,9 @@ class AdminCompanyController extends Controller
      *
      * @Route("/{id}", name="admin_company_delete")
      * @Method("DELETE")
+     * @param Request $request
+     * @param Company $company
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
      */
     public function deleteAction(Request $request, Company $company)
     {

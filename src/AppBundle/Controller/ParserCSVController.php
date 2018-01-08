@@ -2,14 +2,12 @@
 
 namespace AppBundle\Controller;
 
-
 use AppBundle\Entity\Mayor;
 use AppBundle\Entity\User;
 use DateTime;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Routing\Annotation\Route;
 use AppBundle\Entity\ParserCSV;
-
 
 /**
  * Class ParserCSVController
@@ -20,6 +18,7 @@ class ParserCSVController extends Controller
 {
     /**
      * @Route("/", name="ParserIndex")
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function indexAction()
     {
@@ -28,6 +27,9 @@ class ParserCSVController extends Controller
 
     /**
      * @Route("/parsercsv/{row}/{timer}", name="ParserCSV", defaults={"row": "0", "timer": "0"})
+     * @param $row
+     * @param $timer
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
      */
     public function ParseAction($row, $timer)
     {
@@ -36,7 +38,6 @@ class ParserCSVController extends Controller
 
         $user = new User();
         $mayor = new Mayor();
-
 
         switch ($action) {
             case true:
@@ -53,7 +54,7 @@ class ParserCSVController extends Controller
                     $mayor->setPopulation($parser->getPopulation());
 
                     $encoder = $this->container->get('security.password_encoder');
-                    
+
                     $user->setLogin($parser->getInsee() . $parser->getZipCode());
                     $user->setPassword($encoder->encodePassword($user, $parser->getInsee()));
                     $user->setRole($user::USER_ROLE_MAYOR);
@@ -69,7 +70,6 @@ class ParserCSVController extends Controller
                     $em->flush();
                 }
 
-
                 return $this->redirectToRoute('ParserCSV', array(
                     'row' => $parser->getRowRequest(),
                     'timer' => $parser->getTimerRequest()
@@ -84,14 +84,15 @@ class ParserCSVController extends Controller
     }
 
     /**
-     * @Route("/resultparse/", name="ResultParse")
+     * @Route("/resultparse/{timer}", name="ResultParse")
+     * @param $timer
+     * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function resultAction()
+    public function resultAction($timer)
     {
-
         $csv = array_map('str_getcsv', file('ReportNOT.csv'));
-
         return $this->render('ParserCSV/index.html.twig', [
+            'timer' => $timer,
             'csv' => $csv
         ]);
     }
