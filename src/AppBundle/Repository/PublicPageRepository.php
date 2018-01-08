@@ -25,17 +25,11 @@ class PublicPageRepository extends \Doctrine\ORM\EntityRepository
             $result[$arg] = $query->getResult();
         }
 
-        foreach ($result as $argument => $objects)
-        {
-            foreach ($objects as $key => $object)
-            {
+        foreach ($result as $argument => $objects) {
+            foreach ($objects as $key => $object) {
                 $realResult[$argument] = $object;
             }
         }
         return $realResult;
-
-
     }
-
-
 }

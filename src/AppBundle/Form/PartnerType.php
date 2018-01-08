@@ -24,7 +24,7 @@ class PartnerType extends AbstractType
                 'choice_label' => 'name',
             ]);
     }
-    
+
     /**
      * {@inheritdoc}
      */
@@ -42,6 +42,4 @@ class PartnerType extends AbstractType
     {
         return 'partner';
     }
-
-
 }
