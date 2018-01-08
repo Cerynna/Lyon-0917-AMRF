@@ -3,9 +3,9 @@
 namespace AppBundle\Repository;
 
 use AppBundle\Entity\Project;
-use function array_merge;
-use function array_push;
-use function in_array;
+use AppBundle\Entity\User;
+use DateInterval;
+use DateTime;
 
 
 /**
@@ -20,6 +20,77 @@ class ProjectRepository extends \Doctrine\ORM\EntityRepository
     const MAX_PROJECT = 3;
 
     const CHAMPS = ["title", "descResume"];
+
+
+    public function statProject()
+    {
+        $result['project']['total'] = count($this->createQueryBuilder('p')
+            ->getQuery()
+            ->getResult());
+        $result['project']['publish'] = count($this->createQueryBuilder('p')
+            ->setParameter('status', Project::STATUS_PUBLISH)
+            ->where('p.status = :status')
+            ->getQuery()
+            ->getResult());
+        $result['project']['waiting'] = count($this->createQueryBuilder('p')
+            ->setParameter('status', Project::STATUS_WAITING)
+            ->where('p.status = :status')
+            ->getQuery()
+            ->getResult());
+        $result['project']['draft'] = count($this->createQueryBuilder('p')
+            ->setParameter('status', Project::STATUS_DRAFT)
+            ->where('p.status = :status')
+            ->getQuery()
+            ->getResult());
+        $mois = array("","Janvier","Février","Mars","Avril","Mai","Juin","Juillet","Août","Septembre","Octobre","Novembre","Décembre");
+        $dateStat = [];
+        for ($i = 0; $i < 6; $i++) {
+            $max = new DateTime('last day of today - ' . $i . ' month');
+            $min = new DateTime('last day of today - ' . ($i + 1) . ' month');
+
+            $dateStat[$mois[$max->format('n')]] =  count($this->createQueryBuilder('p')
+                ->setParameter('maxDate', $max)
+                ->andWhere('p.creationDate < :maxDate')
+                ->setParameter('minDate', $min)
+                ->andWhere('p.creationDate > :minDate')
+                ->getQuery()
+                ->getResult());
+        }
+        $result['project']['history'] = $dateStat;
+
+        $result['user']['Actif'] = count($this->getEntityManager()
+            ->getRepository('AppBundle:User')
+            ->createQueryBuilder('u')
+            ->setParameter('status', User::USER_STATUS_ACTIF)
+            ->andWhere('u.status = :status')
+            ->getQuery()
+            ->getResult());
+        $result['user']['Inactif'] = count($this->getEntityManager()
+            ->getRepository('AppBundle:User')
+            ->createQueryBuilder('u')
+            ->setParameter('status', User::USER_STATUS_INACTIF)
+            ->andWhere('u.status = :status')
+            ->getQuery()
+            ->getResult());
+        $result['user']['Supprimer'] = count($this->getEntityManager()
+            ->getRepository('AppBundle:User')
+            ->createQueryBuilder('u')
+            ->setParameter('status', User::USER_STATUS_DELETE)
+            ->andWhere('u.status = :status')
+            ->getQuery()
+            ->getResult());
+        $result['lastLogin'] = $this->getEntityManager()
+            ->getRepository('AppBundle:User')
+            ->createQueryBuilder('u')
+            ->orderBy('u.lastLogin', 'DESC')
+            ->setMaxResults(14)
+            ->getQuery()
+            ->getResult();
+
+
+
+        return $result;
+    }
 
     public function getLastProject()
     {
@@ -100,7 +171,7 @@ class ProjectRepository extends \Doctrine\ORM\EntityRepository
             $em = $this->getEntityManager();
             $stmt = $em->getConnection()->prepare($sql);
             $stmt->execute();
-            $results =  $stmt->fetchAll();
+            $results = $stmt->fetchAll();
 
         }
         $cleanResult = "";
@@ -125,7 +196,7 @@ class ProjectRepository extends \Doctrine\ORM\EntityRepository
             $em = $this->getEntityManager();
             $stmt = $em->getConnection()->prepare($sql);
             $stmt->execute();
-            $results =  $stmt->fetchAll();
+            $results = $stmt->fetchAll();
 
 
         }
@@ -205,7 +276,6 @@ class ProjectRepository extends \Doctrine\ORM\EntityRepository
         }
         return $results;
     }
-
 
 
     public function arrayCleaner($array)

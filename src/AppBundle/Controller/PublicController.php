@@ -301,7 +301,6 @@ class PublicController extends Controller
 
 
 
-
         return $this->render('private/annuaire.html.twig', [
             "companies" => $result,
             "activities" => $activities,
@@ -318,7 +317,14 @@ class PublicController extends Controller
      */
     public function adminIndexAction()
     {
-        return $this->render('private/admin/adminIndex.html.twig');
+        $em = $this->getDoctrine()->getManager();
+        $reposCompany = $em->getRepository("AppBundle:Project");
+        $stats = $reposCompany->statProject();
+
+
+        return $this->render('private/admin/adminIndex.html.twig', [
+                'stats' => $stats,
+            ]);
     }
 
     /**

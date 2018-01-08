@@ -80,7 +80,7 @@ class ParserCSV
 
                     $result[$this->rowRequest]["nom"] = $data[1];
                     $result[$this->rowRequest]["insee"] = $data[3];
-                    $result[$this->rowRequest]["erreur"] = "API ne trouve pas";
+                    $result[$this->rowRequest]["erreur"] = "Aucune correspondance avec la base de donnée du gouvernement";
 
                     $fp = fopen('ReportNOT.csv', 'a');
                     fputcsv($fp, $result[$this->rowRequest]);

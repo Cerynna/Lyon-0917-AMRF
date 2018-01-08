@@ -116,7 +116,10 @@ class PartnerController extends Controller
      */
     public function partnerFavoriteAction()
     {
-        return $this->render('private/favoris.html.twig');
+        $favorites = $this->getDoctrine()->getRepository('AppBundle:Favorite')->getFavoriteByUserId($this->getUser()->getId());
+        return $this->render('private/favoris.html.twig', [
+            'favorites' => $favorites,
+        ]);
     }
 
     public function getDefaultOptions(array $options)
