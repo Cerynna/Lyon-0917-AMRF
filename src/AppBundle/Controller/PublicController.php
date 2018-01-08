@@ -6,6 +6,7 @@ namespace AppBundle\Controller;
 use AppBundle\Entity\Company;
 use AppBundle\Entity\Contact;
 use AppBundle\Entity\Dictionary;
+use AppBundle\Entity\Favorite;
 use AppBundle\Entity\Project;
 use AppBundle\Entity\Search;
 use AppBundle\Service\EmailService;
@@ -27,12 +28,12 @@ use Symfony\Component\Filesystem\Filesystem;
 class PublicController extends Controller
 {
 
-    /**
-     * @Route("/", name="home")
-     */
-    public function indexAction()
-    {
-        $em = $this->getDoctrine()->getManager();
+	/**
+	 * @Route("/", name="home")
+	 */
+	public function indexAction()
+	{
+		$em = $this->getDoctrine()->getManager();
 
         /** Change that is a real code for Update LastLogin */
         $user = $this->getUser();
@@ -226,16 +227,23 @@ class PublicController extends Controller
         ]);
     }
 
-    /**
-     * @Route("/project/{slug}", name="sheet_project")
-     */
-    public function projetAction(Project $project)
-    {
+	/**
+	 * @Route("/project/{slug}", name="sheet_project")
+	 */
+	public function projetAction(Project $project)
+	{
+		$em = $this->getDoctrine()->getManager();
+		$idUser = $this->getUser()->getId();
+		$idProject = $project->getId();
+		$favorites = $em->getRepository("AppBundle:Favorite")->getFavorite("project", $idProject, $idUser);
 
-        return $this->render('private/projet.html.twig', array(
-            'project' => $project,
-        ));
-    }
+		(!empty($favorites) ? $favorie = 1 : $favorie = 0);
+
+		return $this->render('private/projet.html.twig', array(
+			'project' => $project,
+			'favorite' => $favorie,
+		));
+	}
 
     /**
      * @Route("/directory", name="directory")
@@ -317,7 +325,14 @@ class PublicController extends Controller
      */
     public function adminIndexAction()
     {
-        return $this->render('private/admin/adminIndex.html.twig');
+        $em = $this->getDoctrine()->getManager();
+        $reposCompany = $em->getRepository("AppBundle:Project");
+        $stats = $reposCompany->statProject();
+
+
+        return $this->render('private/admin/adminIndex.html.twig', [
+                'stats' => $stats,
+            ]);
     }
 
     /**
@@ -341,6 +356,68 @@ class PublicController extends Controller
             'error' => $error,
         ));
     }
+
+	/**
+	 * @Route("/addFavorite/{type}/{idType}", name="addFavorite")
+	 */
+
+	public function addFavorite(Request $request, $type, $idType)
+	{
+
+		$idUser = $this->get('security.token_storage')->getToken()->getUser();
+
+		$favorite = new Favorite();
+
+		$favorite->setUser($idUser);
+
+		if ($request->isXmlHttpRequest()) {
+		$em = $this->getDoctrine()->getManager();
+
+		if ($type == "project") {
+			$project = $this->getDoctrine()->getRepository("AppBundle:Project")->projectById($idType);
+
+			$favorite->setProject($project[0]);
+			$favorite->setCompany(null);
+		}
+		if ($type == "company") {
+			$company = $this->getDoctrine()->getRepository("AppBundle:Company")->companyById($idType);
+
+			$favorite->setCompany($company[0]);
+			$favorite->setProject(null);
+		}
+
+		$em->persist($favorite);
+/*		dump($favorite);*/
+		$em->flush();
+
+		return new Response("Favorie Ajouté ");
+
+		} else {
+			throw new HttpException(500, 'Invalid call');
+		}
+
+	}
+
+	/**
+	 * @Route("/delFavorite/{type}/{idType}", name="delFavorite")
+	 */
+	public function delFavorite(Request $request, $type, $idType)
+	{
+		$idUser = $this->getUser();
+
+		if ($request->isXmlHttpRequest()) {
+			$em = $this->getDoctrine()->getManager();
+			$favoris = $em->getRepository("AppBundle:Favorite")->getFavorite($type, $idType, $idUser->getId());
+			dump($favoris);
+			$em->remove($favoris[0]);
+
+			$em->flush();
+
+			return new Response("Favorie Suprrimé ");
+		} else {
+			throw new HttpException(500, 'Invalid call');
+		}
+	}
 
 
     /**

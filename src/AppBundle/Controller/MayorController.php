@@ -8,9 +8,8 @@
 
 namespace AppBundle\Controller;
 
-use AppBundle\Entity\ChangePassword;
-use AppBundle\Entity\Project;
 
+use AppBundle\Entity\Project;
 use AppBundle\Entity\TitleProject;
 use AppBundle\Entity\Uploader;
 use AppBundle\Form\SubmitToAdmin;
@@ -18,6 +17,8 @@ use AppBundle\Service\EmailService;
 use AppBundle\Service\SlugService;
 use AppBundle\Service\TabProjectService;
 use AppBundle\Service\UploadService;
+use AppBundle\Service\ValidProjectService;
+
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -42,11 +43,9 @@ class MayorController extends Controller
     /**
      * @Route("profil", name="mayor_profil")
      * @param Request $request
-     * @param UserPasswordEncoderInterface $passwordEncoder
-     * @param EmailService $emailService
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
-    public function mayorProfilAction(Request $request, UserPasswordEncoderInterface $passwordEncoder, EmailService $emailService)
+    public function mayorProfilAction(Request $request)
     {
 
         $user = $this->getUser();
@@ -54,10 +53,6 @@ class MayorController extends Controller
         $form = $this->createForm('AppBundle\Form\MayorType', $mayor);
         $form->handleRequest($request);
 
-        $changePassword = new ChangePassword();
-        $changePassword->setLogin($user->getLogin());
-        $form_password = $this->createForm('AppBundle\Form\ChangePasswordType', $changePassword);
-        $form_password->handleRequest($request);
         $em = $this->getDoctrine()->getManager();
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -70,38 +65,10 @@ class MayorController extends Controller
 
             return $this->redirectToRoute('mayor_profil', array('id' => $mayor->getId()));
         }
-        if ($form_password->isSubmitted() && $form_password->isValid()) {
-            $encoderService = $this->get('security.password_encoder');
-            if ($encoderService->isPasswordValid($user, $changePassword->oldPassword)) {
-               $user->setPassword($encoderService->encodePassword($user, $changePassword->newPassword));
-               $em->persist($user);
-               $em->flush();
-
-                $messageconfirm = [
-                    'to' => $user->getEmail(),
-                    'type' => EmailService::TYPE_MAIL_CONFIRM_PASSWORD['key'],
-                    'login' => $user->getLogin(),
-                ];
-                $emailService->sendEmail($messageconfirm);
-
-                $this->addFlash(
-                    'notice',
-                    'Votre nouveau mot de passe a bien été enregistré. Merci de vous reconnecter'
-                );
-                return $this->redirectToRoute('logout');
-            } else {
-                $this->addFlash(
-                    'notice',
-                    'Le mot de passe saisi ne correspond pas. Veuillez saisir à nouveau votre mot de passe'
-                );
-            }
-        }
-
 
         return $this->render('private/maires/maireProfil.html.twig', array(
             'mayor' => $mayor,
             'form' => $form->createView(),
-            'form_password' => $form_password->createView(),
         ));
     }
 
@@ -120,14 +87,13 @@ class MayorController extends Controller
 
 
         return $this->render('private/maires/maireProjet.html.twig', array(
-            'projects'=>$projects,
+            'projects' => $projects,
         ));
     }
 
     /**
      * @Route("project/new", name="mayor_project_new")
      * @Method({"GET", "POST"})
-
      * @param Request $request
      * @param SlugService $slugService
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
@@ -168,15 +134,22 @@ class MayorController extends Controller
     /**
      * @Route("project/edit/{slug}/{page}", name="mayor_project_edit", defaults={"page": "1"},)
      * @Method({"GET", "POST"})
-
      * @param Request $request
      * @param Project $project
      * @param SlugService $slugService
      * @param TabProjectService $tabProjectService
      * @param UploadService $uploadService
+     * @param ValidProjectService $projectService
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
-    public function mayorProjectEditAction(Request $request, Project $project, SlugService $slugService, TabProjectService $tabProjectService, UploadService $uploadService)
+    public function mayorProjectEditAction(
+        Request $request,
+        Project $project,
+        SlugService $slugService,
+        TabProjectService $tabProjectService,
+        UploadService $uploadService,
+        ValidProjectService $projectService
+    )
     {
 
         $user = $this->getUser();
@@ -189,8 +162,6 @@ class MayorController extends Controller
         if (!is_numeric($page)) {
             $page = 1;
         }
-
-
         if ($idMayorConnect->getId() === $idMayorProject->getId()) {
             $em = $this->getDoctrine()->getManager();
             $form = $this->createForm('AppBundle\Form\ProjectType', $project);
@@ -214,16 +185,35 @@ class MayorController extends Controller
             $uplodImageForm->handleRequest($request);
 
             if ($formSubmitToAdmin->isSubmitted() && $formSubmitToAdmin->isValid()) {
-                $project->setStatus(Project::STATUS_WAITING);
-                $em->persist($project);
-                $em->flush();
-                $this->addFlash(
-                    'notice',
-                    '<p>Votre Projet est envoyé pour modération avant la publication</p>'
-                );
-                return $this->redirectToRoute('mayor_project_edit', [
-                    'slug' => $project->getSlug(),
-                ]);
+
+                $projectService->Verif($project);
+                if (!empty($projectService->getErreur())) {
+
+
+                    return $this->render('private/maires/projectEdit.html.twig', array(
+                        'slug' => $project->getSlug(),
+                        'project' => $project,
+                        'form' => $form->createView(),
+                        'form_toAdmin' => $formSubmitToAdmin->createView(),
+                        'upload_image_form' => $uplodImageForm->createView(),
+                        'upload_file_form' => $uplodFileForm->createView(),
+                        'page' => $page,
+                        'erreurs' => $projectService->getErreur(),
+                    ));
+                } else {
+                    $project->setStatus(Project::STATUS_WAITING);
+                    $em->persist($project);
+                    $em->flush();
+
+                    $this->addFlash(
+                        'notice',
+                        '<p>Votre Projet est envoyé pour modération avant la publication</p>'
+                    );
+                    return $this->redirectToRoute('mayor_project_edit', [
+                        'slug' => $project->getSlug(),
+                    ]);
+                }
+
             }
 
             if ($uplodImageForm->isSubmitted() && $uplodImageForm->isValid()) {
@@ -235,6 +225,7 @@ class MayorController extends Controller
                 $this->getDoctrine()->getManager()->flush();
                 return $this->redirectToRoute('mayor_project_edit', array(
                     'slug' => $project->getSlug(),
+                    'page' => 1
                 ));
             }
 
@@ -245,6 +236,7 @@ class MayorController extends Controller
                 $this->getDoctrine()->getManager()->flush();
                 return $this->redirectToRoute('mayor_project_edit', array(
                     'slug' => $project->getSlug(),
+                    'page' => 4
                 ));
             }
 
@@ -257,10 +249,9 @@ class MayorController extends Controller
                 $em->persist($project);
                 $em->flush();
 
-                if(!empty($_POST['page'])){
+                if (!empty($_POST['page'])) {
                     $pageSend = $tabProjectService->findUrl($_POST['page'], $page);
-                }
-                else{
+                } else {
                     $pageSend = $page;
                 }
                 $this->addFlash(
@@ -294,7 +285,10 @@ class MayorController extends Controller
      */
     public function mayorFavoriteAction()
     {
-        return $this->render('private/favoris.html.twig');
+        $favorites = $this->getDoctrine()->getRepository('AppBundle:Favorite')->getFavoriteByUserId($this->getUser()->getId());
+        return $this->render('private/favoris.html.twig', [
+            'favorites' => $favorites,
+        ]);
     }
 
 }
