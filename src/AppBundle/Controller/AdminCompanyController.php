@@ -67,12 +67,15 @@ class AdminCompanyController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+            $company->setSlug($slug->slug($company->getName()));
             $logo = $company->getLogo();
-            $company->setLogo($upload->fileUpload($logo, "/company/" . $company->getName(), "img"));
+            if (!empty($logo)) {
+                $company->setLogo($upload->fileUpload($logo, "/company/" . $company->getName(), "img"));
+            }
             $em->persist($company);
             $em->flush();
 
-            return $this->redirectToRoute('admin_company_show', array('id' => $company->getId()));
+            return $this->redirectToRoute('admin_company_show', array('slug' => $company->getSlug()));
         }
 
         return $this->render('company/new.html.twig', array(
@@ -139,7 +142,6 @@ class AdminCompanyController extends Controller
             dump($company);
 
             $company->setSlug($slugs->slug($company->getName()));
-
 
 
             $em->persist($company);

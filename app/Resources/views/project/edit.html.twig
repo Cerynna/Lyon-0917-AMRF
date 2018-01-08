@@ -312,12 +312,12 @@
     {{ form_widget(edit_form._token) }}
     {{ form_end(edit_form, {'render_rest': false}) }}
 
-
 {% endblock %}
 {% block javascripts %}
     <script>
         $(document).ready(function () {
             $('#projet_keyWords').select2();
+            $('#projet_mayor').select2();
         });
 
         $(".submitForm").click(function () {

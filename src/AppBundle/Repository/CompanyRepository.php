@@ -60,4 +60,13 @@ class CompanyRepository extends \Doctrine\ORM\EntityRepository
         return $cleanResult;
     }
 
+	public function companyById($idCompany)
+	{
+		return $this->createQueryBuilder('c')
+			->setParameter('id', $idCompany)
+			->where('c.id = :id')
+			->getQuery()
+			->getResult();
+	}
+
 }

@@ -7,41 +7,30 @@
 {% block body %}
     {{ form_start(form) }}
     <h2>Mon profil</h2>
-    <div class="row tabPannel">
-        <ul class="list-inline text-center" role="tablist">
-            <li role="presentation" class="tabLi active">
-                <a href="#profil" aria-controls="profil" role="tab" data-toggle="tab">Mon Profil</a>
-            </li>
-            <li role="presentation" class="tabLi">
-                <a href="#settings" aria-controls="settings" role="tab" data-toggle="tab">Mot de Passe</a>
-            </li>
-        </ul>
-
-        <div class="tab-content">
-            <div role="tabpanel" class="tab-pane active" id="profil">
-                <div class="star">Le symbole * indique que cette information est nécessaire.</div>
-                <h3>Mon profil</h3>
-                <div class="row">
-                    <div class="col-lg-6 col-sm-6">
-                        <div class="form-group">
-                            {{ form_label(form.lastName, "Nom *") }}
-                            {{ form_widget(form.lastName) }}
-                            <div class="errorForm">{{ form_errors(form.lastName) | striptags }}</div>
-                        </div>
-                    </div>
-                    <div class="col-lg-6 col-sm-6">
-                        <div class="form-group">
-                            {{ form_label(form.firstName, "Prénom *") }}
-                            {{ form_widget(form.firstName) }}
-                            <div class="errorForm">{{ form_errors(form.firstName) | striptags }}</div>
-                        </div>
-                    </div>
+    <div class="jumbotron">
+        <div class="star">Le symbole * indique que cette information est nécessaire.</div>
+        <div class="row">
+            <div class="col-lg-6 col-sm-6">
+                <div class="form-group">
+                    {{ form_label(form.lastName, "Nom *") }}
+                    {{ form_widget(form.lastName) }}
+                    <div class="errorForm">{{ form_errors(form.lastName) | striptags }}</div>
                 </div>
+
+            </div>
+            <div class="col-lg-6 col-sm-6">
+                <div class="form-group">
+                    {{ form_label(form.firstName, "Prénom *") }}
+                    {{ form_widget(form.firstName) }}
+                    <div class="errorForm">{{ form_errors(form.firstName) | striptags }}</div>
+            </div>
+        </div>
+        </div>
                 <div class="row">
                     <div class="col-lg-6 col-sm-6">
                         <div class="form-group">
                             {{ form_label(form.company, "Organisme *") }}
-                            {{ form_widget(form.company) }}
+                            {{ form_widget(form.company, { 'attr':{'disabled':'disabled'} }) }}
                             <div class="errorForm">{{ form_errors(form.company) | striptags }}</div>
                         </div>
                     </div>
@@ -53,54 +42,41 @@
                         </div>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-lg-6 col-sm-6">
-                        <div class="form-group">
-                            {{ form_label(form.phone, "Téléphone *") }}
-                            {{ form_widget(form.phone) }}
-                            <div class="errorForm">{{ form_errors(form.phone) | striptags }}</div>
-                        </div>
-                    </div>
-                    <div class="col-lg-6 col-sm-6">
-                        <div class="form-group">
-                            {{ form_label(form.email, "Email *") }}
-                            {{ form_widget(form.email) }}
-                            <div class="errorForm">{{ form_errors(form.email) | striptags }}</div>
-                        </div>
-                    </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-6 col-sm-6">
+                <div class="form-group">
+                    {{ form_label(form.company, "Organisme *") }}
+                    {{ form_widget(form.company) }}
+                    <div class="errorForm">{{ form_errors(form.company) | striptags }}</div>
                 </div>
             </div>
-
-            <div role="tabpanel" class="tab-pane" id="settings">
-                <div class="star">Le symbole * indique que cette information est nécessaire.</div>
-                <h3>Changer mon mot de passe</h3>
-                <div class="col-lg-6 col-sm-6">
-
-                    {{ form_start(form_password) }}
-                    {{ form_widget(form_password) }}
-
-                    <div class="col-lg-12 col-md-12 text-center">
-                        <button class="btn" type="submit">Valider votre mot de passe</button>
-                    </div>
-                    {{ form_end(form_password) }}
-
-                </div>
-                <div class="col-lg-4 col-sm-4">
-                    <div class="form-group">
-                        <label for="password">Nouveau mot de passe *</label>
-                        <input id="password" type="password" class="form-control" data-error="wrong"
-                               data-success="right">
-                    </div>
-                </div>
-                <div class="col-lg-4 col-sm-4">
-                    <div class="form-group">
-                        <label for="password">Confirmer le nouveau mot de passe *</label>
-                        <input id="password" type="password" class="form-control" data-error="wrong"
-                               data-success="right">
-                    </div>
+            <div class="col-lg-6 col-sm-6">
+                <div class="form-group">
+                    {{ form_label(form.occupation, "Fonction *") }}
+                    {{ form_widget(form.occupation) }}
+                    <div class="errorForm">{{ form_errors(form.occupation) | striptags }}</div>
                 </div>
             </div>
         </div>
+        <div class="row">
+            <div class="col-lg-6 col-sm-6">
+                <div class="form-group">
+                    {{ form_label(form.phone, "Téléphone *") }}
+                    {{ form_widget(form.phone) }}
+                    <div class="errorForm">{{ form_errors(form.phone) | striptags }}</div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-sm-6">
+                <div class="form-group">
+                    {{ form_label(form.email, "Email *") }}
+                    {{ form_widget(form.email) }}
+                    <div class="errorForm">{{ form_errors(form.email) | striptags }}</div>
+                </div>
+            </div>
+        </div>
+
         <div class="col-lg-12 col-md-12 text-center">
             <button class="btn btnSubmit" id="btnSubmit" type="submit">Sauvegarder</button>
         </div>
