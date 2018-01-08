@@ -110,7 +110,6 @@
                     {% endfor %}
                 </div>
                 <div class="img-preview">
-
                     <img id="my-img{{ project.id }}" src="{{ asset(imgBase) }}"
                          class="img-big"/>
                 </div>
@@ -214,7 +213,9 @@
                 <li class="list-group-item">Fonction : {{ project.contactOccupation }}</li>
                 <li class="list-group-item">Email : {{ project.contactEmail }}</li>
                 <li class="list-group-item">Téléphone : {{ project.contactPhone }}</li>
-                <li class="list-group-item">Documents complémentaires : <a href="{{ asset(pdf) }}" target="_parent" title="le fichier">Voir le fichier PDF</a></li>
+                <li class="list-group-item">Documents complémentaires : <a href="{{ asset(pdf) }}" target="_parent"
+                                                                           title="le fichier">Voir le fichier PDF</a>
+                </li>
             </ul>
         </div>
     </div>
@@ -231,6 +232,7 @@
                 $('#success').html(response);
             }
         });
+    });
 
         $("#addFavorite").addClass("hidden");
         $("#btnFavorisDel").removeClass("hidden");

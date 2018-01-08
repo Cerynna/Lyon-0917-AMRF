@@ -25,12 +25,13 @@
                 //['para', ['ul', 'ol']],
             ]
         });
-        setTimeout(function(){
-            $('.notice').fadeOut( "slow", function() {
+        setTimeout(function () {
+            $('.notice').fadeOut("slow", function () {
                 // Animation complete.
             });
         }, 1000);
     });
+
     function deleteFile(file) {
         $.ajax({
             type: "GET",
@@ -40,10 +41,8 @@
             },
             error: function () {
                 alert("la photo ne peu pas être supprimée");
-
             }
         })
-
     }
 </script>
 

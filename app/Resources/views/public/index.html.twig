@@ -1,10 +1,7 @@
 {% extends 'base.html.twig' %}
 {% block title %}Accueil{% endblock %}
 {% block body %}
-{#    {% if is_granted('ROLE_MAYOR') %} JE SUIS UN MAYOR !!!! {% endif %}
-    {% if is_granted('ROLE_PARTNER') %} JE SUIS UN PARTNER !!!! {% endif %}
-    {% if is_granted('ROLE_ADMIN') %} JE SUIS UN ADMIN !!!! {% endif %}
-    #}
+
     {% set moreProject = 'false' %}
     {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
         {% set moreProject = 'true' %}
@@ -18,13 +15,12 @@
                     {% set options = {'thema':'true','pictures':'true','update': 'false', 'more': moreProject, 'project': project} %}
                     {% include 'components/resumeProject.html.twig' with options %}
                 </div>
-             {% endfor %}
+            {% endfor %}
         </div>
     </div>
     <h3>Un outil collaboratif et participatif</h3>
     <div class="row jumbotron">
         <div class="col-md-12">
-
 
             <h3>{{ contents['main-1'].title|raw }}</h3>
             {{ contents['main-1'].content|raw }}
@@ -39,5 +35,4 @@
 
         </div>
     </div>
-
 {% endblock %}
