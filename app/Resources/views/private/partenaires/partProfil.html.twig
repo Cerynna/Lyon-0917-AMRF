@@ -7,7 +7,7 @@
 {% block body %}
     {{ form_start(form) }}
     <h2>Mon profil</h2>
-    <div class="row jumbotron">
+    <div class="jumbotron">
         <div class="star">Le symbole * indique que cette information est nécessaire.</div>
         <div class="row">
             <div class="col-lg-6 col-sm-6">
@@ -16,12 +16,31 @@
                     {{ form_widget(form.lastName) }}
                     <div class="errorForm">{{ form_errors(form.lastName) | striptags }}</div>
                 </div>
+
             </div>
             <div class="col-lg-6 col-sm-6">
                 <div class="form-group">
                     {{ form_label(form.firstName, "Prénom *") }}
                     {{ form_widget(form.firstName) }}
                     <div class="errorForm">{{ form_errors(form.firstName) | striptags }}</div>
+            </div>
+        </div>
+        </div>
+                <div class="row">
+                    <div class="col-lg-6 col-sm-6">
+                        <div class="form-group">
+                            {{ form_label(form.company, "Organisme *") }}
+                            {{ form_widget(form.company, { 'attr':{'disabled':'disabled'} }) }}
+                            <div class="errorForm">{{ form_errors(form.company) | striptags }}</div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-sm-6">
+                        <div class="form-group">
+                            {{ form_label(form.occupation, "Fonction *") }}
+                            {{ form_widget(form.occupation) }}
+                            <div class="errorForm">{{ form_errors(form.occupation) | striptags }}</div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

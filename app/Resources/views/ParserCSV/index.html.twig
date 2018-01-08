@@ -15,9 +15,21 @@
         </ul>
     </div>
     <h1>ParserCSV</h1>
+    {% if csv is defined %}
+        {% for row in csv|batch(3, 'No item') %}
+            <div class="row">
+                {% for column in row %}
+                    {% if column != 'No item' %}
+                        <div class="col-xs-4">
+                            <h5>
+                                <strong>{{ column.0 }}</strong> avec pour code : <strong>{{ column.1 }}</strong><br/>
+                                Motif : {{ column.2 }}
+                            </h5>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        {% endfor %}
 
-    {% if timer is defined %}
-        {{ dump(timer) }}
-        {{ dump(csv) }}
     {% endif %}
 {% endblock %}

@@ -27,11 +27,46 @@
             <li><i class="fa fa-linkedin-square"></i> {{ company.linkedin }} </li>
         </ul>
         <h4>Ajouter aux favoris</h4>
-        <button type="button" id="btnFavoris" class="btnFavoris">
-            <a href="#"></a><i class="fa fa-star-o"></i>
+
+        <button type="button" id="addFavorite" class="btnFavoris {% if favoris == 1 %}hidden{% endif %}">
+            <i class="fa fa-star-o" onclick="addFavorite()"></i>
         </button>
-        <button type="button" id="btnFavorisSelect" class="btnFavoris hidden">
-            <a href="#"></a><i class="fa fa-star"></i>
+
+
+        <button type="button" id="btnFavorisDel" class="btnFavoris {% if favoris == 0 %}hidden{% endif %}">
+            <i class="fa fa-star" onclick="delFavorite()"></i>
         </button>
     </div>
 </div>
+
+
+<script>
+
+    function addFavorite() {
+        $.ajax({
+            type: 'POST',
+            url: '/addFavorite/company/{{ company.id }}',
+            data: $('#addFavorite'),
+            success: function (response) {
+                $('#success').html(response);
+            }
+        });
+
+        $("#addFavorite").addClass("hidden");
+        $("#btnFavorisDel").removeClass("hidden");
+    }
+
+    function delFavorite() {
+        $.ajax({
+            type: 'POST',
+            url: '/delFavorite/company/{{ company.id }}',
+            data: $('#btnFavorisDel'),
+            success: function (response) {
+                $('#success').html(response);
+            }
+        });
+        $("#btnFavorisDel").addClass("hidden");
+        $("#addFavorite").removeClass("hidden");
+    }
+
+</script>

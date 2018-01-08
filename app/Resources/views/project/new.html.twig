@@ -222,33 +222,19 @@
         </div>
         <h5><label>Mots Clé</label></h5>
         <div class="row">
-            <div class="col-sm-4">
-                {% set nbKeyword = form.keyWords|length %}
-                {% set col =  nbKeyword/3 %}
-                {% set col = col|round %}
-                {% for keyWord in form.keyWords %}
-                {{ form_errors(keyWord) }}
-                <div>
-                    <input type="checkbox" id="{{ keyWord.vars.id }}"
-                           name="{{ keyWord.vars.full_name }}" value="{{ keyWord.vars.value }}"
-                            {% if keyWord.vars.checked == true %} checked {% endif %}>
-                    <label for="{{ keyWord.vars.id }}">{{ keyWord.vars.label|slice(0,20) }}</label>
-                </div>
-                {% if (loop.index == col) or (loop.index == col*2) or (loop.index == col*3) %}
-            </div>
-            <div class="col-sm-4">
-                {% endif %}
-                {% endfor %}
-            </div>
+            {{ form_label(edit_form.keyWords, "Saississez jusqu'à 5 mots-clefs") }}
+            <i>Ecrivez les premières lettres du mot et vérifiez qu'il apparaît dans la liste.</i>
+            {{ form_widget(edit_form.keyWords, {'attr': {
+                'placeholder': 'Ecrivez les premières lettres du mot et vérifiez qu\'il apparaît dans la liste.',
+            } }) }}
         </div>
 
     </div>
 
 </div>
 
-
-<input type="submit" value="Edit"/>
-{{ form_end(form) }}
+    {{ form_widget(form._token) }}
+    {{ form_end(form, {'render_rest': false}) }}
 
 <ul>
     <li>

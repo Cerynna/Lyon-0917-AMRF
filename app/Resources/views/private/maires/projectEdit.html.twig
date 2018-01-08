@@ -7,6 +7,7 @@
 
 
 {% block body %}
+
     {% set max = app.request.uri|length %}
     {% set page =  app.request.uri[(max-1):max] %}
 
@@ -88,9 +89,18 @@
                 <a href="{{ path('mayor_project_edit', { 'slug': project.slug, 'page': '5' }) }}">Aperçu</a>
             </li>
         </ul>
-        <div class="text-center">
 
-        </div>
+        {% if erreurs is defined %}
+            <div class="erreur">
+                <h3>Votre projet ne peu pas etre envoyer a la modération</h3>
+                <ul>
+                    {% for erreur in erreurs %}
+                        <li>{{ erreur }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+
+        {% endif %}
 
 
         <div class="tab-content">
@@ -389,7 +399,8 @@
                     {{ form_widget(form.youtube) }}
                 </div>
                 <div class="form-group col-sm-6">
-                    <label for="amrf_publicrooterbundle_project_facebook"><i class="fa fa-facebook-square"></i> Facebook</label>
+                    <label for="amrf_publicrooterbundle_project_facebook"><i class="fa fa-facebook-square"></i>
+                        Facebook</label>
                     {{ form_widget(form.facebook) }}
                 </div>
                 <div class="form-group col-sm-6">
@@ -455,6 +466,8 @@
 {% endblock %}
 {% block javascripts %}
     <script>
+        document.getElementById("projet_keyWords").removeAttribute("required");
+
         function nextStep() {
             $('#page').val('next');
             $("form[name='{{ form.vars.name }}']").submit();
