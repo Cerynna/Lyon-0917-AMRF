@@ -84,15 +84,14 @@ class ParserCSVController extends Controller
     }
 
     /**
-     * @Route("/resultparse/{timer}", name="ResultParse")
+     * @Route("/resultparse/", name="ResultParse")
      */
-    public function resultAction($timer)
+    public function resultAction()
     {
 
         $csv = array_map('str_getcsv', file('ReportNOT.csv'));
 
         return $this->render('ParserCSV/index.html.twig', [
-            'timer' => $timer,
             'csv' => $csv
         ]);
     }
