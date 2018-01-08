@@ -214,21 +214,20 @@
                 <li class="list-group-item">Fonction : {{ project.contactOccupation }}</li>
                 <li class="list-group-item">Email : {{ project.contactEmail }}</li>
                 <li class="list-group-item">Téléphone : {{ project.contactPhone }}</li>
-                <li class="list-group-item">Documents complémentaires : <a href="{{ asset(pdf) }}" target="_parent"
-                                                                           title="le fichier">Voir le fichier PDF</a>
-                </li>
+                <li class="list-group-item">Documents complémentaires : <a href="{{ asset(pdf) }}" target="_parent" title="le fichier">Voir le fichier PDF</a></li>
             </ul>
         </div>
     </div>
 </div>
 
 <script>
-    function addFavorite() {
+
+    function addFavorite(){
         $.ajax({
-            type: 'POST',
-            url: '/addFavorite/project/{{ project.id }}',
-            data: $('#addFavorite'),
-            success: function (response) {
+            type:'POST',
+            url:'/addFavorite/project/{{ project.id }}',
+            data:$('#addFavorite'),
+            success:function(response){
                 $('#success').html(response);
             }
         });
@@ -237,18 +236,17 @@
         $("#btnFavorisDel").removeClass("hidden");
     }
 
-    function delFavorite() {
+    function delFavorite(){
         $.ajax({
-            type: 'POST',
-            url: '/delFavorite/project/{{ project.id }}',
-            data: $('#btnFavorisDel'),
-            success: function (response) {
+            type:'POST',
+            url:'/delFavorite/project/{{ project.id }}',
+            data:$('#btnFavorisDel'),
+            success:function(response){
                 $('#success').html(response);
             }
         });
         $("#btnFavorisDel").addClass("hidden");
         $("#addFavorite").removeClass("hidden");
     }
-
 
 </script>

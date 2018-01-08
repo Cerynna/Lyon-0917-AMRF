@@ -9,8 +9,22 @@
     <h2>Mon profil</h2>
     <!-- Nav tabs -->
     <div class="row tabPannel">
+        <ul class="list-inline text-center visible-xs" role="tablist">
+            <li role="presentation" class="col-xs-6 tabLi active">
+                <a href="#profil" aria-controls="profil" role="tab" data-toggle="tab">Mon Profil</a>
+            </li>
+            <li style="padding-bottom: 30px" role="presentation" class="col-xs-6 tabLi">
+                <a href="#mairie" aria-controls="mairie" role="tab" data-toggle="tab">Ma Mairie</a>
+            </li>
+            <li role="presentation" class="col-xs-6 tabLi">
+                <a href="#reseau" aria-controls="reseau" role="tab" data-toggle="tab">Réseaux Sociaux</a>
+            </li>
+            <li style="padding-bottom: 30px" role="presentation" class="col-xs-6 tabLi">
+                <a href="#settings" aria-controls="settings" role="tab" data-toggle="tab">Mot de Passe</a>
+            </li>
+        </ul>
 
-        <ul class="hidden-xs list-inline text-center" role="tablist">
+        <ul class="list-inline text-center visible-lg visible-sm" role="tablist">
             <li role="presentation" class="tabLi active">
                 <a href="#profil" aria-controls="profil" role="tab" data-toggle="tab">Mon Profil</a>
             </li>
@@ -22,7 +36,7 @@
             </li>
         </ul>
         <!-- Tab panes -->
-        <div class="hidden-xs tab-content">
+        <div class="tab-content">
             <div role="tabpanel" class="tab-pane active" id="profil">
                 <div class="star">Le symbole * indique que cette information est nécessaire.</div>
                 <h3>Mon profil</h3>
@@ -150,20 +164,10 @@
                     <button class="btn" type="submit">Enregistrer vos informations</button>
                 </div>
             </div>
-
-            {{ form_row(form._token) }}
-            {{ form_end(form, {'render_rest': false}) }}
-
-                    <div class="col-lg-12 col-md-12 text-center">
-                        <button class="btn" type="submit">Valider votre mot de passe</button>
-                    </div>
-                    {{ form_end(form_password) }}
-
-                </div>
-            </div>
         </div>
     </div>
-
+{{ form_row(form._token) }}
+            {{ form_end(form, {'render_rest': false}) }}
 {% endblock %}
 {% block javascripts %}
     <script>
@@ -176,64 +180,64 @@
         var population = document.getElementById("mayor_population");
         var submit = document.getElementById("btnSubmit");
 
-       submit.addEventListener("click", function () {
-           var messageFirstName = "";
-           var messageLastName = "";
-           var messagePhone = "";
-           var messageTown = "";
-           var messageZipCode = "";
-           var messagePopulation = "";
+        submit.addEventListener("click", function () {
+            var messageFirstName = "";
+            var messageLastName = "";
+            var messagePhone = "";
+            var messageTown = "";
+            var messageZipCode = "";
+            var messagePopulation = "";
 
 //verif firstname
-           if(firstName.value.length < 2) {
-               messageFirstName += "Votre prénom doit comporter au moins 2 caractères. ";
+            if (firstName.value.length < 2) {
+                messageFirstName += "Votre prénom doit comporter au moins 2 caractères. ";
 
-           }
-           if(firstName.validity.patternMismatch) {
-               messageFirstName += "Votre prénom ne peut contenir de chiffre.";
+            }
+            if (firstName.validity.patternMismatch) {
+                messageFirstName += "Votre prénom ne peut contenir de chiffre.";
 
-           }
+            }
 //verif lastname
 
-           if(lastName.value.length < 2) {
-               messageLastName += "Votre nom doit comporter au moins 2 caractères. ";
+            if (lastName.value.length < 2) {
+                messageLastName += "Votre nom doit comporter au moins 2 caractères. ";
 
-           }
-           if(lastName.validity.patternMismatch) {
-               messageLastName += "Votre nom ne peut contenir de chiffre.";
+            }
+            if (lastName.validity.patternMismatch) {
+                messageLastName += "Votre nom ne peut contenir de chiffre.";
 
-           }
+            }
 //verif phone
 
-           if(phone.validity.patternMismatch) {
-               messagePhone += "Veuillez entrer un numéro au format 0X XX XX XX XX";
+            if (phone.validity.patternMismatch) {
+                messagePhone += "Veuillez entrer un numéro au format 0X XX XX XX XX";
 
-           }
+            }
 
 //verif commune
-           if(town.validity.patternMismatch) {
-               messageTown += "Le nom de votre ville ne peut contenir de chiffre";
+            if (town.validity.patternMismatch) {
+                messageTown += "Le nom de votre ville ne peut contenir de chiffre";
 
-           }
+            }
 
 //verif zipcode
-           if(zipCode.validity.patternMismatch) {
-               messageZipCode += "Veuillez entrer un code postal à 5 chiffres";
+            if (zipCode.validity.patternMismatch) {
+                messageZipCode += "Veuillez entrer un code postal à 5 chiffres";
 
-           }
+            }
 
 //verif population
-           if(population.value > 9999) {
-               messagePopulation += "La population ne peut pas excéder 9999 habitants";
+            if (population.value > 9999) {
+                messagePopulation += "La population ne peut pas excéder 9999 habitants";
 
-           }
+            }
 
-           firstName.setCustomValidity(messageFirstName);
-           lastName.setCustomValidity(messageLastName);
-           phone.setCustomValidity(messagePhone);
-           town.setCustomValidity(messageTown);
-           zipCode.setCustomValidity(messageZipCode);
-           population.setCustomValidity(messagePopulation);
+            firstName.setCustomValidity(messageFirstName);
+            lastName.setCustomValidity(messageLastName);
+            phone.setCustomValidity(messagePhone);
+            town.setCustomValidity(messageTown);
+            zipCode.setCustomValidity(messageZipCode);
+            population.setCustomValidity(messagePopulation);
 
         });
 
