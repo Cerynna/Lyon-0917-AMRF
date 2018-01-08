@@ -36,7 +36,6 @@
                         {% set col =  nbthema/3 %}
                         {% set col = col|round %}
 
-
                         {% for thema in form.themas %}
                         {{ form_errors(thema) }}
                         <div>
@@ -103,7 +102,8 @@
     {% if result is defined %}
         <hr/>
 
-        <h3>{{ result.getTotalItemCount }} projet{% if result.getTotalItemCount > 1 %}s{% endif %} pour votre recherche</h3>
+        <h3>{{ result.getTotalItemCount }} projet{% if result.getTotalItemCount > 1 %}s{% endif %} pour votre
+            recherche</h3>
 
         <div class="jumbotron">
             <div id="map"></div>
@@ -115,7 +115,7 @@
 
             {% if project.project.0.status == 3 %}
                 <a class="anchor" id="result-{{ project.project.0.id }}"></a>
-                <div class="jumbotron row"  >
+                <div class="jumbotron row">
                     {{ project.nb }}
                     {% set options = {'thema':'true','pictures':'true','update': 'false', 'more': 'true', 'project': project.project.0} %}
                     {% include 'components/resumeProject.html.twig' with options %}
@@ -135,11 +135,6 @@
             {% endif %}
         {% endfor %}
     {% endif %}
-{#    <div class="navigation text-center">
-        {{ knp_pagination_render(result) }}
-    </div>#}
-
-
 
 {% endblock %}
 {% block javascripts %}
@@ -168,7 +163,6 @@
                     }
                 })(marker, i));
             }
-
         }
 
         $(document).ready(function () {
@@ -193,7 +187,6 @@
                 },
                 dataType: 'json',
             });
-
         });
 
         $('#search_departement').keyup(function () {
@@ -294,6 +287,5 @@
             $('.result_commune').text("");
 
         }
-
     </script>
 {% endblock %}

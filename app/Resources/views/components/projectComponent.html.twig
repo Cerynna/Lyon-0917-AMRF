@@ -109,7 +109,6 @@
                     {% endfor %}
                 </div>
                 <div class="img-preview">
-
                     <img id="my-img{{ project.id }}" src="{{ asset(imgBase) }}"
                          class="img-big"/>
                 </div>
@@ -213,35 +212,35 @@
                 <li class="list-group-item">Fonction : {{ project.contactOccupation }}</li>
                 <li class="list-group-item">Email : {{ project.contactEmail }}</li>
                 <li class="list-group-item">Téléphone : {{ project.contactPhone }}</li>
-                <li class="list-group-item">Documents complémentaires : <a href="{{ asset(pdf) }}" target="_parent" title="le fichier">Voir le fichier PDF</a></li>
+                <li class="list-group-item">Documents complémentaires : <a href="{{ asset(pdf) }}" target="_parent"
+                                                                           title="le fichier">Voir le fichier PDF</a>
+                </li>
             </ul>
         </div>
     </div>
 </div>
 
 <script>
-
-    $(document).ready(function(){
-        $('#btnFavoris').on('click', function(e){
+    $(document).ready(function () {
+        $('#btnFavoris').on('click', function (e) {
             e.preventDefault();
             $.ajax({
                 url: '{{ path('admin_favorite_new') }}',
                 type: 'POST',
                 cache: false,
-                success: function(data){
+                success: function (data) {
                     alert(data);
                 }
             });
         });
     });
 
-
     function favorite() {
         var xhr = new XMLHttpRequest();
         xhr.open('GET', '{{ path('admin_favorite_new') }}', true);
         xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
         xhr.onreadystatechange = function () {
-            if(xhr.readyState == 4 && xhr.status == 200) {
+            if (xhr.readyState == 4 && xhr.status == 200) {
                 var result = xhr.responseText;
                 console.log('Result: ' + result);
             }
@@ -251,6 +250,4 @@
 
     var button = document.getElementById("btnFavorites");
     button.item().addEventListener("click", favorite);
-
-
 </script>

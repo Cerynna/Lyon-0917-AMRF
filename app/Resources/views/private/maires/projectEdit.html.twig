@@ -5,7 +5,6 @@
     {% include 'components/navbar.html.twig' with options %}
 {% endblock %}
 
-
 {% block body %}
     {% set max = app.request.uri|length %}
     {% set page =  app.request.uri[(max-1):max] %}
@@ -36,7 +35,6 @@
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
     {% endif %}
@@ -44,7 +42,6 @@
     {% if project.file|length < 1 %}
         <div id="modalFileUpload" class="modal fade" role="dialog">
             <div class="modal-dialog">
-
                 <div class="modal-content">
                     <div class="modal-body">
                         <div class="row">
@@ -89,17 +86,13 @@
             </li>
         </ul>
         <div class="text-center">
-
         </div>
-
-
         <div class="tab-content">
             <div role="tabpanel" class="tab-pane {% if page == 1 %} active {% endif %}" id="projet">
                 <div class="star">Le symbole * indique que cette information est nécessaire.</div>
                 <h3>Mon projet</h3>
                 <div class="form-group col-sm-12">
-                    {#<input id="projectName" type="text" class="form-control"
-                           placeholder="Entrez ici le nom de votre projet pour qu'il soit facilement identifiable.">#}
+
                     {{ form_label(form.title, "Titre du projet *") }}
                     {{ form_widget(form.title, {'attr': {
                         'placeholder': 'Entrez ici le nom de votre projet pour qu\'il soit facilement identifiable.'} }) }}
@@ -146,11 +139,6 @@
                         {{ form_widget(form.descResume, {'attr': {
                             'placeholder': 'Saisissez une brève description de votre projet (1 à 2 phrases).',
                             'rows':'3'} }) }}
-                        {# <label for="resume">Résumé du projet*</label>
-                         <textarea id="resume" type="text" class="form-control"
-                                   placeholder="Saisissez une brève description de votre projet (1 à 2 phrases)."
-                                   rows="2"></textarea>#}
-
                     </div>
                 </div>
                 <div class="row">
@@ -200,25 +188,17 @@
                     <div class="form-group col-sm-6">
                         {{ form_label(form.projectDate, "Année de réalisation *") }}
                         {{ form_widget(form.projectDate) }}
-                        {#<label for="year">Année de réalisation *</label>
-                        <input id="year" type="text" class="form-control" placeholder="">#}
                     </div>
                     <div class="form-group col-sm-6">
                         {{ form_label(form.projectDuration, "Durée de réalisation *") }}
                         {{ form_widget(form.projectDuration) }}
-                        {#<label for="time">Durée de réalisation *</label>
-                        <input id="time" type="text" class="form-control" placeholder="">#}
                     </div>
                     <div class="form-group col-sm-6">
                         {{ form_label(form.projectCost, "Coût global *") }}
                         {{ form_widget(form.projectCost) }}
-                        {#<label for="cost">Coût global *</label>
-                        <input id="cost" type="text" class="form-control" placeholder="">#}
                     </div>
 
-
                     <div class="form-group col-sm-6">
-                        {#<label for="cofinance">Cofinancements</label>#}
                         {{ form_label(form.projectCoFinance, "Cofinancements") }}
                         <div class="radio-inline">
                             <label>
@@ -236,9 +216,6 @@
                         </div>
                         {{ form_widget(form.projectCoFinance, {'attr': {
                             'placeholder': 'Saisissez le montant du financement et le partenaire associé'} }) }}
-
-                        {#<input id="divCacher" type="text" name="cofinance" class="form-control"
-                               placeholder="Saisissez le montant du financement et le partenaire associé">#}
                     </div>
                 </div>
                 <div class="form-group col-sm-4" align="left">
@@ -312,11 +289,6 @@
                         'class': 'summernote',
                         'placeholder': "Expliquez ici ce qui vous a été utile et vous a permis d'avancer ou au contraire les pièges à éviter.",
                         'rows':'4'} }) }}
-
-                    {#<label for="conseil">7/ Conseils</label>
-                    <textarea id="conseil" type="text" class="form-control"
-                              placeholder="Expliquez ici ce qui vous a été utile et vous a permis d'avancer ou au contraire les pièges à éviter."
-                              rows="4"></textarea>#}
                 </div>
                 <div class="form-group col-sm-4" align="left">
                     <a onclick="backStep()">
@@ -375,7 +347,6 @@
                             <a href="{{ asset(pdf) }}" target="_parent" title="le fichier">Voir le fichier...</a>
                         </object>
                     {% endif %}
-
                 </div>
                 <h3>Votre projet est visible en ligne ?</h3>
                 <label>Indiquez vos liens ci-dessous</label>
@@ -448,7 +419,6 @@
                     </div>
                 </div>
                 {% include 'components/projectComponent.html.twig' %}
-
             </div>
         </div>
     </div>
@@ -468,7 +438,5 @@
         $(document).ready(function () {
             $('#projet_keyWords').select2();
         });
-
-
     </script>
 {% endblock %}

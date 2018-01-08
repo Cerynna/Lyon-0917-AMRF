@@ -3,7 +3,6 @@
 {% block body %}
     <div id="modalImageUpload" class="modal fade" role="dialog">
         <div class="modal-dialog">
-
             <div class="modal-content">
                 <div class="modal-body">
                     <div class="row">
@@ -42,14 +41,11 @@
                 <button class="fa-admin" data-toggle="tooltip" data-placement="right"
                         title="Supprimer Organisme" type="submit"><i class="fa fa-trash-o"></i></button>
                 {{ form_end(delete_form) }}
-
             </li>
         </ul>
     </div>
     <h1>Company edit</h1>
-
     {{ form_start(edit_form) }}
-
     <div class="form-group row" id="editOrganisme">
         <div class="col-sm-6">
             <div class="col-sm-12">
@@ -82,7 +78,6 @@
                         <i class="fa fa-upload fa-admin" data-toggle="modal" data-target="#modalImageUpload"></i>
                     </div>
                 {% endif %}
-
             </div>
 
             <div class="col-sm-12">
@@ -131,7 +126,6 @@
                     {% set col =  nbact/3 %}
                     {% set col = col|round %}
 
-
                     {% for activity in edit_form.activities %}
                     {{ form_errors(activity) }}
                     <div>
@@ -151,13 +145,13 @@
     </div>
     {{ form_widget(edit_form._token) }}
     {{ form_end(edit_form, {'render_rest': false}) }}
-
 {% endblock %}
 {% block javascripts %}
     <script>
         $(".submitForm").click(function () {
             $("form[name='{{ edit_form.vars.name }}']").submit();
         });
+
         function deleteFile(file) {
             $.ajax({
                 type: "GET",
@@ -170,7 +164,6 @@
 
                 }
             })
-
         }
     </script>
 {% endblock %}

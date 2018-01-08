@@ -27,12 +27,6 @@
         </ul>
     </div>
     <h1>User edit</h1>
-
-    {#{{ form_start(edit_form) }}
-    {{ form_widget(edit_form) }}
-    <input type="submit" value="Edit"/>
-    {{ form_end(edit_form) }}#}
-
     {{ form_start(edit_form) }}
 
     <div class="form-group row" id="editProject">
@@ -179,7 +173,6 @@
 
     </div>
     {{ form_widget(edit_form._token) }}
-
     {{ form_end(edit_form, {'render_rest': false}) }}
 
 {% endblock %}
