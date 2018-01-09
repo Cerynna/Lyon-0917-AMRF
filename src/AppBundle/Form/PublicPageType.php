@@ -16,10 +16,9 @@ class PublicPageType extends AbstractType
         $builder->add('name')
             ->add('date')
             ->add('title')
-            ->add('content')
-        ;
+            ->add('content');
     }
-    
+
     /**
      * {@inheritdoc}
      */
@@ -37,6 +36,4 @@ class PublicPageType extends AbstractType
     {
         return 'publicpage';
     }
-
-
 }
