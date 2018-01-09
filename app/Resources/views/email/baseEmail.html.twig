@@ -14,27 +14,32 @@
         }
 
         header {
-            background: #009E3D;
+            color: #009E3D;
             height: 100px;
             width: 100%;
-        }
-
-        h1 {
-            color: white;
-            font-family: "ERASDEMI", sans-serif;
-            font-size: 3em;
-            margin-left: 250px;
+            text-align: center;
             padding-top: 15px;
         }
 
+        h1 {
+            font-family: "ERASDEMI", sans-serif;
+            font-size: 3em;
+        }
+
         a {
-            color: white;
+            color: #FFF;
+        }
+
+        nav {
+            background: #009E3D;
+            width: 100%;
+
         }
 
         .content {
             width: 80%;
-            max-height: 1200px;
-            margin: 50px auto auto auto;
+
+            margin: 50px auto;
             background-color: lightgrey;
             border-radius: 5px;
             padding: 30px;
@@ -57,6 +62,20 @@
             border-radius: 5px;
             float: left;
         }
+
+        .button {
+            max-width: 200px;
+
+            padding: 20px 50px;
+            background: #009E3D;
+            border-radius: 5px;
+        }
+
+        .link {
+            color: #FFF;
+            font-weight: bold;
+        }
+
     </style>
     <meta charset="UTF-8">
     <meta name="viewport"
@@ -73,7 +92,16 @@
             <img src="{{ asset('/img/AMRF.png') }}" alt="">
         </div>
         <h1>Le Wiki des Maires</h1>
+
     </header>
+<nav>
+    <p><i class="fa fa-quote-left"></i> Des maires au service des maires</p>
+    <ul>
+        <li><a href="http://www.wikidesmaires.amrf.fr">Accueil</a></li>
+        <li><a href="http://www.wikidesmaires.amrf.fr/amrf">AMRF</a></li>
+        <li><a href="http://www.wikidesmaires.amrf.fr/contact">Contact</a></li>
+    </ul>
+    </nav>
     <div class="content">
         {% block body %}
 

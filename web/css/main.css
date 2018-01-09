@@ -2095,6 +2095,13 @@ a.anchor {
   top: -250px;
   visibility: hidden; }
 
+.caution {
+  color: rgba(0, 158, 61, 0.99);
+  margin-top: 10px;
+  margin-left: 30px; }
+  .caution span {
+    font-weight: 700; }
+
 /*
 
 div {

@@ -355,6 +355,15 @@ a.anchor {
   top: -250px;
   visibility: hidden;
 }
+
+.caution {
+  color: $color1;
+  margin-top: 10px;
+  margin-left: 30px;
+  span {
+    font-weight: 700;
+  }
+}
 /*
 
 div {

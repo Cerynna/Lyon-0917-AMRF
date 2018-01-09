@@ -9,6 +9,7 @@
 namespace AppBundle\Service;
 
 
+use AppBundle\Entity\ChangePassword;
 use AppBundle\Entity\User;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
@@ -31,26 +32,56 @@ class ChangePassService
     public function changePassword(User $user, $oldPassword, $newPassword)
     {
         if ($this->passwordEncoder->isPasswordValid($user, $oldPassword)) {
-            $user->setPassword($this->passwordEncoder->encodePassword($user, $newPassword));
-            $this->em->persist($user);
-            $this->em->flush();
-            $messageconfirm = [
-                'to' => $user->getEmail(),
-                'type' => EmailService::TYPE_MAIL_CONFIRM_PASSWORD['key'],
-                'login' => $user->getLogin(),
-            ];
-            $this->emailService->sendEmail($messageconfirm);
-
-            $result['message'] = "Votre nouveau mot de passe a bien été enregistré. Merci de vous reconnecter";
-            $result['redirect'] = true;
-
-
-        }
-        else {
+            $result = $this->changeTokenPassword($user, $newPassword);
+        } else {
             $result['message'] = "Le mot de passe saisi ne correspond pas. Veuillez saisir à nouveau votre mot de passe";
             $result['redirect'] = false;
         }
         return $result;
 
+    }
+
+    public function changeTokenPassword(User $user, $newPassword){
+        $user->setPassword($this->passwordEncoder->encodePassword($user, $newPassword));
+        $this->em->persist($user);
+        $this->em->flush();
+        $messageconfirm = [
+            'to' => $user->getEmail(),
+            'type' => EmailService::TYPE_MAIL_CONFIRM_PASSWORD['key'],
+            'login' => $user->getLogin(),
+        ];
+        $this->emailService->sendEmail($messageconfirm);
+
+        $result['message'] = "Votre nouveau mot de passe a bien été enregistré. Merci de vous reconnecter";
+        $result['redirect'] = true;
+
+        return $result;
+    }
+
+    public function forgotPassword($email)
+    {
+
+        $result = [];
+        $user = $this->em->getRepository("AppBundle:User")->findByEmail($email);
+        if ($user != null) {
+            $forgot = new ChangePassword();
+            $forgot->setIdUser($user[0]->getId());
+            $forgot->setDate(new \DateTime('now'));
+            $forgot->setStatus(0);
+            $this->em->persist($forgot);
+            $this->em->flush();
+            $message = [
+                'to' => $user[0]->getEmail(),
+                'type' => EmailService::TYPE_MAIL_FORGOT_PASSWORD['key'],
+                'token' => $forgot->getToken(),
+            ];
+            $this->emailService->sendEmail($message);
+            $result['message'] = "Un email de réinitialisation vous a été envoyé";
+            $result['redirect'] = true;
+        } else {
+            $result['message'] = "Cet email n'existe pas dans la liste des utilisateurs du Wiki des Maires. Merci de saisir l'email utilisé lors de votre enregistrement";
+            $result['redirect'] = false;
+        }
+        return $result;
     }
 }

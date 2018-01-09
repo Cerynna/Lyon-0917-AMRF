@@ -50,6 +50,11 @@ class EmailService
         'renderHtml' => 'email/projectModer.html.twig',
         'renderTxt' => 'email/projectModer.txt.twig',
     ];
+    const TYPE_MAIL_FORGOT_PASSWORD = [
+        'key' => 8,
+        'renderHtml' => 'email/forgotPass.html.twig',
+        'renderTxt' => 'email/forgotPass.txt.twig',
+    ];
 
     protected $mailer;
 
@@ -179,6 +184,19 @@ class EmailService
                 $message->addPart(
                     $this->twig->render(self::TYPE_MAIL_PROJECT_MODER['renderTxt'], [
                         'message' => $mail['message'],
+                    ]), 'text/plain');
+                break;
+
+            case self::TYPE_MAIL_FORGOT_PASSWORD['key']:
+                $message->setSubject("Réinitialisation du mot de passe");
+                $message->setBody(
+                    $this->twig->render(self::TYPE_MAIL_FORGOT_PASSWORD['renderHtml'], [
+                            'token' => $mail['token'],
+                        ]
+                    ), 'text/html');
+                $message->addPart(
+                    $this->twig->render(self::TYPE_MAIL_FORGOT_PASSWORD['renderTxt'], [
+                        'token' => $mail['token'],
                     ]), 'text/plain');
                 break;
 
