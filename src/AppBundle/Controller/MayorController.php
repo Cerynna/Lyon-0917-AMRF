@@ -80,7 +80,7 @@ class MayorController extends Controller
     public function mayorProjectAction()
     {
         $user = $this->getUser();
-        $mayorid = $user->getMayor()->getid();
+        $mayorid = $user->getMayor()->getId();
 
         $em = $this->getDoctrine()->getManager();
         $projects = $em->getRepository("AppBundle:Project")->getProjectByMayor($mayorid);
