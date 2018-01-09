@@ -27,7 +27,7 @@ class ChangePasswordType extends AbstractType
                 'first_options' => array('label' => 'Nouveau mot de passe'),
                 'second_options' => array('label' => 'Confirmez votre mot de passe'),
             ))
-            ->add('email')
+            ->add('email', TextType::class, array('label' => 'Saisissez votre email'))
         ;
     }
 

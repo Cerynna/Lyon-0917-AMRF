@@ -26,19 +26,40 @@
             font-size: 3em;
         }
 
-        a {
-            color: #FFF;
-        }
-
         nav {
             background: #009E3D;
             width: 100%;
+            height: 50px;
+            display: flex;
+        }
 
+        ul {
+
+            text-align: right;
+            margin-left: 40%;
+            padding-bottom: 10px;
+        }
+
+        li {
+            display: inline;
+            padding-right: 30px;
+            font-size: 1.3em;
+        }
+
+        h2 {
+            color: white;
+            margin-left: 20px;
+            font-style: italic;
+        }
+
+        a {
+            color: #FFF;
+            text-decoration: none;
+            font-weight: bold;
         }
 
         .content {
             width: 80%;
-
             margin: 50px auto;
             background-color: lightgrey;
             border-radius: 5px;
@@ -53,6 +74,11 @@
             width: 100%;
             height: 60px;
             color: white;
+            display: flex;
+        }
+
+        .footer a {
+            margin-left: 30px;
         }
 
         img {
@@ -65,7 +91,6 @@
 
         .button {
             max-width: 200px;
-
             padding: 20px 50px;
             background: #009E3D;
             border-radius: 5px;
@@ -85,29 +110,25 @@
 </head>
 <body>
 
-
 <div class="container">
     <header>
         <div class="logo">
             <img src="{{ asset('/img/AMRF.png') }}" alt="">
         </div>
         <h1>Le Wiki des Maires</h1>
-
     </header>
-<nav>
-    <p><i class="fa fa-quote-left"></i> Des maires au service des maires</p>
-    <ul>
-        <li><a href="http://www.wikidesmaires.amrf.fr">Accueil</a></li>
-        <li><a href="http://www.wikidesmaires.amrf.fr/amrf">AMRF</a></li>
-        <li><a href="http://www.wikidesmaires.amrf.fr/contact">Contact</a></li>
-    </ul>
+    <nav>
+        <h2>" Des maires au service des maires</h2>
+        <ul>
+            <li><a href="http://wikidesmaires.amrf.fr">Accueil</a></li>
+            <li><a href="http://wikidesmaires.amrf.fr/amrf">AMRF</a></li>
+            <li><a href="http://wikidesmaires.amrf.fr/contact">Contact</a></li>
+        </ul>
     </nav>
     <div class="content">
         {% block body %}
 
         {% endblock %}
-
-
     </div>
 </div>
 <div class="footer">
