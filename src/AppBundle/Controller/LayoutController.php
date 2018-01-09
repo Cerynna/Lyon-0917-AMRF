@@ -8,7 +8,9 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\Search;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Class LayoutController
@@ -29,4 +31,18 @@ class LayoutController extends Controller
             'footer' => $footer,
         ));
     }
+    /**
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function searchHeaderAction(Request $request)
+    {
+        $search = new Search();
+        $form = $this->createForm('AppBundle\Form\SearchType', $search);
+        $form->handleRequest($request);
+
+        return $this->render(':components:headerSearch.html.twig', [
+            'form' => $form->createView(),
+        ]);
+    }
+
 }

@@ -1,0 +1,16 @@
+{{ form_start(form) }}
+<form action="">
+    <ul>
+        <li>
+            {{ form_widget(form.texts, {'attr': {
+                'class': 'form-control',
+                'placeholder': "Rechercher une fiche projet"
+            } }) }}
+        </li>
+        <li>
+            <button type="submit" class="btn"><i class="fa fa-search"></i></button>
+        </li>
+    </ul>
+</form>
+{{ form_widget(form._token) }}
+{{ form_end(form, {'render_rest': false}) }}

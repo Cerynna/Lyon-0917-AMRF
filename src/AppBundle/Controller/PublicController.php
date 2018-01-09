@@ -2,6 +2,7 @@
 
 namespace AppBundle\Controller;
 
+
 use AppBundle\Entity\Company;
 use AppBundle\Entity\Contact;
 use AppBundle\Entity\Dictionary;
@@ -181,6 +182,13 @@ class PublicController extends Controller
     {
         // get the login error if there is one
         $error = $authUtils->getLastAuthenticationError();
+        if (!empty($error))
+        {
+            $this->addFlash(
+                'notice',
+                'Votre login ou votre mot de passe est invalide'
+            );
+        }
         // last username entered by the user
         $lastUsername = $authUtils->getLastUsername();
         return $this->render('public/login.html.twig', array(

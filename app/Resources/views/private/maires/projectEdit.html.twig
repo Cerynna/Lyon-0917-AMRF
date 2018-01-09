@@ -1,9 +1,5 @@
 {% extends 'base.html.twig' %}
 {% block title %}Formulaire fiche projet{% endblock %}
-{% block navbar %}
-    {% set options = {'status':1} %}
-    {% include 'components/navbar.html.twig' with options %}
-{% endblock %}
 
 {% block body %}
     {% set max = app.request.uri|length %}
@@ -433,6 +429,8 @@
 {% endblock %}
 {% block javascripts %}
     <script>
+        document.getElementById("projet_keyWords").removeAttribute("required");
+
         function nextStep() {
             $('#page').val('next');
             $("form[name='{{ form.vars.name }}']").submit();

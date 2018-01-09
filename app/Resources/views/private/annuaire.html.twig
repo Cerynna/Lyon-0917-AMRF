@@ -1,9 +1,6 @@
 {% extends 'base.html.twig' %}
 {% block title %}Annuaire des partenaires{% endblock %}
-    {% block navbar %}
-        {% set options = {'status':2} %}
-        {% include 'components/navbar.html.twig' with options %}
-    {% endblock %}
+
 {% block body %}
     <h2>Annuaire des partenaires</h2>
     <form action="{{ path('directory') }}" method="get" name="filter">
