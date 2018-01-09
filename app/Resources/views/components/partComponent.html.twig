@@ -26,16 +26,19 @@
             <li><i class="fa fa-twitter-square"></i> {{ company.twitter }}</li>
             <li><i class="fa fa-linkedin-square"></i> {{ company.linkedin }} </li>
         </ul>
+        {% if favoris is defined %}
         <h4>Ajouter aux favoris</h4>
 
-        <button type="button" id="addFavorite" class="btnFavoris {% if favoris is defined and favoris == 1 %}hidden{% endif %}">
+        <button type="button" id="addFavorite" class="btnFavoris {% if favoris == 1 %}hidden{% endif %}">
             <i class="fa fa-star-o" onclick="addFavorite()"></i>
         </button>
 
 
-        <button type="button" id="btnFavorisDel" class="btnFavoris {% if favoris is defined and favoris == 0 %}hidden{% endif %}">
+        <button type="button" id="btnFavorisDel" class="btnFavoris {% if favoris == 0 %}hidden{% endif %}">
             <i class="fa fa-star" onclick="delFavorite()"></i>
         </button>
+        {% endif %}
+
     </div>
 </div>
 

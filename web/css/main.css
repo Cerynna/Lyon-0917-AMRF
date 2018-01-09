@@ -473,23 +473,35 @@ header {
 h5 {
   font-size: 1.5em; }
 
-.containerConnect .card {
-  width: 100%;
-  margin: 20px;
-  padding: 20px; }
-
-.formConnect {
-  width: 100%;
-  padding: 20px 20px 0px 20px;
-  -webkit-border-radius: 5px;
-  -moz-border-radius: 5px;
-  -ms-border-radius: 5px;
-  border-radius: 5px; }
-
 .containerConnect {
   display: flex;
   flex-direction: row;
   justify-content: space-around; }
+  .containerConnect input {
+    width: 90%;
+    margin-left: 5%;
+    margin-right: 5%; }
+  .containerConnect [class*="col-"] {
+    padding: 5px; }
+  .containerConnect .card {
+    width: 100%;
+    margin: 20px;
+    padding: 10px; }
+  .containerConnect .row {
+    width: 100%; }
+  .containerConnect .maire {
+    background: #90caf9;
+    width: 100%; }
+  .containerConnect .part {
+    background: #8baf8b;
+    width: 100%; }
+
+.formConnect {
+  width: 100%;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  border-radius: 5px; }
 
 .form-control:focus {
   border: 2px solid rgba(0, 158, 61, 0.99);
@@ -646,7 +658,10 @@ nav {
     font-weight: bold; }
   nav .dropdown-header {
     font-size: 1.5em;
-    color: #cbcbcb; }
+    color: #ffffff;
+    text-decoration: underline;
+    line-height: 1em;
+    margin-top: 20px; }
   nav .dropdown-submenu {
     position: relative; }
   nav .dropdown-submenu > .dropdown-menu {

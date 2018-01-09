@@ -1,7 +1,7 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: cerynna
+ * User: mateevd
  * Date: 22/11/17
  * Time: 11:54
  */
@@ -19,7 +19,8 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 
 class LoadUser extends Fixture implements FixtureInterface, ContainerAwareInterface
 {
-	private $container;
+	protected $container;
+
 	const MAX_USER = 20;
 	public function load(ObjectManager $em)
 	{
@@ -46,6 +47,6 @@ class LoadUser extends Fixture implements FixtureInterface, ContainerAwareInterf
 	}
 	public function setContainer(ContainerInterface $container = null)
 	{
-		$this->container = $container;
+			$this->container = $container;
 	}
 }

@@ -1,9 +1,5 @@
 {% extends 'base.html.twig' %}
 {% block title %}Formulaire fiche projet{% endblock %}
-{% block navbar %}
-    {% set options = {'status':1} %}
-    {% include 'components/navbar.html.twig' with options %}
-{% endblock %}
 
 {% block body %}
     {% set max = app.request.uri|length %}
@@ -85,8 +81,16 @@
                 <a href="{{ path('mayor_project_edit', { 'slug': project.slug, 'page': '5' }) }}">Aperçu</a>
             </li>
         </ul>
-        <div class="text-center">
-        </div>
+        {% if erreurs is defined %}
+            <div class="erreur">
+                <h3>Votre projet ne peut pas être envoyé en modération</h3>
+                <ul>
+                    {% for erreur in erreurs %}
+                        <li>{{ erreur }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        {% endif %}
         <div class="tab-content">
             <div role="tabpanel" class="tab-pane {% if page == 1 %} active {% endif %}" id="projet">
                 <div class="star">Le symbole * indique que cette information est nécessaire.</div>
@@ -425,6 +429,8 @@
 {% endblock %}
 {% block javascripts %}
     <script>
+        document.getElementById("projet_keyWords").removeAttribute("required");
+
         function nextStep() {
             $('#page').val('next');
             $("form[name='{{ form.vars.name }}']").submit();
