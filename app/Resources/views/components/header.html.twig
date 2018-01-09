@@ -1,0 +1,38 @@
+<div id="stickHeader">
+    <div class="container-fluid hidden-t-p hidden-s">
+        <div class="row">
+            <div class="col-md-3">
+                <a class="" href="{{ path('home') }}"><img src="{{ asset('/img/AMRF.png') }}" alt=""></a>
+            </div>
+            <div class="col-md-6">
+                <div id="search" class="hidden-t-l">
+                    {#
+                    A Voir si on met la bar de recherche en active même sur ce page et plutôt gérer la sessions
+                    #}
+                    {% if is_granted('IS_AUTHENTICATED_REMEMBERED') == true %}
+                        {{ render(controller(
+                        'AppBundle:Layout:searchHeader'
+                        )) }}
+                    {% endif %}
+                </div>
+            </div>
+            <div class="col-md-3 text-right">
+                {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+                    <a class="btn hidden-t-l" href="{{ path('logout') }}">Déconnection</a>
+                {% else %}
+                    <div class="btn hidden-t-l" data-toggle="modal" data-target="#formConnect">
+                        Accédez à votre espace
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="titleHeader">
+    <a href="{{ path('home') }}" id="title"><h1>Le Wiki des Maires</h1></a>
+    <div class="baseline visible-xs visible-sm">
+        <span>DES MAIRES AU SERVICE DES MAIRES</span>
+    </div>
+</div>
+

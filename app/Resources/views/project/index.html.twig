@@ -1,0 +1,174 @@
+{% extends 'private/admin/baseAdmin.html.twig' %}
+
+{% block body %}
+
+    <div class="menu-admin menu-project">
+        <ul>
+            <li>
+                <a href="{{ path('admin_project_index') }}" data-toggle="tooltip" data-placement="right"
+                   title="Liste Projets"><i class="fa fa-archive fa-admin"></i></a>
+            </li>
+            <li>
+                <a href="{{ path('admin_project_new') }}" data-toggle="tooltip" data-placement="right"
+                   title="Nouveau Projet"><i
+                            class="fa fa-plus fa-admin"></i></a>
+            </li>
+        </ul>
+    </div>
+    <h1>Liste des projets</h1>
+
+    <div class="jumbotron row">
+        <form action="{{ path('admin_project_index') }}" method="get" name="filter">
+            <div class="col-xs-12">
+                <label for="title">Title</label>
+                <input value="{{ title }}" name="title" type="text" onchange="sendFilter()">
+
+                <label for="name">Theme</label>
+                <input value="{{ value }}" type="text" name="value" onchange="sendFilter()">
+
+                {#{{ include(':components:thematiques.html.twig') }}#}
+                <input {% if status == 1 %} checked {% endif %} name="status" id="brouillon" value="1" type="radio"
+                                                                multiple
+                                                                onchange="sendFilter()">
+                <label for="brouillon">Brouillon</label>
+
+                <input {% if status == 2 %} checked {% endif %} name="status" id="attente" value="2" type="radio"
+                                                                multiple
+                                                                onchange="sendFilter()">
+                <label for="attente">En attente</label>
+
+                <input {% if status == 3 %} checked {% endif %} name="status" id="publier" value="3" type="radio"
+                                                                multiple
+                                                                onchange="sendFilter()">
+                <label for="publier">Publier</label>
+
+
+                <button type="submit" class="btn btn-default btn-sm"><i class="fa fa-search" aria-hidden="true"></i>
+                    Filter
+                </button>
+
+                <a href="{{ path('admin_project_index') }}" data-toggle="tooltip" data-placement="right"
+                   title="Reset des filtres"><i class="fa fa-refresh"></i> RESET FILTER</a>
+
+                {#  C'est quoi ca ? #}
+                {% set queryParams = app.request.query.all %}
+
+                {% if queryParams is not empty %}{{ app.request.query.get('title') }}{% endif %}
+                {% if queryParams is not empty %}{{ app.request.query.get('value') }}{% endif %}
+            </div>
+        </form>
+    </div>
+    {% for key, project in projects %}
+        <h5 data-toggle="collapse" data-target="#project_{{ key }}">
+            <div class="row">
+                <div class="col-xs-1">
+                    <a href="{{ path('admin_project_show', { 'slug': project.slug }) }}"><i
+                                class="fa fa-eye fa-admin-mini"></i></a>
+                    <a href="{{ path('admin_project_edit', { 'slug': project.slug }) }}"><i
+                                class="fa fa-pencil fa-admin-mini"></i></a>
+                </div>
+                <div class="col-xs-1">
+                    {% if project.status == 1 %}
+                        <span class="label label-primary"><i class="fa fa-cog"></i> Brouillon</span>
+                    {% elseif project.status == 2 %}
+                        <span class="label label-primary"><i class="fa fa-flag"></i> En attente</span>
+                    {% elseif project.status == 3 %}
+                        <span class="label label-primary"><i class="fa fa-check"></i> Publier</span>
+                    {% else %}
+                        <span class="label label-primary"><i class="fa fa-cog"></i> Brouillon</span>
+                    {% endif %}
+                </div>
+                <div class="col-xs-2">
+                    {{ project.title|slice(0,20) }}
+                </div>
+                <div class="col-xs-3">
+                    {% for theme in project.themes %}
+                        <span class="label label-primary">{{ theme.name }}</span>
+                    {% endfor %}
+                </div>
+                <div class="col-xs-2">
+                    <span class="label label-success">{{ project.mayor.zipCode }}</span>
+                    <span class="label label-success">{{ project.mayor.town|slice(0,30) }}</span>
+                </div>
+                <div class="col-xs-1">
+                    <span class="label label-primary">
+                        <i class="fa fa-calendar-o"></i>
+                        {% if project.creationDate %}{{ project.creationDate|date('d-m-Y') }}{% endif %}
+                    </span>
+                </div>
+                <div class="col-xs-1">
+                    <span class="label label-primary">
+                        <i class="fa fa-calendar-plus-o"></i>
+                        {% if project.updateDate %}{{ project.updateDate|date('d-m-Y') }}{% endif %}
+                    </span>
+                </div>
+                <div class="col-xs-1 text-right">
+                    <span class="caret"></span>
+                </div>
+            </div>
+        </h5>
+        <div id="project_{{ key }}" class="collapse">
+
+            <div class=" jumbotron">
+                <div class="row">
+                    <div class="col-xs-2">
+
+                        {% for theme in project.themes %}
+                            <span class="label label-primary">{{ theme.name }}</span>
+                        {% endfor %}
+
+                    </div>
+                    <div class="col-xs-2">
+                        {% for img in project.images %}
+                            <img src="{{ img }}" alt="" width="50px">
+                        {% endfor %}
+
+                    </div>
+                    <div class="col-xs-2">
+                        <a href="{{ project.url }}"><i class="fa fa-link fa-admin"></i></a>
+                        <a href="{{ project.youtube }}"><i class="fa fa-youtube-square fa-admin"></i></a>
+                        <a href="{{ project.facebook }}"><i class="fa fa-facebook-square fa-admin"></i></a>
+                        <a href="{{ project.twitter }} "><i class="fa fa-twitter-square fa-admin"></i></a>
+                    </div>
+                    <div class="col-xs-2">
+
+                    </div>
+                    <div class="col-xs-3">
+                        <table>
+                            <thead>
+                            <tr>
+                                <th>Date du Projet</th>
+                                <th>Durée</th>
+                                <th>Cout</th>
+                                <th>Cofinancement</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td>{% if project.projectDate %}{{ project.projectDate|date('d-m-Y') }}{% endif %}</td>
+                                <td>{{ project.projectDuration }}</td>
+                                <td>{{ project.projectCost }}</td>
+                                <td>{{ project.projectCoFinance }}</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+    <div class="navigation text-center">
+        {{ knp_pagination_render(projects) }}
+    </div>
+
+    <script>
+        function sendFilter() {
+            $("form[name='filter']").submit();
+        }
+
+        $(document).ready(function () {
+            $('[data-toggle="tooltip"]').tooltip();
+        });
+
+    </script>
+{% endblock %}

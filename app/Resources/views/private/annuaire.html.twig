@@ -1,0 +1,100 @@
+{% extends 'base.html.twig' %}
+{% block title %}Annuaire des partenaires{% endblock %}
+
+{% block body %}
+    <h2>Annuaire des partenaires</h2>
+    <form action="{{ path('directory') }}" method="get" name="filter">
+        <div class="row jumbotron">
+            <h3>Choisir par nom</h3>
+            <div class="col-md-12 text-center">
+                <ul class="pagination">
+                    {% for letter in 'a'|upper..'z'|upper %}
+                        <li>
+                            <input hidden type="radio" name="alphabet" value="{{ letter }}"
+                                   id="{{ letter }}" {% if letter in filter.alphabet %} checked {% endif %}
+                                   onclick="sendFilter()"/>
+                            <label for="{{ letter }}"> {{ letter }}</label>
+                        </li>
+                    {% endfor %}
+                    <li>
+                        <input hidden type="radio" name="alphabet" value=""
+                               id="reset" onclick="sendFilter()"/>
+                        <label for="reset"><i class="fa fa-refresh"></i></label>
+                    </li>
+                </ul>
+            </div>
+            <h3>Choisir par secteur d'activité</h3>
+            <div class="col-md-12">
+
+                <div class="row scroll-in">
+                    <div class="col-sm-3">
+                        {% set nbthema = activities|length %}
+                        {% set col =  nbthema/4 %}
+                        {% set col = col|round %}
+                        {% for activity in activities %}
+
+                        <div>
+                            <input type="checkbox" id="{{ activity.id }}"
+                                   name="activity[]"
+                                   value="{{ activity.id }}"{% if activity.id in filter.activity %} checked {% endif %}
+                                   onclick="sendFilter()">
+                            <label for="{{ activity.id }}">{{ activity.name }}</label>
+                        </div>
+                        {% if (loop.index == col) or (loop.index == col*2) or (loop.index == col*3) %}
+                    </div>
+                    <div class="col-sm-3">
+                        {% endif %}
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+    <!-- results -->
+    <h3>{{ companies.getTotalItemCount }} partenaire{% if companies.getTotalItemCount > 1 %}s{% endif %} pour votre
+        recherche</h3>
+    {% for company in companies %}
+        <div class="row jumbotron">
+            <div class="panel-group" id="{{ company.id }}" role="tablist" aria-multiselectable="true">
+                <a data-toggle="collapse" data-parent="#{{ company.id }}" href="#collapse{{ company.id }}"
+                   aria-expanded="true" aria-controls="collapse{{ company.id }}">
+                    <div class="row">
+                        <div class="panel-heading" role="tab" id="heading{{ company.id }}">
+                            <div class="col-xs-2 text-center">
+                                <img src="{{ asset("upload/company/1/file/"~ company.logo ) }}" height="70px">
+                            </div>
+                            <div class="col-xs-5">
+                                <h3>{{ company.name }}</h3>
+                                {% for activity in company.activities %}
+                                    <span class="label label-success">{{ activity.name }}</span>
+                                {% endfor %}
+                            </div>
+                            <div class="col-xs-4 text-center">
+                            </div>
+                            <div class="col-xs-1 text-right">
+                                <div class="btn btn-collapse"><i class="fa fa-angle-double-down"></i></div>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+                <div id="collapse{{ company.id }}" class="panel-collapse collapse" role="tabpanel"
+                     aria-labelledby="heading{{ company.id }}">
+                    {% include 'components/partComponent.html.twig' %}
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+
+    <div class="navigation text-center">
+        {{ knp_pagination_render(companies) }}
+    </div>
+
+    <script>
+        function sendFilter() {
+            $("form[name='filter']").submit();
+        }
+    </script>
+{% endblock %}
+
+
+

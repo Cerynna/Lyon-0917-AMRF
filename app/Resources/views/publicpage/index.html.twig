@@ -1,0 +1,43 @@
+{% extends 'private/admin/baseAdmin.html.twig' %}
+
+{% block body %}
+    <div class="menu-admin menu-publicpage">
+        <ul>
+            <li>
+                <a href="{{ path('admin_publicpage_index') }}" data-toggle="tooltip" data-placement="right"
+                   title="Liste Utilisateur"><i class="fa fa-book fa-admin"></i></a>
+            </li>
+            <li>
+                <a href="{{ path('admin_publicpage_new') }}" data-toggle="tooltip" data-placement="right"
+                   title="Nouvel Utilisateur"><i
+                            class="fa fa-plus fa-admin"></i></a>
+            </li>
+        </ul>
+    </div>
+    <h1>Liste des pages publiques</h1>
+
+    <table>
+        <thead>
+        <tr>
+            <th>Actions</th>
+            <th>Titre</th>
+            <th>Content</th>
+
+        </tr>
+        </thead>
+        <tbody>
+        {% for publicPage in publicPages %}
+            <tr>
+                <td>
+                    <a href="{{ path('admin_publicpage_show', { 'id': publicPage.id }) }}" data-toggle="tooltip"
+                       data-placement="left" title="Voir"><i class="fa fa-eye fa-admin"></i></a>
+                    <a href="{{ path('admin_publicpage_edit', { 'id': publicPage.id }) }}" data-toggle="tooltip"
+                       data-placement="right" title="Editer"><i class="fa fa-pencil fa-admin"></i></a>
+                </td>
+                <td>{{ publicPage.title }}</td>
+                <td>{{ publicPage.content|raw }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

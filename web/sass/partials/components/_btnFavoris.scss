@@ -1,31 +1,8 @@
-.btnFavoris, .btnFavorisPart {
-  background-color: $color2;
-  border-radius: 50%;
-  border-style: none;
-  width: 50px;
-  height: 50px;
-  outline: none;
-  font-size: 1.5em;
-  @include boxShadow(0.05em, rgba(0, 0, 0, 0.2));
+.btnFavoris, .btnFavorisPart, .btnFavorisSelect {
+  border : hidden;
+  background-color: transparent;
+  font-size: 2em;
   i {
     color: $color1;
-  }
-}
-
-.btnFavorisPart {
-  float: left;
-  margin-top: 10px;
-}
-
-.btnFavorisTest {
-  background-color: $color1;
-  border-radius: 50%;
-  font-size: 1.8em;
-  width: 50px;
-  height: 50px;
-  text-decoration: none;
-  @include boxShadow(0.05em, rgba(0, 0, 0, 0.2));
-  i {
-    color: $color2;
   }
 }

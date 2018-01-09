@@ -14,33 +14,69 @@ $(window).on('scroll', function () {
 });
 */
 
+
+$("input.check-limit").click(function() {
+    var bol = $("input.check-limit:checked").length >= 3;
+    $("input.check-limit").not(":checked").attr("disabled",bol);
+});
+
+var last_valid_selection = null;
+
+$('.select-limit').change(function(event) {
+
+    if ($(this).val().length > 5) {
+
+        $(this).val(last_valid_selection);
+    } else {
+        last_valid_selection = $(this).val();
+    }
+});
+
+
 $(document).ready(function () {
 
-    $("textarea").attr("maxlength", 1200);
 
-//NavBar
-    /* $("#navbar").sticky({topSpacing: 150, zIndex: 6});*/
-    /*$("#search").sticky({topSpacing: 0, zIndex: 6,getWidthFrom: "500px", center: true});*/
-
-    //CAROUSSEL
-    $('#myCarousel').carousel({
-        interval: 3000
-    });
-
-    //Limit Checkbox
-    var cb = document.querySelectorAll("[class=check-limit]");
-    var i = 0,
-        l = cb.length;
-    for (; i < l; i++)
-        cb[i].addEventListener("change", function () {
-            if (document.querySelectorAll(":checked").length > 3)
-                this.checked = false;
-        }, false);
 
     //Modal de connection
     $('#formConnect').on('shown.bs.modal', function () {
         $('#myInput').focus()
     });
+
+    $("textarea").attr("maxlength", 1200);
+
+    //Swiper
+    var swiper = new Swiper ('.swiper-container', {
+        // Optional parameters
+        loop: true,
+        spaceBetween: 30,
+        hashNavigation: {
+            watchState: true
+        },
+
+        // If we need pagination
+        pagination: {
+            el: '.swiper-pagination',
+            clickable: true
+        },
+
+        // Navigation arrows
+        navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev'
+        },
+
+        // And if we need scrollbar
+        scrollbar:{
+            el: '.swiper-scrollbar'
+        }
+    });
+
+    //CAROUSSEL
+    $('#myCarousel').carousel({
+        interval: 5000
+    });
+
+
 });
 
 function showImg(idimg, img) {
@@ -50,3 +86,4 @@ function showImg(idimg, img) {
 function hideImg(idimg, img) {
     document.getElementById(idimg).setAttribute('src', img);
 }
+

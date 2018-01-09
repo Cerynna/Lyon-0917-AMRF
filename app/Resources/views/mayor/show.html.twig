@@ -1,0 +1,96 @@
+{% extends 'private/admin/baseAdmin.html.twig' %}
+
+{% block body %}
+    <h1>Mayor</h1>
+
+    <table>
+        <tbody>
+        <tr>
+            <th>Id</th>
+            <td>{{ mayor.id }}</td>
+        </tr>
+        <tr>
+            <th>Prénom</th>
+            <td>{{ mayor.firstName }}</td>
+        </tr>
+        <tr>
+            <th>Nom</th>
+            <td>{{ mayor.lastName }}</td>
+        </tr>
+        <tr>
+            <th>Adresse</th>
+            <td>{{ mayor.address }}</td>
+        </tr>
+        <tr>
+            <th>Insee</th>
+            <td>{{ mayor.insee }}</td>
+        </tr>
+        <tr>
+            <th>Email</th>
+            <td>{{ mayor.email }}</td>
+        </tr>
+        <tr>
+            <th>Téléphone</th>
+            <td>{{ mayor.phone }}</td>
+        </tr>
+        <tr>
+            <th>ville</th>
+            <td>{{ mayor.town }}</td>
+        </tr>
+        <tr>
+            <th>Code postal</th>
+            <td>{{ mayor.zipCode }}</td>
+        </tr>
+        <tr>
+            <th>Département</th>
+            <td>{{ mayor.department }}</td>
+        </tr>
+        <tr>
+            <th>Région</th>
+            <td>{{ mayor.region }}</td>
+        </tr>
+        <tr>
+            <th>Latitude</th>
+            <td>{{ mayor.latitude }}</td>
+        </tr>
+        <tr>
+            <th>Longitude</th>
+            <td>{{ mayor.longitude }}</td>
+        </tr>
+        <tr>
+            <th>Population</th>
+            <td>{{ mayor.population }}</td>
+        </tr>
+        <tr>
+            <th>Url</th>
+            <td>{{ mayor.url }}</td>
+        </tr>
+        <tr>
+            <th>Facebook</th>
+            <td>{{ mayor.facebook }}</td>
+        </tr>
+        <tr>
+            <th>Twitter</th>
+            <td>{{ mayor.twitter }}</td>
+        </tr>
+        <tr>
+            <th>Google</th>
+            <td>{{ mayor.google }}</td>
+        </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('admin_mayor_index') }}">Retour à la liste</a>
+        </li>
+        <li>
+            <a href="{{ path('admin_mayor_edit', { 'id': mayor.id }) }}">Edition</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+            <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

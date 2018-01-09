@@ -1,0 +1,66 @@
+{% extends 'base.html.twig' %}
+{% block title %}Mes projets{% endblock %}
+{% block body %}
+    <h2>MES FICHES PROJETS</h2>
+    <div class="row tabPannel">
+        <div class="">
+            <ul class="list-inline text-center" role="tablist">
+                <li role="presentation" class="tabLi active">
+                    <a href="#home" aria-controls="home" role="tab" data-toggle="tab">
+                        En cours de saisie
+                    </a>
+                </li>
+                <li role="presentation" class="tabLi">
+                    <a href="#envoye" aria-controls="projet" role="tab" data-toggle="tab">
+                        Envoyé(s)
+                    </a>
+                </li>
+                <li role="presentation" class="tabLi">
+                    <a href="#ligne" aria-controls="projet" role="tab" data-toggle="tab">
+                        En ligne
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <!-- Tab panes -->
+        <div class="tab-content">
+
+            <div role="tabpanel" class="tab-pane active" id="home">
+                <h3>Mes projets en cours de saisie</h3>
+                {% for project in projects %}
+                    {% if project.status == 1 %}
+                        <div class="jumbotron">
+                            {% set options = {'thema':'false','pictures':'false','update': 'true', 'more': 'true', 'id': 1, 'text': 0, 'project': project } %}
+                            {% include 'components/resumeProject.html.twig' with options %}
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+
+            <div role="tabpanel" class="tab-pane" id="envoye">
+                <h3>Mes projets envoyé</h3>
+                {% for project in projects %}
+                    {% if project.status == 2 %}
+                        <div class="jumbotron">
+                            {% set options = {'thema':'false','pictures':'false','update': 'true', 'more': 'true', 'id': 1, 'text': 0, 'project': project } %}
+                            {% include 'components/resumeProject.html.twig' with options %}
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+
+            <div role="tabpanel" class="tab-pane" id="ligne">
+                <h3>Mes projets en ligne</h3>
+                {% for project in projects %}
+                    {% if project.status == 3 %}
+                        <div class="jumbotron">
+                            {% set options = {'thema':'false','pictures':'false','update': 'true', 'more': 'true', 'id': 1, 'text': 0, 'project': project } %}
+                            {% include 'components/resumeProject.html.twig' with options %}
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endblock %}
+

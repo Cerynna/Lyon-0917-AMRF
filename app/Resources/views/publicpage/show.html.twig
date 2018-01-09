@@ -1,0 +1,49 @@
+{% extends 'private/admin/baseAdmin.html.twig' %}
+
+{% block body %}
+    <div class="menu-admin menu-publicpage">
+        <ul>
+            <li>
+                <a href="{{ path('admin_publicpage_index') }}" data-toggle="tooltip" data-placement="right"
+                   title="Liste Utilisateur"><i class="fa fa-book fa-admin"></i></a>
+            </li>
+            <li>
+                <a href="{{ path('admin_publicpage_new') }}" data-toggle="tooltip" data-placement="right"
+                   title="Nouvel Utilisateur"><i
+                            class="fa fa-plus fa-admin"></i></a>
+            </li>
+            <li>
+                <a href="{{ path('admin_publicpage_edit', { 'id': publicPage.id }) }}" data-toggle="tooltip"
+                   data-placement="right" title="Editer"><i class="fa fa-pencil fa-admin"></i></a>
+            </li>
+            <li>
+                {{ form_start(delete_form) }}
+                <button class="fa-admin" data-toggle="tooltip" data-placement="right"
+                        title="Supprimer l'Utilisateur" type="submit"><i class="fa fa-trash-o"></i></button>
+                {{ form_end(delete_form) }}
+            </li>
+        </ul>
+    </div>
+    <h1>Publicpage</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ publicPage.id }}</td>
+            </tr>
+            <tr>
+                <th>Name</th>
+                <td>{{ publicPage.name }}</td>
+            </tr>
+            <tr>
+                <th>Date</th>
+                <td>{% if publicPage.date %}{{ publicPage.date|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Content</th>
+                <td>{{ publicPage.content|raw|nl2br }}</td>
+            </tr>
+        </tbody>
+    </table>
+{% endblock %}

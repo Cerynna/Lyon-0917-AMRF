@@ -1,0 +1,8 @@
+{% extends 'base.html.twig' %}
+{% block title %}Mentions légales{% endblock %}
+{% block body %}
+    <h2>{{ contents['ml'].title|raw }}</h2>
+    <div class="row jumbotron">
+        {{ contents['ml'].content|raw }}
+    </div>
+{% endblock %}

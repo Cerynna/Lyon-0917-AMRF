@@ -1,0 +1,15 @@
+.note-toolbar{
+ background: white !important;
+ button, button:focus, button:target, button:active{
+  font-size: 1em;
+  margin: 0;
+  padding: 5px;
+  @include boxShadow(0, #FFF);
+  &:hover{
+   @include boxShadow(0, #FFF);
+   background: white !important;
+   border: 2px solid $color1;
+   color: $color5;
+  }
+ }
+}

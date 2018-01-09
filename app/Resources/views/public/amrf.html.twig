@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+{% block title %}AMRF{% endblock %}
+{% block body %}
+    <h2>À propos de l'AMRF</h2>
+    <div class="jumbotron">
+        <h3>{{ contents['amrf-1'].title|raw }}</h3>
+        {{ contents['amrf-1'].content|raw }}
+    </div>
+    <div class="jumbotron">
+        <h3>{{ contents['amrf-2'].title|raw }}</h3>
+        {{ contents['amrf-2'].content|raw }}
+    </div>
+    <div class="jumbotron">
+        <h3>{{ contents['amrf-3'].title|raw }}</h3>
+        {{ contents['amrf-3'].content|raw }}
+    </div>
+{% endblock %}

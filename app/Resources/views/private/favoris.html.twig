@@ -1,0 +1,81 @@
+{% extends 'base.html.twig' %}
+{% block title %}Mes Favoris{% endblock %}
+
+{% block body %}
+    <h2>Mes favoris</h2>
+    <!-- Nav tabs -->
+    <div class="row tabPannel">
+    <ul class="list-inline text-center hidden-xs" role="tablist">
+        <li role="presentation" class="tabLi active">
+            <a href="#projets" aria-controls="profil" role="tab" data-toggle="tab">Mes projets favoris</a>
+        </li>
+        <li role="presentation" class="tabLi">
+            <a href="#partenaires" aria-controls="mairie" role="tab" data-toggle="tab">Mes partenaires favoris</a>
+        </li>
+    </ul>
+    <div class="tab-content hidden-xs">
+    <div role="tabpanel" class="tab-pane active" id="projets">
+
+        {% for favorite in favorites %}
+            {% if  favorite.project is not empty %}
+                <div class="jumbotron">
+
+                    {% set options = {'thema':'true','pictures':'true','update': 'false', 'more': 'true', 'project': favorite.project} %}
+                    {% include 'components/resumeProject.html.twig' with options %}
+                </div>
+            {% endif %}
+        {% endfor %}
+
+
+    </div>
+    <div role="tabpanel" class="tab-pane" id="partenaires">
+
+
+        {% for favorite in favorites %}
+            {% if  favorite.company is not empty %}
+                {% set company = favorite.company %}
+
+                <div class="row jumbotron">
+                    <div class="panel-group" id="{{ company.id }}" role="tablist" aria-multiselectable="true">
+                        <a data-toggle="collapse" data-parent="#{{ company.id }}" href="#collapse{{ company.id }}"
+                           aria-expanded="true" aria-controls="collapse{{ company.id }}">
+                            <div class="row">
+                                <div class="panel-heading" role="tab" id="heading{{ company.id }}">
+                                    <div class="col-xs-2 text-center">
+                                        <img src="{{ asset("upload/company/1/file/"~ company.logo ) }}" height="70px">
+                                    </div>
+                                    <div class="col-xs-5">
+                                        <h3>{{ company.name }}</h3>
+                                        {% for activity in company.activities %}
+                                            <span class="label label-success">{{ activity.name }}</span>
+                                        {% endfor %}
+                                    </div>
+                                    <div class="col-xs-4 text-center">
+
+                                    </div>
+                                    <div class="col-xs-1 text-right">
+                                        <div class="btn btn-collapse"><i class="fa fa-angle-double-down"></i></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                        <div id="collapse{{ company.id }}" class="panel-collapse collapse" role="tabpanel"
+                             aria-labelledby="heading{{ company.id }}">
+                            {% include 'components/partComponent.html.twig' %}
+                        </div>
+                    </div>
+
+                </div>
+
+
+
+            {% endif %}
+        {% endfor %}
+
+
+    </div>
+    </div>{#end tabContent#}
+
+
+    </div>{#end tabPannel #}
+{% endblock %}

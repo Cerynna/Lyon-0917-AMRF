@@ -1,0 +1,135 @@
+{% extends 'base.html.twig' %}
+{% block title %}Mon profil{% endblock %}
+
+{% block body %}
+    {{ form_start(form) }}
+    <h2>Mon profil</h2>
+    <div class="jumbotron">
+        <div class="star">Le symbole * indique que cette information est nécessaire.</div>
+        <div class="row">
+            <div class="col-lg-6 col-sm-6">
+                <div class="form-group">
+                    {{ form_label(form.lastName, "Nom *") }}
+                    {{ form_widget(form.lastName) }}
+                    <div class="errorForm">{{ form_errors(form.lastName) | striptags }}</div>
+                </div>
+
+            </div>
+            <div class="col-lg-6 col-sm-6">
+                <div class="form-group">
+                    {{ form_label(form.firstName, "Prénom *") }}
+                    {{ form_widget(form.firstName) }}
+                    <div class="errorForm">{{ form_errors(form.firstName) | striptags }}</div>
+            </div>
+        </div>
+        </div>
+                <div class="row">
+                    <div class="col-lg-6 col-sm-6">
+                        <div class="form-group">
+                            {{ form_label(form.company, "Organisme *") }}
+                            {{ form_widget(form.company, { 'attr':{'disabled':'disabled'} }) }}
+                            <div class="errorForm">{{ form_errors(form.company) | striptags }}</div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-sm-6">
+                        <div class="form-group">
+                            {{ form_label(form.occupation, "Fonction *") }}
+                            {{ form_widget(form.occupation) }}
+                            <div class="errorForm">{{ form_errors(form.occupation) | striptags }}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-6 col-sm-6">
+                <div class="form-group">
+                    {{ form_label(form.company, "Organisme *") }}
+                    {{ form_widget(form.company) }}
+                    <div class="errorForm">{{ form_errors(form.company) | striptags }}</div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-sm-6">
+                <div class="form-group">
+                    {{ form_label(form.occupation, "Fonction *") }}
+                    {{ form_widget(form.occupation) }}
+                    <div class="errorForm">{{ form_errors(form.occupation) | striptags }}</div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-6 col-sm-6">
+                <div class="form-group">
+                    {{ form_label(form.phone, "Téléphone *") }}
+                    {{ form_widget(form.phone) }}
+                    <div class="errorForm">{{ form_errors(form.phone) | striptags }}</div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-sm-6">
+                <div class="form-group">
+                    {{ form_label(form.email, "Email *") }}
+                    {{ form_widget(form.email) }}
+                    <div class="errorForm">{{ form_errors(form.email) | striptags }}</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-12 col-md-12 text-center">
+            <button class="btn btnSubmit" id="btnSubmit" type="submit">Sauvegarder</button>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    <script>
+        var firstName = document.getElementById("partner_firstName");
+        var lastName = document.getElementById("partner_lastName");
+        var phone = document.getElementById("partner_phone");
+        var occupation = document.getElementById("partner_occupation");
+        var submit = document.getElementById("btnSubmit");
+        console.log(submit);
+
+        submit.addEventListener("click", function () {
+            var messageFirstName = "";
+            var messageLastName = "";
+            var messagePhone = "";
+            var messageOccupation = "";
+
+//verif firstname
+            if (firstName.value.length < 2) {
+                messageFirstName += "Votre prénom doit comporter au moins 2 caractères. ";
+
+            }
+            if (firstName.validity.patternMismatch) {
+                messageFirstName += "Votre nom ne peut contenir de chiffre.";
+
+            }
+//verif lastname
+            if (firstName.value.length < 2) {
+                messageFirstName += "Votre prénom doit comporter au moins 2 caractères. ";
+
+            }
+            if (lastName.validity.patternMismatch) {
+                messageLastName += "Votre nom doit comporter au moins 2 caractères et ne peut contenir de chiffre.";
+
+            }
+//verif phone
+
+            if (phone.validity.patternMismatch) {
+                messagePhone += "Veuillez entrer un numéro au format 0X XX XX XX XX";
+
+            }
+
+//verif occupation
+            if (occupation.value < 5) {
+                messageOccupation += "Votre fonction doit comporter au moins 5 caractèrese";
+
+            }
+
+            firstName.setCustomValidity(messageFirstName);
+            lastName.setCustomValidity(messageLastName);
+            phone.setCustomValidity(messagePhone);
+            occupation.setCustomValidity(messageOccupation);
+        });
+    </script>
+{% endblock %}

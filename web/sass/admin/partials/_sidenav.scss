@@ -1,0 +1,85 @@
+nav {
+  width: 200px;
+  height: 100%;
+  position: fixed;
+  left: 0;
+  top: 50px;
+  @include colorback1($color1, 0%);
+  ul {
+    font-size: 1.5em;
+    list-style: none;
+    li {
+      margin-bottom: 2px;
+padding: 0 !important;
+    }
+  }
+
+  @for $i from 1 through length($backs) {
+    $c: nth($backs, $i);
+    $pourcent: 80 / $i;
+    $inverse: 100-($pourcent);
+    .sidenav-#{$c} {
+      color: green;
+      a{
+        color:lighten($color1, 100%);
+        text-decoration: none;
+        padding: 10px;
+        display:block;
+        width: 200px;
+        &:hover {
+          color:lighten($color1, 0%);
+        }
+      }
+      background: lighten($color1, 0%);
+      padding: 5px;
+      width: 200px;
+      &:hover {
+        background: lighten($color1, 80%);
+        color:lighten($color1, 0%);
+        cursor: pointer;
+      }
+    }
+    .active-#{$c} {
+      background: lighten($color1, 80%);
+      a{
+      color: lighten($color1, 0%);
+      }
+    }
+
+  }
+}
+
+/*
+.navLeft {
+  box-shadow: 2px 2px 4px #5d5d5d;
+  display: inline-block;
+  margin-top: 50px;
+  position: fixed;
+  height: 100vh;
+  width: 200px;
+  background-color: #1e5d6b;
+  h3 {
+    font-size: 150%;
+    color: #FFF;
+    margin-left: 10px;
+
+  }
+  h2 {
+    margin-top: 50px;
+    margin-left: 40px;
+    margin-bottom: 50px;
+    font-size: 3em;
+    color: #b70000;
+  }
+}
+.leftPanel {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: left;
+  color: #ffffff;
+
+  height: 10vh;
+
+}
+*/

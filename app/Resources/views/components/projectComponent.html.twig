@@ -1,0 +1,256 @@
+<div class=" project">
+    <div class="row">
+        <div class="col-sm-4 text-left">
+
+            <h3>Thématiques</h3>
+            {% for thema in project.themes %}
+                <span class="label label-themat">{{ thema.name }}</span>
+            {% endfor %}
+        </div>
+        <div class="col-sm-4 text-left">
+            <h3>Mots-clefs</h3>
+            {% for keyWord in project.keyWords %}
+                <span class="label label-motCle">{{ keyWord.name }}</span>
+            {% endfor %}
+
+        </div>
+        {% if favorite is defined %}
+            <div class="col-sm-4">
+                <div class="col-sm-9">
+                    <h3>Mettre en favori</h3>
+                </div>
+                <div class="col-sm-3 text-right">
+                    <button type="button" id="addFavorite" class="btnFavoris {% if favorite == 1 %}hidden{% endif %}">
+                        <i class="fa fa-star-o" onclick="addFavorite()"></i>
+                    </button>
+
+                    <button type="button" id="btnFavorisDel" class="btnFavoris {% if favorite == 0 %}hidden{% endif %}">
+                        <i class="fa fa-star" onclick="delFavorite()"></i>
+                    </button>
+                </div>
+            </div>
+        {% endif %}
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="panel panel-default" id="cityName">
+                <div class="panel-heading text-left" role="tab" id="headingList">
+                    <h4>Commune : {{ project.mayor.town }}</h4>
+                </div>
+                <ul class="list-group">
+                    <li class="list-group-item">
+                        <div class="row">
+                            <div class="col-xs-6 text-left">Département :</div>
+                            <div class="col-xs-6 text-right">{{ project.mayor.department }}</div>
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <div class="row">
+                            <div class="col-xs-6 text-left">Code Postal :</div>
+                            <div class="col-xs-6 text-right">{{ project.mayor.zipCode }}</div>
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <div class="row">
+                            <div class="col-xs-6 text-left">Population :</div>
+                            <div class="col-xs-6 text-right">{{ project.mayor.population }}</div>
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <div class="row">
+                            <div class="col-xs-6 text-left">Code INSEE :</div>
+                            <div class="col-xs-6 text-right">{{ project.mayor.insee }}</div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="panel panel-default" id="contact">
+                <div class="panel-heading text-left" role="tab" id="headingList">
+                    <h4>Contact Mairie</h4>
+                </div>
+                <ul class="list-group text-left">
+                    <li class="list-group-item">
+                        <div class="row">
+                            <div class="col-xs-6 text-left">Nom du Maire :</div>
+                            <div class="col-xs-6 text-right">{{ project.mayor.firstName }} {{ project.mayor.lastName }}</div>
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <div class="row">
+                            <div class="col-xs-6 text-left">Tél Mairie :</div>
+                            <div class="col-xs-6 text-right">{{ project.mayor.phone }}</div>
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <div class="row">
+                            <div class="col-xs-3 text-left">Email</div>
+                            <div class="col-xs-9 text-right">{{ project.mayor.email }}</div>
+                        </div>
+                    </li>
+                    <li class="list-group-item text-center">
+                        <a href="{{ project.mayor.url }}"><i class="fa fa-link"></i></a>
+                        <a href="{{ project.mayor.google }}"><i class="fa fa-google"></i></a>
+                        <a href="{{ project.mayor.facebook }}"><i class="fa fa-facebook-square"></i></a>
+                        <a href="{{ project.mayor.twitter }}"><i class="fa fa-twitter-square"></i></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-md-4 mini-galery">
+            {% if project.images %}
+                <div class="img-list text-center">
+                    {% set imgBase = 'upload/project/' ~ project.id ~ '/photos/' ~ project.images.0 %}
+                    {% for key, image in project.images %}
+                        {% if key != 0 %}
+                            {% set img = 'upload/project/' ~ project.id ~ '/photos/' ~ image %}
+                            <img class="img-mini" src="{{ asset(img) }}"
+                                 onmouseover="showImg('my-img{{ project.id }}','{{ asset(img) }}');"
+                                 onmouseout="hideImg('my-img{{ project.id }}','{{ asset(imgBase) }}');"/>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+                <div class="img-preview">
+                    <img id="my-img{{ project.id }}" src="{{ asset(imgBase) }}"
+                         class="img-big"/>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+    <div class="row">
+        <div class="year-budget">
+            <div class="col-md-3 col-sm-6">
+                <div class="panel panel-default">
+                    <div class="panel-heading text-left" id="headingList">
+                        <h4>Année de réalisation</h4>
+                    </div>
+                    <div class="panel-body text-right">
+                        {{ project.projectDate|date('m/Y') }}
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6">
+                <div class="panel panel-default">
+                    <div class="panel-heading text-left" id="headingList">
+                        <h4>Durée</h4>
+                    </div>
+                    <div class="panel-body text-right">
+                        {{ project.projectDuration }}
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6">
+                <div class="panel panel-default">
+                    <div class="panel-heading text-left" id="headingList">
+                        <h4>Coût global</h4>
+                    </div>
+                    <div class="panel-body text-right">
+                        {{ project.projectCost }}
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6">
+                <div class="panel panel-default">
+                    <div class="panel-heading text-left" id="headingList">
+                        <h4>Cofinancements</h4>
+                    </div>
+                    <div class="panel-body text-right">
+                        {{ project.projectCoFinance }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <h3>Résumé</h3>
+        <p>
+            {{ project.descResume|raw }}
+        </p>
+        <div class="divider"></div>
+        <h3>Contexte</h3>
+        <p>
+            {{ project.descContext|raw }}
+        </p>
+        <div class="divider"></div>
+        <h3>Objectifs</h3>
+        <p>
+            {{ project.descGoal|raw }}
+        </p>
+        <div class="divider"></div>
+        <h3>Déroulement</h3>
+        <p>
+            {{ project.descProgress|raw }}
+        </p>
+        <div class="divider"></div>
+        <h3>Partenaires mobilisés</h3>
+        <p>
+            {{ project.descPartners|raw }}
+        </p>
+        <div class="divider"></div>
+        <h3>Résultats obtenus</h3>
+        <p>
+            {{ project.descResults|raw }}
+        </p>
+        <div class="divider"></div>
+        <h3>Difficultés rencontrées</h3>
+        <p>
+            {{ project.descDifficulties|raw }}
+        </p>
+        <div class="divider"></div>
+        <h3>Conseils</h3>
+        <p>
+            {{ project.descAdvices|raw }}
+        </p>
+    </div>
+    <div class="row">
+        <div class="panel panel-default">
+            <div class="panel-heading text-left" id="headingList">
+                Pour plus d'informations
+            </div>
+            <ul class="list-group">
+                {% set pdf = 'upload/project/' ~ project.id ~ '/file/' ~ project.file %}
+
+                <li class="list-group-item">Personne en charge du projet : {{ project.contactName }}</li>
+                <li class="list-group-item">Fonction : {{ project.contactOccupation }}</li>
+                <li class="list-group-item">Email : {{ project.contactEmail }}</li>
+                <li class="list-group-item">Téléphone : {{ project.contactPhone }}</li>
+                <li class="list-group-item">Documents complémentaires : <a href="{{ asset(pdf) }}" target="_parent"
+                                                                           title="le fichier">Voir le fichier PDF</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<script>
+
+    function addFavorite() {
+        $.ajax({
+            type: 'POST',
+            url: '/addFavorite/project/{{ project.id }}',
+            data: $('#addFavorite'),
+            success: function (response) {
+                $('#success').html(response);
+            }
+        });
+
+
+        $("#addFavorite").addClass("hidden");
+        $("#btnFavorisDel").removeClass("hidden");
+    }
+
+    function delFavorite() {
+        $.ajax({
+            type: 'POST',
+            url: '/delFavorite/project/{{ project.id }}',
+            data: $('#btnFavorisDel'),
+            success: function (response) {
+                $('#success').html(response);
+            }
+        });
+        $("#btnFavorisDel").addClass("hidden");
+        $("#addFavorite").removeClass("hidden");
+    }
+
+</script>

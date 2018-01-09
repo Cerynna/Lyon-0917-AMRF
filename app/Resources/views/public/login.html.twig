@@ -1,0 +1,65 @@
+{% extends 'base.html.twig' %}
+{% block title %}Login{% endblock %}
+{% block body %}
+
+
+
+    <div class="row jumbotron">
+        <h2>Accédez à votre espace</h2>
+        <div class="col-sm-6 col-xs-12 text-center">
+            <div class="formConnect bck-maire">
+                <form action="{{ path('login') }}" method="post">
+                    <h5 class="text-center">Maire</h5>
+                    <div class="form-group">
+                        <label for="login">n° INSEE</label>
+                        <input id="login" type="text" name="_username" class="form-control" autocomplete="off">
+                    </div>
+                    <div class="form-group">
+                        <label for="mdp">Mot de passe</label>
+                        <input id="mdp" type="password" name="_password" class="form-control" autocomplete="off">
+                    </div>
+                    <div class="form-group saveMe">
+                        <input type="checkbox" id="remember_me_mayor" name="_remember_me_mayor"/>
+                        <label for="remember_me_mayor">Se souvenir de moi</label>
+                    </div>
+                    <div class="containerConnect">
+                        <button class="btn" type="submit" name="action">Connexion</button>
+                    </div>
+                    <div class="containerConnect">
+                        <a href="#">Mot de passe oublié ?</a>
+                    </div>
+                    <input type="hidden" name="_target_path" value="/mayor"/>
+                </form>
+            </div>
+        </div>
+        <div class="col-sm-6 col-xs-12 text-center">
+            <div class="formConnect bck-part">
+                <form action="{{ path('login') }}" method="post" autocomplete="off">
+                    <h5 class="text-center">Partenaire</h5>
+                    <div class="form-group">
+                        <label for="login">n° SIRET</label>
+                        <input id="login" type="text" name="_username" class="form-control" autocomplete="off">
+                    </div>
+                    <div class="form-group">
+                        <label for="mdp">Mot de passe</label>
+                        <input id="mdp" type="password" name="_password" class="form-control" autocomplete="off">
+                    </div>
+                    <div class="form-group saveMe">
+                        <input class="remerber_me" type="checkbox" id="remember_me_partner" name="_remember_me"
+                               />
+                        <label for="remember_me_partner">Se souvenir de moi</label>
+
+                    </div>
+                    <div class="containerConnect">
+                        <button class="btn" type="submit" name="action">Connexion</button>
+                    </div>
+                    <div class="containerConnect">
+                        <a href="#">Mot de passe oublié ?</a>
+                    </div>
+                    <input type="hidden" name="_target_path" value="/partner"/>
+                </form>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

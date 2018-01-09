@@ -1,0 +1,362 @@
+{% extends 'base.html.twig' %}
+{% block title %}Ma fiche{% endblock %}
+{% block body %}
+    <div id="modalImageUpload" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-sm-10">
+                            {{ form_start(upload_image_form) }}
+                            {{ form_label(upload_image_form.path, 'Télécharger un fichier depuis votre ordinateur') }}
+                            {{ form_widget(upload_image_form.path) }}
+                            {{ form_end(upload_image_form) }}
+                        </div>
+                        <div class="col-sm-2 text-right">
+                            <i class="fa fa-times fa-admin-mini" data-dismiss="modal"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {{ form_start(form) }}
+    <h2 class="center-align">Ma fiche Partenaire</h2>
+    <!-- Nav tabs -->
+    <div class="row tabPannel">
+        <div class="col-md-12">
+            <ul class="list-inline text-center" role="tablist">
+                <li role="presentation" class="tabLi active" id="orgaMenu">
+                    <a href="#organisme" aria-controls="organisme" role="tab" data-toggle="tab">Organisme</a>
+                </li>
+                <li role="presentation" id="preseMenu" class="tabLi">
+                    <a href="#description" aria-controls="description" role="tab" data-toggle="tab">Présentation</a>
+                </li>
+                <li role="presentation" id="contactMenu" class="tabLi">
+                    <a href="#contact" aria-controls="contact" role="tab" data-toggle="tab">Contact</a>
+                </li>
+                <li role="presentation" id="previewMenu" class="tabLi">
+                    <a href="#preview" aria-controls="preview" role="tab" data-toggle="tab">Prévisualisation</a>
+                </li>
+            </ul>
+            <!-- Tab panes -->
+            <div class="tab-content">
+                <div role="tabpanel" class="tab-pane active" id="organisme">
+                    <div class="star">Le symbole * indique que cette information est nécessaire.</div>
+                    <h3>Organisme</h3>
+                    <div class="row">
+                        <div class="col-lg-6 col-sm-6">
+                            <div class="form-group">
+                                {{ form_label(form.name, "Nom de l’organisme *") }}
+                                {{ form_widget(form.name) }}
+                                <div class="errorForm">{{ form_errors(form.name) | striptags }}</div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-sm-6">
+                            <div class="form-group">
+                                {{ form_label(form.address, "Adresse de l’organisme *") }}
+                                {{ form_widget(form.address) }}
+                                <div class="errorForm">{{ form_errors(form.address) | striptags }}</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-6 col-sm-6">
+                            <div class="form-group">
+                                {{ form_label(form.zipCode, "Code Postal *") }}
+                                {{ form_widget(form.zipCode) }}
+                                <div class="errorForm">{{ form_errors(form.zipCode) | striptags }}</div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-sm-6">
+                            <div class="form-group">
+                                {{ form_label(form.city, "Ville *") }}
+                                {{ form_widget(form.city) }}
+                                <div class="errorForm">{{ form_errors(form.city) | striptags }}</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-sm-4 col-sm-offset-4" align="center">
+                            <button type="submit" class="btn btnSubmit"><i class="fa fa-floppy-o"
+                                                                           aria-hidden="true"></i>
+                                Enregistrer
+                            </button>
+                        </div>
+                        <div class="form-group col-sm-4" align="right">
+                            <a href="#description" aria-controls="description" role="tab" data-toggle="tab"
+                               onclick="changeActiveMenu('preseMenu')">
+                                <div type="button" class="btn">Etape suivante <i class=" fa fa-angle-right"
+                                                                                 aria-hidden="true"></i>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div role="tabpanel" class="tab-pane" id="description">
+                    <div class="star">Le symbole * indique que cette information est nécessaire.</div>
+                    <h3>Présentation de l'organisme</h3>
+                    <div class=" col-xs-12">
+                        <div class="form-group">
+                            {{ form_label(form.activities, "Secteur d'activité *") }}
+                            <div class="row scroll-in">
+                                <div class="col-sm-3">
+                                    {% set nbthema = form.activities|length %}
+                                    {% set col =  nbthema/4 %}
+                                    {% set col = col|round %}
+                                    {% for activity in form.activities %}
+                                    {{ form_errors(activity) }}
+                                    <div>
+                                        <input type="checkbox" id="{{ activity.vars.id }}"
+                                               name="{{ activity.vars.full_name }}" value="{{ activity.vars.value }}"
+                                               class="check-limit">
+                                        <label for="{{ activity.vars.id }}">{{ activity.vars.label }}</label>
+                                    </div>
+                                    {% if (loop.index == col) or (loop.index == col*2) or (loop.index == col*3) %}
+                                </div>
+                                <div class="col-sm-3">
+                                    {% endif %}
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class=" col-xs-12">
+                            <div class="form-group">
+                                {{ form_label(form.presentation, "Présentation * (1200 caractères maximum)") }}
+                                {{ form_widget(form.presentation, {'attr': {
+                                    'class': 'summernote',
+                                    'placeholder': 'Présentez votre activité.'} }) }}
+                                <div class="errorForm">{{ form_errors(form.presentation) | striptags }}</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12">
+                        <div class="form-group">
+
+                            {% if company.logo %}
+                                {% set img = 'upload/company/' ~ company.id ~ '/file/' ~ company.logo %}
+                                {% set imglink = 'upload-company-' ~ company.id ~ '-file-' ~ company.logo %}
+                                <div style="background-image: url('{{ asset(img) }}')"
+                                     class="imageProject col-sm-3">
+                                    <i class="fa fa-trash fa-mini" onclick="deleteFile('{{ imglink }}')"></i>
+                                </div>
+
+                            {% endif %}
+                            {% if company.logo|length < 1 %}
+                                <label for="photo">Téléchargez un logo pour votre organisme<br/>
+                                    <p>le poids d'une image ne doit pas excéder ... ... Mo</p>
+                                    <div class="btn2" data-toggle="modal" data-target="#modalImageUpload"><i
+                                                class="fa fa-upload fa-admin"></i> Ajouter votre logo
+                                    </div>
+                                </label>
+                            {% endif %}
+
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-6 col-sm-6">
+                            <div class="form-group">
+                                {{ form_label(form.url, "Site internet") }}
+                                {{ form_widget(form.url) }}
+                                <div class="errorForm">{{ form_errors(form.url) | striptags }}</div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-sm-6">
+                            <div class="form-group">
+                                {{ form_label(form.facebook, " Facebook ") }}
+                                {{ form_widget(form.facebook) }}
+                                <div class="errorForm">{{ form_errors(form.facebook) | striptags }}</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-6 col-sm-6">
+                            <div class="form-group">
+                                {{ form_label(form.linkedin, "Linkedin ") }}
+                                {{ form_widget(form.linkedin) }}
+                                <div class="errorForm">{{ form_errors(form.linkedin) | striptags }}</div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-sm-6">
+                            <div class="form-group">
+                                {{ form_label(form.twitter, "Twitter ") }}
+                                {{ form_widget(form.twitter) }}
+                                <div class="errorForm">{{ form_errors(form.twitter) | striptags }}</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group col-sm-4" align="left">
+                        <a href="#organisme" aria-controls="organisme" role="tab" data-toggle="tab"
+                           onclick="changeActiveMenu('orgaMenu')">
+                            <div type="button" class="btn"><i class=" fa fa-angle-left" aria-hidden="true"></i>
+                                Etape précédente
+                            </div>
+                        </a>
+                    </div>
+                    <div class="form-group col-sm-4" align="center">
+                        <button type="submit" class="btn btnSubmit"><i class="fa fa-floppy-o" aria-hidden="true"></i>
+                            Enregistrer
+                        </button>
+                    </div>
+                    <div class="form-group col-sm-4" align="right">
+                        <a href="#contact" aria-controls="contact" role="tab" data-toggle="tab"
+                           onclick="changeActiveMenu('contactMenu')">
+                            <div type="button" class="btn">Etape suivante <i class=" fa fa-angle-right"
+                                                                             aria-hidden="true"></i></div>
+                        </a>
+                    </div>
+                </div>
+                <div role="tabpanel" class="tab-pane" id="contact">
+                    <div class="star">Le symbole * indique que cette information est nécessaire.</div>
+                    <h3>Contact</h3>
+                    <div class="row">
+                        <div class="col-lg-6 col-sm-6">
+                            <div class="form-group">
+                                {{ form_label(form.contactLastName, "Nom du contact *") }}
+                                {{ form_widget(form.contactLastName) }}
+                                <div class="errorForm">{{ form_errors(form.contactLastName) | striptags }}</div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-sm-6">
+                            <div class="form-group">
+                                {{ form_label(form.contactFirstName, "Prenom du contact *") }}
+                                {{ form_widget(form.contactFirstName) }}
+                                <div class="errorForm">{{ form_errors(form.contactFirstName) | striptags }}</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-6 col-sm-6">
+                            <div class="form-group">
+                                {{ form_label(form.contactPhone, "Téléphone *") }}
+                                {{ form_widget(form.contactPhone) }}
+                                <div class="errorForm">{{ form_errors(form.contactPhone) | striptags }}</div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-sm-6">
+                            <div class="form-group">
+                                {{ form_label(form.contactEmail, "Email *") }}
+                                {{ form_widget(form.contactEmail) }}
+                                <div class="errorForm">{{ form_errors(form.contactEmail) | striptags }}</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group col-sm-4" align="left">
+                        <a href="#description" aria-controls="description" role="tab" data-toggle="tab"
+                           onclick="changeActiveMenu('preseMenu')">
+                            <div type="button" class="btn"><i class=" fa fa-angle-left" aria-hidden="true"></i>
+                                Etape
+                                précédente
+                            </div>
+                        </a>
+                    </div>
+                    <div class="form-group col-sm-4" align="center">
+                        <button type="submit" class="btn btnSubmit"><i class="fa fa-floppy-o" aria-hidden="true"></i>
+                            Enregistrer
+                        </button>
+                    </div>
+                    <div class="form-group col-sm-4" align="right">
+                        <a href="#preview" aria-controls="preview" role="tab" data-toggle="tab"
+                           onclick="changeActiveMenu('previewMenu')">
+                            <div type="button" class="btn">Etape suivante <i class=" fa fa-angle-right"
+                                                                             aria-hidden="true"></i></div>
+                        </a>
+                    </div>
+                </div>
+                <div role="tabpanel" class="tab-pane" id="preview">
+                    <h3>Prévisualisez votre fiche</h3>
+                    <p>
+                        Vous pouvez ici visualiser votre fiche telle qu'elle apparaîtra sur le site.
+                        Si elle vous convient, validez en cliquant sur "Publier votre fiche".
+                    </p>
+                    <p>
+                        Auquel cas, vous pouvez revenir en arrière pour la rectifier.
+                    </p>
+                    <div class="row">
+                        <div class="panel panel-default">
+                            <div class="row">
+                                <div class="panel-heading" role="tab">
+                                    <div class="col-xs-2 text-center">
+                                        <img src="{{ asset("upload/company/1/file/"~ company.logo ) }}" height="70px">
+                                    </div>
+                                    <div class="col-xs-5">
+                                        <h3>{{ company.name }}</h3>
+                                        {% for activity in company.activities %}
+                                            <span class="label label-success">{{ activity.name }}</span>
+                                        {% endfor %}
+                                    </div>
+                                    <div class="col-xs-5 text-center">
+
+
+                                    </div>
+                                </div>
+                            </div>
+                            {% include 'components/partComponent.html.twig' %}
+                        </div>
+                        <div class="form-group col-sm-6" align="left">
+                            <a href="#contact" aria-controls="contact" role="tab" data-toggle="tab"
+                               onclick="changeActiveMenu('contactMenu')">
+                                <div type="button" class="btn"><i class=" fa fa-angle-left" aria-hidden="true"></i>
+                                    Etape
+                                    précédente
+                                </div>
+                            </a>
+                        </div>
+                        <div class="form-group col-sm-6" align="right">
+                            <button type="submit" class="btn btnSubmit">Publier votre fiche</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{ form_row(form._token) }}
+    {{ form_end(form, {'render_rest': false}) }}
+{% endblock %}
+{% block javascripts %}
+    <script>
+        function changeActiveMenu(idActive) {
+            $('.tabLi').removeClass('active');
+            $('#' + idActive).addClass('active');
+        }
+
+        function deleteFile(file) {
+            $.ajax({
+                type: "GET",
+                url: "/deletefile/" + file,
+                success: function () {
+                    location.reload();
+                },
+                error: function () {
+                    alert("la photo ne peu pas être supprimée");
+
+                }
+            })
+        }
+
+        var submit = document.getElementsByClassName("btn");
+        var contactLastName = document.getElementById("company_contactLastName");
+        console.log(submit);
+
+        submit.addEventListener("click", function () {
+            var messageLastName = "";
+
+//verif lastname
+
+            if (contactLastName.value.length < 2) {
+                messageLastName += "Votre nom doit comporter au moins 2 caractères. ";
+
+            }
+            if (contactLastName.validity.patternMismatch) {
+                messageLastName += "Votre nom ne peut contenir de chiffre.";
+
+            }
+
+            contactLastName.setCustomValidity(messageLastName);
+
+        });
+    </script>
+{% endblock %}

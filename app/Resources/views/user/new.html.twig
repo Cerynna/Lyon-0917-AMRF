@@ -1,0 +1,202 @@
+{% extends 'private/admin/baseAdmin.html.twig' %}
+
+{% block body %}
+    <div class="menu-admin menu-user">
+        <ul>
+            <li>
+                <a href="{{ path('admin_user_index') }}" data-toggle="tooltip" data-placement="right"
+                   title="Liste Utilisateur"><i class="fa fa-users fa-admin"></i></a>
+            </li>
+            <li>
+                <a href="{{ path('admin_user_new') }}" data-toggle="tooltip" data-placement="right"
+                   title="Nouvel Utilisateur"><i
+                            class="fa fa-user-plus fa-admin"></i></a>
+            </li>
+            <li>
+                <a onclick="document.amrf_publicrooterbundle_user.submit();" data-toggle="tooltip"
+                   data-placement="right"
+                   title="Nouvel Utilisateur"><i class="fa fa-check fa-admin"></i></a>
+            </li>
+        </ul>
+    </div>
+    <h1>Nouvel Utilisateur</h1>
+    {{ form_start(form) }}
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="jumbotron">
+                <div class="row">
+                    <div class="col-sm-6">
+                        {{ form_label(form.login) }}
+                        {{ form_widget(form.login) }}
+                    </div>
+                    <div class="col-sm-6">
+                        {{ form_label(form.password) }}
+                        {{ form_widget(form.password) }}
+                    </div>
+                    <div class="col-sm-6">
+                        {{ form_label(form.role) }}
+                        <div class="select">
+                            {{ form_widget(form.role, {'attr': {
+                                'onchange': "change_valeur()"
+                            } }
+                            ) }}
+                            <div class="select_arrow">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        {{ form_label(form.status) }}
+                        <div class="select">
+                            {{ form_widget(form.status) }}
+                            <div class="select_arrow">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        {{ form_label(form.email) }}
+                        {{ form_widget(form.email) }}
+                    </div>
+                    {{ form_widget(form.creationDate, {'attr': {
+                        'class': "hidden"
+                    } }) }}
+                    {{ form_widget(form.lastLogin, {'attr': {
+                        'class': "hidden"
+                    } }) }}
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="jumbotron userMayor">
+                <h4>Maire</h4>
+                <div class="row">
+                    <div class="col-sm-6">
+                        {{ form_label(form.mayor.firstName) }}
+                        {{ form_widget(form.mayor.firstName) }}
+                    </div>
+                    <div class="col-sm-6">
+                        {{ form_label(form.mayor.lastName) }}
+                        {{ form_widget(form.mayor.lastName) }}
+                    </div>
+                    <div class="col-sm-6">
+                        {{ form_label(form.mayor.address) }}
+                        {{ form_widget(form.mayor.address) }}
+
+                    </div>
+                    <div class="col-sm-6">
+                        {{ form_label(form.mayor.insee) }}
+                        {{ form_widget(form.mayor.insee) }}
+                    </div>
+                    <div class="col-sm-6">
+                        {{ form_label(form.mayor.email) }}
+                        {{ form_widget(form.mayor.email) }}
+                    </div>
+                    <div class="col-sm-6">
+                        {{ form_label(form.mayor.phone) }}
+                        {{ form_widget(form.mayor.phone) }}
+                    </div>
+                    <div class="col-sm-6">
+                        {{ form_label(form.mayor.town) }}
+                        {{ form_widget(form.mayor.town) }}
+                    </div>
+                    <div class="col-sm-6">
+                        {{ form_label(form.mayor.zipCode) }}
+                        {{ form_widget(form.mayor.zipCode) }}
+                    </div>
+                    <div class="col-sm-6">
+                        {{ form_label(form.mayor.department) }}
+                        {{ form_widget(form.mayor.department) }}
+                    </div>
+                    <div class="col-sm-6">
+                        {{ form_label(form.mayor.region) }}
+                        {{ form_widget(form.mayor.region) }}
+                    </div>
+                    <div class="col-sm-6">
+                        {{ form_label(form.mayor.latitude) }}
+                        {{ form_widget(form.mayor.latitude) }}
+                    </div>
+                    <div class="col-sm-6">
+                        {{ form_label(form.mayor.longitude) }}
+                        {{ form_widget(form.mayor.longitude) }}
+                    </div>
+                    <div class="col-sm-6">
+                        {{ form_label(form.mayor.population) }}
+                        {{ form_widget(form.mayor.population) }}
+                    </div>
+                    <div class="col-sm-6">
+                        {{ form_label(form.mayor.url) }}
+                        {{ form_widget(form.mayor.url) }}
+                    </div>
+                    <div class="col-sm-6">
+                        {{ form_label(form.mayor.facebook) }}
+                        {{ form_widget(form.mayor.facebook) }}
+                    </div>
+                    <div class="col-sm-6">
+                        {{ form_label(form.mayor.twitter) }}
+                        {{ form_widget(form.mayor.twitter) }}
+                    </div>
+                    <div class="col-sm-6">
+                        {{ form_label(form.mayor.google) }}
+                        {{ form_widget(form.mayor.google) }}
+                    </div>
+                </div>
+            </div>
+            <div class="jumbotron userPartner hidden">
+                <h4>Partenaires</h4>
+                <div class="row">
+                    <div class="col-sm-6">
+                        {{ form_label(form.partner.firstName) }}
+                        {{ form_widget(form.partner.firstName) }}
+                    </div>
+                    <div class="col-sm-6">
+                        {{ form_label(form.partner.lastName) }}
+                        {{ form_widget(form.partner.lastName) }}
+                    </div>
+                    <div class="col-sm-6">
+                        {{ form_label(form.partner.occupation) }}
+                        {{ form_widget(form.partner.occupation) }}
+                    </div>
+                    <div class="col-sm-6">
+                        {{ form_label(form.partner.phone) }}
+                        {{ form_widget(form.partner.phone) }}
+                    </div>
+                    <div class="col-sm-6">
+                        {{ form_label(form.partner.email) }}
+                        {{ form_widget(form.partner.email) }}
+                    </div>
+                    <div class="col-sm-6">
+                        {{ form_widget(form.partner.company) }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {{ form_widget(form) }}
+    {{ form_end(form) }}
+
+{% endblock %}
+{% block javascripts %}
+    <script>
+        function change_valeur() {
+            var select = document.getElementById("amrf_publicrooterbundle_user_role");
+            var choice = select.selectedIndex;
+            var role = select.options[choice].value;
+
+            if (role == 1) {
+                $(".userPartner").addClass("hidden");
+                $(".userMayor").removeClass("hidden");
+
+            }
+            if (role == 2) {
+                $(".userMayor").addClass("hidden");
+                $(".userPartner").removeClass("hidden");
+
+            }
+            if (role == 3) {
+                $(".userMayor").addClass("hidden");
+                $(".userPartner").addClass("hidden");
+
+            }
+        }
+    </script>
+{% endblock %}

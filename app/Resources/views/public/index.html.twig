@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+{% block title %}Accueil{% endblock %}
+{% block body %}
+
+    {% set moreProject = 'false' %}
+    {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+        {% set moreProject = 'true' %}
+    {% endif %}
+    <h2>Bienvenue</h2>
+    <h3 class="hidden-xs">Les dernières fiches projets</h3>
+    <div id="myCarousel" class="carousel slide resumeProject jumbotron row" data-ride="carousel">
+        <div class="carousel-inner">
+            {% for key, project in projects %}
+                <div class="item {% if key == 0 %} active {% endif %}">
+                    {% set options = {'thema':'true','pictures':'true','update': 'false', 'more': moreProject, 'project': project} %}
+                    {% include 'components/resumeProject.html.twig' with options %}
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+    <h3>Un outil collaboratif et participatif</h3>
+    <div class="row jumbotron">
+        <div class="col-md-12">
+
+            <h3>{{ contents['main-1'].title|raw }}</h3>
+            {{ contents['main-1'].content|raw }}
+
+        </div>
+    </div>
+    <div class="row jumbotron">
+        <div class="col-md-12">
+
+            <h3>{{ contents['main-2'].title|raw }}</h3>
+            {{ contents['main-2'].content|raw }}
+
+        </div>
+    </div>
+{% endblock %}

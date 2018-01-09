@@ -1,0 +1,128 @@
+/**
+** node-sass --watch web/sass/admin/admin.scss web/css/admin.css
+*/
+/**
+*************************** RESET *********************
+*/
+@import 'partials/reset';
+/**
+*************************** Variable *********************
+ */
+@import 'partials/variables';
+/**
+*************************** Fonctions *********************
+*/
+@import 'partials/mixins';
+/**
+*************************** Partials *********************
+*/
+@import 'partials/header';
+@import 'partials/sidenav';
+@import 'partials/section';
+@import 'partials/table';
+@import 'partials/forms';
+@import 'partials/select2';
+@import 'partials/footer';
+
+body {
+  background: $colorbody;
+  height: 100vh;
+}
+
+h1 {
+  @include colortext1($color1, 100%);
+  font-size: 3em;
+  margin: 0 5px 20px -20px;
+  position: sticky;
+  position: -webkit-sticky;
+  z-index: 200;
+  top: 0;
+}
+
+.container-fluid {
+  margin: 0 20px 0 260px;
+  padding: 0 10px 0 40px;
+  min-height: 100vh;
+  max-width: 100%;
+}
+
+.content {
+  margin-top: 0;
+  margin-bottom: 50px;
+}
+
+@for $i from 1 through length($backs) {
+  $c: nth($backs, $i);
+  $pourcent: 80 / $i;
+
+  .menu-#{$c} {
+    background: lighten($color1, 80% );
+    color: lighten($color1, 0%);
+
+  }
+}
+
+.menu-admin {
+  position: fixed;
+  height: 100%;
+  left: 200px;
+  top: 50px;
+  padding: 10px;
+
+  ul {
+    list-style: none;
+  }
+  li {
+    margin-bottom: 10px
+  }
+}
+.preview-pdf {
+  width: 100%;
+  max-height: 200px;
+}
+.modal-content {
+  @include colorback1($color1, 0%);
+  @include colortext1($color1, 100%);
+  input[type="file"] {
+    height: 0;
+    width: 0;
+    overflow: hidden;
+    @include borderback1(0, $color1, 20%);
+  }
+  label{
+    @include colorback1($color1, 20%);
+    @include borderback1(2px, $color1, 20%);
+    @include colortext1($color1, 100%);
+    min-width: 100%;
+    font-size: 1em;
+    min-height: 30px;
+    padding: 5px;
+    border-radius: 5px;
+    text-align: center;
+    vertical-align: middle;
+    margin-right: 1px;
+    cursor: pointer;
+    &:hover {
+      background: #FFF;
+      @include colortext1($color1, 20%);
+      @include borderback1(2px, $color1, 20%);
+
+      /*2f92a8*/
+    }
+  }
+}
+/*
+
+div {
+  border: 1px solid cyan !important;
+}
+
+.row {
+  border: 2px solid red !important;
+}
+
+[class*="col-"] {
+  border: 1px solid black !important;
+}
+
+*/

@@ -1,0 +1,15 @@
+{% extends 'email/baseEmail.html.twig' %}
+    {% block body %}
+        Bonjour,<br/>
+        Vous venez de créer votre compte sur le «  Wiki des maires » et nous vous en remercions.<br/>
+        Vos identifiants sont les suivants :<br/>
+        Identifiant : (votre numéro INSEE)<br/>
+        Mot de passe : (votre numéro INSEE+Code Postal), lors de votre première connexion, un changement vous sera demandé<br/>
+        Veuillez les conserver, ils seront nécessaires lors de votre prochaine connexion.<br/>
+        Bien cordialement.<br/><br/>
+        <b>L’Association des Maires Ruraux de France<br/>
+        "Des maires au service des maires"<br/></b>
+        —<br/>
+        Ceci est un email automatique, merci de ne pas y répondre.
+    {% endblock %}
+

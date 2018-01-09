@@ -1,0 +1,346 @@
+{% extends 'private/admin/baseAdmin.html.twig' %}
+
+{% block body %}
+    <div class="menu-admin menu-project">
+        <ul>
+            <li>
+                <a href="{{ path('admin_project_index') }}" data-toggle="tooltip" data-placement="right"
+                   title="Liste Projets"><i class="fa fa-archive fa-admin"></i></a>
+            </li>
+            <li>
+                <a href="{{ path('admin_project_new') }}" data-toggle="tooltip" data-placement="right"
+                   title="Nouveau Projet"><i
+                            class="fa fa-plus fa-admin"></i></a>
+            </li>
+            <li class="submitForm">
+                <a data-toggle="tooltip" data-placement="right"
+                   title="Valider les modifications"><i class="fa fa-check fa-admin"></i></a>
+            </li>
+            <li>
+                {{ form_start(delete_form) }}
+                <button class="fa-admin" data-toggle="tooltip" data-placement="right"
+                        title="Supprimer Project" type="submit"><i class="fa fa-trash-o"></i></button>
+                {{ form_end(delete_form) }}
+
+            </li>
+        </ul>
+    </div>
+    <h1>Project edit</h1>
+    {% if project.images|length < 4 %}
+        <div id="modalImageUpload" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-sm-10">
+                                {{ form_start(upload_image_form) }}
+                                {{ form_label(upload_image_form.path, 'Télécharger un fichier depuis votre ordinateur') }}
+                                {{ form_widget(upload_image_form.path) }}
+
+                                {{ form_end(upload_image_form) }}
+                            </div>
+                            <div class="col-sm-2 text-right">
+                                <i class="fa fa-times fa-admin-mini" data-dismiss="modal"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    {% endif %}
+
+    {% if project.file|length < 1 %}
+        <div id="modalFileUpload" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-sm-10">
+                                {{ form_start(upload_file_form) }}
+                                {{ form_label(upload_file_form.path, 'Télécharger un fichier depuis votre ordinateur') }}
+                                {{ form_widget(upload_file_form.path) }}
+
+                                {{ form_end(upload_file_form) }}
+                            </div>
+                            <div class="col-sm-2 text-right">
+                                <i class="fa fa-times fa-admin-mini" data-dismiss="modal"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+
+    {{ form_start(edit_form) }}
+
+    <div class="form-group row" id="editProject">
+        <div class="col-sm-6">
+            <div class="col-sm-12">
+                <h5>{{ form_label(edit_form.title, "Titre du projet *") }}</h5>
+                {{ form_widget(edit_form.title,{
+                    'attr': {
+                        'required': false,
+                    }
+                }) }}
+                <div id="errorTitle"></div>
+            </div>
+            <div class="col-sm-4">
+                <h5>{{ form_label(edit_form.creationDate) }}</h5>
+                {{ form_widget(edit_form.creationDate) }}
+            </div>
+            <div class="col-sm-4">
+                <h5>{{ form_label(edit_form.updateDate) }}</h5>
+                {{ form_widget(edit_form.updateDate) }}
+            </div>
+            <div class="col-sm-4">
+                <h5>{{ form_label(edit_form.status) }}</h5>
+                {{ form_widget(edit_form.status) }}
+            </div>
+            <div class="col-sm-12">
+                <h5><label>Images</label></h5>
+                {% if project.images %}
+                    {% for image in project.images %}
+                        {% set img = 'upload/project/' ~ project.id ~ '/photos/' ~ image %}
+                        {% set imglink = 'upload-project-' ~ project.id ~ '-photos-' ~ image %}
+                        <div style="background-image: url('{{ asset(img) }}')" class="adminImageProject col-sm-3">
+                            <i class="fa fa-trash fa-admin-mini" onclick="deleteFile('{{ imglink }}')"></i>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+                {% if project.images|length < 4 %}
+                    <div class="adminImageProject col-sm-3">
+                        <i class="fa fa-upload fa-admin" data-toggle="modal" data-target="#modalImageUpload"></i>
+                    </div>
+                {% endif %}
+
+            </div>
+            <div class="col-sm-12">
+                <div class="col-sm-3">
+                    <h5>{{ form_label(edit_form.projectDate) }}</h5>
+                    {{ form_widget(edit_form.projectDate) }}
+                </div>
+                <div class="col-sm-3">
+                    <h5>{{ form_label(edit_form.projectCoFinance) }}</h5>
+                    {{ form_widget(edit_form.projectCoFinance) }}
+                </div>
+                <div class="col-sm-3">
+                    <h5>{{ form_label(edit_form.projectDuration) }}</h5>
+                    {{ form_widget(edit_form.projectDuration) }}
+                </div>
+                <div class="col-sm-3">
+                    <h5>{{ form_label(edit_form.projectCost) }}</h5>
+                    {{ form_widget(edit_form.projectCost) }}
+                </div>
+            </div>
+            <div class="col-sm-12">
+                <h5>{{ form_label(edit_form.descResume) }}</h5>
+                {{ form_widget(edit_form.descResume, {'attr': {
+                    'rows':'3'} }) }}
+
+            </div>
+            <div class="col-sm-12">
+                <h5>{{ form_label(edit_form.descContext) }}</h5>
+                {{ form_widget(edit_form.descContext, {'attr': {
+                    'rows':'4'} }) }}
+            </div>
+            <div class="col-sm-12">
+                <h5>{{ form_label(edit_form.descGoal) }}</h5>
+                {{ form_widget(edit_form.descGoal, {'attr': {
+                    'rows':'4'} }) }}
+            </div>
+            <div class="col-sm-12">
+                <h5>{{ form_label(edit_form.descProgress) }}</h5>
+                {{ form_widget(edit_form.descProgress, {'attr': {
+                    'rows':'7'} }) }}
+            </div>
+            <div class="col-sm-12">
+                <h5>{{ form_label(edit_form.descPartners) }}</h5>
+                {{ form_widget(edit_form.descPartners, {'attr': {
+                    'rows':'4'} }) }}
+            </div>
+            <div class="col-sm-12">
+                <h5>{{ form_label(edit_form.descResults) }}</h5>
+                {{ form_widget(edit_form.descResults, {'attr': {
+                    'rows':'4'} }) }}
+            </div>
+            <div class="col-sm-12">
+                <h5>{{ form_label(edit_form.descDifficulties) }}</h5>
+                {{ form_widget(edit_form.descDifficulties, {'attr': {
+                    'rows':'4'} }) }}
+            </div>
+            <div class="col-sm-12">
+                <h5>{{ form_label(edit_form.descAdvices) }}</h5>
+                {{ form_widget(edit_form.descAdvices, {'attr': {
+                    'rows':'4'} }) }}
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <h5>
+                <label>Commune du projet</label>
+            </h5>
+            <div class="row">
+                <div class="col-sm-12">
+                    {{ form_widget(edit_form.mayor) }}
+                </div>
+            </div>
+            <h5><label>Liens</label></h5>
+            <div class="row">
+                <div class="col-sm-1">
+                    <i class="fa fa-link fa-admin-mini"></i>
+                </div>
+                <div class="col-sm-11">
+                    {{ form_widget(edit_form.url) }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-1">
+                    <i class="fa fa-youtube fa-admin-mini"></i>
+                </div>
+                <div class="col-sm-11">
+                    {{ form_widget(edit_form.youtube) }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-1">
+                    <i class="fa fa-facebook fa-admin-mini"></i>
+                </div>
+                <div class="col-sm-11">
+                    {{ form_widget(edit_form.facebook) }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-1">
+                    <i class="fa fa-twitter fa-admin-mini"></i>
+                </div>
+                <div class="col-sm-11">
+                    {{ form_widget(edit_form.twitter) }}
+                </div>
+            </div>
+            <h5><label>Contact</label></h5>
+            <div class="row">
+                <div class="col-sm-3">
+                    Nom/Prenom :
+                </div>
+                <div class="col-sm-9">
+                    {{ form_widget(edit_form.contactName) }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-3">
+                    Metier :
+                </div>
+                <div class="col-sm-9">
+                    {{ form_widget(edit_form.contactOccupation) }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-3">
+                    Email :
+                </div>
+                <div class="col-sm-9">
+                    {{ form_widget(edit_form.contactEmail) }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-3">
+                    Téléphone :
+                </div>
+                <div class="col-sm-9">
+                    {{ form_widget(edit_form.contactPhone) }}
+                </div>
+            </div>
+            <h5><label>Fichier PDF</label></h5>
+            <div class="row">
+                {% set pdf = 'upload/project/' ~ project.id ~ '/file/' ~ project.file %}
+                {% set pdflink = 'upload-project-' ~ project.id ~ '-file-' ~ project.file %}
+
+                <div class="col-sm-1">
+                    {% if project.file is empty %}
+                        <i class="fa fa-upload fa-admin" data-toggle="modal" data-target="#modalFileUpload"></i>
+                    {% else %}
+                        <i class="fa fa-trash-o fa-admin" onclick="deleteFile('{{ pdflink }}')"></i>
+                        <a href="{{ asset(pdf) }}" target="_blank"><i class="fa fa-eye fa-admin"></i></a>
+                    {% endif %}
+                </div>
+                <div class="col-sm-11">
+                    <object data="{{ asset(pdf) }}" type="application/pdf" class="preview-pdf">
+                        <param name="filename" value="{{ asset(pdf) }}"/>
+                        <a href="{{ asset(pdf) }}" target="_parent" title="le fichier">Voir le fichier...</a>
+                    </object>
+                </div>
+            </div>
+            <h5><label>Thematiques</label></h5>
+            <div class="row">
+                <div class="col-sm-4">
+                    {% set nbthema = edit_form.themes|length %}
+                    {% set col =  nbthema/3 %}
+                    {% set col = col|round %}
+
+
+                    {% for thema in edit_form.themes %}
+                    {{ form_errors(thema) }}
+                    <div>
+                        <input type="checkbox" id="{{ thema.vars.id }}"
+                               name="{{ thema.vars.full_name }}" value="{{ thema.vars.value }}"
+                                {% if thema.vars.checked == true %} checked="checked" {% endif %} >
+                        <label for="{{ thema.vars.id }}">{{ thema.vars.label|slice(0,20) }}</label>
+                    </div>
+                    {% if (loop.index == col) or (loop.index == col*2) %}
+                </div>
+                <div class="col-sm-4">
+                    {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+            <h5><label>Mots Clé</label></h5>
+            <div class="row">
+
+                {{ form_label(edit_form.keyWords, "Saississez jusqu'à 5 mots-clefs") }}
+                <i>Ecrivez les premières lettres du mot et vérifiez qu'il apparaît dans la liste.</i>
+                {{ form_widget(edit_form.keyWords, {'attr': {
+                    'placeholder': 'Ecrivez les premières lettres du mot et vérifiez qu\'il apparaît dans la liste.',
+                } }) }}
+            </div>
+        </div>
+    </div>
+
+    {{ form_widget(edit_form._token) }}
+    {{ form_end(edit_form, {'render_rest': false}) }}
+
+{% endblock %}
+{% block javascripts %}
+    <script>
+        $(document).ready(function () {
+            $('#projet_keyWords').select2();
+            $('#projet_mayor').select2();
+        });
+
+        $(".submitForm").click(function () {
+            var title = $("input[name='projet[title]']").val();
+            if (title !== '') {
+                $("form[name='{{ edit_form.vars.name }}']").submit();
+            }
+            else {
+                $("#errorTitle").html("<strong>Le titre est obligatoire!</strong>");
+            }
+        });
+
+        function deleteFile(file) {
+            $.ajax({
+                type: "GET",
+                url: "/deletefile/" + file,
+                success: function () {
+                    location.reload();
+                },
+                error: function () {
+                    alert("la photo ne peu pas être supprimée");
+                }
+            })
+        }
+    </script>
+{% endblock %}
