@@ -85,8 +85,16 @@
                 <a href="{{ path('mayor_project_edit', { 'slug': project.slug, 'page': '5' }) }}">Aperçu</a>
             </li>
         </ul>
-        <div class="text-center">
-        </div>
+        {% if erreurs is defined %}
+            <div class="erreur">
+                <h3>Votre projet ne peut pas être envoyé en modération</h3>
+                <ul>
+                    {% for erreur in erreurs %}
+                        <li>{{ erreur }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        {% endif %}
         <div class="tab-content">
             <div role="tabpanel" class="tab-pane {% if page == 1 %} active {% endif %}" id="projet">
                 <div class="star">Le symbole * indique que cette information est nécessaire.</div>
