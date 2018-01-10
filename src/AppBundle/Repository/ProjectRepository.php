@@ -55,35 +55,6 @@ class ProjectRepository extends \Doctrine\ORM\EntityRepository
 		return $qb->getResult();
 	}
 
-	/*public function getTitle($findTitle)
-	{
-		$qb = $this->createQueryBuilder('p')
-			->setParameter('title', $findTitle)
-			->where('p.title = :title')
-			->getQuery();
-		return $qb->getResult();
-	}
-
-	public function getStatus($findStatus)
-	{
-		$qb = $this->createQueryBuilder('p')
-			->setParameter('status', $findStatus)
-			->where('p.status = :status')
-			->getQuery();
-		return $qb->getResult();
-	}
-
-	public function getTheme($findTheme)
-	{
-		$qb = $this->createQueryBuilder('p')
-			->setParameter('value', $findTheme)
-			->join('p.themes', 'd')
-			->where('d.value = :value')
-			->getQuery();
-		return $qb->getResult();
-	}*/
-
-
 	public function queryTitle($queryBuilder, $request)
 	{
 		$queryBuilder
@@ -117,8 +88,8 @@ class ProjectRepository extends \Doctrine\ORM\EntityRepository
 	{
 		$queryBuilder
 			->join('p.themes', 'd')
-			->andwhere('d.value = :value')
-			->setParameter('value', $request->query->getAlnum('value'));
+			->andwhere('d.type = :type')
+			->setParameter('type', $request->query->getAlnum('type'));
 
 	}
 

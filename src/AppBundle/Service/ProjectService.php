@@ -11,17 +11,9 @@ namespace AppBundle\Service;
 
 class ProjectService
 {
-	/*public $sort = [
-		'title' 	=> "",
-		'status' 	=> "",
-		'value' 	=> ""
-	];*/
-
-
-	public $title 	= "";
-	public $status 	= [0 => "", 1 => "", 2 =>""];
-	public $theme	= "";
-
+	public $title = "";
+	public $status = [0 => "", 1 => "", 2 => ""];
+	public $theme = "";
 
 	public function __construct()
 	{
@@ -76,6 +68,13 @@ class ProjectService
 		$this->theme = $theme;
 	}
 
+	/**
+	 * @return string
+	 */
+	public function getTheme(): string
+	{
+		return $this->theme;
+	}
 
 
 }

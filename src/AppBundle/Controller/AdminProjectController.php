@@ -21,18 +21,6 @@ use Symfony\Component\HttpFoundation\Response;
 class AdminProjectController extends Controller
 {
 
-	/*public $sort = [
-		'title' 		=> "",
-		'status' 		=> "",
-		'value' 		=> ""
-	];
-
-	public function getSort()
-	{
-		return $this->sort;
-	}*/
-
-
 	/**
 	 * Lists all project entities.
 	 *
@@ -45,6 +33,7 @@ class AdminProjectController extends Controller
 
 		$queryBuilder = $em->getRepository('AppBundle:Project')
 			->createQueryBuilder('p');
+		$thematique = $em->getRepository('AppBundle:Dictionary')->getTheme();
 
 		$filter = $this->container->get('app.projectService');
 
@@ -55,16 +44,9 @@ class AdminProjectController extends Controller
 		if (isset ($_GET['status'])) {
 			$filter->setStatus($_GET['status']);
 		}
-		if (isset ($_GET['value'])) {
-			$filter->setTheme($_GET['value']);
+		if (isset ($_GET['themes'])) {
+			$filter->setTheme($_GET['themes']);
 		}
-
-/*		dump($_GET['status']);*/
-
-		/*$em->getRepository('AppBundle:Project')->getTitle($request->query->getAlnum('title'));
-		$em->getRepository('AppBundle:Project')->getStatus($request->query->getAlnum('status'));
-		$em->getRepository('AppBundle:Project')->getTheme($request->query->getAlnum('value'));*/
-
 
 		if ($request->query->getAlnum('title')) {
 			$em->getRepository('AppBundle:Project')->queryTitle($queryBuilder, $request);
@@ -74,41 +56,11 @@ class AdminProjectController extends Controller
 			$em->getRepository('AppBundle:Project')->queryStatus($queryBuilder, $request, $filter->getStatus());
 		}
 
-		if ($request->query->getAlnum('value')) {
-			$em->getRepository('AppBundle:Project')->queryTheme($queryBuilder, $request);
+		if ($request->query->getAlnum('themes')) {
+			$em->getRepository('AppBundle:Dictionary')->getTheme($queryBuilder, $request);
 		}
-
-		/*if ($request->query->getAlnum('title')) {
-			$queryBuilder
-				->andwhere('p.title LIKE :title')
-				->setParameter('title', '%' . $request->query->getAlnum('title') . '%');
-		}
-		if ($request->query->getAlnum('status')) {
-			$queryBuilder
-				->andwhere('p.status LIKE :status')
-				->setParameter('status', $request->query->getAlnum('status'));
-		}
-		if ($request->query->getAlnum('value')) {
-			$queryBuilder
-				->join('p.themes', 'd')
-				->andwhere('d.value = :value')
-				->setParameter('value',	 $request->query->getAlnum('value'));
-		}
-
-		if (isset ($_GET['title'])) {
-			$this->sort['title'] = $_GET['title'];
-		}
-
-		if (isset ($_GET['status'])) {
-			$this->sort['status'] = $_GET['status'];
-		}
-		if (isset ($_GET['value'])) {
-			$this->sort['value'] = $_GET['value'];
-		}*/
 
 		$query = $queryBuilder->getQuery();
-
-		dump($query->getSql());
 
 		/**
 		 * @var $paginator \Knp\Component\Pager\Paginator
@@ -120,10 +72,11 @@ class AdminProjectController extends Controller
 			$request->query->getInt('limit', 10)
 		);
 
-		dump($filter->getStatus());
+		dump($request->query->getAlnum('theme'));
 
 		return $this->render('project/index.html.twig', [
 			'projects' => $result,
+			'themes' => $thematique,
 			'title' => $filter->getTitle(),
 			'status' => $filter->getStatus(),
 			'value' => $filter->getValue()
@@ -242,11 +195,7 @@ class AdminProjectController extends Controller
 
 		if ($editForm->isSubmitted() && $editForm->isValid()) {
 			$em = $this->getDoctrine()->getManager();
-			/*            $themes = $project->getthemes();
-						$project->resetthemes();
-						foreach ($themes as $themes) {
-							$project->addthemes($themes);
-						}*/
+
 			$project->setSlug($slugService->slug($project->getTitle()));
 			$em->persist($project);
 			$em->flush();
