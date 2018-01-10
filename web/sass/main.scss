@@ -331,7 +331,7 @@ a:hover, a:active {
   text-align: center;
   z-index: 1000;
   position: fixed;
-  background: $color6;
+  background: rgba(0, 110, 45, 0.9);
   top: 0px;
   width: 100vw;
   .notif {
@@ -354,6 +354,15 @@ a.anchor {
   position: relative;
   top: -250px;
   visibility: hidden;
+}
+
+.caution {
+  color: $color1;
+  margin-top: 10px;
+  margin-left: 30px;
+  span {
+    font-weight: 700;
+  }
 }
 /*
 
