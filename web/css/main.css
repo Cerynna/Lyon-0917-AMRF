@@ -307,7 +307,15 @@ textarea {
     height: 60px !important; }
   footer ul {
     text-align: center;
-    margin: 20px 0 !important; } }
+    margin: 20px 0 !important; }
+  .btn .btn-collapse {
+    margin: 0 0 0 -20px !important;
+    height: 48px;
+    width: 48px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    border-radius: 5px; } }
 
 @media only screen and (max-device-width: 767px) {
   .hidden-s {
@@ -380,6 +388,14 @@ textarea {
       padding-right: 0;
       padding-left: 0;
       font-size: 2em !important; }
+    section .btn-collapse {
+      margin: 0 0 0 -25px !important;
+      height: 48px;
+      width: 48px;
+      -webkit-border-radius: 5px;
+      -moz-border-radius: 5px;
+      -ms-border-radius: 5px;
+      border-radius: 5px; }
     section .project {
       padding: 0 !important; }
     section .tabPannel {
@@ -881,6 +897,9 @@ section {
       background: rgba(0, 158, 61, 0.99);
       border-color: rgba(0, 158, 61, 0.99);
       border-radius: 2px; }
+  section .pagination > li {
+    display: inline-block;
+    margin-bottom: 20px; }
   section h2 {
     color: rgba(0, 158, 61, 0.99);
     font-family: "ERASDEMI", sans-serif;
@@ -1897,7 +1916,7 @@ a:hover, a:active {
   border-radius: 0px 5px 5px 0px; }
 
 .btn-collapse {
-  margin: 0 !important;
+  margin: 0 0 0 -20px !important;
   height: 48px;
   width: 48px;
   -webkit-border-radius: 5px;

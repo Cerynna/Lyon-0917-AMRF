@@ -131,7 +131,7 @@ a:hover, a:active {
 }
 
 .btn-collapse {
-  margin: 0 !important;
+  margin: 0 0 0 -20px !important;
   height: 48px;
   width: 48px;
   @include borderRadius(5px);

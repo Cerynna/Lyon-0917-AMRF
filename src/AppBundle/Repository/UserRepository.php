@@ -11,6 +11,7 @@ namespace AppBundle\Repository;
 class UserRepository extends \Doctrine\ORM\EntityRepository
 {
 
+
     public function findByEmail($email)
     {
         return $this->createQueryBuilder('u')
@@ -27,4 +28,5 @@ class UserRepository extends \Doctrine\ORM\EntityRepository
             ->getQuery()
             ->getResult();
     }
+
 }

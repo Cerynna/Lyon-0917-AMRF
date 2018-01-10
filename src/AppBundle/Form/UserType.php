@@ -60,8 +60,6 @@ class UserType extends AbstractType
     {
         return 'amrf_publicrooterbundle_user';
     }
-
-
 }
 
 

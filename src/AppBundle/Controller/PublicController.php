@@ -6,6 +6,7 @@ namespace AppBundle\Controller;
 use AppBundle\Entity\Company;
 use AppBundle\Entity\Contact;
 use AppBundle\Entity\Dictionary;
+use AppBundle\Entity\Favorite;
 use AppBundle\Entity\Project;
 use AppBundle\Entity\Search;
 use AppBundle\Service\EmailService;

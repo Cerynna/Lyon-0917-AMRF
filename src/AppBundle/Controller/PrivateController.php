@@ -8,6 +8,7 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\Company;
 use AppBundle\Entity\Dictionary;
 use AppBundle\Entity\Project;
 use AppBundle\Entity\Search;
@@ -109,6 +110,26 @@ class PrivateController extends Controller
             'favorite' => $favorie,
         ));
     }
+
+	/**
+	 * @Route("/directory/{slug}", name="sheet_company")
+	 * @param Company $company
+	 * @return Response
+	 */
+	public function companyAction(Company $company)
+	{
+		$em = $this->getDoctrine()->getManager();
+		$idUser = $this->getUser()->getId();
+		$idCompany = $company->getId();
+		$favorites = $em->getRepository("AppBundle:Favorite")->getFavorite("company", $idCompany, $idUser);
+
+		(!empty($favorites) ? $favorie = 1 : $favorie = 0);
+
+		return $this->render('private/annuaire.html.twig', array(
+			'company' => $company,
+			'favorite' => $favorie,
+		));
+	}
 
     /**
      * @Route("/directory", name="directory")
