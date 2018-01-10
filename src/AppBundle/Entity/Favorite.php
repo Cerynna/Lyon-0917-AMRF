@@ -27,12 +27,12 @@ class Favorite
     private $user;
 
     /**
-     * @ORM\OneToOne(targetEntity="Project")
+     * @ORM\ManyToOne(targetEntity="Project", inversedBy="favorites")
      */
     private $project;
 
     /**
-     * @ORM\OneToOne(targetEntity="Company")
+     * @ORM\ManyToOne(targetEntity="Project", inversedBy="favorites")
      */
     private $company;
 

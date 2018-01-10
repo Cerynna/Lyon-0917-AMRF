@@ -241,6 +241,11 @@ class Company
 	 */
 	private $slug;
 
+    /**
+     * @ORM\OneToMany(targetEntity="Favorite", mappedBy="company")
+     */
+    private $favorites;
+
 	/**
 	 * @return string
 	 */
