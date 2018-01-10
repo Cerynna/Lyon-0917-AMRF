@@ -24,6 +24,13 @@
 <a href="#">
     <div class="scrollUp"><i class="fa fa-angle-up"></i></div>
 </a>
+{% for key, message in app.flashes %}
+    <div class="{{ key }}">
+        <div class="notif">
+            {{ message.0|raw }}
+        </div>
+    </div>
+{% endfor %}
 <section>
     <div class="container">
         <div class="content">
@@ -32,13 +39,6 @@
         </div>
     </div>
 </section>
-{% for message in app.flashes('notice') %}
-    <div class="notice">
-        <div class="notif">
-            {{ message|raw }}
-        </div>
-    </div>
-{% endfor %}
 <footer class="page-footer">
     {{ render(controller(
     'AppBundle:Layout:footer'

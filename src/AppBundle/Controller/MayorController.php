@@ -226,7 +226,7 @@ class MayorController extends Controller
                     $pageSend = $page;
                 }
                 $this->addFlash(
-                    'notice',
+                    'proj',
                     '<p>Vos informations ont bien été enregistrées</p>'
                 );
                 return $this->redirectToRoute('mayor_project_edit', [

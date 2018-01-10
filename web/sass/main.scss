@@ -342,6 +342,24 @@ a:hover, a:active {
   }
 }
 
+.proj {
+  color: $color2;
+  font-size: 1.8em;
+  font-weight: bold;
+  text-align: center;
+  z-index: 1000;
+  position: fixed;
+  background: $color6;
+  top: 0px;
+  width: 100vw;
+  .notif {
+    width: 50vw;
+    height: 100vh;
+    padding-top: 25vh;
+    margin: 0 auto;
+  }
+}
+
 #map {
   height: 600px;
   width: 100%;
