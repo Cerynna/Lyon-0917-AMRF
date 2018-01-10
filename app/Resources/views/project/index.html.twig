@@ -24,9 +24,30 @@
                 <input value="{{ title }}" name="title" type="text" onchange="sendFilter()">
 
                 <label for="name">Theme</label>
-                <input value="{{ value }}" type="text" name="value" onchange="sendFilter()">
+                <select name="theme" id="themes">
+                    {% for theme in themes %}
+                        <option value="{{ theme.id }}"{% if value %} selected{% endif %} onchange="sendFilter()">{{ theme.name }} </option>
+                    {% endfor %}
+                </select>
 
-                {#{{ include(':components:thematiques.html.twig') }}#}
+                <input {% if 1 in status %} checked {% endif %} name="status[]" value="1" id="brouillon" type="checkbox"
+                                                                multiple
+                                                                onchange="sendFilter()"
+                >
+                <label for="brouillon">Brouillon</label>
+
+                <input {% if 2 in status %} checked {% endif %} name="status[]" value="2" id="attente" type="checkbox"
+                                                                multiple
+                                                                onchange="sendFilter()"
+                >
+                <label for="attente">En attente</label>
+                
+                <input {% if 3 in status %} checked {% endif %} name="status[]" value="3" id="publier" type="checkbox"
+                                                                multiple
+                                                                onchange="sendFilter()"
+                >
+                <label for="publier">Publier</label>
+                
                 <input {% if status == 1 %} checked {% endif %} name="status" id="brouillon" value="1" type="radio"
                                                                 multiple
                                                                 onchange="sendFilter()">
@@ -41,7 +62,6 @@
                                                                 multiple
                                                                 onchange="sendFilter()">
                 <label for="publier">Publier</label>
-
 
                 <button type="submit" class="btn btn-default btn-sm"><i class="fa fa-search" aria-hidden="true"></i>
                     Filter
@@ -169,6 +189,5 @@
         $(document).ready(function () {
             $('[data-toggle="tooltip"]').tooltip();
         });
-
     </script>
 {% endblock %}

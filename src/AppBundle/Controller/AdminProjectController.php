@@ -6,6 +6,7 @@ use AppBundle\Entity\Project;
 use AppBundle\Entity\Uploader;
 use AppBundle\Service\SlugService;
 use AppBundle\Service\UploadService;
+use AppBundle\Service\ProjectService;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -21,17 +22,6 @@ use Symfony\Component\HttpFoundation\Response;
 class AdminProjectController extends Controller
 {
 
-	public $sort = [
-		'title' 		=> "",
-		'status' 		=> "",
-		'value' 		=> ""
-	];
-
-	public function getSort()
-	{
-		return $this->sort;
-	}
-
 	/**
 	 * Lists all project entities.
 	 *
@@ -46,35 +36,31 @@ class AdminProjectController extends Controller
 
 		$queryBuilder = $em->getRepository('AppBundle:Project')
 			->createQueryBuilder('p');
+		$thematique = $em->getRepository('AppBundle:Dictionary')->getTheme();
 
-		if ($request->query->getAlnum('title')) {
-			$queryBuilder
-				->andwhere('p.title LIKE :title')
-				->setParameter('title', '%' . $request->query->getAlnum('title') . '%');
-		}
-
-		if ($request->query->getAlnum('status')) {
-			$queryBuilder
-				->andwhere('p.status LIKE :status')
-				->setParameter('status', $request->query->getAlnum('status'));
-		}
-
-		if ($request->query->getAlnum('value')) {
-			$queryBuilder
-				->join('p.themes', 'd')
-				->andwhere('d.value = :value')
-				->setParameter('value',	 $request->query->getAlnum('value'));
-		}
+		$filter = $this->container->get('app.projectService');
 
 		if (isset ($_GET['title'])) {
-			$this->sort['title'] = $_GET['title'];
+			$filter->setTitle($_GET['title']);
 		}
 
 		if (isset ($_GET['status'])) {
-			$this->sort['status'] = $_GET['status'];
+			$filter->setStatus($_GET['status']);
 		}
-		if (isset ($_GET['value'])) {
-			$this->sort['value'] = $_GET['value'];
+		if (isset ($_GET['themes'])) {
+			$filter->setTheme($_GET['themes']);
+		}
+
+		if ($request->query->getAlnum('title')) {
+			$em->getRepository('AppBundle:Project')->queryTitle($queryBuilder, $request);
+		}
+
+		if ($request->query->getAlnum('status')) {
+			$em->getRepository('AppBundle:Project')->queryStatus($queryBuilder, $request, $filter->getStatus());
+		}
+
+		if ($request->query->getAlnum('themes')) {
+			$em->getRepository('AppBundle:Dictionary')->getTheme($queryBuilder, $request);
 		}
 
 		$query = $queryBuilder->getQuery();
@@ -89,12 +75,13 @@ class AdminProjectController extends Controller
 			$request->query->getInt('limit', 10)
 		);
 
-		return $this->render('project/index.html.twig', array(
-			'projects' 		=> $result,
-			'title' 		=> $this->sort['title'],
-			'status'		=> $this->sort['status'],
-			'value' 		=> $this->sort['value']
-		));
+		return $this->render('project/index.html.twig', [
+			'projects' => $result,
+			'themes' => $thematique,
+			'title' => $filter->getTitle(),
+			'status' => $filter->getStatus(),
+			'value' => $filter->getValue()
+		]);
 	}
 
 	/**
@@ -210,6 +197,37 @@ class AdminProjectController extends Controller
             $images[] = $uploadService->fileUpload($files, '/project/' . $project->getId() . '/photos', "img");
 			$project->setImages($images);
 			$this->getDoctrine()->getManager()->flush();
+			return $this->redirectToRoute('admin_project_edit', array(
+				'slug' => $project->getSlug(),
+			));
+		}
+
+
+		if ($editForm->isSubmitted() && $editForm->isValid()) {
+			$em = $this->getDoctrine()->getManager();
+
+			$project->setSlug($slugService->slug($project->getTitle()));
+			$em->persist($project);
+			$em->flush();
+
+			return $this->redirectToRoute('admin_project_edit', array('slug' => $project->getSlug()));
+		}
+
+		return $this->render('project/edit.html.twig', array(
+			'project' => $project,
+			'edit_form' => $editForm->createView(),
+			'upload_image_form' => $uplodImageForm->createView(),
+			'upload_file_form' => $uplodFileForm->createView(),
+			'delete_form' => $deleteForm->createView(),
+		));
+	}
+
+	/**
+	 * Deletes a project entity.
+	 *
+	 * @Route("/{id}", name="admin_project_delete")
+	 * @Method("DELETE")
+	 */
             /*return $this->redirectToRoute('admin_project_edit', array(
                 'slug' => $project->getSlug(),
             ));*/
