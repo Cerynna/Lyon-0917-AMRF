@@ -2083,6 +2083,22 @@ a:hover, a:active {
     padding-top: 25vh;
     margin: 0 auto; }
 
+.proj {
+  color: #ffffff;
+  font-size: 1.8em;
+  font-weight: bold;
+  text-align: center;
+  z-index: 1000;
+  position: fixed;
+  background: rgba(0, 110, 45, 0.5);
+  top: 0px;
+  width: 100vw; }
+  .proj .notif {
+    width: 50vw;
+    height: 100vh;
+    padding-top: 25vh;
+    margin: 0 auto; }
+
 #map {
   height: 600px;
   width: 100%; }
