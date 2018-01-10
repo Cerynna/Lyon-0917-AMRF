@@ -108,27 +108,24 @@
             var locations = [];
         </script>
         {% for key, project in result %}
-
-            {% if project.project.0.status == 3 %}
-                <a class="anchor" id="result-{{ project.project.0.id }}"></a>
+                <a class="anchor" id="result-{{ project.id }}"></a>
                 <div class="jumbotron row">
-                    {{ project.nb }}
-                    {% set options = {'thema':'true','pictures':'true','update': 'false', 'more': 'true', 'project': project.project.0} %}
+                    {% set options = {'thema':'true','pictures':'true','update': 'false', 'more': 'true', 'project': project} %}
                     {% include 'components/resumeProject.html.twig' with options %}
                     <script>
-                        var content = "<h4>{{ project.project.0.title }}</h4>" +
-                            "{{ project.project.0.mayor.town }}<br />" +
-                            "{{ project.project.0.mayor.zipCode }}<br />" +
-                            "{#{{ project.project.0.projectDate|date("d-M-Y") }}#}<br />" +
-                            "<a href=\"{{ path('sheet_project', {'slug': project.project.0.slug }) }}\">" +
+                        var content = "<h4>{{ project.title }}</h4>" +
+                            "{{ project.mayor.town }}<br />" +
+                            "{{ project.mayor.zipCode }}<br />" +
+                            "{#{{ project.projectDate|date("d-M-Y") }}#}<br />" +
+                            "<a href=\"{{ path('sheet_project', {'slug': project.slug }) }}\">" +
                             "Voir la fiche" +
                             "</a><br />" +
-                            "<a href='#result-{{ project.project.0.id }}'>Voir le Resultat</a>";
+                            "<a href='#result-{{ project.id }}'>Voir le Resultat</a>";
 
-                        locations.push([content,{{ project.project.0.mayor.latitude }}, {{ project.project.0.mayor.longitude }}, 4,{{ project.project.0.id }}]);
+                        locations.push([content,{{ project.mayor.latitude }}, {{ project.mayor.longitude }}, 4,{{ project.id }}]);
                     </script>
                 </div>
-            {% endif %}
+
         {% endfor %}
     {% endif %}
 
