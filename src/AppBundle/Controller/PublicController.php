@@ -56,7 +56,6 @@ class PublicController extends Controller
         $array = ["main-1", "main-2"];
         $contents = $em->getRepository('AppBundle:PublicPage')->getContentIndex($array);
 
-
         return $this->render('public/index.html.twig', array(
             'projects' => $projects,
             'contents' => $contents,
