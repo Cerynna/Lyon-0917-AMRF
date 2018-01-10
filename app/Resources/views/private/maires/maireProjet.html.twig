@@ -1,20 +1,21 @@
 {% extends 'base.html.twig' %}
 {% block title %}Mes projets{% endblock %}
-{% block navbar %}
-    {% set options = {'status':1} %}
-    {% include 'components/navbar.html.twig' with options %}
-{% endblock %}
 {% block body %}
     <h2>MES FICHES PROJETS</h2>
     <div class="row tabPannel">
-        <div class="hidden-xs">
+        <div class="">
             <ul class="list-inline text-center" role="tablist">
-                <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab"
-                                                          data-toggle="tab">En cours de saisie</a></li>
-                <li role="presentation"><a href="#envoye" aria-controls="projet" role="tab"
-                                           data-toggle="tab">Envoyé(s)</a>
+                <li role="presentation" class="tabLi active">
+                    <a href="#home" aria-controls="home" role="tab" data-toggle="tab">
+                        En cours de saisie
+                    </a>
                 </li>
-                <li role="presentation">
+                <li role="presentation" class="tabLi">
+                    <a href="#envoye" aria-controls="projet" role="tab" data-toggle="tab">
+                        Envoyé(s)
+                    </a>
+                </li>
+                <li role="presentation" class="tabLi">
                     <a href="#ligne" aria-controls="projet" role="tab" data-toggle="tab">
                         En ligne
                     </a>
@@ -22,7 +23,7 @@
             </ul>
         </div>
         <!-- Tab panes -->
-        <div class="hidden-xs tab-content">
+        <div class="tab-content">
 
             <div role="tabpanel" class="tab-pane active" id="home">
                 <h3>Mes projets en cours de saisie</h3>
@@ -60,53 +61,6 @@
                 {% endfor %}
             </div>
         </div>
-
-        {#        Swiper
-                <div class="visible-xs swiper-container">
-                    <div class="swiper-pagination"></div>
-                    <div class="swiper-wrapper">
-
-                        <div class="swiper-slide">
-                            <h3>Mes projets en cours de saisie</h3>
-                            {% for project in projects %}
-                                {% if project.status == 1 %}
-                                    <div class="jumbotron">
-                                        {% set options = {'thema':'false','pictures':'false','update': 'true', 'more': 'true', 'text': 0} %}
-                                    </div>
-                                {% endif %}
-                            {% endfor %}
-                        </div>
-
-                        <div class="swiper-slide">
-                            <h3>Mes projets envoyés</h3>
-                            {% for project in projects %}
-                                {% if project.status == 2 %}
-                                    <div class="jumbotron">
-                                        {% set options = {'thema':'false','pictures':'false','update': 'true', 'more': 'true', 'text': 0} %}
-                                        {% include 'components/resumeProject.html.twig' with options %}
-                                    </div>
-                                {% endif %}
-                            {% endfor %}
-                        </div>
-
-                        <div class="swiper-slide">
-                            <h3>Mes projets en ligne</h3>
-                            {% for project in projects %}
-                                {% if project.status == 3 %}
-                                    <div class="jumbotron">
-                                        {% set options = {'thema':'false','pictures':'false','update': 'true', 'more': 'true', 'text': 0} %}
-                                        {% include 'components/resumeProject.html.twig' with options %}
-                                    </div>
-                                {% endif %}
-                            {% endfor %}
-                        </div>
-
-                    </div>
-                    swiper wrapper
-                    <div class="swiper-button-next"></div>
-                    <div class="swiper-button-prev"></div>
-                </div>
-                swiper container#}
     </div>
 {% endblock %}
 

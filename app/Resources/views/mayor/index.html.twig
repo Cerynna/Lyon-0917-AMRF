@@ -16,32 +16,30 @@
         </ul>
     </div>
 
-
-    <h1>Mayors list</h1>
-
+    <h1>Liste des maires</h1>
     <table>
         <thead>
-            <tr>
-                <th>Id</th>
-                <th>Firstname</th>
-                <th>Lastname</th>
-                <th>Address</th>
-                <th>Insee</th>
-                <th>Email</th>
-                <th>Phone</th>
-                <th>Town</th>
-                <th>Zipcode</th>
-                <th>Department</th>
-                <th>Region</th>
-                <th>Latitude</th>
-                <th>Longitude</th>
-                <th>Population</th>
-                <th>Url</th>
-                <th>Facebook</th>
-                <th>Twitter</th>
-                <th>Google</th>
-                <th>Actions</th>
-            </tr>
+        <tr>
+            <th>Id</th>
+            <th>Prénom</th>
+            <th>Nom</th>
+            <th>Adresse</th>
+            <th>Insee</th>
+            <th>Email</th>
+            <th>Téléphone</th>
+            <th>Ville</th>
+            <th>CP</th>
+            <th>Département</th>
+            <th>Région</th>
+            <th>Latitude</th>
+            <th>Longitude</th>
+            <th>Population</th>
+            <th>Url</th>
+            <th>Facebook</th>
+            <th>Twitter</th>
+            <th>Google</th>
+            <th>Actions</th>
+        </tr>
         </thead>
         <tbody>
         {% for mayor in mayors %}
@@ -78,9 +76,7 @@
         {% endfor %}
         </tbody>
     </table>
-
     <div class="navigation text-center">
         {{ knp_pagination_render(mayors) }}
     </div>
-
 {% endblock %}

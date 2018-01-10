@@ -1,17 +1,12 @@
 {% extends 'base.html.twig' %}
 {% block title %}Formulaire fiche projet{% endblock %}
-{% block navbar %}
-    {% include 'components/navbar.html.twig' %}
-{% endblock %}
-
-
 
 {% block body %}
 
     {{ form_start(form) }}
 
     <h2>CREER UNE FICHE PROJET</h2>
-    <p>Il faut donner un titre a votre projet pour pouvoir continuer</p>
+    <p>Pour commencer, merci de donner un nom a votre projet. Il pourra être modifié par la suite.</p>
     <div class="row">
         <div class="col-sm-12">
             {{ form_errors(form) }}
@@ -23,7 +18,4 @@
     </div>
 
     {{ form_end(form) }}
-{% endblock %}
-{% block javascripts %}
-
 {% endblock %}

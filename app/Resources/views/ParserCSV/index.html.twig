@@ -1,0 +1,35 @@
+{% extends 'private/admin/baseAdmin.html.twig' %}
+{% block title %}Admin ParserCSV{% endblock %}
+{% block body %}
+    <div class="menu-admin menu-project">
+        <ul>
+            <li>
+                <a href="{{ path('ParserCSV') }}" data-toggle="tooltip" data-placement="right"
+                   title="Parser le CSV"><i
+                            class="fa fa-download fa-admin"></i></a>
+            </li>
+            <li>
+                <a href="{{ path('ResultParse', {'timer': 0}) }}" data-toggle="tooltip" data-placement="right"
+                   title="Resultat Precedent"><i class="fa fa-ambulance fa-admin"></i></a>
+            </li>
+        </ul>
+    </div>
+    <h1>ParserCSV</h1>
+    {% if csv is defined %}
+        {% for row in csv|batch(3, 'No item') %}
+            <div class="row">
+                {% for column in row %}
+                    {% if column != 'No item' %}
+                        <div class="col-xs-4">
+                            <h5>
+                                <strong>{{ column.0 }}</strong> avec pour code : <strong>{{ column.1 }}</strong><br/>
+                                Motif : {{ column.2 }}
+                            </h5>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        {% endfor %}
+
+    {% endif %}
+{% endblock %}

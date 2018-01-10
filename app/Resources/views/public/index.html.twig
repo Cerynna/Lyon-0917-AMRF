@@ -1,10 +1,7 @@
 {% extends 'base.html.twig' %}
 {% block title %}Accueil{% endblock %}
 {% block body %}
-{#    {% if is_granted('ROLE_MAYOR') %} JE SUIS UN MAYOR !!!! {% endif %}
-    {% if is_granted('ROLE_PARTNER') %} JE SUIS UN PARTNER !!!! {% endif %}
-    {% if is_granted('ROLE_ADMIN') %} JE SUIS UN ADMIN !!!! {% endif %}
-    #}
+
     {% set moreProject = 'false' %}
     {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
         {% set moreProject = 'true' %}
@@ -18,54 +15,24 @@
                     {% set options = {'thema':'true','pictures':'true','update': 'false', 'more': moreProject, 'project': project} %}
                     {% include 'components/resumeProject.html.twig' with options %}
                 </div>
-             {% endfor %}
+            {% endfor %}
         </div>
     </div>
     <h3>Un outil collaboratif et participatif</h3>
     <div class="row jumbotron">
         <div class="col-md-12">
 
-
-            <h3>Le Wiki des Maires : qu’est-ce que c’est ?</h3>
-            <p>
-                A destination des communes adhérentes de l’Association des Maires Ruraux de France et de ses
-                partenaires, le Wiki des Maires permet de partager et d’échanger sur des projets mis en place par les
-                communes rurales.
-            </p>
-            <p>
-                Le Wiki des Maires a pour objectif de <strong>valoriser les initiatives menées</strong> et de <strong>faciliter
-                    les échanges</strong>, en mettant à disposition les coordonnées des porteurs de projets et des
-                partenaires mobilisés. Créatrice de lien entre les membres du réseau, cette plateforme interactive
-                illustre le dynamisme des communes et l’implication des élus pour leur territoire et leurs administrés.
-            </p>
-            <p>
-                L’échelon communal permet l’innovation et la réalisation de projets concrets. Le Wiki des Maires, en est
-                une traduction et l’incarnation numérique de la devise de l’Association « Des maires au service des
-                maires ».
-            </p>
+            <h3>{{ contents['main-1'].title|raw }}</h3>
+            {{ contents['main-1'].content|raw }}
 
         </div>
     </div>
     <div class="row jumbotron">
         <div class="col-md-12">
 
-            <h3>Comment l’utiliser ?</h3>
-            <h5><i class="fa fa-share-square-o"></i> Je partage</h5>
-            <p>
-                Vous avez un projet, une initiative, une réalisation à valoriser ou une expertise à apporter ?
-                Enrichissez la base et partagez votre enthousiasme !
-            </p>
-            <h5><i class="fa fa-search"></i> Je recherche</h5>
-            <p>
-                Vous voulez savoir si un projet similaire au vôtre a déjà été mis en place par quelqu’un et comment il
-                s’y est pris ? Vous souhaitez avoir une liste des projets réalisés selon une thématique donnée ? Ou tout
-                simplement, vous aimeriez connaître les actions menées autour de vous ou dans un département particulier
-                ? Le Wiki des Maires est la solution qui met en avant l’expérience des maires et l’expertise de nos
-                partenaires.
-                Alors partez à la recherche et inspirez-vous !
-            </p>
+            <h3>{{ contents['main-2'].title|raw }}</h3>
+            {{ contents['main-2'].content|raw }}
 
         </div>
     </div>
-
 {% endblock %}

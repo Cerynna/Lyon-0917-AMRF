@@ -1,6 +1,6 @@
 {% if is_granted('ROLE_MAYOR') %}
     {% set idMayor = app.user.mayor.id %}
-{% elseif is_granted('ROLE_PARTNER')%}
+{% elseif is_granted('ROLE_PARTNER') %}
     {% set idPartner = app.user.partner.id %}
 {% endif %}
 <!DOCTYPE html>
@@ -18,7 +18,7 @@
 </header>
 <nav id="navbar">
     {% block navbar %}
-        {% include 'components/navbar.html.twig'%}
+        {% include 'components/navbar.html.twig' %}
     {% endblock %}
 </nav>
 <a href="#">
@@ -32,8 +32,17 @@
         </div>
     </div>
 </section>
+{% for message in app.flashes('notice') %}
+    <div class="notice">
+        <div class="notif">
+            {{ message|raw }}
+        </div>
+    </div>
+{% endfor %}
 <footer class="page-footer">
-    {% include 'components/footer.html.twig' %}
+    {{ render(controller(
+    'AppBundle:Layout:footer'
+    )) }}
 </footer>
 {% include 'components/script.html.twig' %}
 {% block javascripts %}{% endblock %}

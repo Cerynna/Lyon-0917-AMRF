@@ -1,6 +1,26 @@
 {% extends 'private/admin/baseAdmin.html.twig' %}
 
 {% block body %}
+    <div id="modalImageUpload" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-sm-10">
+                            {{ form_start(upload_image_form) }}
+                            {{ form_label(upload_image_form.path, 'Télécharger un fichier depuis votre ordinateur') }}
+                            {{ form_widget(upload_image_form.path) }}
+
+                            {{ form_end(upload_image_form) }}
+                        </div>
+                        <div class="col-sm-2 text-right">
+                            <i class="fa fa-times fa-admin-mini" data-dismiss="modal"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="menu-admin menu-company">
         <ul>
             <li>
@@ -21,28 +41,129 @@
                 <button class="fa-admin" data-toggle="tooltip" data-placement="right"
                         title="Supprimer Organisme" type="submit"><i class="fa fa-trash-o"></i></button>
                 {{ form_end(delete_form) }}
-
             </li>
         </ul>
     </div>
     <h1>Company edit</h1>
-
     {{ form_start(edit_form) }}
+    <div class="form-group row" id="editOrganisme">
+        <div class="col-sm-6">
+            <div class="col-sm-12">
+                <h5>{{ form_label(edit_form.name) }}</h5>
+                {{ form_widget(edit_form.name) }}
+            </div>
+            <div class="col-sm-4">
+                <h5>{{ form_label(edit_form.address) }}</h5>
+                {{ form_widget(edit_form.address) }}
+            </div>
+            <div class="col-sm-4">
+                <h5>{{ form_label(edit_form.zipCode) }}</h5>
+                {{ form_widget(edit_form.zipCode) }}
+            </div>
+            <div class="col-sm-4">
+                <h5>{{ form_label(edit_form.city) }}</h5>
+                {{ form_widget(edit_form.city) }}
+            </div>
+            <div class="col-sm-12">
+                <h5><label>Logo</label></h5>
+                {% if company.logo %}
+                    {% set img = 'upload/company/' ~ company.id ~ '/file/' ~ company.logo %}
+                    {% set imglink = 'upload-company-' ~ company.id ~ '-file-' ~ company.logo %}
+                    <div style="background-image: url('{{ asset(img) }}')" class="adminImageProject col-sm-3">
+                        <i class="fa fa-trash fa-admin-mini" onclick="deleteFile('{{ imglink }}')"></i>
+                    </div>
+                {% endif %}
+                {% if company.logo|length < 1 %}
+                    <div class="adminImageProject col-sm-3">
+                        <i class="fa fa-upload fa-admin" data-toggle="modal" data-target="#modalImageUpload"></i>
+                    </div>
+                {% endif %}
+            </div>
 
-        {{ form_widget(edit_form) }}
-    <img src="{{app.request.basepath}}/upload/company/{{ company.name }}/{{company.logo}}" alt="monimg" />
-{#
-        <input type="submit" value="Edit" />
-#}
-    {{ form_end(edit_form) }}
-    {#<ul>
-        <li>
-            <a href="{{ path('admin_company_index') }}">Back to the list</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>#}
+            <div class="col-sm-12">
+                <h5>{{ form_label(edit_form.presentation) }}</h5>
+                {{ form_widget(edit_form.presentation) }}
+            </div>
+
+        </div>
+        <div class="col-sm-6">
+            <div class="col-sm-6">
+                <h5>{{ form_label(edit_form.contactFirstName) }}</h5>
+                {{ form_widget(edit_form.contactFirstName) }}
+            </div>
+            <div class="col-sm-6">
+                <h5>{{ form_label(edit_form.contactLastName) }}</h5>
+                {{ form_widget(edit_form.contactLastName) }}
+            </div>
+            <div class="col-sm-6">
+                <h5>{{ form_label(edit_form.contactPhone) }}</h5>
+                {{ form_widget(edit_form.contactPhone) }}
+            </div>
+            <div class="col-sm-6">
+                <h5>{{ form_label(edit_form.contactEmail) }}</h5>
+                {{ form_widget(edit_form.contactEmail) }}
+            </div>
+            <div class="col-sm-6">
+                <h5>{{ form_label(edit_form.url) }}</h5>
+                {{ form_widget(edit_form.url) }}
+            </div>
+            <div class="col-sm-6">
+                <h5>{{ form_label(edit_form.facebook) }}</h5>
+                {{ form_widget(edit_form.facebook) }}
+            </div>
+            <div class="col-sm-6">
+                <h5>{{ form_label(edit_form.linkedin) }}</h5>
+                {{ form_widget(edit_form.linkedin) }}
+            </div>
+            <div class="col-sm-6">
+                <h5>{{ form_label(edit_form.twitter) }}</h5>
+                {{ form_widget(edit_form.twitter) }}
+            </div>
+            <div class="col-sm-12">
+                <h5>{{ form_label(edit_form.activities) }}</h5>
+                <div class="col-sm-4">
+                    {% set nbact = edit_form.activities|length %}
+                    {% set col =  nbact/3 %}
+                    {% set col = col|round %}
+
+                    {% for activity in edit_form.activities %}
+                    {{ form_errors(activity) }}
+                    <div>
+                        <input type="checkbox" id="{{ activity.vars.id }}"
+                               name="{{ activity.vars.full_name }}" value="{{ activity.vars.value }}"
+                                {% if activity.vars.checked == true %} checked="checked" {% endif %} >
+                        <label for="{{ activity.vars.id }}">{{ activity.vars.label|slice(0,20) }}</label>
+                    </div>
+                    {% if (loop.index == col) or (loop.index == col*2) %}
+                </div>
+                <div class="col-sm-4">
+                    {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+    {{ form_widget(edit_form._token) }}
+    {{ form_end(edit_form, {'render_rest': false}) }}
+{% endblock %}
+{% block javascripts %}
+    <script>
+        $(".submitForm").click(function () {
+            $("form[name='{{ edit_form.vars.name }}']").submit();
+        });
+
+        function deleteFile(file) {
+            $.ajax({
+                type: "GET",
+                url: "/deletefile/" + file,
+                success: function () {
+                    location.reload();
+                },
+                error: function () {
+                    alert("la photo ne peu pas être supprimée");
+
+                }
+            })
+        }
+    </script>
 {% endblock %}

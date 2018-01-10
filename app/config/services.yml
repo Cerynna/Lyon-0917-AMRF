@@ -37,3 +37,10 @@ services:
     app.projectService:
         class:  AppBundle\Service\ProjectService
         public: true
+    AppBundle\Service\UploadService:
+        arguments:
+            $kernelRootDir: "%kernel.project_dir%/web/upload"
+
+    AppBundle\Service\ValidProjectService:
+        arguments:
+            $kernelRootDir: "%kernel.project_dir%/web/upload"

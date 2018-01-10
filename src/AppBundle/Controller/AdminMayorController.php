@@ -5,7 +5,8 @@ namespace AppBundle\Controller;
 use AppBundle\Entity\Mayor;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Mayor controller.
@@ -19,26 +20,24 @@ class AdminMayorController extends Controller
      *
      * @Route("/", name="admin_mayor_index")
      * @Method("GET")
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function indexAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
+        $queryBuilder = $em->getRepository('AppBundle:Mayor')->createQueryBuilder('m');
+        $query = $queryBuilder->getQuery();
 
-/*        $mayors = $em->getRepository('AppBundle:Mayor')->findAll();*/
-
-		$queryBuilder = $em->getRepository('AppBundle:Mayor')->createQueryBuilder('m');
-
-		$query = $queryBuilder->getQuery();
-
-		/**
-		 * @var $paginator \Knp\Component\Pager\Paginator
-		 */
-		$paginator = $this->get('knp_paginator');
-		$result = $paginator->paginate(
-			$query,
-			$request->query->getInt('page', 1),
-			$request->query->getInt('limit', 10)
-		);
+        /**
+         * @var $paginator \Knp\Component\Pager\Paginator
+         */
+        $paginator = $this->get('knp_paginator');
+        $result = $paginator->paginate(
+            $query,
+            $request->query->getInt('page', 1),
+            $request->query->getInt('limit', 10)
+        );
 
         return $this->render('mayor/index.html.twig', array(
             'mayors' => $result,
@@ -50,6 +49,8 @@ class AdminMayorController extends Controller
      *
      * @Route("/new", name="admin_mayor_new")
      * @Method({"GET", "POST"})
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
     public function newAction(Request $request)
     {
@@ -76,6 +77,8 @@ class AdminMayorController extends Controller
      *
      * @Route("/{id}", name="admin_mayor_show")
      * @Method("GET")
+     * @param Mayor $mayor
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function showAction(Mayor $mayor)
     {
@@ -92,6 +95,9 @@ class AdminMayorController extends Controller
      *
      * @Route("/{id}/edit", name="admin_mayor_edit")
      * @Method({"GET", "POST"})
+     * @param Request $request
+     * @param Mayor $mayor
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
     public function editAction(Request $request, Mayor $mayor)
     {
@@ -117,6 +123,9 @@ class AdminMayorController extends Controller
      *
      * @Route("/{id}", name="admin_mayor_delete")
      * @Method("DELETE")
+     * @param Request $request
+     * @param Mayor $mayor
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
      */
     public function deleteAction(Request $request, Mayor $mayor)
     {
@@ -144,7 +153,6 @@ class AdminMayorController extends Controller
         return $this->createFormBuilder()
             ->setAction($this->generateUrl('admin_mayor_delete', array('id' => $mayor->getId())))
             ->setMethod('DELETE')
-            ->getForm()
-        ;
+            ->getForm();
     }
 }

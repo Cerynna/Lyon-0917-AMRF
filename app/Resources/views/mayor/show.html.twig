@@ -5,91 +5,91 @@
 
     <table>
         <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ mayor.id }}</td>
-            </tr>
-            <tr>
-                <th>Firstname</th>
-                <td>{{ mayor.firstName }}</td>
-            </tr>
-            <tr>
-                <th>Lastname</th>
-                <td>{{ mayor.lastName }}</td>
-            </tr>
-            <tr>
-                <th>Address</th>
-                <td>{{ mayor.address }}</td>
-            </tr>
-            <tr>
-                <th>Insee</th>
-                <td>{{ mayor.insee }}</td>
-            </tr>
-            <tr>
-                <th>Email</th>
-                <td>{{ mayor.email }}</td>
-            </tr>
-            <tr>
-                <th>Phone</th>
-                <td>{{ mayor.phone }}</td>
-            </tr>
-            <tr>
-                <th>Town</th>
-                <td>{{ mayor.town }}</td>
-            </tr>
-            <tr>
-                <th>Zipcode</th>
-                <td>{{ mayor.zipCode }}</td>
-            </tr>
-            <tr>
-                <th>Department</th>
-                <td>{{ mayor.department }}</td>
-            </tr>
-            <tr>
-                <th>Region</th>
-                <td>{{ mayor.region }}</td>
-            </tr>
-            <tr>
-                <th>Latitude</th>
-                <td>{{ mayor.latitude }}</td>
-            </tr>
-            <tr>
-                <th>Longitude</th>
-                <td>{{ mayor.longitude }}</td>
-            </tr>
-            <tr>
-                <th>Population</th>
-                <td>{{ mayor.population }}</td>
-            </tr>
-            <tr>
-                <th>Url</th>
-                <td>{{ mayor.url }}</td>
-            </tr>
-            <tr>
-                <th>Facebook</th>
-                <td>{{ mayor.facebook }}</td>
-            </tr>
-            <tr>
-                <th>Twitter</th>
-                <td>{{ mayor.twitter }}</td>
-            </tr>
-            <tr>
-                <th>Google</th>
-                <td>{{ mayor.google }}</td>
-            </tr>
+        <tr>
+            <th>Id</th>
+            <td>{{ mayor.id }}</td>
+        </tr>
+        <tr>
+            <th>Prénom</th>
+            <td>{{ mayor.firstName }}</td>
+        </tr>
+        <tr>
+            <th>Nom</th>
+            <td>{{ mayor.lastName }}</td>
+        </tr>
+        <tr>
+            <th>Adresse</th>
+            <td>{{ mayor.address }}</td>
+        </tr>
+        <tr>
+            <th>Insee</th>
+            <td>{{ mayor.insee }}</td>
+        </tr>
+        <tr>
+            <th>Email</th>
+            <td>{{ mayor.email }}</td>
+        </tr>
+        <tr>
+            <th>Téléphone</th>
+            <td>{{ mayor.phone }}</td>
+        </tr>
+        <tr>
+            <th>ville</th>
+            <td>{{ mayor.town }}</td>
+        </tr>
+        <tr>
+            <th>Code postal</th>
+            <td>{{ mayor.zipCode }}</td>
+        </tr>
+        <tr>
+            <th>Département</th>
+            <td>{{ mayor.department }}</td>
+        </tr>
+        <tr>
+            <th>Région</th>
+            <td>{{ mayor.region }}</td>
+        </tr>
+        <tr>
+            <th>Latitude</th>
+            <td>{{ mayor.latitude }}</td>
+        </tr>
+        <tr>
+            <th>Longitude</th>
+            <td>{{ mayor.longitude }}</td>
+        </tr>
+        <tr>
+            <th>Population</th>
+            <td>{{ mayor.population }}</td>
+        </tr>
+        <tr>
+            <th>Url</th>
+            <td>{{ mayor.url }}</td>
+        </tr>
+        <tr>
+            <th>Facebook</th>
+            <td>{{ mayor.facebook }}</td>
+        </tr>
+        <tr>
+            <th>Twitter</th>
+            <td>{{ mayor.twitter }}</td>
+        </tr>
+        <tr>
+            <th>Google</th>
+            <td>{{ mayor.google }}</td>
+        </tr>
         </tbody>
     </table>
 
     <ul>
         <li>
-            <a href="{{ path('admin_mayor_index') }}">Back to the list</a>
+            <a href="{{ path('admin_mayor_index') }}">Retour à la liste</a>
         </li>
         <li>
-            <a href="{{ path('admin_mayor_edit', { 'id': mayor.id }) }}">Edit</a>
+            <a href="{{ path('admin_mayor_edit', { 'id': mayor.id }) }}">Edition</a>
         </li>
         <li>
             {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
+            <input type="submit" value="Delete">
             {{ form_end(delete_form) }}
         </li>
     </ul>

@@ -21,7 +21,6 @@
                 <button class="fa-admin" data-toggle="tooltip" data-placement="right"
                         title="Supprimer l'Utilisateur" type="submit"><i class="fa fa-trash-o"></i></button>
                 {{ form_end(delete_form) }}
-
             </li>
         </ul>
     </div>
@@ -43,7 +42,7 @@
             </tr>
             <tr>
                 <th>Content</th>
-                <td>{{ publicPage.content }}</td>
+                <td>{{ publicPage.content|raw|nl2br }}</td>
             </tr>
         </tbody>
     </table>

@@ -14,22 +14,21 @@
             </li>
         </ul>
     </div>
-    <h1>Users list</h1>
+    <h1>Liste des utilisateurs</h1>
 
     <div class="jumbotron row">
 
         <form action="{{ path('admin_user_index') }}" method="get" name="filter">
 
-
             <label for="login">Login</label>
             <input value="{{ login }}" name="login" type="text" onchange="sendFilter()">
 
-            <label for="mayor">Maire</label>
             <input {% if role == 1 %} checked {% endif %} name="role" value="1" type="radio" onchange="sendFilter()">
-            <label for="partner">Partenaire</label>
+            <label for="mayor">Maire</label>
             <input {% if role == 2 %} checked {% endif %} name="role" value="2" type="radio" onchange="sendFilter()">
-            <label for="admin">Admin</label>
+            <label for="partner">Partenaire</label>
             <input {% if role == 3 %} checked {% endif %} name="role" value="3" type="radio" onchange="sendFilter()">
+            <label for="admin">Admin</label>
 
             <button type="submit" class="btn btn-default btn-sm"><i class="fa fa-search" aria-hidden="true"></i>
                 Filter
@@ -38,15 +37,12 @@
             <a href="{{ path('admin_user_index') }}" data-toggle="tooltip" data-placement="right"
                title="Liste Users"><i class="fa fa-refresh"></i> RESET FILTER</a>
 
-
             {% set queryParams = app.request.query.all %}
 
             {% if queryParams is not empty %}{{ app.request.query.get('login') }}{% endif %}
 
         </form>
-
     </div>
-
     <table>
         <thead>
         <tr>
@@ -59,7 +55,6 @@
             <th>{{ knp_pagination_sortable(users, 'Creation Date', 'u.creationDate') }}</th>
             <th>{{ knp_pagination_sortable(users, 'Last login', 'u.login') }}</th>
             <th>Mayor_id</th>
-
         </tr>
         </thead>
         <tbody>
@@ -76,13 +71,12 @@
                 <td>{{ user.role }}</td>
                 <td>{{ user.status }}</td>
                 <td>{{ user.email }}</td>
-                <td>{% if user.creationDate %}{{ user.creationDate|date('Y-m-d H:i:s') }}{% endif %}</td>
-                <td>{% if user.lastLogin %}{{ user.lastLogin|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if user.creationDate %}{{ user.creationDate|date('Y-m-d') }}{% endif %}</td>
+                <td>{% if user.lastLogin %}{{ user.lastLogin|date('Y-m-d') }}{% endif %}</td>
                 <td>
                     {% if user.mayor %}{{ user.mayor.id }}{% endif %}
                     {% if user.partner %}{{ user.partner.id }}{% endif %}
                 </td>
-
             </tr>
         {% endfor %}
         </tbody>

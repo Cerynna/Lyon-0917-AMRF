@@ -1,18 +1,135 @@
 {% extends 'private/admin/baseAdmin.html.twig' %}
 {% block title %}Admin home{% endblock %}
 {% block body %}
-    <h2>Bonjour, voici vos tâches en attente aujourd'hui :</h2>
-    <div class="jumbotron col-md-8 col-md-offset-3">
-        <h3>Projets</h3>
-        <p>Vous avez XX projets en attente de validation</p>
-        <p><a class="btn btn-primary btn-lg" href="#" role="button">Voir les projets</a></p>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.js"></script>
+    <div class="menu-admin menu-project">
+        <ul>
+            <li>
+                <a href="{{ path('admin_mayor_index') }}" data-toggle="tooltip" data-placement="right"
+                   title="Liste Maires"><i class="fa fa-archive fa-admin"></i></a>
+            </li>
+            <li>
+                <a href="{{ path('admin_mayor_new') }}" data-toggle="tooltip" data-placement="right"
+                   title="Nouveau Maire"><i
+                            class="fa fa-plus fa-admin"></i></a>
+            </li>
+        </ul>
     </div>
-    <div class="jumbotron col-md-8 col-md-offset-3">
-        <h3>Comptes utilisateurs</h3>
-        <p>Il y a XX nouveaux comptes créés</p>
-        <p><a class="btn btn-primary btn-lg" href="#" role="button">Voir les comptes</a></p>
-    </div>
-    <div class="jumbotron col-md-8 col-md-offset-3">
-        <h3>Vous n'avez aucune tâche en attente</h3>
-    </div>
+    <h1>Administration Wiki des Maires</h1>
+    <div class="row">
+        <div class="col-xs-3">
+            <h5>Projets sur les 6 derniers mois</h5>
+            <div class="jumbotron">
+                <canvas id="project-history" width="200px" height="200px"></canvas>
+            </div>
+        </div>
+        <div class="col-xs-3">
+            <h5>Total des projet par status</h5>
+            <div class="jumbotron">
+                <canvas id="project-pie" width="200px" height="200px"></canvas>
+            </div>
+        </div>
+        <div class="col-xs-3">
+            <h5>Status des Users</h5>
+            <div class="jumbotron">
+                <canvas id="user-valid" width="200px" height="200px"></canvas>
+            </div>
+        </div>
+        <div class="col-xs-3">
+            <h5>Derniere User Connecté</h5>
+            <div class="jumbotron">
+                <div class="row">
+                    <div class="col-xs-4 bg-info text-center">Maires</div>
+                    <div class="col-xs-4 bg-success text-center">Partenaire</div>
+                    <div class="col-xs-4  bg-warning text-center">Admin</div>
+                </div>
+                <br/>
+                {% for user in stats.lastLogin %}
+                {% if user.mayor is defined and user.mayor is not null and user.role == 1 %}
+                {% set name = user.mayor.town %}
+                <div class="row bg-info">
+                    {% elseif user.partner is defined and user.partner is not null  and user.role == 2 %}
+                    {% set name = user.partner.company.name %}
+                    <div class="row bg-success">
+                        {% else %}
+                        {% set name = user.login %}
+                        <div class="row bg-warning">
+                            {% endif %}
+                            <div class="col-xs-6">{{ name|slice(0,20) }}</div>
+                            <div class="col-xs-6 text-right">{{ user.lastLogin|date("d/m/Y H:i:s") }}</div>
+                        </div>
+                        {% endfor %}
+
+                    </div>
+                </div>
+            </div>
+            <script>
+                new Chart(document.getElementById("project-pie"), {
+                    "type": "pie",
+                    "data": {
+                        "labels": [
+                            "Publier",
+                            "En attente",
+                            "En brouillon"],
+                        "datasets": [{
+                            "label": "Les projets",
+                            "data": [{{ stats.project.publish }}, {{ stats.project.waiting }}, {{ stats.project.draft }}],
+                            "backgroundColor": ["rgb(54, 162, 235)", "rgb(255, 99, 132)", "rgb(255, 205, 86)"]
+                        }]
+                    }
+                });
+
+                var projecthistory = new Chart(document.getElementById("project-history"), {
+                    type: 'bar',
+                    data: {
+                        labels: [{% for key, value in stats.project.history|reverse %}"{{ key }}",{% endfor %} ],
+                        datasets: [{
+                            label: '# de projet',
+                            data: [{% for key, value in stats.project.history|reverse %}{{ value }},{% endfor %}],
+                            backgroundColor: [
+                                'rgba(255, 99, 132, 0.2)',
+                                'rgba(54, 162, 235, 0.2)',
+                                'rgba(255, 206, 86, 0.2)',
+                                'rgba(75, 192, 192, 0.2)',
+                                'rgba(153, 102, 255, 0.2)',
+                                'rgba(255, 159, 64, 0.2)'
+                            ],
+                            borderColor: [
+                                'rgba(255,99,132,1)',
+                                'rgba(54, 162, 235, 1)',
+                                'rgba(255, 206, 86, 1)',
+                                'rgba(75, 192, 192, 1)',
+                                'rgba(153, 102, 255, 1)',
+                                'rgba(255, 159, 64, 1)'
+                            ],
+                            borderWidth: 1
+                        }]
+                    }
+                });
+
+
+                var uservalid = new Chart(document.getElementById("user-valid"), {
+                    type: 'horizontalBar',
+                    data: {
+                        labels: [{% for key, value in stats.user|reverse %}"{{ key }} {{ value }}",{% endfor %} ],
+                        datasets: [{
+                            label: '# user',
+                            data: [{% for key, value in stats.user|reverse %}{{ value }},{% endfor %}],
+                            backgroundColor: [
+                                'rgba(54, 162, 235, 0.2)',
+                                'rgba(255, 99, 132, 0.2)',
+                                'rgba(255, 206, 86, 0.2)'
+                            ],
+                            borderColor: [
+                                'rgba(54, 162, 235, 1)',
+                                'rgba(255,99,132,1)',
+                                'rgba(255, 206, 86, 1)'
+                            ],
+                            borderWidth: 1
+                        }]
+                    }
+                });
+
+            </script>
+
 {% endblock %}

@@ -14,12 +14,12 @@
             </li>
             <li class="submitForm">
                 <a data-toggle="tooltip" data-placement="right"
-                   title="Nouvel Utilisateur"><i class="fa fa-check fa-admin"></i></a>
+                   title="Valider les modifications"><i class="fa fa-check fa-admin"></i></a>
             </li>
             <li>
                 {{ form_start(delete_form) }}
                 <button class="fa-admin" data-toggle="tooltip" data-placement="right"
-                        title="Supprimer l'Utilisateur" type="submit"><i class="fa fa-trash-o"></i></button>
+                        title="Supprimer Project" type="submit"><i class="fa fa-trash-o"></i></button>
                 {{ form_end(delete_form) }}
 
             </li>
@@ -178,8 +178,6 @@
                 {{ form_widget(edit_form.descAdvices, {'attr': {
                     'rows':'4'} }) }}
             </div>
-
-
         </div>
         <div class="col-sm-6">
             <h5>
@@ -190,8 +188,6 @@
                     {{ form_widget(edit_form.mayor) }}
                 </div>
             </div>
-
-
             <h5><label>Liens</label></h5>
             <div class="row">
                 <div class="col-sm-1">
@@ -277,16 +273,15 @@
                         <a href="{{ asset(pdf) }}" target="_parent" title="le fichier">Voir le fichier...</a>
                     </object>
                 </div>
-
             </div>
-
-
             <h5><label>Thematiques</label></h5>
             <div class="row">
                 <div class="col-sm-4">
                     {% set nbthema = edit_form.themes|length %}
                     {% set col =  nbthema/3 %}
                     {% set col = col|round %}
+
+
                     {% for thema in edit_form.themes %}
                     {{ form_errors(thema) }}
                     <div>
@@ -311,20 +306,18 @@
                     'placeholder': 'Ecrivez les premières lettres du mot et vérifiez qu\'il apparaît dans la liste.',
                 } }) }}
             </div>
-
         </div>
-
     </div>
 
     {{ form_widget(edit_form._token) }}
     {{ form_end(edit_form, {'render_rest': false}) }}
-
 
 {% endblock %}
 {% block javascripts %}
     <script>
         $(document).ready(function () {
             $('#projet_keyWords').select2();
+            $('#projet_mayor').select2();
         });
 
         $(".submitForm").click(function () {
@@ -337,7 +330,6 @@
             }
         });
 
-
         function deleteFile(file) {
             $.ajax({
                 type: "GET",
@@ -347,10 +339,8 @@
                 },
                 error: function () {
                     alert("la photo ne peu pas être supprimée");
-
                 }
             })
-
         }
     </script>
 {% endblock %}

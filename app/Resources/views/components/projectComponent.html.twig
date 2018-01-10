@@ -14,19 +14,22 @@
             {% endfor %}
 
         </div>
-        <div class="col-sm-4">
-            <div class="col-sm-9">
-                <h3>Mettre en favori</h3>
+        {% if favorite is defined %}
+            <div class="col-sm-4">
+                <div class="col-sm-9">
+                    <h3>Mettre en favori</h3>
+                </div>
+                <div class="col-sm-3 text-right">
+                    <button type="button" id="addFavorite" class="btnFavoris {% if favorite == 1 %}hidden{% endif %}">
+                        <i class="fa fa-star-o" onclick="addFavorite()"></i>
+                    </button>
+
+                    <button type="button" id="btnFavorisDel" class="btnFavoris {% if favorite == 0 %}hidden{% endif %}">
+                        <i class="fa fa-star" onclick="delFavorite()"></i>
+                    </button>
+                </div>
             </div>
-            <div class="col-sm-3 text-right">
-                <button type="button" id="btnFavoris" class="btnFavoris">
-                    <a href="#"></a><i class="fa fa-star-o"></i>
-                </button>
-                <button type="button" id="btnFavorisSelect" class="btnFavoris hidden">
-                    <a href="#"></a><i class="fa fa-star"></i>
-                </button>
-            </div>
-        </div>
+        {% endif %}
     </div>
     <div class="row">
         <div class="col-md-4">
@@ -82,14 +85,8 @@
                     </li>
                     <li class="list-group-item">
                         <div class="row">
-                            <div class="col-xs-6 text-left">Tél mobile :</div>
-                            <div class="col-xs-6 text-right">{{ project.mayor.phone }}</div>
-                        </div>
-                    </li>
-                    <li class="list-group-item">
-                        <div class="row">
-                            <div class="col-xs-6 text-left">Email</div>
-                            <div class="col-xs-6 text-right">{{ project.mayor.email }}</div>
+                            <div class="col-xs-3 text-left">Email</div>
+                            <div class="col-xs-9 text-right">{{ project.mayor.email }}</div>
                         </div>
                     </li>
                     <li class="list-group-item text-center">
@@ -97,7 +94,6 @@
                         <a href="{{ project.mayor.google }}"><i class="fa fa-google"></i></a>
                         <a href="{{ project.mayor.facebook }}"><i class="fa fa-facebook-square"></i></a>
                         <a href="{{ project.mayor.twitter }}"><i class="fa fa-twitter-square"></i></a>
-
                     </li>
                 </ul>
             </div>
@@ -116,7 +112,6 @@
                     {% endfor %}
                 </div>
                 <div class="img-preview">
-
                     <img id="my-img{{ project.id }}" src="{{ asset(imgBase) }}"
                          class="img-big"/>
                 </div>
@@ -170,42 +165,42 @@
     <div class="row">
         <h3>Résumé</h3>
         <p>
-            {{ project.descResume }}
+            {{ project.descResume|raw }}
         </p>
         <div class="divider"></div>
         <h3>Contexte</h3>
         <p>
-            {{ project.descContext }}
+            {{ project.descContext|raw }}
         </p>
         <div class="divider"></div>
         <h3>Objectifs</h3>
         <p>
-            {{ project.descGoal }}
+            {{ project.descGoal|raw }}
         </p>
         <div class="divider"></div>
         <h3>Déroulement</h3>
         <p>
-            {{ project.descProgress }}
+            {{ project.descProgress|raw }}
         </p>
         <div class="divider"></div>
         <h3>Partenaires mobilisés</h3>
         <p>
-            {{ project.descPartners }}
+            {{ project.descPartners|raw }}
         </p>
         <div class="divider"></div>
         <h3>Résultats obtenus</h3>
         <p>
-            {{ project.descResults }}
+            {{ project.descResults|raw }}
         </p>
         <div class="divider"></div>
         <h3>Difficultés rencontrées</h3>
         <p>
-            {{ project.descDifficulties }}
+            {{ project.descDifficulties|raw }}
         </p>
         <div class="divider"></div>
         <h3>Conseils</h3>
         <p>
-            {{ project.descAdvices }}
+            {{ project.descAdvices|raw }}
         </p>
     </div>
     <div class="row">
@@ -214,12 +209,48 @@
                 Pour plus d'informations
             </div>
             <ul class="list-group">
+                {% set pdf = 'upload/project/' ~ project.id ~ '/file/' ~ project.file %}
+
                 <li class="list-group-item">Personne en charge du projet : {{ project.contactName }}</li>
                 <li class="list-group-item">Fonction : {{ project.contactOccupation }}</li>
-                <li class="list-group-item">Email : {{ project.contactEmail }}m</li>
+                <li class="list-group-item">Email : {{ project.contactEmail }}</li>
                 <li class="list-group-item">Téléphone : {{ project.contactPhone }}</li>
-                <li class="list-group-item">Documents complémentaires : {{ project.file }}</li>
+                <li class="list-group-item">Documents complémentaires : <a href="{{ asset(pdf) }}" target="_parent"
+                                                                           title="le fichier">Voir le fichier PDF</a>
+                </li>
             </ul>
         </div>
     </div>
 </div>
+
+<script>
+
+    function addFavorite() {
+        $.ajax({
+            type: 'POST',
+            url: '/addFavorite/project/{{ project.id }}',
+            data: $('#addFavorite'),
+            success: function (response) {
+                $('#success').html(response);
+            }
+        });
+
+
+        $("#addFavorite").addClass("hidden");
+        $("#btnFavorisDel").removeClass("hidden");
+    }
+
+    function delFavorite() {
+        $.ajax({
+            type: 'POST',
+            url: '/delFavorite/project/{{ project.id }}',
+            data: $('#btnFavorisDel'),
+            success: function (response) {
+                $('#success').html(response);
+            }
+        });
+        $("#btnFavorisDel").addClass("hidden");
+        $("#addFavorite").removeClass("hidden");
+    }
+
+</script>

@@ -3,6 +3,7 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Company;
+use AppBundle\Entity\Uploader;
 use AppBundle\Service\SlugService;
 use AppBundle\Service\UploadService;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -10,11 +11,12 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
 
-
 /**
  * Company controller.
  *
  * @Route("admin/company")
+ * Class AdminCompanyController
+ * @package AppBundle\Controller
  */
 class AdminCompanyController extends Controller
 {
@@ -23,26 +25,24 @@ class AdminCompanyController extends Controller
      *
      * @Route("/", name="admin_company_index")
      * @Method("GET")
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function indexAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
+        $queryBuilder = $em->getRepository('AppBundle:Company')->createQueryBuilder('m');
+        $query = $queryBuilder->getQuery();
 
-/*        $companies = $em->getRepository('AppBundle:Company')->findAll();*/
-
-		$queryBuilder = $em->getRepository('AppBundle:Company')->createQueryBuilder('m');
-
-		$query = $queryBuilder->getQuery();
-
-		/**
-		 * @var $paginator \Knp\Component\Pager\Paginator
-		 */
-		$paginator = $this->get('knp_paginator');
-		$result = $paginator->paginate(
-			$query,
-			$request->query->getInt('page', 1),
-			$request->query->getInt('limit', 10)
-		);
+        /**
+         * @var $paginator \Knp\Component\Pager\Paginator
+         */
+        $paginator = $this->get('knp_paginator');
+        $result = $paginator->paginate(
+            $query,
+            $request->query->getInt('page', 1),
+            $request->query->getInt('limit', 10)
+        );
 
         return $this->render('company/index.html.twig', array(
             'companies' => $result,
@@ -54,24 +54,29 @@ class AdminCompanyController extends Controller
      *
      * @Route("/new", name="admin_company_new")
      * @Method({"GET", "POST"})
+     * @param Request $request
+     * @param UploadService $upload
+     * @param SlugService $slug
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
-
-    public function newAction(Request $request, UploadService $upload,  SlugService $slug)
-
+    public function newAction(Request $request, UploadService $upload, SlugService $slug)
     {
         $company = new Company();
         $form = $this->createForm('AppBundle\Form\CompanyType', $company);
-		$form->remove('slug');
+        $form->remove('slug');
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+            $company->setSlug($slug->slug($company->getName()));
             $logo = $company->getLogo();
-            $company->setLogo($upload->fileUpload($logo, "/company/" . $company->getName(), "IMG"));
+            if (!empty($logo)) {
+                $company->setLogo($upload->fileUpload($logo, "/company/" . $company->getName(), "img"));
+            }
             $em->persist($company);
             $em->flush();
 
-            return $this->redirectToRoute('admin_company_show', array('id' => $company->getId()));
+            return $this->redirectToRoute('admin_company_show', array('slug' => $company->getSlug()));
         }
 
         return $this->render('company/new.html.twig', array(
@@ -85,6 +90,8 @@ class AdminCompanyController extends Controller
      *
      * @Route("/{slug}", name="admin_company_show")
      * @Method("GET")
+     * @param Company $company
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function showAction(Company $company)
     {
@@ -116,29 +123,44 @@ class AdminCompanyController extends Controller
      *
      * @Route("/edit/{slug}", name="admin_company_edit")
      * @Method({"GET", "POST"})
+     * @param Request $request
+     * @param Company $company
+     * @param UploadService $upload
+     * @param SlugService $slugs
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
-
     public function editAction(Request $request, Company $company, UploadService $upload, SlugService $slugs)
-
     {
         $deleteForm = $this->createDeleteForm($company);
         $editForm = $this->createForm('AppBundle\Form\CompanyType', $company);
-		$editForm->remove('slug');
+        $editForm->remove('slug');
+        $editForm->remove('logo');
         $editForm->handleRequest($request);
 
+        $uploaderImage = new Uploader();
+        $uplodImageForm = $this->createForm('AppBundle\Form\UploaderType', $uploaderImage);
+        $uplodImageForm->handleRequest($request);
+
         if ($editForm->isSubmitted() && $editForm->isValid()) {
-            $logo = $company->getLogo();
-            $company->setLogo($upload->fileUpload($logo, "/company/" . $company->getName(), "IMG"));
-            $this->getDoctrine()->getManager()->flush();
-			$company->setSlug($slugs->slug($company->getName()));
+            $em = $this->getDoctrine()->getManager();
 
-			return $this->redirectToRoute('admin_company_edit', array('slug' => $company->getSlug()));
+            $company->setSlug($slugs->slug($company->getName()));
+            $em->persist($company);
+            $em->flush();
         }
+        if ($uplodImageForm->isSubmitted() && $uplodImageForm->isValid()) {
+            $files = $uploaderImage->getPath();
+            $newLogo = $upload->fileUpload($files, '/company/' . $company->getId() . '/file', "img");
+            $company->setLogo($newLogo);
+            $this->getDoctrine()->getManager()->flush();
 
+            return $this->redirectToRoute('admin_company_edit', array('slug' => $company->getSlug()));
+        }
 
         return $this->render('company/edit.html.twig', array(
             'company' => $company,
             'edit_form' => $editForm->createView(),
+            'upload_image_form' => $uplodImageForm->createView(),
             'delete_form' => $deleteForm->createView(),
         ));
     }
@@ -148,6 +170,9 @@ class AdminCompanyController extends Controller
      *
      * @Route("/{id}", name="admin_company_delete")
      * @Method("DELETE")
+     * @param Request $request
+     * @param Company $company
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
      */
     public function deleteAction(Request $request, Company $company)
     {

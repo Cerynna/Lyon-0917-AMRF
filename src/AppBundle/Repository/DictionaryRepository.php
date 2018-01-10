@@ -19,4 +19,13 @@ class DictionaryRepository extends \Doctrine\ORM\EntityRepository
 			->getQuery();
 		return $qb->getResult();
 	}
+
+    public function findByType($type){
+            return $this->createQueryBuilder('d')
+                ->setParameter('type', $type)
+                ->where('d.type = :type')
+                ->getQuery()
+                ->getResult();
+
+    }
 }

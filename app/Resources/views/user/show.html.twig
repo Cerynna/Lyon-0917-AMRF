@@ -8,7 +8,8 @@
                    title="Liste Utilisateur"><i class="fa fa-users fa-admin"></i></a>
             </li>
             <li>
-                <a href="{{ path('admin_user_new') }}" data-toggle="tooltip" data-placement="right" title="Nouvel Utilisateur"><i
+                <a href="{{ path('admin_user_new') }}" data-toggle="tooltip" data-placement="right"
+                   title="Nouvel Utilisateur"><i
                             class="fa fa-user-plus fa-admin"></i></a>
             </li>
             <li>
@@ -26,40 +27,146 @@
     </div>
     <h1>User</h1>
 
-    <table>
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ user.id }}</td>
-            </tr>
-            <tr>
-                <th>Login</th>
-                <td>{{ user.login }}</td>
-            </tr>
-            <tr>
-                <th>Password</th>
-                <td>{{ user.password }}</td>
-            </tr>
-            <tr>
-                <th>Role</th>
-                <td>{{ user.role }}</td>
-            </tr>
-            <tr>
-                <th>Status</th>
-                <td>{{ user.status }}</td>
-            </tr>
-            <tr>
-                <th>Email</th>
-                <td>{{ user.email }}</td>
-            </tr>
-            <tr>
-                <th>Creationdate</th>
-                <td>{% if user.creationDate %}{{ user.creationDate|date('Y-m-d H:i:s') }}{% endif %}</td>
-            </tr>
-            <tr>
-                <th>Lastlogin</th>
-                <td>{% if user.lastLogin %}{{ user.lastLogin|date('Y-m-d H:i:s') }}{% endif %}</td>
-            </tr>
-        </tbody>
-    </table>
+    <div class="col-sm-6">
+        <div class="col-sm-12">
+            <div class="col-sm-6">
+                <h5>Id</h5>
+                <span>{{ user.id }}</span>
+            </div>
+            <div class="col-sm-6">
+                <h5>Login</h5>
+                <span>{{ user.login }}</span>
+            </div>
+            <div class="col-sm-12">
+                <h5>Password</h5>
+                <span>{{ user.password }}</span>
+            </div>
+            <div class="col-sm-12">
+                <h5>Email</h5>
+                <span>{{ user.email }}</span>
+            </div>
+            <div class="col-sm-6">
+                <h5>Role</h5>
+                <span>{{ user.role }}</span>
+            </div>
+            <div class="col-sm-6">
+                <h5>Status</h5>
+                <span>{{ user.status }}</span>
+            </div>
+            <div class="col-sm-6">
+                <h5>Creationdate</h5>
+                <span>{% if user.creationDate %}{{ user.creationDate|date('Y-m-d') }}{% endif %}</span>
+            </div>
+            <div class="col-sm-6">
+                <h5>Lastlogin</h5>
+                <span>{% if user.lastLogin %}{{ user.lastLogin|date('Y-m-d') }}{% endif %}</span>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-6">
+        {% if user.role == 1 %}
+            <div class="col-sm-12">
+                <h5 class="text-center">Maire info</h5>
+            </div>
+            <div class="col-sm-6">
+                <h5>Prenom</h5>
+                <span>{{ user.mayor.firstName }}</span>
+            </div>
+            <div class="col-sm-6">
+                <h5>Nom</h5>
+                <span>{{ user.mayor.lastName }}</span>
+            </div>
+            <div class="col-sm-6">
+                <h5>Insee</h5>
+                <span>{{ user.mayor.insee }}</span>
+            </div>
+            <div class="col-sm-6">
+                <h5>Mail</h5>
+                <span>{{ user.mayor.email }}</span>
+            </div>
+            <div class="col-sm-6">
+                <h5>Télephone</h5>
+                <span>{{ user.mayor.phone }}</span>
+            </div>
+            <div class="col-sm-6">
+                <h5>Address</h5>
+                <span>{{ user.mayor.address }}</span>
+            </div>
+            <div class="col-sm-6">
+                <h5>Ville</h5>
+                <span>{{ user.mayor.town }}</span>
+            </div>
+            <div class="col-sm-6">
+                <h5>Code postale</h5>
+                <span>{{ user.mayor.zipCode }}</span>
+            </div>
+            <div class="col-sm-6">
+                <h5>Département</h5>
+                <span>{{ user.mayor.department }}</span>
+            </div>
+            <div class="col-sm-6">
+                <h5>Région</h5>
+                <span>{{ user.mayor.region }}</span>
+            </div>
+            <div class="col-sm-6">
+                <h5>Latitude</h5>
+                <span>{{ user.mayor.latitude }}</span>
+            </div>
+            <div class="col-sm-6">
+                <h5>Longitude</h5>
+                <span>{{ user.mayor.longitude }}</span>
+            </div>
+            <div class="col-sm-6">
+                <h5>Population</h5>
+                <span>{{ user.mayor.population }}</span>
+            </div>
+            <div class="col-sm-6">
+                <h5>Url</h5>
+                <span>{{ user.mayor.url }}</span>
+            </div>
+            <div class="col-sm-6">
+                <h5>Facebook</h5>
+                <span>{{ user.mayor.facebook }}</span>
+            </div>
+            <div class="col-sm-6">
+                <h5>Twitter</h5>
+                <span>{{ user.mayor.twitter }}</span>
+            </div>
+            <div class="col-sm-6">
+                <h5>Google</h5>
+                <span>{{ user.mayor.google }}</span>
+            </div>
+        {% endif %}
+
+        {% if user.role == 2 %}
+            <div class="col-sm-12">
+                <h5 class="text-center">Partner info</h5>
+            </div>
+            <div class="col-sm-6">
+                <h5>Prenom</h5>
+                <span>{{ user.partner.firstName }}</span>
+            </div>
+            <div class="col-sm-6">
+                <h5>Nom</h5>
+                <span>{{ user.partner.lastName }}</span>
+            </div>
+            <div class="col-sm-6">
+                <h5>Insee</h5>
+                <span>{{ user.partner.occupation }}</span>
+            </div>
+            <div class="col-sm-6">
+                <h5>Mail</h5>
+                <span>{{ user.partner.email }}</span>
+            </div>
+            <div class="col-sm-6">
+                <h5>Télephone</h5>
+                <span>{{ user.partner.phone }}</span>
+            </div>
+            <div class="col-sm-6">
+                <h5>Address</h5>
+                <span>{{ user.partner.company }}</span>
+            </div>
+
+        {% endif %}
+    </div>
 {% endblock %}

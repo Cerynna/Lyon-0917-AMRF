@@ -6,7 +6,8 @@ use AppBundle\Entity\Dictionary;
 use Doctrine\Common\Annotations\Reader;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Dictionary controller.
@@ -20,26 +21,24 @@ class AdminDictionaryController extends Controller
      *
      * @Route("/", name="admin_dictionary_index")
      * @Method("GET")
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function indexAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
+        $queryBuilder = $em->getRepository('AppBundle:Dictionary')->createQueryBuilder('d');
+        $query = $queryBuilder->getQuery();
 
-/*        $dictionaries = $em->getRepository('AppBundle:Dictionary')->findAll();*/
-
-		$queryBuilder = $em->getRepository('AppBundle:Dictionary')->createQueryBuilder('d');
-
-		$query = $queryBuilder->getQuery();
-
-		/**
-		 * @var $paginator \Knp\Component\Pager\Paginator
-		 */
-		$paginator = $this->get('knp_paginator');
-		$result = $paginator->paginate(
-			$query,
-			$request->query->getInt('page', 1),
-			$request->query->getInt('limit', 10)
-		);
+        /**
+         * @var $paginator \Knp\Component\Pager\Paginator
+         */
+        $paginator = $this->get('knp_paginator');
+        $result = $paginator->paginate(
+            $query,
+            $request->query->getInt('page', 1),
+            $request->query->getInt('limit', 10)
+        );
 
         return $this->render('dictionary/index.html.twig', array(
             'dictionaries' => $result,
@@ -51,6 +50,8 @@ class AdminDictionaryController extends Controller
      *
      * @Route("/new", name="admin_dictionary_new")
      * @Method({"GET", "POST"})
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
     public function newAction(Request $request)
     {
@@ -77,6 +78,8 @@ class AdminDictionaryController extends Controller
      *
      * @Route("/{id}", name="admin_dictionary_show")
      * @Method("GET")
+     * @param Dictionary $dictionary
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function showAction(Dictionary $dictionary)
     {
@@ -93,6 +96,9 @@ class AdminDictionaryController extends Controller
      *
      * @Route("/{id}/edit", name="admin_dictionary_edit")
      * @Method({"GET", "POST"})
+     * @param Request $request
+     * @param Dictionary $dictionary
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
     public function editAction(Request $request, Dictionary $dictionary)
     {
@@ -118,6 +124,9 @@ class AdminDictionaryController extends Controller
      *
      * @Route("/{id}", name="admin_dictionary_delete")
      * @Method("DELETE")
+     * @param Request $request
+     * @param Dictionary $dictionary
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
      */
     public function deleteAction(Request $request, Dictionary $dictionary)
     {
@@ -145,7 +154,6 @@ class AdminDictionaryController extends Controller
         return $this->createFormBuilder()
             ->setAction($this->generateUrl('admin_dictionary_delete', array('id' => $dictionary->getId())))
             ->setMethod('DELETE')
-            ->getForm()
-        ;
+            ->getForm();
     }
 }

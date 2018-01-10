@@ -6,34 +6,25 @@
             </div>
             <div class="col-md-6">
                 <div id="search" class="hidden-t-l">
-                    {% if app.request.attributes.get('_route') == 'home'
-                    or app.request.attributes.get('_route') == 'amrf'
-                    or app.request.attributes.get('_route') == 'contact' %}
-                    {% else %}
-                        <form action="">
-                            <ul>
-                                <li><input type="text" class="form-control" placeholder="Rechercher une fiche projet" /></li>
-                                <li>
-                                    <button type="submit" class="btn"><i class="fa fa-search"></i></button>
-                                </li>
-                            </ul>
-                        </form>
+                    {#
+                    A Voir si on met la bar de recherche en active même sur ce page et plutôt gérer la sessions
+                    #}
+                    {% if is_granted('IS_AUTHENTICATED_REMEMBERED') == true %}
+                        {{ render(controller(
+                        'AppBundle:Layout:searchHeader'
+                        )) }}
                     {% endif %}
                 </div>
             </div>
             <div class="col-md-3 text-right">
                 {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
-                    <a class="btn hidden-t-l" href="{{ path('logout') }}">Logout</a>
+                    <a class="btn hidden-t-l" href="{{ path('logout') }}">Déconnection</a>
                 {% else %}
                     <div class="btn hidden-t-l" data-toggle="modal" data-target="#formConnect">
                         Accédez à votre espace
                     </div>
                 {% endif %}
-
-
             </div>
-
-
         </div>
     </div>
 </div>

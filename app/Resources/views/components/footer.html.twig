@@ -1,4 +1,5 @@
 <div class="bck">
+{#div avec hauteur fixe#}
 </div>
 <div class="container-fluid bck-footer">
     <div class="row">
@@ -8,29 +9,21 @@
             </a>
         </div>
         <div class="col-lg-10 col-sm-10 col-xs-12">
-            <p>
-                Depuis 1971, l'Association des Maires Ruraux de France (AMRF) fédère, informe et représente
-                près de 10000 maires de communes rurales pour défendre et promouvoir les enjeux spécifiques
-                de la ruralité.
 
-            <span class="hidden-xs">
-                Réseau convivial et solidaire d'associations départementales - en toute indépendance des
-                pouvoirs et partis politiques - l'AMRF est un représentant incontournable du monde rural auprès
-                des pouvoirs publics et des grands opérateurs nationaux.
-            </span>
-            </p>
+            {{ footer.content|raw }}
+
         </div>
     </div>
     <div class="row">
-            <div class="col-xs-12 text-center">
-                <ul class="list-inline">
-                    <li><a class="" href="{{ path('home') }}">Accueil</a></li>
-                    <li><a class="" href="{{ path('amrf') }}">A propos de l'AMRF</a></li>
-                    <li><a class="" href="{{ path('contact') }}">Contact</a></li>
-                    <li><a class="" href="{{ path('confidential') }}">Déclaration de confidentialité</a></li>
-                    <li><a class="" href="{{ path('mentions') }}">Mentions Légales</a></li>
-                    <li><a class="" href="http://www.amrf.fr" target="_blank">www.amrf.fr</a></li>
-                </ul>
+        <div class="col-xs-12 text-center">
+            <ul class="list-inline">
+                <li><a class="" href="{{ path('home') }}">Accueil</a></li>
+                <li><a class="" href="{{ path('amrf') }}">A propos de l'AMRF</a></li>
+                <li><a class="" href="{{ path('contact') }}">Contact</a></li>
+                <li><a class="" href="{{ path('confidential') }}">Déclaration de confidentialité</a></li>
+                <li><a class="" href="{{ path('mentions') }}">Mentions Légales</a></li>
+                <li><a class="" href="http://www.amrf.fr" target="_blank">www.amrf.fr</a></li>
+            </ul>
         </div>
     </div>
     <div class="row">

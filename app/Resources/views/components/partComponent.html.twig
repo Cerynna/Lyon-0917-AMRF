@@ -1,46 +1,77 @@
 <div class="panel-body row ">
     <div class="col-xs-12 col-md-8">
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corporis enim ipsam iure placeat provident soluta
-            velit? Accusamus at, beatae dolorem facere ipsum nobis porro provident qui sit voluptatem? Dicta,
-            impedit!</p>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corporis enim ipsam iure placeat provident soluta
-            velit? Accusamus at, beatae dolorem facere ipsum nobis porro provident qui sit voluptatem? Dicta,
-            impedit!</p>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corporis enim ipsam iure placeat provident soluta
-            velit? Accusamus at, beatae dolorem facere ipsum nobis porro provident qui sit voluptatem? Dicta,
-            impedit!</p>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corporis enim ipsam iure placeat provident soluta
-            velit? Accusamus at, beatae dolorem facere ipsum nobis porro provident qui sit voluptatem? Dicta,
-            impedit!</p>
+        <p>{{ company.presentation }}</p>
     </div>
     <div class="col-xs-12  col-sm-4 partAsideBlock">
+
         <h4>Adresse</h4>
         <ul>
-            <li>25 rue de l'avenue</li>
-            <li>65432 Ville</li>
+            <li>{{ company.address }}</li>
+            <li>{{ company.zipCode }} {{ company.city }}</li>
         </ul>
         <h4>Contact</h4>
         <ul>
             <li><i class="fa fa-user" aria-hidden="true"></i>
-                Nom Prénom
+
+                {{ company.contactLastName }} {{ company.contactFirstName }}
             </li>
             <li><i class="fa fa-at"></i>
-                Mail
+                {{ company.contactEmail }}
             </li>
             <li><i class="fa fa-phone" aria-hidden="true"></i>
-                Téléphone
+                {{ company.contactPhone }}
             </li>
-            <li><i class="fa fa-link"></i> Site internet</li>
-            <li><i class="fa fa-facebook-square"></i> Facebook</li>
-            <li><i class="fa fa-twitter-square"></i> Twitter</li>
-            <li><i class="fa fa-linkedin-square"></i> Linkedin</li>
+            <li><i class="fa fa-link"></i> {{ company.url }}</li>
+            <li><i class="fa fa-facebook-square"></i> {{ company.facebook }}</li>
+            <li><i class="fa fa-twitter-square"></i> {{ company.twitter }}</li>
+            <li><i class="fa fa-linkedin-square"></i> {{ company.linkedin }} </li>
         </ul>
+
+
+        {% if favorie is defined %}
         <h4>Ajouter aux favoris</h4>
-        <button type="button" id="btnFavoris" class="btnFavoris">
-            <a href="#"></a><i class="fa fa-star-o"></i>
+
+        <button type="button" id="addFavorite{{ company.id }}" class="btnFavoris {% if favorie == 1 %}hidden{% endif %}">
+            <i class="fa fa-star-o" onclick="addFavorite{{ company.id }}()"></i>
         </button>
-        <button type="button" id="btnFavorisSelect" class="btnFavoris hidden">
-            <a href="#"></a><i class="fa fa-star"></i>
+
+
+        <button type="button" id="btnFavorisDel{{ company.id }}" class="btnFavoris {% if favorie == 0 %}hidden{% endif %}">
+            <i class="fa fa-star" onclick="delFavorite{{ company.id }}()"></i>
         </button>
+        {% endif %}
+
     </div>
 </div>
+
+
+<script>
+
+    function addFavorite{{ company.id }}() {
+        $.ajax({
+            type: 'POST',
+            url: '/addFavorite/company/{{ company.id }}',
+            data: $('#addFavorite{{ company.id }}'),
+            success: function (response) {
+                $('#success').html(response);
+            }
+        });
+
+        $("#addFavorite{{ company.id }}").addClass("hidden");
+        $("#btnFavorisDel{{ company.id }}").removeClass("hidden");
+    }
+
+    function delFavorite{{ company.id }}() {
+        $.ajax({
+            type: 'POST',
+            url: '/delFavorite/company/{{ company.id }}',
+            data: $('#btnFavorisDel{{ company.id }}'),
+            success: function (response) {
+                $('#success').html(response);
+            }
+        });
+        $("#btnFavorisDel{{ company.id }}").addClass("hidden");
+        $("#addFavorite{{ company.id }}").removeClass("hidden");
+    }
+
+</script>

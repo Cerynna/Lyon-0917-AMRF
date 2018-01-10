@@ -16,7 +16,14 @@
     <h1>Company creation</h1>
 
     {{ form_start(form) }}
-        {{ form_widget(form) }}
+    {{ form_widget(form) }}
     {{ form_end(form) }}
 
+{% endblock %}
+{% block javascripts %}
+    <script>
+        $(".submitForm").click(function () {
+            $("form[name='{{ form.vars.name }}']").submit();
+        });
+    </script>
 {% endblock %}

@@ -1,11 +1,5 @@
 {% extends 'base.html.twig' %}
 {% block title %}Formulaire fiche projet{% endblock %}
-{% block navbar %}
-    {% set options = {'status':1} %}
-    {% include 'components/navbar.html.twig' with options %}
-{% endblock %}
-
-
 
 {% block body %}
     {% set max = app.request.uri|length %}
@@ -37,7 +31,6 @@
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
     {% endif %}
@@ -45,7 +38,6 @@
     {% if project.file|length < 1 %}
         <div id="modalFileUpload" class="modal fade" role="dialog">
             <div class="modal-dialog">
-
                 <div class="modal-content">
                     <div class="modal-body">
                         <div class="row">
@@ -65,8 +57,6 @@
             </div>
         </div>
     {% endif %}
-
-
 
     {{ form_start(form) }}
     <input id="page" name="page" type="text" class="hidden"/>
@@ -91,18 +81,22 @@
                 <a href="{{ path('mayor_project_edit', { 'slug': project.slug, 'page': '5' }) }}">Aperçu</a>
             </li>
         </ul>
-        <div class="text-center">
-
-        </div>
-
-
+        {% if erreurs is defined %}
+            <div class="erreur">
+                <h3>Votre projet ne peut pas être envoyé en modération</h3>
+                <ul>
+                    {% for erreur in erreurs %}
+                        <li>{{ erreur }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        {% endif %}
         <div class="tab-content">
             <div role="tabpanel" class="tab-pane {% if page == 1 %} active {% endif %}" id="projet">
                 <div class="star">Le symbole * indique que cette information est nécessaire.</div>
                 <h3>Mon projet</h3>
                 <div class="form-group col-sm-12">
-                    {#<input id="projectName" type="text" class="form-control"
-                           placeholder="Entrez ici le nom de votre projet pour qu'il soit facilement identifiable.">#}
+
                     {{ form_label(form.title, "Titre du projet *") }}
                     {{ form_widget(form.title, {'attr': {
                         'placeholder': 'Entrez ici le nom de votre projet pour qu\'il soit facilement identifiable.'} }) }}
@@ -138,6 +132,7 @@
                             <i>Ecrivez les premières lettres du mot et vérifiez qu'il apparaît dans la liste.</i>
                             {{ form_widget(form.keyWords, {'attr': {
                                 'placeholder': 'Ecrivez les premières lettres du mot et vérifiez qu\'il apparaît dans la liste.',
+                                'class': 'select-limit'
                             } }) }}
                         </div>
                     </div>
@@ -148,11 +143,6 @@
                         {{ form_widget(form.descResume, {'attr': {
                             'placeholder': 'Saisissez une brève description de votre projet (1 à 2 phrases).',
                             'rows':'3'} }) }}
-                        {# <label for="resume">Résumé du projet*</label>
-                         <textarea id="resume" type="text" class="form-control"
-                                   placeholder="Saisissez une brève description de votre projet (1 à 2 phrases)."
-                                   rows="2"></textarea>#}
-
                     </div>
                 </div>
                 <div class="row">
@@ -202,25 +192,17 @@
                     <div class="form-group col-sm-6">
                         {{ form_label(form.projectDate, "Année de réalisation *") }}
                         {{ form_widget(form.projectDate) }}
-                        {#<label for="year">Année de réalisation *</label>
-                        <input id="year" type="text" class="form-control" placeholder="">#}
                     </div>
                     <div class="form-group col-sm-6">
                         {{ form_label(form.projectDuration, "Durée de réalisation *") }}
                         {{ form_widget(form.projectDuration) }}
-                        {#<label for="time">Durée de réalisation *</label>
-                        <input id="time" type="text" class="form-control" placeholder="">#}
                     </div>
                     <div class="form-group col-sm-6">
                         {{ form_label(form.projectCost, "Coût global *") }}
                         {{ form_widget(form.projectCost) }}
-                        {#<label for="cost">Coût global *</label>
-                        <input id="cost" type="text" class="form-control" placeholder="">#}
                     </div>
 
-
                     <div class="form-group col-sm-6">
-                        {#<label for="cofinance">Cofinancements</label>#}
                         {{ form_label(form.projectCoFinance, "Cofinancements") }}
                         <div class="radio-inline">
                             <label>
@@ -238,9 +220,6 @@
                         </div>
                         {{ form_widget(form.projectCoFinance, {'attr': {
                             'placeholder': 'Saisissez le montant du financement et le partenaire associé'} }) }}
-
-                        {#<input id="divCacher" type="text" name="cofinance" class="form-control"
-                               placeholder="Saisissez le montant du financement et le partenaire associé">#}
                     </div>
                 </div>
                 <div class="form-group col-sm-4" align="left">
@@ -267,79 +246,53 @@
                 <div class="form-group col-sm-12">
                     {{ form_label(form.descContext, "1/ Contexte *") }}
                     {{ form_widget(form.descContext, {'attr': {
+                        'class': 'summernote',
                         'placeholder': 'Décrivez ici le contexte du projet.',
                         'rows':'4'} }) }}
 
-                    {#<label for="contexte">1/ Contexte *</label>
-                    <textarea id="contexte" type="text" class="form-control"
-                              placeholder="Décrivez ici le contexte du projet."
-                              rows="4"></textarea>#}
                 </div>
                 <div class="form-group col-sm-12">
                     {{ form_label(form.descGoal, "2/ Objectifs *") }}
                     {{ form_widget(form.descGoal, {'attr': {
+                        'class': 'summernote',
                         'placeholder': 'Ici, vous pouvez indiquer quels étaient vos objectifs au départ et s\'ils ont évolué.',
                         'rows':'4'} }) }}
 
-                    {#<label for="objectif">2/ Objectifs *</label>
-                    <textarea id="objectif" type="text" class="form-control"
-                              placeholder="Ici, vous pouvez indiquer quels étaient vos objectifs au départ et s'ils ont évolué."
-                              rows="4"></textarea>#}
                 </div>
                 <div class="form-group col-sm-12">
                     {{ form_label(form.descProgress, "3/ Déroulement * (1200 caractères maximum)") }}
                     {{ form_widget(form.descProgress, {'attr': {
+                        'class': 'summernote',
                         'placeholder': "Décrivez ici les grandes étapes du projet, la méthodologie employée...",
                         'rows':'7'} }) }}
-
-                    {#<label for="deroulement">3/ Déroulement * (1200 caractères maximum)</label>
-                    <textarea id="deroulement" type="text" class="form-control"
-                              placeholder="Décrivez ici les grandes étapes du projet, la méthodologie employée..."
-                              rows="7"></textarea>#}
                 </div>
                 <div class="form-group col-sm-12">
                     {{ form_label(form.descPartners, "4/ Partenaires mobilisés *") }}
                     {{ form_widget(form.descPartners, {'attr': {
+                        'class': 'summernote',
                         'placeholder': "Listez ici vos partenaires pour ce projet et la nature du partenariat (apport d'expertise, logistique, financier...).",
                         'rows':'4'} }) }}
-
-                    {#<label for="partenaires">4/ Partenaires mobilisés *</label>
-                    <textarea id="partenaires" type="text" class="form-control"
-                              placeholder="Listez ici vos partenaires pour ce projet et la nature du partenariat (apport d'expertise, logistique, financier...)."
-                              rows="3"></textarea>#}
                 </div>
                 <div class="form-group col-sm-12">
                     {{ form_label(form.descResults, "5/ Résultats obtenus *") }}
                     {{ form_widget(form.descResults, {'attr': {
+                        'class': 'summernote',
                         'placeholder': "Indiquez ici des résultats chiffrés si vous en avez. Vous pouvez préciser si vous avez atteint vos objectifs ou s'il reste encore une marge de progression.",
                         'rows':'4'} }) }}
-
-                    {#<label for="results">5/ Résultats obtenus *</label>
-                    <textarea id="results" type="text" class="form-control"
-                              placeholder="Indiquez ici des résultats chiffrés si vous en avez. Vous pouvez préciser si vous avez atteint vos objectifs ou s'il reste encore une marge de progression."
-                              rows="4"></textarea>#}
                 </div>
                 <div class="form-group col-sm-12">
                     {{ form_label(form.descDifficulties, "6/ Difficultés rencontrées") }}
                     {{ form_widget(form.descDifficulties, {'attr': {
+                        'class': 'summernote',
                         'placeholder': "Listez ici vos difficultés rencontrées pour ce projet.",
                         'rows':'4'} }) }}
-
-                    {#<label for="difficults">6/ Difficultés rencontrées</label>
-                    <textarea id="difficults" type="text" class="form-control"
-                              placeholder="Listez ici vos difficultés rencontrées pour ce projet."
-                              rows="4"></textarea>#}
                 </div>
                 <div class="form-group col-sm-12">
                     {{ form_label(form.descAdvices, "7/ Conseils") }}
                     {{ form_widget(form.descAdvices, {'attr': {
+                        'class': 'summernote',
                         'placeholder': "Expliquez ici ce qui vous a été utile et vous a permis d'avancer ou au contraire les pièges à éviter.",
                         'rows':'4'} }) }}
-
-                    {#<label for="conseil">7/ Conseils</label>
-                    <textarea id="conseil" type="text" class="form-control"
-                              placeholder="Expliquez ici ce qui vous a été utile et vous a permis d'avancer ou au contraire les pièges à éviter."
-                              rows="4"></textarea>#}
                 </div>
                 <div class="form-group col-sm-4" align="left">
                     <a onclick="backStep()">
@@ -366,26 +319,18 @@
                 <div class="form-group col-sm-6">
                     {{ form_label(form.contactName, "Nom Prénom *") }}
                     {{ form_widget(form.contactName) }}
-                    {#<label for="responsable">Nom Prénom *</label>
-                    <input id="responsable" type="text" class="form-control" placeholder="">#}
                 </div>
                 <div class="form-group col-sm-6">
                     {{ form_label(form.contactOccupation, "Fonction *") }}
                     {{ form_widget(form.contactOccupation) }}
-                    {#<label for="fonction">Fonction *</label>
-                    <input id="fonction" type="text" class="form-control" placeholder="">#}
                 </div>
                 <div class="form-group col-sm-6">
                     {{ form_label(form.contactEmail, "Email *") }}
                     {{ form_widget(form.contactEmail) }}
-                    {#<label for="email">Email *</label>
-                    <input id="email" type="email" class="form-control" placeholder="">#}
                 </div>
                 <div class="form-group col-sm-6">
                     {{ form_label(form.contactPhone, "Téléphone *") }}
                     {{ form_widget(form.contactPhone) }}
-                    {#<label for="tel">Téléphone *</label>
-                    <input id="tel" type="tel" class="form-control" placeholder="">#}
                 </div>
                 <h3>Ajout de fichiers</h3>
                 <div class="form-group col-sm-12">
@@ -406,35 +351,26 @@
                             <a href="{{ asset(pdf) }}" target="_parent" title="le fichier">Voir le fichier...</a>
                         </object>
                     {% endif %}
-
                 </div>
                 <h3>Votre projet est visible en ligne ?</h3>
                 <label>Indiquez vos liens ci-dessous</label>
                 <div class="form-group col-sm-6">
                     <label for="amrf_publicrooterbundle_project_url"><i class="fa fa-link"></i> Site internet</label>
                     {{ form_widget(form.url) }}
-                    {#
-                    <input id="url" type="url" class="form-control" placeholder="">#}
                 </div>
                 <div class="form-group col-sm-6">
                     <label for="amrf_publicrooterbundle_project_youtube"><i class="fa fa-youtube-square"></i>
                         YouTube</label>
                     {{ form_widget(form.youtube) }}
-                    {#
-                     <input id="url" type="url" class="form-control" placeholder="">#}
                 </div>
                 <div class="form-group col-sm-6">
                     <label for="amrf_publicrooterbundle_project_facebook"><i class="fa fa-facebook-square"></i> Facebook</label>
                     {{ form_widget(form.facebook) }}
-                    {#
-                    <input id="url" type="url" class="form-control" placeholder="">#}
                 </div>
                 <div class="form-group col-sm-6">
                     <label for="amrf_publicrooterbundle_project_twitter"><i class="fa fa-twitter-square"></i>
                         Twitter</label>
                     {{ form_widget(form.twitter) }}
-                    {#<label for="url"><i class="fa fa-twitter-square"></i> Twitter</label>
-                    <input id="url" type="url" class="form-control" placeholder="">#}
                 </div>
                 <div class="form-group col-sm-4" align="left">
                     <a onclick="backStep()">
@@ -487,14 +423,14 @@
                     </div>
                 </div>
                 {% include 'components/projectComponent.html.twig' %}
-
             </div>
         </div>
     </div>
-
 {% endblock %}
 {% block javascripts %}
     <script>
+        document.getElementById("projet_keyWords").removeAttribute("required");
+
         function nextStep() {
             $('#page').val('next');
             $("form[name='{{ form.vars.name }}']").submit();
@@ -508,20 +444,5 @@
         $(document).ready(function () {
             $('#projet_keyWords').select2();
         });
-
-        function deleteFile(file) {
-            $.ajax({
-                type: "GET",
-                url: "/deletefile/" + file,
-                success: function () {
-                    location.reload();
-                },
-                error: function () {
-                    alert("la photo ne peu pas être supprimée");
-
-                }
-            })
-
-        }
     </script>
 {% endblock %}

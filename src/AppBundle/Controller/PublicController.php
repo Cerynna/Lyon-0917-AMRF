@@ -3,7 +3,18 @@
 namespace AppBundle\Controller;
 
 
+use AppBundle\Entity\Company;
+use AppBundle\Entity\Contact;
+use AppBundle\Entity\Dictionary;
+use AppBundle\Entity\Favorite;
 use AppBundle\Entity\Project;
+use AppBundle\Entity\Search;
+use AppBundle\Service\EmailService;
+use AppBundle\Service\SearchService;
+
+
+use Doctrine\ORM\EntityManagerInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use SensioLabs\Security\Exception\HttpException;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -14,20 +25,24 @@ use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 use Symfony\Component\Filesystem\Filesystem;
 
 
-
+/**
+ * Class PublicController
+ * @package AppBundle\Controller
+ */
 class PublicController extends Controller
 {
+
     /**
      * @Route("/", name="home")
+     * @return Response
      */
-   public function indexAction()
+    public function indexAction()
     {
         $em = $this->getDoctrine()->getManager();
 
         /** Change that is a real code for Update LastLogin */
-        $user = $this->get('security.token_storage')->getToken()->getUser();
-        if (is_object($user))
-        {
+        $user = $this->getUser();
+        if (is_object($user)) {
             $lastloginDB = $user->getLastLogin();
             $today = new \DateTime('now');
             $tomorow = $today->modify('+1 day');
@@ -36,83 +51,120 @@ class PublicController extends Controller
                 $em->flush();
             }
         }
-
         /** ------------------------------------------------ */
 
         $projects = $em->getRepository('AppBundle:Project')->getLastProject();
+        $array = ["main-1", "main-2"];
+        $contents = $em->getRepository('AppBundle:PublicPage')->getContentIndex($array);
+
 
         return $this->render('public/index.html.twig', array(
             'projects' => $projects,
+            'contents' => $contents,
         ));
     }
 
     /**
      * @Route("/amrf", name="amrf")
+     * @return Response
      */
     public function amrfAction()
     {
-        return $this->render('public/amrf.html.twig');
+        $em = $this->getDoctrine()->getManager();
+        $array = ["amrf-1", "amrf-2", "amrf-3"];
+        $contents = $em->getRepository('AppBundle:PublicPage')->getContentIndex($array);
+
+        return $this->render('public/amrf.html.twig', array(
+            'contents' => $contents,
+        ));
     }
 
     /**
      * @Route("/contact", name="contact")
+     * @param Request $request
+     * @param EmailService $emailService
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
      */
-    public function contactAction()
+    public function contactAction(Request $request, EmailService $emailService)
     {
-        return $this->render('public/contact.html.twig');
+        $contact = new Contact();
+        $form = $this->createForm('AppBundle\Form\ContactType', $contact);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid() && $this->captchaverify($request->get('g-recaptcha-response'))) {
+            $message = [
+                'to' => 'wcsprojetmaire@gmail.com',
+                'from' => $contact->getEmail(),
+                'type' => EmailService::TYPE_MAIL_CONTACT_ADMIN['key'],
+                'name' => $contact->getName(),
+                'firstName' => $contact->getFirstName(),
+                'statut' => $contact->getStatut(),
+                'phone' => $contact->getPhone(),
+                'object' => $contact->getSubject(),
+                'message' => $contact->getMessage(),
+            ];
+            $emailService->sendEmail($message);
+
+            $messageconfirm = [
+                'to' => $contact->getEmail(),
+                'type' => EmailService::TYPE_MAIL_CONTACT_CONFIRM['key'],
+                'object' => $contact->getSubject(),
+                'message' => $contact->getMessage(),
+            ];
+            $emailService->sendEmail($messageconfirm);
+
+            $this->addFlash(
+                'notice',
+                'Votre message a bien été envoyé'
+            );
+
+            return $this->redirectToRoute('home');
+        } elseif ($form->isSubmitted() && !$form->isValid()) {
+            $this->addFlash(
+                'notice',
+                'Votre message n\'a pas été envoyé, veuillez compléter le formulaire'
+            );
+
+        } elseif ($form->isSubmitted() && !$this->captchaverify($request->get('g-recaptcha-response'))) {
+            $this->addFlash(
+                'notice',
+                '<p>Votre message n\'a pas été envoyé,</p><p>veuillez remplir le CAPTCHA</p>'
+            );
+        }
+
+        return $this->render('public/contact.html.twig', array(
+            'form' => $form->createView(),
+        ));
     }
 
     /**
      * @Route("/confidential", name="confidential")
+     * @return Response
      */
     public function confidentialAction()
     {
-        return $this->render('public/confidential.html.twig');
+        $em = $this->getDoctrine()->getManager();
+        $array = ["cgu"];
+        $contents = $em->getRepository('AppBundle:PublicPage')->getContentIndex($array);
+
+        return $this->render('public/confidential.html.twig', array(
+            'contents' => $contents,
+        ));
     }
 
     /**
      * @Route("/mentions", name="mentions")
+     * @return Response
      */
     public function mentionsAction()
     {
-        return $this->render('public/mentions.html.twig');
-    }
+        $em = $this->getDoctrine()->getManager();
+        $array = ["ml"];
+        $contents = $em->getRepository('AppBundle:PublicPage')->getContentIndex($array);
 
-
-    //PARTIE PRIVE
-
-    /**
-     * @Route("/search", name="search")
-     */
-    public function searchAction()
-    {
-        return $this->render('private/search.html.twig');
-    }
-
-    /**
-     * @Route("/project", name="sheet_project")
-     */
-    public function projetAction()
-    {
-        return $this->render('private/projet.html.twig');
-    }
-
-    /**
-     * @Route("/directory", name="directory")
-     */
-    public function partListeAction()
-    {
-        return $this->render('private/annuaire.html.twig');
-    }
-
-    //PARTIE ADMIN
-
-    /**
-     * @Route("/admin/", name="admin_index")
-     */
-    public function adminIndexAction()
-    {
-        return $this->render('private/admin/adminIndex.html.twig');
+        return $this->render('public/mentions.html.twig', array(
+            'contents' => $contents,
+        ));
     }
 
     /**
@@ -124,11 +176,20 @@ class PublicController extends Controller
 
     /**
      * @Route("/login", name="login")
+     * @param AuthenticationUtils $authUtils
+     * @return Response
      */
     public function loginAction(AuthenticationUtils $authUtils)
     {
         // get the login error if there is one
         $error = $authUtils->getLastAuthenticationError();
+        if (!empty($error))
+        {
+            $this->addFlash(
+                'notice',
+                'Votre login ou votre mot de passe est invalide'
+            );
+        }
         // last username entered by the user
         $lastUsername = $authUtils->getLastUsername();
         return $this->render('public/login.html.twig', array(
@@ -139,41 +200,23 @@ class PublicController extends Controller
 
 
     /**
-     * @Route("/deletefile/{fileName}", name="deletefile")
+     * @param $recaptcha
+     * @return mixed
      */
-    public function deleteFileAction(Request $request, $fileName)
+    public function captchaverify($recaptcha)
     {
+        $url = "https://www.google.com/recaptcha/api/siteverify";
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_HEADER, 0);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
+        curl_setopt($ch, CURLOPT_POST, true);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, array(
+            "secret" => "6LfGgDYUAAAAAJw5_bYZMgSV1S5zhy4SZByMZ9G0", "response" => $recaptcha));
+        $response = curl_exec($ch);
+        curl_close($ch);
+        $data = json_decode($response);
 
-        if ($request->isXmlHttpRequest()) {
-            $em = $this->getDoctrine()->getManager();
-
-            $imageDelete = str_replace("-", "/", $fileName);
-            $imgExplode = explode('/', $imageDelete);
-            $project = $em->getRepository(Project::class)->find($imgExplode[2]);
-
-            if ($imgExplode[3] == 'photos') {
-                $imagesInDB = $em->getRepository('AppBundle:Project')->getImageProject($imgExplode[2]);
-                $newImagesDB = [];
-                foreach ($imagesInDB[0]['images'] as $imageInDB) {
-                    if ($imgExplode[4] != $imageInDB) {
-                        $newImagesDB[] = $imageInDB;
-                    }
-                }
-                $project->setImages($newImagesDB);
-
-            } elseif ($imgExplode[3] == 'file') {
-                $project = $em->getRepository(Project::class)->find($imgExplode[2]);
-                $project->setFile('');
-            }
-            $em->flush();
-            $fs = new Filesystem();
-            $fs->remove($imageDelete);
-
-
-            return new Response("Image supprimer " . $imageDelete . " - " . count($imageDelete) . " - " . $imgExplode[4]);
-        } else {
-            throw new HttpException('500', 'Invalid call');
-        }
-
+        return $data->success;
     }
 }

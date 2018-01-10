@@ -27,6 +27,7 @@
 @import 'partials/components/section';
 @import 'partials/components/form';
 @import 'partials/components/select2';
+@import 'partials/components/summernote';
 @import 'partials/components/tabPannel';
 @import 'partials/components/btnFavoris';
 @import 'partials/components/projet';
@@ -130,7 +131,7 @@ a:hover, a:active {
 }
 
 .btn-collapse {
-  margin: 0 !important;
+  margin: 0 0 0 -20px !important;
   height: 48px;
   width: 48px;
   @include borderRadius(5px);
@@ -178,6 +179,9 @@ a:hover, a:active {
   @include boxShadow(0.05em, rgba(0, 0, 0, 0.4));
   p {
     padding: 0 10px;
+  }
+  &:target {
+    border: 5px solid $color6;
   }
 }
 
@@ -241,7 +245,7 @@ a:hover, a:active {
   padding: 0;
   max-height: 100px;
   min-height: 0;
-  min-width:0;
+  min-width: 0;
   width: auto;
   overflow: hidden;
   overflow-y: scroll;
@@ -301,6 +305,7 @@ a:hover, a:active {
     margin-left: 5px;
   }
 }
+
 .modal-content {
   margin: 0 auto !important;
   .bck-maire {
@@ -309,14 +314,46 @@ a:hover, a:active {
   .bck-part {
     width: 220px;
   }
-
 }
+
 .item::-webkit-scrollbar {
   display: none;
 }
+
 .item {
   height: 30vh;
+}
 
+.notice {
+  color: $color2;
+  font-size: 1.8em;
+  font-weight: bold;
+  text-align: center;
+  z-index: 1000;
+  position: fixed;
+  background: $color6;
+  top: 0px;
+  width: 100vw;
+  .notif {
+    width: 50vw;
+    height: 100vh;
+    padding-top: 25vh;
+    margin: 0 auto;
+  }
+}
+
+#map {
+  height: 600px;
+  width: 100%;
+  a {
+    color: #000;
+  }
+}
+a.anchor {
+  display: block;
+  position: relative;
+  top: -250px;
+  visibility: hidden;
 }
 /*
 
