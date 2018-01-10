@@ -32,8 +32,8 @@ services:
     # add more services, or override services that need manual wiring
     AppBundle\Service\UploadService:
         arguments:
-            $kernelRootDir: %kernel.project_dir%/web/upload
+            $kernelRootDir: "%kernel.project_dir%/web/upload"
 
     AppBundle\Service\ValidProjectService:
-            arguments:
-                $kernelRootDir: %kernel.project_dir%/web/upload
+        arguments:
+            $kernelRootDir: "%kernel.project_dir%/web/upload"

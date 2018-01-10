@@ -62,7 +62,8 @@
             <h5>Image</h5>
             <span>
                     {% for image in project.images %}
-                        <img src="{{ image }}" alt="" width="150px">
+                        {% set img = 'upload/project/' ~ project.id ~ '/photos/' ~ image %}
+                        <img src="{{ asset(img) }}" alt="" width="150px">
                     {% endfor %}
                 </span>
         </div>
