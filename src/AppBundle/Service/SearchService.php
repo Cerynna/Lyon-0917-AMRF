@@ -15,12 +15,8 @@ use AppBundle\Entity\Project;
 use AppBundle\Entity\Search;
 use AppBundle\Repository\CompanyRepository;
 use AppBundle\Repository\ProjectRepository;
-use function array_merge;
-use function arsort;
-use function asort;
 use Doctrine\Common\Persistence\ObjectManager;
 use Doctrine\ORM\EntityManagerInterface;
-use function is_null;
 
 class SearchService
 {
