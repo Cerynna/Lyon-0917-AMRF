@@ -2093,7 +2093,7 @@ a:hover, a:active {
   text-align: center;
   z-index: 1000;
   position: fixed;
-  background: rgba(0, 110, 45, 0.5);
+  background: rgba(0, 110, 45, 0.9);
   top: 0px;
   width: 100vw; }
   .notice .notif {
@@ -2113,6 +2113,13 @@ a.anchor {
   position: relative;
   top: -250px;
   visibility: hidden; }
+
+.caution {
+  color: rgba(0, 158, 61, 0.99);
+  margin-top: 10px;
+  margin-left: 30px; }
+  .caution span {
+    font-weight: 700; }
 
 /*
 
