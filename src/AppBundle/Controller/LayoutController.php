@@ -26,7 +26,6 @@ class LayoutController extends Controller
         $em = $this->getDoctrine()->getManager();
         $array = ["footer"];
         $footer = $em->getRepository('AppBundle:PublicPage')->getContentIndex($array)['footer'];
-
         return $this->render(':components:footer.html.twig', array(
             'footer' => $footer,
         ));
@@ -39,7 +38,6 @@ class LayoutController extends Controller
         $search = new Search();
         $form = $this->createForm('AppBundle\Form\SearchType', $search);
         $form->handleRequest($request);
-
         return $this->render(':components:headerSearch.html.twig', [
             'form' => $form->createView(),
         ]);

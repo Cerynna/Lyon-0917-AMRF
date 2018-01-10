@@ -39,8 +39,6 @@ class AdminController extends Controller
         $em = $this->getDoctrine()->getManager();
         $reposCompany = $em->getRepository("AppBundle:Project");
         $stats = $reposCompany->statProject();
-
-
         return $this->render('private/admin/adminIndex.html.twig', [
             'stats' => $stats,
         ]);

@@ -34,10 +34,7 @@ class PrivateController extends Controller
         $search = new Search();
         $form = $this->createForm('AppBundle\Form\SearchType', $search);
         $form->handleRequest($request);
-
         $em = $this->getDoctrine()->getManager();
-
-
         if ($form->isSubmitted() && $form->isValid()) {
 
             $result = $searchService->findByPertinence($search);
@@ -55,7 +52,7 @@ class PrivateController extends Controller
             } else {
                 $this->addFlash(
                     'notice',
-                '<p>Aucun Resultat pour votre recherche.</p>'
+                    '<p>Aucun Resultat pour votre recherche.</p>'
                 );
                 return $this->render('private/search.html.twig', [
                     'form' => $form->createView(),
@@ -79,9 +76,7 @@ class PrivateController extends Controller
         $idUser = $this->getUser()->getId();
         $idProject = $project->getId();
         $favorites = $em->getRepository("AppBundle:Favorite")->getFavorite("project", $idProject, $idUser);
-
         (!empty($favorites) ? $favorie = 1 : $favorie = 0);
-
         return $this->render('private/projet.html.twig', array(
             'project' => $project,
             'favorite' => $favorie,
@@ -99,9 +94,7 @@ class PrivateController extends Controller
         $idUser = $this->getUser()->getId();
         $idCompany = $company->getId();
         $favorites = $em->getRepository("AppBundle:Favorite")->getFavorite("company", $idCompany, $idUser);
-
         (!empty($favorites) ? $favorie = 1 : $favorie = 0);
-
         return $this->render('private/annuaire.html.twig', array(
             'company' => $company,
             'favorite' => $favorie,
@@ -118,12 +111,11 @@ class PrivateController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
+        // REFACTORING SERVICE
         $reposCompany = $em->getRepository("AppBundle:Company");
         $companies = $reposCompany->findAll();
-
         $reposDictionary = $em->getRepository("AppBundle:Dictionary");
         $activities = $reposDictionary->findByType(Dictionary::TYPE_ACTIVITY);
-
         $queryBuilder = $em->getRepository('AppBundle:Company')
             ->createQueryBuilder('c');
         $filter['activity'] = [];
@@ -131,9 +123,7 @@ class PrivateController extends Controller
         $cleanResult = [];
         if ($request->query->getAlnum('activity')) {
             $filter['activity'] = $request->query->getAlnum('activity');
-
             $activitiesArray = $request->query->getAlnum('activity');
-
             $results = [];
             foreach ($activitiesArray as $activity) {
                 $sql = " SELECT id FROM company_activity WHERE activity = " . $activity;
@@ -152,16 +142,14 @@ class PrivateController extends Controller
                 ->orWhere('c.id = :id' . $key)
                 ->setParameter('id' . $key, $resultCompany);
         }
-
         if ($request->query->getAlnum('alphabet')) {
             $filter['alphabet'] = $request->query->getAlnum('alphabet');
             $queryBuilder
                 ->andwhere('c.name LIKE :name')
                 ->setParameter('name', $request->query->getAlnum('alphabet') . '%');
         }
-
         $query = $queryBuilder->orderBy('c.name', 'ASC')->getQuery();
-
+        //END REFACTORING
         /**
          * @var $paginator \Knp\Component\Pager\Paginator
          */
