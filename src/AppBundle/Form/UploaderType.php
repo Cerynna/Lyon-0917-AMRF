@@ -42,7 +42,6 @@ class UploaderType extends AbstractType
     }
 
 
-
     public function getBlockPrefix()
     {
         return "uploader_" . $this->name;

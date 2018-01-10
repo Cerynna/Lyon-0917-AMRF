@@ -11,5 +11,4 @@ namespace AppBundle\Repository;
 class PartnerRepository extends \Doctrine\ORM\EntityRepository
 {
 
-
 }
