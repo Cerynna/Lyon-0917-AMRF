@@ -37,3 +37,10 @@ services:
     AppBundle\Service\ValidProjectService:
             arguments:
                 $kernelRootDir: %kernel.project_dir%/web/upload
+
+    AppBundle\EventListener\StatusValidationListener:
+        arguments:
+            $router: "@router"
+            $session: "@session"
+        tags:
+            - { name: kernel.event_listener, event: kernel.controller, method: onKernelController }

@@ -12,6 +12,7 @@ namespace AppBundle\Service;
 use AppBundle\Entity\User;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+use const U_STANDARD_ERROR_LIMIT;
 
 class ChangePassService
 {
@@ -32,7 +33,7 @@ class ChangePassService
     {
         if ($this->passwordEncoder->isPasswordValid($user, $oldPassword)) {
             $user->setPassword($this->passwordEncoder->encodePassword($user, $newPassword));
-            $this->em->persist($user);
+            $user->setStatus(User::USER_STATUS_ACTIF);
             $this->em->flush();
             $messageconfirm = [
                 'to' => $user->getEmail(),

@@ -31,19 +31,23 @@ class SearchService
             $results = [];
             if (isset($array['texts'])) {
                 $resultsText = $repo->findByTextPertinence($array['texts'], ProjectRepository::CHAMPS);
+                dump($resultsText);
                 $results = array_merge($results, $resultsText);
             }
             if (isset($array['themas'])) {
                 $resultThema = $repo->findByThemaPertinence($array['themas']);
+                dump($resultThema);
                 $results = array_merge($results, $resultThema);
             }
             if (isset($array['keywords'])) {
                 $resultKeywords = $repo->findByKeywordPertinence($array['keywords']);
+                dump($resultKeywords);
                 $results = array_merge($results, $resultKeywords);
             }
 
             if (isset($array['localisation'])) {
                 $resultLocalisation = $repo->findByLocalisationPertinence($array['localisation']);
+                dump($resultLocalisation);
                 $clearLocation = $repo->arrayCleaner($resultLocalisation);
                 $resultsClear = "";
                 if (!empty($results)) {
