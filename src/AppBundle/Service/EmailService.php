@@ -12,7 +12,7 @@ namespace AppBundle\Service;
 class EmailService
 {
 
-    const MAIL_FROM = "wcsprojetmaire@gmail.com";
+    const MAIL_FROM = "noreply@wikidesmaires.amrf.fr";
 
 
     const TYPE_MAIL_EVENT = [

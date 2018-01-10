@@ -5,12 +5,7 @@
         body {
             margin: 0;
             padding: 0;
-        }
-
-        .container {
-            margin: 0;
-            width: 100%;
-            min-height: 100%;
+            font-family : sans-serif;
         }
 
         header {
@@ -22,21 +17,25 @@
         }
 
         h1 {
-            font-family: "ERASDEMI", sans-serif;
             font-size: 3em;
         }
 
-        nav {
+        .nav {
             background: #009E3D;
             width: 100%;
             height: 50px;
             display: flex;
         }
 
-        ul {
+        .nav a {
+            color : white;
+            text-decoration : underline;
+            font-weight : bold;
+        }
 
+        ul {
             text-align: right;
-            margin-left: 40%;
+            margin-left: 30%;
             padding-bottom: 10px;
         }
 
@@ -52,24 +51,26 @@
             font-style: italic;
         }
 
-        a {
-            color: #FFF;
-            text-decoration: none;
-            font-weight: bold;
-        }
-
         .content {
             width: 80%;
             margin: 50px auto;
-            background-color: lightgrey;
-            border-radius: 5px;
             padding: 30px;
-            z-index: 1;
+            font-size : 1.2em;
+        }
+
+        .content h2 {
+            font-style : normal;
+            color : black;
+        }
+        .content a {
+            font-style : normal;
+            text-decoration : none;
+            font-size : 1.2em;
+            color: black;
         }
 
         .footer {
             background: #009E3D;
-            position: fixed;
             bottom: 0;
             width: 100%;
             height: 60px;
@@ -79,6 +80,11 @@
 
         .footer a {
             margin-left: 30px;
+            color : white;
+            text-decoration : underline;
+            font-weight : bold;
+            margin-top: 20px;
+            font-size : 1em;
         }
 
         img {
@@ -90,15 +96,15 @@
         }
 
         .button {
-            max-width: 200px;
-            padding: 20px 50px;
+            max-width: 150px;
+            text-align: center;
             background: #009E3D;
             border-radius: 5px;
-        }
-
-        .link {
-            color: #FFF;
-            font-weight: bold;
+            color : white;
+            text-decoration: none;
+            font-size : 1.2em;
+            padding: 15px;
+            margin : 20px;
         }
 
     </style>
@@ -113,18 +119,18 @@
 <div class="container">
     <header>
         <div class="logo">
-            <img src="{{ asset('/img/AMRF.png') }}" alt="">
+            <img src="{{ asset('img/AMRF.png') }}" alt="">
         </div>
         <h1>Le Wiki des Maires</h1>
-    </header>
-    <nav>
+
+    <div class="nav">
         <h2>" Des maires au service des maires</h2>
         <ul>
-            <li><a href="http://wikidesmaires.amrf.fr">Accueil</a></li>
-            <li><a href="http://wikidesmaires.amrf.fr/amrf">AMRF</a></li>
-            <li><a href="http://wikidesmaires.amrf.fr/contact">Contact</a></li>
+            <li><a href="{{ url('home') }}">Wiki des Maires</a></li>
+            <li><a href="{{ url('contact') }}">Contactez nous</a></li>
         </ul>
-    </nav>
+    </div>
+    </header>
     <div class="content">
         {% block body %}
 
@@ -132,9 +138,7 @@
     </div>
 </div>
 <div class="footer">
-    <a href="#">Retour au site Wiki des Maires</a>
     <a href="http://www.amrf.fr">Site de l'AMRF</a>
-    <p>Mentions RGPD</p>
 </div>
 </body>
 </html>

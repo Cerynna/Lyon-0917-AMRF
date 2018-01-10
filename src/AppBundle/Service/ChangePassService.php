@@ -20,6 +20,11 @@ class ChangePassService
     protected $emailService;
     protected $em;
 
+    const STATUS_ACTIF = 0;
+    const STATUS_INACTIF = 1;
+    const STATUS_USED = 2;
+
+
 
     public function __construct(UserPasswordEncoderInterface $passwordEncoder, EmailService $emailService, EntityManagerInterface $em)
     {
@@ -67,7 +72,7 @@ class ChangePassService
             $forgot = new ChangePassword();
             $forgot->setIdUser($user[0]->getId());
             $forgot->setDate(new \DateTime('now'));
-            $forgot->setStatus(0);
+            $forgot->setStatus(self::STATUS_ACTIF);
             $this->em->persist($forgot);
             $this->em->flush();
             $message = [

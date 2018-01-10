@@ -36,8 +36,6 @@ class PasswordController extends Controller
     public function changePassword(Request $request, UserPasswordEncoderInterface $passwordEncoder, EmailService $emailService, ChangePassService $changePassService)
     {
         $user = $this->getUser();
-        $mayor = $user->getMayor();
-        $partner = $user->getPartner();
 
         $changePassword = new ChangePassword();
         $changePassword->setLogin($user->getLogin());
@@ -54,9 +52,6 @@ class PasswordController extends Controller
                 $passwordService['message']);
 
             if ($passwordService['redirect'] == true) {
-                $this->addFlash(
-                    'notice',
-                    $passwordService['message']);
                 return $this->redirectToRoute('logout');
             }
 
@@ -80,17 +75,17 @@ class PasswordController extends Controller
         $form_password->handleRequest($request);
 
         if ($form_password->isSubmitted()) {
-            $test = $changePassService->forgotPassword($changePassword->getEmail());
+            $result = $changePassService->forgotPassword($changePassword->getEmail());
 
-            if ($test['redirect'] == true) {
+            if ($result['redirect'] == true) {
                 $this->addFlash(
                     'notice',
-                    $test['message']);
+                    $result['message']);
                 return $this->redirectToRoute('home');
             } else {
                 $this->addFlash(
                     'notice',
-                    $test['message']);
+                    $result['message']);
             }
         }
         return $this->render('private/forgotPassword.html.twig', array(
@@ -105,7 +100,6 @@ class PasswordController extends Controller
      */
     public function tokenAction($token, Request $request, ChangePassService $changePassService)
     {
-
         $em = $this->getDoctrine()->getManager();
 
         $tokenDB = $em->getRepository('AppBundle:ChangePassword')->findByToken($token);
@@ -113,26 +107,47 @@ class PasswordController extends Controller
         $now = new \DateTime('now');
         $interval = ($now->getTimestamp()) - ($tokenDB[0]->getDate()->getTimestamp());
         if ($interval > 900) {
-            $tokenDB[0]->setStatus(1);
-
+            $tokenDB[0]->setStatus(ChangePassService::STATUS_INACTIF);
+            $em->flush();
         }
         switch ($tokenDB[0]->getStatus()) {
-            case 0:
+            case ChangePassService::STATUS_ACTIF:
                 $changePassword = new ChangePassword();
-
-
                 $form_password = $this->createForm('AppBundle\Form\ChangePasswordType', $changePassword);
                 $form_password->remove('oldPassword');
                 $form_password->remove('email');
                 $form_password->handleRequest($request);
 
                 if ($form_password->isSubmitted()) {
-                    $changePassService->changeTokenPassword($user[0], $changePassword->getNewPassword());
+                    $pattern = "/(?=^.{7,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$/";
+                    if($changePassword->getNewPassword() != null){
 
-                    $tokenDB[0]->setStatus(3);
-                    $em->flush();
+                        if(preg_match($pattern, $changePassword->getNewPassword()) >= 1){
 
-                    return $this->redirectToRoute('login');
+
+
+                        $result  = $changePassService->changeTokenPassword($user[0], $changePassword->getNewPassword());
+                        $tokenDB[0]->setStatus(ChangePassService::STATUS_USED);
+                        $em->flush();
+                        $this->addFlash(
+                            'notice',
+                            $result['message']);
+                        return $this->redirectToRoute('login');
+
+                        } else {
+                            $this->addFlash(
+                                'notice',
+                                "Les mots de passe saisis ne respectent pas les obligations de formatage");
+                        }
+
+                    }else {
+                        $this->addFlash(
+                            'notice',
+                            "Les mots de passe saisis ne sont pas identiques");
+                    }
+
+
+
                 }
 
                 return $this->render('private/tokenPassword.html.twig', [
@@ -140,7 +155,7 @@ class PasswordController extends Controller
                 ]);
 
                 break;
-            case 1:
+            case ChangePassService::STATUS_INACTIF:
                 $this->addFlash(
                 'notice',
                 "Vous avez dépassé le délai de réinitialisation");
