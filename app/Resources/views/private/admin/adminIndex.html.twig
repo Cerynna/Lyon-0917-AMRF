@@ -84,7 +84,7 @@
                     data: {
                         labels: [{% for key, value in stats.project.history|reverse %}"{{ key }}",{% endfor %} ],
                         datasets: [{
-                            label: '# de projet',
+                            label: '# de projets',
                             data: [{% for key, value in stats.project.history|reverse %}{{ value }},{% endfor %}],
                             backgroundColor: [
                                 'rgba(255, 99, 132, 0.2)',
@@ -106,7 +106,6 @@
                         }]
                     }
                 });
-
 
                 var uservalid = new Chart(document.getElementById("user-valid"), {
                     type: 'horizontalBar',

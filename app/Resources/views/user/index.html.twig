@@ -36,7 +36,6 @@
 
             <a href="{{ path('admin_user_index') }}" data-toggle="tooltip" data-placement="right"
                title="Liste Users"><i class="fa fa-refresh"></i> EFFACER LE FILTRE</a>
-
             {% set queryParams = app.request.query.all %}
 
             {% if queryParams is not empty %}{{ app.request.query.get('login') }}{% endif %}
