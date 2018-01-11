@@ -18,7 +18,7 @@
             </li>
         </ul>
     </div>
-    <h1>Project creation</h1>
+    <h1>Nouveau projet</h1>
 
     {{ form_start(form) }}
     <div class="form-group row">
@@ -29,11 +29,11 @@
                 <div id="errorTitle"></div>
             </div>
             <div class="col-sm-6">
-                <h5>{{ form_label(form.creationDate) }}</h5>
+                <h5>{{ form_label(form.creationDate, "Date de création") }}</h5>
                 {{ form_widget(form.creationDate) }}
             </div>
             <div class="col-sm-6">
-                <h5>{{ form_label(form.updateDate) }}</h5>
+                <h5>{{ form_label(form.updateDate, "Date de mise à jour") }}</h5>
                 {{ form_widget(form.updateDate) }}
             </div>
             <div class="col-sm-12">
@@ -49,60 +49,60 @@
             </div>
             <div class="col-sm-12">
                 <div class="col-sm-3">
-                    <h5>{{ form_label(form.projectDate) }}</h5>
+                    <h5>{{ form_label(form.projectDate, "Année de réalisation") }}</h5>
                     {{ form_widget(form.projectDate) }}
                 </div>
                 <div class="col-sm-3">
-                    <h5>{{ form_label(form.projectCoFinance) }}</h5>
+                    <h5>{{ form_label(form.projectCoFinance, "Cofinancements") }}</h5>
                     {{ form_widget(form.projectCoFinance) }}
                 </div>
                 <div class="col-sm-3">
-                    <h5>{{ form_label(form.projectDuration) }}</h5>
+                    <h5>{{ form_label(form.projectDuration, "Durée du projet") }}</h5>
                     {{ form_widget(form.projectDuration) }}
                 </div>
                 <div class="col-sm-3">
-                    <h5>{{ form_label(form.projectCost) }}</h5>
+                    <h5>{{ form_label(form.projectCost, "Coût du projet") }}</h5>
                     {{ form_widget(form.projectCost) }}
                 </div>
             </div>
             <div class="col-sm-12">
-                <h5>{{ form_label(form.descResume) }}</h5>
+                <h5>{{ form_label(form.descResume, "Résumé") }}</h5>
                 {{ form_widget(form.descResume, {'attr': {
                     'rows':'3'} }) }}
 
             </div>
             <div class="col-sm-12">
-                <h5>{{ form_label(form.descContext) }}</h5>
+                <h5>{{ form_label(form.descContext, "Contexte") }}</h5>
                 {{ form_widget(form.descContext, {'attr': {
                     'rows':'4'} }) }}
             </div>
             <div class="col-sm-12">
-                <h5>{{ form_label(form.descGoal) }}</h5>
+                <h5>{{ form_label(form.descGoal, "Objectifs") }}</h5>
                 {{ form_widget(form.descGoal, {'attr': {
                     'rows':'4'} }) }}
             </div>
             <div class="col-sm-12">
-                <h5>{{ form_label(form.descProgress) }}</h5>
+                <h5>{{ form_label(form.descProgress, "Déroulement") }}</h5>
                 {{ form_widget(form.descProgress, {'attr': {
                     'rows':'7'} }) }}
             </div>
             <div class="col-sm-12">
-                <h5>{{ form_label(form.descPartners) }}</h5>
+                <h5>{{ form_label(form.descPartners, "Partenaires") }}</h5>
                 {{ form_widget(form.descPartners, {'attr': {
                     'rows':'4'} }) }}
             </div>
             <div class="col-sm-12">
-                <h5>{{ form_label(form.descResults) }}</h5>
+                <h5>{{ form_label(form.descResults, "Résultats") }}</h5>
                 {{ form_widget(form.descResults, {'attr': {
                     'rows':'4'} }) }}
             </div>
             <div class="col-sm-12">
-                <h5>{{ form_label(form.descDifficulties) }}</h5>
+                <h5>{{ form_label(form.descDifficulties, "Difficultés") }}</h5>
                 {{ form_widget(form.descDifficulties, {'attr': {
                     'rows':'4'} }) }}
             </div>
             <div class="col-sm-12">
-                <h5>{{ form_label(form.descAdvices) }}</h5>
+                <h5>{{ form_label(form.descAdvices, "Conseils") }}</h5>
                 {{ form_widget(form.descAdvices, {'attr': {
                     'rows':'4'} }) }}
             </div>
@@ -192,7 +192,7 @@
                 </div>
             </div>
 
-            <h5><label>Thematiques</label></h5>
+            <h5><label>Thématiques</label></h5>
             <div class="row">
                 <div class="col-sm-4">
                     {% set nbthema = form.themes|length %}
@@ -213,7 +213,7 @@
                     {% endfor %}
                 </div>
             </div>
-            <h5><label>Mots Clé</label></h5>
+            <h5><label>Mots Clés</label></h5>
             <div class="row">
                 <div class="col-sm-4">
                     {% set nbKeyword = form.keyWords|length %}

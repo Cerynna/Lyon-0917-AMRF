@@ -27,7 +27,7 @@
             </li>
         </ul>
     </div>
-    <h1>Project</h1>
+    <h1>Fiche du projet</h1>
 
     <div class="col-sm-6">
         <div class="col-sm-4">
@@ -51,15 +51,15 @@
                 </span>
         </div>
         <div class="col-sm-4">
-            <h5>Creation date</h5>
-            <span>{% if project.creationDate %}{{ project.creationDate|date('Y-m-d') }}{% endif %}</span>
+            <h5>Date de création</h5>
+            <span>{% if project.creationDate %}{{ project.creationDate|date('d-m-Y') }}{% endif %}</span>
         </div>
         <div class="col-sm-4">
-            <h5>Update date</h5>
-            <span>{% if project.updateDate %}{{ project.updateDate|date('Y-m-d') }}{% endif %}</span>
+            <h5>Date de mise à jour</h5>
+            <span>{% if project.updateDate %}{{ project.updateDate|date('d-m-Y') }}{% endif %}</span>
         </div>
         <div class="col-sm-12">
-            <h5>Image</h5>
+            <h5>Images</h5>
             <span>
                     {% for image in project.images %}
                         <img src="{{ image }}" alt="" width="150px">
@@ -118,27 +118,27 @@
     </div>
     <div class="col-sm-6">
         <div class="col-sm-4">
-            <h5>Contact nom</h5>
+            <h5>Nom du contact</h5>
             <span>{{ project.contactName }}</span>
         </div>
         <div class="col-sm-4">
-            <h5>Contact poste</h5>
+            <h5>Fonction du contact</h5>
             <span>{{ project.contactOccupation }}</span>
         </div>
         <div class="col-sm-4">
-            <h5>Contact email</h5>
+            <h5>Email du contact</h5>
             <span>{{ project.contactEmail }}</span>
         </div>
         <div class="col-sm-4">
-            <h5>Contact téléphone</h5>
+            <h5>Téléphone du contact</h5>
             <span>{{ project.contactPhone }}</span>
         </div>
         <div class="col-sm-4">
-            <h5>File</h5>
+            <h5>Fichiers</h5>
             <span>{{ project.file }}</span>
         </div>
         <div class="col-sm-4">
-            <h5>Url</h5>
+            <h5>Site internet</h5>
             <span>{{ project.url }}</span>
         </div>
         <div class="col-sm-4">
@@ -154,7 +154,7 @@
             <span>{{ project.twitter }}</span>
         </div>
         <div class="col-sm-12">
-            <h5>Keywords</h5>
+            <h5>Mots clés</h5>
             <span>
                     {% for keyword in project.keywords %}
                         <span class="label label-primary">{{ keyword.name }}</span>
