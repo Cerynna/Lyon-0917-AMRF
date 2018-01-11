@@ -90,7 +90,7 @@
                     <div class="col-lg-6 col-sm-6">
                         <div class="form-group">
                             {{ form_label(form.population, "Nombre d'habitants") }}
-                            {{ form_widget(form.population) }}
+                            {{ form_widget(form.population, { 'attr':{'disabled':'disabled'} }) }}
                             <div class="errorForm">{{ form_errors(form.population) | striptags }}</div>
                         </div>
                     </div>

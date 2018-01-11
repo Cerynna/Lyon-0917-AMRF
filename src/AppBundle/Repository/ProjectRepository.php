@@ -16,7 +16,6 @@ use DateTime;
  */
 class ProjectRepository extends \Doctrine\ORM\EntityRepository
 {
-
 	const MAX_PROJECT = 3;
 
 	const CHAMPS = ["title", "descResume"];

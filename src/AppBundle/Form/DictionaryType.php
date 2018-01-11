@@ -17,7 +17,7 @@ class DictionaryType extends AbstractType
     {
         $builder
             ->add('type', ChoiceType::class, array(
-                'choices'  => array(
+                'choices' => array(
                     'Thématique' => Dictionary::TYPE_THEME,
                     "Secteur d'activité" => Dictionary::TYPE_ACTIVITY,
                     'Mot clé' => Dictionary::TYPE_KEYWORD,
@@ -25,7 +25,7 @@ class DictionaryType extends AbstractType
             ->add('name')
             ->add('value');
     }
-    
+
     /**
      * {@inheritdoc}
      */
@@ -43,6 +43,4 @@ class DictionaryType extends AbstractType
     {
         return 'dictionary';
     }
-
-
 }
