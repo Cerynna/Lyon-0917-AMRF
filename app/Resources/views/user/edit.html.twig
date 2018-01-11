@@ -20,7 +20,7 @@
             <li>
                 {{ form_start(delete_form) }}
                 <button class="fa-admin" data-toggle="tooltip" data-placement="right"
-                        title="Supprimer l'Utilisateur" type="submit"><i class="fa fa-trash-o"></i></button>
+                        title="Supprimer l'Utilisateur" type="submit" onclick="return ConfirmDelete()"><i class="fa fa-trash-o"></i></button>
                 {{ form_end(delete_form) }}
             </li>
 
@@ -175,4 +175,9 @@
     {{ form_widget(edit_form._token) }}
     {{ form_end(edit_form, {'render_rest': false}) }}
 
+    <script>
+        function ConfirmDelete() {
+            return confirm("Etes-vous sûr que vous voulez supprimer l'utilisateur?");
+        }
+    </script>
 {% endblock %}

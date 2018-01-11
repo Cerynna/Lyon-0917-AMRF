@@ -21,7 +21,7 @@
             <li>
                 {{ form_start(delete_form) }}
                 <button class="fa-admin" data-toggle="tooltip" data-placement="right"
-                        title="Supprimer Projet" type="submit"><i class="fa fa-trash-o"></i></button>
+                        title="Supprimer Projet" type="submit" onclick="return ConfirmDelete()"><i class="fa fa-trash-o"></i></button>
                 {{ form_end(delete_form) }}
 
             </li>
@@ -62,7 +62,8 @@
             <h5>Images</h5>
             <span>
                     {% for image in project.images %}
-                        <img src="{{ image }}" alt="" width="150px">
+                        {% set img = 'upload/project/' ~ project.id ~ '/photos/' ~ image %}
+                        <img src="{{ asset(img) }}" alt="" width="150px">
                     {% endfor %}
                 </span>
         </div>
@@ -162,4 +163,11 @@
                 </span>
         </div>
     </div>
+
+    <script>
+        function ConfirmDelete() {
+            return confirm("Etes-vous sûr que vous voulez supprimer le projet?");
+        }
+    </script>
+
 {% endblock %}

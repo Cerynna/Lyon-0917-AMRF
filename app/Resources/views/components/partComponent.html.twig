@@ -28,15 +28,15 @@
         </ul>
 
 
-        {% if favorite is defined %}
+        {% if favorie is defined %}
         <h4>Ajouter aux favoris</h4>
 
-        <button type="button" id="addFavorite{{ company.id }}" class="btnFavoris {% if favorite == 1 %}hidden{% endif %}">
+        <button type="button" id="addFavorite{{ company.id }}" class="btnFavoris {% if favorie == 1 %}hidden{% endif %}">
             <i class="fa fa-star-o" onclick="addFavorite{{ company.id }}()"></i>
         </button>
 
 
-        <button type="button" id="btnFavorisDel{{ company.id }}" class="btnFavoris {% if favorite == 0 %}hidden{% endif %}">
+        <button type="button" id="btnFavorisDel{{ company.id }}" class="btnFavoris {% if favorie == 0 %}hidden{% endif %}">
             <i class="fa fa-star" onclick="delFavorite{{ company.id }}()"></i>
         </button>
         {% endif %}
