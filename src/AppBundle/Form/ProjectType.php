@@ -29,12 +29,12 @@ class ProjectType extends AbstractType
                     'Publié' => Project::STATUS_PUBLISH,
                 ],
             ])
-            ->add('title',TextType::class,[
+            ->add('title', TextType::class, [
                 'attr' => [
                     'required' => false,
                 ]
-                ])
-			->add('slug', TextType::class,array('mapped' => false,))
+            ])
+            ->add('slug', TextType::class, array('mapped' => false,))
             ->add('themes', EntityType::class, array(
                 'class' => 'AppBundle:Dictionary',
                 /*'mapped' => false,*/
@@ -91,7 +91,6 @@ class ProjectType extends AbstractType
             ->add('facebook')
             ->add('twitter')
             ->add('keyWords')
-
             ->add('keyWords', EntityType::class, array(
                 'class' => 'AppBundle:Dictionary',
                 'query_builder' => function (EntityRepository $er) {
@@ -106,8 +105,6 @@ class ProjectType extends AbstractType
                 'label_attr' => ['class' => 'style_checkbox'],
 
             ))
-
-
             ->add('mayor', EntityType::class, [
                 'class' => 'AppBundle\Entity\Mayor',
                 'choice_label' => 'town',
@@ -131,6 +128,4 @@ class ProjectType extends AbstractType
     {
         return 'projet';
     }
-
-
 }

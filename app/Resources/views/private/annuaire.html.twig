@@ -6,7 +6,7 @@
     <form action="{{ path('directory') }}" method="get" name="filter">
         <div class="row jumbotron">
             <h3>Choisir par nom</h3>
-            <div class="col-sm-12 text-center">
+            <div class="col-md-12 text-center">
                 <ul class="pagination">
                     {% for letter in 'a'|upper..'z'|upper %}
                         <li>
@@ -86,9 +86,8 @@
     {% endfor %}
 
     <div class="navigation text-center">
-        {{ knp_pagination_render(companies) }}
+        {{ knp_pagination_render(companies, 'Pagination/twitter_bootstrap_v3_pagination.html.twig') }}
     </div>
-
     <script>
         function sendFilter() {
             $("form[name='filter']").submit();

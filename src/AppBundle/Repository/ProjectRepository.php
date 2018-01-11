@@ -21,7 +21,6 @@ class ProjectRepository extends \Doctrine\ORM\EntityRepository
 
     const CHAMPS = ["title", "descResume"];
 
-
     public function statProject()
     {
         $result['project']['total'] = count($this->createQueryBuilder('p')
@@ -42,13 +41,13 @@ class ProjectRepository extends \Doctrine\ORM\EntityRepository
             ->where('p.status = :status')
             ->getQuery()
             ->getResult());
-        $mois = array("","Janvier","Février","Mars","Avril","Mai","Juin","Juillet","Août","Septembre","Octobre","Novembre","Décembre");
+        $mois = array("", "Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre");
         $dateStat = [];
         for ($i = 0; $i < 6; $i++) {
             $max = new DateTime('last day of today - ' . $i . ' month');
             $min = new DateTime('last day of today - ' . ($i + 1) . ' month');
 
-            $dateStat[$mois[$max->format('n')]] =  count($this->createQueryBuilder('p')
+            $dateStat[$mois[$max->format('n')]] = count($this->createQueryBuilder('p')
                 ->setParameter('maxDate', $max)
                 ->andWhere('p.creationDate < :maxDate')
                 ->setParameter('minDate', $min)
@@ -86,8 +85,6 @@ class ProjectRepository extends \Doctrine\ORM\EntityRepository
             ->setMaxResults(14)
             ->getQuery()
             ->getResult();
-
-
 
         return $result;
     }
@@ -276,7 +273,6 @@ class ProjectRepository extends \Doctrine\ORM\EntityRepository
         }
         return $results;
     }
-
 
     public function arrayCleaner($array)
     {

@@ -57,6 +57,10 @@ section {
       }
     }
   }
+  .pagination>li{
+    display: inline-block;
+    margin-bottom: 20px;
+  }
   h2 {
     color: $color1;
     font-family: $font3, sans-serif;
