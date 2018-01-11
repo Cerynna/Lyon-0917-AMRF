@@ -24,6 +24,10 @@ class Project
 	const STATUS_WAITING = 2;
 	const STATUS_PUBLISH = 3;
 
+	const LOCALISATION_COMMUNE = 1;
+	const LOCALISATION_DEPARTEMENT = 2;
+	const LOCALISATION_REGION = 3;
+
 	/**
 	 * @var int
 	 *

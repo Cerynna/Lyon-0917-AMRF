@@ -24,16 +24,16 @@
             </li>
         </ul>
     </div>
-    <h1>Publicpage</h1>
+    <h1>Page publique</h1>
 
     <table>
         <tbody>
             <tr>
-                <th>Id</th>
+                <th>ID</th>
                 <td>{{ publicPage.id }}</td>
             </tr>
             <tr>
-                <th>Name</th>
+                <th>Nom</th>
                 <td>{{ publicPage.name }}</td>
             </tr>
             <tr>
@@ -41,7 +41,7 @@
                 <td>{% if publicPage.date %}{{ publicPage.date|date('Y-m-d H:i:s') }}{% endif %}</td>
             </tr>
             <tr>
-                <th>Content</th>
+                <th>Contenu</th>
                 <td>{{ publicPage.content|raw|nl2br }}</td>
             </tr>
         </tbody>

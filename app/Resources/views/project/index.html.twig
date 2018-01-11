@@ -20,7 +20,7 @@
     <div class="jumbotron row">
         <form action="{{ path('admin_project_index') }}" method="get" name="filter">
             <div class="col-xs-12">
-                <label for="title">Title</label>
+                <label for="title">Titre</label>
                 <input value="{{ title }}" name="title" type="text" onchange="sendFilter()">
 
                 <label for="name">Theme</label>
@@ -49,12 +49,13 @@
                 >
                 <label for="publier">Publier</label>
 
+
                 <button type="submit" class="btn btn-default btn-sm"><i class="fa fa-search" aria-hidden="true"></i>
-                    Filter
+                    Filtrer
                 </button>
 
                 <a href="{{ path('admin_project_index') }}" data-toggle="tooltip" data-placement="right"
-                   title="Reset des filtres"><i class="fa fa-refresh"></i> RESET FILTER</a>
+                   title="Reset des filtres"><i class="fa fa-refresh"></i> EFFACER LES FILTRES</a>
 
                 {% set queryParams = app.request.query.all %}
 
@@ -78,7 +79,7 @@
                     {% elseif project.status == 2 %}
                         <span class="label label-primary"><i class="fa fa-flag"></i> En attente</span>
                     {% elseif project.status == 3 %}
-                        <span class="label label-primary"><i class="fa fa-check"></i> Publier</span>
+                        <span class="label label-primary"><i class="fa fa-check"></i> Publié</span>
                     {% else %}
                         <span class="label label-primary"><i class="fa fa-cog"></i> Brouillon</span>
                     {% endif %}
@@ -142,9 +143,9 @@
                         <table>
                             <thead>
                             <tr>
-                                <th>Date du Projet</th>
+                                <th>Date du projet</th>
                                 <th>Durée</th>
-                                <th>Cout</th>
+                                <th>Coût</th>
                                 <th>Cofinancement</th>
                             </tr>
                             </thead>
