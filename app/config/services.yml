@@ -30,13 +30,20 @@ services:
         tags: ['controller.service_arguments']
 
     # add more services, or override services that need manual wiring
+    # AppBundle\Service\ExampleService:
+    #     arguments:
+    #         $someArgument: 'some_value'
+
+    app.projectService:
+        class:  AppBundle\Service\ProjectService
+        public: true
     AppBundle\Service\UploadService:
         arguments:
-            $kernelRootDir: %kernel.project_dir%/web/upload
+            $kernelRootDir: "%kernel.project_dir%/web/upload"
 
     AppBundle\Service\ValidProjectService:
-            arguments:
-                $kernelRootDir: %kernel.project_dir%/web/upload
+        arguments:
+            $kernelRootDir: "%kernel.project_dir%/web/upload"
 
     AppBundle\EventListener\StatusValidationListener:
         arguments:
