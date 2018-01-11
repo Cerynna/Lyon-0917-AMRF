@@ -55,11 +55,8 @@ class SearchService
                 $repo->findByLocalisationPertinence($array->getRegion(), $array->getDepartement(), $array->getCommune())
             );
         }
-
         $resultFinal = $repo->finalPertinence($this->counterArray($result));
-
         return $resultFinal;
-
     }
 
     public function counterArray($array)
