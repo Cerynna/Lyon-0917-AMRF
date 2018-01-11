@@ -26,7 +26,7 @@ class ProjectType extends AbstractType
                 'choices' => [
                     'Brouillon' => Project::STATUS_DRAFT,
                     'En attente' => Project::STATUS_WAITING,
-                    'Publier' => Project::STATUS_PUBLISH,
+                    'Publié' => Project::STATUS_PUBLISH,
                 ],
             ])
             ->add('title',TextType::class,[

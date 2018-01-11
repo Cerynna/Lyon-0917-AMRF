@@ -44,24 +44,24 @@
             </li>
         </ul>
     </div>
-    <h1>Company edit</h1>
+    <h1>Modifier l'organisme</h1>
     {{ form_start(edit_form) }}
     <div class="form-group row" id="editOrganisme">
         <div class="col-sm-6">
             <div class="col-sm-12">
-                <h5>{{ form_label(edit_form.name) }}</h5>
+                <h5>{{ form_label(edit_form.name, "Nom") }}</h5>
                 {{ form_widget(edit_form.name) }}
             </div>
             <div class="col-sm-4">
-                <h5>{{ form_label(edit_form.address) }}</h5>
+                <h5>{{ form_label(edit_form.address, "Adresse") }}</h5>
                 {{ form_widget(edit_form.address) }}
             </div>
             <div class="col-sm-4">
-                <h5>{{ form_label(edit_form.zipCode) }}</h5>
+                <h5>{{ form_label(edit_form.zipCode, "Code postal") }}</h5>
                 {{ form_widget(edit_form.zipCode) }}
             </div>
             <div class="col-sm-4">
-                <h5>{{ form_label(edit_form.city) }}</h5>
+                <h5>{{ form_label(edit_form.city, "Ville") }}</h5>
                 {{ form_widget(edit_form.city) }}
             </div>
             <div class="col-sm-12">
@@ -88,19 +88,19 @@
         </div>
         <div class="col-sm-6">
             <div class="col-sm-6">
-                <h5>{{ form_label(edit_form.contactFirstName) }}</h5>
+                <h5>{{ form_label(edit_form.contactFirstName, "Prénom du contact") }}</h5>
                 {{ form_widget(edit_form.contactFirstName) }}
             </div>
             <div class="col-sm-6">
-                <h5>{{ form_label(edit_form.contactLastName) }}</h5>
+                <h5>{{ form_label(edit_form.contactLastName, "Nom du contact") }}</h5>
                 {{ form_widget(edit_form.contactLastName) }}
             </div>
             <div class="col-sm-6">
-                <h5>{{ form_label(edit_form.contactPhone) }}</h5>
+                <h5>{{ form_label(edit_form.contactPhone, "Téléphone du contact") }}</h5>
                 {{ form_widget(edit_form.contactPhone) }}
             </div>
             <div class="col-sm-6">
-                <h5>{{ form_label(edit_form.contactEmail) }}</h5>
+                <h5>{{ form_label(edit_form.contactEmail, "Email du contat") }}</h5>
                 {{ form_widget(edit_form.contactEmail) }}
             </div>
             <div class="col-sm-6">
@@ -120,7 +120,7 @@
                 {{ form_widget(edit_form.twitter) }}
             </div>
             <div class="col-sm-12">
-                <h5>{{ form_label(edit_form.activities) }}</h5>
+                <h5>{{ form_label(edit_form.activities, "Secteur d'activté") }}</h5>
                 <div class="col-sm-4">
                     {% set nbact = edit_form.activities|length %}
                     {% set col =  nbact/3 %}

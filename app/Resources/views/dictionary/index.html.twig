@@ -5,10 +5,10 @@
     <table>
         <thead>
         <tr>
-            <th>Id</th>
+            <th>ID</th>
             <th>Type</th>
-            <th>Name</th>
-            <th>Value</th>
+            <th>Nom</th>
+            <th>Valeur</th>
             <th>Actions</th>
         </tr>
         </thead>
@@ -22,10 +22,10 @@
                 <td>
                     <ul>
                         <li>
-                            <a href="{{ path('admin_dictionary_show', { 'id': dictionary.id }) }}">show</a>
+                            <a href="{{ path('admin_dictionary_show', { 'id': dictionary.id }) }}">Voir</a>
                         </li>
                         <li>
-                            <a href="{{ path('admin_dictionary_edit', { 'id': dictionary.id }) }}">edit</a>
+                            <a href="{{ path('admin_dictionary_edit', { 'id': dictionary.id }) }}">Modifier</a>
                         </li>
                     </ul>
                 </td>
@@ -40,7 +40,7 @@
 
     <ul>
         <li>
-            <a href="{{ path('admin_dictionary_new') }}">Create a new dictionary</a>
+            <a href="{{ path('admin_dictionary_new') }}">Création d'un nouveau dictionnaire</a>
         </li>
     </ul>
 {% endblock %}

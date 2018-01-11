@@ -1767,6 +1767,9 @@ section form {
   font-weight: bold;
   text-decoration: underline; }
 
+.project .list-group-item i {
+  font-size: 20px; }
+
 .swiper-container {
   width: 100%;
   height: 100%;

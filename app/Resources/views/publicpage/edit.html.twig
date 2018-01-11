@@ -5,27 +5,28 @@
         <ul>
             <li>
                 <a href="{{ path('admin_publicpage_index') }}" data-toggle="tooltip" data-placement="right"
-                   title="Liste Utilisateur"><i class="fa fa-book fa-admin"></i></a>
+                   title="Liste Pages publiques"><i class="fa fa-book fa-admin"></i></a>
             </li>
-            <li>
+            <li> <!-- icone à supprimer car pas de création de nouvelle page publique ???? -->
                 <a href="{{ path('admin_publicpage_new') }}" data-toggle="tooltip" data-placement="right"
-                   title="Nouvel Utilisateur"><i
+                   title="Nouvelle page publique"><i
                             class="fa fa-plus fa-admin"></i></a>
             </li>
             <li>
+                <!-- idem edit user à modifier ???? -->
                 <a onclick="document.amrf_publicrooterbundle_user.submit();" data-toggle="tooltip"
                    data-placement="right"
                    title="Nouvel Utilisateur"><i class="fa fa-check fa-admin"></i></a>
             </li>
-            <li>
+            <li> <!-- icone à supprimer car pas de suppression page publique ???? -->
                 {{ form_start(delete_form) }}
                 <button class="fa-admin" data-toggle="tooltip" data-placement="right"
-                        title="Supprimer l'Utilisateur" type="submit"><i class="fa fa-trash-o"></i></button>
+                        title="Supprimer la page publique" type="submit"><i class="fa fa-trash-o"></i></button>
                 {{ form_end(delete_form) }}
             </li>
         </ul>
     </div>
-    <h1>Publicpage edit</h1>
+    <h1>Modifier la page publique</h1>
 
     {{ form_start(edit_form) }}
     {{ form_widget(edit_form) }}
