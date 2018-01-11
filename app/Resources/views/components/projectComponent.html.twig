@@ -14,20 +14,22 @@
             {% endfor %}
 
         </div>
-        <div class="col-sm-4">
-            <div class="col-sm-9">
-                <h3>Mettre en favori</h3>
-            </div>
-            <div class="col-sm-3 text-right">
-                <button type="button" id="addFavorite" class="btnFavoris {% if favorite is defined and favorite == 1   %}hidden{% endif %}">
-                    <i class="fa fa-star-o" onclick="addFavorite()"></i>
-                </button>
+        {% if favorite is defined %}
+            <div class="col-sm-4">
+                <div class="col-sm-9">
+                    <h3>Mettre en favori</h3>
+                </div>
+                <div class="col-sm-3 text-right">
+                    <button type="button" id="addFavorite" class="btnFavoris {% if favorite == 1 %}hidden{% endif %}">
+                        <i class="fa fa-star-o" onclick="addFavorite()"></i>
+                    </button>
 
-                <button type="button" id="btnFavorisDel" class="btnFavoris {% if favorite is defined and favorite == 0  %}hidden{% endif %}">
-                    <i class="fa fa-star" onclick="delFavorite()"></i>
-                </button>
+                    <button type="button" id="btnFavorisDel" class="btnFavoris {% if favorite == 0 %}hidden{% endif %}">
+                        <i class="fa fa-star" onclick="delFavorite()"></i>
+                    </button>
+                </div>
             </div>
-        </div>
+        {% endif %}
     </div>
     <div class="row">
         <div class="col-md-4">
@@ -223,27 +225,27 @@
 
 <script>
 
-    function addFavorite(){
+    function addFavorite() {
         $.ajax({
-            type:'POST',
-            url:'/addFavorite/project/{{ project.id }}',
-            data:$('#addFavorite'),
-            success:function(response){
+            type: 'POST',
+            url: '/addFavorite/project/{{ project.id }}',
+            data: $('#addFavorite'),
+            success: function (response) {
                 $('#success').html(response);
             }
         });
-    });
+
 
         $("#addFavorite").addClass("hidden");
         $("#btnFavorisDel").removeClass("hidden");
     }
 
-    function delFavorite(){
+    function delFavorite() {
         $.ajax({
-            type:'POST',
-            url:'/delFavorite/project/{{ project.id }}',
-            data:$('#btnFavorisDel'),
-            success:function(response){
+            type: 'POST',
+            url: '/delFavorite/project/{{ project.id }}',
+            data: $('#btnFavorisDel'),
+            success: function (response) {
                 $('#success').html(response);
             }
         });

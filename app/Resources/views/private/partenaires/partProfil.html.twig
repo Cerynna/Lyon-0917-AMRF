@@ -1,9 +1,6 @@
 {% extends 'base.html.twig' %}
 {% block title %}Mon profil{% endblock %}
-{% block navbar %}
-    {% set options = {'status':2} %}
-    {% include 'components/navbar.html.twig' with options %}
-{% endblock %}
+
 {% block body %}
     {{ form_start(form) }}
     <h2>Mon profil</h2>

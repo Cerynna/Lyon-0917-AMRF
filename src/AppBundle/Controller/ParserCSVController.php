@@ -42,6 +42,8 @@ class ParserCSVController extends Controller
         switch ($action) {
             case true:
                 if ($parser->getStatus() == true) {
+                    $em = $this->getDoctrine()->getManager();
+
                     $mayor->setInsee($parser->getInsee());
                     $mayor->setEmail($parser->getEmail());
                     $mayor->setPhone($parser->getTel());
@@ -53,19 +55,19 @@ class ParserCSVController extends Controller
                     $mayor->setLongitude($parser->getLongitude());
                     $mayor->setPopulation($parser->getPopulation());
 
+                    $em->persist($mayor);
+                    $em->flush();
+
                     $encoder = $this->container->get('security.password_encoder');
 
-                    $user->setLogin($parser->getInsee() . $parser->getZipCode());
-                    $user->setPassword($encoder->encodePassword($user, $parser->getInsee()));
+                    $user->setLogin($parser->getInsee());
+                    $user->setPassword($encoder->encodePassword($user, $parser->getInsee() . $parser->getZipCode()));
                     $user->setRole($user::USER_ROLE_MAYOR);
                     $user->setCreationDate(new DateTime('now'));
                     $user->setStatus($user::USER_STATUS_INACTIF);
-                    (empty($parser->getEmail()) ? $parser->setEmail($parser->getInsee() . "@exemple.com") : null);
                     $user->setEmail($parser->getEmail());
-                    $user->setMayor($mayor->getId());
+                    $user->setMayor($mayor);
 
-                    $em = $this->getDoctrine()->getManager();
-                    $em->persist($mayor);
                     $em->persist($user);
                     $em->flush();
                 }

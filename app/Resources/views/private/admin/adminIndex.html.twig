@@ -55,8 +55,8 @@
                         {% set name = user.login %}
                         <div class="row bg-warning">
                             {% endif %}
-                            <div class="col-xs-6">{{ name }}</div>
-                            <div class="col-xs-6 text-right">{{ user.lastLogin|date("d/m/Y h:i:s") }}</div>
+                            <div class="col-xs-6">{{ name|slice(0,20) }}</div>
+                            <div class="col-xs-6 text-right">{{ user.lastLogin|date("d/m/Y H:i:s") }}</div>
                         </div>
                         {% endfor %}
 

@@ -1,0 +1,24 @@
+{% extends 'email/baseEmail.html.twig' %}
+    {% block body %}
+
+        <p>Bonjour,</p>
+        <p>Vous avez demandé à réinitialiser votre mot de passe sur votre Espace du <a href="{{ url('home') }}" class="link">Wiki des
+                Maires.</a></p>
+        <p>Si vous n'êtes pas à l'origine de cette demande, ne tenez pas compte de cet email.</p>
+        <p>Si vous avez bien demandé cette réinitilisation, veuillez cliquer sur le lien ci-dessous. <br>
+        Attention : ce lien est valide durant 15 minutes. Au-delà, vous ne pourrez plus réinitialiser. Vous devrez faire une nouvelle demande à partir du Wiki des Maires.
+        </p>
+        <p>Bien cordialement.</p>
+        <p>L'Association des Maires Ruraux de France</p>
+        <p>"Des maires au service des maires"</p>
+        <a href="{{ url('token_password', {
+            'token': token
+        }) }}" class="link">
+            <div class="button">
+                Réinitialiser
+            </div>
+        </a>
+
+        <p>Ceci est un email automatique, merci de ne pas y répondre</p>
+    {% endblock %}
+

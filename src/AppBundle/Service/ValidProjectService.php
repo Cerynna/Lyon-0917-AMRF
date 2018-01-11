@@ -85,11 +85,11 @@ class ValidProjectService
 
     public function verifTitle($title)
     {
-        if (strlen($title) < 2) {
+        if (strlen($title) < 5) {
             if ($title == null) {
-                $this->setErreur("Votre titre ne doit pas etre vide");
+                $this->setErreur("Votre titre ne doit pas être vide");
             } else {
-                $this->setErreur("Votre titre doit faire au moins de caractère");
+                $this->setErreur("Votre titre doit faire au moins cinq caractères");
             }
         }
 
@@ -120,21 +120,21 @@ class ValidProjectService
     public function verifProjectDate($projectDate)
     {
         if ($projectDate == null) {
-            $this->setErreur("L'année de réalisation ne peu pas etre vide");
+            $this->setErreur("Le champ année de réalisation ne peut pas être vide");
         }
     }
 
     public function verifProjectDuration($projectDuration)
     {
         if ($projectDuration == null) {
-            $this->setErreur("La durée de réalisation ne peu pas etre vide");
+            $this->setErreur("Le champ durée de réalisation ne peut pas être vide");
         }
     }
 
     public function verifProjectCost($projectCost)
     {
         if ($projectCost == null) {
-            $this->setErreur("Le coût global ne peu pas etre vide");
+            $this->setErreur("Le champ coût global ne peut pas être vide");
         }
     }
 
@@ -146,42 +146,42 @@ class ValidProjectService
     public function verifDescResume($resume)
     {
         if ($resume == null) {
-            $this->setErreur("Le résumé du projet ne peu pas etre vide");
+            $this->setErreur("Le champ résumé du projet ne peut pas être vide");
         }
     }
 
     public function verifDescContext($context)
     {
         if ($context == null) {
-            $this->setErreur("Le contexte ne peu pas etre vide");
+            $this->setErreur("Le champ contexte ne peut pas être vide");
         }
     }
 
     public function verifDescGoal($goal)
     {
         if ($goal == null) {
-            $this->setErreur("Les objectifs ne peu pas etre vide");
+            $this->setErreur("Le champ objectifs ne peut pas être vide");
         }
     }
 
     public function verifDescProgress($progress)
     {
         if ($progress == null) {
-            $this->setErreur("Le déroulement ne peu pas etre vide");
+            $this->setErreur("Le champ déroulement ne peut pas être vide");
         }
     }
 
     public function verifDescPartners($partner)
     {
         if ($partner == null) {
-            $this->setErreur("Les partenaires mobilisés ne peu pas etre vide");
+            $this->setErreur("Le champ partenaires mobilisés ne peut pas être vide");
         }
     }
 
     public function verifDescResults($result)
     {
         if ($result == null) {
-            $this->setErreur("Les résultats obtenus ne peu pas etre vide");
+            $this->setErreur("Le champ résultats obtenus ne peut pas être vide");
         }
     }
 
@@ -198,25 +198,25 @@ class ValidProjectService
     public function verifContactName($name)
     {
         if ($name == null) {
-            $this->setErreur("Les Nom et Prénom de la personne qui a pris en charge le projet ne peu pas etre vide");
+            $this->setErreur("Le champ Nom et Prénom de la personne en charge du projet ne peut pas être vide");
         }
     }
 
     public function verifContactOccupation($occupation)
     {
         if ($occupation == null) {
-            $this->setErreur("La fonction de la personne qui a pris en charge le projet ne peu pas etre vide");
+            $this->setErreur("Le champ fonction de la personne en charge du projet ne peut pas être vide");
         }
     }
 
     public function verifContactEmail($email)
     {
         if ($email == null) {
-            $this->setErreur("L'email de la personne qui a pris en charge le projet ne peu pas etre vide");
+            $this->setErreur("Le champ email de la personne en charge du projet ne peut pas être vide");
         } else {
             $pattern = '/^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/';
             if (preg_match($pattern, $email) == 0) {
-                $this->setErreur("L'email de la personne qui a pris en charge le projet n'est pas valide");
+                $this->setErreur("L'email de la personne en charge du projet n'est pas valide");
             }
         }
     }
@@ -224,11 +224,11 @@ class ValidProjectService
     public function verifContactPhone($phone)
     {
         if ($phone == null) {
-            $this->setErreur("Le n° de téléphone de la personne qui a pris en charge le projet ne peu pas etre vide");
+            $this->setErreur("Le champ numéro de téléphone de la personne en charge du projet ne peut pas être vide");
         } else {
             $pattern = '/^(?:(?:\+|00)33|0)\s*[1-9](?:[\s.-]*\d{2}){4}$/';
             if (preg_match($pattern, $phone) == 0) {
-                $this->setErreur("Le n° de téléphone de la personne qui a pris en charge le projet n'est pas valide");
+                $this->setErreur("Le numéro de téléphone de la personne en charge du projet n'est pas valide");
             }
         }
     }

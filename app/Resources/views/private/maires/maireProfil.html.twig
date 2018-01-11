@@ -1,9 +1,5 @@
 {% extends 'base.html.twig' %}
 {% block title %}Mon profil{% endblock %}
-{% block navbar %}
-    {% set options = {'status':1} %}
-    {% include 'components/navbar.html.twig' with options %}
-{% endblock %}
 {% block body %}
     {{ form_start(form) }}
     <h2>Mon profil</h2>
@@ -109,7 +105,7 @@
                     <div class="col-lg-6 col-sm-6">
                         <div class="form-group">
                             {{ form_label(form.population, "Nombre d'habitants") }}
-                            {{ form_widget(form.population) }}
+                            {{ form_widget(form.population, { 'attr':{'disabled':'disabled'} }) }}
                             <div class="errorForm">{{ form_errors(form.population) | striptags }}</div>
                         </div>
                     </div>

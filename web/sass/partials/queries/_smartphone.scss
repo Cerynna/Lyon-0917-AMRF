@@ -99,6 +99,14 @@
         font-size: 2em !important;
       }
     }
+
+    .btn-collapse {
+      margin: 0 0 0 -25px !important;
+      height: 48px;
+      width: 48px;
+      @include borderRadius(5px);
+
+    }
     /*Projets*/
     .project {
       padding: 0 !important;

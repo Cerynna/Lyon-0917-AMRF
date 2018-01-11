@@ -1,9 +1,5 @@
 {% extends 'base.html.twig' %}
 {% block title %}Formulaire fiche projet{% endblock %}
-{% block navbar %}
-    {% set options = {'status':1} %}
-    {% include 'components/navbar.html.twig' with options %}
-{% endblock %}
 
 {% block body %}
     {% set max = app.request.uri|length %}
@@ -85,8 +81,16 @@
                 <a href="{{ path('mayor_project_edit', { 'slug': project.slug, 'page': '5' }) }}">Aperçu</a>
             </li>
         </ul>
-        <div class="text-center">
-        </div>
+        {% if erreurs is defined %}
+            <div class="erreur">
+                <h3>Votre projet ne peut pas être envoyé en modération</h3>
+                <ul>
+                    {% for erreur in erreurs %}
+                        <li>{{ erreur }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        {% endif %}
         <div class="tab-content">
             <div role="tabpanel" class="tab-pane {% if page == 1 %} active {% endif %}" id="projet">
                 <div class="star">Le symbole * indique que cette information est nécessaire.</div>
@@ -215,7 +219,7 @@
                             </label>
                         </div>
                         {{ form_widget(form.projectCoFinance, {'attr': {
-                            'placeholder': 'Saisissez le montant du financement et le partenaire associé'} }) }}
+                            'placeholder': 'Saisissez le montant du financement et le partenaire associé'}}) }}
                     </div>
                 </div>
                 <div class="form-group col-sm-4" align="left">
@@ -425,6 +429,8 @@
 {% endblock %}
 {% block javascripts %}
     <script>
+        document.getElementById("projet_keyWords").removeAttribute("required");
+        document.getElementById('projet_projectCoFinance').style.display = "none";
         function nextStep() {
             $('#page').val('next');
             $("form[name='{{ form.vars.name }}']").submit();
@@ -439,10 +445,11 @@
             $('#projet_keyWords').select2();
         });
         function afficherCacher() {
+
             if (document.getElementById('oui').checked) {
-                document.getElementById('divCacher').style.display = "block";
+                document.getElementById('projet_projectCoFinance').style.display = "block";
             } else if (document.getElementById('non').checked) {
-                document.getElementById('divCacher').style.display = "none";
+                document.getElementById('projet_projectCoFinance').style.display = "none";
             }
         }
     </script>

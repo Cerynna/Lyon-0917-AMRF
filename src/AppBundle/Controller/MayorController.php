@@ -19,11 +19,12 @@ use AppBundle\Service\TabProjectService;
 use AppBundle\Service\UploadService;
 use AppBundle\Service\ValidProjectService;
 
+use DateTime;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+
 
 
 /**
@@ -37,6 +38,13 @@ class MayorController extends Controller
      */
     public function mayorIndexAction()
     {
+        $user = $this->getUser();
+        $user->setLastLogin(new DateTime('now'));
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($user);
+        $em->flush();
+
+
         return $this->render('private/maires/maireIndex.html.twig');
     }
 
@@ -80,7 +88,7 @@ class MayorController extends Controller
     public function mayorProjectAction()
     {
         $user = $this->getUser();
-        $mayorid = $user->getMayor()->getid();
+        $mayorid = $user->getMayor()->getId();
 
         $em = $this->getDoctrine()->getManager();
         $projects = $em->getRepository("AppBundle:Project")->getProjectByMayor($mayorid);
@@ -187,9 +195,8 @@ class MayorController extends Controller
             if ($formSubmitToAdmin->isSubmitted() && $formSubmitToAdmin->isValid()) {
 
                 $projectService->Verif($project);
+                dump($projectService->getErreur());
                 if (!empty($projectService->getErreur())) {
-
-
                     return $this->render('private/maires/projectEdit.html.twig', array(
                         'slug' => $project->getSlug(),
                         'project' => $project,
@@ -255,7 +262,7 @@ class MayorController extends Controller
                     $pageSend = $page;
                 }
                 $this->addFlash(
-                    'notice',
+                    'proj',
                     '<p>Vos informations ont bien été enregistrées</p>'
                 );
 

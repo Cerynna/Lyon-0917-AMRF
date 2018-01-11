@@ -3,11 +3,15 @@
         <div class="modal-content">
             <div class="modal-body containerConnect">
                 <div class="row">
-                    <div class="col-xs-12 text-right">
+                    <div class="col-xs-11 text-center">
+                        <h3>Accédez à votre espace</h3>
+                    </div>
+                    <div class="col-xs-1 text-right">
                         <span class="close" aria-hidden="true" data-dismiss="modal" aria-label="Close">&times;</span>
                     </div>
+
                     <div class="col-sm-6 col-xs-12 text-center">
-                        <div class="formConnect bck-maire">
+                        <div class="formConnect maire">
                             <form action="{{ path('login') }}" method="post">
                                 <h5 class="text-center">Maire</h5>
                                 <div class="form-group">
@@ -19,21 +23,21 @@
                                     <input id="mdp" type="password" name="_password" class="form-control">
                                 </div>
                                 <div class="form-group">
-                                    <input type="checkbox" id="remember_me" name="_remember_me" checked/>
-                                    <label for="remember_me">Se souvenir de moi</label>
+                                        <input type="checkbox" id="remember_me" name="_remember_me" class=""/>
+                                        <label for="remember_me">Se souvenir de moi</label>
                                 </div>
-                                <div class="containerConnect">
+                                <div>
                                     <button class="btn" type="submit" name="action">Connexion</button>
                                 </div>
-                                <div class="containerConnect">
-                                    <a href="#">Mot de passe oublié ?</a>
+                                <div>
+                                    <a href="{{ path('forgot_password') }}">Mot de passe oublié ?</a>
                                 </div>
                                 <input type="hidden" name="_target_path" value="/mayor"/>
                             </form>
                         </div>
                     </div>
                     <div class="col-sm-6 col-xs-12 text-center">
-                        <div class="formConnect bck-part">
+                        <div class="formConnect part">
                             <form action="{{ path('login') }}" method="post">
                                 <h5 class="text-center">Partenaire</h5>
                                 <div class="form-group">
@@ -44,15 +48,15 @@
                                     <label for="mdp">Mot de passe</label>
                                     <input id="mdp" type="password" name="_password" class="form-control">
                                 </div>
-                                <div class="form-group">
-                                    <input type="checkbox" id="remember_me" name="_remember_me" checked/>
+                                <div class="form-group saveMe">
+                                    <input type="checkbox" id="remember_me" name="_remember_me"/>
                                     <label for="remember_me">Se souvenir de moi</label>
                                 </div>
                                 <div class="containerConnect">
                                     <button class="btn" type="submit" name="action">Connexion</button>
                                 </div>
                                 <div class="containerConnect">
-                                    <a href="#">Mot de passe oublié ?</a>
+                                    <a href="{{ path('forgot_password') }}">Mot de passe oublié ?</a>
                                 </div>
                                 <input type="hidden" name="_target_path" value="/partner"/>
                             </form>

@@ -4,14 +4,15 @@ namespace AppBundle\Controller;
 
 use AppBundle\Entity\Uploader;
 
-use AppBundle\Entity\User;
+
 use AppBundle\Service\UploadService;
+use DateTime;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+
 
 /**
  * @Route("partner/")
@@ -23,6 +24,12 @@ class PartnerController extends Controller
      */
     public function partnerIndexAction()
     {
+        $user = $this->getUser();
+        $user->setLastLogin(new DateTime('now'));
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($user);
+        $em->flush();
+
         return $this->render('private/partenaires/partIndex.html.twig');
     }
 
