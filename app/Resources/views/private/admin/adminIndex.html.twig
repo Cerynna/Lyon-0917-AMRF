@@ -24,19 +24,19 @@
             </div>
         </div>
         <div class="col-xs-3">
-            <h5>Total des projet par status</h5>
+            <h5>Total des projets par status</h5>
             <div class="jumbotron">
                 <canvas id="project-pie" width="200px" height="200px"></canvas>
             </div>
         </div>
         <div class="col-xs-3">
-            <h5>Status des Users</h5>
+            <h5>Status des Utilisateurs</h5>
             <div class="jumbotron">
                 <canvas id="user-valid" width="200px" height="200px"></canvas>
             </div>
         </div>
         <div class="col-xs-3">
-            <h5>Derniere User Connecté</h5>
+            <h5>Derniers Utilisateurs Connectés</h5>
             <div class="jumbotron">
                 <div class="row">
                     <div class="col-xs-4 bg-info text-center">Maires</div>
@@ -68,7 +68,7 @@
                     "type": "pie",
                     "data": {
                         "labels": [
-                            "Publier",
+                            "Publiés",
                             "En attente",
                             "En brouillon"],
                         "datasets": [{
@@ -84,7 +84,7 @@
                     data: {
                         labels: [{% for key, value in stats.project.history|reverse %}"{{ key }}",{% endfor %} ],
                         datasets: [{
-                            label: '# de projet',
+                            label: '# de projets',
                             data: [{% for key, value in stats.project.history|reverse %}{{ value }},{% endfor %}],
                             backgroundColor: [
                                 'rgba(255, 99, 132, 0.2)',
@@ -113,7 +113,7 @@
                     data: {
                         labels: [{% for key, value in stats.user|reverse %}"{{ key }} {{ value }}",{% endfor %} ],
                         datasets: [{
-                            label: '# user',
+                            label: '# utilisateurs',
                             data: [{% for key, value in stats.user|reverse %}{{ value }},{% endfor %}],
                             backgroundColor: [
                                 'rgba(54, 162, 235, 0.2)',

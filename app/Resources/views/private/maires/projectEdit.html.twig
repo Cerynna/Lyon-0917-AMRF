@@ -190,7 +190,7 @@
                 <h3>Réalisation</h3>
                 <div class="row">
                     <div class="form-group col-sm-6">
-                        {{ form_label(form.projectDate, "Année de réalisation *") }}
+                        {{ form_label(form.projectDate, "date de réalisation *") }}
                         {{ form_widget(form.projectDate) }}
                     </div>
                     <div class="form-group col-sm-6">
@@ -219,7 +219,7 @@
                             </label>
                         </div>
                         {{ form_widget(form.projectCoFinance, {'attr': {
-                            'placeholder': 'Saisissez le montant du financement et le partenaire associé'} }) }}
+                            'placeholder': 'Saisissez le montant du financement et le partenaire associé'}}) }}
                     </div>
                 </div>
                 <div class="form-group col-sm-4" align="left">
@@ -430,7 +430,7 @@
 {% block javascripts %}
     <script>
         document.getElementById("projet_keyWords").removeAttribute("required");
-
+        document.getElementById('projet_projectCoFinance').style.display = "none";
         function nextStep() {
             $('#page').val('next');
             $("form[name='{{ form.vars.name }}']").submit();
@@ -444,5 +444,13 @@
         $(document).ready(function () {
             $('#projet_keyWords').select2();
         });
+        function afficherCacher() {
+
+            if (document.getElementById('oui').checked) {
+                document.getElementById('projet_projectCoFinance').style.display = "block";
+            } else if (document.getElementById('non').checked) {
+                document.getElementById('projet_projectCoFinance').style.display = "none";
+            }
+        }
     </script>
 {% endblock %}
