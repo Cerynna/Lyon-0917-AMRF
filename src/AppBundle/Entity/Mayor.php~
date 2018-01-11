@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Mayor
@@ -26,6 +27,21 @@ class Mayor
      * @var string
      *
      * @ORM\Column(name="firstName", type="string", length=255, nullable=true)
+
+     * @Assert\NotBlank(
+     *     message= "Cette information est obligatoire"
+     * )
+     * @Assert\Type(
+     *     type= "string")
+     * @Assert\Length(
+     *     min= 2,
+     *     minMessage="Votre prénom doit comporter au moins 2 caractères"
+     * )
+     * @Assert\Regex(
+     *     pattern="/\d/",
+     *     match=false,
+     *     message="Votre prénom ne peut contenir de chiffre"
+     * )
      */
     private $firstName;
 
@@ -33,6 +49,21 @@ class Mayor
      * @var string
      *
      * @ORM\Column(name="lastName", type="string", length=255, nullable=true)
+
+     * @Assert\NotBlank(
+     *     message= "Cette information est obligatoire"
+     * )
+     * @Assert\Type(
+     *     type= "string")
+     * @Assert\Length(
+     *     min= 2,
+     *     minMessage="Votre nom doit comporter au moins 2 caractères"
+     * )
+     * @Assert\Regex(
+     *     pattern="/\d/",
+     *     match=false,
+     *     message="Votre nom ne peut contenir de chiffre"
+     * )
      */
     private $lastName;
 
@@ -40,6 +71,9 @@ class Mayor
      * @var string
      *
      * @ORM\Column(name="address", type="string", length=255, nullable=true)
+     * @Assert\NotBlank(
+     *     message= "Cette information est obligatoire"
+     * )
      */
     private $address;
 
@@ -54,6 +88,14 @@ class Mayor
      * @var string
      *
      * @ORM\Column(name="email", type="string", length=255, nullable=true)
+
+     * @Assert\NotBlank(
+     *     message= "Cette information est obligatoire"
+     * )
+     * @Assert\Email(
+     *     message = "Veuillez entrer une adresse email valide",
+     *     checkMX = true
+     * )
      */
     private $email;
 
@@ -61,6 +103,14 @@ class Mayor
      * @var string
      *
      * @ORM\Column(name="phone", type="string", length=255, nullable=true)
+     * @Assert\NotBlank(
+     *     message= "Cette information est obligatoire"
+     * )
+     * @Assert\Regex(
+     *     pattern="/^(?:0|\(?\+33\)?\s?|0033\s?)[1-79](?:[\.\-\s]?\d\d){4}$/",
+     *     match=true,
+     *     message="Veuillez entrer un numéro au format 0X XX XX XX XX"
+     * )
      */
     private $phone;
 
@@ -68,6 +118,17 @@ class Mayor
      * @var string
      *
      * @ORM\Column(name="town", type="string", length=255, nullable=true)
+     *
+     * @Assert\NotBlank(
+     *     message= "Cette information est obligatoire"
+     * )
+     * @Assert\Type(
+     *     type= "string")
+     * @Assert\Regex(
+     *     pattern="/\d/",
+     *     match=false,
+     *     message="Le nom de votre ville ne peut contenir de chiffre"
+     * )
      */
     private $town;
 
@@ -75,6 +136,15 @@ class Mayor
      * @var string
      *
      * @ORM\Column(name="zipCode", type="string", length=20, nullable=true)
+
+     * @Assert\NotBlank(
+     *     message= "Cette information est obligatoire"
+     * )
+     * @Assert\Regex(
+     *     pattern="/^(([0-8][0-9])|(9[0-5]))[0-9]{3}$/",
+     *     match=true,
+     *     message="Veuillez entrer un code postal à 5 chiffres"
+     * )
      */
     private $zipCode;
 
@@ -110,6 +180,14 @@ class Mayor
      * @var int
      *
      * @ORM\Column(name="population", type="integer", nullable=true)
+     *
+     * @Assert\Type(
+     *     type= "integer"
+     * )
+     * @Assert\Range(
+     *     max=9999,
+     *     maxMessage="La population ne peut pas excéder 9999 habitants"
+     * )
      */
     private $population;
 
@@ -117,6 +195,10 @@ class Mayor
      * @var string
      *
      * @ORM\Column(name="url", type="string", length=255, nullable=true)
+
+     * @Assert\Url(
+     *     message="L'adresse internet n'est pas valide."
+     * )
      */
     private $url;
 
