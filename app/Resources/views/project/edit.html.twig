@@ -19,7 +19,7 @@
             <li>
                 {{ form_start(delete_form) }}
                 <button class="fa-admin" data-toggle="tooltip" data-placement="right"
-                        title="Supprimer Project" type="submit"><i class="fa fa-trash-o"></i></button>
+                        title="Supprimer Project" type="submit" onclick="return ConfirmDelete()"><i class="fa fa-trash-o"></i></button>
                 {{ form_end(delete_form) }}
 
             </li>
@@ -342,5 +342,10 @@
                 }
             })
         }
+
+        function ConfirmDelete() {
+            return confirm("Etes-vous sûr que vous voulez supprimer le projet?");
+        }
     </script>
+
 {% endblock %}
