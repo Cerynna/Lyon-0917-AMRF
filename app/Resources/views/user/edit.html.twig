@@ -28,6 +28,7 @@
     </div>
     <h1>Modification de l'utilisateur</h1>
     {{ form_start(edit_form) }}
+    {{ form_errors(edit_form) }}
 
     <div class="form-group row" id="editProject">
         <div class="col-sm-6">
@@ -43,19 +44,19 @@
                 <h5>{{ form_label(edit_form.email, "Email") }}</h5>
                 {{ form_widget(edit_form.email) }}
             </div>
-            <div class="col-sm-6">
+            <div class="col-sm-4">
                 <h5>{{ form_label(edit_form.role, "Rôle") }}</h5>
                 {{ form_widget(edit_form.role) }}
             </div>
-            <div class="col-sm-6">
+            <div class="col-sm-4">
                 <h5>{{ form_label(edit_form.status, "Statut") }}</h5>
                 {{ form_widget(edit_form.status) }}
             </div>
-            <div class="col-sm-6">
+            <div class="col-sm-4">
                 <h5>{{ form_label(edit_form.creationDate, "Date de création") }}</h5>
                 {{ form_widget(edit_form.creationDate) }}
             </div>
-            <div class="col-sm-6">
+            <div class="col-sm-4">
                 <h5>{{ form_label(edit_form.lastLogin, "Dernière connexion") }}</h5>
                 {{ form_widget(edit_form.lastLogin) }}
             </div>

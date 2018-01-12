@@ -254,6 +254,11 @@ class Project
 	 */
 	private $slug;
 
+    /**
+     * @ORM\OneToMany(targetEntity="Favorite", mappedBy="project")
+     */
+    private $favorites;
+
 
 	/**
 	 * Constructor
@@ -1028,4 +1033,24 @@ class Project
     {
         return $this->slug;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getFavorites()
+    {
+        return $this->favorites;
+    }
+
+    /**
+     * @param mixed $favorites
+     * @return Project
+     */
+    public function setFavorites($favorites)
+    {
+        $this->favorites = $favorites;
+        return $this;
+    }
+
+
 }

@@ -22,6 +22,359 @@
     <h1>Nouvel Utilisateur</h1>
     {{ form_start(form) }}
     <div class="row">
+        <div class="col-sm-12">
+            {{ form_label(form.role, 'Rôle') }}
+            <div class="select">
+                {{ form_widget(form.role, {'attr': {
+                    'onchange': "change_valeur()"
+                } }
+                ) }}
+                <div class="select_arrow">
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-12">
+            <div class="jumbotron userMayor">
+
+                <div class="tab-content">
+                    <div id="User" class="tab-pane fade in active">
+                        <div class="row">
+                            <div class="col-sm-2 text-left">
+                                {# <a data-toggle="tab" href="#Mayor"><i class="fa fa-angle-left fa-admin"></i></a>#}
+                            </div>
+                            <div class="col-sm-8 text-center">
+                                <div class="row">
+                                    <div class="col-sm-3 ">
+
+                                        <div class="step active">1</div>
+
+                                    </div>
+                                    <div class="col-sm-3 ">
+
+                                        <div class="step">2</div>
+
+                                    </div>
+                                    <div class="col-sm-3 ">
+
+                                        <div class="step">3</div>
+
+                                    </div>
+                                    <div class="col-sm-3 ">
+
+                                        <div class="step">4</div>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-2 text-right">
+                                <a data-toggle="tab" href="#Mayor"><i class="fa fa-angle-right fa-admin"></i></a>
+                            </div>
+                        </div>
+                        <div class="row first">
+                            <div class="col-sm-3">
+                                <h3>{{ form_label(form.login, 'Login') }}</h3>
+                            </div>
+                            <div class="col-sm-1 text-right">
+                                <i class="fa fa-question fa-admin-mini" data-toggle="tooltip" data-placement="right"
+                                   title="Message a voir j'ai pas d'idée a 23h37"></i>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-4">
+                                {{ form_widget(form.login) }}
+                            </div>
+                        </div>
+                        <div class="row User-2 first hidden">
+                            <div class="col-sm-3">
+                                <h3>{{ form_label(form.email, 'Email') }}</h3>
+                            </div>
+                            <div class="col-sm-1 text-right">
+                                <i class="fa fa-question fa-admin-mini" data-toggle="tooltip" data-placement="right"
+                                   title="Message a voir j'ai pas d'idée a 23h37"></i>
+                            </div>
+                        </div>
+                        <div class="row User-2 hidden">
+                            <div class="col-sm-4">
+                                {{ form_widget(form.email) }}
+                            </div>
+                        </div>
+                        <div class="row User-2 first hidden">
+                            <div class="col-sm-3">
+                                <h3>{{ form_label(form.password, 'Mot de Passe') }}</h3>
+                            </div>
+                            <div class="col-sm-1 text-right">
+                                <i class="fa fa-question fa-admin-mini" data-toggle="tooltip" data-placement="right"
+                                   title="Si vous laissez ce champ vide le mot de passe généré sera : CODE INSEE+CODE POSTAL"></i>
+                            </div>
+                        </div>
+                        <div class="row User-2 hidden">
+                            <div class="col-sm-4">
+                                {{ form_widget(form.password, {
+                                    'attr':{
+                                        'placeholder' : 'Mot de passe généré Automatiquement',
+                                    }
+                                }) }}
+                            </div>
+                        </div>
+                    </div>
+                    <div id="Mayor" class="tab-pane fade">
+                        <div class="row">
+                            <div class="col-sm-2 text-left">
+                                <a data-toggle="tab" href="#User">
+                                    <i class="fa fa-angle-left fa-admin"></i>
+                                </a>
+                            </div>
+                            <div class="col-sm-8 text-center">
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <div class="step ">1</div>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <div class="step active">2</div>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <div class="step">3</div>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <div class="step">4</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-2 text-right">
+                                <a data-toggle="tab" href="#Commune">
+                                    <i class="fa fa-angle-right fa-admin"></i>
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="row first">
+                            <div class="col-sm-3">
+                                <h3>{{ form_label(form.mayor.lastName, 'Nom') }}</h3>
+                            </div>
+                            <div class="col-sm-1 text-right">
+                                <i class="fa fa-question fa-admin-mini" data-toggle="tooltip" data-placement="right"
+                                   title="Message a voir j'ai pas d'idée a 23h37"></i>
+                            </div>
+                            <div class="col-sm-3">
+                                <h3>{{ form_label(form.mayor.firstName, 'Prénom') }}</h3>
+                            </div>
+                            <div class="col-sm-1 text-right">
+                                <i class="fa fa-question fa-admin-mini" data-toggle="tooltip" data-placement="right"
+                                   title="Message a voir j'ai pas d'idée a 23h37"></i>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-4">
+                                {{ form_widget(form.mayor.lastName) }}
+                            </div>
+                            <div class="col-sm-4">
+                                {{ form_widget(form.mayor.firstName) }}
+                            </div>
+                        </div>
+
+                        <div class="row first">
+                            <div class="col-sm-3">
+                                <h3>{{ form_label(form.mayor.email, 'Email') }}</h3>
+                            </div>
+                            <div class="col-sm-1 text-right">
+                                <i class="fa fa-question fa-admin-mini" data-toggle="tooltip" data-placement="right"
+                                   title="Message a voir j'ai pas d'idée a 23h37"></i>
+                            </div>
+                            <div class="col-sm-3">
+                                <h3>{{ form_label(form.mayor.phone, 'Téléphone') }}</h3>
+                            </div>
+                            <div class="col-sm-1 text-right">
+                                <i class="fa fa-question fa-admin-mini" data-toggle="tooltip" data-placement="right"
+                                   title="Message a voir j'ai pas d'idée a 23h37"></i>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-4">
+                                {{ form_widget(form.mayor.email) }}
+                            </div>
+                            <div class="col-sm-4">
+                                {{ form_widget(form.mayor.phone) }}
+                            </div>
+                        </div>
+
+                    </div>
+                    <div id="Commune" class="tab-pane fade">
+                        <div class="row">
+                            <div class="col-sm-2 text-left">
+                                <a data-toggle="tab" href="#Mayor">
+                                    <i class="fa fa-angle-left fa-admin"></i>
+                                </a>
+                            </div>
+                            <div class="col-sm-8 text-center">
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <div class="step ">1</div>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <div class="step ">2</div>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <div class="step active">3</div>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <div class="step">4</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-2 text-right">
+                                <a data-toggle="tab" href="#Reseaux">
+                                    <i class="fa fa-angle-right fa-admin"></i>
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="row first">
+                            <div class="col-sm-3">
+                                <h3>{{ form_label(form.mayor.insee, 'INSEE') }}</h3>
+                            </div>
+                            <div class="col-sm-1 text-right">
+                                <i class="fa fa-question fa-admin-mini" data-toggle="tooltip" data-placement="right"
+                                   title="Message a voir j'ai pas d'idée a 23h37"></i>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-4">
+                                {{ form_widget(form.mayor.insee) }}
+                            </div>
+                        </div>
+
+                        <div class="row first">
+                            <div class="col-sm-3">
+                                <h3>{{ form_label(form.mayor.address, 'Adresse') }}</h3>
+                            </div>
+                            <div class="col-sm-1 text-right">
+                                <i class="fa fa-question fa-admin-mini" data-toggle="tooltip" data-placement="right"
+                                   title="Message a voir j'ai pas d'idée a 23h37"></i>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-4">
+                                {{ form_widget(form.mayor.address) }}
+                            </div>
+                        </div>
+
+                        <div class="row first Geoloc hidden">
+                            <div class="col-sm-3">
+                                <h3>{{ form_label(form.mayor.town, 'Ville') }}</h3>
+                            </div>
+                            <div class="col-sm-1 text-right">
+                                <i class="fa fa-question fa-admin-mini"
+                                   data-toggle="tooltip" data-placement="right"
+                                   title="Message a voir j'ai pas d'idée a 23h37"></i>
+                            </div>
+                            <div class="col-sm-2">
+                                <h3>{{ form_label(form.mayor.zipCode, 'Code Postal') }}</h3>
+                            </div>
+                            <div class="col-sm-2">
+                                <h3>{{ form_label(form.mayor.department, 'Département') }}</h3>
+                            </div>
+                            <div class="col-sm-1 text-right">
+                                <i class="fa fa-question fa-admin-mini"
+                                   data-toggle="tooltip" data-placement="right"
+                                   title="Message a voir j'ai pas d'idée a 23h37"></i>
+                            </div>
+                            <div class="col-sm-2">
+                                <h3>{{ form_label(form.mayor.region, 'Région') }}</h3>
+                            </div>
+                            <div class="col-sm-1 text-right">
+                                <i class="fa fa-question fa-admin-mini"
+                                   data-toggle="tooltip" data-placement="right"
+                                   title="Message a voir j'ai pas d'idée a 23h37"></i>
+                            </div>
+                        </div>
+                        <div class="row Geoloc hidden">
+                            <div class="col-sm-4">
+                                {{ form_widget(form.mayor.town) }}
+                            </div>
+                            <div class="col-sm-2">
+                                {{ form_widget(form.mayor.zipCode) }}
+                            </div>
+                            <div class="col-sm-3">
+                                {{ form_widget(form.mayor.department, {'attr': {
+                                    'disabled': 'disabled'
+                                } }) }}
+                            </div>
+                            <div class="col-sm-3">
+                                {{ form_widget(form.mayor.region, {'attr': {
+                                    'disabled': 'disabled'
+                                } }) }}
+                            </div>
+                        </div>
+                        <div class="row first Geoloc hidden">
+                            <div class="col-sm-3">
+                                <h3>{{ form_label(form.mayor.latitude, 'Lattitude') }}</h3>
+                            </div>
+                            <div class="col-sm-1 text-right">
+                                <i class="fa fa-question fa-admin-mini"
+                                   data-toggle="tooltip" data-placement="right"
+                                   title="Message a voir j'ai pas d'idée a 23h37"></i>
+                            </div>
+                            <div class="col-sm-3">
+                                <h3>{{ form_label(form.mayor.longitude, 'Longitude') }}</h3>
+                            </div>
+                            <div class="col-sm-1 text-right">
+                                <i class="fa fa-question fa-admin-mini"
+                                   data-toggle="tooltip" data-placement="right"
+                                   title="Message a voir j'ai pas d'idée a 23h37"></i>
+                            </div>
+                            <div class="col-sm-3">
+                                <h3>{{ form_label(form.mayor.longitude, 'Population') }}</h3>
+                            </div>
+                            <div class="col-sm-1 text-right">
+                                <i class="fa fa-question fa-admin-mini"
+                                   data-toggle="tooltip" data-placement="right"
+                                   title="Message a voir j'ai pas d'idée a 23h37"></i>
+                            </div>
+                        </div>
+                        <div class="row Geoloc hidden">
+                            <div class="col-sm-4">
+                                {{ form_widget(form.mayor.latitude, {'attr': {
+                                    'disabled': 'disabled'
+                                } }) }}
+                            </div>
+                            <div class="col-sm-4">
+                                {{ form_widget(form.mayor.longitude, {'attr': {
+                                    'disabled': 'disabled'
+                                } }) }}
+                            </div>
+                            <div class="col-sm-4">
+                                {{ form_widget(form.mayor.population, {'attr': {
+                                    'disabled': 'disabled'
+                                } }) }}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="Reseaux" class="row tab-pane fade">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <h5>ieugheobjtoej</h5>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+
+            </div>
+        </div>
+        <div class="col-sm-12">
+            <div class="jumbotron  userPartner hidden">
+            </div>
+        </div>
+    </div>
+
+
+    {{ form_widget(form) }}
+    {{ form_end(form) }}
+    {#
+    {{ form_start(form) }}
+    <div class="row">
         <div class="col-sm-6">
             <div class="jumbotron">
                 <div class="row">
@@ -179,30 +532,80 @@
 
     {{ form_widget(form) }}
     {{ form_end(form) }}
+#}
 
 {% endblock %}
-{% block javascripts %}
-    <script>
-        function change_valeur() {
-            var select = document.getElementById("amrf_publicrooterbundle_user_role");
-            var choice = select.selectedIndex;
-            var role = select.options[choice].value;
+    {% block javascripts %}
+        <script>
+            $(document).ready(function () {
+                $('#amrf_publicrooterbundle_user_login').keyup(function () {
+                    var login = $(this).val();
+                    if (login.length >= 5) {
+                        $(".User-2").removeClass("hidden");
+                        if (!isNaN(login)) {
+                            $("#amrf_publicrooterbundle_user_mayor_insee").val(login);
+                        }
+                    }
 
-            if (role == 1) {
-                $(".userPartner").addClass("hidden");
-                $(".userMayor").removeClass("hidden");
+                });
 
+                $("#amrf_publicrooterbundle_user_mayor_insee").keyup(function () {
+                    var insee = $(this).val();
+                    if (insee.length >= 5) {
+                        $(".Geoloc").removeClass("hidden");
+                        $.ajax({
+                            type: "GET",
+                            url: "https://geo.api.gouv.fr/communes?fields=code,nom,codesPostaux,codeDepartement,codeRegion,population,centre&code=" + insee,
+                            dataType: "json",
+                            timeout: 3000,
+                            success: function (response) {
+                                var longitude = response[0].centre.coordinates[0];
+                                var lattitude = response[0].centre.coordinates[1];
+                                var zipcode = response[0].codesPostaux[0];
+                                var codeDepartement = response[0].codeDepartement;
+                                var codeRegion = response[0].codeRegion;
+                                var town = response[0].nom;
+                                var population = response[0].population;
+
+                                $("#amrf_publicrooterbundle_user_mayor_town").val(town);
+                                $("#amrf_publicrooterbundle_user_mayor_zipCode").val(zipcode);
+                                $("#amrf_publicrooterbundle_user_mayor_department").val(codeDepartement);
+                                $("#amrf_publicrooterbundle_user_mayor_region").val(codeRegion);
+                                $("#amrf_publicrooterbundle_user_mayor_latitude").val(lattitude);
+                                $("#amrf_publicrooterbundle_user_mayor_longitude").val(longitude);
+                                $("#amrf_publicrooterbundle_user_mayor_population").val(population);
+
+                            },
+                            error: function () {
+                                $('#autocomplete').text('Ajax call error');
+                            }
+                        })
+                    } else {
+                        $('#autocomplete').html('');
+                    }
+                });
+            });
+
+            function change_valeur() {
+                var select = document.getElementById("amrf_publicrooterbundle_user_role");
+                var choice = select.selectedIndex;
+                var role = select.options[choice].value;
+
+                if (role == 1) {
+                    $(".userPartner").addClass("hidden");
+                    $(".userMayor").removeClass("hidden");
+
+                }
+                if (role == 2) {
+                    $(".userMayor").addClass("hidden");
+                    $(".userPartner").removeClass("hidden");
+
+                }
+                if (role == 3) {
+                    $(".userMayor").addClass("hidden");
+                    $(".userPartner").addClass("hidden");
+
+                }
             }
-            if (role == 2) {
-                $(".userMayor").addClass("hidden");
-                $(".userPartner").removeClass("hidden");
-
-            }
-            if (role == 3) {
-                $(".userMayor").addClass("hidden");
-                $(".userPartner").addClass("hidden");
-
-            }
-        }
-    </script>
-{% endblock %}
+        </script>
+    {% endblock %}
