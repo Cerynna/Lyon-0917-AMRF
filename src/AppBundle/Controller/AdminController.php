@@ -8,25 +8,14 @@
 
 namespace AppBundle\Controller;
 
-use AppBundle\Entity\Company;
-use AppBundle\Entity\Contact;
-use AppBundle\Entity\Dictionary;
-use AppBundle\Entity\Project;
-use AppBundle\Entity\Search;
-use AppBundle\Service\EmailService;
-use AppBundle\Service\SearchService;
 
-
-use Doctrine\ORM\EntityManagerInterface;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use SensioLabs\Security\Exception\HttpException;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
-use Symfony\Component\Filesystem\Filesystem;
 
 class AdminController extends Controller
 {
@@ -43,4 +32,52 @@ class AdminController extends Controller
             'stats' => $stats,
         ]);
     }
+
+    /**
+     * @Route("/admin/userTest", name="admin_User_Test")
+     * @return Response
+     */
+    public function UserAction()
+    {
+        $repository = $this->getDoctrine()->getRepository('AppBundle:Mayor');
+        $maxMayor = $repository->MaxMayor();
+        $repository = $this->getDoctrine()->getRepository('AppBundle:Mayor');
+        $maxPart = $repository->MaxPartner();
+        return $this->render('private/admin/adminIndextest.html.twig', [
+            'maxMayor' => $maxMayor,
+            'maxPart' => $maxPart,
+        ]);
+    }
+
+    /**
+     * @Route("/ajax/listMayor", name="admin_list_mayor")
+     *
+     */
+    public function ListMayorAction(Request $request)
+    {
+        if ($request->isXmlHttpRequest()) {
+            $offset = intval($request->request->get('offset'));
+            $repository = $this->getDoctrine()->getRepository('AppBundle:Mayor');
+            $data = $repository->ListMayor($offset);
+            return new JsonResponse(array("data" => $data));
+        } else {
+            throw new HttpException('500', 'Invalid call');
+        }
+    }
+    /**
+     * @Route("/ajax/listPart", name="admin_list_partner")
+     *
+     */
+    public function ListPartAction(Request $request)
+    {
+        if ($request->isXmlHttpRequest()) {
+            $offset = intval($request->request->get('offset'));
+            $repository = $this->getDoctrine()->getRepository('AppBundle:Mayor');
+            $data = $repository->ListPartner($offset);
+            return new JsonResponse(array("data" => $data));
+        } else {
+            throw new HttpException('500', 'Invalid call');
+        }
+    }
+
 }

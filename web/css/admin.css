@@ -445,6 +445,50 @@ nav {
 
 }
 */
+h3 {
+  background-color: #17608f;
+  color: white;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  border-radius: 5px;
+  padding: 7px 20px 3px 20px !important;
+  font-size: 1em !important;
+  margin: 0; }
+
+.userMayor .step {
+  background-color: #b3d9f2;
+  color: #17608f;
+  border: 2px solid #17608f;
+  text-shadow: 1px 1px #000;
+  font-size: 35px;
+  border-radius: 5px;
+  height: 50px;
+  width: 50px;
+  margin: 0 auto; }
+  .userMayor .step:hover {
+    background-color: white;
+    color: #17608f; }
+  .userMayor .step.active {
+    background-color: #17608f;
+    color: white;
+    border: 2px solid #17608f; }
+    .userMayor .step.active:hover {
+      background-color: white;
+      color: #17608f; }
+  .userMayor .step.unvalid {
+    background: #710b02;
+    color: white; }
+  .userMayor .step.valid {
+    background: #03ff04; }
+
+.userMayor .first {
+  padding-top: 20px; }
+
+.userMayor #User {
+  margin-top: 0;
+  padding-bottom: 50px; }
+
 h4 {
   background-color: #b3d9f2;
   border: 2px solid #17608f;
@@ -471,7 +515,7 @@ h5 {
   border-radius: 5px;
   padding: 7px 10px;
   font-size: 1em;
-  margin: 10px auto  2px auto; }
+  margin: 10px auto 2px auto; }
 
 .jumbotron {
   background-color: white;
@@ -1334,7 +1378,6 @@ h1 {
       /*2f92a8*/ }
 
 /*
-
 div {
   border: 1px solid cyan !important;
 }
