@@ -17,6 +17,7 @@ h3 {
 .erreur {
   background: #8f1714;
 }
+
 .userMayor {
   .step {
     @include colorback1($color1, 70%);

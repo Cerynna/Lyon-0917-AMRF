@@ -1,7 +1,6 @@
 {% extends 'private/admin/baseAdmin.html.twig' %}
 {% block title %}Admin home{% endblock %}
 {% block body %}
-
     <div class="menu-admin menu-user">
         <ul>
             <li>
@@ -23,10 +22,25 @@
                     <ul class="pagination-mayor"></ul>
                 </div>
                 <div class="col-xs-12">
-                    {{ form_start(filtreMayor) }}
-                    {{ form_widget(filtreMayor) }}
-                    <button type="submit">Flitrer</button>
+                    {{ form_start(filtreMayor, {
+                        'attr':{
+                            'class' : 'form-inline'
+                        }
+                    }) }}
+                    <div class="form-group">
+                        {{ form_row(filtreMayor.CodePostal, {
+                            'attr':{
+                                'class' : 'filter'
+                            }}) }}
+                    </div>
+                    <div class="form-group">
+                        {{ form_row(filtreMayor.CodeInsee, {
+                            'attr':{
+                                'class' : 'filter'
+                            }}) }}
+                    </div>
                     {{ form_end(filtreMayor) }}
+
                 </div>
                 <div class="col-xs-12">
                     <div class="jumbotron userMayor" id="content-mayor">
@@ -46,7 +60,6 @@
                     <ul class="pagination-partner"></ul>
                 </div>
                 <div class="col-xs-12">
-                    Filtre
                 </div>
                 <div class="col-xs-12">
                     <div class="jumbotron userPartner" id="content-partner">
@@ -74,8 +87,56 @@
         {% set totalPageMayor = 1 %}
     {% endif %}
     <script type="text/javascript">
-        $(function () {
+        $(document).ready(function () {
+
+            document.getElementById("filtre_user_mayor_CodePostal").removeAttribute("required");
+            document.getElementById("filtre_user_mayor_CodeInsee").removeAttribute("required");
+
             new Clipboard('.fa-envelope');
+
+            $('.filter').keyup(function () {
+                console.log("USE FILTER");
+                var postal = $('#filtre_user_mayor_CodePostal').val();
+                var insee = $('#filtre_user_mayor_CodeInsee').val();
+                if (postal.length >= 2 || insee.length >= 2) {
+                    if (!isNaN(postal) && !isNaN(insee)) {
+                        $.ajax({
+                            type: "POST",
+                            url: "/ajax/listMayorFiltre",
+                            dataType: "json",
+                            data: {
+                                'CodePostal': postal,
+                                'CodeInsee': insee
+                            },
+                            timeout: 3000,
+                            success: function (response) {
+                                var mayors = response.data;
+                                console.log(response.data);
+                                html = "";
+                                for (i = 0; i < mayors.length; i++) {
+
+                                    var linkShow = "{{ path('admin_user_show', {'id': "idUser"}) }}".replace('idUser', mayors[i].id);
+                                    var linkEdit = "{{ path('admin_user_edit', {'id': "idUser"}) }}".replace('idUser', mayors[i].id);
+                                    var result = {
+                                        'linkShow': linkShow,
+                                        'linkEdit': linkEdit,
+                                        'name': mayors[i].commune,
+                                        'zipcode': mayors[i].zipcode,
+                                        'email': mayors[i].email
+                                    };
+                                    html += trameHTML(result);
+                                }
+                                $('#content-mayor').html(html);
+                            },
+                            error: function () {
+                                console.log('Ajax call error');
+                            }
+                        })
+                    }
+                }
+
+            });
+
 
             $('.pagination-partner').twbsPagination({
 
@@ -97,6 +158,13 @@
                             for (i = 0; i < partners.length; i++) {
                                 var linkShow = "{{ path('admin_user_show', {'id': "idUser"}) }}".replace('idUser', partners[i].id);
                                 var linkEdit = "{{ path('admin_user_edit', {'id': "idUser"}) }}".replace('idUser', partners[i].id);
+                                var result = {
+                                    'linkShow': linkShow,
+                                    'linkEdit': linkEdit,
+                                    'name': partners[i].name,
+                                    'zipcode': partners[i].zipcode,
+                                    'email': partners[i].email
+                                };
 
                                 html += '<h5>' +
                                     '<div class="row">' +
@@ -108,7 +176,7 @@
                                     '<i class="fa fa-pencil fa-admin-mini"></i>' +
                                     '</a>' +
                                     '</div>\n' +
-                                    '<div class="col-xs-4">' + partners[i].commune + '</div>\n' +
+                                    '<div class="col-xs-4">' + partners[i].name + '</div>\n' +
                                     '<div class="col-xs-2">' + partners[i].zipcode + '</div>\n' +
                                     '<div class="col-xs-3">' +
                                     '<input id="mail-' + partners[i].zipcode + '" value="' + partners[i].email + '" class="form-control">' +
@@ -144,32 +212,20 @@
                         data: {'offset': offset},
                         timeout: 3000,
                         success: function (response) {
+
                             var mayors = response.data;
                             html = "";
                             for (i = 0; i < mayors.length; i++) {
                                 var linkShow = "{{ path('admin_user_show', {'id': "idUser"}) }}".replace('idUser', mayors[i].id);
                                 var linkEdit = "{{ path('admin_user_edit', {'id': "idUser"}) }}".replace('idUser', mayors[i].id);
-
-                                html += '<h5>' +
-                                    '<div class="row">' +
-                                    '<div class="col-xs-2">' +
-                                    '<a href="' + linkShow + '">' +
-                                    '<i class="fa fa-eye fa-admin-mini"></i>' +
-                                    '</a>' +
-                                    '<a href="' + linkEdit + '">' +
-                                    '<i class="fa fa-pencil fa-admin-mini"></i>' +
-                                    '</a>' +
-                                    '</div>\n' +
-                                    '<div class="col-xs-4">' + mayors[i].commune + '</div>\n' +
-                                    '<div class="col-xs-2">' + mayors[i].zipcode + '</div>\n' +
-                                    '<div class="col-xs-3">' +
-                                    '<input id="mail-' + mayors[i].zipcode + '" value="' + mayors[i].email + '" class="form-control">' +
-                                    '</div>\n' +
-                                    '<div class="col-xs-1">' +
-                                    '<i  data-clipboard-target="#mail-' + mayors[i].zipcode + '" class="fa fa-envelope fa-admin-mini"></i>' +
-                                    '</div>' +
-                                    '</div>' +
-                                    '</h5>';
+                                var result = {
+                                    'linkShow': linkShow,
+                                    'linkEdit': linkEdit,
+                                    'name': mayors[i].commune,
+                                    'zipcode': mayors[i].zipcode,
+                                    'email': mayors[i].email
+                                };
+                                html += trameHTML(result);
                             }
                             html += "";
                             $('#content-mayor').html(html);
@@ -181,5 +237,32 @@
                 }
             });
         });
+
+        function trameHTML(result) {
+
+            return_html = "";
+            return_html += '<h5>' +
+                '<div class="row">' +
+                '<div class="col-xs-2">' +
+                '<a href="' + result.linkShow + '">' +
+                '<i class="fa fa-eye fa-admin-mini"></i>' +
+                '</a>' +
+                '<a href="' + result.linkEdit + '">' +
+                '<i class="fa fa-pencil fa-admin-mini"></i>' +
+                '</a>' +
+                '</div>\n' +
+                '<div class="col-xs-4">' + result.name + '</div>\n' +
+                '<div class="col-xs-2">' + result.zipcode + '</div>\n' +
+                '<div class="col-xs-3">' +
+                '<input id="mail-' + result.zipcode + '" value="' + result.email + '" class="form-control">' +
+                '</div>\n' +
+                '<div class="col-xs-1">' +
+                '<i  data-clipboard-target="#mail-' + result.zipcode + '" class="fa fa-envelope fa-admin-mini"></i>' +
+                '</div>' +
+                '</div>' +
+                '</h5>';
+            return return_html;
+
+        }
     </script>
 {% endblock %}

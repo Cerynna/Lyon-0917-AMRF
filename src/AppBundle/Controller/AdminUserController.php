@@ -30,13 +30,16 @@ class AdminUserController extends Controller
     {
         $repository = $this->getDoctrine()->getRepository('AppBundle:Mayor');
         $maxMayor = $repository->MaxMayor();
-        $repository = $this->getDoctrine()->getRepository('AppBundle:Mayor');
         $maxPart = $repository->MaxPartner();
+        $testAjax = $repository->ListMayorFilter("692", "");
         $form = $this->createForm('AppBundle\Form\FiltreUserMayorType');
+
+
 
         return $this->render('user/index.html.twig', [
             'maxMayor' => $maxMayor,
             'maxPart' => $maxPart,
+            'testAjax' => $testAjax,
             'filtreMayor' => $form->createView()
         ]);
     }

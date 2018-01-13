@@ -156,4 +156,28 @@ class AjaxController extends Controller
         }
     }
 
+    /**
+     * @Route("/ajax/listMayorFiltre", name="list_mayor_filtre")
+     *
+     */
+    public function ListMayorFilterAction(Request $request)
+    {
+       if ($request->isXmlHttpRequest()) {
+
+            $zipCode = intval($request->request->get('CodePostal'));
+            $insee = intval($request->request->get('CodeInsee'));
+
+            $repository = $this->getDoctrine()->getRepository('AppBundle:Mayor');
+            $data = $repository->ListMayorFilter($zipCode, $insee);
+
+       /* return new Response(
+            '<html><body>Hello</body></html>'
+        );*/
+
+           return new JsonResponse(array("data" => $data));
+        } else {
+            throw new HttpException('500', 'Invalid call');
+        }
+    }
+
 }

@@ -17,7 +17,6 @@
   outline: 0;
   border-radius: 5px;
 
-
   -webkit-appearance: none;
   -moz-appearance: none;
 }
@@ -55,5 +54,5 @@
 }
 
 .select select:disabled ~ .select_arrow {
-  border-top-color:  lighten($color1, 90%);
+  border-top-color: lighten($color1, 90%);
 }
