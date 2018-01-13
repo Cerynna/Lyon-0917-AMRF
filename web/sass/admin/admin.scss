@@ -19,10 +19,12 @@
 @import 'partials/header';
 @import 'partials/sidenav';
 @import 'partials/section';
+
 @import 'partials/table';
 @import 'partials/forms';
 @import 'partials/select2';
 @import 'partials/footer';
+@import 'partials/step';
 
 body {
   background: $colorbody;
@@ -111,7 +113,6 @@ h1 {
     }
   }
 }
-
 /*
 div {
   border: 1px solid cyan !important;

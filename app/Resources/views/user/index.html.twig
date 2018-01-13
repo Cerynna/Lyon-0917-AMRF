@@ -1,6 +1,7 @@
 {% extends 'private/admin/baseAdmin.html.twig' %}
-
+{% block title %}Admin home{% endblock %}
 {% block body %}
+
     <div class="menu-admin menu-user">
         <ul>
             <li>
@@ -14,86 +15,171 @@
             </li>
         </ul>
     </div>
-    <h1>Liste des utilisateurs</h1>
+    <h1>Test</h1>
+    <div class="row">
+        <div class="col-xs-6">
+            <div class="row">
+                <div class="col-xs-12 text-center">
+                    <ul class="pagination-mayor"></ul>
+                </div>
+                <div class="col-xs-12">
+                    {{ form_start(filtreMayor) }}
+                    {{ form_widget(filtreMayor) }}
+                    <button type="submit">Flitrer</button>
+                    {{ form_end(filtreMayor) }}
+                </div>
+                <div class="col-xs-12">
+                    <div class="jumbotron userMayor" id="content-mayor">
 
-    <div class="jumbotron row">
+                    </div>
+                </div>
+                <div class="col-xs-12 text-center">
+                    <ul class="pagination-mayor"></ul>
+                </div>
 
-        <form action="{{ path('admin_user_index') }}" method="get" name="filter">
+            </div>
 
-            <label for="login">Login</label>
-            <input value="{{ login }}" name="login" type="text" onchange="sendFilter()">
+        </div>
+        <div class="col-xs-6">
+            <div class="row">
+                <div class="col-xs-12 text-center">
+                    <ul class="pagination-partner"></ul>
+                </div>
+                <div class="col-xs-12">
+                    Filtre
+                </div>
+                <div class="col-xs-12">
+                    <div class="jumbotron userPartner" id="content-partner">
 
-            <input {% if role == 1 %} checked {% endif %} name="role" value="1" type="radio" onchange="sendFilter()">
-            <label for="mayor">Maire</label>
-            <input {% if role == 2 %} checked {% endif %} name="role" value="2" type="radio" onchange="sendFilter()">
-            <label for="partner">Partenaire</label>
-            <input {% if role == 3 %} checked {% endif %} name="role" value="3" type="radio" onchange="sendFilter()">
-            <label for="admin">Admin</label>
+                    </div>
+                </div>
+                <div class="col-xs-12 text-center">
+                    <ul class="pagination-partner"></ul>
+                </div>
+            </div>
 
-            <button type="submit" class="btn btn-default btn-sm"><i class="fa fa-search" aria-hidden="true"></i>
-                Filtrer
-            </button>
-
-            <a href="{{ path('admin_user_index') }}" data-toggle="tooltip" data-placement="right"
-               title="Liste Users"><i class="fa fa-refresh"></i> EFFACER LE FILTRE</a>
-            {% set queryParams = app.request.query.all %}
-
-            {% if queryParams is not empty %}{{ app.request.query.get('login') }}{% endif %}
-
-        </form>
+        </div>
     </div>
-    <table>
-        <thead>
-        <tr>
-            <th>Actions</th>
-            <th>ID</th>
-            <th>Login</th>
-            <th>Rôle</th>
-            <th>Statut</th>
-            <th>Email</th>
-            <th>{{ knp_pagination_sortable(users, 'Date de création', 'u.creationDate') }}</th>
-            <th>{{ knp_pagination_sortable(users, 'Dernière connexion', 'u.login') }}</th>
-            <th>ID</th>
-        </tr>
-        </thead>
-        <tbody>
-        {% for user in users %}
-            <tr>
-                <td>
-                    <a href="{{ path('admin_user_show', { 'id': user.id }) }}" data-toggle="tooltip"
-                       data-placement="left" title="Voir"><i class="fa fa-eye fa-admin-mini"></i></a>
-                    <a href="{{ path('admin_user_edit', { 'id': user.id }) }}" data-toggle="tooltip"
-                       data-placement="right" title="Editer"><i class="fa fa-pencil fa-admin-mini"></i></a>
-                </td>
-                <td><a href="{{ path('admin_user_show', { 'id': user.id }) }}">{{ user.id }}</a></td>
-                <td>{{ user.login }}</td>
-                <td>{{ user.role }}</td>
-                <td>{{ user.status }}</td>
-                <td>{{ user.email }}</td>
-                <td>{% if user.creationDate %}{{ user.creationDate|date('d-m-Y') }}{% endif %}</td>
-                <td>{% if user.lastLogin %}{{ user.lastLogin|date('d-m-Y') }}{% endif %}</td>
-                <td>
-                    {% if user.mayor %}{{ user.mayor.id }}{% endif %}
-                    {% if user.partner %}{{ user.partner.id }}{% endif %}
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
 
-    <div class="navigation text-center">
-        {{ knp_pagination_render(users, 'Pagination/twitter_bootstrap_v3_pagination.html.twig') }}
-    </div>
+
 
 {% endblock %}
 {% block javascripts %}
-    <script>
-        function sendFilter() {
-            $("form[name='filter']").submit();
-        }
+    {% set totalPagePart = (maxPart/10)|round %}
+    {% if  totalPagePart == 0 %}
+        {% set totalPagePart = 1 %}
+    {% endif %}
+    {% set totalPageMayor= (maxMayor/10)|round %}
+    {% if  totalPageMayor == 0 %}
+        {% set totalPageMayor = 1 %}
+    {% endif %}
+    <script type="text/javascript">
+        $(function () {
+            new Clipboard('.fa-envelope');
 
-        $(document).ready(function () {
-            $('[data-toggle="tooltip"]').tooltip();
+            $('.pagination-partner').twbsPagination({
+
+                totalPages: {{ totalPagePart }},
+                visiblePages: 10,
+                onPageClick: function (event, page) {
+                    var max = page * 10;
+                    var offset = max - 10;
+                    $.ajax({
+                        type: "POST",
+                        url: "/ajax/listPart",
+                        dataType: "json",
+                        data: {'offset': offset},
+                        timeout: 3000,
+                        success: function (response) {
+                            var partners = response.data;
+
+                            html = "";
+                            for (i = 0; i < partners.length; i++) {
+                                var linkShow = "{{ path('admin_user_show', {'id': "idUser"}) }}".replace('idUser', partners[i].id);
+                                var linkEdit = "{{ path('admin_user_edit', {'id': "idUser"}) }}".replace('idUser', partners[i].id);
+
+                                html += '<h5>' +
+                                    '<div class="row">' +
+                                    '<div class="col-xs-2">' +
+                                    '<a href="' + linkShow + '">' +
+                                    '<i class="fa fa-eye fa-admin-mini"></i>' +
+                                    '</a>' +
+                                    '<a href="' + linkEdit + '">' +
+                                    '<i class="fa fa-pencil fa-admin-mini"></i>' +
+                                    '</a>' +
+                                    '</div>\n' +
+                                    '<div class="col-xs-4">' + partners[i].commune + '</div>\n' +
+                                    '<div class="col-xs-2">' + partners[i].zipcode + '</div>\n' +
+                                    '<div class="col-xs-3">' +
+                                    '<input id="mail-' + partners[i].zipcode + '" value="' + partners[i].email + '" class="form-control">' +
+                                    '</div>\n' +
+                                    '<div class="col-xs-1">' +
+                                    '<i  data-clipboard-target="#mail-' + partners[i].zipcode + '" class="fa fa-envelope fa-admin-mini"></i>' +
+                                    '</div>' +
+                                    '</div>' +
+                                    '</h5>';
+                            }
+                            html += "";
+                            $('#content-partner').html(html);
+                        },
+                        error: function () {
+                            console.log('Ajax call error');
+                        }
+                    })
+                }
+            });
+        });
+        $(function () {
+
+            $('.pagination-mayor').twbsPagination({
+                totalPages: {{ totalPageMayor }},
+                visiblePages: 10,
+                onPageClick: function (event, page) {
+                    var max = page * 10;
+                    var offset = max - 10;
+                    $.ajax({
+                        type: "POST",
+                        url: "/ajax/listMayor",
+                        dataType: "json",
+                        data: {'offset': offset},
+                        timeout: 3000,
+                        success: function (response) {
+                            var mayors = response.data;
+                            html = "";
+                            for (i = 0; i < mayors.length; i++) {
+                                var linkShow = "{{ path('admin_user_show', {'id': "idUser"}) }}".replace('idUser', mayors[i].id);
+                                var linkEdit = "{{ path('admin_user_edit', {'id': "idUser"}) }}".replace('idUser', mayors[i].id);
+
+                                html += '<h5>' +
+                                    '<div class="row">' +
+                                    '<div class="col-xs-2">' +
+                                    '<a href="' + linkShow + '">' +
+                                    '<i class="fa fa-eye fa-admin-mini"></i>' +
+                                    '</a>' +
+                                    '<a href="' + linkEdit + '">' +
+                                    '<i class="fa fa-pencil fa-admin-mini"></i>' +
+                                    '</a>' +
+                                    '</div>\n' +
+                                    '<div class="col-xs-4">' + mayors[i].commune + '</div>\n' +
+                                    '<div class="col-xs-2">' + mayors[i].zipcode + '</div>\n' +
+                                    '<div class="col-xs-3">' +
+                                    '<input id="mail-' + mayors[i].zipcode + '" value="' + mayors[i].email + '" class="form-control">' +
+                                    '</div>\n' +
+                                    '<div class="col-xs-1">' +
+                                    '<i  data-clipboard-target="#mail-' + mayors[i].zipcode + '" class="fa fa-envelope fa-admin-mini"></i>' +
+                                    '</div>' +
+                                    '</div>' +
+                                    '</h5>';
+                            }
+                            html += "";
+                            $('#content-mayor').html(html);
+                        },
+                        error: function () {
+                            console.log('Ajax call error');
+                        }
+                    })
+                }
+            });
         });
     </script>
 {% endblock %}
