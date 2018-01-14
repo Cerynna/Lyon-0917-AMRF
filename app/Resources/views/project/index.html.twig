@@ -23,13 +23,13 @@
                 <label for="title">Titre</label>
                 <input value="{{ title }}" name="title" type="text" onchange="sendFilter()">
 
-                <label for="name">Theme</label>
+                {#<label for="name">Theme</label>
                 <select name="theme" id="theme">
                     {% for theme in themes %}
                         <option  value="{{ theme.id }}"
                                 onchange="sendFilter()">{{ theme.name }} </option>
                     {% endfor %}
-                </select>
+                </select>#}
 
                 <input {% if 1 in status %} checked {% endif %} name="status[]" value="1" id="brouillon" type="checkbox"
                                                                 multiple

@@ -1,10 +1,9 @@
 {% extends 'base.html.twig' %}
 {% block title %}Mon profil{% endblock %}
-
 {% block body %}
     {{ form_start(form) }}
     <h2>Mon profil</h2>
-    <div class="tabPannel">
+    <div class="row tabPannel">
         <div class="star">Le symbole * indique que cette information est nécessaire.</div>
         <div class="row">
             <div class="col-lg-6 col-sm-6">
@@ -58,6 +57,8 @@
             <button class="btn btnSubmit" id="btnSubmit" type="submit">Sauvegarder</button>
         </div>
     </div>
+    {{ form_widget(form._token) }}
+    {{ form_end(form, {'render_rest': false}) }}
 {% endblock %}
 
 {% block javascripts %}
