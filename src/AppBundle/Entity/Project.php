@@ -1053,4 +1053,30 @@ class Project
     }
 
 
+
+    /**
+     * Add favorite.
+     *
+     * @param \AppBundle\Entity\Favorite $favorite
+     *
+     * @return Project
+     */
+    public function addFavorite(\AppBundle\Entity\Favorite $favorite)
+    {
+        $this->favorites[] = $favorite;
+
+        return $this;
+    }
+
+    /**
+     * Remove favorite.
+     *
+     * @param \AppBundle\Entity\Favorite $favorite
+     *
+     * @return boolean TRUE if this collection contained the specified element, FALSE otherwise.
+     */
+    public function removeFavorite(\AppBundle\Entity\Favorite $favorite)
+    {
+        return $this->favorites->removeElement($favorite);
+    }
 }

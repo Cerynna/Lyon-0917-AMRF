@@ -32,7 +32,7 @@ class Favorite
     private $project;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Project", inversedBy="favorites")
+     * @ORM\ManyToOne(targetEntity="company", inversedBy="favorites")
      */
     private $company;
 
