@@ -14,6 +14,7 @@ use AppBundle\Entity\Favorite;
 
 use SensioLabs\Security\Exception\HttpException;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -124,4 +125,59 @@ class AjaxController extends Controller
             throw new HttpException('500', 'Invalid call');
         }
     }
+    /**
+     * @Route("/ajax/listMayor", name="admin_list_mayor")
+     *
+     */
+    public function ListMayorAction(Request $request)
+    {
+        if ($request->isXmlHttpRequest()) {
+            $offset = intval($request->request->get('offset'));
+            $repository = $this->getDoctrine()->getRepository('AppBundle:Mayor');
+            $data = $repository->ListMayor($offset);
+            return new JsonResponse(array("data" => $data));
+        } else {
+            throw new HttpException('500', 'Invalid call');
+        }
+    }
+    /**
+     * @Route("/ajax/listPart", name="admin_list_partner")
+     *
+     */
+    public function ListPartAction(Request $request)
+    {
+        if ($request->isXmlHttpRequest()) {
+            $offset = intval($request->request->get('offset'));
+            $repository = $this->getDoctrine()->getRepository('AppBundle:Mayor');
+            $data = $repository->ListPartner($offset);
+            return new JsonResponse(array("data" => $data));
+        } else {
+            throw new HttpException('500', 'Invalid call');
+        }
+    }
+
+    /**
+     * @Route("/ajax/listMayorFiltre", name="list_mayor_filtre")
+     *
+     */
+    public function ListMayorFilterAction(Request $request)
+    {
+       if ($request->isXmlHttpRequest()) {
+
+            $zipCode = intval($request->request->get('CodePostal'));
+            $insee = intval($request->request->get('CodeInsee'));
+
+            $repository = $this->getDoctrine()->getRepository('AppBundle:Mayor');
+            $data = $repository->ListMayorFilter($zipCode, $insee);
+
+       /* return new Response(
+            '<html><body>Hello</body></html>'
+        );*/
+
+           return new JsonResponse(array("data" => $data));
+        } else {
+            throw new HttpException('500', 'Invalid call');
+        }
+    }
+
 }
