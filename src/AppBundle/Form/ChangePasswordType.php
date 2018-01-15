@@ -18,7 +18,7 @@ class ChangePasswordType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('oldPassword', TextType::class, array('label' => 'Ancien mot de passe'))
+            ->add('oldPassword', PasswordType::class, array('label' => 'Ancien mot de passe'))
             ->add('newPassword', RepeatedType::class, array(
                 'type' => PasswordType::class,
                 'invalid_message' => 'Les mots de passe doivent correspondre',

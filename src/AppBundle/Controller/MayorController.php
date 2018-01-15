@@ -174,11 +174,17 @@ class MayorController extends Controller
             if ($formSubmitToAdmin->isSubmitted() && $formSubmitToAdmin->isValid()) {
                 $projectService->Verif($project);
                 if (!empty($projectService->getErreur())) {
-                    return $this->redirectToRoute('mayor_project_edit', array(
-                        'slug' => $project->getSlug(),
-                        'erreurs' => $projectService->getErreur(),
-                        'page' => 5
-                    ));
+
+                        return $this->render('private/maires/projectEdit.html.twig', array(
+                            'slug' => $project->getSlug(),
+                            'project' => $project,
+                            'form' => $form->createView(),
+                            'form_toAdmin' => $formSubmitToAdmin->createView(),
+                            'upload_image_form' => $uplodImageForm->createView(),
+                            'upload_file_form' => $uplodFileForm->createView(),
+                            'erreurs' => $projectService->getErreur(),
+                            'page' => 5,
+                        ));
                 } else {
                     $project->setStatus(Project::STATUS_WAITING);
                     $em->persist($project);

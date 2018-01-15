@@ -115,10 +115,12 @@ class ProjectRepository extends \Doctrine\ORM\EntityRepository
 		$mois = array("", "Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre");
 		$dateStat = [];
 		for ($i = 0; $i < 6; $i++) {
-			$max = new DateTime('last day of today - ' . $i . ' month');
-			$min = new DateTime('last day of today - ' . ($i + 1) . ' month');
+            $max = new \DateTime('last day of today - ' . $i . ' month');
+            $min = new \DateTime('last day of today - ' . ($i + 1) . ' month');
 
-			$dateStat[$mois[$max->format('n')]] = count($this->createQueryBuilder('p')
+
+
+            $dateStat[$mois[$max->format('n')]] = count($this->createQueryBuilder('p')
 				->setParameter('maxDate', $max)
 				->andWhere('p.creationDate < :maxDate')
 				->setParameter('minDate', $min)
