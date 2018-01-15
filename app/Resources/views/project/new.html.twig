@@ -12,22 +12,30 @@
                    title="Nouveau Projet"><i
                             class="fa fa-plus fa-admin"></i></a>
             </li>
-            <li class="submitForm">
-                <a data-toggle="tooltip" data-placement="right"
-                   title="Nouvel Utilisateur"><i class="fa fa-check fa-admin"></i></a>
-            </li>
+
         </ul>
     </div>
     <h1>Nouveau projet</h1>
-
     {{ form_start(form) }}
-    <div class="form-group row">
+
+
+    <div class="row">
+        <div class="col-sm-10">
+            <h3>{{ form_label(form.title, "Pour commencer, merci de donner un nom a votre projet. Il pourra être modifié par la suite.") }}</h3>
+            {{ form_widget(form.title) }}
+            <div id="errorTitle"></div>
+        </div>
+        <div class="col-sm-2">
+            <a class="submitForm hidden" data-toggle="tooltip" data-placement="right"
+               title="Nouveau Projet">
+                <i class="fa fa-check fa-admin"></i>
+            </a>
+        </div>
+    </div>
+
+    {#<div class="form-group row">
         <div class="col-sm-6">
-            <div class="col-sm-12">
-                <h5>{{ form_label(form.title, "Titre du projet *") }}</h5>
-                {{ form_widget(form.title) }}
-                <div id="errorTitle"></div>
-            </div>
+
             <div class="col-sm-6">
                 <h5>{{ form_label(form.creationDate, "Date de création") }}</h5>
                 {{ form_widget(form.creationDate) }}
@@ -235,19 +243,28 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div>#}
 
-    <input type="submit" value="Edit"/>
-    {{ form_end(form) }}
+    {{ form_widget(form._token) }}
+    {{ form_end(form, {'render_rest': false}) }}
 
-    <ul>
-        <li>
-            <a href="{{ path('admin_project_index') }}">Back to the list</a>
-        </li>
-    </ul>
 {% endblock %}
 {% block javascripts %}
     <script>
+        $(document).ready(function () {
+            $('#projet_title').change(function () {
+                var title = $(this).val();
+
+                if (title.length >= 5) {
+                    $(".submitForm").removeClass("hidden");
+                }else {
+                    $(".submitForm").addClass("hidden");
+                }
+
+            });
+        });
+
+
         $(".submitForm").click(function () {
             var title = $("input[name='projet[title]']").val();
             if (title !== '') {

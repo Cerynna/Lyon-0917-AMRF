@@ -2,8 +2,10 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\Mayor;
 use AppBundle\Entity\User;
 use AppBundle\Service\EmailService;
+use function is_null;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -20,74 +22,27 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
  */
 class AdminUserController extends Controller
 {
-    /**
-     * @var array
-     */
-    public $sort = [
-        'login' => "",
-        'role' => ""
-    ];
 
     /**
-     * @return array
-     */
-    public function getSort()
-    {
-        return $this->sort;
-    }
-
-    /**
-     * Lists all user entities.
-     *
      * @Route("/", name="admin_user_index")
-     * @Method("GET")
+     * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function indexAction(Request $request)
+    public function UserIndexAction()
     {
-        $em = $this->getDoctrine()->getManager();
+        $repository = $this->getDoctrine()->getRepository('AppBundle:Mayor');
+        $maxMayor = $repository->MaxMayor();
+        $maxPart = $repository->MaxPartner();
+        $testAjax = $repository->ListMayorFilter("692", "");
+        $form = $this->createForm('AppBundle\Form\FiltreUserMayorType');
 
-        /*        $users = $em->getRepository('AppBundle:User')->findAll();*/
 
-        $queryBuilder = $em->getRepository('AppBundle:User')
-            ->createQueryBuilder('u');
 
-        if ($request->query->getAlnum('login')) {
-            $queryBuilder
-                ->andwhere('u.login LIKE :login')
-                ->setParameter('login', '%' . $request->query->getAlnum('login') . '%');
-        }
-
-        if ($request->query->getAlnum('role')) {
-            $queryBuilder
-                ->andwhere('u.role LIKE :role')
-                ->setParameter('role', "" . $request->query->getAlnum('role') . "");
-        }
-
-        if (isset ($_GET['login'])) {
-            $this->sort['login'] = $_GET['login'];
-        }
-
-        if (isset($_GET['role'])) {
-            $this->sort['role'] = $_GET['role'];
-        }
-
-        $query = $queryBuilder->getQuery();
-
-        /**
-         * @var $paginator \Knp\Component\Pager\Paginator
-         */
-        $paginator = $this->get('knp_paginator');
-        $result = $paginator->paginate(
-            $query,
-            $request->query->getInt('page', 1),
-            $request->query->getInt('limit', 10)
-        );
-
-        return $this->render('user/index.html.twig', array(
-            'users' => $result,
-            'login' => $this->sort['login'],
-            'role' => $this->sort['role']
-        ));
+        return $this->render('user/index.html.twig', [
+            'maxMayor' => $maxMayor,
+            'maxPart' => $maxPart,
+            'testAjax' => $testAjax,
+            'filtreMayor' => $form->createView()
+        ]);
     }
 
     /**
@@ -106,36 +61,53 @@ class AdminUserController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            if ($request->request->get("changPass") === null) {
+                $user->setStatus(User::USER_STATUS_ACTIF);
+            }else {
+                $user->setStatus(User::USER_STATUS_INACTIF);
+            }
+            $user->setCreationDate(new \DateTime('now'));
+            $user->setLastLogin(new \DateTime('now'));
 
-            $password = $passwordEncoder->encodePassword($user, $user->getPassword());
-            $user->setPassword($password);
-
-			if ($user->getRole() === User::USER_ROLE_MAYOR) {
-				$user->setPartner(null);
-			}
-			if ($user->getRole() === User::USER_ROLE_PARTNER) {
-				$user->setMayor(null);
-			}
-			if ($user->getRole() === User::USER_ROLE_ADMIN) {
-				$user->setMayor(null);
-				$user->setPartner(null);
-			}
-
-			$em = $this->getDoctrine()->getManager();
-			$em->persist($user);
-			$em->flush();
             if ($user->getRole() === User::USER_ROLE_MAYOR) {
                 $user->setPartner(null);
+                if ($user->getPassword() === null) {
+                    $user->setPassword($user->getMayor()->getInsee() . $user->getMayor()->getZipCode());
+                }
+                $password = $passwordEncoder->encodePassword($user, $user->getPassword());
+                $user->setPassword($password);
+                $mayor = $user->getMayor();
+                $ResultAPI = $user->ResultApiGouvMayor($mayor->getInsee());
+                $mayor->setPopulation($ResultAPI["population"]);
+                $mayor->setRegion($ResultAPI["codeRegion"]);
+                $mayor->setDepartment($ResultAPI["codeDepartement"]);
+                $mayor->setLongitude($ResultAPI["centre"]["coordinates"][0]);
+                $mayor->setLatitude($ResultAPI["centre"]["coordinates"][1]);
+                $em->persist($user);
+                $em->persist($mayor);
             }
             if ($user->getRole() === User::USER_ROLE_PARTNER) {
                 $user->setMayor(null);
+                $partner = $user->getPartner();
+                $company = $partner->getCompany();
+
+                /// A MODIF VOIR AVEC API GOUV DES SIRET/SIREN
+                if ($user->getPassword() === null) {
+                    $user->setPassword($user->getLogin());
+                }
+                $password = $passwordEncoder->encodePassword($user, $user->getPassword());
+                $user->setPassword($password);
+
+                $em->persist($user);
+                $em->persist($partner);
+                $em->persist($company);
             }
             if ($user->getRole() === User::USER_ROLE_ADMIN) {
                 $user->setMayor(null);
                 $user->setPartner(null);
             }
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($user);
+
             $em->flush();
 
             if (($user->getRole() === User::USER_ROLE_PARTNER) OR ($user->getRole() === User::USER_ROLE_MAYOR)) {
@@ -226,6 +198,16 @@ class AdminUserController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+            if (!is_null($user->getMayor())){
+                $mayor = $user->getMayor();
+                $em->remove($mayor);
+            }
+            if (!is_null($user->getPartner())){
+                $partner = $user->getPartner();
+                $company = $partner->getCompany();
+                $em->remove($partner);
+                $em->remove($company);
+            }
             $em->remove($user);
             $em->flush();
         }

@@ -44,53 +44,13 @@ class AdminProjectController extends Controller
 	{
 		$em = $this->getDoctrine()->getManager();
 
-		$queryBuilder = $em->getRepository('AppBundle:Project')
-			->createQueryBuilder('p');
-
 		$thematique = $em->getRepository('AppBundle:Dictionary')->getTheme();
+		$maxProject = $em->getRepository('AppBundle:Project')->MaxProject();
 
-		$filter = $this->container->get('app.projectService');
-
-		if (isset ($_GET['title'])) {
-			$filter->setTitle($_GET['title']);
-		}
-		if (isset ($_GET['status'])) {
-			$filter->setStatus($_GET['status']);
-		}
-		if (isset ($_GET['themes'])) {
-			$filter->setTheme($_GET['themes']);
-		}
-
-		if ($request->query->getAlnum('title')) {
-			$em->getRepository('AppBundle:Project')->queryTitle($queryBuilder, $request);
-		}
-		if ($request->query->getAlnum('status')) {
-			$em->getRepository('AppBundle:Project')->queryStatus($queryBuilder, $request, $filter->getStatus());
-		}
-		if ($request->query->getAlnum('theme')) {
-
-			$result = $em->getRepository('AppBundle:Project')->findByThemaPertinence( [0 => "635"]);
-		}
-
-		$query = $queryBuilder->getQuery();
-		/**
-		 * @var $paginator \Knp\Component\Pager\Paginator
-		 */
-		$paginator = $this->get('knp_paginator');
-		$result = $paginator->paginate(
-			$query,
-			$request->query->getInt('page', 1),
-			$request->query->getInt('limit', 10)
-		);
-
-		//dump($em->getRepository('AppBundle:Dictionary')->getTheme());
 
 		return $this->render('project/index.html.twig', [
-			'projects' => $result,
 			'themes' => $thematique,
-			'title' => $filter->getTitle(),
-			'status' => $filter->getStatus(),
-			'value' => $filter->getTheme()
+			'maxProject' => $maxProject
 		]);
 	}
 
@@ -123,6 +83,7 @@ class AdminProjectController extends Controller
 			$project->setCreationDate(new \DateTime('now'));
 			$project->setUpdateDate(new \DateTime('now'));
 			$project->setProjectDate(new \DateTime('now'));
+			$project->setStatus(Project::STATUS_DRAFT);
 			$em->persist($project);
 			$em->flush();
 			return $this->redirectToRoute('admin_project_edit', array(
