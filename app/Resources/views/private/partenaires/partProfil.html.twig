@@ -24,9 +24,9 @@
         <div class="row">
             <div class="col-lg-6 col-sm-6">
                 <div class="form-group">
-                    {{ form_label(form.company, "Organisme *") }}
-                    {{ form_widget(form.company, { 'attr':{'disabled':'disabled'} }) }}
-                    <div class="errorForm">{{ form_errors(form.company) | striptags }}</div>
+                    {{ form_label(form.company.name, "Organisme *") }}
+                    {{ form_widget(form.company.name, { 'attr':{'disabled':'disabled'} }) }}
+                    <div class="errorForm">{{ form_errors(form.company.name ) | striptags }}</div>
                 </div>
             </div>
             <div class="col-lg-6 col-sm-6">
@@ -57,8 +57,9 @@
             <button class="btn btnSubmit" id="btnSubmit" type="submit">Sauvegarder</button>
         </div>
     </div>
-    {{ form_widget(form._token) }}
+    {{ form_row(form._token) }}
     {{ form_end(form, {'render_rest': false}) }}
+
 {% endblock %}
 
 {% block javascripts %}
