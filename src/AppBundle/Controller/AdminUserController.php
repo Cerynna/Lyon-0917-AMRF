@@ -143,19 +143,15 @@ class AdminUserController extends Controller
      * @Method({"GET", "POST"})
      * @param Request $request
      * @param User $user
-     * @param UserPasswordEncoderInterface $passwordEncoder
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
-    public function editAction(Request $request, User $user, UserPasswordEncoderInterface $passwordEncoder)
+    public function editAction(Request $request, User $user)
     {
         $deleteForm = $this->createDeleteForm($user);
         $editForm = $this->createForm('AppBundle\Form\UserType', $user);
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
-
-            $password = $passwordEncoder->encodePassword($user, $user->getPassword());
-            $user->setPassword($password);
 
 			if ($user->getRole() === User::USER_ROLE_MAYOR) {
 				$user->setPartner(null);
