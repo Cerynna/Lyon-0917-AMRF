@@ -2,16 +2,16 @@
 {% block title %}Admin home{% endblock %}
 {% block body %}
 
-    <div class="menu-admin menu-project">
+    <div class="menu-admin menu-user">
         <ul>
             <li>
-                <a href="{{ path('admin_mayor_index') }}" data-toggle="tooltip" data-placement="right"
-                   title="Liste Maires"><i class="fa fa-archive fa-admin"></i></a>
+                <a href="{{ path('admin_user_index') }}" data-toggle="tooltip" data-placement="right"
+                   title="Liste Utilisateur"><i class="fa fa-users fa-admin"></i></a>
             </li>
             <li>
-                <a href="{{ path('admin_mayor_new') }}" data-toggle="tooltip" data-placement="right"
-                   title="Nouveau Maire"><i
-                            class="fa fa-plus fa-admin"></i></a>
+                <a href="{{ path('admin_user_new') }}" data-toggle="tooltip" data-placement="right"
+                   title="Nouvel Utilisateur"><i
+                            class="fa fa-user-plus fa-admin"></i></a>
             </li>
         </ul>
     </div>
@@ -29,6 +29,14 @@
                 </div>
                 <div class="col-xs-12 text-center">
                     <ul class="pagination-mayor"></ul>
+
+                    <!-- Target -->
+                    <input id="foo" value="https://github.com/zenorocha/clipboard.js.git">
+
+                    <!-- Trigger -->
+                    <button class="btn" data-clipboard-target="#foo">
+                        <img src="assets/clippy.svg" alt="Copy to clipboard">
+                    </button>
                 </div>
 
             </div>
@@ -66,6 +74,7 @@
     {% endif %}
     <script type="text/javascript">
         $(function () {
+            new Clipboard('.btn');
 
             $('.pagination-partner').twbsPagination({
 

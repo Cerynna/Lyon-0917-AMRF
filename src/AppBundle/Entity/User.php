@@ -127,7 +127,11 @@ class User implements UserInterface, \Serializable
      */
     private $isActive;
 
-
+    public function ResultApiGouvMayor($code)
+    {
+        $url = "https://geo.api.gouv.fr/communes?fields=code,nom,codesPostaux,codeDepartement,codeRegion,population,centre&code=" . $code;
+        return json_decode(file_get_contents($url), true)[0];
+    }
     /**
      * Get id
      *
