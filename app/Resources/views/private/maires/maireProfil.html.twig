@@ -5,22 +5,7 @@
     <h2>Mon profil</h2>
     <!-- Nav tabs -->
     <div class="row tabPannel">
-        <ul class="list-inline text-center visible-xs" role="tablist">
-            <li role="presentation" class="col-xs-6 tabLi active">
-                <a href="#profil" aria-controls="profil" role="tab" data-toggle="tab">Mon Profil</a>
-            </li>
-            <li style="padding-bottom: 30px" role="presentation" class="col-xs-6 tabLi">
-                <a href="#mairie" aria-controls="mairie" role="tab" data-toggle="tab">Ma Mairie</a>
-            </li>
-            <li role="presentation" class="col-xs-6 tabLi">
-                <a href="#reseau" aria-controls="reseau" role="tab" data-toggle="tab">Réseaux Sociaux</a>
-            </li>
-            <li style="padding-bottom: 30px" role="presentation" class="col-xs-6 tabLi">
-                <a href="#settings" aria-controls="settings" role="tab" data-toggle="tab">Mot de Passe</a>
-            </li>
-        </ul>
-
-        <ul class="list-inline text-center visible-lg visible-sm" role="tablist">
+        <ul class="list-inline text-center" role="tablist">
             <li role="presentation" class="tabLi active">
                 <a href="#profil" aria-controls="profil" role="tab" data-toggle="tab">Mon Profil</a>
             </li>
@@ -105,7 +90,7 @@
                     <div class="col-lg-6 col-sm-6">
                         <div class="form-group">
                             {{ form_label(form.population, "Nombre d'habitants") }}
-                            {{ form_widget(form.population) }}
+                            {{ form_widget(form.population, { 'attr':{'disabled':'disabled'} }) }}
                             <div class="errorForm">{{ form_errors(form.population) | striptags }}</div>
                         </div>
                     </div>

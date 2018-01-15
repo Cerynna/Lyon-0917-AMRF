@@ -2,6 +2,8 @@
 
 namespace AppBundle\Repository;
 
+use AppBundle\Entity\Dictionary;
+
 /**
  * DictionaryRepository
  *
@@ -10,14 +12,21 @@ namespace AppBundle\Repository;
  */
 class DictionaryRepository extends \Doctrine\ORM\EntityRepository
 {
+	public function getTheme(){
+		$qb = $this->createQueryBuilder('d')
+			->setParameter('type', Dictionary::TYPE_THEME)
+			->where('d.type = :type')
+			->getQuery();
+		return $qb->getResult();
+	}
 
-    public function findByType($type){
-            return $this->createQueryBuilder('d')
-                ->setParameter('type', $type)
-                ->where('d.type = :type')
-                ->getQuery()
-                ->getResult();
+    public function findByType($type)
+    {
+        return $this->createQueryBuilder('d')
+            ->setParameter('type', $type)
+            ->where('d.type = :type')
+            ->getQuery()
+            ->getResult();
 
     }
-
 }

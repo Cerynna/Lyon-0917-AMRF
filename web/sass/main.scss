@@ -131,7 +131,7 @@ a:hover, a:active {
 }
 
 .btn-collapse {
-  margin: 0 !important;
+  margin: 0 0 0 -20px !important;
   height: 48px;
   width: 48px;
   @include borderRadius(5px);
@@ -331,7 +331,7 @@ a:hover, a:active {
   text-align: center;
   z-index: 1000;
   position: fixed;
-  background: $color6;
+  background: rgba(0, 110, 45, 0.9);
   top: 0px;
   width: 100vw;
   .notif {
@@ -361,7 +361,7 @@ a:hover, a:active {
 }
 
 #map {
-  height: 600px;
+  height: 400px;
   width: 100%;
   a {
     color: #000;
@@ -372,6 +372,15 @@ a.anchor {
   position: relative;
   top: -250px;
   visibility: hidden;
+}
+
+.caution {
+  color: $color1;
+  margin-top: 10px;
+  margin-left: 30px;
+  span {
+    font-weight: 700;
+  }
 }
 /*
 

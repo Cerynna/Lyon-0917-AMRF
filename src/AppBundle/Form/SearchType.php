@@ -53,11 +53,7 @@ class SearchType extends AbstractType
             ))
             ->add('commune')
             ->add('region')
-            ->add('departement')
-        ;
+            ->add('departement');
 
     }
-
-
-
 }

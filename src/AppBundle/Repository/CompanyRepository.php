@@ -12,7 +12,6 @@ class CompanyRepository extends \Doctrine\ORM\EntityRepository
 {
     const CHAMPS = ["name"];
 
-
     public function findByTextPertinence($texts, $champs)
     {
         $results = [];
@@ -44,7 +43,7 @@ class CompanyRepository extends \Doctrine\ORM\EntityRepository
             $em = $this->getEntityManager();
             $stmt = $em->getConnection()->prepare($sql);
             $stmt->execute();
-            $results =  $stmt->fetchAll();
+            $results = $stmt->fetchAll();
 
         }
         $cleanResult = "";
@@ -60,13 +59,12 @@ class CompanyRepository extends \Doctrine\ORM\EntityRepository
         return $cleanResult;
     }
 
-	public function companyById($idCompany)
-	{
-		return $this->createQueryBuilder('c')
-			->setParameter('id', $idCompany)
-			->where('c.id = :id')
-			->getQuery()
-			->getResult();
-	}
-
+    public function companyById($idCompany)
+    {
+        return $this->createQueryBuilder('c')
+            ->setParameter('id', $idCompany)
+            ->where('c.id = :id')
+            ->getQuery()
+            ->getResult();
+    }
 }

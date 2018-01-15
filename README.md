@@ -21,7 +21,7 @@ Project Wild Code School for 'Association des Maires Ruraux de France'.
         
         - PHP7
             Don't forget to use GD library
-            sudo apt-get install php7.0-gd
+            sudo apt-get install php-gd
         
         - Bootstrap
         

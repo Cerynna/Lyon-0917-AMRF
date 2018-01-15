@@ -20,37 +20,43 @@
     <div class="jumbotron row">
         <form action="{{ path('admin_project_index') }}" method="get" name="filter">
             <div class="col-xs-12">
-                <label for="title">Title</label>
+                <label for="title">Titre</label>
                 <input value="{{ title }}" name="title" type="text" onchange="sendFilter()">
 
-                <label for="name">Theme</label>
-                <input value="{{ value }}" type="text" name="value" onchange="sendFilter()">
+                {#<label for="name">Theme</label>
+                <select name="theme" id="theme">
+                    {% for theme in themes %}
+                        <option  value="{{ theme.id }}"
+                                onchange="sendFilter()">{{ theme.name }} </option>
+                    {% endfor %}
+                </select>#}
 
-                {#{{ include(':components:thematiques.html.twig') }}#}
-                <input {% if status == 1 %} checked {% endif %} name="status" id="brouillon" value="1" type="radio"
+                <input {% if 1 in status %} checked {% endif %} name="status[]" value="1" id="brouillon" type="checkbox"
                                                                 multiple
-                                                                onchange="sendFilter()">
+                                                                onchange="sendFilter()"
+                >
                 <label for="brouillon">Brouillon</label>
 
-                <input {% if status == 2 %} checked {% endif %} name="status" id="attente" value="2" type="radio"
+                <input {% if 2 in status %} checked {% endif %} name="status[]" value="2" id="attente" type="checkbox"
                                                                 multiple
-                                                                onchange="sendFilter()">
+                                                                onchange="sendFilter()"
+                >
                 <label for="attente">En attente</label>
 
-                <input {% if status == 3 %} checked {% endif %} name="status" id="publier" value="3" type="radio"
+                <input {% if 3 in status %} checked {% endif %} name="status[]" value="3" id="publier" type="checkbox"
                                                                 multiple
-                                                                onchange="sendFilter()">
+                                                                onchange="sendFilter()"
+                >
                 <label for="publier">Publier</label>
 
 
                 <button type="submit" class="btn btn-default btn-sm"><i class="fa fa-search" aria-hidden="true"></i>
-                    Filter
+                    Filtrer
                 </button>
 
                 <a href="{{ path('admin_project_index') }}" data-toggle="tooltip" data-placement="right"
-                   title="Reset des filtres"><i class="fa fa-refresh"></i> RESET FILTER</a>
+                   title="Reset des filtres"><i class="fa fa-refresh"></i> EFFACER LES FILTRES</a>
 
-                {#  C'est quoi ca ? #}
                 {% set queryParams = app.request.query.all %}
 
                 {% if queryParams is not empty %}{{ app.request.query.get('title') }}{% endif %}
@@ -73,7 +79,7 @@
                     {% elseif project.status == 2 %}
                         <span class="label label-primary"><i class="fa fa-flag"></i> En attente</span>
                     {% elseif project.status == 3 %}
-                        <span class="label label-primary"><i class="fa fa-check"></i> Publier</span>
+                        <span class="label label-primary"><i class="fa fa-check"></i> Publié</span>
                     {% else %}
                         <span class="label label-primary"><i class="fa fa-cog"></i> Brouillon</span>
                     {% endif %}
@@ -137,9 +143,9 @@
                         <table>
                             <thead>
                             <tr>
-                                <th>Date du Projet</th>
+                                <th>Date du projet</th>
                                 <th>Durée</th>
-                                <th>Cout</th>
+                                <th>Coût</th>
                                 <th>Cofinancement</th>
                             </tr>
                             </thead>
@@ -170,6 +176,5 @@
         $(document).ready(function () {
             $('[data-toggle="tooltip"]').tooltip();
         });
-
     </script>
 {% endblock %}

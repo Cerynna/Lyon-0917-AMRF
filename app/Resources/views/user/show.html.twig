@@ -19,18 +19,18 @@
             <li>
                 {{ form_start(delete_form) }}
                 <button class="fa-admin" data-toggle="tooltip" data-placement="right"
-                        title="Supprimer l'Utilisateur" type="submit"><i class="fa fa-trash-o"></i></button>
+                        title="Supprimer l'Utilisateur" type="submit" onclick="return ConfirmDelete()"><i class="fa fa-trash-o"></i></button>
                 {{ form_end(delete_form) }}
 
             </li>
         </ul>
     </div>
-    <h1>User</h1>
+    <h1>Fiche Utilisateur</h1>
 
     <div class="col-sm-6">
         <div class="col-sm-12">
             <div class="col-sm-6">
-                <h5>Id</h5>
+                <h5>ID</h5>
                 <span>{{ user.id }}</span>
             </div>
             <div class="col-sm-6">
@@ -38,7 +38,7 @@
                 <span>{{ user.login }}</span>
             </div>
             <div class="col-sm-12">
-                <h5>Password</h5>
+                <h5>Mot de Passe</h5>
                 <span>{{ user.password }}</span>
             </div>
             <div class="col-sm-12">
@@ -50,26 +50,26 @@
                 <span>{{ user.role }}</span>
             </div>
             <div class="col-sm-6">
-                <h5>Status</h5>
+                <h5>Statut</h5>
                 <span>{{ user.status }}</span>
             </div>
             <div class="col-sm-6">
-                <h5>Creationdate</h5>
-                <span>{% if user.creationDate %}{{ user.creationDate|date('Y-m-d') }}{% endif %}</span>
+                <h5>Date de création</h5>
+                <span>{% if user.creationDate %}{{ user.creationDate|date('d-m-Y') }}{% endif %}</span>
             </div>
             <div class="col-sm-6">
-                <h5>Lastlogin</h5>
-                <span>{% if user.lastLogin %}{{ user.lastLogin|date('Y-m-d') }}{% endif %}</span>
+                <h5>Dernière connexion</h5>
+                <span>{% if user.lastLogin %}{{ user.lastLogin|date('d-m-Y') }}{% endif %}</span>
             </div>
         </div>
     </div>
     <div class="col-sm-6">
         {% if user.role == 1 %}
             <div class="col-sm-12">
-                <h5 class="text-center">Maire info</h5>
+                <h5 class="text-center">Informations - Maire</h5>
             </div>
             <div class="col-sm-6">
-                <h5>Prenom</h5>
+                <h5>Prénom</h5>
                 <span>{{ user.mayor.firstName }}</span>
             </div>
             <div class="col-sm-6">
@@ -81,15 +81,15 @@
                 <span>{{ user.mayor.insee }}</span>
             </div>
             <div class="col-sm-6">
-                <h5>Mail</h5>
+                <h5>Email</h5>
                 <span>{{ user.mayor.email }}</span>
             </div>
             <div class="col-sm-6">
-                <h5>Télephone</h5>
+                <h5>Téléphone</h5>
                 <span>{{ user.mayor.phone }}</span>
             </div>
             <div class="col-sm-6">
-                <h5>Address</h5>
+                <h5>Adresse</h5>
                 <span>{{ user.mayor.address }}</span>
             </div>
             <div class="col-sm-6">
@@ -97,7 +97,7 @@
                 <span>{{ user.mayor.town }}</span>
             </div>
             <div class="col-sm-6">
-                <h5>Code postale</h5>
+                <h5>Code postal</h5>
                 <span>{{ user.mayor.zipCode }}</span>
             </div>
             <div class="col-sm-6">
@@ -121,7 +121,7 @@
                 <span>{{ user.mayor.population }}</span>
             </div>
             <div class="col-sm-6">
-                <h5>Url</h5>
+                <h5>Site internet</h5>
                 <span>{{ user.mayor.url }}</span>
             </div>
             <div class="col-sm-6">
@@ -140,10 +140,10 @@
 
         {% if user.role == 2 %}
             <div class="col-sm-12">
-                <h5 class="text-center">Partner info</h5>
+                <h5 class="text-center">Informations - Partenaire</h5>
             </div>
             <div class="col-sm-6">
-                <h5>Prenom</h5>
+                <h5>Prénom</h5>
                 <span>{{ user.partner.firstName }}</span>
             </div>
             <div class="col-sm-6">
@@ -151,22 +151,28 @@
                 <span>{{ user.partner.lastName }}</span>
             </div>
             <div class="col-sm-6">
-                <h5>Insee</h5>
+                <h5>Fonction</h5>
                 <span>{{ user.partner.occupation }}</span>
             </div>
             <div class="col-sm-6">
-                <h5>Mail</h5>
+                <h5>Email</h5>
                 <span>{{ user.partner.email }}</span>
             </div>
             <div class="col-sm-6">
-                <h5>Télephone</h5>
+                <h5>Téléphone</h5>
                 <span>{{ user.partner.phone }}</span>
             </div>
             <div class="col-sm-6">
-                <h5>Address</h5>
+                <h5>Organisme</h5>
                 <span>{{ user.partner.company }}</span>
             </div>
 
         {% endif %}
     </div>
+
+    <script>
+        function ConfirmDelete() {
+            return confirm("Etes-vous sûr que vous voulez supprimer l'utilisateur?");
+        }
+    </script>
 {% endblock %}

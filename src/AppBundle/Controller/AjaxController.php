@@ -38,25 +38,20 @@ class AjaxController extends Controller
         $idUser = $this->get('security.token_storage')->getToken()->getUser();
         $favorite = new Favorite();
         $favorite->setUser($idUser);
-
         if ($request->isXmlHttpRequest()) {
             $em = $this->getDoctrine()->getManager();
-
             if ($type == "project") {
                 $project = $this->getDoctrine()->getRepository("AppBundle:Project")->projectById($idType);
                 $favorite->setProject($project[0]);
                 $favorite->setCompany(null);
             }
-
             if ($type == "company") {
                 $company = $this->getDoctrine()->getRepository("AppBundle:Company")->companyById($idType);
                 $favorite->setCompany($company[0]);
                 $favorite->setProject(null);
             }
-
             $em->persist($favorite);
             $em->flush();
-
             return new Response("Favori ajouté ");
 
         } else {
@@ -74,7 +69,6 @@ class AjaxController extends Controller
     public function delFavorite(Request $request, $type, $idType)
     {
         $idUser = $this->getUser();
-
         if ($request->isXmlHttpRequest()) {
             $em = $this->getDoctrine()->getManager();
             $favoris = $em->getRepository("AppBundle:Favorite")->getFavorite($type, $idType, $idUser->getId());
@@ -97,11 +91,9 @@ class AjaxController extends Controller
     {
         if ($request->isXmlHttpRequest()) {
             $em = $this->getDoctrine()->getManager();
-
             $imageDelete = str_replace("-", "/", $fileName);
             $imgExplode = explode('/', $imageDelete);
             $project = $em->getRepository(Project::class)->find($imgExplode[2]);
-
             if ($imgExplode[1] == "project") {
                 if ($imgExplode[3] == 'photos') {
                     $imagesInDB = $em->getRepository('AppBundle:Project')->getImageProject($imgExplode[2]);
@@ -112,7 +104,6 @@ class AjaxController extends Controller
                         }
                     }
                     $project->setImages($newImagesDB);
-
                 } elseif ($imgExplode[3] == 'file') {
                     $project = $em->getRepository(Project::class)->find($imgExplode[2]);
                     $project->setFile('');
@@ -121,7 +112,6 @@ class AjaxController extends Controller
                 $fs = new Filesystem();
                 $fs->remove($imageDelete);
             }
-
             if ($imgExplode[1] == "company") {
                 $company = $em->getRepository(Company::class)->find($imgExplode[2]);
                 $company->setLogo('');
@@ -129,7 +119,6 @@ class AjaxController extends Controller
             $em->flush();
             $fs = new Filesystem();
             $fs->remove($imageDelete);
-
             return new Response("Image supprimer " . $imageDelete . " - " . count($imageDelete) . " - " . $imgExplode[4]);
         } else {
             throw new HttpException('500', 'Invalid call');

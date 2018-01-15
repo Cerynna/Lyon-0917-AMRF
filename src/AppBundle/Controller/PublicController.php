@@ -6,6 +6,7 @@ namespace AppBundle\Controller;
 use AppBundle\Entity\Company;
 use AppBundle\Entity\Contact;
 use AppBundle\Entity\Dictionary;
+use AppBundle\Entity\Favorite;
 use AppBundle\Entity\Project;
 use AppBundle\Entity\Search;
 use AppBundle\Service\EmailService;
@@ -55,7 +56,6 @@ class PublicController extends Controller
         $projects = $em->getRepository('AppBundle:Project')->getLastProject();
         $array = ["main-1", "main-2"];
         $contents = $em->getRepository('AppBundle:PublicPage')->getContentIndex($array);
-
 
         return $this->render('public/index.html.twig', array(
             'projects' => $projects,

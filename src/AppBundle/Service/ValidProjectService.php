@@ -14,9 +14,7 @@ use AppBundle\Entity\Project;
 class ValidProjectService
 {
     private $erreur = [];
-
     private $idProject;
-
     private $kernelRootDir;
 
     public function __construct(string $kernelRootDir)
@@ -84,7 +82,6 @@ class ValidProjectService
         $this->erreur[] = $erreur;
         return $this;
     }
-
 
     public function verifTitle($title)
     {

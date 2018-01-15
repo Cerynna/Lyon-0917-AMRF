@@ -20,43 +20,44 @@
             <li>
                 {{ form_start(delete_form) }}
                 <button class="fa-admin" data-toggle="tooltip" data-placement="right"
-                        title="Supprimer l'Utilisateur" type="submit"><i class="fa fa-trash-o"></i></button>
+                        title="Supprimer l'Utilisateur" type="submit" onclick="return ConfirmDelete()"><i class="fa fa-trash-o"></i></button>
                 {{ form_end(delete_form) }}
             </li>
 
         </ul>
     </div>
-    <h1>User edit</h1>
+    <h1>Modification de l'utilisateur</h1>
     {{ form_start(edit_form) }}
+    {{ form_errors(edit_form) }}
 
     <div class="form-group row" id="editProject">
         <div class="col-sm-6">
             <div class="col-sm-12">
-                <h5>{{ form_label(edit_form.login, "User login") }}</h5>
+                <h5>{{ form_label(edit_form.login, "Login Utilisateur") }}</h5>
                 {{ form_widget(edit_form.login) }}
             </div>
             <div class="col-sm-12">
-                <h5>{{ form_label(edit_form.password) }}</h5>
+                <h5>{{ form_label(edit_form.password, "Mot de passe" ) }}</h5>
                 {{ form_widget(edit_form.password) }}
             </div>
             <div class="col-sm-12">
-                <h5>{{ form_label(edit_form.email) }}</h5>
+                <h5>{{ form_label(edit_form.email, "Email") }}</h5>
                 {{ form_widget(edit_form.email) }}
             </div>
-            <div class="col-sm-6">
-                <h5>{{ form_label(edit_form.role) }}</h5>
+            <div class="col-sm-4">
+                <h5>{{ form_label(edit_form.role, "Rôle") }}</h5>
                 {{ form_widget(edit_form.role) }}
             </div>
-            <div class="col-sm-6">
-                <h5>{{ form_label(edit_form.status) }}</h5>
+            <div class="col-sm-4">
+                <h5>{{ form_label(edit_form.status, "Statut") }}</h5>
                 {{ form_widget(edit_form.status) }}
             </div>
-            <div class="col-sm-6">
-                <h5>{{ form_label(edit_form.creationDate) }}</h5>
+            <div class="col-sm-4">
+                <h5>{{ form_label(edit_form.creationDate, "Date de création") }}</h5>
                 {{ form_widget(edit_form.creationDate) }}
             </div>
-            <div class="col-sm-6">
-                <h5>{{ form_label(edit_form.lastLogin) }}</h5>
+            <div class="col-sm-4">
+                <h5>{{ form_label(edit_form.lastLogin, "Dernière connexion") }}</h5>
                 {{ form_widget(edit_form.lastLogin) }}
             </div>
 
@@ -64,74 +65,74 @@
         {% if user.role == 1 %}
             <div class="col-sm-6">
                 <div class="col-sm-12">
-                    <h5 class="text-center">Maire info</h5>
+                    <h5 class="text-center">Informations - Maire</h5>
                 </div>
                 <div class="col-sm-4">
-                    <h5>{{ form_label(edit_form.mayor.firstName) }}</h5>
+                    <h5>{{ form_label(edit_form.mayor.firstName, "Prénom" )}}</h5>
                     {{ form_widget(edit_form.mayor.firstName) }}
                 </div>
                 <div class="col-sm-4">
-                    <h5>{{ form_label(edit_form.mayor.lastName) }}</h5>
+                    <h5>{{ form_label(edit_form.mayor.lastName, "Nom") }}</h5>
                     {{ form_widget(edit_form.mayor.lastName) }}
                 </div>
                 <div class="col-sm-4">
-                    <h5>{{ form_label(edit_form.mayor.insee) }}</h5>
+                    <h5>{{ form_label(edit_form.mayor.insee, "INSEE") }}</h5>
                     {{ form_widget(edit_form.mayor.insee) }}
                 </div>
                 <div class="col-sm-4">
-                    <h5>{{ form_label(edit_form.mayor.email) }}</h5>
+                    <h5>{{ form_label(edit_form.mayor.email, "Email")}}</h5>
                     {{ form_widget(edit_form.mayor.email) }}
                 </div>
                 <div class="col-sm-4">
-                    <h5>{{ form_label(edit_form.mayor.phone) }}</h5>
+                    <h5>{{ form_label(edit_form.mayor.phone, "Téléphone") }}</h5>
                     {{ form_widget(edit_form.mayor.phone) }}
                 </div>
                 <div class="col-sm-4">
-                    <h5>{{ form_label(edit_form.mayor.address) }}</h5>
+                    <h5>{{ form_label(edit_form.mayor.address, "Adresse" )}}</h5>
                     {{ form_widget(edit_form.mayor.address) }}
                 </div>
                 <div class="col-sm-4">
-                    <h5>{{ form_label(edit_form.mayor.town) }}</h5>
+                    <h5>{{ form_label(edit_form.mayor.town, "Ville") }}</h5>
                     {{ form_widget(edit_form.mayor.town) }}
                 </div>
                 <div class="col-sm-4">
-                    <h5>{{ form_label(edit_form.mayor.zipCode) }}</h5>
+                    <h5>{{ form_label(edit_form.mayor.zipCode, "Code postal" )}}</h5>
                     {{ form_widget(edit_form.mayor.zipCode) }}
                 </div>
                 <div class="col-sm-4">
                     <h5>{{ form_label(edit_form.mayor.department) }}</h5>
-                    {{ form_widget(edit_form.mayor.department) }}
+                    {{ form_widget(edit_form.mayor.department, { 'attr':{'disabled':'disabled'} }) }}
                 </div>
                 <div class="col-sm-4">
                     <h5>{{ form_label(edit_form.mayor.region) }}</h5>
-                    {{ form_widget(edit_form.mayor.region) }}
+                    {{ form_widget(edit_form.mayor.region, { 'attr':{'disabled':'disabled'} }) }}
                 </div>
                 <div class="col-sm-4">
                     <h5>{{ form_label(edit_form.mayor.latitude) }}</h5>
-                    {{ form_widget(edit_form.mayor.latitude) }}
+                    {{ form_widget(edit_form.mayor.latitude, { 'attr':{'disabled':'disabled'} }) }}
                 </div>
                 <div class="col-sm-4">
                     <h5>{{ form_label(edit_form.mayor.longitude) }}</h5>
-                    {{ form_widget(edit_form.mayor.longitude) }}
+                    {{ form_widget(edit_form.mayor.longitude, { 'attr':{'disabled':'disabled'} }) }}
                 </div>
                 <div class="col-sm-4">
                     <h5>{{ form_label(edit_form.mayor.population) }}</h5>
-                    {{ form_widget(edit_form.mayor.population) }}
+                    {{ form_widget(edit_form.mayor.population, { 'attr':{'disabled':'disabled'} }) }}
                 </div>
                 <div class="col-sm-4">
-                    <h5>{{ form_label(edit_form.mayor.url) }}</h5>
+                    <h5>{{ form_label(edit_form.mayor.url, "Site internet") }}</h5>
                     {{ form_widget(edit_form.mayor.url) }}
                 </div>
                 <div class="col-sm-4">
-                    <h5>{{ form_label(edit_form.mayor.facebook) }}</h5>
+                    <h5>{{ form_label(edit_form.mayor.facebook, "Facebook") }}</h5>
                     {{ form_widget(edit_form.mayor.facebook) }}
                 </div>
                 <div class="col-sm-4">
-                    <h5>{{ form_label(edit_form.mayor.twitter) }}</h5>
+                    <h5>{{ form_label(edit_form.mayor.twitter, "Twitter") }}</h5>
                     {{ form_widget(edit_form.mayor.twitter) }}
                 </div>
                 <div class="col-sm-4">
-                    <h5>{{ form_label(edit_form.mayor.google) }}</h5>
+                    <h5>{{ form_label(edit_form.mayor.google, "Google") }}</h5>
                     {{ form_widget(edit_form.mayor.google) }}
                 </div>
             </div>
@@ -139,30 +140,30 @@
         {% if user.role == 2 %}
             <div class="col-sm-6">
                 <div class="col-sm-12">
-                    <h5 class="text-center">Partner info</h5>
+                    <h5 class="text-center">Informations - Partenaire</h5>
                 </div>
                 <div class="col-sm-4">
-                    <h5>{{ form_label(edit_form.partner.firstName) }}</h5>
+                    <h5>{{ form_label(edit_form.partner.firstName, "Prénom") }}</h5>
                     {{ form_widget(edit_form.partner.firstName) }}
                 </div>
                 <div class="col-sm-4">
-                    <h5>{{ form_label(edit_form.partner.lastName) }}</h5>
+                    <h5>{{ form_label(edit_form.partner.lastName, "Nom") }}</h5>
                     {{ form_widget(edit_form.partner.lastName) }}
                 </div>
                 <div class="col-sm-4">
-                    <h5>{{ form_label(edit_form.partner.occupation) }}</h5>
+                    <h5>{{ form_label(edit_form.partner.occupation, "Fonction") }}</h5>
                     {{ form_widget(edit_form.partner.occupation) }}
                 </div>
                 <div class="col-sm-4">
-                    <h5>{{ form_label(edit_form.partner.email) }}</h5>
+                    <h5>{{ form_label(edit_form.partner.email, "Email") }}</h5>
                     {{ form_widget(edit_form.partner.email) }}
                 </div>
                 <div class="col-sm-4">
-                    <h5>{{ form_label(edit_form.partner.phone) }}</h5>
+                    <h5>{{ form_label(edit_form.partner.phone, "Téléphone") }}</h5>
                     {{ form_widget(edit_form.partner.phone) }}
                 </div>
                 <div class="col-sm-4">
-                    <h5>{{ form_label(edit_form.partner.company) }}</h5>
+                    <h5>{{ form_label(edit_form.partner.company, "Organisme") }}</h5>
                     {{ form_widget(edit_form.partner.company) }}
                     <a href="{{ path('admin_company_index') }}" data-toggle="tooltip" data-placement="right"
 
@@ -175,4 +176,9 @@
     {{ form_widget(edit_form._token) }}
     {{ form_end(edit_form, {'render_rest': false}) }}
 
+    <script>
+        function ConfirmDelete() {
+            return confirm("Etes-vous sûr que vous voulez supprimer l'utilisateur?");
+        }
+    </script>
 {% endblock %}
