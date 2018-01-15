@@ -14,13 +14,15 @@
             </li>
         </ul>
     </div>
-    <h1>Test</h1>
+    <h1>Liste des Utilisateurs</h1>
     <div class="row">
         <div class="col-xs-6">
             <div class="row">
-                <div class="col-xs-12 text-center">
-                    <ul class="pagination-mayor"></ul>
+                <div class="col-sm-12">
+                    <h2>Liste des Maires</h2>
                 </div>
+            </div>
+            <div class="row">
                 <div class="col-xs-12">
                     {{ form_start(filtreMayor, {
                         'attr':{
@@ -56,11 +58,11 @@
         </div>
         <div class="col-xs-6">
             <div class="row">
-                <div class="col-xs-12 text-center">
-                    <ul class="pagination-partner"></ul>
+                <div class="col-sm-12">
+                    <h2>Liste des Partenaires</h2>
                 </div>
-                <div class="col-xs-12">
-                </div>
+            </div>
+            <div class="row">
                 <div class="col-xs-12">
                     <div class="jumbotron userPartner" id="content-partner">
 
@@ -95,7 +97,6 @@
             new Clipboard('.fa-envelope');
 
             $('.filter').keyup(function () {
-                console.log("USE FILTER");
                 var postal = $('#filtre_user_mayor_CodePostal').val();
                 var insee = $('#filtre_user_mayor_CodeInsee').val();
                 if (postal.length >= 2 || insee.length >= 2) {
@@ -111,7 +112,7 @@
                             timeout: 3000,
                             success: function (response) {
                                 var mayors = response.data;
-                                console.log(response.data);
+                                //console.log(response.data);
                                 html = "";
                                 for (i = 0; i < mayors.length; i++) {
 
@@ -139,7 +140,6 @@
 
 
             $('.pagination-partner').twbsPagination({
-
                 totalPages: {{ totalPagePart }},
                 visiblePages: 10,
                 onPageClick: function (event, page) {
@@ -153,9 +153,9 @@
                         timeout: 3000,
                         success: function (response) {
                             var partners = response.data;
-
                             html = "";
                             for (i = 0; i < partners.length; i++) {
+                                console.log(partners[i]);
                                 var linkShow = "{{ path('admin_user_show', {'id': "idUser"}) }}".replace('idUser', partners[i].id);
                                 var linkEdit = "{{ path('admin_user_edit', {'id': "idUser"}) }}".replace('idUser', partners[i].id);
                                 var result = {
@@ -166,28 +166,8 @@
                                     'email': partners[i].email
                                 };
 
-                                html += '<h5>' +
-                                    '<div class="row">' +
-                                    '<div class="col-xs-2">' +
-                                    '<a href="' + linkShow + '">' +
-                                    '<i class="fa fa-eye fa-admin-mini"></i>' +
-                                    '</a>' +
-                                    '<a href="' + linkEdit + '">' +
-                                    '<i class="fa fa-pencil fa-admin-mini"></i>' +
-                                    '</a>' +
-                                    '</div>\n' +
-                                    '<div class="col-xs-4">' + partners[i].name + '</div>\n' +
-                                    '<div class="col-xs-2">' + partners[i].zipcode + '</div>\n' +
-                                    '<div class="col-xs-3">' +
-                                    '<input id="mail-' + partners[i].zipcode + '" value="' + partners[i].email + '" class="form-control">' +
-                                    '</div>\n' +
-                                    '<div class="col-xs-1">' +
-                                    '<i  data-clipboard-target="#mail-' + partners[i].zipcode + '" class="fa fa-envelope fa-admin-mini"></i>' +
-                                    '</div>' +
-                                    '</div>' +
-                                    '</h5>';
+                                html += trameHTML(result);
                             }
-                            html += "";
                             $('#content-partner').html(html);
                         },
                         error: function () {
@@ -196,8 +176,6 @@
                     })
                 }
             });
-        });
-        $(function () {
 
             $('.pagination-mayor').twbsPagination({
                 totalPages: {{ totalPageMayor }},
@@ -212,7 +190,6 @@
                         data: {'offset': offset},
                         timeout: 3000,
                         success: function (response) {
-
                             var mayors = response.data;
                             html = "";
                             for (i = 0; i < mayors.length; i++) {
@@ -227,7 +204,7 @@
                                 };
                                 html += trameHTML(result);
                             }
-                            html += "";
+
                             $('#content-mayor').html(html);
                         },
                         error: function () {
