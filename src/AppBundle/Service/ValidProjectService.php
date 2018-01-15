@@ -139,7 +139,7 @@ class ValidProjectService
         if ($projectCost == null) {
             $this->setErreur("Le champ Coût global ne peut pas être vide");
         } else {
-            $pattern = '/d+(,\d{2})?/';
+            $pattern = '/[-+]?[0-9]*[.,]?[0-9]+/';
             if (preg_match($pattern, $projectCost) == 0) {
                 $this->setErreur("Veuillez saisir le coût global en chiffres");
             }

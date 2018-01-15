@@ -26,8 +26,8 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
 
-
 /**
+ * @property  emailService
  * @Route("mayor/")
  */
 class MayorController extends Controller
@@ -142,6 +142,7 @@ class MayorController extends Controller
         SlugService $slugService,
         TabProjectService $tabProjectService,
         UploadService $uploadService,
+        EmailService $emailService,
         ValidProjectService $projectService
     )
     {
@@ -189,9 +190,18 @@ class MayorController extends Controller
                     $project->setStatus(Project::STATUS_WAITING);
                     $em->persist($project);
                     $em->flush();
+                    $message = [
+                        'to' => $user->getEmail(),
+                        'type' => EmailService::TYPE_MAIL_PROJECT_MODER['key'],
+                        'login' => $user->getLogin(),
+
+                    ];
+                    $emailService->sendEmail($message);
+
                     $this->addFlash(
                         'notice',
                         '<p>Votre Projet est envoyé pour modération avant la publication</p>'
+
                     );
                     return $this->redirectToRoute('mayor_project_edit', [
                         'slug' => $project->getSlug(),
@@ -241,6 +251,7 @@ class MayorController extends Controller
 
                 ]);
             }
+
             return $this->render('private/maires/projectEdit.html.twig', array(
                 'slug' => $project->getSlug(),
                 'project' => $project,
@@ -250,6 +261,7 @@ class MayorController extends Controller
                 'upload_file_form' => $uplodFileForm->createView(),
                 'page' => $page,
             ));
+
         } else {
             return $this->redirectToRoute('mayor_index');
         }
