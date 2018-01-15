@@ -66,19 +66,19 @@
     <div class="row tabPannel">
         <ul class="list-inline text-center" role="tablist">
             <li role="presentation" class=" tabLi {% if page == 1 %} active {% endif %}" id="projetMenu">
-                <a href="{{ path('mayor_project_edit', { 'slug': project.slug, 'page': '1' }) }}">Mon Projet</a>
+                <a style="pointer-events: none" class="btnDisabled" href="{{ path('mayor_project_edit', { 'slug': project.slug, 'page': '1' }) }}">Mon Projet</a>
             </li>
             <li role="presentation" id="realMenu" class="tabLi {% if page == 2 %} active {% endif %}">
-                <a href="{{ path('mayor_project_edit', { 'slug': project.slug, 'page': '2' }) }}">Réalisation</a>
+                <a class="btnDisabled" href="{{ path('mayor_project_edit', { 'slug': project.slug, 'page': '2' }) }}">Réalisation</a>
             </li>
             <li role="presentation" id="descriptionMenu" class="tabLi {% if page == 3 %} active {% endif %}">
-                <a href="{{ path('mayor_project_edit', { 'slug': project.slug, 'page': '3' }) }}">Description </a>
+                <a class="btnDisabled" href="{{ path('mayor_project_edit', { 'slug': project.slug, 'page': '3' }) }}">Description </a>
             </li>
             <li role="presentation" id="infoMenu" class="tabLi {% if page == 4 %} active {% endif %}">
-                <a href="{{ path('mayor_project_edit', { 'slug': project.slug, 'page': '4' }) }}">Informations</a>
+                <a class="btnDisabled" href="{{ path('mayor_project_edit', { 'slug': project.slug, 'page': '4' }) }}">Informations</a>
             </li>
             <li role="presentation" id="previewMenu" class="tabLi {% if page == 5 %} active {% endif %}">
-                <a href="{{ path('mayor_project_edit', { 'slug': project.slug, 'page': '5' }) }}">Aperçu</a>
+                <a class="btnDisabled" href="{{ path('mayor_project_edit', { 'slug': project.slug, 'page': '5' }) }}">Aperçu</a>
             </li>
         </ul>
         {% if erreurs is defined %}
