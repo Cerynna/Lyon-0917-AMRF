@@ -13,8 +13,6 @@ class MayorRepository extends \Doctrine\ORM\EntityRepository
         $stmt = $em->getConnection()->prepare($sql);
         $stmt->execute();
         return $stmt->fetchAll()[0]["COUNT(*)"];
-
-
     }
 
     public function ListMayor($offset)
@@ -24,6 +22,7 @@ class MayorRepository extends \Doctrine\ORM\EntityRepository
             ->createQueryBuilder('u')
             ->setParameter('role', User::USER_ROLE_MAYOR)
             ->where('u.role = :role')
+            ->orderBy('u.login', 'ASC')
             ->setMaxResults(10)
             ->setFirstResult($offset)
             ->getQuery()
@@ -48,8 +47,6 @@ class MayorRepository extends \Doctrine\ORM\EntityRepository
         $stmt = $em->getConnection()->prepare($sql);
         $stmt->execute();
         return $stmt->fetchAll()[0]["COUNT(*)"];
-
-
     }
 
     public function ListPartner($offset)
@@ -68,6 +65,7 @@ class MayorRepository extends \Doctrine\ORM\EntityRepository
         foreach ($partners as $partner) {
             $return[$i]['id'] = $partner->getId();
             $return[$i]['name'] = $partner->getPartner()->getCompany()->getName();
+            $return[$i]['zipcode'] = $partner->getPartner()->getCompany()->getZipCode();
             $return[$i]['status'] = $partner->getStatus();
             $return[$i]['email'] = $partner->getEmail();
             $i++;
@@ -77,7 +75,6 @@ class MayorRepository extends \Doctrine\ORM\EntityRepository
 
     public function ListMayorFilter($zipCode, $insee)
     {
-
         $query = $this->getEntityManager()
             ->getRepository('AppBundle:Mayor')
             ->createQueryBuilder('m')
@@ -94,11 +91,8 @@ class MayorRepository extends \Doctrine\ORM\EntityRepository
             $query->setParameter(':insee', $insee . '%')
                 ->where('m.insee LIKE :insee');
         }
-
         $mayors = $query->getQuery()
             ->getResult();
-        dump($query);
-
         $sql = "SELECT u FROM AppBundle:User u ";
         $i = 0;
         foreach ($mayors as $mayor) {
@@ -112,7 +106,6 @@ class MayorRepository extends \Doctrine\ORM\EntityRepository
         $results = $this->getEntityManager()
             ->createQuery($sql)
             ->getResult();
-
         $i = 0;
         $return = [];
         foreach ($results as $mayor) {

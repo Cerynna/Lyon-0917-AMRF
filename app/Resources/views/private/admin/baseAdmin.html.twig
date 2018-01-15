@@ -16,7 +16,20 @@
 <body>
 <header>
     <div class="col-md-2">
-        <h3><i class="fa fa-user"></i> Admin</h3>
+        <div class="dropdown">
+            <p class="login" data-toggle="dropdown">
+                <i class="fa fa-user"></i>
+                {{ app.user.username }}
+                <span class="caret"></span>
+            </p>
+            <ul class="dropdown-menu">
+                <li><a href="{{ path('home') }}">Retour au Wiki des Maires</a></li>
+                <li><a href="{{ path('logout') }}">Déconnexion</a></li>
+            </ul>
+        </div>
+
+
+        <p class="login"></p>
     </div>
 </header>
 <nav>
