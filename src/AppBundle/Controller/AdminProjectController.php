@@ -48,8 +48,6 @@ class AdminProjectController extends Controller
 		$maxProject = $em->getRepository('AppBundle:Project')->MaxProject();
 
 
-		//dump($em->getRepository('AppBundle:Dictionary')->getTheme());
-
 		return $this->render('project/index.html.twig', [
 			'themes' => $thematique,
 			'maxProject' => $maxProject

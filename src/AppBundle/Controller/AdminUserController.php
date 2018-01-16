@@ -5,7 +5,6 @@ namespace AppBundle\Controller;
 use AppBundle\Entity\Mayor;
 use AppBundle\Entity\User;
 use AppBundle\Service\EmailService;
-use function is_null;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -61,12 +60,6 @@ class AdminUserController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-
-            $password = $passwordEncoder->encodePassword($user, $user->getPassword());
-            $user->setPassword($password);
-			$em = $this->getDoctrine()->getManager();
-			$em->persist($user);
-			$em->flush();
             $em = $this->getDoctrine()->getManager();
             if ($request->request->get("changPass") === null) {
                 $user->setStatus(User::USER_STATUS_ACTIF);
@@ -126,7 +119,8 @@ class AdminUserController extends Controller
                 $emailService->sendEmail($message);
             }
 
-            return $this->redirectToRoute('admin_user_show', array('id' => $user->getId()));
+           return $this->redirectToRoute('admin_user_show', array('id' => $user->getId()));
+
         }
         return $this->render('user/new.html.twig', array(
             'user' => $user,

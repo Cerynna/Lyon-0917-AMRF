@@ -172,6 +172,7 @@ class MayorController extends Controller
             $uploaderImage = new Uploader();
             $uplodImageForm = $this->createForm('AppBundle\Form\UploaderType', $uploaderImage);
             $uplodImageForm->handleRequest($request);
+
             if ($formSubmitToAdmin->isSubmitted() && $formSubmitToAdmin->isValid()) {
                 $projectService->Verif($project);
                 if (!empty($projectService->getErreur())) {
@@ -214,7 +215,8 @@ class MayorController extends Controller
                 $dbimg = $images;
                 $dbimg[] = $uploadService->fileUpload($files, '/project/' . $project->getId() . '/photos', "img");
                 $project->setImages($dbimg);
-                $this->getDoctrine()->getManager()->flush();
+                $em->persist($project);
+                $em->flush();
                 return $this->redirectToRoute('mayor_project_edit', array(
                     'slug' => $project->getSlug(),
                     'page' => 1
@@ -224,11 +226,12 @@ class MayorController extends Controller
                 $file = $uploaderFile->getPath();
                 $fileNewDB = $uploadService->fileUpload($file, '/project/' . $project->getId() . '/file', "file");
                 $project->setFile($fileNewDB);
-                $this->getDoctrine()->getManager()->flush();
-                return $this->redirectToRoute('mayor_project_edit', array(
+                $em->persist($project);
+                $em->flush();
+                /*return $this->redirectToRoute('mayor_project_edit', array(
                     'slug' => $project->getSlug(),
                     'page' => 4
-                ));
+                ));*/
             }
             if ($form->isSubmitted() && $form->isValid()) {
                 $project->setSlug($slugService->slug($project->getTitle()));

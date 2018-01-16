@@ -4,8 +4,11 @@ namespace AppBundle\Repository;
 
 use AppBundle\Entity\Project;
 use AppBundle\Entity\User;
+use function array_intersect;
+use function array_unique;
 use function intval;
 use function is_array;
+use function is_object;
 
 /**
  * ProjectRepository
@@ -192,6 +195,7 @@ class ProjectRepository extends \Doctrine\ORM\EntityRepository
             ->getResult();
     }
 
+
     public function pertinenceInit()
     {
         return $this->createQueryBuilder('p');
@@ -221,8 +225,11 @@ class ProjectRepository extends \Doctrine\ORM\EntityRepository
         $array = $qb->getQuery()->getResult();
         $results = [];
         foreach ($array as $idProject) {
-
-            $results[] = $idProject["id"];
+            if (is_object($idProject)) {
+                $results[] = $idProject->getId();
+            } else {
+                $results[] = $idProject["id"];
+            }
         }
 
         return $results;
@@ -341,7 +348,7 @@ class ProjectRepository extends \Doctrine\ORM\EntityRepository
             if ($i == 0) {
                 $operateur = " WHERE ";
             }
-            $sql .= $operateur . "pm.zipCode LIKE '" . $values[0] . "%'";
+            $sql .= $operateur . "pm.zipCode = '" . $values[0] . "'";
             $i++;
         }
         $arrays = $this->getEntityManager()
@@ -353,6 +360,7 @@ class ProjectRepository extends \Doctrine\ORM\EntityRepository
         $i = 0;
         foreach ($arrays as $array) {
             $idMayor = $array['id'];
+
             $qb->setParameter('id' . $i, $idMayor);
             if ($i === 0) {
                 $qb->where("p.id = :id" . $i);
@@ -363,8 +371,8 @@ class ProjectRepository extends \Doctrine\ORM\EntityRepository
         }
 
         $qb->andWhere('p.status = ' . Project::STATUS_PUBLISH);
-
         foreach ($qb->getQuery()->getResult() as $array) {
+
             $results[] = intval($array['id']);
         }
 
@@ -412,10 +420,42 @@ class ProjectRepository extends \Doctrine\ORM\EntityRepository
     public function ListProjectFilter($data)
     {
 
-        $results = [];
-        if ($data["postal"] != "") {
-            $resultPostal = $this->findByLocalisationPertinence(null, null, intval($data["postal"]));
-            array_push($results, $resultPostal);
+        $results['postal'] = [];
+        $results['title'] = [];
+        $results['themes'] = [];
+
+        if (!empty($data["postal"])) {
+            $resultMayorPostal = $this->getEntityManager()
+                ->getRepository('AppBundle:Mayor')
+                ->createQueryBuilder('m')
+                ->setParameter('zipcode', $data["postal"] . "%")
+                ->where("m.zipCode LIKE :zipcode")
+                ->getQuery()
+                ->getResult();
+
+            $sql = "SELECT id FROM project";
+            $i = 0;
+            foreach ($resultMayorPostal as $oneMayor) {
+                $operateur = " OR ";
+                if ($i == 0) {
+                    $operateur = " WHERE ";
+                }
+                $sql .= $operateur . "mayor_id = " . intval($oneMayor->getId()) . "";
+
+                $i++;
+            }
+            $em = $this->getEntityManager();
+            $stmt = $em->getConnection()->prepare($sql);
+            $stmt->execute();
+            $arrays = $stmt->fetchAll();
+            $resultpostal = [];
+            foreach ($arrays as $array) {
+                $resultpostal[] = intval($array['id']);
+            }
+            $resultpostal = array_unique($resultpostal);
+            //dump($resultThemes);
+            array_push($results['postal'], $resultpostal);
+
         }
         if ($data["titre"] !== "" && !is_null($data["titre"]) && !empty($data["titre"])) {
             $resultText = [];
@@ -426,22 +466,50 @@ class ProjectRepository extends \Doctrine\ORM\EntityRepository
             array_push($results, $resultText);
         }
         if (is_array($data["themes"])) {
-
-            foreach ($data["themes"] as $idTheme){
-                dump(intval($idTheme));
+            $resultThemes = [];
+            $sql = "SELECT id FROM project_theme";
+            $i = 0;
+            foreach ($data["themes"] as $idTheme) {
+                $operateur = " OR ";
+                if ($i == 0) {
+                    $operateur = " WHERE ";
+                }
+                $sql .= $operateur . "themes = " . intval($idTheme) . "";
+                $i++;
             }
-
-
-            //$resultThemes = $this->findByThemaPertinence($data["themes"]);
+            $em = $this->getEntityManager();
+            $stmt = $em->getConnection()->prepare($sql);
+            $stmt->execute();
+            $arrays = $stmt->fetchAll();
+            foreach ($arrays as $array) {
+                $resultThemes[] = intval($array['id']);
+            }
+            $resultThemes = array_unique($resultThemes);
+            //dump($resultThemes);
+            array_push($results['themes'], $resultThemes);
+        }
+        if (!empty($results['postal']) && empty($results['themes']) && empty($results['title'])){
+            $results = $results['postal'][0];
+        }
+        if (empty($results['postal']) && !empty($results['themes']) && empty($results['title'])){
+            $results = $results['themes'][0];
+        }
+        if (empty($results['postal']) && empty($results['themes']) && !empty($results['title'])){
+            $results = $results['title'][0];
+        }
+        if (!empty($results['postal']) && !empty($results['themes']) && empty($results['title'])){
+            $results = array_intersect($results['themes'][0], $results['postal'][0]);
+        }
+        if (!empty($results['postal']) && empty($results['themes']) && !empty($results['title'])){
+            $results = array_intersect($results['postal'][0], $results['title'][0]);
+        }
+        if (empty($results['postal']) && !empty($results['themes']) && !empty($results['title'])){
+            $results = array_intersect($results['themes'][0], $results['title'][0]);
+        }
+        if (!empty($results['postal']) && !empty($results['themes']) && !empty($results['title'])){
+            $results = array_intersect($results['themes'][0], $results['postal'][0], $results['title'][0]);
         }
 
-        if (count($results) === 2) {
-            $results = array_merge($results[0], $results[1]);
-        }
-        if (count($results) === 3) {
-            $results = array_merge($results[0], $results[1], $results[2]);
-        }
-        $results = array_unique($results);
 
         $return = [];
         $i = 0;
@@ -475,8 +543,6 @@ class ProjectRepository extends \Doctrine\ORM\EntityRepository
                 }
                 $i++;
             }
-
-
         }
         return $return;
 
