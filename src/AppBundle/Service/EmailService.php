@@ -149,14 +149,9 @@ class EmailService
             case self::TYPE_MAIL_PROJECT_VALID['key']:
                 $message->setSubject("Votre projet est en ligne");
                 $message->setBody(
-                    $this->twig->render(self::TYPE_MAIL_PROJECT_VALID['renderHtml'], [
-                            'message' => $mail['message'],
-                        ]
-                    ), 'text/html');
+                    $this->twig->render(self::TYPE_MAIL_PROJECT_VALID['renderHtml']), 'text/html');
                 $message->addPart(
-                    $this->twig->render(self::TYPE_MAIL_PROJECT_VALID['renderTxt'], [
-                        'message' => $mail['message'],
-                    ]), 'text/plain');
+                    $this->twig->render(self::TYPE_MAIL_PROJECT_VALID['renderTxt']), 'text/plain');
                 break;
 
 
@@ -164,27 +159,23 @@ class EmailService
                 $message->setSubject("Création de votre compte Wiki des Maires");
                 $message->setBody(
                     $this->twig->render(self::TYPE_MAIL_NEW_USER['renderHtml'], [
-                            'message' => $mail['message'],
-                        ]
-                    ), 'text/html');
+                        'login' => $mail['login'],
+                        'role'  =>$mail['role'],
+                    ]), 'text/html');
                 $message->addPart(
                     $this->twig->render(self::TYPE_MAIL_NEW_USER['renderTxt'], [
-                        'message' => $mail['message'],
-                    ]), 'text/plain');
+                    'login' => $mail['login'],
+                    'role'  =>$mail['role'],
+                ]), 'text/plain');
                 break;
 
 
             case self::TYPE_MAIL_PROJECT_MODER['key']:
                 $message->setSubject("Votre projet est envoyé pour modération");
                 $message->setBody(
-                    $this->twig->render(self::TYPE_MAIL_PROJECT_MODER['renderHtml'], [
-                            'message' => $mail['message'],
-                        ]
-                    ), 'text/html');
+                    $this->twig->render(self::TYPE_MAIL_PROJECT_MODER['renderHtml']), 'text/html');
                 $message->addPart(
-                    $this->twig->render(self::TYPE_MAIL_PROJECT_MODER['renderTxt'], [
-                        'message' => $mail['message'],
-                    ]), 'text/plain');
+                    $this->twig->render(self::TYPE_MAIL_PROJECT_MODER['renderTxt']), 'text/plain');
                 break;
 
             case self::TYPE_MAIL_FORGOT_PASSWORD['key']:

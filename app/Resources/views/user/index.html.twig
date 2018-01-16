@@ -23,7 +23,7 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-xs-12">
+                <div class="col-xs-10 col-xs-push-1 jumbotron">
                     {{ form_start(filtreMayor, {
                         'attr':{
                             'class' : 'form-inline filter'
@@ -44,17 +44,19 @@
                     {{ form_end(filtreMayor) }}
 
                 </div>
+            </div>
+            <div class="row">
                 <div class="col-xs-12">
                     <div class="jumbotron userMayor" id="content-mayor">
 
                     </div>
                 </div>
+            </div>
+            <div class="row">
                 <div class="col-xs-12 text-center">
                     <ul class="pagination-mayor"></ul>
                 </div>
-
             </div>
-
         </div>
         <div class="col-xs-6">
             <div class="row">
@@ -63,11 +65,16 @@
                 </div>
             </div>
             <div class="row">
+                <div class="col-xs-10 col-xs-push-1 jumbotron">
+                </div>
+            </div>
+            <div class="row">
                 <div class="col-xs-12">
                     <div class="jumbotron userPartner" id="content-partner">
-
                     </div>
                 </div>
+            </div>
+            <div class="row">
                 <div class="col-xs-12 text-center">
                     <ul class="pagination-partner"></ul>
                 </div>
@@ -97,8 +104,11 @@
             new Clipboard('.fa-envelope');
 
             $('.filter').keyup(function () {
-                var postal = $('#filtre_user_mayor_CodePostal').val();
-                var insee = $('#filtre_user_mayor_CodeInsee').val();
+                postal = $('#filtre_user_mayor_CodePostal').val();
+                insee = $('#filtre_user_mayor_CodeInsee').val();
+                if (postal.length === 0 && insee.length === 0) {
+                    location.reload();
+                }
                 if (postal.length >= 2 || insee.length >= 2) {
                     if (!isNaN(postal) && !isNaN(insee)) {
                         $.ajax({

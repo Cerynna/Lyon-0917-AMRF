@@ -165,27 +165,6 @@ section {
        width: 200px;
        height: 200px;
      }*/
-    .saveMe {
-      label {
-        width: 50%;
-      }
-      input[type="checkbox"]:checked ~ label {
-        color: $color2;
-        text-indent: 1em;
-      }
-      input[type="checkbox"]:empty ~ label {
-        color: $color2;
-        text-indent: 1em;
-      }
-      input[type="checkbox"]:checked ~ label:before {
-        color: $color2;
-        text-indent: 0.3em;
-      }
-      input[type="checkbox"]:empty ~ label:before {
-        color: $color2;
-        text-indent: 0.3em;
-      }
-    }
 
     .errorForm {
       background: #f2dede;
@@ -194,7 +173,10 @@ section {
       margin-top: 5px;
       padding-left: 10px;
     }
-
+  #login, #mdp {
+    width : 80% !important;
+    margin : auto;
+  }
 
   }
 

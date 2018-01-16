@@ -4,6 +4,7 @@ namespace AppBundle\Controller;
 
 use AppBundle\Entity\Mayor;
 use AppBundle\Entity\User;
+use AppBundle\Service\EmailService;
 use function is_null;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -53,7 +54,7 @@ class AdminUserController extends Controller
      * @param UserPasswordEncoderInterface $passwordEncoder
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
-    public function newAction(Request $request, UserPasswordEncoderInterface $passwordEncoder)
+    public function newAction(Request $request, UserPasswordEncoderInterface $passwordEncoder, EmailService $emailService)
     {
         $user = new User();
         $form = $this->createForm('AppBundle\Form\UserType', $user);
@@ -109,6 +110,16 @@ class AdminUserController extends Controller
 
             $em->flush();
 
+            if (($user->getRole() === User::USER_ROLE_PARTNER) OR ($user->getRole() === User::USER_ROLE_MAYOR)) {
+                $message = [
+                    'to' => $user->getEmail(),
+                    'type' => EmailService::TYPE_MAIL_NEW_USER['key'],
+                    'login' => $user->getLogin(),
+                    'role'  => $user->getRole(),
+                ];
+                $emailService->sendEmail($message);
+            }
+
            return $this->redirectToRoute('admin_user_show', array('id' => $user->getId()));
 
         }
@@ -160,6 +171,12 @@ class AdminUserController extends Controller
 				$user->setMayor(null);
 			}
 
+            if ($user->getRole() === User::USER_ROLE_MAYOR) {
+                $user->setPartner(null);
+            }
+            if ($user->getRole() === User::USER_ROLE_PARTNER) {
+                $user->setMayor(null);
+            }
             $this->getDoctrine()->getManager()->flush();
             $this->addFlash(
                 'notice',

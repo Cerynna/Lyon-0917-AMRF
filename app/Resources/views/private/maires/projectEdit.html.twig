@@ -66,19 +66,19 @@
     <div class="row tabPannel">
         <ul class="list-inline text-center" role="tablist">
             <li role="presentation" class=" tabLi {% if page == 1 %} active {% endif %}" id="projetMenu">
-                <a style="pointer-events: none" class="btnDisabled" href="{{ path('mayor_project_edit', { 'slug': project.slug, 'page': '1' }) }}">Mon Projet</a>
+                <a>Mon Projet</a>
             </li>
             <li role="presentation" id="realMenu" class="tabLi {% if page == 2 %} active {% endif %}">
-                <a class="btnDisabled" href="{{ path('mayor_project_edit', { 'slug': project.slug, 'page': '2' }) }}">Réalisation</a>
+                <a>Réalisation</a>
             </li>
             <li role="presentation" id="descriptionMenu" class="tabLi {% if page == 3 %} active {% endif %}">
-                <a class="btnDisabled" href="{{ path('mayor_project_edit', { 'slug': project.slug, 'page': '3' }) }}">Description </a>
+                <a>Description </a>
             </li>
             <li role="presentation" id="infoMenu" class="tabLi {% if page == 4 %} active {% endif %}">
-                <a class="btnDisabled" href="{{ path('mayor_project_edit', { 'slug': project.slug, 'page': '4' }) }}">Informations</a>
+                <a>Informations</a>
             </li>
             <li role="presentation" id="previewMenu" class="tabLi {% if page == 5 %} active {% endif %}">
-                <a class="btnDisabled" href="{{ path('mayor_project_edit', { 'slug': project.slug, 'page': '5' }) }}">Aperçu</a>
+                <a>Aperçu</a>
             </li>
         </ul>
         {% if erreurs is defined %}
@@ -160,12 +160,18 @@
                     {% endif %}
                     {% if project.images|length < 4 %}
                         <div class="col-sm-{{ (3 - project.images|length) * 4 }}">
-                            <label for="photo">Téléchargez jusqu'à 4 images<br/>
-                                <p>le poids d'une image ne doit pas excéder 1.5 Mo</p>
+                            <label for="photo" class="uploaderTrue ">Téléchargez jusqu'à 4 images<br/>
+                                <p>le poids d'une image ne doit pas excéder ... ... Mo</p>
                                 <div class="btn2" data-toggle="modal" data-target="#modalImageUpload"><i
                                             class="fa fa-upload fa-admin"></i> Ajouter des images
                                 </div>
                             </label>
+                            <button class="submitForm uploaderFalse hidden" data-toggle="tooltip"
+                                    data-placement="right"
+                                    type="submit"
+                                    title="Il faut d'abord enregistrer le projet avant de pouvoir télécharger des photos">
+                                <i class="fa fa-upload fa-big"></i>
+                            </button>
                         </div>
                     {% endif %}
 
@@ -177,11 +183,9 @@
                         </button>
                     </div>
                     <div class="col-sm-4" align="center">
-                        <a onclick="nextStep()">
-                            <div class="btn">Etape suivante <i class=" fa fa-angle-right"
-                                                               aria-hidden="true"></i>
-                            </div>
-                        </a>
+                        <button class="btn nextStep" type="submit">
+                            Etape suivante <i class=" fa fa-angle-right" aria-hidden="true"></i>
+                        </button>
                     </div>
                 </div>
             </div>
@@ -190,7 +194,7 @@
                 <h3>Réalisation</h3>
                 <div class="row">
                     <div class="form-group col-sm-6">
-                        {{ form_label(form.projectDate, "date de réalisation *") }}
+                        {{ form_label(form.projectDate, "Date de réalisation *") }}
                         {{ form_widget(form.projectDate) }}
                     </div>
                     <div class="form-group col-sm-6">
@@ -198,7 +202,7 @@
                         {{ form_widget(form.projectDuration) }}
                     </div>
                     <div class="form-group col-sm-6">
-                        {{ form_label(form.projectCost, "Coût global *") }}
+                        {{ form_label(form.projectCost, "Coût global * (en chiffres, sans le symbole €)") }}
                         {{ form_widget(form.projectCost) }}
                     </div>
 
@@ -223,11 +227,9 @@
                     </div>
                 </div>
                 <div class="form-group col-sm-4" align="left">
-                    <a onclick="backStep()">
-                        <div class="btn"><i class=" fa fa-angle-left" aria-hidden="true"></i>
-                            Etape précédente
-                        </div>
-                    </a>
+                    <button class="btn backStep" type="submit">
+                        <i class=" fa fa-angle-left" aria-hidden="true"></i> Etape précédente
+                    </button>
                 </div>
                 <div class="form-group col-sm-4" align="center">
                     <button class="btn" type="submit"><i class="fa fa-floppy-o" aria-hidden="true"></i>
@@ -235,10 +237,9 @@
                     </button>
                 </div>
                 <div class="form-group col-sm-4" align="right">
-                    <a onclick="nextStep()">
-                        <div class="btn">Etape suivante <i class=" fa fa-angle-right"
-                                                           aria-hidden="true"></i></div>
-                    </a>
+                    <button class="btn nextStep" type="submit">
+                        Etape suivante <i class=" fa fa-angle-right" aria-hidden="true"></i>
+                    </button>
                 </div>
             </div>
             <div role="tabpanel" class="tab-pane {% if page == 3 %} active {% endif %}" id="description">
@@ -295,22 +296,19 @@
                         'rows':'4'} }) }}
                 </div>
                 <div class="form-group col-sm-4" align="left">
-                    <a onclick="backStep()">
-                        <div class="btn"><i class=" fa fa-angle-left" aria-hidden="true"></i>
-                            Etape précédente
-                        </div>
-                    </a>
+                    <button class="btn backStep" type="submit">
+                        <i class=" fa fa-angle-left" aria-hidden="true"></i> Etape précédente
+                    </button>
                 </div>
                 <div class="form-group col-sm-4" align="center">
                     <button class="btn" type="submit"><i class="fa fa-floppy-o" aria-hidden="true"></i>
-                        <span class="hidden-sm ">Enregistrer</span>
+                        <span class="hidden-sm">Enregistrer</span>
                     </button>
                 </div>
                 <div class="form-group col-sm-4" align="right">
-                    <a onclick="nextStep()">
-                        <div class="btn">Etape suivante <i class=" fa fa-angle-right"
-                                                           aria-hidden="true"></i></div>
-                    </a>
+                    <button class="btn nextStep" type="submit">
+                        Etape suivante <i class=" fa fa-angle-right" aria-hidden="true"></i>
+                    </button>
                 </div>
             </div>
             <div role="tabpanel" class="tab-pane {% if page == 4 %} active {% endif %}" id="informations">
@@ -373,11 +371,9 @@
                     {{ form_widget(form.twitter) }}
                 </div>
                 <div class="form-group col-sm-4" align="left">
-                    <a onclick="backStep()">
-                        <div class="btn"><i class=" fa fa-angle-left" aria-hidden="true"></i>
-                            Etape précédente
-                        </div>
-                    </a>
+                    <button class="btn backStep" type="submit">
+                        <i class=" fa fa-angle-left" aria-hidden="true"></i> Etape précédente
+                    </button>
                 </div>
                 <div class="form-group col-sm-4" align="center">
                     <button class="btn" type="submit"><i class="fa fa-floppy-o" aria-hidden="true"></i>
@@ -385,10 +381,9 @@
                     </button>
                 </div>
                 <div class="form-group col-sm-4" align="right">
-                    <a onclick="nextStep()">
-                        <div class="btn">Etape suivante <i class=" fa fa-angle-right"
-                                                           aria-hidden="true"></i></div>
-                    </a>
+                    <button class="btn nextStep" type="submit">
+                        Etape suivante <i class=" fa fa-angle-right" aria-hidden="true"></i>
+                    </button>
                 </div>
             </div>
             <div role="tabpanel" class="tab-pane {% if page == 5 %} active {% endif %}" id="preview">
@@ -398,11 +393,9 @@
                     corriger.</p>
                 <div class="row">
                     <div class="form-group col-sm-4" align="left">
-                        <a onclick="backStep()">
-                            <div class="btn"><i class=" fa fa-angle-left" aria-hidden="true"></i>
-                                Etape précédente
-                            </div>
-                        </a>
+                        <button class="btn backStep" type="submit">
+                            <i class=" fa fa-angle-left" aria-hidden="true"></i> Etape précédente
+                        </button>
                     </div>
                     <div class="form-group col-sm-4" align="center">
                         <button class="btn" type="submit"><i class="fa fa-floppy-o" aria-hidden="true"></i>
@@ -429,21 +422,41 @@
 {% endblock %}
 {% block javascripts %}
     <script>
-        document.getElementById("projet_keyWords").removeAttribute("required");
-        document.getElementById('projet_projectCoFinance').style.display = "none";
-        function nextStep() {
-            $('#page').val('next');
-            $("form[name='{{ form.vars.name }}']").submit();
-        }
 
-        function backStep() {
+        $(".nextStep").click(function () {
+            console.log('next');
+            $('#page').val('next');
+            //$("form[name='{#{{ form.vars.name }}#}']").submit();
+            document.getElementsByName('projet').submit();
+
+        });
+
+        $(".backStep").click(function () {
+            console.log('back');
             $('#page').val('back');
-            $("form[name='{{ form.vars.name }}']").submit();
-        }
+            //$("form[name='{#{{ form.vars.name }}#}']").submit();
+
+        });
+
 
         $(document).ready(function () {
             $('#projet_keyWords').select2();
+            var i = 0;
+            $('form').attr('name', '{{ form.vars.name }}').change(function () {
+                console.log(i);
+                i++;
+                if (i >= 5) {
+                    $('.uploaderTrue').addClass('hidden');
+                    $('.uploaderFalse').removeClass('hidden');
+                    console.log('suppr BTN DL');
+                }
+            });
+
+            document.getElementById("projet_keyWords").removeAttribute("required");
+            document.getElementById('projet_projectCoFinance').style.display = "none";
+
         });
+
         function afficherCacher() {
 
             if (document.getElementById('oui').checked) {
