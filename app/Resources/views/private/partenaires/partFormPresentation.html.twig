@@ -110,6 +110,7 @@
                                     <div>
                                         <input type="checkbox" id="{{ activity.vars.id }}"
                                                name="{{ activity.vars.full_name }}" value="{{ activity.vars.value }}"
+                                                {% if activity.vars.checked == true %} checked="checked" {% endif %}
                                                class="check-limit">
                                         <label for="{{ activity.vars.id }}">{{ activity.vars.label }}</label>
                                     </div>
