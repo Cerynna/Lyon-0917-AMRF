@@ -19,6 +19,7 @@ use AppBundle\Service\TabProjectService;
 use AppBundle\Service\UploadService;
 use AppBundle\Service\ValidProjectService;
 
+use function array_merge;
 use DateTime;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -146,6 +147,8 @@ class MayorController extends Controller
         ValidProjectService $projectService
     )
     {
+
+        dump($project);
         $user = $this->getUser();
         $idMayorConnect = $user->getMayor();
         $idMayorProject = $project->getMayor();
@@ -166,6 +169,7 @@ class MayorController extends Controller
             $uploaderFile = new Uploader();
             $uplodFileForm = $this->createForm('AppBundle\Form\UploaderType', $uploaderFile);
             $uplodFileForm->handleRequest($request);
+            dump($project);
             $submitToAdmin = new SubmitToAdmin();
             $formSubmitToAdmin = $this->createForm('AppBundle\Form\SubmitToAdmin', $submitToAdmin);
             $formSubmitToAdmin->handleRequest($request);
@@ -177,16 +181,16 @@ class MayorController extends Controller
                 $projectService->Verif($project);
                 if (!empty($projectService->getErreur())) {
 
-                        return $this->render('private/maires/projectEdit.html.twig', array(
-                            'slug' => $project->getSlug(),
-                            'project' => $project,
-                            'form' => $form->createView(),
-                            'form_toAdmin' => $formSubmitToAdmin->createView(),
-                            'upload_image_form' => $uplodImageForm->createView(),
-                            'upload_file_form' => $uplodFileForm->createView(),
-                            'erreurs' => $projectService->getErreur(),
-                            'page' => 5,
-                        ));
+                    return $this->render('private/maires/projectEdit.html.twig', array(
+                        'slug' => $project->getSlug(),
+                        'project' => $project,
+                        'form' => $form->createView(),
+                        'form_toAdmin' => $formSubmitToAdmin->createView(),
+                        'upload_image_form' => $uplodImageForm->createView(),
+                        'upload_file_form' => $uplodFileForm->createView(),
+                        'erreurs' => $projectService->getErreur(),
+                        'page' => 5,
+                    ));
                 } else {
                     $project->setStatus(Project::STATUS_WAITING);
                     $em->persist($project);
@@ -209,12 +213,22 @@ class MayorController extends Controller
                     ]);
                 }
             }
+
             if ($uplodImageForm->isSubmitted() && $uplodImageForm->isValid()) {
                 $files = $uploaderImage->getPath();
                 $images = $project->getImages();
                 $dbimg = $images;
-                $dbimg[] = $uploadService->fileUpload($files, '/project/' . $project->getId() . '/photos', "img");
+                $newImg = $uploadService->fileUpload($files, '/project/' . $project->getId() . '/photos', "img");
+                if (!empty($newImg)) {
+                    $dbimg = array_merge($dbimg, [$newImg]);
+                } else {
+                    $this->addFlash(
+                        'notice',
+                        '<p>Veuillez choisir un fichier JPG, JPEG ou PNG</p>'
+                    );
+                }
                 $project->setImages($dbimg);
+                dump($project);
                 $em->persist($project);
                 $em->flush();
                 return $this->redirectToRoute('mayor_project_edit', array(
@@ -225,7 +239,17 @@ class MayorController extends Controller
             if ($uplodFileForm->isSubmitted() && $uplodFileForm->isValid()) {
                 $file = $uploaderFile->getPath();
                 $fileNewDB = $uploadService->fileUpload($file, '/project/' . $project->getId() . '/file', "file");
-                $project->setFile($fileNewDB);
+                if (!empty($fileNewDB)) {
+                    $project->setFile($fileNewDB);
+                } else {
+                    $this->addFlash(
+                        'notice',
+                        '<p>Veuillez choisir un fichier PDF</p>'
+
+                    );
+                }
+
+
                 $em->persist($project);
                 $em->flush();
                 /*return $this->redirectToRoute('mayor_project_edit', array(
