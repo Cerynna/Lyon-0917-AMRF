@@ -241,6 +241,11 @@ class Company
 	 */
 	private $slug;
 
+    /**
+     * @ORM\OneToMany(targetEntity="Favorite", mappedBy="company")
+     */
+    private $favorites;
+
 	/**
 	 * @return string
 	 */
@@ -675,4 +680,40 @@ class Company
         return $this->slug;
     }
 
+
+    /**
+     * Add favorite.
+     *
+     * @param \AppBundle\Entity\Favorite $favorite
+     *
+     * @return Company
+     */
+    public function addFavorite(\AppBundle\Entity\Favorite $favorite)
+    {
+        $this->favorites[] = $favorite;
+
+        return $this;
+    }
+
+    /**
+     * Remove favorite.
+     *
+     * @param \AppBundle\Entity\Favorite $favorite
+     *
+     * @return boolean TRUE if this collection contained the specified element, FALSE otherwise.
+     */
+    public function removeFavorite(\AppBundle\Entity\Favorite $favorite)
+    {
+        return $this->favorites->removeElement($favorite);
+    }
+
+    /**
+     * Get favorites.
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getFavorites()
+    {
+        return $this->favorites;
+    }
 }

@@ -211,7 +211,6 @@ class AjaxController extends Controller
      */
     public function ListProjectFilter(Request $request)
     {
-
         if ($request->isXmlHttpRequest()) {
 
             $themes = $request->request->get('themes');
