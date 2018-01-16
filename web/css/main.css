@@ -975,6 +975,25 @@ section {
       color: #ffffff;
       border: 2px #ffffff solid;
       /*2f92a8*/ }
+  section .fa-big {
+    background: #ffffff;
+    color: rgba(0, 158, 61, 0.99);
+    border: 2px rgba(0, 158, 61, 0.99) solid;
+    font-size: 50px;
+    min-height: 30px;
+    min-width: 100%;
+    padding: 5px;
+    border-radius: 5px;
+    text-align: center;
+    vertical-align: middle;
+    margin-right: 1px;
+    margin-bottom: 5px;
+    cursor: pointer; }
+    section .fa-big:hover {
+      background: rgba(0, 158, 61, 0.99);
+      color: #ffffff;
+      border: 2px #ffffff solid;
+      /*2f92a8*/ }
   section .modal-content {
     background-color: rgba(0, 158, 61, 0.99);
     color: white; }

@@ -159,6 +159,12 @@ class AdminUserController extends Controller
             $password = $passwordEncoder->encodePassword($user, $user->getPassword());
             $user->setPassword($password);
 
+            if ($user->getRole() === User::USER_ROLE_MAYOR) {
+                $user->setPartner(null);
+            }
+            if ($user->getRole() === User::USER_ROLE_PARTNER) {
+                $user->setMayor(null);
+            }
             $this->getDoctrine()->getManager()->flush();
             $this->addFlash(
                 'notice',

@@ -12,6 +12,7 @@ use AppBundle\Entity\Company;
 use AppBundle\Entity\Project;
 use AppBundle\Entity\Favorite;
 
+use function intval;
 use SensioLabs\Security\Exception\HttpException;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -166,8 +167,8 @@ class AjaxController extends Controller
     {
         if ($request->isXmlHttpRequest()) {
 
-            $zipCode = intval($request->request->get('CodePostal'));
-            $insee = intval($request->request->get('CodeInsee'));
+            $zipCode = $request->request->get('CodePostal');
+            $insee = $request->request->get('CodeInsee');
 
             $repository = $this->getDoctrine()->getRepository('AppBundle:Mayor');
             $data = $repository->ListMayorFilter($zipCode, $insee);
@@ -210,14 +211,14 @@ class AjaxController extends Controller
      */
     public function ListProjectFilter(Request $request)
     {
-/*
-        if ($request->isXmlHttpRequest()) {*/
+
+        if ($request->isXmlHttpRequest()) {
 
             $themes = $request->request->get('themes');
             $postal = $request->request->get('postal');
             $titre = $request->request->get('titre');
             $data = [
-                "themes" => ["635","636"],
+                "themes" => $themes,
                 "postal" => $postal,
                 "titre" => $titre
             ];
@@ -225,14 +226,14 @@ class AjaxController extends Controller
             $repository = $this->getDoctrine()->getRepository('AppBundle:Project');
             $response = $repository->ListProjectFilter($data);
 
-            return new Response(
+            /*return new Response(
                 '<html><body>Hello</body></html>'
-            );
+            );*/
 
-     /*       return new JsonResponse(array("data" => $data));
+            return new JsonResponse(array("data" => $response));
         } else {
             throw new HttpException('500', 'Invalid call');
-        }*/
+        }
 
     }
 
