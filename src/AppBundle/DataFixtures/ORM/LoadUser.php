@@ -19,7 +19,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 
 class LoadUser extends Fixture implements FixtureInterface, ContainerAwareInterface
 {
-	private $container;
+	protected $container;
 	const MAX_USER = 20;
 	public function load(ObjectManager $em)
 	{
