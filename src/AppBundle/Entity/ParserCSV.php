@@ -56,46 +56,43 @@ class ParserCSV
             if (!empty($this->theCSV[$atRow + $i])) {
 
                 $data = explode(',', $this->theCSV[$atRow + $i]);
-                $data[3] = str_pad($data[3], 5, 0, STR_PAD_LEFT);
-                $data[0] = str_pad($data[0], 2, 0, STR_PAD_LEFT);
-                $this->setResultApiGouv($data[3]);
+                //$data[3] = str_pad($data[3], 5, 0, STR_PAD_LEFT);
+                $data[0] = str_pad($data[0], 5, 0, STR_PAD_LEFT);
+                $this->setResultApiGouv($data[0]);
 
                 $ApiGouv = $this->getResultApiGouv();
 
                 if (isset($ApiGouv[0]['nom'])) {
-                    $this->setInsee($this->resultApiGouv[0]['code']);
-                    $this->setZipCode($this->resultApiGouv[0]['codesPostaux'][0]);
+                    $this->setInsee($ApiGouv[0]['code']);
+                    $this->setZipCode($ApiGouv[0]['codesPostaux'][0]);
                     $this->setStatus(true);
 
-                    if (empty($data[2])){
-                        $this->setEmail($this->resultApiGouv[0]['code'] ."@exemple.com" );
-                        $result[$this->rowRequest]["nom"] = $data[1];
-                        $result[$this->rowRequest]["insee"] = $data[3];
+                    if (empty($data[1]) OR $data[1] == "\n"){
+                        $this->setEmail($ApiGouv[0]['code'] ."@exemple.com" );
+                        $result[$this->rowRequest]["nom"] = $i;
+                        $result[$this->rowRequest]["insee"] = $data[0];
                         $result[$this->rowRequest]["erreur"] = "Aucun Email renseigné pour cet utilisateur";
 
                         $fp = fopen('ReportNOT.csv', 'a');
                         fputcsv($fp, $result[$this->rowRequest]);
                         fclose($fp);
                     } else {
-
-                        $this->setEmail($data[2]);
+                        $this->setEmail($data[1]);
                     }
 
 
-
-                    $this->setTel($data[4]);
-                    $this->setCommune($this->resultApiGouv[0]['nom']);
-                    $this->setDepartment($this->resultApiGouv[0]['codeDepartement']);
-                    $this->setRegion($this->resultApiGouv[0]['codeRegion']);
-                    $this->setPopulation($this->resultApiGouv[0]['population']);
-                    $this->setLattitude($this->resultApiGouv[0]['centre']['coordinates'][1]);
-                    $this->setLongitude($this->resultApiGouv[0]['centre']['coordinates'][0]);
+                    $this->setCommune($ApiGouv[0]['nom']);
+                    $this->setDepartment($ApiGouv[0]['codeDepartement']);
+                    $this->setRegion($ApiGouv[0]['codeRegion']);
+                    $this->setPopulation($ApiGouv[0]['population']);
+                    $this->setLattitude($ApiGouv[0]['centre']['coordinates'][1]);
+                    $this->setLongitude($ApiGouv[0]['centre']['coordinates'][0]);
 
                 } else {
                     $this->setStatus(false);
 
                     $result[$this->rowRequest]["nom"] = $data[1];
-                    $result[$this->rowRequest]["insee"] = $data[3];
+                    $result[$this->rowRequest]["insee"] = $data[0];
                     $result[$this->rowRequest]["erreur"] = "Aucune correspondance avec la base de donnée du gouvernement";
 
                     $fp = fopen('ReportNOT.csv', 'a');
