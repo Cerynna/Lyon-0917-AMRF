@@ -120,7 +120,8 @@ class AdminUserController extends Controller
                 $emailService->sendEmail($message);
             }
 
-            return $this->redirectToRoute('admin_user_show', array('id' => $user->getId()));
+           return $this->redirectToRoute('admin_user_show', array('id' => $user->getId()));
+
         }
         return $this->render('user/new.html.twig', array(
             'user' => $user,
@@ -153,10 +154,9 @@ class AdminUserController extends Controller
      * @Method({"GET", "POST"})
      * @param Request $request
      * @param User $user
-     * @param UserPasswordEncoderInterface $passwordEncoder
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
-    public function editAction(Request $request, User $user, UserPasswordEncoderInterface $passwordEncoder)
+    public function editAction(Request $request, User $user)
     {
         $deleteForm = $this->createDeleteForm($user);
         $editForm = $this->createForm('AppBundle\Form\UserType', $user);
@@ -164,8 +164,12 @@ class AdminUserController extends Controller
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
 
-            $password = $passwordEncoder->encodePassword($user, $user->getPassword());
-            $user->setPassword($password);
+			if ($user->getRole() === User::USER_ROLE_MAYOR) {
+				$user->setPartner(null);
+			}
+			if ($user->getRole() === User::USER_ROLE_PARTNER) {
+				$user->setMayor(null);
+			}
 
             $this->getDoctrine()->getManager()->flush();
             $this->addFlash(
