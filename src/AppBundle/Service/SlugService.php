@@ -19,6 +19,8 @@ class SlugService
         $slug = iconv('utf-8', 'us-ascii//TRANSLIT', $slug);
 // remove unwanted characters
         $slug = preg_replace('~[^-\w]+~', '', $slug);
+// remove digits by space
+        $slug = preg_replace('123456789', '', $slug);
 // trim
         $slug = trim($slug, '-');
 // remove duplicate -
