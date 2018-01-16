@@ -161,9 +161,11 @@
                 var lastName = $('#mayor_lastName').val();
                 var phone = $('#mayor_phone').val();
                 var town = $('#mayor_town').val();
+                var address = $('#mayor_address').val();
                 var zipCode = $('#mayor_zipCode').val();
                 var population = $('#mayor_population').val();
                 var email = $('#mayor_email').val();
+                console.log(address);
                 messageError = "";
                 if (firstName.length < 2) {
                     messageFirstName = "Votre prénom doit comporter au moins 2 caractères. ";
@@ -189,6 +191,10 @@
                     messageVille = "Votre ville ne peut pas être vide. ";
                     messageError += "<li>" + messageVille + "</li>";
                 }
+                if (address.length < 1) {
+                    messageAddress = "L'adresse de votre mairie ne peut pas être vide. ";
+                    messageError += "<li>" + messageAddress + "</li>";
+                }
                 if (zipCode.length < 5) {
                     messageZipCode = "Veuillez entrer un code postal à 5 chiffres";
                     messageError += "<li>" + messageZipCode + "</li>";
@@ -197,15 +203,13 @@
 
                     $('.erreur').html("<ul>" + messageError + "</ul>").removeClass('hidden');
                 }
-                console.log(firstName);
             });
-
-
         });
         var firstName = document.getElementById("mayor_firstName");
         var lastName = document.getElementById("mayor_lastName");
         var phone = document.getElementById("mayor_phone");
         var town = document.getElementById("mayor_town");
+        var address = document.getElementById("mayor_address");
         var zipCode = document.getElementById("mayor_zipCode");
         var population = document.getElementById("mayor_population");
         var submit = document.getElementById("btnSubmit");
@@ -215,52 +219,51 @@
             var messageLastName = "";
             var messagePhone = "";
             var messageTown = "";
+            var messageAddress = "";
             var messageZipCode = "";
             var messagePopulation = "";
-            var messageError = "";
 
-//verif firstname
+            //verif firstname
             if (firstName.value.length < 2) {
                 messageFirstName += "Votre prénom doit comporter au moins 2 caractères. ";
-                messageError += "<li>" + messageFirstName + "</li>";
+
             }
             if (firstName.validity.patternMismatch) {
                 messageFirstName += "Votre prénom ne peut contenir de chiffre.";
-                messageError += "<li>" + messageFirstName + "</li>";
             }
             if (lastName.value.length <= 2) {
                 messageLastName += "Votre nom doit comporter au moins 2 caractères. ";
-                messageError += "<li>" + messageLastName + "</li>";
             }
             if (lastName.validity.patternMismatch) {
                 messageLastName += "Votre nom ne peut contenir de chiffre.";
-                messageError += "<li>" + messageLastName + "</li>";
             }
             if (phone.validity.patternMismatch) {
                 messagePhone += "Veuillez entrer un numéro au format 0X XX XX XX XX";
-                messageError += "<li>" + messagePhone + "</li>";
             }
             if (town.validity.patternMismatch) {
                 messageTown += "Le nom de votre ville ne peut contenir de chiffre";
-                messageError += "<li>" + messageTown + "</li>";
             }
+            if (address.validity.length < 1) {
+                messageAddress += "Vous devez entrer l'adresse de votre mairie";
+            }
+
             if (zipCode.validity.patternMismatch) {
                 messageZipCode += "Veuillez entrer un code postal à 5 chiffres";
-                messageError += "<li>" + messageZipCode + "</li>";
             }
             if (population.value > 9999) {
                 messagePopulation += "La population ne peut pas excéder 9999 habitants";
-                messageError += "<li>" + messagePopulation + "</li>";
             }
 
             firstName.setCustomValidity(messageFirstName);
             lastName.setCustomValidity(messageLastName);
             phone.setCustomValidity(messagePhone);
             town.setCustomValidity(messageTown);
+            address.setCustomValidity(messageAddress);
             zipCode.setCustomValidity(messageZipCode);
             population.setCustomValidity(messagePopulation);
 
-        });
+        })
+        ;
 
 
     </script>
