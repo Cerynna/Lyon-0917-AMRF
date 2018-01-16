@@ -147,8 +147,6 @@ class MayorController extends Controller
         ValidProjectService $projectService
     )
     {
-
-        dump($project);
         $user = $this->getUser();
         $idMayorConnect = $user->getMayor();
         $idMayorProject = $project->getMayor();
@@ -169,7 +167,6 @@ class MayorController extends Controller
             $uploaderFile = new Uploader();
             $uplodFileForm = $this->createForm('AppBundle\Form\UploaderType', $uploaderFile);
             $uplodFileForm->handleRequest($request);
-            dump($project);
             $submitToAdmin = new SubmitToAdmin();
             $formSubmitToAdmin = $this->createForm('AppBundle\Form\SubmitToAdmin', $submitToAdmin);
             $formSubmitToAdmin->handleRequest($request);
@@ -199,14 +196,12 @@ class MayorController extends Controller
                         'to' => $user->getEmail(),
                         'type' => EmailService::TYPE_MAIL_PROJECT_MODER['key'],
                         'login' => $user->getLogin(),
-
                     ];
                     $emailService->sendEmail($message);
 
                     $this->addFlash(
                         'notice',
                         '<p>Votre Projet est envoyé pour modération avant la publication</p>'
-
                     );
                     return $this->redirectToRoute('mayor_project_edit', [
                         'slug' => $project->getSlug(),
@@ -228,7 +223,6 @@ class MayorController extends Controller
                     );
                 }
                 $project->setImages($dbimg);
-                dump($project);
                 $em->persist($project);
                 $em->flush();
                 return $this->redirectToRoute('mayor_project_edit', array(
@@ -249,13 +243,12 @@ class MayorController extends Controller
                     );
                 }
 
-
                 $em->persist($project);
                 $em->flush();
-                /*return $this->redirectToRoute('mayor_project_edit', array(
+                return $this->redirectToRoute('mayor_project_edit', array(
                     'slug' => $project->getSlug(),
                     'page' => 4
-                ));*/
+                ));
             }
             if ($form->isSubmitted() && $form->isValid()) {
                 $project->setSlug($slugService->slug($project->getTitle()));
