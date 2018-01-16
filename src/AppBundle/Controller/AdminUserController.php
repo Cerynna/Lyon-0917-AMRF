@@ -109,18 +109,6 @@ class AdminUserController extends Controller
 
             $password = $passwordEncoder->encodePassword($user, $user->getPassword());
             $user->setPassword($password);
-
-			if ($user->getRole() === User::USER_ROLE_MAYOR) {
-				$user->setPartner(null);
-			}
-			if ($user->getRole() === User::USER_ROLE_PARTNER) {
-				$user->setMayor(null);
-			}
-			if ($user->getRole() === User::USER_ROLE_ADMIN) {
-				$user->setMayor(null);
-				$user->setPartner(null);
-			}
-
 			$em = $this->getDoctrine()->getManager();
 			$em->persist($user);
 			$em->flush();
