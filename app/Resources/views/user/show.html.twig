@@ -19,7 +19,8 @@
             <li>
                 {{ form_start(delete_form) }}
                 <button class="fa-admin" data-toggle="tooltip" data-placement="right"
-                        title="Supprimer l'Utilisateur" type="submit" onclick="return ConfirmDelete()"><i class="fa fa-trash-o"></i></button>
+                        title="Supprimer l'Utilisateur" type="submit" onclick="return ConfirmDelete()"><i
+                            class="fa fa-trash-o"></i></button>
                 {{ form_end(delete_form) }}
 
             </li>
@@ -162,9 +163,67 @@
                 <h5>Téléphone</h5>
                 <span>{{ user.partner.phone }}</span>
             </div>
+            <div class="col-sm-12">
+                <h5 class="text-center">Informations Organisme</h5>
+            </div>
+            <div class="col-sm-12">
+                <h5>Nom</h5>
+                <span>{{ user.partner.company.name }}</span>
+            </div>
             <div class="col-sm-6">
-                <h5>Organisme</h5>
-                <span>{{ user.partner.company }}</span>
+                <h5>Address</h5>
+                <span>{{ user.partner.company.address }}</span>
+            </div>
+            <div class="col-sm-6">
+                <h5>Code postal</h5>
+                <span>{{ user.partner.company.zipCode }}</span>
+            </div>
+            <div class="col-sm-6">
+                <h5>Ville</h5>
+                <span>{{ user.partner.company.city }}</span>
+            </div>
+            <div class="col-sm-6">
+                <h5>Présentation</h5>
+                <span>{{ user.partner.company.presentation }}</span>
+            </div>
+            <div class="col-sm-6">
+                <h5>Logo</h5>
+                <span>{{ user.partner.company.logo }}</span>
+            </div>
+            <div class="col-sm-6">
+                <h5>Url</h5>
+                <span>{{ user.partner.company.url }}</span>
+            </div>
+            <div class="col-sm-6">
+                <h5>Facebook</h5>
+                <span>{{ user.partner.company.facebook }}</span>
+            </div>
+            <div class="col-sm-6">
+                <h5>Linkedin</h5>
+                <span>{{ user.partner.company.linkedin }}</span>
+            </div>
+            <div class="col-sm-6">
+                <h5>Twitter</h5>
+                <span>{{ user.partner.company.twitter }}</span>
+            </div>
+            <div class="col-sm-12">
+                <h5 class="text-center">Informations de contact</h5>
+            </div>
+            <div class="col-sm-6">
+                <h5>Contact Prénom</h5>
+                <span>{{ user.partner.company.contactFirstName }}</span>
+            </div>
+            <div class="col-sm-6">
+                <h5>Contact Nom</h5>
+                <span>{{ user.partner.company.contactLastName }}</span>
+            </div>
+            <div class="col-sm-6">
+                <h5>Téléphone</h5>
+                <span>{{ user.partner.company.contactPhone }}</span>
+            </div>
+            <div class="col-sm-6">
+                <h5>Email</h5>
+                <span>{{ user.partner.company.contactEmail }}</span>
             </div>
 
         {% endif %}
