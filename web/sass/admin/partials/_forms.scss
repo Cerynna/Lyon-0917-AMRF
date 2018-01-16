@@ -56,18 +56,3 @@
 .select select:disabled ~ .select_arrow {
   border-top-color: lighten($color1, 90%);
 }
-.filter {
-  padding: 10px 5px;
-  label {
-    margin-left: 20px;
-  }
-  input{
-    @include colorback1($color1, 20%);
-    @include colortext1($color1, 100%);
-    padding: 10px;
-    margin-left: 10px;
-    font-size: 1.2em;
-    text-align: right;
-    width: 100px!important;
-  }
-}

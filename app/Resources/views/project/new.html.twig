@@ -21,7 +21,7 @@
 
     <div class="row">
         <div class="col-sm-10">
-            <h3>{{ form_label(form.title, "Pour commencer, merci de donner un nom a votre projet. Il pourra être modifié par la suite.") }}</h3>
+            <h3 class="label erreur">{{ form_label(form.title, "Pour commencer, merci de donner un nom a votre projet. Il pourra être modifié par la suite.") }}</h3>
             {{ form_widget(form.title) }}
             <div id="errorTitle"></div>
         </div>
@@ -252,13 +252,15 @@
 {% block javascripts %}
     <script>
         $(document).ready(function () {
-            $('#projet_title').change(function () {
+            $('#projet_title').keyup(function () {
                 var title = $(this).val();
 
                 if (title.length >= 5) {
                     $(".submitForm").removeClass("hidden");
+                    $(".label").removeClass("erreur");
                 }else {
                     $(".submitForm").addClass("hidden");
+                    $(".label").addClass("erreur");
                 }
 
             });

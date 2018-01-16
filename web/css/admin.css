@@ -724,19 +724,6 @@ thead {
 .select select:disabled ~ .select_arrow {
   border-top-color: white; }
 
-.filter {
-  padding: 10px 5px; }
-  .filter label {
-    margin-left: 20px; }
-  .filter input {
-    background-color: #17608f;
-    color: white;
-    padding: 10px;
-    margin-left: 10px;
-    font-size: 1.2em;
-    text-align: right;
-    width: 100px !important; }
-
 .select2-container {
   box-sizing: border-box;
   display: inline-block;
