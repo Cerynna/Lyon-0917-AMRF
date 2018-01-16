@@ -8,6 +8,7 @@ use Doctrine\ORM\EntityRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\DateIntervalType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -26,15 +27,15 @@ class ProjectType extends AbstractType
                 'choices' => [
                     'Brouillon' => Project::STATUS_DRAFT,
                     'En attente' => Project::STATUS_WAITING,
-                    'Publier' => Project::STATUS_PUBLISH,
+                    'Publié' => Project::STATUS_PUBLISH,
                 ],
             ])
-            ->add('title',TextType::class,[
+            ->add('title', TextType::class, [
                 'attr' => [
                     'required' => false,
                 ]
-                ])
-			->add('slug', TextType::class,array('mapped' => false,))
+            ])
+            ->add('slug', TextType::class, array('mapped' => false,))
             ->add('themes', EntityType::class, array(
                 'class' => 'AppBundle:Dictionary',
                 /*'mapped' => false,*/
@@ -48,27 +49,21 @@ class ProjectType extends AbstractType
                 'multiple' => true,
                 'choice_label' => 'name',
                 'label_attr' => ['class' => 'style_checkbox'],
-
             ))
             ->add('creationDate', DateType::class, array(
                 'widget' => 'single_text',
-                // this is actually the default format for single_text
                 'format' => 'yyyy-MM-dd',
-
             ))
             ->add('updateDate', DateType::class, array(
                 'widget' => 'single_text',
-                // this is actually the default format for single_text
                 'format' => 'yyyy-MM-dd',
-
             ))
             ->add('images', FileType::class, [
                 'multiple' => true])
             ->add('projectDate', DateType::class, array(
-                'widget' => 'single_text',
-                // this is actually the default format for single_text
-                'format' => 'yyyy-MM-dd',
-
+               'widget' => 'choice',
+                'format' => 'dd-MM-yyyy',
+                'years' => range(2008, 2030)
             ))
             ->add('projectDuration')
             ->add('projectCost')
@@ -91,7 +86,6 @@ class ProjectType extends AbstractType
             ->add('facebook')
             ->add('twitter')
             ->add('keyWords')
-
             ->add('keyWords', EntityType::class, array(
                 'class' => 'AppBundle:Dictionary',
                 'query_builder' => function (EntityRepository $er) {
@@ -104,10 +98,7 @@ class ProjectType extends AbstractType
                 'multiple' => true,
                 'choice_label' => 'name',
                 'label_attr' => ['class' => 'style_checkbox'],
-
             ))
-
-
             ->add('mayor', EntityType::class, [
                 'class' => 'AppBundle\Entity\Mayor',
                 'choice_label' => 'town',
@@ -131,6 +122,4 @@ class ProjectType extends AbstractType
     {
         return 'projet';
     }
-
-
 }

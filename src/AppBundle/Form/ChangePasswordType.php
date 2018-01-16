@@ -18,7 +18,7 @@ class ChangePasswordType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('oldPassword', TextType::class, array('label' => 'Ancien mot de passe'))
+            ->add('oldPassword', PasswordType::class, array('label' => 'Ancien mot de passe'))
             ->add('newPassword', RepeatedType::class, array(
                 'type' => PasswordType::class,
                 'invalid_message' => 'Les mots de passe doivent correspondre',
@@ -26,7 +26,9 @@ class ChangePasswordType extends AbstractType
                 'required' => true,
                 'first_options' => array('label' => 'Nouveau mot de passe'),
                 'second_options' => array('label' => 'Confirmez votre mot de passe'),
-            ));
+            ))
+            ->add('email', TextType::class, array('label' => 'Saisissez votre email'))
+        ;
     }
 
     public function setDefaultOptions(OptionsResolver $resolver)

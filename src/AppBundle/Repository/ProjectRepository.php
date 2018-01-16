@@ -4,9 +4,11 @@ namespace AppBundle\Repository;
 
 use AppBundle\Entity\Project;
 use AppBundle\Entity\User;
-use DateInterval;
-use DateTime;
-
+use function array_intersect;
+use function array_unique;
+use function intval;
+use function is_array;
+use function is_object;
 
 /**
  * ProjectRepository
@@ -16,11 +18,104 @@ use DateTime;
  */
 class ProjectRepository extends \Doctrine\ORM\EntityRepository
 {
-
     const MAX_PROJECT = 3;
 
     const CHAMPS = ["title", "descResume"];
 
+    public function MaxProject()
+    {
+        $result['publish'] = count($this->createQueryBuilder('p')
+            ->setParameter('status', Project::STATUS_PUBLISH)
+            ->where('p.status = :status')
+            ->getQuery()
+            ->getResult());
+        $result['waiting'] = count($this->createQueryBuilder('p')
+            ->setParameter('status', Project::STATUS_WAITING)
+            ->where('p.status = :status')
+            ->getQuery()
+            ->getResult());
+        $result['draft'] = count($this->createQueryBuilder('p')
+            ->setParameter('status', Project::STATUS_DRAFT)
+            ->where('p.status = :status')
+            ->getQuery()
+            ->getResult());
+        return $result;
+    }
+
+    public function getLastProject()
+    {
+        $qb = $this->createQueryBuilder('p')
+            ->orderBy("p.updateDate", "DESC")
+            ->setMaxResults(self::MAX_PROJECT)
+            ->setParameter('status', Project::STATUS_PUBLISH)
+            ->where('p.status = :status')
+            ->getQuery();
+        return $qb->getResult();
+    }
+
+    public function getProjectOrderBY($field)
+    {
+        $qb = $this->createQueryBuilder('p')
+            ->orderBy("p.$field", "ASC")
+            ->getQuery();
+        return $qb->getResult();
+    }
+
+    public function getImageProject($idProject)
+    {
+        return $this->createQueryBuilder('p')
+            ->setParameter('id', $idProject)
+            ->where('p.id = :id')
+            ->select('p.images')
+            ->getQuery()
+            ->getResult();
+    }
+
+    public function getProjectByMayor($mayorId)
+    {
+        $qb = $this->createQueryBuilder('p')
+            ->setParameter('mayor_id', $mayorId)
+            ->where('p.mayor = :mayor_id')
+            ->getQuery();
+        return $qb->getResult();
+    }
+
+    /*    public function queryTitle($queryBuilder, $request)
+        {
+            $queryBuilder
+                ->andwhere('p.title LIKE :title')
+                ->setParameter('title', '%' . $request->query->getAlnum('title') . '%');
+
+        }
+
+        public function queryStatus($queryBuilder, $request, $statuses)
+        {
+            $result = [];
+
+            if (array($statuses)) {
+
+                foreach ($statuses as $index => $status) {
+                    $result[] = "p.status LIKE :string$index";
+                    $queryBuilder->setParameter("string$index", $status);
+                }
+
+                if (empty($result)) {
+                    throw new \LogicException('Error');
+                }
+
+                $queryBuilder
+                    ->andWhere(new Orx($result));
+            }
+        }
+
+        public function queryTheme($queryBuilder, $request)
+        {
+            $queryBuilder
+                ->join('p.themes', 'd')
+                ->andwhere('d.value = :value')
+                ->setParameter('value', $request->query->getAlnum('value'));
+
+        }*/
 
     public function statProject()
     {
@@ -42,13 +137,13 @@ class ProjectRepository extends \Doctrine\ORM\EntityRepository
             ->where('p.status = :status')
             ->getQuery()
             ->getResult());
-        $mois = array("","Janvier","Février","Mars","Avril","Mai","Juin","Juillet","Août","Septembre","Octobre","Novembre","Décembre");
+        $mois = array("", "Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre");
         $dateStat = [];
         for ($i = 0; $i < 6; $i++) {
-            $max = new DateTime('last day of today - ' . $i . ' month');
-            $min = new DateTime('last day of today - ' . ($i + 1) . ' month');
+            $max = new \DateTime('last day of today - ' . $i . ' month');
+            $min = new \DateTime('last day of today - ' . ($i + 1) . ' month');
 
-            $dateStat[$mois[$max->format('n')]] =  count($this->createQueryBuilder('p')
+            $dateStat[$mois[$max->format('n')]] = count($this->createQueryBuilder('p')
                 ->setParameter('maxDate', $max)
                 ->andWhere('p.creationDate < :maxDate')
                 ->setParameter('minDate', $min)
@@ -88,27 +183,7 @@ class ProjectRepository extends \Doctrine\ORM\EntityRepository
             ->getResult();
 
 
-
         return $result;
-    }
-
-    public function getLastProject()
-    {
-        $qb = $this->createQueryBuilder('p')
-            ->orderBy("p.updateDate", "DESC")
-            ->setMaxResults(self::MAX_PROJECT)
-            ->setParameter('status', Project::STATUS_PUBLISH)
-            ->where('p.status = :status')
-            ->getQuery();
-        return $qb->getResult();
-    }
-
-    public function getProjectOrderBY($field)
-    {
-        $qb = $this->createQueryBuilder('p')
-            ->orderBy("p.$field", "ASC")
-            ->getQuery();
-        return $qb->getResult();
     }
 
     public function projectById($idProject)
@@ -120,173 +195,361 @@ class ProjectRepository extends \Doctrine\ORM\EntityRepository
             ->getResult();
     }
 
-    public function getImageProject($idProject)
-    {
-        return $this->createQueryBuilder('p')
-            ->setParameter('id', $idProject)
-            ->where('p.id = :id')
-            ->select('p.images')
-            ->getQuery()
-            ->getResult();
-    }
 
-    public function getProjectByMayor($mayorId)
+    public function pertinenceInit()
     {
-        $qb = $this->createQueryBuilder('p')
-            ->setParameter('mayor_id', $mayorId)
-            ->where('p.mayor = :mayor_id')
-            ->getQuery();
-        return $qb->getResult();
+        return $this->createQueryBuilder('p');
     }
 
     public function findByTextPertinence($texts, $champs)
     {
         $results = [];
+        $qb = $this->pertinenceInit();
         $texts = explode(' ', $texts);
-        $qb = $this->createQueryBuilder('p');
         foreach ($texts as $text) {
             if (strlen($text) > 2) {
                 $qb->select('p.id');
                 $qb->setParameter('text', '%' . $text . '%');
+                $i = 0;
                 foreach ($champs as $champ) {
-                    $qb->where("p.$champ LIKE :text");
-                    $qb->andWhere('p.status = ' . Project::STATUS_PUBLISH);
-                    $query = $qb->getQuery();
-                    $results[count($results) + 1] = $query->getResult();
-                    if (empty ($results[count($results)])) {
-                        unset($results[count($results)]);
+                    if ($i === 0) {
+                        $qb->where("p.$champ LIKE :text");
+                    } else {
+                        $qb->orWhere("p.$champ LIKE :text");
                     }
+                    $i++;
                 }
+                $qb->andWhere('p.status = ' . Project::STATUS_PUBLISH);
             }
         }
+        $array = $qb->getQuery()->getResult();
+        $results = [];
+        foreach ($array as $idProject) {
+            if (is_object($idProject)) {
+                $results[] = $idProject->getId();
+            } else {
+                $results[] = $idProject["id"];
+            }
+        }
+
         return $results;
     }
 
     public function findByThemaPertinence($themas)
     {
-        $results = "";
+        $results = [];
+
+        $sql = "SELECT id FROM project_theme";
+        $i = 0;
         foreach ($themas as $thema) {
-
-            $sql = " SELECT id FROM project_theme WHERE themes = $thema";
-            $em = $this->getEntityManager();
-            $stmt = $em->getConnection()->prepare($sql);
-            $stmt->execute();
-            $results = $stmt->fetchAll();
-
-        }
-        $cleanResult = "";
-        foreach ($results as $key => $project) {
-            $i = 0;
-            $cleanResult[$i] = [];
-            foreach ($project as $id) {
-                array_push($cleanResult[$i], ['id' => $id]);
+            $operateur = " OR ";
+            if ($i == 0) {
+                $operateur = " WHERE ";
             }
+            $sql .= $operateur . "themes = " . intval($thema->getId()) . "";
             $i++;
         }
-
-        return $cleanResult;
-    }
-
-    public function findByKeywordPertinence($themas)
-    {
-        $results = "";
-        foreach ($themas as $thema) {
-
-            $sql = " SELECT id FROM project_keywords WHERE keyWords = $thema";
-            $em = $this->getEntityManager();
-            $stmt = $em->getConnection()->prepare($sql);
-            $stmt->execute();
-            $results = $stmt->fetchAll();
-
-
-        }
-        $cleanResult = "";
-        foreach ($results as $key => $project) {
-            $i = 0;
-            $cleanResult[$i] = [];
-            foreach ($project as $id) {
-                array_push($cleanResult[$i], ['id' => $id]);
-            }
-            $i++;
+        $em = $this->getEntityManager();
+        $stmt = $em->getConnection()->prepare($sql);
+        $stmt->execute();
+        $arrays = $stmt->fetchAll();
+        foreach ($arrays as $array) {
+            $results[] = intval($array['id']);
         }
 
-        return $cleanResult;
+        return $results;
+
     }
 
-    public function findByLocalisationPertinence($locals)
+    public function findByKeywordPertinence($keywords)
     {
         $results = [];
-        foreach ($locals as $key => $values) {
-            switch ($key) {
-                case Project::LOCALISATION_COMMUNE:
-                    $value = explode(' ', $values);
-                    $mayorIds = $this->getEntityManager()
-                        ->createQuery('SELECT pm.id FROM AppBundle:Mayor pm WHERE pm.zipCode = ' . $value[0])
-                        ->getResult();
-
-                    foreach ($mayorIds as $value) {
-                        $qb = $this->createQueryBuilder('p');
-                        $qb->select('p.id')
-                            ->setParameter('mayor', $value['id'])
-                            ->where('p.mayor = :mayor')
-                            ->getQuery();
-                        $query = $qb->getQuery();
-                        $results[] = $query->getResult();
-                    }
-
-
-                    break;
-                case Project::LOCALISATION_DEPARTEMENT:
-                    $value = explode(' ', $values);
-                    $mayorIds = $this->getEntityManager()
-                        ->createQuery('SELECT pm.id FROM AppBundle:Mayor pm WHERE pm.department = ' . $value[0])
-                        ->getResult();
-
-
-                    foreach ($mayorIds as $value) {
-                        $qb = $this->createQueryBuilder('p');
-                        $qb->select('p.id')
-                            ->setParameter('mayor', $value['id'])
-                            ->where('p.mayor = :mayor')
-                            ->getQuery();
-                        $query = $qb->getQuery();
-                        $results[] = $query->getResult();
-                    }
-
-                    break;
-                case Project::LOCALISATION_REGION:
-                    $value = explode(' ', $values);
-                    $mayorIds = $this->getEntityManager()
-                        ->createQuery('SELECT pm.id FROM AppBundle:Mayor pm WHERE pm.region = ' . $value[0])
-                        ->getResult();
-
-                    foreach ($mayorIds as $value) {
-                        $qb = $this->createQueryBuilder('p');
-                        $qb->select('p.id')
-                            ->setParameter('mayor', $value['id'])
-                            ->where('p.mayor = :mayor')
-                            ->getQuery();
-                        $query = $qb->getQuery();
-                        $results[] = $query->getResult();
-                    }
-
-
-                    break;
+        $sql = " SELECT id FROM project_keywords ";
+        $i = 0;
+        foreach ($keywords as $keyword) {
+            $operateur = " OR ";
+            if ($i == 0) {
+                $operateur = " WHERE ";
             }
+            $sql .= $operateur . "keyWords = " . intval($keyword->getId()) . "";
+            $i++;
         }
+        $em = $this->getEntityManager();
+        $stmt = $em->getConnection()->prepare($sql);
+        $stmt->execute();
+        $arrays = $stmt->fetchAll();
+
+        foreach ($arrays as $array) {
+            $results[] = intval($array['id']);
+        }
+
         return $results;
     }
 
-
-    public function arrayCleaner($array)
+    public function finalPertinence($idProjects)
     {
-        $result = [];
-        foreach ($array as $key => $value) {
-            if ($value !== []) {
-                array_push($result, $value[0]['id']);
+        if (is_array($idProjects) AND !empty($idProjects)) {
+            $qb = $this->pertinenceInit();
+            $i = 0;
+            foreach ($idProjects as $idproject => $pertinence) {
+                $qb->setParameter('id' . $i, $idproject);
+                if ($i === 0) {
+                    $qb->where("p.id = :id" . $i);
+                } else {
+                    $qb->orWhere("p.id = :id" . $i);
+                }
+                $i++;
             }
+            $qb->andWhere('p.status = ' . Project::STATUS_PUBLISH);
+            $resultFinal = $qb->getQuery()->getResult();
+
+            $result = [];
+            foreach ($idProjects as $idProject => $nbResult) {
+                foreach ($resultFinal as $project) {
+                    if ($idProject == $project->getId()) {
+                        $result[] = $project;
+                    }
+                }
+            }
+            return $result;
+
+
         }
 
-        return $result;
     }
+
+    public function findByLocalisationPertinence($region, $departement, $commune)
+    {
+        //REFACTORING DQL
+        $results = [];
+        $sql = "SELECT pm.id FROM AppBundle:Mayor pm ";
+        $i = 0;
+        if (!is_null($region)) {
+            $values = explode(' ', $region);
+            $operateur = " OR ";
+            if ($i == 0) {
+                $operateur = " WHERE ";
+            }
+            $sql .= $operateur . "pm.region = " . $values[0] . "";
+            $i++;
+        }
+        if (!is_null($departement)) {
+            $values = explode(' ', $departement);
+            $operateur = " OR ";
+            if ($i == 0) {
+                $operateur = " WHERE ";
+            }
+            $sql .= $operateur . "pm.department = " . $values[0] . "";
+            $i++;
+        }
+        if (!is_null($commune)) {
+            $values = explode(' ', $commune);
+            $operateur = " OR ";
+            if ($i == 0) {
+                $operateur = " WHERE ";
+            }
+            $sql .= $operateur . "pm.zipCode = '" . $values[0] . "'";
+            $i++;
+        }
+        $arrays = $this->getEntityManager()
+            ->createQuery($sql)
+            ->getResult();
+        // END REFACTORING
+
+        $qb = $this->pertinenceInit()->select('p.id');
+        $i = 0;
+        foreach ($arrays as $array) {
+            $idMayor = $array['id'];
+
+            $qb->setParameter('id' . $i, $idMayor);
+            if ($i === 0) {
+                $qb->where("p.id = :id" . $i);
+            } else {
+                $qb->orWhere("p.id = :id" . $i);
+            }
+            $i++;
+        }
+
+        $qb->andWhere('p.status = ' . Project::STATUS_PUBLISH);
+        foreach ($qb->getQuery()->getResult() as $array) {
+
+            $results[] = intval($array['id']);
+        }
+
+        return $results;
+    }
+
+    public function ListProject($offset, $type)
+    {
+        $status = Project::STATUS_WAITING;
+        if ($type === "waiting") {
+            $status = Project::STATUS_WAITING;
+        }
+        if ($type === "draft") {
+            $status = Project::STATUS_DRAFT;
+        }
+        if ($type === "publish") {
+            $status = Project::STATUS_PUBLISH;
+        }
+        $qb = $this->createQueryBuilder('p')
+            ->setParameter('status', $status)
+            ->where('p.status = :status')
+            ->setMaxResults(10)
+            ->setFirstResult($offset)
+            ->getQuery();
+        $projects = $qb->getResult();
+        $i = 0;
+        $return = [];
+        foreach ($projects as $project) {
+            $return[$i]['id'] = $project->getId();
+            $return[$i]['slug'] = $project->getSlug();
+            $return[$i]['status'] = $project->getStatus();
+            $return[$i]['title'] = $project->getTitle();
+            $return[$i]['zipcode'] = $project->getMayor()->getZipCode();
+            $return[$i]['ville'] = $project->getMayor()->getTown();
+            foreach ($project->getThemes() as $theme) {
+                $return[$i]['themes'][] = $theme->getName();
+            }
+
+
+            $i++;
+        }
+        return $return;
+    }
+
+    public function ListProjectFilter($data)
+    {
+        //dump($data);
+
+        $results['postal'] = [];
+        $results['title'] = [];
+        $results['themes'] = [];
+
+        if (!empty($data["postal"])) {
+            $resultMayorPostal = $this->getEntityManager()
+                ->getRepository('AppBundle:Mayor')
+                ->createQueryBuilder('m')
+                ->setParameter('zipcode', $data["postal"] . "%")
+                ->where("m.zipCode LIKE :zipcode")
+                ->getQuery()
+                ->getResult();
+
+            $sql = "SELECT id FROM project";
+            $i = 0;
+            foreach ($resultMayorPostal as $oneMayor) {
+                $operateur = " OR ";
+                if ($i == 0) {
+                    $operateur = " WHERE ";
+                }
+                $sql .= $operateur . "mayor_id = " . intval($oneMayor->getId()) . "";
+
+                $i++;
+            }
+            $em = $this->getEntityManager();
+            $stmt = $em->getConnection()->prepare($sql);
+            $stmt->execute();
+            $arrays = $stmt->fetchAll();
+            $resultpostal = [];
+            foreach ($arrays as $array) {
+                $resultpostal[] = intval($array['id']);
+            }
+            $resultpostal = array_unique($resultpostal);
+            //dump($resultThemes);
+            array_push($results['postal'], $resultpostal);
+
+        }
+        if ($data["titre"] !== "" && !is_null($data["titre"]) && !empty($data["titre"])) {
+            $resultText = [];
+            $idProjects = $this->findByTextPertinence($data["titre"], ["title"]);
+            foreach ($idProjects as $idproject) {
+                array_push($resultText, $idproject);
+            }
+            //dump($resultText);
+            array_push($results['title'], $resultText);
+        }
+        if (is_array($data["themes"])) {
+            $resultThemes = [];
+            $sql = "SELECT id FROM project_theme";
+            $i = 0;
+            foreach ($data["themes"] as $idTheme) {
+                $operateur = " OR ";
+                if ($i == 0) {
+                    $operateur = " WHERE ";
+                }
+                $sql .= $operateur . "themes = " . intval($idTheme) . "";
+                $i++;
+            }
+            $em = $this->getEntityManager();
+            $stmt = $em->getConnection()->prepare($sql);
+            $stmt->execute();
+            $arrays = $stmt->fetchAll();
+            foreach ($arrays as $array) {
+                $resultThemes[] = intval($array['id']);
+            }
+            $resultThemes = array_unique($resultThemes);
+            //dump($resultThemes);
+            array_push($results['themes'], $resultThemes);
+        }
+        if (!empty($results['postal']) && empty($results['themes']) && empty($results['title'])){
+            $results = $results['postal'][0];
+        }
+        if (empty($results['postal']) && !empty($results['themes']) && empty($results['title'])){
+            $results = $results['themes'][0];
+        }
+        if (empty($results['postal']) && empty($results['themes']) && !empty($results['title'])){
+            $results = $results['title'][0];
+        }
+        if (!empty($results['postal']) && !empty($results['themes']) && empty($results['title'])){
+            $results = array_intersect($results['themes'][0], $results['postal'][0]);
+        }
+        if (!empty($results['postal']) && empty($results['themes']) && !empty($results['title'])){
+            $results = array_intersect($results['postal'][0], $results['title'][0]);
+        }
+        if (empty($results['postal']) && !empty($results['themes']) && !empty($results['title'])){
+            $results = array_intersect($results['themes'][0], $results['title'][0]);
+        }
+        if (!empty($results['postal']) && !empty($results['themes']) && !empty($results['title'])){
+            $results = array_intersect($results['themes'][0], $results['postal'][0], $results['title'][0]);
+        }
+
+
+        $return = [];
+        $i = 0;
+        foreach ($results as $idProjects) {
+            if (is_array($idProjects)) {
+                foreach ($idProjects as $idProject) {
+                    $project = $this->projectById($idProject)[0];
+
+                    $return[$i]['id'] = $project->getId();
+                    $return[$i]['slug'] = $project->getSlug();
+                    $return[$i]['status'] = $project->getStatus();
+                    $return[$i]['title'] = $project->getTitle();
+                    $return[$i]['zipcode'] = $project->getMayor()->getZipCode();
+                    $return[$i]['ville'] = $project->getMayor()->getTown();
+                    foreach ($project->getThemes() as $theme) {
+                        $return[$i]['themes'][] = $theme->getName();
+                    }
+                    $i++;
+                }
+            } else {
+                $project = $this->projectById($idProjects)[0];
+
+                $return[$i]['id'] = $project->getId();
+                $return[$i]['slug'] = $project->getSlug();
+                $return[$i]['status'] = $project->getStatus();
+                $return[$i]['title'] = $project->getTitle();
+                $return[$i]['zipcode'] = $project->getMayor()->getZipCode();
+                $return[$i]['ville'] = $project->getMayor()->getTown();
+                foreach ($project->getThemes() as $theme) {
+                    $return[$i]['themes'][] = $theme->getName();
+                }
+                $i++;
+            }
+        }
+        return $return;
+
+
+    }
+
 }
+

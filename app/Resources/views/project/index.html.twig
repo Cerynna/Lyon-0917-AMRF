@@ -17,158 +17,279 @@
     </div>
     <h1>Liste des projets</h1>
 
-    <div class="jumbotron row">
-        <form action="{{ path('admin_project_index') }}" method="get" name="filter">
-            <div class="col-xs-12">
-                <label for="title">Title</label>
-                <input value="{{ title }}" name="title" type="text" onchange="sendFilter()">
-
-                <label for="name">Theme</label>
-                <input value="{{ value }}" type="text" name="value" onchange="sendFilter()">
-
-                {#{{ include(':components:thematiques.html.twig') }}#}
-                <input {% if status == 1 %} checked {% endif %} name="status" id="brouillon" value="1" type="radio"
-                                                                multiple
-                                                                onchange="sendFilter()">
-                <label for="brouillon">Brouillon</label>
-
-                <input {% if status == 2 %} checked {% endif %} name="status" id="attente" value="2" type="radio"
-                                                                multiple
-                                                                onchange="sendFilter()">
-                <label for="attente">En attente</label>
-
-                <input {% if status == 3 %} checked {% endif %} name="status" id="publier" value="3" type="radio"
-                                                                multiple
-                                                                onchange="sendFilter()">
-                <label for="publier">Publier</label>
-
-
-                <button type="submit" class="btn btn-default btn-sm"><i class="fa fa-search" aria-hidden="true"></i>
-                    Filter
-                </button>
-
-                <a href="{{ path('admin_project_index') }}" data-toggle="tooltip" data-placement="right"
-                   title="Reset des filtres"><i class="fa fa-refresh"></i> RESET FILTER</a>
-
-                {#  C'est quoi ca ? #}
-                {% set queryParams = app.request.query.all %}
-
-                {% if queryParams is not empty %}{{ app.request.query.get('title') }}{% endif %}
-                {% if queryParams is not empty %}{{ app.request.query.get('value') }}{% endif %}
-            </div>
-        </form>
-    </div>
-    {% for key, project in projects %}
-        <h5 data-toggle="collapse" data-target="#project_{{ key }}">
+    <div class="row">
+        <div class="col-sm-12 jumbotron">
             <div class="row">
-                <div class="col-xs-1">
-                    <a href="{{ path('admin_project_show', { 'slug': project.slug }) }}"><i
-                                class="fa fa-eye fa-admin-mini"></i></a>
-                    <a href="{{ path('admin_project_edit', { 'slug': project.slug }) }}"><i
-                                class="fa fa-pencil fa-admin-mini"></i></a>
+                <div class="col-sm-4">
+                    <label for="themes">Theme</label>
+                    <select name="theme" id="themes" class="filterProject form-control" multiple>
+                        {% for theme in themes %}
+                            <option value="{{ theme.id }}"
+                                    onchange="sendFilter()">{{ theme.name }} </option>
+                        {% endfor %}
+                    </select>
                 </div>
-                <div class="col-xs-1">
-                    {% if project.status == 1 %}
-                        <span class="label label-primary"><i class="fa fa-cog"></i> Brouillon</span>
-                    {% elseif project.status == 2 %}
-                        <span class="label label-primary"><i class="fa fa-flag"></i> En attente</span>
-                    {% elseif project.status == 3 %}
-                        <span class="label label-primary"><i class="fa fa-check"></i> Publier</span>
-                    {% else %}
-                        <span class="label label-primary"><i class="fa fa-cog"></i> Brouillon</span>
-                    {% endif %}
+                <div class="col-sm-3">
+                    <label for="postal">Code Postal</label>
+                    <input type="text" id="postal" class="filterProject form-control" maxlength="5">
                 </div>
-                <div class="col-xs-2">
-                    {{ project.title|slice(0,20) }}
+                <div class="col-sm-3">
+                    <label for="titre">Titre</label>
+                    <input type="text" id="titre" class="filterProject form-control">
                 </div>
-                <div class="col-xs-3">
-                    {% for theme in project.themes %}
-                        <span class="label label-primary">{{ theme.name }}</span>
-                    {% endfor %}
+                <div class="col-sm-1">
+                    <a href="{{ path('admin_project_index') }}" data-toggle="tooltip" data-placement="right"
+                       title="Reset des filtres"><i class="fa fa-refresh fa-admin-mini"></i></a>
                 </div>
-                <div class="col-xs-2">
-                    <span class="label label-success">{{ project.mayor.zipCode }}</span>
-                    <span class="label label-success">{{ project.mayor.town|slice(0,30) }}</span>
+
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="row">
+                <div class="col-sm-6">
+                    <h2>Projet en Attente</h2>
                 </div>
-                <div class="col-xs-1">
-                    <span class="label label-primary">
-                        <i class="fa fa-calendar-o"></i>
-                        {% if project.creationDate %}{{ project.creationDate|date('d-m-Y') }}{% endif %}
-                    </span>
-                </div>
-                <div class="col-xs-1">
-                    <span class="label label-primary">
-                        <i class="fa fa-calendar-plus-o"></i>
-                        {% if project.updateDate %}{{ project.updateDate|date('d-m-Y') }}{% endif %}
-                    </span>
-                </div>
-                <div class="col-xs-1 text-right">
-                    <span class="caret"></span>
+                <div class="col-sm-6 text-center">
+                    <ul class="pagination-waiting"></ul>
                 </div>
             </div>
-        </h5>
-        <div id="project_{{ key }}" class="collapse">
-
-            <div class=" jumbotron">
-                <div class="row">
-                    <div class="col-xs-2">
-
-                        {% for theme in project.themes %}
-                            <span class="label label-primary">{{ theme.name }}</span>
-                        {% endfor %}
-
-                    </div>
-                    <div class="col-xs-2">
-                        {% for img in project.images %}
-                            <img src="{{ img }}" alt="" width="50px">
-                        {% endfor %}
-
-                    </div>
-                    <div class="col-xs-2">
-                        <a href="{{ project.url }}"><i class="fa fa-link fa-admin"></i></a>
-                        <a href="{{ project.youtube }}"><i class="fa fa-youtube-square fa-admin"></i></a>
-                        <a href="{{ project.facebook }}"><i class="fa fa-facebook-square fa-admin"></i></a>
-                        <a href="{{ project.twitter }} "><i class="fa fa-twitter-square fa-admin"></i></a>
-                    </div>
-                    <div class="col-xs-2">
-
-                    </div>
-                    <div class="col-xs-3">
-                        <table>
-                            <thead>
-                            <tr>
-                                <th>Date du Projet</th>
-                                <th>Durée</th>
-                                <th>Cout</th>
-                                <th>Cofinancement</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr>
-                                <td>{% if project.projectDate %}{{ project.projectDate|date('d-m-Y') }}{% endif %}</td>
-                                <td>{{ project.projectDuration }}</td>
-                                <td>{{ project.projectCost }}</td>
-                                <td>{{ project.projectCoFinance }}</td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="jumbotron" id="content-waiting"></div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6">
+                    <h2>Projet en Brouillon</h2>
+                </div>
+                <div class="col-sm-6 text-center">
+                    <ul class="pagination-draft"></ul>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="jumbotron" id="content-draft"></div>
                 </div>
             </div>
         </div>
-    {% endfor %}
-    <div class="navigation text-center">
-        {{ knp_pagination_render(projects) }}
+        <div class="col-sm-6">
+            <div class="row">
+                <div class="col-sm-6">
+                    <h2>Projet Publié</h2>
+                </div>
+                <div class="col-sm-6 text-center">
+                    <ul class="pagination-publish"></ul>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="jumbotron" id="content-publish"></div>
+                </div>
+            </div>
+        </div>
     </div>
 
+
+{% endblock %}
+{% block javascripts %}
     <script>
         function sendFilter() {
             $("form[name='filter']").submit();
         }
 
         $(document).ready(function () {
+            AjaxNoFilter();
+            $('.filterProject').change(function () {
+
+                postal = $('#postal').val();
+                titre = $('#titre').val();
+                themes = $('#themes').val();
+
+                if (postal.length === 0 && titre.length === 0 && themes.length === 0) {
+                    location.reload();
+                }
+                else if (titre.length >= 3 || postal.length >= 3 || themes.length >= 1) {
+                    $.ajax({
+                        type: "POST",
+                        url: "/ajax/listProjectFilter",
+                        dataType: "json",
+                        data: {
+                            'postal': postal,
+                            'titre': titre,
+                            'themes': themes
+                        },
+                        timeout: 3000,
+                        success: function (response) {
+
+                            var project = response.data;
+
+                            hmtl_draft = "";
+                            hmtl_waiting = "";
+                            hmtl_publish = "";
+                            for (i = 0; i < project.length; i++) {
+                                var linkShow = "".replace('idProject', project[i].slug);
+                                var linkEdit = "".replace('idProject', project[i].slug);
+                                var result = {
+                                    'linkShow': linkShow,
+                                    'linkEdit': linkEdit,
+                                    'status': project[i].status,
+                                    'title': project[i].title,
+                                    'ville': project[i].ville,
+                                    'themes': project[i].themes,
+                                    'zipcode': project[i].zipcode
+
+                                };
+                                switch (project[i].status) {
+                                    case 1:
+                                        hmtl_draft += trameHTMlProject(result);
+                                        break;
+                                    case 2:
+                                        hmtl_waiting += trameHTMlProject(result);
+                                        break;
+                                    case 3:
+                                        hmtl_publish += trameHTMlProject(result);
+                                        break;
+                                }
+                            }
+                            $('#content-draft').html(hmtl_draft);
+                            $('#content-waiting').html(hmtl_waiting);
+                            $('#content-publish').html(hmtl_publish);
+
+                        },
+                        error: function () {
+                            console.log('Ajax call error');
+                        }
+                    })
+                }
+            });
+
+            $('#themes').select2();
+
             $('[data-toggle="tooltip"]').tooltip();
+
+
         });
 
+        function AjaxNoFilter() {
+            maxWaiting = {{ maxProject.waiting }};
+            maxDraft = {{ maxProject.draft }};
+            maxPublish = {{ maxProject.publish }};
+
+            nbPageWaiting = Math.round(maxWaiting / 10);
+            if (nbPageWaiting === 0) {
+                nbPageWaiting = 1;
+            }
+            nbPageDraft = Math.round(maxDraft / 10);
+            if (nbPageDraft === 0) {
+                nbPageDraft = 1;
+            }
+            nbPagePublish = Math.round(maxPublish / 10);
+            if (nbPagePublish === 0) {
+                nbPagePublish = 1;
+            }
+
+            var MaxPage = {
+                'waiting': nbPageWaiting,
+                'draft': nbPageDraft,
+                'publish': nbPagePublish
+            };
+
+            var projectStatus = [
+                'waiting',
+                'draft',
+                'publish'
+            ];
+
+            projectStatus.forEach(function (status) {
+                    AjaxProject(status, MaxPage[status]);
+                }
+            );
+        }
+
+        function AjaxProject(tag, totalPage) {
+
+            $('.pagination-' + tag).twbsPagination({
+                totalPages: totalPage,
+                visiblePages: 10,
+                onPageClick: function (event, page) {
+                    var max = page * 10;
+                    var offset = max - 10;
+                    $.ajax({
+                        type: "POST",
+                        url: "/ajax/listProject/" + tag,
+                        dataType: "json",
+                        data: {'offset': offset},
+                        timeout: 3000,
+                        success: function (response) {
+                            var project = response.data;
+                            html = "";
+                            for (i = 0; i < project.length; i++) {
+                                var linkShow = "{{ path('admin_project_show', {'slug': "idProject"}) }}".replace('idProject', project[i].slug);
+                                var linkEdit = "{{ path('admin_project_edit', {'slug': "idProject"}) }}".replace('idProject', project[i].slug);
+                                var result = {
+                                    'linkShow': linkShow,
+                                    'linkEdit': linkEdit,
+                                    'status': project[i].status,
+                                    'title': project[i].title,
+                                    'ville': project[i].ville,
+                                    'themes': project[i].themes,
+                                    'zipcode': project[i].zipcode
+
+                                };
+                                html += trameHTMlProject(result);
+                            }
+
+                            $('#content-' + tag).html(html);
+
+
+                        },
+                        error: function () {
+                            console.log('Ajax call error');
+                        }
+                    })
+                }
+            });
+        }
+
+        function trameHTMlProject(result) {
+            html = "";
+
+            html += '<h5>\n' +
+                '<div class="row">\n' +
+                '<div class="col-sm-2">\n' +
+                '<a href="' + result.linkShow + '">\n' +
+                '<i class="fa fa-eye fa-admin-mini"></i>\n' +
+                '</a>\n' +
+                '<a href="' + result.linkEdit + '">\n' +
+                '<i class="fa fa-pencil fa-admin-mini"></i>\n' +
+                '</a>\n' +
+                '</div>\n';
+
+            if (result.themes !== undefined) {
+                html += '<div class="col-sm-3">\n';
+            } else {
+                html += '<div class="col-sm-6">\n';
+            }
+            html += '<h3>' +
+                result.title.slice(0, 20) +
+                '</h3>' +
+                '</div>\n';
+
+            if (result.themes !== undefined) {
+                html += '<div class="col-sm-3">\n';
+                for (var i = 0; i < result.themes.length; i++) {
+                    html += '<span class="label label-primary">' + result.themes[i] + '</span>\n';
+                }
+                html += '</div>\n';
+            }
+            html += '<div class="col-sm-4">\n' +
+                '<span class="label label-success">' + result.zipcode + '</span>\n' +
+                '<span class="label label-success">' + result.ville + '</span>\n' +
+                '</div>\n' +
+                '</div>' +
+                '</h5>';
+            return html;
+
+        }
     </script>
 {% endblock %}

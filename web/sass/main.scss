@@ -331,6 +331,24 @@ a:hover, a:active {
   text-align: center;
   z-index: 1000;
   position: fixed;
+  background: rgba(0, 110, 45, 0.9);
+  top: 0px;
+  width: 100vw;
+  .notif {
+    width: 50vw;
+    height: 100vh;
+    padding-top: 25vh;
+    margin: 0 auto;
+  }
+}
+
+.proj {
+  color: $color2;
+  font-size: 1.8em;
+  font-weight: bold;
+  text-align: center;
+  z-index: 1000;
+  position: fixed;
   background: $color6;
   top: 0px;
   width: 100vw;
@@ -343,7 +361,7 @@ a:hover, a:active {
 }
 
 #map {
-  height: 600px;
+  height: 400px;
   width: 100%;
   a {
     color: #000;
@@ -355,17 +373,30 @@ a.anchor {
   top: -250px;
   visibility: hidden;
 }
-/*
 
-div {
+.caution {
+  color: $color1;
+  margin-top: 10px;
+  margin-left: 30px;
+  span {
+    font-weight: 700;
+  }
+}
+
+
+/*div {
   border: 1px solid cyan !important;
+  padding: 5px;
 }
 .row {
   border: 2px solid red !important;
+  padding: 5px;
 }
 [class*="col-"]{
   border: 1px solid black !important;
-}
-*/
+  padding: 5px;
+
+}*/
+
 
 

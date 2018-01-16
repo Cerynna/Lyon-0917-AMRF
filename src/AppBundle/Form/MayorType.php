@@ -15,7 +15,7 @@ class MayorType extends AbstractType
     {
         $builder->add('firstName')->add('lastName')->add('address')->add('insee')->add('email')->add('phone')->add('town')->add('zipCode')->add('department')->add('region')->add('latitude')->add('longitude')->add('population')->add('url')->add('facebook')->add('twitter')->add('google');
     }
-    
+
     /**
      * {@inheritdoc}
      */
@@ -33,6 +33,4 @@ class MayorType extends AbstractType
     {
         return 'mayor';
     }
-
-
 }

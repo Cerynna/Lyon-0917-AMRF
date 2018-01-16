@@ -8,12 +8,25 @@ use Doctrine\ORM\EntityRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Routing\Router;
+
 
 use Symfony\Component\Form\FormBuilderInterface;
 
 
 class SearchType extends AbstractType
 {
+
+    /**
+     * @var Router
+     */
+    private $router;
+
+    public function __construct(Router $router)
+    {
+        $this->router = $router;
+    }
+
     /**
      * {@inheritdoc}
      */
@@ -54,10 +67,14 @@ class SearchType extends AbstractType
             ->add('commune')
             ->add('region')
             ->add('departement')
+            ->setAction($this->router->generate('search'))
+            ->setMethod("GET")
         ;
 
     }
 
-
-
+    public function getBlockPrefix()
+    {
+        return null;
+    }
 }

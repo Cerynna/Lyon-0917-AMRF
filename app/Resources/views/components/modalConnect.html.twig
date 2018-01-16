@@ -22,15 +22,12 @@
                                     <label for="mdp">Mot de passe</label>
                                     <input id="mdp" type="password" name="_password" class="form-control">
                                 </div>
-                                <div class="form-group">
-                                        <input type="checkbox" id="remember_me" name="_remember_me" class=""/>
-                                        <label for="remember_me">Se souvenir de moi</label>
-                                </div>
+
                                 <div>
                                     <button class="btn" type="submit" name="action">Connexion</button>
                                 </div>
                                 <div>
-                                    <a href="#">Mot de passe oublié ?</a>
+                                    <a href="{{ path('forgot_password') }}">Mot de passe oublié ?</a>
                                 </div>
                                 <input type="hidden" name="_target_path" value="/mayor"/>
                             </form>
@@ -48,15 +45,11 @@
                                     <label for="mdp">Mot de passe</label>
                                     <input id="mdp" type="password" name="_password" class="form-control">
                                 </div>
-                                <div class="form-group saveMe">
-                                    <input type="checkbox" id="remember_me" name="_remember_me"/>
-                                    <label for="remember_me">Se souvenir de moi</label>
-                                </div>
                                 <div class="containerConnect">
                                     <button class="btn" type="submit" name="action">Connexion</button>
                                 </div>
                                 <div class="containerConnect">
-                                    <a href="#">Mot de passe oublié ?</a>
+                                    <a href="{{ path('forgot_password') }}">Mot de passe oublié ?</a>
                                 </div>
                                 <input type="hidden" name="_target_path" value="/partner"/>
                             </form>

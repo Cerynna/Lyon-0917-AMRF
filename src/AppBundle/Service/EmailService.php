@@ -12,7 +12,7 @@ namespace AppBundle\Service;
 class EmailService
 {
 
-    const MAIL_FROM = "wcsprojetmaire@gmail.com";
+    const MAIL_FROM = "noreply@wikidesmaires.amrf.fr";
 
 
     const TYPE_MAIL_EVENT = [
@@ -49,6 +49,11 @@ class EmailService
         'key' => 7,
         'renderHtml' => 'email/projectModer.html.twig',
         'renderTxt' => 'email/projectModer.txt.twig',
+    ];
+    const TYPE_MAIL_FORGOT_PASSWORD = [
+        'key' => 8,
+        'renderHtml' => 'email/forgotPass.html.twig',
+        'renderTxt' => 'email/forgotPass.txt.twig',
     ];
 
     protected $mailer;
@@ -144,14 +149,9 @@ class EmailService
             case self::TYPE_MAIL_PROJECT_VALID['key']:
                 $message->setSubject("Votre projet est en ligne");
                 $message->setBody(
-                    $this->twig->render(self::TYPE_MAIL_PROJECT_VALID['renderHtml'], [
-                            'message' => $mail['message'],
-                        ]
-                    ), 'text/html');
+                    $this->twig->render(self::TYPE_MAIL_PROJECT_VALID['renderHtml']), 'text/html');
                 $message->addPart(
-                    $this->twig->render(self::TYPE_MAIL_PROJECT_VALID['renderTxt'], [
-                        'message' => $mail['message'],
-                    ]), 'text/plain');
+                    $this->twig->render(self::TYPE_MAIL_PROJECT_VALID['renderTxt']), 'text/plain');
                 break;
 
 
@@ -159,26 +159,35 @@ class EmailService
                 $message->setSubject("Création de votre compte Wiki des Maires");
                 $message->setBody(
                     $this->twig->render(self::TYPE_MAIL_NEW_USER['renderHtml'], [
-                            'message' => $mail['message'],
-                        ]
-                    ), 'text/html');
+                        'login' => $mail['login'],
+                        'role'  =>$mail['role'],
+                    ]), 'text/html');
                 $message->addPart(
                     $this->twig->render(self::TYPE_MAIL_NEW_USER['renderTxt'], [
-                        'message' => $mail['message'],
-                    ]), 'text/plain');
+                    'login' => $mail['login'],
+                    'role'  =>$mail['role'],
+                ]), 'text/plain');
                 break;
 
 
             case self::TYPE_MAIL_PROJECT_MODER['key']:
                 $message->setSubject("Votre projet est envoyé pour modération");
                 $message->setBody(
-                    $this->twig->render(self::TYPE_MAIL_PROJECT_MODER['renderHtml'], [
-                            'message' => $mail['message'],
+                    $this->twig->render(self::TYPE_MAIL_PROJECT_MODER['renderHtml']), 'text/html');
+                $message->addPart(
+                    $this->twig->render(self::TYPE_MAIL_PROJECT_MODER['renderTxt']), 'text/plain');
+                break;
+
+            case self::TYPE_MAIL_FORGOT_PASSWORD['key']:
+                $message->setSubject("Réinitialisation du mot de passe");
+                $message->setBody(
+                    $this->twig->render(self::TYPE_MAIL_FORGOT_PASSWORD['renderHtml'], [
+                            'token' => $mail['token'],
                         ]
                     ), 'text/html');
                 $message->addPart(
-                    $this->twig->render(self::TYPE_MAIL_PROJECT_MODER['renderTxt'], [
-                        'message' => $mail['message'],
+                    $this->twig->render(self::TYPE_MAIL_FORGOT_PASSWORD['renderTxt'], [
+                        'token' => $mail['token'],
                     ]), 'text/plain');
                 break;
 

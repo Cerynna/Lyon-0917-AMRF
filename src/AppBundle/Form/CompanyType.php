@@ -19,11 +19,11 @@ class CompanyType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder->add('name')
-		//	->add('slug', TextType::class,array('mapped' => false,))
+            //	->add('slug', TextType::class,array('mapped' => false,))
             ->add('address')
             ->add('zipCode')
             ->add('city')
-           // ->add('activities')
+            // ->add('activities')
 
             ->add('activities', EntityType::class, array(
                 'class' => 'AppBundle:Dictionary',
@@ -41,7 +41,6 @@ class CompanyType extends AbstractType
             ))
             ->add('presentation')
             ->add('logo')
-
             ->add('url')
             ->add('facebook')
             ->add('linkedin')
@@ -49,10 +48,9 @@ class CompanyType extends AbstractType
             ->add('contactFirstName')
             ->add('contactLastName')
             ->add('contactPhone')
-            ->add('contactEmail')
-        ;
+            ->add('contactEmail');
     }
-    
+
     /**
      * {@inheritdoc}
      */

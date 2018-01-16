@@ -10,15 +10,16 @@ namespace AppBundle\Controller;
 
 
 use AppBundle\Entity\Project;
+use AppBundle\Entity\SubmitToAdmin;
 use AppBundle\Entity\TitleProject;
 use AppBundle\Entity\Uploader;
-use AppBundle\Form\SubmitToAdmin;
 use AppBundle\Service\EmailService;
 use AppBundle\Service\SlugService;
 use AppBundle\Service\TabProjectService;
 use AppBundle\Service\UploadService;
 use AppBundle\Service\ValidProjectService;
 
+use function array_merge;
 use DateTime;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -26,8 +27,8 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
 
-
 /**
+ * @property  emailService
  * @Route("mayor/")
  */
 class MayorController extends Controller
@@ -43,8 +44,6 @@ class MayorController extends Controller
         $em = $this->getDoctrine()->getManager();
         $em->persist($user);
         $em->flush();
-
-
         return $this->render('private/maires/maireIndex.html.twig');
     }
 
@@ -60,9 +59,7 @@ class MayorController extends Controller
         $mayor = $user->getMayor();
         $form = $this->createForm('AppBundle\Form\MayorType', $mayor);
         $form->handleRequest($request);
-
         $em = $this->getDoctrine()->getManager();
-
         if ($form->isSubmitted() && $form->isValid()) {
             $em->persist($user);
             $em->flush();
@@ -70,7 +67,6 @@ class MayorController extends Controller
                 'notice',
                 '<p>Vos informations ont bien été enregistrées</p>'
             );
-
             return $this->redirectToRoute('mayor_profil', array('id' => $mayor->getId()));
         }
 
@@ -89,11 +85,8 @@ class MayorController extends Controller
     {
         $user = $this->getUser();
         $mayorid = $user->getMayor()->getId();
-
         $em = $this->getDoctrine()->getManager();
         $projects = $em->getRepository("AppBundle:Project")->getProjectByMayor($mayorid);
-
-
         return $this->render('private/maires/maireProjet.html.twig', array(
             'projects' => $projects,
         ));
@@ -111,13 +104,9 @@ class MayorController extends Controller
         $projectTitle = new TitleProject();
         $form = $this->createForm('AppBundle\Form\TitleProjectType', $projectTitle);
         $form->handleRequest($request);
-
         $user = $this->getUser();
         $MayorConnect = $user->getMayor();
-
-
         if ($form->isSubmitted() && $form->isValid()) {
-
             $project = new Project();
             $project->setTitle($projectTitle->getTitle());
             $project->setMayor($MayorConnect);
@@ -126,9 +115,7 @@ class MayorController extends Controller
             $project->setProjectDate(new \DateTime('now'));
             $project->setSlug($slugService->slug($projectTitle->getTitle()));
             $project->setStatus(Project::STATUS_DRAFT);
-
             $em = $this->getDoctrine()->getManager();
-
             $em->persist($project);
             $em->flush();
             return $this->redirectToRoute('mayor_project_edit', array('slug' => $project->getSlug()));
@@ -156,14 +143,13 @@ class MayorController extends Controller
         SlugService $slugService,
         TabProjectService $tabProjectService,
         UploadService $uploadService,
+        EmailService $emailService,
         ValidProjectService $projectService
     )
     {
-
         $user = $this->getUser();
         $idMayorConnect = $user->getMayor();
         $idMayorProject = $project->getMayor();
-
         $uri = $request->getPathInfo();
         $uriExplode = explode('/', $uri);
         $page = array_pop($uriExplode);
@@ -178,25 +164,20 @@ class MayorController extends Controller
             $form->remove('creationDate');
             $form->remove('updateDate');
             $form->handleRequest($request);
-
             $uploaderFile = new Uploader();
             $uplodFileForm = $this->createForm('AppBundle\Form\UploaderType', $uploaderFile);
             $uplodFileForm->handleRequest($request);
-
-
             $submitToAdmin = new SubmitToAdmin();
             $formSubmitToAdmin = $this->createForm('AppBundle\Form\SubmitToAdmin', $submitToAdmin);
             $formSubmitToAdmin->handleRequest($request);
-
             $uploaderImage = new Uploader();
             $uplodImageForm = $this->createForm('AppBundle\Form\UploaderType', $uploaderImage);
             $uplodImageForm->handleRequest($request);
 
             if ($formSubmitToAdmin->isSubmitted() && $formSubmitToAdmin->isValid()) {
-
                 $projectService->Verif($project);
-                dump($projectService->getErreur());
                 if (!empty($projectService->getErreur())) {
+
                     return $this->render('private/maires/projectEdit.html.twig', array(
                         'slug' => $project->getSlug(),
                         'project' => $project,
@@ -204,13 +185,19 @@ class MayorController extends Controller
                         'form_toAdmin' => $formSubmitToAdmin->createView(),
                         'upload_image_form' => $uplodImageForm->createView(),
                         'upload_file_form' => $uplodFileForm->createView(),
-                        'page' => $page,
                         'erreurs' => $projectService->getErreur(),
+                        'page' => 5,
                     ));
                 } else {
                     $project->setStatus(Project::STATUS_WAITING);
                     $em->persist($project);
                     $em->flush();
+                    $message = [
+                        'to' => $user->getEmail(),
+                        'type' => EmailService::TYPE_MAIL_PROJECT_MODER['key'],
+                        'login' => $user->getLogin(),
+                    ];
+                    $emailService->sendEmail($message);
 
                     $this->addFlash(
                         'notice',
@@ -220,52 +207,64 @@ class MayorController extends Controller
                         'slug' => $project->getSlug(),
                     ]);
                 }
-
             }
 
             if ($uplodImageForm->isSubmitted() && $uplodImageForm->isValid()) {
                 $files = $uploaderImage->getPath();
                 $images = $project->getImages();
                 $dbimg = $images;
-                $dbimg[] = $uploadService->fileUpload($files, '/project/' . $project->getId() . '/photos', "img");
+                $newImg = $uploadService->fileUpload($files, '/project/' . $project->getId() . '/photos', "img");
+                if (!empty($newImg)) {
+                    $dbimg = array_merge($dbimg, [$newImg]);
+                } else {
+                    $this->addFlash(
+                        'notice',
+                        '<p>Veuillez choisir un fichier JPG, JPEG ou PNG</p>'
+                    );
+                }
                 $project->setImages($dbimg);
-                $this->getDoctrine()->getManager()->flush();
+                $em->persist($project);
+                $em->flush();
                 return $this->redirectToRoute('mayor_project_edit', array(
                     'slug' => $project->getSlug(),
                     'page' => 1
                 ));
             }
-
             if ($uplodFileForm->isSubmitted() && $uplodFileForm->isValid()) {
                 $file = $uploaderFile->getPath();
                 $fileNewDB = $uploadService->fileUpload($file, '/project/' . $project->getId() . '/file', "file");
-                $project->setFile($fileNewDB);
-                $this->getDoctrine()->getManager()->flush();
+                if (!empty($fileNewDB)) {
+                    $project->setFile($fileNewDB);
+                } else {
+                    $this->addFlash(
+                        'notice',
+                        '<p>Veuillez choisir un fichier PDF</p>'
+
+                    );
+                }
+
+                $em->persist($project);
+                $em->flush();
                 return $this->redirectToRoute('mayor_project_edit', array(
                     'slug' => $project->getSlug(),
                     'page' => 4
                 ));
             }
-
-
             if ($form->isSubmitted() && $form->isValid()) {
-
                 $project->setSlug($slugService->slug($project->getTitle()));
                 $project->setStatus(Project::STATUS_DRAFT);
                 $project->setMayor($idMayorConnect);
                 $em->persist($project);
                 $em->flush();
-
                 if (!empty($_POST['page'])) {
                     $pageSend = $tabProjectService->findUrl($_POST['page'], $page);
                 } else {
                     $pageSend = $page;
                 }
                 $this->addFlash(
-                    'notice',
+                    'proj',
                     '<p>Vos informations ont bien été enregistrées</p>'
                 );
-
                 return $this->redirectToRoute('mayor_project_edit', [
                     'slug' => $project->getSlug(),
                     'page' => $pageSend,
@@ -282,6 +281,7 @@ class MayorController extends Controller
                 'upload_file_form' => $uplodFileForm->createView(),
                 'page' => $page,
             ));
+
         } else {
             return $this->redirectToRoute('mayor_index');
         }
@@ -294,7 +294,7 @@ class MayorController extends Controller
     {
         $favorites = $this->getDoctrine()->getRepository('AppBundle:Favorite')->getFavoriteByUserId($this->getUser()->getId());
         return $this->render('private/favoris.html.twig', [
-            'favorites' => $favorites,
+            'myFavorites' => $favorites,
         ]);
     }
 

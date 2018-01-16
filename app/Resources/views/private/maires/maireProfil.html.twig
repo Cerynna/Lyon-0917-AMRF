@@ -5,22 +5,7 @@
     <h2>Mon profil</h2>
     <!-- Nav tabs -->
     <div class="row tabPannel">
-        <ul class="list-inline text-center visible-xs" role="tablist">
-            <li role="presentation" class="col-xs-6 tabLi active">
-                <a href="#profil" aria-controls="profil" role="tab" data-toggle="tab">Mon Profil</a>
-            </li>
-            <li style="padding-bottom: 30px" role="presentation" class="col-xs-6 tabLi">
-                <a href="#mairie" aria-controls="mairie" role="tab" data-toggle="tab">Ma Mairie</a>
-            </li>
-            <li role="presentation" class="col-xs-6 tabLi">
-                <a href="#reseau" aria-controls="reseau" role="tab" data-toggle="tab">Réseaux Sociaux</a>
-            </li>
-            <li style="padding-bottom: 30px" role="presentation" class="col-xs-6 tabLi">
-                <a href="#settings" aria-controls="settings" role="tab" data-toggle="tab">Mot de Passe</a>
-            </li>
-        </ul>
-
-        <ul class="list-inline text-center visible-lg visible-sm" role="tablist">
+        <ul class="list-inline text-center" role="tablist">
             <li role="presentation" class="tabLi active">
                 <a href="#profil" aria-controls="profil" role="tab" data-toggle="tab">Mon Profil</a>
             </li>
@@ -31,8 +16,24 @@
                 <a href="#reseau" aria-controls="reseau" role="tab" data-toggle="tab">Réseaux Sociaux</a>
             </li>
         </ul>
+        <div class="errorForm">{{ form_errors(form.firstName) | striptags }}</div>
+        <div class="errorForm">{{ form_errors(form.lastName) | striptags }}</div>
+        <div class="errorForm">{{ form_errors(form.phone) | striptags }}</div>
+        <div class="errorForm">{{ form_errors(form.email) | striptags }}</div>
+        <div class="errorForm">{{ form_errors(form.town) | striptags }}</div>
+        <div class="errorForm">{{ form_errors(form.zipCode) | striptags }}</div>
+        <div class="errorForm">{{ form_errors(form.town) | striptags }}</div>
+        <div class="errorForm">{{ form_errors(form.address) | striptags }}</div>
+        <div class="errorForm">{{ form_errors(form.url) | striptags }}</div>
+        <div class="errorForm">{{ form_errors(form.facebook) | striptags }}</div>
+        <div class="errorForm">{{ form_errors(form.twitter) | striptags }}</div>
+        <div class="errorForm">{{ form_errors(form.google) | striptags }}</div>
+
         <!-- Tab panes -->
         <div class="tab-content">
+            <div class="erreur hidden">
+
+            </div>
             <div role="tabpanel" class="tab-pane active" id="profil">
                 <div class="star">Le symbole * indique que cette information est nécessaire.</div>
                 <h3>Mon profil</h3>
@@ -41,14 +42,12 @@
                         <div class="form-group">
                             {{ form_label(form.firstName, "Prénom *") }}
                             {{ form_widget(form.firstName) }}
-                            <div class="errorForm">{{ form_errors(form.firstName) | striptags }}</div>
                         </div>
                     </div>
                     <div class="col-lg-6 col-sm-6">
                         <div class="form-group">
                             {{ form_label(form.lastName, "Nom *") }}
                             {{ form_widget(form.lastName) }}
-                            <div class="errorForm">{{ form_errors(form.lastName) | striptags }}</div>
                         </div>
                     </div>
                 </div>
@@ -57,20 +56,17 @@
                         <div class="form-group">
                             {{ form_label(form.phone, "Téléphone *") }}
                             {{ form_widget(form.phone) }}
-                            <div class="errorForm">{{ form_errors(form.phone) | striptags }}
-                            </div>
                         </div>
                     </div>
                     <div class="col-lg-6 col-sm-6">
                         <div class="form-group">
                             {{ form_label(form.email, "Email *") }}
                             {{ form_widget(form.email) }}
-                            <div class="errorForm">{{ form_errors(form.email) | striptags }}</div>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-12 col-md-12 text-center">
-                    <button class="btn" type="submit">Enregistrer vos informations</button>
+                    <button class="btn" id="btnSubmit" type="submit">Enregistrer vos informations</button>
                 </div>
             </div>
             <div role="tabpanel" class="tab-pane" id="mairie">
@@ -81,14 +77,12 @@
                         <div class="form-group">
                             {{ form_label(form.town, "Commune *") }}
                             {{ form_widget(form.town) }}
-                            <div class="errorForm">{{ form_errors(form.town) | striptags }}</div>
                         </div>
                     </div>
                     <div class="col-lg-6 col-sm-6">
                         <div class="form-group">
                             {{ form_label(form.zipCode, "Code Postal *") }}
                             {{ form_widget(form.zipCode) }}
-                            <div class="errorForm">{{ form_errors(form.zipCode) | striptags }}</div>
                         </div>
                     </div>
                 </div>
@@ -97,7 +91,6 @@
                         <div class="form-group">
                             {{ form_label(form.address, "Adresse de la Mairie *") }}
                             {{ form_widget(form.address) }}
-                            <div class="errorForm">{{ form_errors(form.address) | striptags }}</div>
                         </div>
                     </div>
                 </div>
@@ -105,8 +98,7 @@
                     <div class="col-lg-6 col-sm-6">
                         <div class="form-group">
                             {{ form_label(form.population, "Nombre d'habitants") }}
-                            {{ form_widget(form.population) }}
-                            <div class="errorForm">{{ form_errors(form.population) | striptags }}</div>
+                            {{ form_widget(form.population, { 'attr':{'disabled':'disabled'} }) }}
                         </div>
                     </div>
                     <div class="col-lg-6 col-sm-6">
@@ -117,7 +109,7 @@
                     </div>
                 </div>
                 <div class="col-lg-12 col-md-12 text-center">
-                    <button class="btn" type="submit">Enregistrer vos informations</button>
+                    <button class="btn" type="submit" id="btnSubmit">Enregistrer vos informations</button>
                 </div>
             </div>
             <div role="tabpanel" class="tab-pane" id="reseau">
@@ -128,14 +120,12 @@
                         <div class="form-group">
                             {{ form_label(form.url, "Site Internet") }}
                             {{ form_widget(form.url) }}
-                            <div class="errorForm">{{ form_errors(form.url) | striptags }}</div>
                         </div>
                     </div>
                     <div class="col-lg-6 col-sm-6">
                         <div class="form-group">
                             {{ form_label(form.facebook, "Compte Facebook") }}
                             {{ form_widget(form.facebook) }}
-                            <div class="errorForm">{{ form_errors(form.facebook) | striptags }}</div>
                         </div>
                     </div>
                 </div>
@@ -144,33 +134,82 @@
                         <div class="form-group">
                             {{ form_label(form.google, "Compte Google+") }}
                             {{ form_widget(form.google) }}
-                            <div class="errorForm">{{ form_errors(form.google) | striptags }}</div>
                         </div>
                     </div>
                     <div class="col-lg-6 col-sm-6">
                         <div class="form-group">
                             {{ form_label(form.twitter, "Compte Twitter") }}
                             {{ form_widget(form.twitter) }}
-                            <div class="errorForm">{{ form_errors(form.twitter) | striptags }}</div>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-12 col-md-12 text-center">
-                    <button class="btn" type="submit">Enregistrer vos informations</button>
+                    <button class="btn" type="submit" id="btnSubmit">Enregistrer vos informations</button>
                 </div>
             </div>
         </div>
     </div>
-{{ form_row(form._token) }}
-            {{ form_end(form, {'render_rest': false}) }}
+    {{ form_row(form._token) }}
+    {{ form_end(form, {'render_rest': false}) }}
 {% endblock %}
 {% block javascripts %}
     <script>
+        $(document).ready(function () {
+            $(".btn").on("click", function () {
 
+                var firstName = $('#mayor_firstName').val();
+                var lastName = $('#mayor_lastName').val();
+                var phone = $('#mayor_phone').val();
+                var town = $('#mayor_town').val();
+                var address = $('#mayor_address').val();
+                var zipCode = $('#mayor_zipCode').val();
+                var population = $('#mayor_population').val();
+                var email = $('#mayor_email').val();
+       
+                messageError = "";
+                if (firstName.length < 2) {
+                    messageFirstName = "Votre prénom doit comporter au moins 2 caractères. ";
+                    messageError += "<li>" + messageFirstName + "</li>";
+                }
+                if (lastName.length <= 2) {
+                    messageLastName = "Votre nom doit comporter au moins 2 caractères. ";
+                    messageError += "<li>" + messageLastName + "</li>";
+                }
+                if (population > 9999) {
+                    messagePopulation = "La population ne peut pas excéder 9999 habitants";
+                    messageError += "<li>" + messagePopulation + "</li>";
+                }
+                if (phone.length < 10) {
+                    messagePhone = "Veuillez entrer un numéro au format 0X XX XX XX XX";
+                    messageError += "<li>" + messagePhone + "</li>";
+                }
+                if (email.length < 1) {
+                    messageEmail = "Votre email ne peut pas être vide. ";
+                    messageError += "<li>" + messageEmail + "</li>";
+                }
+                if (town.length < 1) {
+                    messageVille = "Votre ville ne peut pas être vide. ";
+                    messageError += "<li>" + messageVille + "</li>";
+                }
+                if (address.length < 1) {
+                    messageAddress = "L'adresse de votre mairie ne peut pas être vide. ";
+                    messageError += "<li>" + messageAddress + "</li>";
+                }
+                if (zipCode.length < 5) {
+                    messageZipCode = "Veuillez entrer un code postal à 5 chiffres";
+                    messageError += "<li>" + messageZipCode + "</li>";
+                }
+                if (messageError.length >= 3) {
+
+                    $('.erreur').html("<ul>" + messageError + "</ul>").removeClass('hidden');
+                }
+            });
+        });
         var firstName = document.getElementById("mayor_firstName");
         var lastName = document.getElementById("mayor_lastName");
         var phone = document.getElementById("mayor_phone");
         var town = document.getElementById("mayor_town");
+        var address = document.getElementById("mayor_address");
         var zipCode = document.getElementById("mayor_zipCode");
         var population = document.getElementById("mayor_population");
         var submit = document.getElementById("btnSubmit");
@@ -180,60 +219,52 @@
             var messageLastName = "";
             var messagePhone = "";
             var messageTown = "";
+            var messageAddress = "";
             var messageZipCode = "";
             var messagePopulation = "";
 
-//verif firstname
+            //verif firstname
             if (firstName.value.length < 2) {
                 messageFirstName += "Votre prénom doit comporter au moins 2 caractères. ";
 
             }
             if (firstName.validity.patternMismatch) {
                 messageFirstName += "Votre prénom ne peut contenir de chiffre.";
-
-           }
-//verif lastname
-
-            if (lastName.value.length < 2) {
+            }
+            if (lastName.value.length <= 2) {
                 messageLastName += "Votre nom doit comporter au moins 2 caractères. ";
-
             }
             if (lastName.validity.patternMismatch) {
                 messageLastName += "Votre nom ne peut contenir de chiffre.";
-
             }
-//verif phone
-
             if (phone.validity.patternMismatch) {
                 messagePhone += "Veuillez entrer un numéro au format 0X XX XX XX XX";
-
             }
-
-//verif commune
             if (town.validity.patternMismatch) {
                 messageTown += "Le nom de votre ville ne peut contenir de chiffre";
-
+            }
+            if (address.validity.length < 1) {
+                messageAddress += "Vous devez entrer l'adresse de votre mairie";
             }
 
-//verif zipcode
             if (zipCode.validity.patternMismatch) {
                 messageZipCode += "Veuillez entrer un code postal à 5 chiffres";
-
             }
-
-//verif population
             if (population.value > 9999) {
                 messagePopulation += "La population ne peut pas excéder 9999 habitants";
-
             }
 
             firstName.setCustomValidity(messageFirstName);
             lastName.setCustomValidity(messageLastName);
             phone.setCustomValidity(messagePhone);
             town.setCustomValidity(messageTown);
+            address.setCustomValidity(messageAddress);
             zipCode.setCustomValidity(messageZipCode);
             population.setCustomValidity(messagePopulation);
 
-        });
+        })
+        ;
+
+
     </script>
 {% endblock %}

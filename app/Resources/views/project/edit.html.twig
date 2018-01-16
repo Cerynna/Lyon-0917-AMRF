@@ -19,13 +19,13 @@
             <li>
                 {{ form_start(delete_form) }}
                 <button class="fa-admin" data-toggle="tooltip" data-placement="right"
-                        title="Supprimer Project" type="submit"><i class="fa fa-trash-o"></i></button>
+                        title="Supprimer Project" type="submit" onclick="return ConfirmDelete()"><i class="fa fa-trash-o"></i></button>
                 {{ form_end(delete_form) }}
 
             </li>
         </ul>
     </div>
-    <h1>Project edit</h1>
+    <h1>Modifier le projet</h1>
     {% if project.images|length < 4 %}
         <div id="modalImageUpload" class="modal fade" role="dialog">
             <div class="modal-dialog">
@@ -90,15 +90,15 @@
                 <div id="errorTitle"></div>
             </div>
             <div class="col-sm-4">
-                <h5>{{ form_label(edit_form.creationDate) }}</h5>
+                <h5>{{ form_label(edit_form.creationDate, "Date de création") }}</h5>
                 {{ form_widget(edit_form.creationDate) }}
             </div>
             <div class="col-sm-4">
-                <h5>{{ form_label(edit_form.updateDate) }}</h5>
+                <h5>{{ form_label(edit_form.updateDate, "Date de mise à jour") }}</h5>
                 {{ form_widget(edit_form.updateDate) }}
             </div>
             <div class="col-sm-4">
-                <h5>{{ form_label(edit_form.status) }}</h5>
+                <h5>{{ form_label(edit_form.status, "Statut") }}</h5>
                 {{ form_widget(edit_form.status) }}
             </div>
             <div class="col-sm-12">
@@ -121,60 +121,60 @@
             </div>
             <div class="col-sm-12">
                 <div class="col-sm-3">
-                    <h5>{{ form_label(edit_form.projectDate) }}</h5>
+                    <h5>{{ form_label(edit_form.projectDate, 'Date du projet') }}</h5>
                     {{ form_widget(edit_form.projectDate) }}
                 </div>
                 <div class="col-sm-3">
-                    <h5>{{ form_label(edit_form.projectCoFinance) }}</h5>
+                    <h5>{{ form_label(edit_form.projectCoFinance, 'Cofinancements') }}</h5>
                     {{ form_widget(edit_form.projectCoFinance) }}
                 </div>
                 <div class="col-sm-3">
-                    <h5>{{ form_label(edit_form.projectDuration) }}</h5>
+                    <h5>{{ form_label(edit_form.projectDuration, 'Durée du projet') }}</h5>
                     {{ form_widget(edit_form.projectDuration) }}
                 </div>
                 <div class="col-sm-3">
-                    <h5>{{ form_label(edit_form.projectCost) }}</h5>
+                    <h5>{{ form_label(edit_form.projectCost, 'Coût du projet') }}</h5>
                     {{ form_widget(edit_form.projectCost) }}
                 </div>
             </div>
             <div class="col-sm-12">
-                <h5>{{ form_label(edit_form.descResume) }}</h5>
+                <h5>{{ form_label(edit_form.descResume, 'Résumé') }}</h5>
                 {{ form_widget(edit_form.descResume, {'attr': {
                     'rows':'3'} }) }}
 
             </div>
             <div class="col-sm-12">
-                <h5>{{ form_label(edit_form.descContext) }}</h5>
+                <h5>{{ form_label(edit_form.descContext, 'Contexte') }}</h5>
                 {{ form_widget(edit_form.descContext, {'attr': {
                     'rows':'4'} }) }}
             </div>
             <div class="col-sm-12">
-                <h5>{{ form_label(edit_form.descGoal) }}</h5>
+                <h5>{{ form_label(edit_form.descGoal, 'Objectifs') }}</h5>
                 {{ form_widget(edit_form.descGoal, {'attr': {
                     'rows':'4'} }) }}
             </div>
             <div class="col-sm-12">
-                <h5>{{ form_label(edit_form.descProgress) }}</h5>
+                <h5>{{ form_label(edit_form.descProgress, 'Déroulement') }}</h5>
                 {{ form_widget(edit_form.descProgress, {'attr': {
                     'rows':'7'} }) }}
             </div>
             <div class="col-sm-12">
-                <h5>{{ form_label(edit_form.descPartners) }}</h5>
+                <h5>{{ form_label(edit_form.descPartners, 'Partenaires') }}</h5>
                 {{ form_widget(edit_form.descPartners, {'attr': {
                     'rows':'4'} }) }}
             </div>
             <div class="col-sm-12">
-                <h5>{{ form_label(edit_form.descResults) }}</h5>
+                <h5>{{ form_label(edit_form.descResults, 'Résultats') }}</h5>
                 {{ form_widget(edit_form.descResults, {'attr': {
                     'rows':'4'} }) }}
             </div>
             <div class="col-sm-12">
-                <h5>{{ form_label(edit_form.descDifficulties) }}</h5>
+                <h5>{{ form_label(edit_form.descDifficulties, 'Difficultés') }}</h5>
                 {{ form_widget(edit_form.descDifficulties, {'attr': {
                     'rows':'4'} }) }}
             </div>
             <div class="col-sm-12">
-                <h5>{{ form_label(edit_form.descAdvices) }}</h5>
+                <h5>{{ form_label(edit_form.descAdvices, 'Conseils') }}</h5>
                 {{ form_widget(edit_form.descAdvices, {'attr': {
                     'rows':'4'} }) }}
             </div>
@@ -224,7 +224,7 @@
             <h5><label>Contact</label></h5>
             <div class="row">
                 <div class="col-sm-3">
-                    Nom/Prenom :
+                    Nom/Prénom :
                 </div>
                 <div class="col-sm-9">
                     {{ form_widget(edit_form.contactName) }}
@@ -232,7 +232,7 @@
             </div>
             <div class="row">
                 <div class="col-sm-3">
-                    Metier :
+                    Fonction :
                 </div>
                 <div class="col-sm-9">
                     {{ form_widget(edit_form.contactOccupation) }}
@@ -274,7 +274,7 @@
                     </object>
                 </div>
             </div>
-            <h5><label>Thematiques</label></h5>
+            <h5><label>Thématiques</label></h5>
             <div class="row">
                 <div class="col-sm-4">
                     {% set nbthema = edit_form.themes|length %}
@@ -338,9 +338,14 @@
                     location.reload();
                 },
                 error: function () {
-                    alert("la photo ne peu pas être supprimée");
+                    alert("la photo ne peut pas être supprimée");
                 }
             })
         }
+
+        function ConfirmDelete() {
+            return confirm("Etes-vous sûr que vous voulez supprimer le projet?");
+        }
     </script>
+
 {% endblock %}

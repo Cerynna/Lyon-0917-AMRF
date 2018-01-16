@@ -5,7 +5,7 @@
         <ul>
             <li>
                 <a href="{{ path('admin_company_index') }}" data-toggle="tooltip" data-placement="right"
-                   title="Liste Organisme"><i class="fa fa-archive fa-admin"></i></a>
+                   title="Liste Organismes"><i class="fa fa-archive fa-admin"></i></a>
             </li>
             <li>
                 <a href="{{ path('admin_company_new') }}" data-toggle="tooltip" data-placement="right"
@@ -61,6 +61,6 @@
         </div>
     {% endfor %}
     <div class="navigation text-center">
-        {{ knp_pagination_render(companies) }}
+        {{ knp_pagination_render(companies, 'Pagination/twitter_bootstrap_v3_pagination.html.twig') }}
     </div>
 {% endblock %}

@@ -59,12 +59,12 @@ nav {
   }
   .dropdown-menu {
     a {
-      font-size: 1.5em;
+      font-size: 1.2em;
       color: $color2;
       margin: 0 10px 0 10px;
     }
     a:hover {
-      color: black;
+      color: $color2;
       background-color: unset;
       box-shadow: -5px 0px 0 rgba(255, 255, 255, 1);
     }
@@ -88,24 +88,14 @@ nav {
     -webkit-box-shadow: 0 0 0 rgba(0, 0, 0, 0);
     box-shadow: 0 0 0 rgba(0, 0, 0, .0);
   }
-  .dropdown-main > a {
-    height: 50px;
-    font-size: 1.5em;
-  }
-  .dropdown-main > a:hover {
-    border-bottom: 4px solid $color2;
-    box-shadow: 0 0 0 rgba(0, 0, 0, .0);
-    color: $color2;
-    font-size: 1.8em;
-    font-weight: bold;
-  }
+
 
   .dropdown-header {
-    font-size: 1.5em;
-    color: $color2;
-    text-decoration: underline;
+    font-size: 1.3em;
+    color: $color1;
+    background-color: $color2;
     line-height: 1em;
-    margin-top: 20px;
+    margin-top: 5px;
   }
 
   .dropdown-submenu {

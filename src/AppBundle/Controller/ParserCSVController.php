@@ -1,5 +1,5 @@
 <?php
-
+//REFACTORING DELETE
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Mayor;

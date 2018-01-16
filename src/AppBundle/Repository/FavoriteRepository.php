@@ -18,6 +18,7 @@ class FavoriteRepository extends \Doctrine\ORM\EntityRepository
             ->getQuery()
             ->getResult();
     }
+
     public function getFavorite($type, $idType, $idUser)
     {
         return $this->createQueryBuilder('f')
@@ -27,5 +28,17 @@ class FavoriteRepository extends \Doctrine\ORM\EntityRepository
             ->andWhere('f.' . $type . ' = :idType')
             ->getQuery()
             ->getResult();
+    }
+
+    public function getFavoriteToArray($userId){
+        $FavoriteByUserId = $this->getFavoriteByUserId($userId);
+        $result = [];
+
+        foreach ($FavoriteByUserId as $favorite){
+            $result[] = $favorite->getUser()->getId();
+
+        }
+        return $result;
+
     }
 }

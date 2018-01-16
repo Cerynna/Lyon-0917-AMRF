@@ -26,52 +26,29 @@
             <li><i class="fa fa-twitter-square"></i> {{ company.twitter }}</li>
             <li><i class="fa fa-linkedin-square"></i> {{ company.linkedin }} </li>
         </ul>
-
-
-        {% if favorite is defined %}
+l
         <h4>Ajouter aux favoris</h4>
+        {% if favorites is defined %}
+            <button type="button" id="addFavorite"
+                    class="btnFavoris {% if company.id in favorites %} hidden {% endif %}"
+                    name="company-{{ company.id }}">
+                <i class="fa fa-star-o"></i>
+            </button>
+            <button type="button" id="btnFavorisDel"
+                    class="btnFavoris{% if  company.id not in favorites %} hidden {% endif %}"
+                    name="company-{{ company.id }}">
+                <i class="fa fa-star"></i>
+            </button>
+        {% else %}
 
-        <button type="button" id="addFavorite{{ company.id }}" class="btnFavoris {% if favorite == 1 %}hidden{% endif %}">
-            <i class="fa fa-star-o" onclick="addFavorite{{ company.id }}()"></i>
-        </button>
+            <button type="button" id="addFavorite" class="btnFavoris hidden " name="company-{{ company.id }}">
+                <i class="fa fa-star-o"></i>
+            </button>
+            <button type="button" id="btnFavorisDel" class="btnFavoris" name="company-{{ company.id }}">
+                <i class="fa fa-star"></i>
+            </button>
 
-
-        <button type="button" id="btnFavorisDel{{ company.id }}" class="btnFavoris {% if favorite == 0 %}hidden{% endif %}">
-            <i class="fa fa-star" onclick="delFavorite{{ company.id }}()"></i>
-        </button>
         {% endif %}
 
     </div>
 </div>
-
-
-<script>
-
-    function addFavorite{{ company.id }}() {
-        $.ajax({
-            type: 'POST',
-            url: '/addFavorite/company/{{ company.id }}',
-            data: $('#addFavorite{{ company.id }}'),
-            success: function (response) {
-                $('#success').html(response);
-            }
-        });
-
-        $("#addFavorite{{ company.id }}").addClass("hidden");
-        $("#btnFavorisDel{{ company.id }}").removeClass("hidden");
-    }
-
-    function delFavorite{{ company.id }}() {
-        $.ajax({
-            type: 'POST',
-            url: '/delFavorite/company/{{ company.id }}',
-            data: $('#btnFavorisDel{{ company.id }}'),
-            success: function (response) {
-                $('#success').html(response);
-            }
-        });
-        $("#btnFavorisDel{{ company.id }}").addClass("hidden");
-        $("#addFavorite{{ company.id }}").removeClass("hidden");
-    }
-
-</script>

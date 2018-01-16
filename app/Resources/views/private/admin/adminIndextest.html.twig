@@ -1,0 +1,181 @@
+{% extends 'private/admin/baseAdmin.html.twig' %}
+{% block title %}Admin home{% endblock %}
+{% block body %}
+
+    <div class="menu-admin menu-user">
+        <ul>
+            <li>
+                <a href="{{ path('admin_user_index') }}" data-toggle="tooltip" data-placement="right"
+                   title="Liste Utilisateur"><i class="fa fa-users fa-admin"></i></a>
+            </li>
+            <li>
+                <a href="{{ path('admin_user_new') }}" data-toggle="tooltip" data-placement="right"
+                   title="Nouvel Utilisateur"><i
+                            class="fa fa-user-plus fa-admin"></i></a>
+            </li>
+        </ul>
+    </div>
+    <h1>Test</h1>
+    <div class="row">
+        <div class="col-xs-6">
+            <div class="row">
+                <div class="col-xs-12 text-center">
+                    <ul class="pagination-mayor"></ul>
+                </div>
+                <div class="col-xs-12">
+                    <div class="jumbotron userMayor" id="content-mayor">
+
+                    </div>
+                </div>
+                <div class="col-xs-12 text-center">
+                    <ul class="pagination-mayor"></ul>
+
+                    <!-- Target -->
+                    <input id="foo" value="https://github.com/zenorocha/clipboard.js.git">
+
+                    <!-- Trigger -->
+                    <button class="btn" data-clipboard-target="#foo">
+                        <img src="assets/clippy.svg" alt="Copy to clipboard">
+                    </button>
+                </div>
+
+            </div>
+
+        </div>
+        <div class="col-xs-6">
+            <div class="row">
+                <div class="col-xs-12 text-center">
+                    <ul class="pagination-partner"></ul>
+                </div>
+                <div class="col-xs-12">
+                    <div class="jumbotron userPartner" id="content-partner">
+
+                    </div>
+                </div>
+                <div class="col-xs-12 text-center">
+                    <ul class="pagination-partner"></ul>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+
+{% endblock %}
+{% block javascripts %}
+    {% set totalPagePart = (maxPart/10)|round %}
+    {% if  totalPagePart == 0 %}
+        {% set totalPagePart = 1 %}
+    {% endif %}
+    {% set totalPageMayor= (maxMayor/10)|round %}
+    {% if  totalPageMayor == 0 %}
+        {% set totalPageMayor = 1 %}
+    {% endif %}
+    <script type="text/javascript">
+        $(function () {
+            new Clipboard('.btn');
+
+            $('.pagination-partner').twbsPagination({
+
+                totalPages: {{ totalPagePart }},
+                visiblePages: 10,
+                onPageClick: function (event, page) {
+                    var max = page * 10;
+                    var offset = max - 10;
+                    $.ajax({
+                        type: "POST",
+                        url: "/ajax/listPart",
+                        dataType: "json",
+                        data: {'offset': offset},
+                        timeout: 3000,
+                        success: function (response) {
+                            var partners = response.data;
+
+                            html = "";
+                            for (i = 0; i < partners.length; i++) {
+                                var linkShow = "{{ path('admin_user_show', {'id': "idUser"}) }}".replace('idUser', partners[i].id);
+                                var linkEdit = "{{ path('admin_user_edit', {'id': "idUser"}) }}".replace('idUser', partners[i].id);
+
+                                html += '<h5>' +
+                                    '<div class="row">' +
+                                    '<div class="col-xs-2">' +
+                                    '<a href="' + linkShow + '">' +
+                                    '<i class="fa fa-eye fa-admin-mini"></i>' +
+                                    '</a>' +
+                                    '<a href="' + linkEdit + '">' +
+                                    '<i class="fa fa-pencil fa-admin-mini"></i>' +
+                                    '</a>' +
+                                    '</div>\n' +
+                                    '<div class="col-xs-9">' + partners[i].name + '</div>\n' +
+                                    '<div class="col-xs-1">' +
+                                    '<a href="' + partners[i].email + '">' +
+                                    '<i class="fa fa-envelope fa-admin-mini"></i>' +
+                                    '</a>' +
+                                    '</div>' +
+                                    '</div>' +
+                                    '</h5>';
+                            }
+                            html += "";
+                            $('#content-partner').html(html);
+                        },
+                        error: function () {
+                            console.log('Ajax call error');
+                        }
+                    })
+                }
+            });
+        });
+        $(function () {
+
+            $('.pagination-mayor').twbsPagination({
+                totalPages: {{ totalPageMayor }},
+                visiblePages: 10,
+                onPageClick: function (event, page) {
+                    var max = page * 10;
+                    var offset = max - 10;
+                    $.ajax({
+                        type: "POST",
+                        url: "/ajax/listMayor",
+                        dataType: "json",
+                        data: {'offset': offset},
+                        timeout: 3000,
+                        success: function (response) {
+                            var mayors = response.data;
+                            html = "";
+                            for (i = 0; i < mayors.length; i++) {
+                                var linkShow = "{{ path('admin_user_show', {'id': "idUser"}) }}".replace('idUser', mayors[i].id);
+                                var linkEdit = "{{ path('admin_user_edit', {'id': "idUser"}) }}".replace('idUser', mayors[i].id);
+
+                                html += '<h5>' +
+                                    '<div class="row">' +
+                                    '<div class="col-xs-2">' +
+                                    '<a href="' + linkShow + '">' +
+                                    '<i class="fa fa-eye fa-admin-mini"></i>' +
+                                    '</a>' +
+                                    '<a href="' + linkEdit + '">' +
+                                    '<i class="fa fa-pencil fa-admin-mini"></i>' +
+                                    '</a>' +
+                                    '</div>\n' +
+                                    '<div class="col-xs-5">' + mayors[i].commune + '</div>\n' +
+                                    '<div class="col-xs-4">' + mayors[i].zipcode + '</div>\n' +
+                                    '<div class="col-xs-1">' +
+                                    '<a href="' + mayors[i].email + '">' +
+                                    '<i class="fa fa-envelope fa-admin-mini"></i>' +
+                                    '</a>' +
+                                    '</div>' +
+                                    '</div>' +
+                                    '</h5>';
+                            }
+                            html += "";
+                            $('#content-mayor').html(html);
+                        },
+                        error: function () {
+                            console.log('Ajax call error');
+                        }
+                    })
+                }
+            });
+        });
+    </script>
+{% endblock %}

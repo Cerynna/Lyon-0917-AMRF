@@ -14,6 +14,7 @@
  * Inspired by Normalize.css: http://necolas.github.com/normalize.css/
  */
 /* HTML5 display definitions */
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:300,400,700,600);
 section, nav, article, aside, hgroup,
 header, footer, figure, figcaption, details {
   display: block; }
@@ -218,10 +219,10 @@ header {
   position: fixed;
   width: 100%;
   z-index: 100; }
-  header h3 {
+  header .login {
     color: #FFF;
     font-size: 2em;
-    margin: 10px; }
+    margin: 5px; }
   header .btn-badge {
     margin-top: 7px;
     background-color: #104263;
@@ -445,6 +446,59 @@ nav {
 
 }
 */
+h2 {
+  color: #5baee4;
+  padding: 7px 20px 3px 20px !important;
+  font-size: 2em !important;
+  margin: 10px 0px; }
+
+h3 {
+  background-color: #17608f;
+  color: white;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  border-radius: 5px;
+  padding: 7px 20px 3px 20px !important;
+  font-size: 1em !important;
+  margin: 2px; }
+
+.erreur {
+  background: #8f1714; }
+
+.userMayor .step {
+  background-color: #b3d9f2;
+  color: #17608f;
+  border: 2px solid #17608f;
+  text-shadow: 1px 1px #000;
+  font-size: 35px;
+  border-radius: 5px;
+  height: 50px;
+  width: 50px;
+  margin: 0 auto; }
+  .userMayor .step:hover {
+    background-color: white;
+    color: #17608f; }
+  .userMayor .step.active {
+    background-color: #17608f;
+    color: white;
+    border: 2px solid #17608f; }
+    .userMayor .step.active:hover {
+      background-color: white;
+      color: #17608f; }
+  .userMayor .step.unvalid {
+    background: #710b02;
+    color: white; }
+  .userMayor .step.valid {
+    background: #03ff04; }
+
+.userMayor .first {
+  padding-top: 20px; }
+
+.userMayor #User {
+  margin-top: 0;
+  padding-bottom: 50px; }
+
 h4 {
   background-color: #b3d9f2;
   border: 2px solid #17608f;
@@ -471,14 +525,15 @@ h5 {
   border-radius: 5px;
   padding: 7px 10px;
   font-size: 1em;
-  margin: 10px auto  2px auto; }
+  margin: 5px auto 2px auto; }
 
 .jumbotron {
   background-color: white;
   border: 2px solid #17608f;
+  background-color: #b3d9f2;
   border-radius: 0 !important;
   color: #000;
-  padding: 20px !important; }
+  padding: 10px !important; }
   .jumbotron h3 {
     padding-top: 1px;
     padding-bottom: 30px;
@@ -507,12 +562,6 @@ h5 {
     margin: 2px 1px !important;
     padding: 7px;
     font-size: 0.8em; }
-
-.userMayor {
-  background: #90CAF9; }
-
-.userPartner {
-  background: #8BAF8B; }
 
 .hidden {
   display: none; }
@@ -1237,6 +1286,72 @@ footer {
     color: #FFF; }
 
 body {
+  background-color: #e6e6e6;
+  font-family: 'Open Sans', sans-serif; }
+
+#steps {
+  width: 800px;
+  margin: 20px auto; }
+
+.step {
+  width: 50px;
+  height: 50px;
+  background-color: #b3d9f2;
+  display: inline-block;
+  border: 4px solid;
+  border-color: transparent;
+  border-radius: 50%;
+  color: #5baee4;
+  font-weight: 800;
+  text-align: center;
+  line-height: 35px; }
+
+.step:first-child {
+  line-height: 40px; }
+
+.step:nth-child(n+2) {
+  margin: 0 0 0 100px;
+  transform: translate(0, -4px); }
+
+.step:nth-child(n+2):before {
+  width: 75px;
+  height: 3px;
+  display: block;
+  background-color: #b3d9f2;
+  transform: translate(-95px, 21px);
+  content: ''; }
+
+.step:after {
+  width: 150px;
+  display: block;
+  transform: translate(-55px, 3px);
+  color: #5baee4;
+  content: attr(data-desc);
+  font-weight: 400;
+  font-size: 13px; }
+
+.step:first-child:after {
+  transform: translate(-55px, -1px); }
+
+.step.active {
+  border-color: #17608f;
+  color: #17608f; }
+
+.step.active:before {
+  background: linear-gradient(to right, #17608f 0%, #17608f 100%); }
+
+.step.active:after {
+  color: #17608f; }
+
+.step.done {
+  background-color: #17608f;
+  border-color: #17608f;
+  color: #b3d9f2; }
+
+.step.done:before {
+  background-color: #17608f; }
+
+body {
   background: white;
   height: 100vh; }
 
@@ -1338,12 +1453,12 @@ h1 {
 div {
   border: 1px solid cyan !important;
 }
-
 .row {
+!*  padding: 40px;*!
   border: 2px solid red !important;
 }
-
-[class*="col-"] {
+[class*="col-"]{
+!*  padding: 30px;*!
   border: 1px solid black !important;
 }
 

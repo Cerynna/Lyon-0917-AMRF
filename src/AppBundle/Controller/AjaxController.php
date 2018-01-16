@@ -12,8 +12,10 @@ use AppBundle\Entity\Company;
 use AppBundle\Entity\Project;
 use AppBundle\Entity\Favorite;
 
+use function intval;
 use SensioLabs\Security\Exception\HttpException;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -38,25 +40,20 @@ class AjaxController extends Controller
         $idUser = $this->get('security.token_storage')->getToken()->getUser();
         $favorite = new Favorite();
         $favorite->setUser($idUser);
-
         if ($request->isXmlHttpRequest()) {
             $em = $this->getDoctrine()->getManager();
-
             if ($type == "project") {
                 $project = $this->getDoctrine()->getRepository("AppBundle:Project")->projectById($idType);
                 $favorite->setProject($project[0]);
                 $favorite->setCompany(null);
             }
-
             if ($type == "company") {
                 $company = $this->getDoctrine()->getRepository("AppBundle:Company")->companyById($idType);
                 $favorite->setCompany($company[0]);
                 $favorite->setProject(null);
             }
-
             $em->persist($favorite);
             $em->flush();
-
             return new Response("Favori ajouté ");
 
         } else {
@@ -74,7 +71,6 @@ class AjaxController extends Controller
     public function delFavorite(Request $request, $type, $idType)
     {
         $idUser = $this->getUser();
-
         if ($request->isXmlHttpRequest()) {
             $em = $this->getDoctrine()->getManager();
             $favoris = $em->getRepository("AppBundle:Favorite")->getFavorite($type, $idType, $idUser->getId());
@@ -97,11 +93,9 @@ class AjaxController extends Controller
     {
         if ($request->isXmlHttpRequest()) {
             $em = $this->getDoctrine()->getManager();
-
             $imageDelete = str_replace("-", "/", $fileName);
             $imgExplode = explode('/', $imageDelete);
             $project = $em->getRepository(Project::class)->find($imgExplode[2]);
-
             if ($imgExplode[1] == "project") {
                 if ($imgExplode[3] == 'photos') {
                     $imagesInDB = $em->getRepository('AppBundle:Project')->getImageProject($imgExplode[2]);
@@ -112,7 +106,6 @@ class AjaxController extends Controller
                         }
                     }
                     $project->setImages($newImagesDB);
-
                 } elseif ($imgExplode[3] == 'file') {
                     $project = $em->getRepository(Project::class)->find($imgExplode[2]);
                     $project->setFile('');
@@ -121,7 +114,6 @@ class AjaxController extends Controller
                 $fs = new Filesystem();
                 $fs->remove($imageDelete);
             }
-
             if ($imgExplode[1] == "company") {
                 $company = $em->getRepository(Company::class)->find($imgExplode[2]);
                 $company->setLogo('');
@@ -129,10 +121,119 @@ class AjaxController extends Controller
             $em->flush();
             $fs = new Filesystem();
             $fs->remove($imageDelete);
-
             return new Response("Image supprimer " . $imageDelete . " - " . count($imageDelete) . " - " . $imgExplode[4]);
         } else {
             throw new HttpException('500', 'Invalid call');
         }
     }
+
+    /**
+     * @Route("/ajax/listMayor", name="admin_list_mayor")
+     *
+     */
+    public function ListMayorAction(Request $request)
+    {
+        if ($request->isXmlHttpRequest()) {
+            $offset = intval($request->request->get('offset'));
+            $repository = $this->getDoctrine()->getRepository('AppBundle:Mayor');
+            $data = $repository->ListMayor($offset);
+            return new JsonResponse(array("data" => $data));
+        } else {
+            throw new HttpException('500', 'Invalid call');
+        }
+    }
+
+    /**
+     * @Route("/ajax/listPart", name="admin_list_partner")
+     *
+     */
+    public function ListPartAction(Request $request)
+    {
+        if ($request->isXmlHttpRequest()) {
+            $offset = intval($request->request->get('offset'));
+            $repository = $this->getDoctrine()->getRepository('AppBundle:Mayor');
+            $data = $repository->ListPartner($offset);
+            return new JsonResponse(array("data" => $data));
+        } else {
+            throw new HttpException('500', 'Invalid call');
+        }
+    }
+
+    /**
+     * @Route("/ajax/listMayorFiltre", name="list_mayor_filtre")
+     *
+     */
+    public function ListMayorFilterAction(Request $request)
+    {
+        if ($request->isXmlHttpRequest()) {
+
+            $zipCode = $request->request->get('CodePostal');
+            $insee = $request->request->get('CodeInsee');
+
+            $repository = $this->getDoctrine()->getRepository('AppBundle:Mayor');
+            $data = $repository->ListMayorFilter($zipCode, $insee);
+
+            /* return new Response(
+                 '<html><body>Hello</body></html>'
+             );*/
+
+            return new JsonResponse(array("data" => $data));
+        } else {
+            throw new HttpException('500', 'Invalid call');
+        }
+    }
+
+    /**
+     * @Route("/ajax/listProject/{type}", name="list_project")
+     *
+     */
+    public function ListProject(Request $request, $type)
+    {
+        if ($request->isXmlHttpRequest()) {
+
+            $offset = intval($request->request->get('offset'));
+            $repository = $this->getDoctrine()->getRepository('AppBundle:Project');
+            $data = $repository->ListProject($offset, $type);
+
+            /* return new Response(
+                 '<html><body>Hello</body></html>'
+             );*/
+
+            return new JsonResponse(array("data" => $data));
+        } else {
+            throw new HttpException('500', 'Invalid call');
+        }
+    }
+
+    /**
+     * @Route("/ajax/listProjectFilter", name="list_project_filter")
+     *
+     */
+    public function ListProjectFilter(Request $request)
+    {
+        if ($request->isXmlHttpRequest()) {
+
+            $themes = $request->request->get('themes');
+            $postal = $request->request->get('postal');
+            $titre = $request->request->get('titre');
+            $data = [
+                "themes" => $themes,
+                "postal" => $postal,
+                "titre" => $titre
+            ];
+
+            $repository = $this->getDoctrine()->getRepository('AppBundle:Project');
+            $response = $repository->ListProjectFilter($data);
+
+            /*return new Response(
+                '<html><body>Hello</body></html>'
+            );*/
+
+            return new JsonResponse(array("data" => $response));
+        } else {
+            throw new HttpException('500', 'Invalid call');
+        }
+
+    }
+
 }

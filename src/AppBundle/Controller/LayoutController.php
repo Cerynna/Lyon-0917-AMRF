@@ -9,6 +9,8 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Search;
+use AppBundle\Form\SearchType;
+use AppBundle\Service\SearchService;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -26,20 +28,22 @@ class LayoutController extends Controller
         $em = $this->getDoctrine()->getManager();
         $array = ["footer"];
         $footer = $em->getRepository('AppBundle:PublicPage')->getContentIndex($array)['footer'];
-
         return $this->render(':components:footer.html.twig', array(
             'footer' => $footer,
         ));
     }
+
     /**
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function searchHeaderAction(Request $request)
+    public function searchHeaderAction(Request $request, SearchService $searchService)
     {
         $search = new Search();
-        $form = $this->createForm('AppBundle\Form\SearchType', $search);
+        $form = $this->createForm(SearchType::class, $search);
         $form->handleRequest($request);
-
+        if ($form->isSubmitted() && $form->isValid()) {
+            dump('lol');
+        }
         return $this->render(':components:headerSearch.html.twig', [
             'form' => $form->createView(),
         ]);
