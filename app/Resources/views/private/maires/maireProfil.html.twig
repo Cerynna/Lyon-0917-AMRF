@@ -146,8 +146,8 @@
             </div>
         </div>
     </div>
-{{ form_row(form._token) }}
-            {{ form_end(form, {'render_rest': false}) }}
+    {{ form_row(form._token) }}
+    {{ form_end(form, {'render_rest': false}) }}
 {% endblock %}
 {% block javascripts %}
     <script>
@@ -176,7 +176,7 @@
             if (firstName.validity.patternMismatch) {
                 messageFirstName += "Votre prénom ne peut contenir de chiffre.";
 
-           }
+            }
 //verif lastname
 
             if (lastName.value.length < 2) {

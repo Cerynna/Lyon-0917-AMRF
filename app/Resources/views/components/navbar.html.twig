@@ -66,7 +66,7 @@
                             <li><a tabindex="-1" href="{{ path('directory') }}">Trouver</a></li>
                             <li><a tabindex="-1" href="{{ path('mayor_favorite') }}">Favoris</a></li>
                             <li role="separator" class="divider"></li>
-                            <li><a tabindex="-1" href="#">Déconnexion</a></li>
+                            <li><a tabindex="-1" href="{{ path('logout') }}">Déconnexion</a></li>
                         </ul>
                         <ul class="dropdown-menu scroll-in visible-xs">
                             <li class="col-xs-12">
@@ -76,18 +76,18 @@
                             </li>
                             <li class="col-xs-6">
                                 <ul>
-                                    <li class="dropdown-header">Projet</li>
-                                    <li><a tabindex="-1" href="{{ path('search') }}">Rechercher</a></li>
-                                    <li><a tabindex="-1" href="{{ path('mayor_project') }}">Consulter</a></li>
-                                    <li><a tabindex="-1" href="{{ path('mayor_favorite') }}">Favoris</a></li>
-                                </ul>
-                            </li>
-                            <li class="col-xs-6">
-                                <ul>
                                     <li class="dropdown-header">Profil</li>
                                     <li><a href="{{ path('mayor_profil') }}">Modifier</a></li>
                                     <li class="dropdown-header">Mot de Passe</li>
                                     <li><a href="{{ path('change_password') }}">Changer</a></li>
+                                </ul>
+                            </li>
+                            <li class="col-xs-6">
+                                <ul>
+                                    <li class="dropdown-header">Projet</li>
+                                    <li><a tabindex="-1" href="{{ path('search') }}">Rechercher</a></li>
+                                    <li><a tabindex="-1" href="{{ path('mayor_project') }}">Consulter</a></li>
+                                    <li><a tabindex="-1" href="{{ path('mayor_favorite') }}">Favoris</a></li>
                                     <li class="dropdown-header">Partenaires</li>
                                     <li><a tabindex="-1" href="{{ path('directory') }}">Trouver</a></li>
                                 </ul>

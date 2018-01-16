@@ -12,382 +12,62 @@
                    title="Nouvel Utilisateur"><i
                             class="fa fa-user-plus fa-admin"></i></a>
             </li>
-            <li>
-                <a onclick="document.amrf_publicrooterbundle_user.submit();" data-toggle="tooltip"
-                   data-placement="right"
-                   title="Nouvel Utilisateur"><i class="fa fa-check fa-admin"></i></a>
-            </li>
         </ul>
     </div>
     <h1>Nouvel Utilisateur</h1>
-    {{ form_start(form) }}
-    <div class="row">
-        <div class="col-sm-12">
-            {{ form_label(form.role, 'Rôle') }}
-            <div class="select">
-                {{ form_widget(form.role, {'attr': {
-                    'onchange': "change_valeur()"
-                } }
-                ) }}
-                <div class="select_arrow">
-                </div>
-            </div>
-        </div>
-        <div class="col-sm-12">
-            <div class="jumbotron userMayor">
-
-                <div class="tab-content">
-                    <div id="User" class="tab-pane fade in active">
-                        <div class="row">
-                            <div class="col-sm-2 text-left">
-                                {# <a data-toggle="tab" href="#Mayor"><i class="fa fa-angle-left fa-admin"></i></a>#}
-                            </div>
-                            <div class="col-sm-8 text-center">
-                                <div class="row">
-                                    <div class="col-sm-3 ">
-
-                                        <div class="step active">1</div>
-
-                                    </div>
-                                    <div class="col-sm-3 ">
-
-                                        <div class="step">2</div>
-
-                                    </div>
-                                    <div class="col-sm-3 ">
-
-                                        <div class="step">3</div>
-
-                                    </div>
-                                    <div class="col-sm-3 ">
-
-                                        <div class="step">4</div>
-
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-sm-2 text-right">
-                                <a data-toggle="tab" href="#Mayor"><i class="fa fa-angle-right fa-admin"></i></a>
-                            </div>
-                        </div>
-                        <div class="row first">
-                            <div class="col-sm-3">
-                                <h3>{{ form_label(form.login, 'Login') }}</h3>
-                            </div>
-                            <div class="col-sm-1 text-right">
-                                <i class="fa fa-question fa-admin-mini" data-toggle="tooltip" data-placement="right"
-                                   title="Message a voir j'ai pas d'idée a 23h37"></i>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-4">
-                                {{ form_widget(form.login) }}
-                            </div>
-                        </div>
-                        <div class="row User-2 first hidden">
-                            <div class="col-sm-3">
-                                <h3>{{ form_label(form.email, 'Email') }}</h3>
-                            </div>
-                            <div class="col-sm-1 text-right">
-                                <i class="fa fa-question fa-admin-mini" data-toggle="tooltip" data-placement="right"
-                                   title="Message a voir j'ai pas d'idée a 23h37"></i>
-                            </div>
-                        </div>
-                        <div class="row User-2 hidden">
-                            <div class="col-sm-4">
-                                {{ form_widget(form.email) }}
-                            </div>
-                        </div>
-                        <div class="row User-2 first hidden">
-                            <div class="col-sm-3">
-                                <h3>{{ form_label(form.password, 'Mot de Passe') }}</h3>
-                            </div>
-                            <div class="col-sm-1 text-right">
-                                <i class="fa fa-question fa-admin-mini" data-toggle="tooltip" data-placement="right"
-                                   title="Si vous laissez ce champ vide le mot de passe généré sera : CODE INSEE+CODE POSTAL"></i>
-                            </div>
-                        </div>
-                        <div class="row User-2 hidden">
-                            <div class="col-sm-4">
-                                {{ form_widget(form.password, {
-                                    'attr':{
-                                        'placeholder' : 'Mot de passe généré Automatiquement',
-                                    }
-                                }) }}
-                            </div>
-                        </div>
-                    </div>
-                    <div id="Mayor" class="tab-pane fade">
-                        <div class="row">
-                            <div class="col-sm-2 text-left">
-                                <a data-toggle="tab" href="#User">
-                                    <i class="fa fa-angle-left fa-admin"></i>
-                                </a>
-                            </div>
-                            <div class="col-sm-8 text-center">
-                                <div class="row">
-                                    <div class="col-sm-3">
-                                        <div class="step ">1</div>
-                                    </div>
-                                    <div class="col-sm-3">
-                                        <div class="step active">2</div>
-                                    </div>
-                                    <div class="col-sm-3">
-                                        <div class="step">3</div>
-                                    </div>
-                                    <div class="col-sm-3">
-                                        <div class="step">4</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-sm-2 text-right">
-                                <a data-toggle="tab" href="#Commune">
-                                    <i class="fa fa-angle-right fa-admin"></i>
-                                </a>
-                            </div>
-                        </div>
-
-                        <div class="row first">
-                            <div class="col-sm-3">
-                                <h3>{{ form_label(form.mayor.lastName, 'Nom') }}</h3>
-                            </div>
-                            <div class="col-sm-1 text-right">
-                                <i class="fa fa-question fa-admin-mini" data-toggle="tooltip" data-placement="right"
-                                   title="Message a voir j'ai pas d'idée a 23h37"></i>
-                            </div>
-                            <div class="col-sm-3">
-                                <h3>{{ form_label(form.mayor.firstName, 'Prénom') }}</h3>
-                            </div>
-                            <div class="col-sm-1 text-right">
-                                <i class="fa fa-question fa-admin-mini" data-toggle="tooltip" data-placement="right"
-                                   title="Message a voir j'ai pas d'idée a 23h37"></i>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-4">
-                                {{ form_widget(form.mayor.lastName) }}
-                            </div>
-                            <div class="col-sm-4">
-                                {{ form_widget(form.mayor.firstName) }}
-                            </div>
-                        </div>
-
-                        <div class="row first">
-                            <div class="col-sm-3">
-                                <h3>{{ form_label(form.mayor.email, 'Email') }}</h3>
-                            </div>
-                            <div class="col-sm-1 text-right">
-                                <i class="fa fa-question fa-admin-mini" data-toggle="tooltip" data-placement="right"
-                                   title="Message a voir j'ai pas d'idée a 23h37"></i>
-                            </div>
-                            <div class="col-sm-3">
-                                <h3>{{ form_label(form.mayor.phone, 'Téléphone') }}</h3>
-                            </div>
-                            <div class="col-sm-1 text-right">
-                                <i class="fa fa-question fa-admin-mini" data-toggle="tooltip" data-placement="right"
-                                   title="Message a voir j'ai pas d'idée a 23h37"></i>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-4">
-                                {{ form_widget(form.mayor.email) }}
-                            </div>
-                            <div class="col-sm-4">
-                                {{ form_widget(form.mayor.phone) }}
-                            </div>
-                        </div>
-
-                    </div>
-                    <div id="Commune" class="tab-pane fade">
-                        <div class="row">
-                            <div class="col-sm-2 text-left">
-                                <a data-toggle="tab" href="#Mayor">
-                                    <i class="fa fa-angle-left fa-admin"></i>
-                                </a>
-                            </div>
-                            <div class="col-sm-8 text-center">
-                                <div class="row">
-                                    <div class="col-sm-3">
-                                        <div class="step ">1</div>
-                                    </div>
-                                    <div class="col-sm-3">
-                                        <div class="step ">2</div>
-                                    </div>
-                                    <div class="col-sm-3">
-                                        <div class="step active">3</div>
-                                    </div>
-                                    <div class="col-sm-3">
-                                        <div class="step">4</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-sm-2 text-right">
-                                <a data-toggle="tab" href="#Reseaux">
-                                    <i class="fa fa-angle-right fa-admin"></i>
-                                </a>
-                            </div>
-                        </div>
-
-                        <div class="row first">
-                            <div class="col-sm-3">
-                                <h3>{{ form_label(form.mayor.insee, 'INSEE') }}</h3>
-                            </div>
-                            <div class="col-sm-1 text-right">
-                                <i class="fa fa-question fa-admin-mini" data-toggle="tooltip" data-placement="right"
-                                   title="Message a voir j'ai pas d'idée a 23h37"></i>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-4">
-                                {{ form_widget(form.mayor.insee) }}
-                            </div>
-                        </div>
-
-                        <div class="row first">
-                            <div class="col-sm-3">
-                                <h3>{{ form_label(form.mayor.address, 'Adresse') }}</h3>
-                            </div>
-                            <div class="col-sm-1 text-right">
-                                <i class="fa fa-question fa-admin-mini" data-toggle="tooltip" data-placement="right"
-                                   title="Message a voir j'ai pas d'idée a 23h37"></i>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-4">
-                                {{ form_widget(form.mayor.address) }}
-                            </div>
-                        </div>
-
-                        <div class="row first Geoloc hidden">
-                            <div class="col-sm-3">
-                                <h3>{{ form_label(form.mayor.town, 'Ville') }}</h3>
-                            </div>
-                            <div class="col-sm-1 text-right">
-                                <i class="fa fa-question fa-admin-mini"
-                                   data-toggle="tooltip" data-placement="right"
-                                   title="Message a voir j'ai pas d'idée a 23h37"></i>
-                            </div>
-                            <div class="col-sm-2">
-                                <h3>{{ form_label(form.mayor.zipCode, 'Code Postal') }}</h3>
-                            </div>
-                            <div class="col-sm-2">
-                                <h3>{{ form_label(form.mayor.department, 'Département') }}</h3>
-                            </div>
-                            <div class="col-sm-1 text-right">
-                                <i class="fa fa-question fa-admin-mini"
-                                   data-toggle="tooltip" data-placement="right"
-                                   title="Message a voir j'ai pas d'idée a 23h37"></i>
-                            </div>
-                            <div class="col-sm-2">
-                                <h3>{{ form_label(form.mayor.region, 'Région') }}</h3>
-                            </div>
-                            <div class="col-sm-1 text-right">
-                                <i class="fa fa-question fa-admin-mini"
-                                   data-toggle="tooltip" data-placement="right"
-                                   title="Message a voir j'ai pas d'idée a 23h37"></i>
-                            </div>
-                        </div>
-                        <div class="row Geoloc hidden">
-                            <div class="col-sm-4">
-                                {{ form_widget(form.mayor.town) }}
-                            </div>
-                            <div class="col-sm-2">
-                                {{ form_widget(form.mayor.zipCode) }}
-                            </div>
-                            <div class="col-sm-3">
-                                {{ form_widget(form.mayor.department, {'attr': {
-                                    'disabled': 'disabled'
-                                } }) }}
-                            </div>
-                            <div class="col-sm-3">
-                                {{ form_widget(form.mayor.region, {'attr': {
-                                    'disabled': 'disabled'
-                                } }) }}
-                            </div>
-                        </div>
-                        <div class="row first Geoloc hidden">
-                            <div class="col-sm-3">
-                                <h3>{{ form_label(form.mayor.latitude, 'Lattitude') }}</h3>
-                            </div>
-                            <div class="col-sm-1 text-right">
-                                <i class="fa fa-question fa-admin-mini"
-                                   data-toggle="tooltip" data-placement="right"
-                                   title="Message a voir j'ai pas d'idée a 23h37"></i>
-                            </div>
-                            <div class="col-sm-3">
-                                <h3>{{ form_label(form.mayor.longitude, 'Longitude') }}</h3>
-                            </div>
-                            <div class="col-sm-1 text-right">
-                                <i class="fa fa-question fa-admin-mini"
-                                   data-toggle="tooltip" data-placement="right"
-                                   title="Message a voir j'ai pas d'idée a 23h37"></i>
-                            </div>
-                            <div class="col-sm-3">
-                                <h3>{{ form_label(form.mayor.longitude, 'Population') }}</h3>
-                            </div>
-                            <div class="col-sm-1 text-right">
-                                <i class="fa fa-question fa-admin-mini"
-                                   data-toggle="tooltip" data-placement="right"
-                                   title="Message a voir j'ai pas d'idée a 23h37"></i>
-                            </div>
-                        </div>
-                        <div class="row Geoloc hidden">
-                            <div class="col-sm-4">
-                                {{ form_widget(form.mayor.latitude, {'attr': {
-                                    'disabled': 'disabled'
-                                } }) }}
-                            </div>
-                            <div class="col-sm-4">
-                                {{ form_widget(form.mayor.longitude, {'attr': {
-                                    'disabled': 'disabled'
-                                } }) }}
-                            </div>
-                            <div class="col-sm-4">
-                                {{ form_widget(form.mayor.population, {'attr': {
-                                    'disabled': 'disabled'
-                                } }) }}
-                            </div>
-                        </div>
-                    </div>
-
-                    <div id="Reseaux" class="row tab-pane fade">
-                        <div class="row">
-                            <div class="col-sm-12">
-                                <h5>ieugheobjtoej</h5>
-                            </div>
-                        </div>
-                    </div>
 
 
-                </div>
+    <div id="steps">
+        <div class="step S-1 active" data-desc="Information Utilisateur">1</div>
 
-            </div>
-        </div>
-        <div class="col-sm-12">
-            <div class="jumbotron  userPartner hidden">
-            </div>
-        </div>
+        <div class="step S-Mayor S-2 " data-desc="Le Maire / La Commune">2</div>
+        <div class="step S-Partner S-2 hidden" data-desc="Le partenaire">2</div>
+        <div class="step S-Mayor S-3 " data-desc="Les Résaux Sociaux">3</div>
+        <div class="step S-Partner S-3 hidden" data-desc="Son entreprise">3</div>
+        <div class="step S-Mayor S-4 " data-desc="Valider">4</div>
+        <div class="step S-Partner S-4 hidden" data-desc="Valider">4</div>
     </div>
 
 
-    {{ form_widget(form) }}
-    {{ form_end(form) }}
-    {#
+
+
     {{ form_start(form) }}
-    <div class="row">
-        <div class="col-sm-6">
-            <div class="jumbotron">
-                <div class="row">
-                    <div class="col-sm-6">
-                        {{ form_label(form.login) }}
-                        {{ form_widget(form.login) }}
+    <div class="row jumbotron">
+        <div class="tab-content">
+            <div id="S-1" class="tab-pane fade in active">
+                <div class="S-nav mayor">
+                    <a data-toggle="tab" class="S-row-left" href="#S-1"><i
+                                class="fa fa-angle-left fa-admin"></i></a>
+                    <a data-toggle="tab" class="S-row-right" href="#S-2"><i
+                                class="fa fa-angle-right fa-admin"></i></a>
+                </div>
+                <h2>L'Utilisateur</h2>
+                <div class="row first">
+                    <div class="col-sm-3">
+                        <h3>{{ form_label(form.role, 'Rôle') }}</h3>
                     </div>
-                    <div class="col-sm-6">
-                        {{ form_label(form.password, 'Mot de passe') }}
-                        {{ form_widget(form.password) }}
+                    <div class="col-sm-1 text-right">
+                        <i class="fa fa-question fa-admin-mini" data-toggle="tooltip" data-placement="right"
+                           title="Message a voir j'ai pas d'idée a 23h37"></i>
                     </div>
-                    <div class="col-sm-6">
-                        {{ form_label(form.role, 'Rôle') }}
+                    <div class="col-sm-3 S-Mayor">
+                        <h3>{{ form_label(form.login, 'Login / Insee') }}</h3>
+                    </div>
+                    <div class="col-sm-1 text-right S-Mayor">
+                        <i class="fa fa-question fa-admin-mini" data-toggle="tooltip" data-placement="right"
+                           title="Message a voir j'ai pas d'idée a 23h37"></i>
+                    </div>
+                    <div class="col-sm-3 S-Partner hidden">
+                        <h3><label for="siret">Siret / Siren</label></h3>
+                    </div>
+                    <div class="col-sm-1 text-right S-Partner hidden">
+                        <i class="fa fa-question fa-admin-mini" data-toggle="tooltip" data-placement="right"
+                           title="Si vous laissez ce champ vide le mot de passe généré sera : Siret"></i>
+                    </div>
+                </div>
+
+                <div class="row first">
+                    <div class="col-sm-4">
                         <div class="select">
                             {{ form_widget(form.role, {'attr': {
                                 'onchange': "change_valeur()"
@@ -397,213 +77,843 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-sm-6">
-                        {{ form_label(form.status, 'Statut') }}
-                        <div class="select">
-                            {{ form_widget(form.status) }}
-                            <div class="select_arrow">
+                    <div class="col-sm-4 S-Mayor">
+                        {{ form_widget(form.login) }}
+                    </div>
+                    <div class="col-sm-4 S-Partner hidden">
+                        <input id="siret" name="siret" class="form-control" maxlength="14">
+                    </div>
+                </div>
+
+                <div class="row S-1-2 first hidden">
+                    <div class="col-sm-3">
+                        <h3>{{ form_label(form.email, 'Email') }}</h3>
+                    </div>
+                    <div class="col-sm-1 text-right">
+                        <i class="fa fa-question fa-admin-mini" data-toggle="tooltip" data-placement="right"
+                           title="Message a voir j'ai pas d'idée a 23h37"></i>
+                    </div>
+                    <div class="col-sm-3">
+                        <h3>{{ form_label(form.password, 'Mot de Passe') }}</h3>
+                    </div>
+                    <div class="col-sm-1 text-right S-Mayor">
+                        <i class="fa fa-question fa-admin-mini" data-toggle="tooltip" data-placement="right"
+                           title="Si vous laissez ce champ vide le mot de passe généré sera : CODE INSEE+CODE POSTAL"></i>
+                    </div>
+
+                </div>
+                <div class="row S-1-2 hidden">
+                    <div class="col-sm-4">
+                        {{ form_widget(form.email, {
+                            'attr':{
+                                'autocomplete': 'off'
+                            }
+                        }) }}
+                    </div>
+                    <div class="col-sm-4">
+                        {{ form_widget(form.password, {
+                            'attr':{
+                                'placeholder' : 'Mot de passe généré Automatiquement',
+                                'autocomplete': 'off'
+                            }
+                        }) }}
+                    </div>
+                </div>
+
+                <div class="row S-1-2 first hidden">
+                    <div class="col-sm-5">
+                        <h3><label for="changPass">Obliger l'utilisateur a changer son mot de passe</label></h3>
+                    </div>
+                    <div class="col-sm-1 text-right">
+                        <input type="checkbox" name="changPass" id="changPass" checked="checked">
+                        <i class="fa fa-question fa-admin-mini" data-toggle="tooltip" data-placement="right"
+                           title="Message a voir j'ai pas d'idée a 23h37"></i>
+                    </div>
+                </div>
+                <div class="S-Partner hidden">
+
+                </div>
+
+            </div>
+
+            <div id="S-2" class="tab-pane fade">
+                <div class="S-nav mayor">
+                    <a data-toggle="tab" class="S-row-left" href="#S-1"><i
+                                class="fa fa-angle-left fa-admin"></i></a>
+                    <a data-toggle="tab" class="S-row-right" href="#S-3"><i
+                                class="fa fa-angle-right fa-admin"></i></a>
+                </div>
+                <div class="S-Mayor">
+                    <h2>Le maire</h2>
+                    <div class="row first">
+                        <div class="col-sm-5">
+                            <h3>{{ form_label(form.mayor.lastName, 'Nom') }}</h3>
+                        </div>
+                        <div class="col-sm-1 text-right">
+                            <i class="fa fa-question fa-admin-mini" data-toggle="tooltip" data-placement="right"
+                               title="Message a voir j'ai pas d'idée a 23h37"></i>
+                        </div>
+                        <div class="col-sm-5">
+                            <h3>{{ form_label(form.mayor.firstName, 'Prénom') }}</h3>
+                        </div>
+                        <div class="col-sm-1 text-right">
+                            <i class="fa fa-question fa-admin-mini" data-toggle="tooltip" data-placement="right"
+                               title="Message a voir j'ai pas d'idée a 23h37"></i>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            {{ form_widget(form.mayor.lastName) }}
+                        </div>
+                        <div class="col-sm-6">
+                            {{ form_widget(form.mayor.firstName) }}
+                        </div>
+                    </div>
+
+                    <div class="row first">
+                        <div class="col-sm-5">
+                            <h3>{{ form_label(form.mayor.email, 'Email') }}</h3>
+                        </div>
+                        <div class="col-sm-1 text-right">
+                            <i class="fa fa-question fa-admin-mini" data-toggle="tooltip" data-placement="right"
+                               title="Message a voir j'ai pas d'idée a 23h37"></i>
+                        </div>
+                        <div class="col-sm-5">
+                            <h3>{{ form_label(form.mayor.phone, 'Téléphone') }}</h3>
+                        </div>
+                        <div class="col-sm-1 text-right">
+                            <i class="fa fa-question fa-admin-mini" data-toggle="tooltip" data-placement="right"
+                               title="Message a voir j'ai pas d'idée a 23h37"></i>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            {{ form_widget(form.mayor.email) }}
+                        </div>
+                        <div class="col-sm-6">
+                            {{ form_widget(form.mayor.phone) }}
+                        </div>
+                    </div>
+                    <h2>La commune</h2>
+                    <div class="row first">
+                        <div class="col-sm-3">
+                            <h3>{{ form_label(form.mayor.insee, 'INSEE') }}</h3>
+                        </div>
+                        <div class="col-sm-1 text-right">
+                            <i class="fa fa-question fa-admin-mini" data-toggle="tooltip" data-placement="right"
+                               title="Message a voir j'ai pas d'idée a 23h37"></i>
+                        </div>
+                        <div class="col-sm-7">
+                            <h3>{{ form_label(form.mayor.address, 'Adresse') }}</h3>
+                        </div>
+                        <div class="col-sm-1 text-right">
+                            <i class="fa fa-question fa-admin-mini" data-toggle="tooltip" data-placement="right"
+                               title="Message a voir j'ai pas d'idée a 23h37"></i>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-4">
+                            {{ form_widget(form.mayor.insee) }}
+                        </div>
+                        <div class="col-sm-8">
+                            {{ form_widget(form.mayor.address) }}
+                        </div>
+                    </div>
+
+
+                    <div class="row first Geoloc hidden">
+                        <div class="col-sm-3">
+                            <h3>{{ form_label(form.mayor.town, 'Ville') }}</h3>
+                        </div>
+                        <div class="col-sm-1 text-right">
+                            <i class="fa fa-question fa-admin-mini"
+                               data-toggle="tooltip" data-placement="right"
+                               title="Message a voir j'ai pas d'idée a 23h37"></i>
+                        </div>
+                        <div class="col-sm-2">
+                            <h3>{{ form_label(form.mayor.zipCode, 'Code Postal') }}</h3>
+                        </div>
+                        <div class="col-sm-2">
+                            <h3>{{ form_label(form.mayor.department, 'Département') }}</h3>
+                        </div>
+                        <div class="col-sm-1 text-right">
+                            <i class="fa fa-question fa-admin-mini"
+                               data-toggle="tooltip" data-placement="right"
+                               title="Message a voir j'ai pas d'idée a 23h37"></i>
+                        </div>
+                        <div class="col-sm-2">
+                            <h3>{{ form_label(form.mayor.region, 'Région') }}</h3>
+                        </div>
+                        <div class="col-sm-1 text-right">
+                            <i class="fa fa-question fa-admin-mini"
+                               data-toggle="tooltip" data-placement="right"
+                               title="Message a voir j'ai pas d'idée a 23h37"></i>
+                        </div>
+                    </div>
+                    <div class="row Geoloc hidden">
+                        <div class="col-sm-4">
+                            {{ form_widget(form.mayor.town) }}
+                        </div>
+                        <div class="col-sm-2">
+                            {{ form_widget(form.mayor.zipCode) }}
+                        </div>
+                        <div class="col-sm-3">
+                            {{ form_widget(form.mayor.department, {'attr': {
+                                'disabled': 'disabled'
+                            } }) }}
+                        </div>
+                        <div class="col-sm-3">
+                            {{ form_widget(form.mayor.region, {'attr': {
+                                'disabled': 'disabled'
+                            } }) }}
+                        </div>
+                    </div>
+                    <div class="row first Geoloc hidden">
+                        <div class="col-sm-3">
+                            <h3>{{ form_label(form.mayor.latitude, 'Lattitude') }}</h3>
+                        </div>
+                        <div class="col-sm-1 text-right">
+                            <i class="fa fa-question fa-admin-mini"
+                               data-toggle="tooltip" data-placement="right"
+                               title="Message a voir j'ai pas d'idée a 23h37"></i>
+                        </div>
+                        <div class="col-sm-3">
+                            <h3>{{ form_label(form.mayor.longitude, 'Longitude') }}</h3>
+                        </div>
+                        <div class="col-sm-1 text-right">
+                            <i class="fa fa-question fa-admin-mini"
+                               data-toggle="tooltip" data-placement="right"
+                               title="Message a voir j'ai pas d'idée a 23h37"></i>
+                        </div>
+                        <div class="col-sm-3">
+                            <h3>{{ form_label(form.mayor.longitude, 'Population') }}</h3>
+                        </div>
+                        <div class="col-sm-1 text-right">
+                            <i class="fa fa-question fa-admin-mini"
+                               data-toggle="tooltip" data-placement="right"
+                               title="Message a voir j'ai pas d'idée a 23h37"></i>
+                        </div>
+                    </div>
+                    <div class="row Geoloc hidden">
+                        <div class="col-sm-4">
+                            {{ form_widget(form.mayor.latitude, {'attr': {
+                                'disabled': 'disabled'
+                            } }) }}
+                        </div>
+                        <div class="col-sm-4">
+                            {{ form_widget(form.mayor.longitude, {'attr': {
+                                'disabled': 'disabled'
+                            } }) }}
+                        </div>
+                        <div class="col-sm-4">
+                            {{ form_widget(form.mayor.population, {'attr': {
+                                'disabled': 'disabled'
+                            } }) }}
+                        </div>
+
+                    </div>
+                </div>
+                <div class="S-Partner hidden">
+                    <h2>Le partenaire</h2>
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <h3>{{ form_label(form.partner.firstName, 'Nom') }}</h3>
+
+                        </div>
+                        <div class="col-sm-4">
+                            <h3>{{ form_label(form.partner.lastName, 'Prenom') }}</h3>
+
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-4">
+                            {{ form_widget(form.partner.firstName) }}
+                        </div>
+                        <div class="col-sm-4">
+                            {{ form_widget(form.partner.lastName) }}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <h3>{{ form_label(form.partner.email, 'Email') }}</h3>
+                        </div>
+                        <div class="col-sm-4">
+                            <h3>{{ form_label(form.partner.phone, 'Téléphone') }}</h3>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-4">
+                            {{ form_widget(form.partner.email) }}
+                        </div>
+                        <div class="col-sm-4">
+                            {{ form_widget(form.partner.phone) }}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <h3>{{ form_label(form.partner.occupation, 'Fonction') }}</h3>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-4">
+                            {{ form_widget(form.partner.occupation) }}
+                        </div>
+                    </div>
+                    <h2>Le Contact</h2>
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <h3>{{ form_label(form.partner.company.contactFirstName, 'Nom') }}</h3>
+
+                        </div>
+                        <div class="col-sm-4">
+                            <h3>{{ form_label(form.partner.company.contactLastName, 'Prenom') }}</h3>
+
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-4">
+                            {{ form_widget(form.partner.company.contactFirstName) }}
+                        </div>
+                        <div class="col-sm-4">
+                            {{ form_widget(form.partner.company.contactLastName) }}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <h3>{{ form_label(form.partner.company.contactEmail, 'Email') }}</h3>
+                        </div>
+                        <div class="col-sm-4">
+                            <h3>{{ form_label(form.partner.company.contactPhone, 'Téléphone') }}</h3>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-4">
+                            {{ form_widget(form.partner.company.contactEmail) }}
+                        </div>
+                        <div class="col-sm-4">
+                            {{ form_widget(form.partner.company.contactPhone) }}
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div id="S-3" class="tab-pane fade">
+                <div class="S-nav mayor">
+                    <a data-toggle="tab" class="S-row-left" href="#S-2"><i
+                                class="fa fa-angle-left fa-admin"></i></a>
+                    <a data-toggle="tab" class="S-row-right" href="#S-4"><i
+                                class="fa fa-angle-right fa-admin"></i></a>
+                </div>
+
+                <div class="S-Mayor">
+                    <h2>Les Resaux Sociaux</h2>
+                    <div class="row first">
+                        <div class="col-sm-5">
+                            <h3>{{ form_label(form.mayor.url, 'Lien internet') }}</h3>
+                        </div>
+                        <div class="col-sm-1 text-right">
+                            <i class="fa fa-question fa-admin-mini" data-toggle="tooltip" data-placement="right"
+                               title="Message a voir j'ai pas d'idée a 23h37"></i>
+                        </div>
+                        <div class="col-sm-5">
+                            <h3>{{ form_label(form.mayor.facebook, 'Facebook') }}</h3>
+                        </div>
+                        <div class="col-sm-1 text-right">
+                            <i class="fa fa-question fa-admin-mini" data-toggle="tooltip" data-placement="right"
+                               title="Message a voir j'ai pas d'idée a 23h37"></i>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            {{ form_widget(form.mayor.url) }}
+                        </div>
+                        <div class="col-sm-6">
+                            {{ form_widget(form.mayor.facebook) }}
+                        </div>
+                    </div>
+
+                    <div class="row first">
+                        <div class="col-sm-5">
+                            <h3>{{ form_label(form.mayor.twitter, 'Twi
+tter') }}</h3>
+                        </div>
+                        <div class="col-sm-1 text-right">
+                            <i class="fa fa-question fa-admin-mini" data-toggle="tooltip" data-placement="right"
+                               title="Message a voir j'ai pas d'idée a 23h37"></i>
+                        </div>
+                        <div class="col-sm-5">
+                            <h3>{{ form_label(form.mayor.google, 'Google+') }}</h3>
+                        </div>
+                        <div class="col-sm-1 text-right">
+                            <i class="fa fa-question fa-admin-mini" data-toggle="tooltip" data-placement="right"
+                               title="Message a voir j'ai pas d'idée a 23h37"></i>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            {{ form_widget(form.mayor.twitter) }}
+                        </div>
+                        <div class="col-sm-6">
+                            {{ form_widget(form.mayor.google) }}
+                        </div>
+                    </div>
+                </div>
+                <div class="S-Partner hidden">
+                    <h2>Son Entreprise</h2>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <h3>{{ form_label(form.partner.company.name, 'Nom de l\'entreprise') }}</h3>
+                        </div>
+                        <div class="col-sm-3">
+                            <h3>{{ form_label(form.partner.company.url, 'Lien internet') }}</h3>
+                        </div>
+                        <div class="col-sm-3">
+                            <h3>{{ form_label(form.partner.company.facebook, 'Facebook') }}</h3>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            {{ form_widget(form.partner.company.name) }}
+                        </div>
+                        <div class="col-sm-3">
+                            {{ form_widget(form.partner.company.url) }}
+                        </div>
+                        <div class="col-sm-3">
+                            {{ form_widget(form.partner.company.facebook) }}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-2">
+                            <h3>{{ form_label(form.partner.company.zipCode, 'Code postal') }}</h3>
+                        </div>
+                        <div class="col-sm-4">
+                            <h3>{{ form_label(form.partner.company.city, 'Ville') }}</h3>
+                        </div>
+                        <div class="col-sm-3">
+                            <h3>{{ form_label(form.partner.company.linkedin, 'Linkedin') }}</h3>
+                        </div>
+                        <div class="col-sm-3">
+                            <h3>{{ form_label(form.partner.company.twitter, 'Twitter') }}</h3>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-2">
+                            {{ form_widget(form.partner.company.zipCode) }}
+                        </div>
+                        <div class="col-sm-4">
+                            {{ form_widget(form.partner.company.city) }}
+                        </div>
+                        <div class="col-sm-3">
+                            {{ form_widget(form.partner.company.linkedin) }}
+                        </div>
+                        <div class="col-sm-3">
+                            {{ form_widget(form.partner.company.twitter) }}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <h3>{{ form_label(form.partner.company.address, 'Adresse') }}</h3>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            {{ form_widget(form.partner.company.address) }}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <h3>{{ form_label(form.partner.company.presentation, 'Presentation') }}</h3>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            {{ form_widget(form.partner.company.presentation) }}
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+            <div id="S-4" class="tab-pane fade">
+                <div class="S-nav mayor">
+                    <a data-toggle="tab" class="S-row-left" href="#S-3">
+                        <i class="fa fa-angle-left fa-admin"></i>
+                    </a>
+                    <a id="valid" onclick="document.amrf_publicrooterbundle_user.submit();" data-toggle="tooltip"
+                       data-placement="right"
+                       title="Nouvel Utilisateur"
+                       class="hidden">
+                        <i class="fa fa-check fa-admin"></i>
+                    </a>
+                </div>
+                <div class="S-Mayor">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <h2>L'utilisateur</h2>
+                            <div id="result-Mayor-user">
+                            </div>
+                            <h2>La Commune</h2>
+                            <div id="result-Mayor-commune">
+                            </div>
+
+                        </div>
+                        <div class="col-sm-6">
+                            <h2>Le Maire</h2>
+                            <div id="result-Mayor-mayor">
+                            </div>
+                            <h2>Les Réseaux Sociaux</h2>
+                            <div id="result-Mayor-reseaux">
                             </div>
                         </div>
                     </div>
-                    <div class="col-sm-6">
-                        {{ form_label(form.email, 'Email') }}
-                        {{ form_widget(form.email) }}
-                    </div>
-                    {{ form_widget(form.creationDate, {'attr': {
-                        'class': "hidden"
-                    } }) }}
-                    {{ form_widget(form.lastLogin, {'attr': {
-                        'class': "hidden"
-                    } }) }}
                 </div>
-            </div>
-        </div>
-        <div class="col-sm-6">
-            <div class="jumbotron userMayor">
-                <h4>Maire</h4>
-                <div class="row">
-                    <div class="col-sm-6">
-                        {{ form_label(form.mayor.firstName, 'Prénom') }}
-                        {{ form_widget(form.mayor.firstName) }}
-                    </div>
-                    <div class="col-sm-6">
-                        {{ form_label(form.mayor.lastName, 'Nom') }}
-                        {{ form_widget(form.mayor.lastName) }}
-                    </div>
-                    <div class="col-sm-6">
-                        {{ form_label(form.mayor.address, 'Adresse') }}
-                        {{ form_widget(form.mayor.address) }}
+                <div class="S-Partner hidden">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <h2>L'utilisateur</h2>
+                            <div id="result-Partner-user">
+                            </div>
+                            <h2>Son entreprise</h2>
+                            <div id="result-Partner-company">
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <h2>Le Partenaire</h2>
+                            <div id="result-Partner-partner">
+                            </div>
+                            <h2>Le Contact</h2>
+                            <div id="result-Partner-contact">
+                            </div>
 
-                    </div>
-                    <div class="col-sm-6">
-                        {{ form_label(form.mayor.insee, 'INSEE') }}
-                        {{ form_widget(form.mayor.insee) }}
-                    </div>
-                    <div class="col-sm-6">
-                        {{ form_label(form.mayor.email) }}
-                        {{ form_widget(form.mayor.email) }}
-                    </div>
-                    <div class="col-sm-6">
-                        {{ form_label(form.mayor.phone, 'Téléphone') }}
-                        {{ form_widget(form.mayor.phone) }}
-                    </div>
-                    <div class="col-sm-6">
-                        {{ form_label(form.mayor.town, 'Ville') }}
-                        {{ form_widget(form.mayor.town) }}
-                    </div>
-                    <div class="col-sm-6">
-                        {{ form_label(form.mayor.zipCode, 'Code Postal') }}
-                        {{ form_widget(form.mayor.zipCode) }}
-                    </div>
-                    <div class="col-sm-6">
-                        {{ form_widget(form.mayor.department, {'attr': {
-                            'class': "hidden"
-                        } }) }}
-                    </div>
-                    <div class="col-sm-6">
-                        {{ form_widget(form.mayor.region, {'attr': {
-                            'class': "hidden"
-                        } }) }}
-                    </div>
-                    <div class="col-sm-6">
-                        {{ form_widget(form.mayor.latitude, {'attr': {
-                            'class': "hidden"
-                        } }) }}
-                    </div>
-                    <div class="col-sm-6">
-                        {{ form_widget(form.mayor.longitude, {'attr': {
-                            'class': "hidden"
-                        } }) }}
-                    </div>
-                    <div class="col-sm-6">
-                        {{ form_widget(form.mayor.population, {'attr': {
-                            'class': "hidden"
-                        } }) }}
-                    </div>
-                    <div class="col-sm-6">
-                        {{ form_label(form.mayor.url, 'Site internet') }}
-                        {{ form_widget(form.mayor.url) }}
-                    </div>
-                    <div class="col-sm-6">
-                        {{ form_label(form.mayor.facebook) }}
-                        {{ form_widget(form.mayor.facebook) }}
-                    </div>
-                    <div class="col-sm-6">
-                        {{ form_label(form.mayor.twitter) }}
-                        {{ form_widget(form.mayor.twitter) }}
-                    </div>
-                    <div class="col-sm-6">
-                        {{ form_label(form.mayor.google) }}
-                        {{ form_widget(form.mayor.google) }}
-                    </div>
-                </div>
-            </div>
-            <div class="jumbotron userPartner hidden">
-                <h4>Partenaire</h4>
-                <div class="row">
-                    <div class="col-sm-6">
-                        {{ form_label(form.partner.firstName, 'Prénom') }}
-                        {{ form_widget(form.partner.firstName) }}
-                    </div>
-                    <div class="col-sm-6">
-                        {{ form_label(form.partner.lastName, 'Nom') }}
-                        {{ form_widget(form.partner.lastName) }}
-                    </div>
-                    <div class="col-sm-6">
-                        {{ form_label(form.partner.occupation, 'Fonction') }}
-                        {{ form_widget(form.partner.occupation) }}
-                    </div>
-                    <div class="col-sm-6">
-                        {{ form_label(form.partner.phone, 'Téléphone') }}
-                        {{ form_widget(form.partner.phone) }}
-                    </div>
-                    <div class="col-sm-6">
-                        {{ form_label(form.partner.email) }}
-                        {{ form_widget(form.partner.email) }}
-                    </div>
-                    <div class="col-sm-6">
-                        {{ form_label(form.partner.company, 'Organisme') }}
-                        {{ form_widget(form.partner.company) }}
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-    {{ form_widget(form) }}
-    {{ form_end(form) }}
-#}
 
+    {{ form_widget(form._token) }}
+    {{ form_end(form, {'render_rest': false}) }}
 {% endblock %}
     {% block javascripts %}
         <script>
             $(document).ready(function () {
-                $('#amrf_publicrooterbundle_user_login').keyup(function () {
+
+
+                if (document.forms[0].elements["amrf_publicrooterbundle_user[login]"].value > 0) {
+                    $(".S-1-2").removeClass("hidden");
+                }
+
+
+                $(".S-nav a").click(function () {
+                    $("#valid").addClass("hidden");
+                    link = this.getAttribute("href");
+                    arrow = this.getAttribute("class");
+                    arrow = arrow.split("-");
+                    link = link.replace("#", "");
+                    link = link.split("-");
+
+
+                    where = $(".S-nav")[0].getAttribute("class").split(" ")[1];
+                    console.log(where);
+
+                    id = parseInt((link[1]));
+                    if (arrow[2] === "right") {
+                        $(".S-" + id).addClass("active");
+                        $(".S-" + (id - 1)).removeClass("active");
+                    }
+
+                    if (arrow[2] === "left") {
+                        $(".S-" + id).addClass("active").removeClass("done").html(id);
+                        $(".S-" + (id + 1)).removeClass("active").removeClass("done");
+                    }
+
+                    if (id === 4) {
+                        AjaxCommune(document.forms[0].elements["amrf_publicrooterbundle_user[mayor][insee]"].value);
+                        login = document.forms[0].elements["amrf_publicrooterbundle_user[login]"].value;
+                        email = document.forms[0].elements["amrf_publicrooterbundle_user[email]"].value;
+                        insee = document.forms[0].elements["amrf_publicrooterbundle_user[mayor][insee]"].value;
+                        name = document.forms[0].elements["amrf_publicrooterbundle_user[partner][company][name]"].value;
+                        console.log(login);
+                        console.log(email);
+                        console.log(insee);
+                        console.log(name);
+                        switch (where) {
+                            case "mayor":
+                                console.log("Dans les Mayor");
+                                if (login.length >= 5 && email.length >= 5 && insee.length >= 5) {
+                                    console.log("Remove");
+                                    $("#valid").removeClass("hidden");
+                                }
+                                break;
+                            case "partner":
+                                console.log("Dans les part" + name);
+                                if (login.length >= 5 && email.length >= 5 && name.length >= 5) {
+                                    console.log("Remove");
+                                    $("#valid").removeClass("hidden");
+                                }
+                                break;
+                        }
+
+                        setTimeout(ResultMayor, 100);
+                        setTimeout(ResulPartner, 100);
+
+                    }
+                    else {
+                        $("#valid").addClass("hidden");
+                    }
+                    $(this).tab('show');
+                    $('.step').each(function (index, element) {
+                        // element == this
+                        $(element).not('.active').addClass('done');
+                        $('.done').html('<i class="icon-ok"></i>');
+                        if ($(this).is('.active')) {
+                            return false;
+                        }
+                    });
+                });
+
+                $('#amrf_publicrooterbundle_user_login').change(function () {
                     var login = $(this).val();
                     if (login.length >= 5) {
-                        $(".User-2").removeClass("hidden");
+                        $(".S-1-2").removeClass("hidden");
                         if (!isNaN(login)) {
                             $("#amrf_publicrooterbundle_user_mayor_insee").val(login);
+                            $(".Geoloc").removeClass("hidden");
+                            AjaxCommune(login);
                         }
                     }
 
                 });
 
-                $("#amrf_publicrooterbundle_user_mayor_insee").keyup(function () {
+                $('#siret').change(function () {
+                    console.log("Change Siret")
+                    var siret = $(this).val();
+                    if (siret.length >= 9) {
+                        $(".S-1-2").removeClass("hidden");
+                        if (!isNaN(siret)) {
+                            AjaxCompany(siret);
+                        }
+                    }
+
+                });
+
+                $('#amrf_publicrooterbundle_user_email').change(function () {
+                    var email = $(this).val();
+                    if (email.length >= 5) {
+                        $("#amrf_publicrooterbundle_user_mayor_email").val(email);
+                    }
+
+                });
+
+                $("#amrf_publicrooterbundle_user_mayor_insee").change(function () {
                     var insee = $(this).val();
                     if (insee.length >= 5) {
                         $(".Geoloc").removeClass("hidden");
-                        $.ajax({
-                            type: "GET",
-                            url: "https://geo.api.gouv.fr/communes?fields=code,nom,codesPostaux,codeDepartement,codeRegion,population,centre&code=" + insee,
-                            dataType: "json",
-                            timeout: 3000,
-                            success: function (response) {
-                                var longitude = response[0].centre.coordinates[0];
-                                var lattitude = response[0].centre.coordinates[1];
-                                var zipcode = response[0].codesPostaux[0];
-                                var codeDepartement = response[0].codeDepartement;
-                                var codeRegion = response[0].codeRegion;
-                                var town = response[0].nom;
-                                var population = response[0].population;
+                        AjaxCommune(insee);
 
-                                $("#amrf_publicrooterbundle_user_mayor_town").val(town);
-                                $("#amrf_publicrooterbundle_user_mayor_zipCode").val(zipcode);
-                                $("#amrf_publicrooterbundle_user_mayor_department").val(codeDepartement);
-                                $("#amrf_publicrooterbundle_user_mayor_region").val(codeRegion);
-                                $("#amrf_publicrooterbundle_user_mayor_latitude").val(lattitude);
-                                $("#amrf_publicrooterbundle_user_mayor_longitude").val(longitude);
-                                $("#amrf_publicrooterbundle_user_mayor_population").val(population);
-
-                            },
-                            error: function () {
-                                $('#autocomplete').text('Ajax call error');
-                            }
-                        })
                     } else {
                         $('#autocomplete').html('');
                     }
                 });
             });
 
+            function ResulPartner() {
+                result = "";
+                result += trameHtml('Login *', document.forms[0].elements["amrf_publicrooterbundle_user[login]"].value);
+                result += trameHtml('Email *', document.forms[0].elements["amrf_publicrooterbundle_user[email]"].value);
+                $('#result-Partner-user').html(result);
+
+                result = "";
+                result += trameHtml('Nom', document.forms[0].elements["amrf_publicrooterbundle_user[partner][lastName]"].value);
+                result += trameHtml('Prenom', document.forms[0].elements["amrf_publicrooterbundle_user[partner][firstName]"].value);
+                result += trameHtml('Email', document.forms[0].elements["amrf_publicrooterbundle_user[partner][email]"].value);
+                result += trameHtml('Téléphone', document.forms[0].elements["amrf_publicrooterbundle_user[partner][phone]"].value);
+                result += trameHtml('Fonction', document.forms[0].elements["amrf_publicrooterbundle_user[partner][occupation]"].value);
+                $('#result-Partner-partner').html(result);
+
+                result = "";
+                result += trameHtml('Nom', document.forms[0].elements["amrf_publicrooterbundle_user[partner][company][contactLastName]"].value);
+                result += trameHtml('Prenom', document.forms[0].elements["amrf_publicrooterbundle_user[partner][company][contactFirstName]"].value);
+                result += trameHtml('Email', document.forms[0].elements["amrf_publicrooterbundle_user[partner][company][contactEmail]"].value);
+                result += trameHtml('Téléphone', document.forms[0].elements["amrf_publicrooterbundle_user[partner][company][contactPhone]"].value);
+                $('#result-Partner-contact').html(result);
+
+                result = "";
+                result += trameHtml('Nom de l\'Entreprise *', document.forms[0].elements["amrf_publicrooterbundle_user[partner][company][name]"].value);
+                result += trameHtml('Adresse', document.forms[0].elements["amrf_publicrooterbundle_user[partner][company][address]"].value);
+                result += trameHtml('Code Postal', document.forms[0].elements["amrf_publicrooterbundle_user[partner][company][zipCode]"].value);
+                result += trameHtml('Ville', document.forms[0].elements["amrf_publicrooterbundle_user[partner][company][city]"].value);
+                result += trameHtml('Presentation', document.forms[0].elements["amrf_publicrooterbundle_user[partner][company][presentation]"].value);
+                result += trameHtml('Lien Internet', document.forms[0].elements["amrf_publicrooterbundle_user[partner][company][url]"].value);
+                result += trameHtml('Facebook', document.forms[0].elements["amrf_publicrooterbundle_user[partner][company][facebook]"].value);
+                result += trameHtml('Linkedin', document.forms[0].elements["amrf_publicrooterbundle_user[partner][company][linkedin]"].value);
+                result += trameHtml('Twitter', document.forms[0].elements["amrf_publicrooterbundle_user[partner][company][twitter]"].value);
+                $('#result-Partner-company').html(result);
+
+            }
+
+            function ResultMayor() {
+                result = "";
+                result += trameHtml('Login *', document.forms[0].elements["amrf_publicrooterbundle_user[login]"].value);
+                result += trameHtml('Email *', document.forms[0].elements["amrf_publicrooterbundle_user[email]"].value);
+                $('#result-Mayor-user').html(result);
+
+                result = "";
+                result += trameHtml('Nom', document.forms[0].elements["amrf_publicrooterbundle_user[mayor][lastName]"].value);
+                result += trameHtml('Prenom', document.forms[0].elements["amrf_publicrooterbundle_user[mayor][firstName]"].value);
+                result += trameHtml('Email', document.forms[0].elements["amrf_publicrooterbundle_user[mayor][email]"].value);
+                result += trameHtml('Téléphone', document.forms[0].elements["amrf_publicrooterbundle_user[mayor][phone]"].value);
+                $('#result-Mayor-mayor').html(result);
+
+                result = "";
+                result += trameHtml('Insee *', document.forms[0].elements["amrf_publicrooterbundle_user[mayor][insee]"].value);
+                result += trameHtml('Adresse', document.forms[0].elements["amrf_publicrooterbundle_user[mayor][address]"].value);
+
+                result += trameHtml('Ville', document.forms[0].elements["amrf_publicrooterbundle_user[mayor][town]"].value);
+                result += trameHtml('Code Postal', document.forms[0].elements["amrf_publicrooterbundle_user[mayor][zipCode]"].value);
+                result += trameHtml('Département', document.forms[0].elements["amrf_publicrooterbundle_user[mayor][department]"].value);
+                result += trameHtml('Région', document.forms[0].elements["amrf_publicrooterbundle_user[mayor][region]"].value);
+                result += trameHtml('Population', document.forms[0].elements["amrf_publicrooterbundle_user[mayor][population]"].value);
+                result += trameHtml('Latitude', document.forms[0].elements["amrf_publicrooterbundle_user[mayor][latitude]"].value);
+                result += trameHtml('Longitude', document.forms[0].elements["amrf_publicrooterbundle_user[mayor][longitude]"].value);
+                $('#result-Mayor-commune').html(result);
+
+                result = "";
+                result += trameHtml('Lien internet', document.forms[0].elements["amrf_publicrooterbundle_user[mayor][url]"].value);
+                result += trameHtml('Facebook', document.forms[0].elements["amrf_publicrooterbundle_user[mayor][facebook]"].value);
+                result += trameHtml('Twitter', document.forms[0].elements["amrf_publicrooterbundle_user[mayor][twitter]"].value);
+                result += trameHtml('Google', document.forms[0].elements["amrf_publicrooterbundle_user[mayor][google]"].value);
+                $('#result-Mayor-reseaux').html(result);
+            }
+
+            function AjaxCompany(siret) {
+                $.ajax({
+                    type: "GET",
+                    url: "https://koumoul.com/s/sirene/api/v1/etablissements?format=json&select=siret%2CSIREN%2CCODPOS%2CL1_DECLAREE%2CL4_DECLAREE%2CLIBCOM&q=" + siret,
+                    dataType: "json",
+                    timeout: 3000,
+                    success: function (response) {
+
+                        result = response.results[0].doc;
+                        console.log(result);
+                        if (result.length !== 0) {
+                            var zipcode = result.CODPOS;
+                            console.log(zipcode);
+                            var city = result.LIBCOM;
+                            var name = result.L1_DECLAREE;
+                            var adresse = result.L4_DECLAREE;
+                            var siretapi = result.siret;
+                            var siren = result.SIREN;
+                            $("#amrf_publicrooterbundle_user_login").val(siren);
+                            $("#amrf_publicrooterbundle_user_password").val(siretapi);
+                            $("#amrf_publicrooterbundle_user_partner_company_name").val(name);
+                            $("#amrf_publicrooterbundle_user_partner_company_zipCode").val(zipcode);
+                            $("#amrf_publicrooterbundle_user_partner_company_city").val(city);
+                            $("#amrf_publicrooterbundle_user_partner_company_address").val(adresse);
+                        } else {
+                            $("#amrf_publicrooterbundle_user_login").val(siret);
+                            $("#amrf_publicrooterbundle_user_password").val(siret);
+                        }
+                    },
+                    error: function () {
+                        $("#amrf_publicrooterbundle_user_login").val(siret);
+                        $("#amrf_publicrooterbundle_user_password").val(siret);
+                    }
+                })
+            }
+
+            function AjaxCommune(insee) {
+                $.ajax({
+                    type: "GET",
+                    url: "https://geo.api.gouv.fr/communes?fields=code,nom,codesPostaux,codeDepartement,codeRegion,population,centre&code=" + insee,
+                    dataType: "json",
+                    timeout: 3000,
+                    success: function (response) {
+                        if (response.length !== 0) {
+                            var longitude = response[0].centre.coordinates[0];
+                            var lattitude = response[0].centre.coordinates[1];
+                            var zipcode = response[0].codesPostaux[0];
+                            var codeDepartement = response[0].codeDepartement;
+                            var codeRegion = response[0].codeRegion;
+                            var town = response[0].nom;
+                            var population = response[0].population;
+
+                            $("#amrf_publicrooterbundle_user_password").val(insee + zipcode);
+                            $("#amrf_publicrooterbundle_user_mayor_town").val(town);
+                            $("#amrf_publicrooterbundle_user_mayor_zipCode").val(zipcode);
+                            $("#amrf_publicrooterbundle_user_mayor_department").val(codeDepartement);
+                            $("#amrf_publicrooterbundle_user_mayor_region").val(codeRegion);
+                            $("#amrf_publicrooterbundle_user_mayor_latitude").val(lattitude);
+                            $("#amrf_publicrooterbundle_user_mayor_longitude").val(longitude);
+                            $("#amrf_publicrooterbundle_user_mayor_population").val(population);
+                        } else {
+                            $("#amrf_publicrooterbundle_user_mayor_town").val("Erreur");
+                            $("#amrf_publicrooterbundle_user_mayor_zipCode").val();
+                            $("#amrf_publicrooterbundle_user_mayor_department").val();
+                            $("#amrf_publicrooterbundle_user_mayor_region").val();
+                            $("#amrf_publicrooterbundle_user_mayor_latitude").val();
+                            $("#amrf_publicrooterbundle_user_mayor_longitude").val();
+                            $("#amrf_publicrooterbundle_user_mayor_population").val();
+                        }
+                    },
+                    error: function () {
+
+                    }
+                })
+            }
+
+            function trameHtml(title, value) {
+
+                html = '<div class="row first">\n' +
+                    '<div class="col-sm-5">\n' +
+                    '<h3';
+                if (title.indexOf("*") >= 0) {
+                    tooltip = "";
+                    if (value.length < 5) {
+                        html += ' class="erreur" ';
+                        tooltip = ' data-toggle="tooltip" data-placement="right"\n' +
+                            'title="Ce champ doit contenir plus de 5 caractère"';
+                    }
+                    if (value.length === 0) {
+                        tooltip = ' data-toggle="tooltip" data-placement="right"\n' +
+                            'title="Ce champ ne peu pas etre vide"';
+                    }
+                    html += tooltip;
+                }
+                html += '><label>' + title + '</label></h3>\n' +
+                    '</div>\n' +
+                    '<div class="col-sm-7">\n' +
+                    '<input type="text" value="' + value + '" class="form-control" disabled="disabled"/>\n' +
+                    '</div>\n' +
+                    '</div>';
+                return html;
+
+            }
+
             function change_valeur() {
                 var select = document.getElementById("amrf_publicrooterbundle_user_role");
                 var choice = select.selectedIndex;
                 var role = select.options[choice].value;
 
-                if (role == 1) {
-                    $(".userPartner").addClass("hidden");
-                    $(".userMayor").removeClass("hidden");
+                if (role === "1") {
+                    $(".S-Partner").addClass("hidden");
+                    $(".S-nav").addClass("mayor").removeClass("partner");
+                    $(".S-Mayor").removeClass("hidden");
+
 
                 }
-                if (role == 2) {
-                    $(".userMayor").addClass("hidden");
-                    $(".userPartner").removeClass("hidden");
+                if (role === "2") {
+                    $(".S-Mayor").addClass("hidden");
+                    $(".S-nav").addClass("partner").removeClass("mayor");
+                    $(".S-Partner").removeClass("hidden");
+
 
                 }
-                if (role == 3) {
-                    $(".userMayor").addClass("hidden");
-                    $(".userPartner").addClass("hidden");
+                if (role === "3") {
+                    $(".S-Mayor").addClass("hidden");
+                    $(".S-Partner").addClass("hidden");
 
                 }
             }

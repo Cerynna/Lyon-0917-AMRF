@@ -18,7 +18,7 @@
             </div>
             <div class="col-md-3 text-right">
                 {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
-                    <a class="btn hidden-t-l" href="{{ path('logout') }}">Déconnection</a>
+                    <a class="btn hidden-t-l" href="{{ path('logout') }}">Déconnexion</a>
                 {% else %}
                     <div class="btn hidden-t-l" data-toggle="modal" data-target="#formConnect">
                         Accédez à votre espace
