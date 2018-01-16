@@ -1,44 +1,39 @@
 {% extends 'base.html.twig' %}
 {% block title %}Mon profil{% endblock %}
-
 {% block body %}
     {{ form_start(form) }}
     <h2>Mon profil</h2>
-    <div class="tabPannel">
-        <div class="errorForm">{{ form_errors(form.lastName) | striptags }}</div>
-        <div class="errorForm">{{ form_errors(form.firstName) | striptags }}</div>
-        <div class="errorForm">{{ form_errors(form.company) | striptags }}</div>
-        <div class="errorForm">{{ form_errors(form.occupation) | striptags }}</div>
-        <div class="errorForm">{{ form_errors(form.phone) | striptags }}</div>
-        <div class="errorForm">{{ form_errors(form.email) | striptags }}</div>
-
-
+    <div class="row tabPannel">
         <div class="star">Le symbole * indique que cette information est nécessaire.</div>
         <div class="row">
             <div class="col-lg-6 col-sm-6">
                 <div class="form-group">
                     {{ form_label(form.lastName, "Nom *") }}
                     {{ form_widget(form.lastName) }}
+                    <div class="errorForm">{{ form_errors(form.lastName) | striptags }}</div>
                 </div>
             </div>
             <div class="col-lg-6 col-sm-6">
                 <div class="form-group">
                     {{ form_label(form.firstName, "Prénom *") }}
                     {{ form_widget(form.firstName) }}
+                    <div class="errorForm">{{ form_errors(form.firstName) | striptags }}</div>
                 </div>
             </div>
         </div>
         <div class="row">
             <div class="col-lg-6 col-sm-6">
                 <div class="form-group">
-                    {{ form_label(form.company, "Organisme *") }}
-                    {{ form_widget(form.company, { 'attr':{'disabled':'disabled'} }) }}
+                    {{ form_label(form.company.name, "Organisme *") }}
+                    {{ form_widget(form.company.name, { 'attr':{'disabled':'disabled'} }) }}
+                    <div class="errorForm">{{ form_errors(form.company.name ) | striptags }}</div>
                 </div>
             </div>
             <div class="col-lg-6 col-sm-6">
                 <div class="form-group">
                     {{ form_label(form.occupation, "Fonction *") }}
                     {{ form_widget(form.occupation) }}
+                    <div class="errorForm">{{ form_errors(form.occupation) | striptags }}</div>
                 </div>
             </div>
         </div>
@@ -47,12 +42,14 @@
                 <div class="form-group">
                     {{ form_label(form.phone, "Téléphone *") }}
                     {{ form_widget(form.phone) }}
+                    <div class="errorForm">{{ form_errors(form.phone) | striptags }}</div>
                 </div>
             </div>
             <div class="col-lg-6 col-sm-6">
                 <div class="form-group">
                     {{ form_label(form.email, "Email *") }}
                     {{ form_widget(form.email) }}
+                    <div class="errorForm">{{ form_errors(form.email) | striptags }}</div>
                 </div>
             </div>
         </div>
@@ -60,9 +57,9 @@
             <button class="btn btnSubmit" id="btnSubmit" type="submit">Sauvegarder</button>
         </div>
     </div>
-
-    {{ form_widget(form._token) }}
+    {{ form_row(form._token) }}
     {{ form_end(form, {'render_rest': false}) }}
+
 {% endblock %}
 
 {% block javascripts %}

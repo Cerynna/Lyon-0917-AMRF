@@ -26,7 +26,7 @@ class AdminMayorController extends Controller
     public function indexAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
-        $queryBuilder = $em->getRepository('AppBundle:Mayor')->createQueryBuilder('m');
+        $queryBuilder = $em->getRepository('AppBundle:Mayor')->createQueryBuilder('m')->orderBy('m.id', "DESC");
         $query = $queryBuilder->getQuery();
 
         /**

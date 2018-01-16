@@ -3,8 +3,10 @@
 namespace AppBundle\Repository;
 
 use AppBundle\Entity\Project;
-use Doctrine\ORM\Query\Expr\Orx;
 use AppBundle\Entity\User;
+use function intval;
+use function is_array;
+
 /**
  * ProjectRepository
  *
@@ -13,164 +15,182 @@ use AppBundle\Entity\User;
  */
 class ProjectRepository extends \Doctrine\ORM\EntityRepository
 {
-	const MAX_PROJECT = 3;
+    const MAX_PROJECT = 3;
 
     const CHAMPS = ["title", "descResume"];
 
-	public function getLastProject()
-	{
-		$qb = $this->createQueryBuilder('p')
-			->orderBy("p.updateDate", "DESC")
-			->setMaxResults(self::MAX_PROJECT)
-			->setParameter('status', Project::STATUS_PUBLISH)
-			->where('p.status = :status')
-			->getQuery();
-		return $qb->getResult();
-	}
+    public function MaxProject()
+    {
+        $result['publish'] = count($this->createQueryBuilder('p')
+            ->setParameter('status', Project::STATUS_PUBLISH)
+            ->where('p.status = :status')
+            ->getQuery()
+            ->getResult());
+        $result['waiting'] = count($this->createQueryBuilder('p')
+            ->setParameter('status', Project::STATUS_WAITING)
+            ->where('p.status = :status')
+            ->getQuery()
+            ->getResult());
+        $result['draft'] = count($this->createQueryBuilder('p')
+            ->setParameter('status', Project::STATUS_DRAFT)
+            ->where('p.status = :status')
+            ->getQuery()
+            ->getResult());
+        return $result;
+    }
 
-	public function getProjectOrderBY($field)
-	{
-		$qb = $this->createQueryBuilder('p')
-			->orderBy("p.$field", "ASC")
-			->getQuery();
-		return $qb->getResult();
-	}
+    public function getLastProject()
+    {
+        $qb = $this->createQueryBuilder('p')
+            ->orderBy("p.updateDate", "DESC")
+            ->setMaxResults(self::MAX_PROJECT)
+            ->setParameter('status', Project::STATUS_PUBLISH)
+            ->where('p.status = :status')
+            ->getQuery();
+        return $qb->getResult();
+    }
 
-	public function getImageProject($idProject)
-	{
-		return $this->createQueryBuilder('p')
-			->setParameter('id', $idProject)
-			->where('p.id = :id')
-			->select('p.images')
-			->getQuery()
-			->getResult();
-	}
+    public function getProjectOrderBY($field)
+    {
+        $qb = $this->createQueryBuilder('p')
+            ->orderBy("p.$field", "ASC")
+            ->getQuery();
+        return $qb->getResult();
+    }
 
-	public function getProjectByMayor($mayorId)
-	{
-		$qb = $this->createQueryBuilder('p')
-			->setParameter('mayor_id', $mayorId)
-			->where('p.mayor = :mayor_id')
-			->getQuery();
-		return $qb->getResult();
-	}
+    public function getImageProject($idProject)
+    {
+        return $this->createQueryBuilder('p')
+            ->setParameter('id', $idProject)
+            ->where('p.id = :id')
+            ->select('p.images')
+            ->getQuery()
+            ->getResult();
+    }
 
-	public function queryTitle($queryBuilder, $request)
-	{
-		$queryBuilder
-			->andwhere('p.title LIKE :title')
-			->setParameter('title', '%' . $request->query->getAlnum('title') . '%');
+    public function getProjectByMayor($mayorId)
+    {
+        $qb = $this->createQueryBuilder('p')
+            ->setParameter('mayor_id', $mayorId)
+            ->where('p.mayor = :mayor_id')
+            ->getQuery();
+        return $qb->getResult();
+    }
 
-	}
+    /*    public function queryTitle($queryBuilder, $request)
+        {
+            $queryBuilder
+                ->andwhere('p.title LIKE :title')
+                ->setParameter('title', '%' . $request->query->getAlnum('title') . '%');
 
-	public function queryStatus($queryBuilder, $request, $statuses)
-	{
-		$result = [];
+        }
 
-		if (array($statuses)) {
+        public function queryStatus($queryBuilder, $request, $statuses)
+        {
+            $result = [];
 
-			foreach ($statuses as $index => $status) {
-				$result[] = "p.status LIKE :string$index";
-				$queryBuilder->setParameter("string$index", $status);
-			}
+            if (array($statuses)) {
 
-			if (empty($result)) {
-				throw new \LogicException('Error');
-			}
+                foreach ($statuses as $index => $status) {
+                    $result[] = "p.status LIKE :string$index";
+                    $queryBuilder->setParameter("string$index", $status);
+                }
 
-			$queryBuilder
-				->andWhere(new Orx($result));
-		}
-	}
+                if (empty($result)) {
+                    throw new \LogicException('Error');
+                }
 
-	public function queryTheme($queryBuilder, $request)
-	{
-		$queryBuilder
-			->join('p.themes', 'd')
-			->andwhere('d.value = :value')
-			->setParameter('value', $request->query->getAlnum('value'));
+                $queryBuilder
+                    ->andWhere(new Orx($result));
+            }
+        }
 
-	}
+        public function queryTheme($queryBuilder, $request)
+        {
+            $queryBuilder
+                ->join('p.themes', 'd')
+                ->andwhere('d.value = :value')
+                ->setParameter('value', $request->query->getAlnum('value'));
 
-	public function statProject()
-	{
-		$result['project']['total'] = count($this->createQueryBuilder('p')
-			->getQuery()
-			->getResult());
-		$result['project']['publish'] = count($this->createQueryBuilder('p')
-			->setParameter('status', Project::STATUS_PUBLISH)
-			->where('p.status = :status')
-			->getQuery()
-			->getResult());
-		$result['project']['waiting'] = count($this->createQueryBuilder('p')
-			->setParameter('status', Project::STATUS_WAITING)
-			->where('p.status = :status')
-			->getQuery()
-			->getResult());
-		$result['project']['draft'] = count($this->createQueryBuilder('p')
-			->setParameter('status', Project::STATUS_DRAFT)
-			->where('p.status = :status')
-			->getQuery()
-			->getResult());
-		$mois = array("", "Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre");
-		$dateStat = [];
-		for ($i = 0; $i < 6; $i++) {
+        }*/
+
+    public function statProject()
+    {
+        $result['project']['total'] = count($this->createQueryBuilder('p')
+            ->getQuery()
+            ->getResult());
+        $result['project']['publish'] = count($this->createQueryBuilder('p')
+            ->setParameter('status', Project::STATUS_PUBLISH)
+            ->where('p.status = :status')
+            ->getQuery()
+            ->getResult());
+        $result['project']['waiting'] = count($this->createQueryBuilder('p')
+            ->setParameter('status', Project::STATUS_WAITING)
+            ->where('p.status = :status')
+            ->getQuery()
+            ->getResult());
+        $result['project']['draft'] = count($this->createQueryBuilder('p')
+            ->setParameter('status', Project::STATUS_DRAFT)
+            ->where('p.status = :status')
+            ->getQuery()
+            ->getResult());
+        $mois = array("", "Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre");
+        $dateStat = [];
+        for ($i = 0; $i < 6; $i++) {
             $max = new \DateTime('last day of today - ' . $i . ' month');
             $min = new \DateTime('last day of today - ' . ($i + 1) . ' month');
 
-
-
             $dateStat[$mois[$max->format('n')]] = count($this->createQueryBuilder('p')
-				->setParameter('maxDate', $max)
-				->andWhere('p.creationDate < :maxDate')
-				->setParameter('minDate', $min)
-				->andWhere('p.creationDate > :minDate')
-				->getQuery()
-				->getResult());
-		}
-		$result['project']['history'] = $dateStat;
+                ->setParameter('maxDate', $max)
+                ->andWhere('p.creationDate < :maxDate')
+                ->setParameter('minDate', $min)
+                ->andWhere('p.creationDate > :minDate')
+                ->getQuery()
+                ->getResult());
+        }
+        $result['project']['history'] = $dateStat;
 
-		$result['user']['Actif'] = count($this->getEntityManager()
-			->getRepository('AppBundle:User')
-			->createQueryBuilder('u')
-			->setParameter('status', User::USER_STATUS_ACTIF)
-			->andWhere('u.status = :status')
-			->getQuery()
-			->getResult());
-		$result['user']['Inactif'] = count($this->getEntityManager()
-			->getRepository('AppBundle:User')
-			->createQueryBuilder('u')
-			->setParameter('status', User::USER_STATUS_INACTIF)
-			->andWhere('u.status = :status')
-			->getQuery()
-			->getResult());
-		$result['user']['Supprimer'] = count($this->getEntityManager()
-			->getRepository('AppBundle:User')
-			->createQueryBuilder('u')
-			->setParameter('status', User::USER_STATUS_DELETE)
-			->andWhere('u.status = :status')
-			->getQuery()
-			->getResult());
-		$result['lastLogin'] = $this->getEntityManager()
-			->getRepository('AppBundle:User')
-			->createQueryBuilder('u')
-			->orderBy('u.lastLogin', 'DESC')
-			->setMaxResults(14)
-			->getQuery()
-			->getResult();
+        $result['user']['Actif'] = count($this->getEntityManager()
+            ->getRepository('AppBundle:User')
+            ->createQueryBuilder('u')
+            ->setParameter('status', User::USER_STATUS_ACTIF)
+            ->andWhere('u.status = :status')
+            ->getQuery()
+            ->getResult());
+        $result['user']['Inactif'] = count($this->getEntityManager()
+            ->getRepository('AppBundle:User')
+            ->createQueryBuilder('u')
+            ->setParameter('status', User::USER_STATUS_INACTIF)
+            ->andWhere('u.status = :status')
+            ->getQuery()
+            ->getResult());
+        $result['user']['Supprimer'] = count($this->getEntityManager()
+            ->getRepository('AppBundle:User')
+            ->createQueryBuilder('u')
+            ->setParameter('status', User::USER_STATUS_DELETE)
+            ->andWhere('u.status = :status')
+            ->getQuery()
+            ->getResult());
+        $result['lastLogin'] = $this->getEntityManager()
+            ->getRepository('AppBundle:User')
+            ->createQueryBuilder('u')
+            ->orderBy('u.lastLogin', 'DESC')
+            ->setMaxResults(14)
+            ->getQuery()
+            ->getResult();
 
 
-		return $result;
-	}
+        return $result;
+    }
 
-	public function projectById($idProject)
-	{
-		return $this->createQueryBuilder('p')
-			->setParameter('id', $idProject)
-			->where('p.id = :id')
-			->getQuery()
-			->getResult();
-	}
+    public function projectById($idProject)
+    {
+        return $this->createQueryBuilder('p')
+            ->setParameter('id', $idProject)
+            ->where('p.id = :id')
+            ->getQuery()
+            ->getResult();
+    }
 
     public function pertinenceInit()
     {
@@ -201,7 +221,8 @@ class ProjectRepository extends \Doctrine\ORM\EntityRepository
         $array = $qb->getQuery()->getResult();
         $results = [];
         foreach ($array as $idProject) {
-            $results[] = $idProject['id'];
+
+            $results[] = $idProject["id"];
         }
 
         return $results;
@@ -273,12 +294,12 @@ class ProjectRepository extends \Doctrine\ORM\EntityRepository
                 $i++;
             }
             $qb->andWhere('p.status = ' . Project::STATUS_PUBLISH);
-            $resultFinal =  $qb->getQuery()->getResult();
+            $resultFinal = $qb->getQuery()->getResult();
 
             $result = [];
             foreach ($idProjects as $idProject => $nbResult) {
                 foreach ($resultFinal as $project) {
-                    if ($idProject == $project->getId()){
+                    if ($idProject == $project->getId()) {
                         $result[] = $project;
                     }
                 }
@@ -320,7 +341,7 @@ class ProjectRepository extends \Doctrine\ORM\EntityRepository
             if ($i == 0) {
                 $operateur = " WHERE ";
             }
-            $sql .= $operateur . "pm.zipCode = " . $values[0] . "";
+            $sql .= $operateur . "pm.zipCode LIKE '" . $values[0] . "%'";
             $i++;
         }
         $arrays = $this->getEntityManager()
@@ -348,6 +369,118 @@ class ProjectRepository extends \Doctrine\ORM\EntityRepository
         }
 
         return $results;
+    }
+
+    public function ListProject($offset, $type)
+    {
+        $status = Project::STATUS_WAITING;
+        if ($type === "waiting") {
+            $status = Project::STATUS_WAITING;
+        }
+        if ($type === "draft") {
+            $status = Project::STATUS_DRAFT;
+        }
+        if ($type === "publish") {
+            $status = Project::STATUS_PUBLISH;
+        }
+        $qb = $this->createQueryBuilder('p')
+            ->setParameter('status', $status)
+            ->where('p.status = :status')
+            ->setMaxResults(10)
+            ->setFirstResult($offset)
+            ->getQuery();
+        $projects = $qb->getResult();
+        $i = 0;
+        $return = [];
+        foreach ($projects as $project) {
+            $return[$i]['id'] = $project->getId();
+            $return[$i]['slug'] = $project->getSlug();
+            $return[$i]['status'] = $project->getStatus();
+            $return[$i]['title'] = $project->getTitle();
+            $return[$i]['zipcode'] = $project->getMayor()->getZipCode();
+            $return[$i]['ville'] = $project->getMayor()->getTown();
+            foreach ($project->getThemes() as $theme) {
+                $return[$i]['themes'][] = $theme->getName();
+            }
+
+
+            $i++;
+        }
+        return $return;
+    }
+
+    public function ListProjectFilter($data)
+    {
+
+        $results = [];
+        if ($data["postal"] != "") {
+            $resultPostal = $this->findByLocalisationPertinence(null, null, intval($data["postal"]));
+            array_push($results, $resultPostal);
+        }
+        if ($data["titre"] !== "" && !is_null($data["titre"]) && !empty($data["titre"])) {
+            $resultText = [];
+            $idProjects = $this->findByTextPertinence($data["titre"], ["title"]);
+            foreach ($idProjects as $idproject) {
+                array_push($resultText, $idproject);
+            }
+            array_push($results, $resultText);
+        }
+        if (is_array($data["themes"])) {
+
+            foreach ($data["themes"] as $idTheme){
+                dump(intval($idTheme));
+            }
+
+
+            //$resultThemes = $this->findByThemaPertinence($data["themes"]);
+        }
+
+        if (count($results) === 2) {
+            $results = array_merge($results[0], $results[1]);
+        }
+        if (count($results) === 3) {
+            $results = array_merge($results[0], $results[1], $results[2]);
+        }
+        $results = array_unique($results);
+
+        $return = [];
+        $i = 0;
+        foreach ($results as $idProjects) {
+            if (is_array($idProjects)) {
+                foreach ($idProjects as $idProject) {
+                    $project = $this->projectById($idProject)[0];
+
+                    $return[$i]['id'] = $project->getId();
+                    $return[$i]['slug'] = $project->getSlug();
+                    $return[$i]['status'] = $project->getStatus();
+                    $return[$i]['title'] = $project->getTitle();
+                    $return[$i]['zipcode'] = $project->getMayor()->getZipCode();
+                    $return[$i]['ville'] = $project->getMayor()->getTown();
+                    foreach ($project->getThemes() as $theme) {
+                        $return[$i]['themes'][] = $theme->getName();
+                    }
+                    $i++;
+                }
+            } else {
+                $project = $this->projectById($idProjects)[0];
+
+                $return[$i]['id'] = $project->getId();
+                $return[$i]['slug'] = $project->getSlug();
+                $return[$i]['status'] = $project->getStatus();
+                $return[$i]['title'] = $project->getTitle();
+                $return[$i]['zipcode'] = $project->getMayor()->getZipCode();
+                $return[$i]['ville'] = $project->getMayor()->getTown();
+                foreach ($project->getThemes() as $theme) {
+                    $return[$i]['themes'][] = $theme->getName();
+                }
+                $i++;
+            }
+
+
+        }
+        return $return;
+
+
     }
 
 }

@@ -1,5 +1,5 @@
 <?php
-/*
+
 namespace AppBundle\DataFixtures\ORM;
 
 use AppBundle\Entity\Mayor;
@@ -156,4 +156,3 @@ class LoadProject extends Fixture implements FixtureInterface
 
 
 }
-*/
