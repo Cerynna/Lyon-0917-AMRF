@@ -9,7 +9,6 @@
     {% else %}
         {% set page = 1 %}
     {% endif %}
-
     {% if project.images|length < 4 %}
         <div id="modalImageUpload" class="modal fade" role="dialog">
             <div class="modal-dialog">
@@ -21,7 +20,7 @@
                             <div class="col-sm-10">
                                 {{ form_start(upload_image_form) }}
                                 {{ form_label(upload_image_form.path, 'Télécharger un fichier depuis votre ordinateur') }}
-                                {{ form_widget(upload_image_form.path)}}
+                                {{ form_widget(upload_image_form.path) }}
 
                                 {{ form_end(upload_image_form) }}
                             </div>
@@ -57,8 +56,15 @@
             </div>
         </div>
     {% endif %}
+    {{ form_start(form, {
+        'action': path('mayor_project_edit', {'slug' :form.vars.value.slug }) ~ "/" ~ page,
+        'method': 'POST',
 
-    {{ form_start(form) }}
+            'attr': {
+            'id':'project'
+
+        }
+    }) }}
     <input id="page" name="page" type="text" class="hidden"/>
     <h2>CREER UNE FICHE PROJET</h2>
     <!-- Nav tabs -->
@@ -159,19 +165,20 @@
                         {% endfor %}
                     {% endif %}
                     {% if project.images|length < 4 %}
-                        <div class="col-sm-{{ (3 - project.images|length) * 4 }}">
+
+                        <div class="col-sm-3">
                             <label for="photo" class="uploaderTrue ">Téléchargez jusqu'à 4 images<br/>
                                 <p>le poids d'une image ne doit pas excéder ... ... Mo</p>
-                                <div class="btn2" data-toggle="modal" data-target="#modalImageUpload"><i
-                                            class="fa fa-upload fa-admin"></i> Ajouter des images
+                                <div class="btn2" data-toggle="modal" data-target="#modalImageUpload">
+                                    <i class="fa fa-upload fa-admin"></i> Ajouter des images
                                 </div>
                             </label>
-                            <button class="submitForm uploaderFalse hidden" data-toggle="tooltip"
-                                    data-placement="right"
-                                    type="submit"
-                                    title="Il faut d'abord enregistrer le projet avant de pouvoir télécharger des photos">
-                                <i class="fa fa-upload fa-big"></i>
-                            </button>
+                            <label for="photo" class="submitForm uploaderFalse hidden">Téléchargez jusqu'à 4 images<br/>
+                                <p>le poids d'une image ne doit pas excéder ... ... Mo</p>
+                                <div class="btn2">
+                                    <i class="fa fa-upload fa-admin"></i> Ajouter des images
+                                </div>
+                            </label>
                         </div>
                     {% endif %}
 
@@ -333,11 +340,18 @@
                 <h3>Ajout de fichiers</h3>
                 <div class="form-group col-sm-12">
                     {% if project.file is empty %}
-                        <label>Vous pouvez ajouter un fichier apportant des informations plus détaillées
+                        <label class="uploaderTrue">Vous pouvez ajouter un fichier apportant des informations plus détaillées
                             (format accepté : PDF ) <br/>
                             <p>le poids d'un fichier ne doit pas excéder ... ... Mo</p>
                             <div class="btn2" data-toggle="modal" data-target="#modalFileUpload">Télécharger</div>
                         </label>
+                        <label for="photo" class="submitForm uploaderFalse hidden">Vous pouvez ajouter un fichier apportant des informations plus détaillées
+                            (format accepté : PDF ) <br/>
+                            <p>le poids d'un fichier ne doit pas excéder ... ... Mo</p>
+                            <div class="btn2">Télécharger</div>
+                        </label>
+
+
                     {% else %}
                         {% set pdf = 'upload/project/' ~ project.id ~ '/file/' ~ project.file %}
                         {% set pdflink = 'upload-project-' ~ project.id ~ '-file-' ~ project.file %}
@@ -423,18 +437,19 @@
 {% block javascripts %}
     <script>
 
+        $(".submitForm").click(function () {
+            $("#project").submit();
+        });
+
         $(".nextStep").click(function () {
             console.log('next');
             $('#page').val('next');
-            //$("form[name='{#{{ form.vars.name }}#}']").submit();
-            document.getElementsByName('projet').submit();
 
         });
 
         $(".backStep").click(function () {
             console.log('back');
             $('#page').val('back');
-            //$("form[name='{#{{ form.vars.name }}#}']").submit();
 
         });
 
@@ -443,12 +458,10 @@
             $('#projet_keyWords').select2();
             var i = 0;
             $('form').attr('name', '{{ form.vars.name }}').change(function () {
-                console.log(i);
                 i++;
                 if (i >= 5) {
                     $('.uploaderTrue').addClass('hidden');
                     $('.uploaderFalse').removeClass('hidden');
-                    console.log('suppr BTN DL');
                 }
             });
 
@@ -458,7 +471,6 @@
         });
 
         function afficherCacher() {
-
             if (document.getElementById('oui').checked) {
                 document.getElementById('projet_projectCoFinance').style.display = "block";
             } else if (document.getElementById('non').checked) {
