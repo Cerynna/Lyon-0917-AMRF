@@ -20,7 +20,8 @@
             <li>
                 {{ form_start(delete_form) }}
                 <button class="fa-admin" data-toggle="tooltip" data-placement="right"
-                        title="Supprimer l'Utilisateur" type="submit" onclick="return ConfirmDelete()"><i class="fa fa-trash-o"></i></button>
+                        title="Supprimer l'Utilisateur" type="submit" onclick="return ConfirmDelete()"><i
+                            class="fa fa-trash-o"></i></button>
                 {{ form_end(delete_form) }}
             </li>
 
@@ -44,21 +45,21 @@
                 <h5>{{ form_label(edit_form.email, "Email") }}</h5>
                 {{ form_widget(edit_form.email) }}
             </div>
-            <div class="col-sm-4">
+            <div class="col-sm-6">
                 <h5>{{ form_label(edit_form.role, "Rôle") }}</h5>
                 {{ form_widget(edit_form.role) }}
             </div>
-            <div class="col-sm-4">
+            <div class="col-sm-6">
                 <h5>{{ form_label(edit_form.status, "Statut") }}</h5>
                 {{ form_widget(edit_form.status) }}
             </div>
-            <div class="col-sm-4">
+            <div class="col-sm-6">
                 <h5>{{ form_label(edit_form.creationDate, "Date de création") }}</h5>
-                {{ form_widget(edit_form.creationDate) }}
+                {{ form_widget(edit_form.creationDate, { 'attr':{'disabled':'disabled'} }) }}
             </div>
-            <div class="col-sm-4">
+            <div class="col-sm-6">
                 <h5>{{ form_label(edit_form.lastLogin, "Dernière connexion") }}</h5>
-                {{ form_widget(edit_form.lastLogin) }}
+                {{ form_widget(edit_form.lastLogin, { 'attr':{'disabled':'disabled'} }) }}
             </div>
 
         </div>
@@ -68,7 +69,7 @@
                     <h5 class="text-center">Informations - Maire</h5>
                 </div>
                 <div class="col-sm-4">
-                    <h5>{{ form_label(edit_form.mayor.firstName, "Prénom" )}}</h5>
+                    <h5>{{ form_label(edit_form.mayor.firstName, "Prénom" ) }}</h5>
                     {{ form_widget(edit_form.mayor.firstName) }}
                 </div>
                 <div class="col-sm-4">
@@ -80,7 +81,7 @@
                     {{ form_widget(edit_form.mayor.insee) }}
                 </div>
                 <div class="col-sm-4">
-                    <h5>{{ form_label(edit_form.mayor.email, "Email")}}</h5>
+                    <h5>{{ form_label(edit_form.mayor.email, "Email") }}</h5>
                     {{ form_widget(edit_form.mayor.email) }}
                 </div>
                 <div class="col-sm-4">
@@ -88,7 +89,7 @@
                     {{ form_widget(edit_form.mayor.phone) }}
                 </div>
                 <div class="col-sm-4">
-                    <h5>{{ form_label(edit_form.mayor.address, "Adresse" )}}</h5>
+                    <h5>{{ form_label(edit_form.mayor.address, "Adresse" ) }}</h5>
                     {{ form_widget(edit_form.mayor.address) }}
                 </div>
                 <div class="col-sm-4">
@@ -96,7 +97,7 @@
                     {{ form_widget(edit_form.mayor.town) }}
                 </div>
                 <div class="col-sm-4">
-                    <h5>{{ form_label(edit_form.mayor.zipCode, "Code postal" )}}</h5>
+                    <h5>{{ form_label(edit_form.mayor.zipCode, "Code postal" ) }}</h5>
                     {{ form_widget(edit_form.mayor.zipCode) }}
                 </div>
                 <div class="col-sm-4">
@@ -162,12 +163,85 @@
                     <h5>{{ form_label(edit_form.partner.phone, "Téléphone") }}</h5>
                     {{ form_widget(edit_form.partner.phone) }}
                 </div>
-                <div class="col-sm-4">
-                    <h5>{{ form_label(edit_form.partner.company, "Organisme") }}</h5>
-                    {{ form_widget(edit_form.partner.company) }}
-                    <a href="{{ path('admin_company_index') }}" data-toggle="tooltip" data-placement="right"
 
-                       title="Liste Organisme"><i class="fa  fa-forward fa-admin"></i></a>
+            </div>
+            <div class="col-sm-6">
+                <h5 class="text-center">Informations - Organisme</h5>
+
+                <h5><label>Activity</label></h5>
+                <div class="row">
+                    <div class="col-sm-4">
+                        {% set nbactiv = edit_form.partner.company.activities|length %}
+                        {% set col =  nbactiv/3 %}
+                        {% set col = col|round %}
+
+
+                        {% for activity in edit_form.partner.company.activities %}
+                        {{ form_errors(activity) }}
+                        <div>
+                            <input type="checkbox" id="{{ activity.vars.id }}"
+                                   name="{{ activity.vars.full_name }}" value="{{ activity.vars.value }}"
+                                    {% if activity.vars.checked == true %} checked="checked" {% endif %} >
+                            <label for="{{ activity.vars.id }}">{{ activity.vars.label|slice(0,20) }}</label>
+                        </div>
+                        {% if (loop.index == col) or (loop.index == col*2) %}
+                    </div>
+                    <div class="col-sm-4">
+                        {% endif %}
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <h5>{{ form_label(edit_form.partner.company.name, "Nom") }}</h5>
+                    {{ form_widget(edit_form.partner.company.name) }}
+                </div>
+                <div class="col-sm-6">
+                    <h5>{{ form_label(edit_form.partner.company.address) }}</h5>
+                    {{ form_widget(edit_form.partner.company.address) }}
+                </div>
+                <div class="col-sm-6">
+                    <h5>{{ form_label(edit_form.partner.company.zipCode, "Code postal") }}</h5>
+                    {{ form_widget(edit_form.partner.company.zipCode) }}
+                </div>
+                <div class="col-sm-6">
+                    <h5>{{ form_label(edit_form.partner.company.city, "Ville") }}</h5>
+                    {{ form_widget(edit_form.partner.company.city) }}
+                </div>
+                <div class="col-sm-12">
+                    <h5>{{ form_label(edit_form.partner.company.presentation) }}</h5>
+                    {{ form_widget(edit_form.partner.company.presentation) }}
+                </div>
+                <div class="col-sm-4">
+                    <h5>{{ form_label(edit_form.partner.company.logo) }}</h5>
+                    {{ form_widget(edit_form.partner.company.logo) }}
+                </div>
+                <div class="col-sm-4">
+                    <h5>{{ form_label(edit_form.partner.company.url) }}</h5>
+                    {{ form_widget(edit_form.partner.company.url) }}
+                </div>
+                <div class="col-sm-4">
+                    <h5>{{ form_label(edit_form.partner.company.facebook) }}</h5>
+                    {{ form_widget(edit_form.partner.company.facebook) }}
+                </div>
+                <div class="col-sm-4">
+                    <h5>{{ form_label(edit_form.partner.company.linkedin) }}</h5>
+                    {{ form_widget(edit_form.partner.company.twitter) }}
+                </div>
+                <div class="col-sm-4">
+                    <h5>{{ form_label(edit_form.partner.company.contactFirstName, "Contact Prénom") }}</h5>
+                    {{ form_widget(edit_form.partner.company.contactFirstName) }}
+                </div>
+                <div class="col-sm-4">
+                    <h5>{{ form_label(edit_form.partner.company.contactLastName, "Contact Nom") }}</h5>
+                    {{ form_widget(edit_form.partner.company.contactLastName) }}
+                </div>
+                <div class="col-sm-4">
+                    <h5>{{ form_label(edit_form.partner.company.contactPhone, "Téléphone") }}</h5>
+                    {{ form_widget(edit_form.partner.company.contactPhone) }}
+                </div>
+                <div class="col-sm-4">
+                    <h5>{{ form_label(edit_form.partner.company.contactEmail) }}</h5>
+                    {{ form_widget(edit_form.partner.company.contactEmail) }}
                 </div>
             </div>
         {% endif %}
