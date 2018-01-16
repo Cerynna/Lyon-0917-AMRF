@@ -32,41 +32,6 @@
                     {% endfor %}
                 </select>#}
 
-                <input {% if 1 in status %} checked {% endif %} name="status[]" value="1" id="brouillon" type="checkbox"
-                                                                multiple
-                                                                onchange="sendFilter()"
-                >
-                <label for="brouillon">Brouillon</label>
-
-                <input {% if 2 in status %} checked {% endif %} name="status[]" value="2" id="attente" type="checkbox"
-                                                                multiple
-                                                                onchange="sendFilter()"
-                >
-                <label for="attente">En attente</label>
-
-                <input {% if 3 in status %} checked {% endif %} name="status[]" value="3" id="publier" type="checkbox"
-                                                                multiple
-                                                                onchange="sendFilter()"
-                >
-                <label for="publier">Publier</label>
-
-
-                <button type="submit" class="btn btn-default btn-sm"><i class="fa fa-search" aria-hidden="true"></i>
-                    Filtrer
-                </button>
-
-                <a href="{{ path('admin_project_index') }}" data-toggle="tooltip" data-placement="right"
-                   title="Reset des filtres"><i class="fa fa-refresh"></i> EFFACER LES FILTRES</a>
-
-                {% set queryParams = app.request.query.all %}
-
-                {% if queryParams is not empty %}{{ app.request.query.get('title') }}{% endif %}
-                {% if queryParams is not empty %}{{ app.request.query.get('value') }}{% endif %}
-            </div>
-        </form>
-    </div>
-#}
-
     <div class="row">
         <div class="col-sm-12 jumbotron">
             <div class="row">

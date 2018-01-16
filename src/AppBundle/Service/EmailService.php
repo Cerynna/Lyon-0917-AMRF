@@ -134,8 +134,10 @@ class EmailService
                 $message->setSubject("Prise en compte de votre demande");
                 $message->setBody(
                     $this->twig->render(self::TYPE_MAIL_CONTACT_CONFIRM['renderHtml'], [
-                            'message' => $mail['message'],
-                            'object' => $mail['object'],
+                        'firstName' => $mail['firstName'],
+                        'name'      => $mail['name'],
+                        'message'   => $mail['message'],
+                        'object'    => $mail['object'],
                         ]
                     ), 'text/html');
                 $message->addPart(
