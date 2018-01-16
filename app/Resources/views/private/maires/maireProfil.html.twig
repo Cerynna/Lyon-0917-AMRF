@@ -2,9 +2,6 @@
 {% block title %}Mon profil{% endblock %}
 {% block body %}
     {{ form_start(form) }}
-    {% if form.error is defined %}
-        {{ dump(form.error) }}
-    {% endif %}
     <h2>Mon profil</h2>
     <!-- Nav tabs -->
     <div class="row tabPannel">
@@ -19,7 +16,6 @@
                 <a href="#reseau" aria-controls="reseau" role="tab" data-toggle="tab">Réseaux Sociaux</a>
             </li>
         </ul>
-
         <!-- Tab panes -->
         <div class="tab-content">
             <div class="erreur hidden">
@@ -148,7 +144,7 @@
                     </div>
                 </div>
                 <div class="col-lg-12 col-md-12 text-center">
-                    <button class="btn" type="submit" id="btnSubmit">Enregistrer vos informations</button>
+                    <button class="btn" type="submit">Enregistrer vos informations</button>
                 </div>
             </div>
         </div>
@@ -223,6 +219,7 @@
             var messagePopulation = "";
             var messageError = "";
 
+//verif firstname
             if (firstName.value.length < 2) {
                 messageFirstName += "Votre prénom doit comporter au moins 2 caractères. ";
                 messageError += "<li>" + messageFirstName + "</li>";
@@ -262,6 +259,7 @@
             town.setCustomValidity(messageTown);
             zipCode.setCustomValidity(messageZipCode);
             population.setCustomValidity(messagePopulation);
+
         });
 
 

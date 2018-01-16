@@ -17,7 +17,8 @@
     </div>
     <h1>Liste des projets</h1>
 
-    {#<div class="jumbotron row">
+{#
+    <div class="jumbotron row">
         <form action="{{ path('admin_project_index') }}" method="get" name="filter">
             <div class="col-xs-12">
                 <label for="title">Titre</label>
@@ -63,7 +64,8 @@
                 {% if queryParams is not empty %}{{ app.request.query.get('value') }}{% endif %}
             </div>
         </form>
-    </div>#}
+    </div>
+#}
 
     <div class="row">
         <div class="col-sm-12 jumbotron">

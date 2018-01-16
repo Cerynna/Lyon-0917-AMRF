@@ -1,5 +1,5 @@
 <?php
-/*
+
 
 namespace AppBundle\DataFixtures\ORM;
 
@@ -34,4 +34,4 @@ class LoadPartner extends Fixture implements FixtureInterface
         }
         $em->flush();
     }
-}*/
+}

@@ -1020,6 +1020,9 @@ section {
         color: #ffffff;
         border: 2px solid #ffffff;
         /*2f92a8*/ }
+  section .btnDisabled {
+    pointer-events: none !important;
+    cursor: default !important; }
 
 section form {
   /* .cleIcon {
