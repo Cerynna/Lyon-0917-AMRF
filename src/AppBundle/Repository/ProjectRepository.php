@@ -192,6 +192,7 @@ class ProjectRepository extends \Doctrine\ORM\EntityRepository
             ->getResult();
     }
 
+
     public function pertinenceInit()
     {
         return $this->createQueryBuilder('p');

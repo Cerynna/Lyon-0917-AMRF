@@ -1129,26 +1129,15 @@ section form {
       color: #ffffff; }
   section form .relativeDiv {
     position: relative; }
-  section form .saveMe label {
-    width: 50%; }
-  section form .saveMe input[type="checkbox"]:checked ~ label {
-    color: #ffffff;
-    text-indent: 1em; }
-  section form .saveMe input[type="checkbox"]:empty ~ label {
-    color: #ffffff;
-    text-indent: 1em; }
-  section form .saveMe input[type="checkbox"]:checked ~ label:before {
-    color: #ffffff;
-    text-indent: 0.3em; }
-  section form .saveMe input[type="checkbox"]:empty ~ label:before {
-    color: #ffffff;
-    text-indent: 0.3em; }
   section form .errorForm {
     background: #f2dede;
     color: #a94442;
     border-radius: 5px;
     margin-top: 5px;
     padding-left: 10px; }
+  section form #login, section form #mdp {
+    width: 80% !important;
+    margin: auto; }
 
 .select2-container {
   box-sizing: border-box;

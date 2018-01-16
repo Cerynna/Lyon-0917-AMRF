@@ -4,6 +4,7 @@ namespace AppBundle\Controller;
 
 use AppBundle\Entity\Project;
 use AppBundle\Entity\Uploader;
+use AppBundle\Service\EmailService;
 use AppBundle\Service\SlugService;
 use AppBundle\Service\UploadService;
 use AppBundle\Service\ProjectService;
@@ -46,8 +47,6 @@ class AdminProjectController extends Controller
 		$thematique = $em->getRepository('AppBundle:Dictionary')->getTheme();
 		$maxProject = $em->getRepository('AppBundle:Project')->MaxProject();
 
-
-		//dump($em->getRepository('AppBundle:Dictionary')->getTheme());
 
 		return $this->render('project/index.html.twig', [
 			'themes' => $thematique,
@@ -125,8 +124,9 @@ class AdminProjectController extends Controller
 	 * @param SlugService $slugService
 	 * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
 	 */
-	public function editAction(Request $request, Project $project, UploadService $uploadService, SlugService $slugService)
+	public function editAction(Request $request, Project $project, UploadService $uploadService, SlugService $slugService, EmailService $emailService)
 	{
+        $user = $this->getUser();
 		$deleteForm = $this->createDeleteForm($project);
 		$editForm = $this->createForm('AppBundle\Form\ProjectType', $project);
 		$editForm->remove('slug');
@@ -163,6 +163,15 @@ class AdminProjectController extends Controller
 			$project->setSlug($slugService->slug($project->getTitle()));
 			$em->persist($project);
 			$em->flush();
+            if ($project->setStatus(Project::STATUS_PUBLISH)) {
+                $message = [
+                    'to' => $user->getEmail(),
+                    'type' => EmailService::TYPE_MAIL_PROJECT_VALID['key'],
+                    'login' => $user->getLogin(),
+
+                ];
+                $emailService->sendEmail($message);
+            }
 			return $this->redirectToRoute('admin_project_edit', array('slug' => $project->getSlug()));
 		}
 		return $this->render('project/edit.html.twig', array(
