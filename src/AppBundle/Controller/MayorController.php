@@ -19,6 +19,7 @@ use AppBundle\Service\TabProjectService;
 use AppBundle\Service\UploadService;
 use AppBundle\Service\ValidProjectService;
 
+use function array_merge;
 use DateTime;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -177,16 +178,16 @@ class MayorController extends Controller
                 $projectService->Verif($project);
                 if (!empty($projectService->getErreur())) {
 
-                        return $this->render('private/maires/projectEdit.html.twig', array(
-                            'slug' => $project->getSlug(),
-                            'project' => $project,
-                            'form' => $form->createView(),
-                            'form_toAdmin' => $formSubmitToAdmin->createView(),
-                            'upload_image_form' => $uplodImageForm->createView(),
-                            'upload_file_form' => $uplodFileForm->createView(),
-                            'erreurs' => $projectService->getErreur(),
-                            'page' => 5,
-                        ));
+                    return $this->render('private/maires/projectEdit.html.twig', array(
+                        'slug' => $project->getSlug(),
+                        'project' => $project,
+                        'form' => $form->createView(),
+                        'form_toAdmin' => $formSubmitToAdmin->createView(),
+                        'upload_image_form' => $uplodImageForm->createView(),
+                        'upload_file_form' => $uplodFileForm->createView(),
+                        'erreurs' => $projectService->getErreur(),
+                        'page' => 5,
+                    ));
                 } else {
                     $project->setStatus(Project::STATUS_WAITING);
                     $em->persist($project);
@@ -195,25 +196,32 @@ class MayorController extends Controller
                         'to' => $user->getEmail(),
                         'type' => EmailService::TYPE_MAIL_PROJECT_MODER['key'],
                         'login' => $user->getLogin(),
-
                     ];
                     $emailService->sendEmail($message);
 
                     $this->addFlash(
                         'notice',
                         '<p>Votre Projet est envoyé pour modération avant la publication</p>'
-
                     );
                     return $this->redirectToRoute('mayor_project_edit', [
                         'slug' => $project->getSlug(),
                     ]);
                 }
             }
+
             if ($uplodImageForm->isSubmitted() && $uplodImageForm->isValid()) {
                 $files = $uploaderImage->getPath();
                 $images = $project->getImages();
                 $dbimg = $images;
-                $dbimg[] = $uploadService->fileUpload($files, '/project/' . $project->getId() . '/photos', "img");
+                $newImg = $uploadService->fileUpload($files, '/project/' . $project->getId() . '/photos', "img");
+                if (!empty($newImg)) {
+                    $dbimg = array_merge($dbimg, [$newImg]);
+                } else {
+                    $this->addFlash(
+                        'notice',
+                        '<p>Veuillez choisir un fichier JPG, JPEG ou PNG</p>'
+                    );
+                }
                 $project->setImages($dbimg);
                 $em->persist($project);
                 $em->flush();
@@ -225,13 +233,22 @@ class MayorController extends Controller
             if ($uplodFileForm->isSubmitted() && $uplodFileForm->isValid()) {
                 $file = $uploaderFile->getPath();
                 $fileNewDB = $uploadService->fileUpload($file, '/project/' . $project->getId() . '/file', "file");
-                $project->setFile($fileNewDB);
+                if (!empty($fileNewDB)) {
+                    $project->setFile($fileNewDB);
+                } else {
+                    $this->addFlash(
+                        'notice',
+                        '<p>Veuillez choisir un fichier PDF</p>'
+
+                    );
+                }
+
                 $em->persist($project);
                 $em->flush();
-                /*return $this->redirectToRoute('mayor_project_edit', array(
+                return $this->redirectToRoute('mayor_project_edit', array(
                     'slug' => $project->getSlug(),
                     'page' => 4
-                ));*/
+                ));
             }
             if ($form->isSubmitted() && $form->isValid()) {
                 $project->setSlug($slugService->slug($project->getTitle()));

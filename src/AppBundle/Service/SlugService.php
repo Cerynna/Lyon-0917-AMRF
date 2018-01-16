@@ -20,7 +20,7 @@ class SlugService
 // remove unwanted characters
         $slug = preg_replace('~[^-\w]+~', '', $slug);
 // remove digits by space
-        $slug = preg_replace('123456789', '', $slug);
+        $slug = preg_replace('~([0-9])+~', '', $slug);
 // trim
         $slug = trim($slug, '-');
 // remove duplicate -
