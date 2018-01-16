@@ -137,6 +137,9 @@ class PrivateController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         // REFACTORING SERVICE
+        $userId = $this->getUser()->getId();
+        $reposFavorite = $em->getRepository("AppBundle:Favorite");
+        $favorites = $reposFavorite->getFavoriteToArray($userId);
         $reposCompany = $em->getRepository("AppBundle:Company");
         $companies = $reposCompany->findAll();
         $reposDictionary = $em->getRepository("AppBundle:Dictionary");
@@ -188,6 +191,7 @@ class PrivateController extends Controller
         return $this->render('private/annuaire.html.twig', [
             "companies" => $result,
             "activities" => $activities,
+            "favorites" => $favorites,
             "filter" => $filter,
         ]);
     }

@@ -108,23 +108,23 @@
             var locations = [];
         </script>
         {% for key, project in result %}
-                <a class="anchor" id="result-{{ project.id }}"></a>
-                <div class="jumbotron row">
-                    {% set options = {'thema':'true','pictures':'true','update': 'false', 'more': 'true', 'project': project} %}
-                    {% include 'components/resumeProject.html.twig' with options %}
-                    <script>
-                        var content = "<h4>{{ project.title }}</h4>" +
-                            "{{ project.mayor.town }}<br />" +
-                            "{{ project.mayor.zipCode }}<br />" +
-                            "{#{{ project.projectDate|date("d-M-Y") }}#}<br />" +
-                            "<a href=\"{{ path('sheet_project', {'slug': project.slug }) }}\">" +
-                            "Voir la fiche" +
-                            "</a><br />" +
-                            "<a href='#result-{{ project.id }}'>Voir le Resultat</a>";
+            <a class="anchor" id="result-{{ project.id }}"></a>
+            <div class="jumbotron row">
+                {% set options = {'thema':'true','pictures':'true','update': 'false', 'more': 'true', 'project': project} %}
+                {% include 'components/resumeProject.html.twig' with options %}
+                <script>
+                    var content = "<h4>{{ project.title }}</h4>" +
+                        "{{ project.mayor.town }}<br />" +
+                        "{{ project.mayor.zipCode }}<br />" +
+                        "{#{{ project.projectDate|date("d-M-Y") }}#}<br />" +
+                        "<a href=\"{{ path('sheet_project', {'slug': project.slug }) }}\">" +
+                        "Voir la fiche" +
+                        "</a><br />" +
+                        "<a href='#result-{{ project.id }}'>Voir le Resultat</a>";
 
-                        locations.push([content,{{ project.mayor.latitude }}, {{ project.mayor.longitude }}, 4,{{ project.id }}]);
-                    </script>
-                </div>
+                    locations.push([content,{{ project.mayor.latitude }}, {{ project.mayor.longitude }}, 4,{{ project.id }}]);
+                </script>
+            </div>
 
         {% endfor %}
     {% endif %}
@@ -141,8 +141,9 @@
             var marker, i;
             var france = {lat: 46.746228, lng: 2.459324};
             var map = new google.maps.Map(document.getElementById('map'), {
-                zoom: 6,
-                center: france
+                zoom: 5,
+                center: france,
+                mapTypeId:'roadmap'
             });
             for (i = 0; i < locations.length; i++) {
                 marker = new google.maps.Marker({

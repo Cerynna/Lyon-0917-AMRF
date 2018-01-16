@@ -654,30 +654,21 @@ nav {
     -webkit-box-shadow: 0 0 0 transparent;
     box-shadow: 0 0 0 transparent; }
     nav .dropdown-menu a {
-      font-size: 1.5em;
+      font-size: 1.2em;
       color: #ffffff;
       margin: 0 10px 0 10px; }
     nav .dropdown-menu a:hover {
-      color: black;
+      color: #ffffff;
       background-color: unset;
       box-shadow: -5px 0px 0 white; }
     nav .dropdown-menu .dropdown-submenu a:hover::before {
       content: ''; }
-  nav .dropdown-main > a {
-    height: 50px;
-    font-size: 1.5em; }
-  nav .dropdown-main > a:hover {
-    border-bottom: 4px solid #ffffff;
-    box-shadow: 0 0 0 transparent;
-    color: #ffffff;
-    font-size: 1.8em;
-    font-weight: bold; }
   nav .dropdown-header {
-    font-size: 1.5em;
-    color: #ffffff;
-    text-decoration: underline;
+    font-size: 1.3em;
+    color: rgba(0, 158, 61, 0.99);
+    background-color: #ffffff;
     line-height: 1em;
-    margin-top: 20px; }
+    margin-top: 5px; }
   nav .dropdown-submenu {
     position: relative; }
   nav .dropdown-submenu > .dropdown-menu {
@@ -1024,12 +1015,12 @@ section {
     pointer-events: none !important;
     cursor: default !important; }
 
-section form {
+form {
   /* .cleIcon {
        width: 200px;
        height: 200px;
      }*/ }
-  section form .pagination > li input[type=radio] + label {
+  form .pagination > li input[type=radio] + label {
     background: #ffffff;
     color: rgba(0, 158, 61, 0.99);
     margin: -2px;
@@ -1037,54 +1028,54 @@ section form {
     display: inline;
     line-height: 1.5em;
     font-size: 1.2em; }
-    section form .pagination > li input[type=radio] + label i {
+    form .pagination > li input[type=radio] + label i {
       padding: 0 5px 0 0;
       font-size: 1em; }
-    section form .pagination > li input[type=radio] + label:hover {
+    form .pagination > li input[type=radio] + label:hover {
       background: rgba(0, 158, 61, 0.99);
       color: #ffffff; }
-  section form .pagination > li input[type=radio]:checked + label {
+  form .pagination > li input[type=radio]:checked + label {
     background: rgba(0, 158, 61, 0.99);
     color: #ffffff; }
-  section form .select2 {
+  form .select2 {
     width: 100% !important; }
-  section form .search {
+  form .search {
     height: 50px;
     font-size: 1.8em !important; }
-  section form .form-control {
+  form .form-control {
     font-size: 1em;
     color: #2a2a2a;
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
     -ms-border-radius: 5px;
     border-radius: 5px; }
-  section form .form-control:focus {
+  form .form-control:focus {
     box-shadow: none; }
-  section form .textarea {
+  form .textarea {
     width: 100%;
     margin-left: auto;
     margin-right: auto; }
-  section form .textarea:focus:invalid {
+  form .textarea:focus:invalid {
     border-color: #ff0000; }
-  section form input {
+  form input {
     width: 100% !important; }
-  section form input:focus:invalid {
+  form input:focus:invalid {
     border-color: #ff0000; }
-  section form input:focus:invalid + .errorForm {
+  form input:focus:invalid + .errorForm {
     display: block; }
-  section form input:focus:valid {
+  form input:focus:valid {
     border: 2px solid rgba(0, 158, 61, 0.99); }
-  section form label {
+  form label {
     width: 100%;
     font-size: 1.0em; }
-  section form input[type="file"] {
+  form input[type="file"] {
     height: 0;
     width: 0;
     overflow: hidden;
     border: 0 solid rgba(196, 255, 190, 0.1); }
-  section form input[type="checkbox"]:empty {
+  form input[type="checkbox"]:empty {
     display: none; }
-    section form input[type="checkbox"]:empty ~ label {
+    form input[type="checkbox"]:empty ~ label {
       font-size: 0.9em;
       position: relative;
       line-height: 2em;
@@ -1092,7 +1083,7 @@ section form {
       margin-top: 5px;
       cursor: pointer;
       user-select: none; }
-      section form input[type="checkbox"]:empty ~ label:before {
+      form input[type="checkbox"]:empty ~ label:before {
         position: absolute;
         display: block;
         top: 0;
@@ -1102,31 +1093,31 @@ section form {
         width: 2.5em;
         background: #D1D3D4;
         border-radius: 3px; }
-  section form input[type="checkbox"]:hover:not(:checked) ~ label {
+  form input[type="checkbox"]:hover:not(:checked) ~ label {
     color: #888; }
-    section form input[type="checkbox"]:hover:not(:checked) ~ label:before {
+    form input[type="checkbox"]:hover:not(:checked) ~ label:before {
       content: '\2714';
       text-indent: .9em;
       color: #C2C2C2; }
-  section form input[type="checkbox"]:checked ~ label {
+  form input[type="checkbox"]:checked ~ label {
     color: rgba(0, 158, 61, 0.99); }
-    section form input[type="checkbox"]:checked ~ label:before {
+    form input[type="checkbox"]:checked ~ label:before {
       content: '\2714';
       text-indent: .9em;
       color: #ffffff;
       background-color: rgba(0, 158, 61, 0.99); }
-  section form input[type="checkbox"]:focus ~ label:before {
+  form input[type="checkbox"]:focus ~ label:before {
     box-shadow: 0 0 0 3px #999; }
-  section form input[type="radio"] {
+  form input[type="radio"] {
     width: 1em !important;
     margin-left: 20px; }
-  section form #divCacher {
+  form #divCacher {
     display: none; }
-  section form .star {
+  form .star {
     text-align: center;
     font-style: italic;
     padding-bottom: 20px; }
-  section form .result {
+  form .result {
     position: absolute;
     background: #ffffff;
     max-height: 200px;
@@ -1138,17 +1129,33 @@ section form {
     list-style: none;
     margin-left: 0;
     padding-left: 0; }
-    section form .result li {
+    form .result li {
       text-align: left;
       padding: 5px 0 5px 10px;
       border-radius: 5px;
       margin: 2px; }
-    section form .result li:hover {
+    form .result li:hover {
       background: rgba(0, 158, 61, 0.99);
       color: #ffffff; }
-  section form .relativeDiv {
+  form .relativeDiv {
     position: relative; }
-  section form .errorForm {
+
+  form .saveMe label {
+    width: 50%; }
+  form .saveMe input[type="checkbox"]:checked ~ label {
+    color: #ffffff;
+    text-indent: 1em; }
+  form .saveMe input[type="checkbox"]:empty ~ label {
+    color: #ffffff;
+    text-indent: 1em; }
+  form .saveMe input[type="checkbox"]:checked ~ label:before {
+    color: #ffffff;
+    text-indent: 0.3em; }
+  form .saveMe input[type="checkbox"]:empty ~ label:before {
+    color: #ffffff;
+    text-indent: 0.3em; }
+  form .errorForm {
+
     background: #f2dede;
     color: #a94442;
     border-radius: 5px;
@@ -2133,7 +2140,7 @@ a:hover, a:active {
     margin: 0 auto; }
 
 #map {
-  height: 600px;
+  height: 400px;
   width: 100%; }
   #map a {
     color: #000; }

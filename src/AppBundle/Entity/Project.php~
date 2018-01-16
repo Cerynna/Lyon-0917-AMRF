@@ -254,6 +254,11 @@ class Project
 	 */
 	private $slug;
 
+    /**
+     * @ORM\OneToMany(targetEntity="Favorite", mappedBy="project")
+     */
+    private $favorites;
+
 
 	/**
 	 * Constructor
@@ -1027,5 +1032,51 @@ class Project
     public function getSlug()
     {
         return $this->slug;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getFavorites()
+    {
+        return $this->favorites;
+    }
+
+    /**
+     * @param mixed $favorites
+     * @return Project
+     */
+    public function setFavorites($favorites)
+    {
+        $this->favorites = $favorites;
+        return $this;
+    }
+
+
+
+    /**
+     * Add favorite.
+     *
+     * @param \AppBundle\Entity\Favorite $favorite
+     *
+     * @return Project
+     */
+    public function addFavorite(\AppBundle\Entity\Favorite $favorite)
+    {
+        $this->favorites[] = $favorite;
+
+        return $this;
+    }
+
+    /**
+     * Remove favorite.
+     *
+     * @param \AppBundle\Entity\Favorite $favorite
+     *
+     * @return boolean TRUE if this collection contained the specified element, FALSE otherwise.
+     */
+    public function removeFavorite(\AppBundle\Entity\Favorite $favorite)
+    {
+        return $this->favorites->removeElement($favorite);
     }
 }
