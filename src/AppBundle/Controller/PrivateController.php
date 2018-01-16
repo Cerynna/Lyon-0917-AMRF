@@ -35,6 +35,31 @@ class PrivateController extends Controller
         $form = $this->createForm('AppBundle\Form\SearchType', $search);
         $form->handleRequest($request);
         $em = $this->getDoctrine()->getManager();
+        if (!empty($request->query->get('texts'))){
+            $result = $searchService->findByPertinence($search);
+            if (!empty($result)) {
+                $paginator = $this->get('knp_paginator');
+                $results = $paginator->paginate(
+                    $result,
+                    $request->query->getInt('page', 1),
+                    $request->query->getInt('limit', 10)
+                );
+                return $this->render('private/search.html.twig', [
+                    'form' => $form->createView(),
+                    'result' => $results,
+                ]);
+            } else {
+                $this->addFlash(
+                    'notice',
+                    '<p>Aucun Resultat pour votre recherche.</p>'
+                );
+                return $this->render('private/search.html.twig', [
+                    'form' => $form->createView(),
+                ]);
+            }
+        }
+
+
         if ($form->isSubmitted() && $form->isValid()) {
 
             $result = $searchService->findByPertinence($search);

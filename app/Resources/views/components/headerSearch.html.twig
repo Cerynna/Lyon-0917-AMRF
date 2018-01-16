@@ -4,7 +4,8 @@
         <li>
             {{ form_widget(form.texts, {'attr': {
                 'class': 'form-control',
-                'placeholder': "Rechercher une fiche projet"
+                'placeholder': "Rechercher une fiche projet",
+                'action': "{{ path('search') }}",
             } }) }}
         </li>
         <li>
