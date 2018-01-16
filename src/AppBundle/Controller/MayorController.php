@@ -26,8 +26,8 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
 
-
 /**
+ * @property  emailService
  * @Route("mayor/")
  */
 class MayorController extends Controller
@@ -142,6 +142,7 @@ class MayorController extends Controller
         SlugService $slugService,
         TabProjectService $tabProjectService,
         UploadService $uploadService,
+        EmailService $emailService,
         ValidProjectService $projectService
     )
     {
@@ -171,21 +172,37 @@ class MayorController extends Controller
             $uploaderImage = new Uploader();
             $uplodImageForm = $this->createForm('AppBundle\Form\UploaderType', $uploaderImage);
             $uplodImageForm->handleRequest($request);
+
             if ($formSubmitToAdmin->isSubmitted() && $formSubmitToAdmin->isValid()) {
                 $projectService->Verif($project);
                 if (!empty($projectService->getErreur())) {
-                    return $this->redirectToRoute('mayor_project_edit', array(
-                        'slug' => $project->getSlug(),
-                        'erreurs' => $projectService->getErreur(),
-                        'page' => 5
-                    ));
+
+                        return $this->render('private/maires/projectEdit.html.twig', array(
+                            'slug' => $project->getSlug(),
+                            'project' => $project,
+                            'form' => $form->createView(),
+                            'form_toAdmin' => $formSubmitToAdmin->createView(),
+                            'upload_image_form' => $uplodImageForm->createView(),
+                            'upload_file_form' => $uplodFileForm->createView(),
+                            'erreurs' => $projectService->getErreur(),
+                            'page' => 5,
+                        ));
                 } else {
                     $project->setStatus(Project::STATUS_WAITING);
                     $em->persist($project);
                     $em->flush();
+                    $message = [
+                        'to' => $user->getEmail(),
+                        'type' => EmailService::TYPE_MAIL_PROJECT_MODER['key'],
+                        'login' => $user->getLogin(),
+
+                    ];
+                    $emailService->sendEmail($message);
+
                     $this->addFlash(
                         'notice',
                         '<p>Votre Projet est envoyé pour modération avant la publication</p>'
+
                     );
                     return $this->redirectToRoute('mayor_project_edit', [
                         'slug' => $project->getSlug(),
@@ -198,7 +215,8 @@ class MayorController extends Controller
                 $dbimg = $images;
                 $dbimg[] = $uploadService->fileUpload($files, '/project/' . $project->getId() . '/photos', "img");
                 $project->setImages($dbimg);
-                $this->getDoctrine()->getManager()->flush();
+                $em->persist($project);
+                $em->flush();
                 return $this->redirectToRoute('mayor_project_edit', array(
                     'slug' => $project->getSlug(),
                     'page' => 1
@@ -208,11 +226,12 @@ class MayorController extends Controller
                 $file = $uploaderFile->getPath();
                 $fileNewDB = $uploadService->fileUpload($file, '/project/' . $project->getId() . '/file', "file");
                 $project->setFile($fileNewDB);
-                $this->getDoctrine()->getManager()->flush();
-                return $this->redirectToRoute('mayor_project_edit', array(
+                $em->persist($project);
+                $em->flush();
+                /*return $this->redirectToRoute('mayor_project_edit', array(
                     'slug' => $project->getSlug(),
                     'page' => 4
-                ));
+                ));*/
             }
             if ($form->isSubmitted() && $form->isValid()) {
                 $project->setSlug($slugService->slug($project->getTitle()));
@@ -235,6 +254,7 @@ class MayorController extends Controller
 
                 ]);
             }
+
             return $this->render('private/maires/projectEdit.html.twig', array(
                 'slug' => $project->getSlug(),
                 'project' => $project,
@@ -244,6 +264,7 @@ class MayorController extends Controller
                 'upload_file_form' => $uplodFileForm->createView(),
                 'page' => $page,
             ));
+
         } else {
             return $this->redirectToRoute('mayor_index');
         }

@@ -24,13 +24,13 @@
                 <label for="title">Titre</label>
                 <input value="{{ title }}" name="title" type="text" onchange="sendFilter()">
 
-                <label for="name">Theme</label>
+                {#<label for="name">Theme</label>
                 <select name="theme" id="theme">
                     {% for theme in themes %}
                         <option value="{{ theme.id }}"
                                 onchange="sendFilter()">{{ theme.name }} </option>
                     {% endfor %}
-                </select>
+                </select>#}
 
                 <input {% if 1 in status %} checked {% endif %} name="status[]" value="1" id="brouillon" type="checkbox"
                                                                 multiple
@@ -125,7 +125,7 @@
         <div class="col-sm-6">
             <div class="row">
                 <div class="col-sm-6">
-                    <h2>Projet Publier</h2>
+                    <h2>Projet Publié</h2>
                 </div>
                 <div class="col-sm-6 text-center">
                     <ul class="pagination-publish"></ul>
@@ -254,14 +254,17 @@
         }
 
         $(document).ready(function () {
-
+            AjaxNoFilter();
             $('.filterProject').change(function () {
 
                 postal = $('#postal').val();
                 titre = $('#titre').val();
                 themes = $('#themes').val();
-                console.log(themes.length);
-                if (titre.length >= 3 || postal.length >= 3 || themes.length >= 1) {
+
+                if (postal.length === 0 && titre.length === 0 && themes.length === 0) {
+                    location.reload();
+                }
+                else if (titre.length >= 3 || postal.length >= 3 || themes.length >= 1) {
                     $.ajax({
                         type: "POST",
                         url: "/ajax/listProjectFilter",
@@ -273,9 +276,12 @@
                         },
                         timeout: 3000,
                         success: function (response) {
-                            console.log(response.data);
-                            /*var project = response.data;
-                            html = "";
+
+                            var project = response.data;
+
+                            hmtl_draft = "";
+                            hmtl_waiting = "";
+                            hmtl_publish = "";
                             for (i = 0; i < project.length; i++) {
                                 var linkShow = "".replace('idProject', project[i].slug);
                                 var linkEdit = "".replace('idProject', project[i].slug);
@@ -289,11 +295,21 @@
                                     'zipcode': project[i].zipcode
 
                                 };
-                                html += trameHTMlProject(result);
-                            }*/
-
-                            //$('#content-' + tag).html(html);
-
+                                switch (project[i].status) {
+                                    case 1:
+                                        hmtl_draft += trameHTMlProject(result);
+                                        break;
+                                    case 2:
+                                        hmtl_waiting += trameHTMlProject(result);
+                                        break;
+                                    case 3:
+                                        hmtl_publish += trameHTMlProject(result);
+                                        break;
+                                }
+                            }
+                            $('#content-draft').html(hmtl_draft);
+                            $('#content-waiting').html(hmtl_waiting);
+                            $('#content-publish').html(hmtl_publish);
 
                         },
                         error: function () {
@@ -306,6 +322,11 @@
             $('#themes').select2();
 
             $('[data-toggle="tooltip"]').tooltip();
+
+
+        });
+
+        function AjaxNoFilter() {
             maxWaiting = {{ maxProject.waiting }};
             maxDraft = {{ maxProject.draft }};
             maxPublish = {{ maxProject.publish }};
@@ -327,7 +348,6 @@
                 'waiting': nbPageWaiting,
                 'draft': nbPageDraft,
                 'publish': nbPagePublish
-
             };
 
             var projectStatus = [
@@ -340,12 +360,10 @@
                     AjaxProject(status, MaxPage[status]);
                 }
             );
-
-
-        });
-
+        }
 
         function AjaxProject(tag, totalPage) {
+
             $('.pagination-' + tag).twbsPagination({
                 totalPages: totalPage,
                 visiblePages: 10,
@@ -389,7 +407,6 @@
             });
         }
 
-
         function trameHTMlProject(result) {
             html = "";
 
@@ -403,6 +420,7 @@
                 '<i class="fa fa-pencil fa-admin-mini"></i>\n' +
                 '</a>\n' +
                 '</div>\n';
+
             if (result.themes !== undefined) {
                 html += '<div class="col-sm-3">\n';
             } else {
@@ -412,9 +430,10 @@
                 result.title.slice(0, 20) +
                 '</h3>' +
                 '</div>\n';
+
             if (result.themes !== undefined) {
                 html += '<div class="col-sm-3">\n';
-                for (i = 0; i < result.themes.length; i++) {
+                for (var i = 0; i < result.themes.length; i++) {
                     html += '<span class="label label-primary">' + result.themes[i] + '</span>\n';
                 }
                 html += '</div>\n';

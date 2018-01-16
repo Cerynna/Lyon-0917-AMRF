@@ -966,6 +966,25 @@ section {
       color: #ffffff;
       border: 2px #ffffff solid;
       /*2f92a8*/ }
+  section .fa-big {
+    background: #ffffff;
+    color: rgba(0, 158, 61, 0.99);
+    border: 2px rgba(0, 158, 61, 0.99) solid;
+    font-size: 50px;
+    min-height: 30px;
+    min-width: 100%;
+    padding: 5px;
+    border-radius: 5px;
+    text-align: center;
+    vertical-align: middle;
+    margin-right: 1px;
+    margin-bottom: 5px;
+    cursor: pointer; }
+    section .fa-big:hover {
+      background: rgba(0, 158, 61, 0.99);
+      color: #ffffff;
+      border: 2px #ffffff solid;
+      /*2f92a8*/ }
   section .modal-content {
     background-color: rgba(0, 158, 61, 0.99);
     color: white; }
@@ -1120,6 +1139,7 @@ form {
       color: #ffffff; }
   form .relativeDiv {
     position: relative; }
+
   form .saveMe label {
     width: 50%; }
   form .saveMe input[type="checkbox"]:checked ~ label {
@@ -1135,11 +1155,15 @@ form {
     color: #ffffff;
     text-indent: 0.3em; }
   form .errorForm {
+
     background: #f2dede;
     color: #a94442;
     border-radius: 5px;
     margin-top: 5px;
     padding-left: 10px; }
+  section form #login, section form #mdp {
+    width: 80% !important;
+    margin: auto; }
 
 .select2-container {
   box-sizing: border-box;
@@ -2116,7 +2140,7 @@ a:hover, a:active {
     margin: 0 auto; }
 
 #map {
-  height: 600px;
+  height: 400px;
   width: 100%; }
   #map a {
     color: #000; }
