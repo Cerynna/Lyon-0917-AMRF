@@ -277,7 +277,7 @@ class MayorController extends Controller
     {
         $favorites = $this->getDoctrine()->getRepository('AppBundle:Favorite')->getFavoriteByUserId($this->getUser()->getId());
         return $this->render('private/favoris.html.twig', [
-            'favorites' => $favorites,
+            'myFavorites' => $favorites,
         ]);
     }
 

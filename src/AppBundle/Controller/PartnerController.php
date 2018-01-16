@@ -119,18 +119,20 @@ class PartnerController extends Controller
 	 */
 	public function partnerFavoriteAction()
 	{
-		$favorites = $this->getDoctrine()->getRepository('AppBundle:Favorite')->getFavoriteByUserId($this->getUser()->getId());
+        $userId = $this->getUser()->getId();
+		$favorites = $this->getDoctrine()->getRepository('AppBundle:Favorite')->getFavoriteByUserId($userId);
+
 		return $this->render('private/favoris.html.twig', [
-			'favorites' => $favorites,
+			'myFavorites' => $favorites,
 		]);
 	}
 
-	public function getDefaultOptions(array $options)
+/*	public function getDefaultOptions(array $options)
 	{
 		return array(
 			'csrf_protection' => false,
 			// Rest of options omitted
 		);
-	}
+	}*/
 
 }

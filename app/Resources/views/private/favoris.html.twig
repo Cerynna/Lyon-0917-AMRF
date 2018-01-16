@@ -16,7 +16,7 @@
     <div class="tab-content hidden-xs">
     <div role="tabpanel" class="tab-pane active" id="projets">
 
-        {% for favorite in favorites %}
+        {% for favorite in myFavorites %}
             {% if  favorite.project is not empty %}
                 <div class="jumbotron">
 
@@ -31,7 +31,7 @@
     <div role="tabpanel" class="tab-pane" id="partenaires">
 
 
-        {% for favorite in favorites %}
+        {% for favorite in myFavorites %}
             {% if  favorite.company is not empty %}
                 {% set company = favorite.company %}
 
