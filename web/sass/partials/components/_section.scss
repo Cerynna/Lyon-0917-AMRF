@@ -8,6 +8,7 @@ section {
     background-color: $color2;
     padding: 30px 50px;
     z-index: 1;
+
   }
   .erreur {
     background: rgba(143, 23, 20, 0.12);
@@ -57,7 +58,7 @@ section {
       }
     }
   }
-  .pagination>li{
+  .pagination > li {
     display: inline-block;
     margin-bottom: 20px;
   }
@@ -212,8 +213,10 @@ section {
 
     }
   }
-  .btnDisabled{
+  .btnDisabled {
     pointer-events: none !important;
     cursor: default !important;
   }
+
+
 }

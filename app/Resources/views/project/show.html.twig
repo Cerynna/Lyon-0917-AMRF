@@ -28,7 +28,7 @@
         </ul>
     </div>
     <h1>Fiche du projet</h1>
-
+<div class="row showTrame">
     <div class="col-sm-6">
         <div class="col-sm-4">
             <h5>Id</h5>
@@ -46,7 +46,7 @@
             <h5>Thème</h5>
             <span>
                     {% for theme in project.themes %}
-                        <span class="label label-primary">{{ theme.name }}</span>
+                        <span class="themaKey">{{ theme.name }}</span>
                     {% endfor %}
                 </span>
         </div>
@@ -83,41 +83,6 @@
             <h5>Financement</h5>
             <span>{{ project.projectCoFinance }}</span>
         </div>
-        <div class="col-sm-12">
-            <h5>Résumé</h5>
-            <span>{{ project.descResume }}</span>
-        </div>
-
-        <div class="col-sm-12">
-            <h5>Contexte</h5>
-            <span>{{ project.descContext }}</span>
-        </div>
-        <div class="col-sm-12">
-            <h5>Objectifs</h5>
-            <span>{{ project.descGoal }}</span>
-        </div>
-        <div class="col-sm-12">
-            <h5>Déroulement</h5>
-            <span>{{ project.descProgress }}</span>
-        </div>
-        <div class="col-sm-12">
-            <h5>Partenaires mobilisés</h5>
-            <span>{{ project.descPartners }}</span>
-        </div>
-        <div class="col-sm-12">
-            <h5>Résultats obtenus</h5>
-            <span>{{ project.descResults }}</span>
-        </div>
-        <div class="col-sm-12">
-            <h5>Difficultés rencontrées</h5>
-            <span>{{ project.descDifficulties }}</span>
-        </div>
-        <div class="col-sm-12">
-            <h5>Conseils</h5>
-            <span>{{ project.descAdvices }}</span>
-        </div>
-    </div>
-    <div class="col-sm-6">
         <div class="col-sm-4">
             <h5>Nom du contact</h5>
             <span>{{ project.contactName }}</span>
@@ -158,12 +123,59 @@
             <h5>Mots clés</h5>
             <span>
                     {% for keyword in project.keywords %}
-                        <span class="label label-primary">{{ keyword.name }}</span>
+                        <span class="themaKey">{{ keyword.name }}</span>
                     {% endfor %}
                 </span>
         </div>
+
+
     </div>
 
+
+    <div class="col-sm-6">
+
+
+
+        <div class="col-sm-12">
+            <h5>Résumé</h5>
+            <span>{{ project.descResume|raw }}</span>
+        </div>
+
+        <div class="col-sm-12">
+            <h5>Contexte</h5>
+            <span>{{ project.descContext|raw }}</span>
+        </div>
+        <div class="col-sm-12">
+            <h5>Objectifs</h5>
+            <span>{{ project.descGoal|raw }}</span>
+        </div>
+        <div class="col-sm-12">
+            <h5>Déroulement</h5>
+            <span>{{ project.descProgress|raw }}</span>
+        </div>
+        <div class="col-sm-12">
+            <h5>Partenaires mobilisés</h5>
+            <span>{{ project.descPartners|raw }}</span>
+        </div>
+        <div class="col-sm-12">
+            <h5>Résultats obtenus</h5>
+            <span>{{ project.descResults|raw }}</span>
+        </div>
+        <div class="col-sm-12">
+            <h5>Difficultés rencontrées</h5>
+            <span>{{ project.descDifficulties |raw}}</span>
+        </div>
+        <div class="col-sm-12">
+            <h5>Conseils</h5>
+            <span>{{ project.descAdvices|raw }}</span>
+        </div>
+
+
+
+
+
+    </div>
+</div>
     <script>
         function ConfirmDelete() {
             return confirm("Etes-vous sûr que vous voulez supprimer le projet?");
