@@ -21,7 +21,7 @@
         <div class="col-sm-12 jumbotron">
             <div class="row">
                 <div class="col-sm-4">
-                    <label for="themes">Theme</label>
+                    <h3><label for="themes">Theme</label></h3>
                     <select name="theme" id="themes" class="filterProject form-control" multiple>
                         {% for theme in themes %}
                             <option value="{{ theme.id }}"
@@ -30,16 +30,16 @@
                     </select>
                 </div>
                 <div class="col-sm-3">
-                    <label for="postal">Code Postal</label>
+                    <h3><label for="postal">Code Postal</label></h3>
                     <input type="text" id="postal" class="filterProject form-control" maxlength="5">
                 </div>
                 <div class="col-sm-3">
-                    <label for="titre">Titre</label>
+                <h3><label for="titre">Titre</label></h3>
                     <input type="text" id="titre" class="filterProject form-control">
                 </div>
                 <div class="col-sm-1">
                     <a href="{{ path('admin_project_index') }}" data-toggle="tooltip" data-placement="right"
-                       title="Reset des filtres"><i class="fa fa-refresh fa-admin-mini"></i></a>
+                       title="Reset des filtres"><i class="fa fa-refresh fa-admin"></i></a>
                 </div>
 
             </div>
