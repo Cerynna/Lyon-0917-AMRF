@@ -93,7 +93,7 @@
                                 </ul>
                             </li>
                             <li role="separator" class="divider"></li>
-                            <li><a tabindex="-1" href="#">Déconnexion</a></li>
+                            <li><a tabindex="-1" href="{{ path('logout') }}">Déconnexion</a></li>
                         </ul>
                     </li>
                 {% endif %}
@@ -116,7 +116,7 @@
                             <li class="dropdown-header">Mot de passe</li>
                             <li><a href="{{ path('change_password') }}">Changer</a></li>
                             <li role="separator" class="divider"></li>
-                            <li><a href="#">Déconnexion</a></li>
+                            <li><a tabindex="-1" href="{{ path('logout') }}">Déconnexion</a></li>
                         </ul>
                         <ul class="dropdown-menu scroll-in visible-xs">
                             <li class="col-xs-12">

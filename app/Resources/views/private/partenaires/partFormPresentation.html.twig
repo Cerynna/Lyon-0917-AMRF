@@ -87,8 +87,8 @@
                         <div class="form-group col-sm-4" align="right">
                             <a href="#description" aria-controls="description" role="tab" data-toggle="tab"
                                onclick="changeActiveMenu('preseMenu')">
-                                <div type="button" class="btn">Etape suivante <i class=" fa fa-angle-right"
-                                                                                 aria-hidden="true"></i>
+                                <div class="btn">Etape suivante <i class=" fa fa-angle-right"
+                                                                   aria-hidden="true"></i>
                                 </div>
                             </a>
                         </div>
@@ -148,7 +148,7 @@
                             {% endif %}
                             {% if company.logo|length < 1 %}
                                 <label for="photo">Téléchargez un logo pour votre organisme<br/>
-                                    <p>le poids d'une image ne doit pas excéder ... ... Mo</p>
+                                    <p>le poids d'une image ne doit pas excéder 1.5 Mo</p>
                                     <div class="btn2" data-toggle="modal" data-target="#modalImageUpload"><i
                                                 class="fa fa-upload fa-admin"></i> Ajouter votre logo
                                     </div>
@@ -192,7 +192,7 @@
                     <div class="form-group col-sm-4" align="left">
                         <a href="#organisme" aria-controls="organisme" role="tab" data-toggle="tab"
                            onclick="changeActiveMenu('orgaMenu')">
-                            <div type="button" class="btn"><i class=" fa fa-angle-left" aria-hidden="true"></i>
+                            <div class="btn"><i class=" fa fa-angle-left" aria-hidden="true"></i>
                                 Etape précédente
                             </div>
                         </a>
@@ -205,8 +205,8 @@
                     <div class="form-group col-sm-4" align="right">
                         <a href="#contact" aria-controls="contact" role="tab" data-toggle="tab"
                            onclick="changeActiveMenu('contactMenu')">
-                            <div type="button" class="btn">Etape suivante <i class=" fa fa-angle-right"
-                                                                             aria-hidden="true"></i></div>
+                            <div class="btn">Etape suivante <i class=" fa fa-angle-right"
+                                                               aria-hidden="true"></i></div>
                         </a>
                     </div>
                 </div>
@@ -248,7 +248,7 @@
                     <div class="form-group col-sm-4" align="left">
                         <a href="#description" aria-controls="description" role="tab" data-toggle="tab"
                            onclick="changeActiveMenu('preseMenu')">
-                            <div type="button" class="btn"><i class=" fa fa-angle-left" aria-hidden="true"></i>
+                            <div class="btn"><i class=" fa fa-angle-left" aria-hidden="true"></i>
                                 Etape
                                 précédente
                             </div>
@@ -262,8 +262,8 @@
                     <div class="form-group col-sm-4" align="right">
                         <a href="#preview" aria-controls="preview" role="tab" data-toggle="tab"
                            onclick="changeActiveMenu('previewMenu')">
-                            <div type="button" class="btn">Etape suivante <i class=" fa fa-angle-right"
-                                                                             aria-hidden="true"></i></div>
+                            <div class="btn">Etape suivante <i class=" fa fa-angle-right"
+                                                               aria-hidden="true"></i></div>
                         </a>
                     </div>
                 </div>
@@ -283,15 +283,11 @@
                                     <div class="col-xs-2 text-center">
                                         <img src="{{ asset("upload/company/1/file/"~ company.logo ) }}" height="70px">
                                     </div>
-                                    <div class="col-xs-5">
+                                    <div class="col-xs-10">
                                         <h3>{{ company.name }}</h3>
                                         {% for activity in company.activities %}
                                             <span class="label label-success">{{ activity.name }}</span>
                                         {% endfor %}
-                                    </div>
-                                    <div class="col-xs-5 text-center">
-
-
                                     </div>
                                 </div>
                             </div>
@@ -300,7 +296,7 @@
                         <div class="form-group col-sm-6" align="left">
                             <a href="#contact" aria-controls="contact" role="tab" data-toggle="tab"
                                onclick="changeActiveMenu('contactMenu')">
-                                <div type="button" class="btn"><i class=" fa fa-angle-left" aria-hidden="true"></i>
+                                <div class="btn"><i class=" fa fa-angle-left" aria-hidden="true"></i>
                                     Etape
                                     précédente
                                 </div>
