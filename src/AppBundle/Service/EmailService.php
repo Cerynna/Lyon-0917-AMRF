@@ -69,7 +69,7 @@ class EmailService
     public function sendEmail($mail)
     {
         $message = \Swift_Message::newInstance()
-            ->setTo($mail['to'])
+            ->setTo(trim($mail['to']))
             ->setCharset('utf-8')
             ->setFrom(self::MAIL_FROM);
 
@@ -94,11 +94,15 @@ class EmailService
                 $message->setBody(
                     $this->twig->render(self::TYPE_MAIL_CONFIRM_PASSWORD['renderHtml'], [
                             'login' => $mail['login'],
+                            'firstName'=> $mail['firstName'],
+                            'lastName'=> $mail['lastName'],
                         ]
                     ), 'text/html');
                 $message->addPart(
                     $this->twig->render(self::TYPE_MAIL_CONFIRM_PASSWORD['renderTxt'], [
                         'login' => $mail['login'],
+                        'firstName'=> $mail['firstName'],
+                        'lastName'=> $mail['lastName'],
                     ]), 'text/plain');
                 break;
 
@@ -143,6 +147,8 @@ class EmailService
                 $message->addPart(
                        $this->twig->render(self::TYPE_MAIL_CONTACT_CONFIRM['renderTxt'], [
                         'message' => $mail['message'],
+                           'firstName' => $mail['firstName'],
+                           'name'      => $mail['name'],
                         'object' => $mail['object'],
                     ]), 'text/plain');
                 break;
@@ -151,9 +157,17 @@ class EmailService
             case self::TYPE_MAIL_PROJECT_VALID['key']:
                 $message->setSubject("Votre projet est en ligne");
                 $message->setBody(
-                    $this->twig->render(self::TYPE_MAIL_PROJECT_VALID['renderHtml']), 'text/html');
+                    $this->twig->render(self::TYPE_MAIL_PROJECT_VALID['renderHtml'], [
+                        'firstName' => $mail['firstName'],
+                        'lastName' => $mail['lastName'],
+                        'title' =>$mail['title'],
+                    ]), 'text/html');
                 $message->addPart(
-                    $this->twig->render(self::TYPE_MAIL_PROJECT_VALID['renderTxt']), 'text/plain');
+                    $this->twig->render(self::TYPE_MAIL_PROJECT_VALID['renderTxt'], [
+                        'firstName' => $mail['firstName'],
+                        'lastName' => $mail['lastName'],
+                        'title' =>$mail['title'],
+                    ]), 'text/plain');
                 break;
 
 
@@ -175,9 +189,19 @@ class EmailService
             case self::TYPE_MAIL_PROJECT_MODER['key']:
                 $message->setSubject("Votre projet est envoyé pour modération");
                 $message->setBody(
-                    $this->twig->render(self::TYPE_MAIL_PROJECT_MODER['renderHtml']), 'text/html');
+                    $this->twig->render(self::TYPE_MAIL_PROJECT_MODER['renderHtml'], [
+                        'login' => $mail['login'],
+                        'firstName' => $mail['firstName'],
+                        'lastName' => $mail['lastName'],
+                        'title' =>$mail['title'],
+                    ]), 'text/html');
                 $message->addPart(
-                    $this->twig->render(self::TYPE_MAIL_PROJECT_MODER['renderTxt']), 'text/plain');
+                    $this->twig->render(self::TYPE_MAIL_PROJECT_MODER['renderTxt'], [
+                        'login' => $mail['login'],
+                        'firstName' => $mail['firstName'],
+                        'lastName' => $mail['lastName'],
+                        'title' =>$mail['title'],
+                    ]), 'text/plain');
                 break;
 
             case self::TYPE_MAIL_FORGOT_PASSWORD['key']:
@@ -185,11 +209,15 @@ class EmailService
                 $message->setBody(
                     $this->twig->render(self::TYPE_MAIL_FORGOT_PASSWORD['renderHtml'], [
                             'token' => $mail['token'],
+                            'firstName'=> $mail['firstName'],
+                            'lastName'=> $mail['lastName'],
                         ]
                     ), 'text/html');
                 $message->addPart(
                     $this->twig->render(self::TYPE_MAIL_FORGOT_PASSWORD['renderTxt'], [
                         'token' => $mail['token'],
+                        'firstName'=> $mail['firstName'],
+                        'lastName'=> $mail['lastName'],
                     ]), 'text/plain');
                 break;
 

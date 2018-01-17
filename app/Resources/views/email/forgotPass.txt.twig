@@ -1,21 +1,16 @@
 
+Bonjour  {{ firstName }} {{ lastName }},
+Vous avez demandé à réinitialiser votre mot de passe sur votre Espace du <a href="{{ url('home') }}" class="link">Wiki des Maires.</a>
+Si vous n'êtes pas à l'origine de cette demande, ne tenez pas compte de cet email.
+Si vous avez bien demandé cette réinitilisation, veuillez cliquer sur le lien ci-dessous. <br>
+Attention : ce lien est valide durant 15 minutes. Passé ce délai, vous ne pourrez plus réinitialiser. Vous devrez faire une nouvelle demande à partir du Wiki des Maires.
 
-        Bonjour,
-        Vous avez demandé à réinitialiser votre mot de passe sur votre Espace du <a href="{{ url('home') }}" Wiki des Maires.</a> <br>
-        Si vous n'êtes pas à l'origine de cette demande, ne tenez pas compte de cet email.
-        Si vous avez bien demandé cette réinitilisation, veuillez cliquer sur le lien ci-dessous. <br>
-        Attention : ce lien est valide durant 15 minutes. Au-delà, vous ne pourrez plus réinitialiser. Vous devrez faire une nouvelle demande à partir du Wiki des Maires. <br>
-        
-        Bien cordialement. <br>
-        L'Association des Maires Ruraux de France, <br>
-        "Des maires au service des maires"
-        <a href="{{ url('token_password', {
-            'token': token
-        }) }}">
-            class="button"
-                Réinitialiser
+Bien cordialement.
 
-        </a>
+L’Association des Maires Ruraux de France<br/>
+"Des maires au service des maires"
+
+<a href="{{ url('token_password', {'token': token }) }}" class="link">Réinitialiser</a>
 
         Ceci est un email automatique, merci de ne pas y répondre
 
