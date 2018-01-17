@@ -229,7 +229,6 @@ class ProjectRepository extends \Doctrine\ORM\EntityRepository
             }
             $i++;
         }
-        dump($result['bestTheme']);
 
         return $result;
     }

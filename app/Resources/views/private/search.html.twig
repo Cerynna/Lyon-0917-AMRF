@@ -160,11 +160,11 @@
         }
 
         $(document).ready(function () {
-            $('#search_keywords').select2();
+            $('#keywords').select2();
         });
 
-        $('#search_region').keyup(function () {
-            var valuesInput = $("#search_region").val();
+        $('#region').keyup(function () {
+            var valuesInput = $("#region").val();
             $('.result_region').text("");
             $.ajax({
                 type: "GET",
@@ -176,15 +176,15 @@
                         var resultNom = JSON.stringify(data[iter].nom).replace(/\"/g, '');
                         var resultCode = JSON.stringify(data[iter].code).replace(/\"/g, '');
 
-                        $('.result_region').append('<li onclick="completInput(\'search_region\',$(this).text())">' + resultCode + " - " + resultNom + "</li>");
+                        $('.result_region').append('<li onclick="completInput(\'region\',$(this).text())">' + resultCode + " - " + resultNom + "</li>");
                     }
                 },
                 dataType: 'json',
             });
         });
 
-        $('#search_departement').keyup(function () {
-            var valuesInput = $("#search_departement").val();
+        $('#departement').keyup(function () {
+            var valuesInput = $("#departement").val();
             $('.resultdepartement').text("");
 
             if (isNaN(valuesInput)) {
@@ -198,7 +198,7 @@
                             var resultNom = JSON.stringify(data[iter].nom).replace(/\"/g, '');
                             var resultCode = JSON.stringify(data[iter].code).replace(/\"/g, '');
 
-                            $('.result_departement').append('<li onclick="completInput(\'search_departement\',$(this).text())">' + resultCode + " - " + resultNom + "</li>");
+                            $('.result_departement').append('<li onclick="completInput(\'departement\',$(this).text())">' + resultCode + " - " + resultNom + "</li>");
 
                         }
                     },
@@ -216,7 +216,7 @@
                             var resultNom = JSON.stringify(data[iter].nom).replace(/\"/g, '');
                             var resultCode = JSON.stringify(data[iter].code).replace(/\"/g, '');
 
-                            $('.result_departement').append('<li onclick="completInput(\'search_departement\',$(this).text())">' + resultCode + " - " + resultNom + "</li>");
+                            $('.result_departement').append('<li onclick="completInput(\'departement\',$(this).text())">' + resultCode + " - " + resultNom + "</li>");
                         }
                     },
                     dataType: 'json',
@@ -224,8 +224,8 @@
             }
         });
 
-        $('#search_commune').keyup(function () {
-            var valuesInput = $("#search_commune").val();
+        $('#commune').keyup(function () {
+            var valuesInput = $("#commune").val();
             var nbCarac = valuesInput.length;
             $('.result_commune').text("");
 
@@ -242,7 +242,7 @@
                                 var resultNom = JSON.stringify(data[iter].nom).replace(/\"/g, '');
                                 var resultCode = JSON.stringify(data[iter].codesPostaux).replace(/\"/g, '').replace('[', '').replace(']', '');
 
-                                $('.result_commune').append('<li onclick="completInput(\'search_commune\',$(this).text())">' + resultCode + " - " + resultNom + "</li>");
+                                $('.result_commune').append('<li onclick="completInput(\'commune\',$(this).text())">' + resultCode + " - " + resultNom + "</li>");
                             }
                         },
                         dataType: 'json',
@@ -260,7 +260,7 @@
                                 var resultCode = JSON.stringify(data[iter].codesPostaux).replace(/\"/g, '').replace('[', '').replace(']', '');
 
 
-                                $('.result_commune').append('<li onclick="completInput(\'search_commune\',$(this).text())">' + resultCode + " - " + resultNom + "</li>");
+                                $('.result_commune').append('<li onclick="completInput(\'commune\',$(this).text())">' + resultCode + " - " + resultNom + "</li>");
                             }
                         },
                         dataType: 'json',
