@@ -10,7 +10,6 @@
                             {{ form_start(upload_image_form) }}
                             {{ form_label(upload_image_form.path, 'Télécharger un fichier depuis votre ordinateur') }}
                             {{ form_widget(upload_image_form.path) }}
-
                             {{ form_end(upload_image_form) }}
                         </div>
                         <div class="col-sm-2 text-right">
@@ -84,7 +83,6 @@
                 <h5>{{ form_label(edit_form.presentation) }}</h5>
                 {{ form_widget(edit_form.presentation) }}
             </div>
-
         </div>
         <div class="col-sm-6">
             <div class="col-sm-6">
@@ -161,7 +159,6 @@
                 },
                 error: function () {
                     alert("la photo ne peu pas être supprimée");
-
                 }
             })
         }
