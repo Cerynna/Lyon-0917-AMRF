@@ -34,8 +34,12 @@
 </header>
 <nav>
     <ul>
-        <li class="sidenav-user {% if app.request.attributes.get('_route') | slice(0, 10) == 'admin_user' %} active-user {% endif %}"
-        >
+        <li class="sidenav-user {% if app.request.attributes.get('_route') | slice(0, 11) == 'admin_index' %} active-user {% endif %}">
+            <a href="{{ path('admin_index') }}">
+                <i class="fa fa-home"></i> Accueil
+            </a>
+        </li>
+        <li class="sidenav-user {% if app.request.attributes.get('_route') | slice(0, 10) == 'admin_user' %} active-user {% endif %}">
             <a href="{{ path('admin_user_index') }}">
                 <i class="fa fa-users"></i> Users
             </a>
