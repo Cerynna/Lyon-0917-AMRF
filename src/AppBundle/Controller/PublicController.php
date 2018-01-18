@@ -110,6 +110,8 @@ class PublicController extends Controller
             $messageconfirm = [
                 'to' => $contact->getEmail(),
                 'type' => EmailService::TYPE_MAIL_CONTACT_CONFIRM['key'],
+                'name'  =>$contact->getName(),
+                'firstName'=>$contact->getFirstName(),
                 'object' => $contact->getSubject(),
                 'message' => $contact->getMessage(),
             ];

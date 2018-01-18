@@ -1014,6 +1014,13 @@ section {
   section .btnDisabled {
     pointer-events: none !important;
     cursor: default !important; }
+  section .breakLine {
+    word-wrap: break-word;
+    -webkit-hyphens: auto;
+    -moz-hyphens: auto;
+    -ms-hyphens: auto;
+    -o-hyphens: auto;
+    hyphens: auto; }
 
 form {
   /* .cleIcon {

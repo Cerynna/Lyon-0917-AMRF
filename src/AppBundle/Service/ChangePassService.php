@@ -48,13 +48,28 @@ class ChangePassService
 
     public function changeTokenPassword(User $user, $newPassword){
         $user->setPassword($this->passwordEncoder->encodePassword($user, $newPassword));
+        $user->setStatus(User::USER_STATUS_ACTIF);
         $this->em->persist($user);
         $this->em->flush();
+        $firstName = "";
+        $lastName = "";
+        if($user->getRole() === User::USER_ROLE_MAYOR){
+            $firstName = $user->getMayor()->getFirstName();
+            $lastName = $user->getMayor()->getLastName();
+        }
+        if($user->getRole() === User::USER_ROLE_PARTNER){
+            $firstName = $user->getPartner()->getFirstName();
+            $lastName = $user->getPartner()->getLastName();
+        }
         $messageconfirm = [
             'to' => $user->getEmail(),
             'type' => EmailService::TYPE_MAIL_CONFIRM_PASSWORD['key'],
             'login' => $user->getLogin(),
+            'firstName'=> $firstName,
+            'lastName'=>$lastName,
+
         ];
+
         $this->emailService->sendEmail($messageconfirm);
 
         $result['message'] = "Votre nouveau mot de passe a bien été enregistré. Merci de vous reconnecter";
@@ -75,8 +90,20 @@ class ChangePassService
             $forgot->setStatus(self::STATUS_ACTIF);
             $this->em->persist($forgot);
             $this->em->flush();
+            $firstName = "";
+            $lastName = "";
+            if($user[0]->getRole() === User::USER_ROLE_MAYOR){
+                $firstName = $user[0]->getMayor()->getFirstName();
+                $lastName = $user[0]->getMayor()->getLastName();
+            }
+            if($user[0]->getRole() === User::USER_ROLE_PARTNER){
+                $firstName = $user[0]->getPartner()->getFirstName();
+                $lastName = $user[0]->getPartner()->getLastName();
+            }
             $message = [
                 'to' => $user[0]->getEmail(),
+                'firstName'=> $firstName,
+                'lastName'=>$lastName,
                 'type' => EmailService::TYPE_MAIL_FORGOT_PASSWORD['key'],
                 'token' => $forgot->getToken(),
             ];

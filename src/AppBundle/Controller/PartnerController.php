@@ -42,19 +42,22 @@ class PartnerController extends Controller
 		$user = $this->getUser();
 		$partner = $user->getPartner();
 		$form = $this->createForm('AppBundle\Form\PartnerType', $partner);
+		$form->remove('company');
 		$form->handleRequest($request);
 
 		$em = $this->getDoctrine()->getManager();
 
 		if ($form->isSubmitted() && $form->isValid()) {
+			dump($user);
 			$em->persist($user);
+			$em->persist($partner);
 			$em->flush();
 			$this->addFlash(
 				'notice',
 				'<p>Vos informations ont bien été enregistrées</p>'
 			);
 
-			return $this->redirectToRoute('partner_profil', array('id' => $partner->getId()));
+			//return $this->redirectToRoute('partner_profil', array('id' => $partner->getId()));
 		}
 
 		return $this->render('private/partenaires/partProfil.html.twig', array(
