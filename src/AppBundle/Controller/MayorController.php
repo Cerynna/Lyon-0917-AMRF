@@ -108,6 +108,7 @@ class MayorController extends Controller
         $MayorConnect = $user->getMayor();
         if ($form->isSubmitted() && $form->isValid()) {
             $project = new Project();
+            $project->setImages([]);
             $project->setTitle($projectTitle->getTitle());
             $project->setMayor($MayorConnect);
             $project->setCreationDate(new \DateTime('now'));
