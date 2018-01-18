@@ -229,7 +229,7 @@ class Company
      * )
      * @Assert\Email(
      *     message = "Veuillez entrer une adresse email valide",
-     *     checkMX = true
+     *     checkMX = false
      * )
      */
     private $contactEmail;

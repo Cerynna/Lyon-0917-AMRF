@@ -196,6 +196,9 @@ class MayorController extends Controller
                         'to' => $user->getEmail(),
                         'type' => EmailService::TYPE_MAIL_PROJECT_MODER['key'],
                         'login' => $user->getLogin(),
+                        'firstName'=> $project->getMayor()->getFirstName(),
+                        'lastName'=> $project->getMayor()->getLastName(),
+                        'title'=> $project->getTitle(),
                     ];
                     $emailService->sendEmail($message);
 

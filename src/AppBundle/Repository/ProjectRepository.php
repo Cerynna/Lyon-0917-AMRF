@@ -466,7 +466,6 @@ class ProjectRepository extends \Doctrine\ORM\EntityRepository
 
     public function ListProjectFilter($data)
     {
-        //dump($data);
 
         $results['postal'] = [];
         $results['title'] = [];
@@ -511,8 +510,7 @@ class ProjectRepository extends \Doctrine\ORM\EntityRepository
             foreach ($idProjects as $idproject) {
                 array_push($resultText, $idproject);
             }
-            //dump($resultText);
-            array_push($results['title'], $resultText);
+            array_push($results, $resultText);
         }
         if (is_array($data["themes"])) {
             $resultThemes = [];

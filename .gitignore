@@ -17,4 +17,5 @@
 /web/bundles/
 .idea/
 /web/upload/
-/dico.sql
+/web/partner.csv
+/web/realDB.csv
