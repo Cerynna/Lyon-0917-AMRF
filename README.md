@@ -1,7 +1,7 @@
 [wikiMaire](http://wikidesmaires.amrf.fr)
 =========
 
-![test|512x397](https://s14-eu5.ixquick.com/cgi-bin/serveimage?url=http:%2F%2Fwww.eterritoire.fr%2Fblog%2Fwp-content%2Fuploads%2F2014%2F09%2FAMRF-1024x520.jpg&sp=cb8faa346bda4acff9e455ddd97d5cfc)
+![test|20%](https://s14-eu5.ixquick.com/cgi-bin/serveimage?url=http:%2F%2Fwww.eterritoire.fr%2Fblog%2Fwp-content%2Fuploads%2F2014%2F09%2FAMRF-1024x520.jpg&sp=cb8faa346bda4acff9e455ddd97d5cfc)
 
 
 Project [Wild Code School](https://wildcodeschool.fr/) for [Association des Maires Ruraux de France](http://www.amrf.fr/). 
