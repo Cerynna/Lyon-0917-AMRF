@@ -109,11 +109,11 @@
 
 {% endblock %}
 {% block javascripts %}
-    {% set totalPagePart = (maxPart/10)|round %}
+    {% set totalPagePart = (maxPart/10)|round(0, 'ceil') %}
     {% if  totalPagePart == 0 %}
         {% set totalPagePart = 1 %}
     {% endif %}
-    {% set totalPageMayor= (maxMayor/10)|round %}
+    {% set totalPageMayor = (maxMayor/10)|round(0, 'ceil') %}
     {% if  totalPageMayor == 0 %}
         {% set totalPageMayor = 1 %}
     {% endif %}
