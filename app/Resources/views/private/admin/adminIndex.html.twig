@@ -80,52 +80,46 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-sm-3">
-            <h5>Projet les plus mis en favorie</h5>
-            <div class="jumbotron">
-                {% for project in stats.bestProject %}
-                    <h5 class="row stat">
-                    <div class="col-sm-10">{{ project.project.title }}</div>
-                    <div class="col-sm-2">
-                        <a href="{{ path('admin_project_show', {
-                            'slug' : project.project.slug
-                        }) }}">
-                        <i class="fa-admin-mini">{{ project.count }}</i>
-                        </a>
-                    </div>
-                    </h5>
-                {% endfor %}
 
+        {% if stats.bestProject is defined %}
+            <div class="col-sm-3">
+                <h5>Projet les plus mis en favorie</h5>
+                <div class="jumbotron">
+                    {% for project in stats.bestProject %}
+                        <h5 class="row stat">
+                            <div class="col-sm-10">{{ project.project.title }}</div>
+                            <div class="col-sm-2">
+                                <a href="{{ path('admin_project_show', {
+                                    'slug' : project.project.slug
+                                }) }}">
+                                    <i class="fa-admin-mini">{{ project.count }}</i>
+                                </a>
+                            </div>
+                        </h5>
+                    {% endfor %}
+                </div>
             </div>
+        {% endif %}
 
-        </div>
-        <div class="col-sm-3">
-            <h5>Thematique les plus utilisé</h5>
-            <div class="jumbotron">
 
-                {% for theme in stats.bestTheme %}
-                    <h5 class="row stat">
-                        <div class="col-sm-10">{{ theme.theme.name|slice(0,20) }}</div>
-                        <div class="col-sm-2">
+        {% if stats.bestTheme is defined %}
+            <div class="col-sm-3">
+                <h5>Thematique les plus utilisé</h5>
+                <div class="jumbotron">
+                    {% for theme in stats.bestTheme %}
+                        <h5 class="row stat">
+                            <div class="col-sm-10">
+                                {{ theme.theme.name|slice(0,20) }}
+                            </div>
+                            <div class="col-sm-2">
                                 <i class="fa-admin-mini">{{ theme.count }}</i>
-                        </div>
-                    </h5>
-                {% endfor %}
+                            </div>
+                        </h5>
+                    {% endfor %}
+                </div>
             </div>
+        {% endif %}
 
-        </div>
-        <div class="col-sm-3">
-            <h5>Derniers utilisateurs connectés</h5>
-            <div class="jumbotron">
-            </div>
-
-        </div>
-        <div class="col-sm-3">
-            <h5>Derniers utilisateurs connectés</h5>
-            <div class="jumbotron">
-            </div>
-
-        </div>
 
     </div>
 
