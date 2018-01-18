@@ -108,6 +108,7 @@ class MayorController extends Controller
         $MayorConnect = $user->getMayor();
         if ($form->isSubmitted() && $form->isValid()) {
             $project = new Project();
+            $project->setImages([]);
             $project->setTitle($projectTitle->getTitle());
             $project->setMayor($MayorConnect);
             $project->setCreationDate(new \DateTime('now'));
@@ -163,6 +164,7 @@ class MayorController extends Controller
             $form->remove('file');
             $form->remove('creationDate');
             $form->remove('updateDate');
+            $form->remove('mayor');
             $form->handleRequest($request);
             $uploaderFile = new Uploader();
             $uplodFileForm = $this->createForm('AppBundle\Form\UploaderType', $uploaderFile);
@@ -206,7 +208,7 @@ class MayorController extends Controller
                         'notice',
                         '<p>Votre Projet est envoyé pour modération avant la publication</p>'
                     );
-                    return $this->redirectToRoute('mayor_project_edit', [
+                    return $this->redirectToRoute('mayor_project', [
                         'slug' => $project->getSlug(),
                     ]);
                 }

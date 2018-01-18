@@ -1,7 +1,7 @@
 User-agent: *
-Allow: *
-Disallow: /admin
-Disallow: /mayor
-Disallow: /partner
-Disallow: /search
-Disallow: /directory
+Disallow: *
+Allow: /
+Allow: /amrf
+Allow: /contact
+Allow: /confidential
+Allow: /mentions

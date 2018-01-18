@@ -67,26 +67,41 @@
     }) }}
     <input id="page" name="page" type="text" class="hidden"/>
     <h2>CREER UNE FICHE PROJET</h2>
+
     <!-- Nav tabs -->
     {{ form_errors(form) }}
-    <div class="row tabPannel">
-        <ul class="list-inline text-center" role="tablist">
-            <li role="presentation" class=" tabLi {% if page == 1 %} active {% endif %}" id="projetMenu">
-                <a>Mon Projet</a>
-            </li>
-            <li role="presentation" id="realMenu" class="tabLi {% if page == 2 %} active {% endif %}">
-                <a>Réalisation</a>
-            </li>
-            <li role="presentation" id="descriptionMenu" class="tabLi {% if page == 3 %} active {% endif %}">
-                <a>Description </a>
-            </li>
-            <li role="presentation" id="infoMenu" class="tabLi {% if page == 4 %} active {% endif %}">
-                <a>Informations</a>
-            </li>
-            <li role="presentation" id="previewMenu" class="tabLi {% if page == 5 %} active {% endif %}">
-                <a>Aperçu</a>
-            </li>
-        </ul>
+    <div class="tabPannel">
+        <div class="row">
+            <ul class="list-inline text-center" role="tablist">
+                <li role="presentation" class=" tabLi {% if page == 1 %} active {% endif %}" id="projetMenu">
+                    <a>Mon Projet</a>
+                </li>
+                <li role="presentation" id="realMenu" class="tabLi {% if page == 2 %} active {% endif %}">
+                    <a>Réalisation</a>
+                </li>
+                <li role="presentation" id="descriptionMenu" class="tabLi {% if page == 3 %} active {% endif %}">
+                    <a>Description </a>
+                </li>
+                <li role="presentation" id="infoMenu" class="tabLi {% if page == 4 %} active {% endif %}">
+                    <a>Informations</a>
+                </li>
+                <li role="presentation" id="previewMenu" class="tabLi {% if page == 5 %} active {% endif %}">
+                    <a>Aperçu</a>
+                </li>
+
+            </ul>
+        </div>
+        <div class="row text-center">
+
+                {{ form_start(form_toAdmin) }}
+                {{ form_widget(form_toAdmin) }}
+                <div class="btn submitForm" type="submit">
+                    Soumettre votre fiche
+                </div>
+                {{ form_end(form_toAdmin) }}
+
+        </div>
+
         {% if erreurs is defined %}
             <div class="erreur">
                 <h3>Votre projet ne peut pas être envoyé en modération</h3>
@@ -99,7 +114,9 @@
         {% endif %}
         <div class="tab-content">
             <div role="tabpanel" class="tab-pane {% if page == 1 %} active {% endif %}" id="projet">
-                <div class="star">Le symbole * indique que cette information est nécessaire.</div>
+                <div class="star">
+                    Le symbole * indique que cette information est nécessaire.
+                </div>
                 <h3>Mon projet</h3>
                 <div class="form-group col-sm-12">
 
@@ -210,7 +227,7 @@
                         {{ form_widget(form.projectDuration) }}
                     </div>
                     <div class="form-group col-sm-6">
-                        {{ form_label(form.projectCost, "Coût global * (en chiffres, sans le symbole €)") }}
+                        {{ form_label(form.projectCost, "Coût global * (en chiffres)") }}
                         {{ form_widget(form.projectCost) }}
                     </div>
 
@@ -420,15 +437,7 @@
 
                         {{ form_end(form, {'render_rest': false}) }}
                     </div>
-                    <div class="form-group col-sm-4" align="right">
-                        {{ form_start(form_toAdmin) }}
-                        {{ form_widget(form_toAdmin) }}
-                        <button class="btn" type="submit"><i class="fa fa-envelope-o" aria-hidden="true"></i>
-                            Soumettre votre fiche
-                        </button>
-                        {{ form_end(form_toAdmin) }}
 
-                    </div>
                 </div>
                 {% include 'components/projectComponent.html.twig' %}
             </div>
