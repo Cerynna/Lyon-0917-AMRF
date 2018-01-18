@@ -1,7 +1,7 @@
 [wikiMaire](http://wikidesmaires.amrf.fr)
 =========
 
-![test](https://github.com/favicon.ico | width=48)
+![test|512x397](https://github.com/favicon.ico)
 
 
 Project [Wild Code School](https://wildcodeschool.fr/) for [Association des Maires Ruraux de France](http://www.amrf.fr/). 
