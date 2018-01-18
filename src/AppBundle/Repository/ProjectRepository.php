@@ -177,7 +177,7 @@ class ProjectRepository extends \Doctrine\ORM\EntityRepository
             ->getResult();
 
 
-        $sql = "SELECT project_id as id FROM favorite";
+        $sql = "SELECT project_id as id FROM favorite WHERE project_id != ''";
         $em = $this->getEntityManager();
         $stmt = $em->getConnection()->prepare($sql);
         $stmt->execute();
@@ -369,7 +369,7 @@ class ProjectRepository extends \Doctrine\ORM\EntityRepository
     {
         //REFACTORING DQL
         $results = [];
-        $sql = "SELECT pm.id FROM AppBundle:Mayor pm ";
+        $sql = "SELECT id FROM mayor ";
         $i = 0;
         if (!is_null($region)) {
             $values = explode(' ', $region);
@@ -377,7 +377,7 @@ class ProjectRepository extends \Doctrine\ORM\EntityRepository
             if ($i == 0) {
                 $operateur = " WHERE ";
             }
-            $sql .= $operateur . "pm.region = " . $values[0] . "";
+            $sql .= $operateur . "region = " . $values[0] . "";
             $i++;
         }
         if (!is_null($departement)) {
@@ -386,44 +386,64 @@ class ProjectRepository extends \Doctrine\ORM\EntityRepository
             if ($i == 0) {
                 $operateur = " WHERE ";
             }
-            $sql .= $operateur . "pm.department = " . $values[0] . "";
+            $sql .= $operateur . "department = " . $values[0] . "";
             $i++;
         }
         if (!is_null($commune)) {
+
             $values = explode(' ', $commune);
             $operateur = " OR ";
             if ($i == 0) {
                 $operateur = " WHERE ";
             }
-            $sql .= $operateur . "pm.zipCode = '" . $values[0] . "'";
+            if (strlen($values[0]) === 5) {
+                $sql .= $operateur . "zipCode = '" . $values[0] . "'";
+            } else {
+                $sql .= $operateur . "zipCode LIKE '" . $values[0] . "%'";
+            }
+
+
             $i++;
         }
-        $arrays = $this->getEntityManager()
-            ->createQuery($sql)
-            ->getResult();
+        dump($sql);
+
+        $em = $this->getEntityManager();
+        $stmt = $em->getConnection()->prepare($sql);
+        $stmt->execute();
+        $arrays = $stmt->fetchAll();
+
         // END REFACTORING
 
-        $qb = $this->pertinenceInit()->select('p.id');
-        $i = 0;
-        foreach ($arrays as $array) {
-            $idMayor = $array['id'];
 
-            $qb->setParameter('id' . $i, $idMayor);
-            if ($i === 0) {
-                $qb->where("p.id = :id" . $i);
-            } else {
-                $qb->orWhere("p.id = :id" . $i);
+        if (is_array($arrays)) {
+
+
+            $sql = "SELECT * FROM project ";
+            $i = 0;
+            foreach ($arrays as $array) {
+                $idMayor = $array['id'];
+                $operateur = " OR ";
+                if ($i == 0) {
+                    $operateur = " WHERE ";
+                }
+                $sql .= $operateur . "mayor_id = '" . $idMayor . "' ";
+                $i++;
             }
-            $i++;
+            $sql .= " AND status = 3";
+            $em = $this->getEntityManager();
+            $stmt = $em->getConnection()->prepare($sql);
+            $stmt->execute();
+
+            $pikachu = $stmt->fetchAll();
+            foreach ($pikachu as $array) {
+
+                $results[] = intval($array['id']);
+            }
+            return $results;
+        } else {
+            return [];
         }
 
-        $qb->andWhere('p.status = ' . Project::STATUS_PUBLISH);
-        foreach ($qb->getQuery()->getResult() as $array) {
-
-            $results[] = intval($array['id']);
-        }
-
-        return $results;
     }
 
     public function ListProject($offset, $type)
