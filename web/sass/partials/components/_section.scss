@@ -8,7 +8,6 @@ section {
     background-color: $color2;
     padding: 30px 50px;
     z-index: 1;
-
   }
   .erreur {
     background: rgba(143, 23, 20, 0.12);
@@ -218,5 +217,12 @@ section {
     cursor: default !important;
   }
 
-
+  .breakLine{
+    word-wrap: break-word;
+    -webkit-hyphens: auto;
+    -moz-hyphens: auto;
+    -ms-hyphens: auto;
+    -o-hyphens: auto;
+    hyphens: auto;
+  }
 }
