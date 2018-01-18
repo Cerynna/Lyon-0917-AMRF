@@ -29,22 +29,22 @@
 
         <h4>Ajouter aux favoris</h4>
         {% if favorites is defined %}
-            <button type="button" id="addFavorite"
-                    class="btnFavoris {% if company.id in favorites %} hidden {% endif %}"
-                    name="company-{{ company.id }}">
+
+            <button type="button" name="company-{{ company.id }}" class="btnFavoris btn-show-{{ company.id }} addFavorite {% if company.id in favorites %} hidden {% endif %}">
                 <i class="fa fa-star-o"></i>
             </button>
-            <button type="button" id="btnFavorisDel"
-                    class="btnFavoris{% if  company.id not in favorites %} hidden {% endif %}"
-                    name="company-{{ company.id }}">
+
+            <button type="button" name="company-{{ company.id }}" class="btnFavoris btn-hide-{{ company.id }} delFavorite {% if  company.id not in favorites %} hidden {% endif %}">
                 <i class="fa fa-star"></i>
             </button>
+
         {% else %}
 
-            <button type="button" id="addFavorite" class="btnFavoris hidden " name="company-{{ company.id }}">
+            <button type="button" name="company-{{ company.id }}" class="btnFavoris btn-show-{{ company.id }} addFavorite hidden">
                 <i class="fa fa-star-o"></i>
             </button>
-            <button type="button" id="btnFavorisDel" class="btnFavoris" name="company-{{ company.id }}">
+
+            <button type="button" name="company-{{ company.id }}" class="btnFavoris btn-hide-{{ company.id }} delFavorite ">
                 <i class="fa fa-star"></i>
             </button>
 
