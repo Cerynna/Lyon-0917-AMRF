@@ -207,7 +207,7 @@ class MayorController extends Controller
                         'notice',
                         '<p>Votre Projet est envoyé pour modération avant la publication</p>'
                     );
-                    return $this->redirectToRoute('mayor_project_edit', [
+                    return $this->redirectToRoute('mayor_project', [
                         'slug' => $project->getSlug(),
                     ]);
                 }
