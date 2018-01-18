@@ -144,7 +144,6 @@
                             timeout: 3000,
                             success: function (response) {
                                 var mayors = response.data;
-                                //console.log(response.data);
                                 html = "";
                                 for (i = 0; i < mayors.length; i++) {
 
@@ -187,7 +186,6 @@
                             var partners = response.data;
                             html = "";
                             for (i = 0; i < partners.length; i++) {
-                                console.log(partners[i]);
                                 var linkShow = "{{ path('admin_user_show', {'id': "idUser"}) }}".replace('idUser', partners[i].id);
                                 var linkEdit = "{{ path('admin_user_edit', {'id': "idUser"}) }}".replace('idUser', partners[i].id);
                                 var result = {

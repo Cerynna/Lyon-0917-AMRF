@@ -533,7 +533,6 @@ class ProjectRepository extends \Doctrine\ORM\EntityRepository
                 $resultThemes[] = intval($array['id']);
             }
             $resultThemes = array_unique($resultThemes);
-            //dump($resultThemes);
             array_push($results['themes'], $resultThemes);
         }
         if (!empty($results['postal']) && empty($results['themes']) && empty($results['title'])) {
