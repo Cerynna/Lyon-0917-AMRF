@@ -16,8 +16,6 @@ Project [Wild Code School](https://wildcodeschool.fr/) for [Association des Mair
 * Javascript / jQuery
 * Symfony 3.4
 * PHP 7.1 :  
-Don't forget to use GD library 
-<b>sudo apt-get install php-gd</b>  
 
 ## Installation
 * create your user (never use root)
@@ -29,6 +27,10 @@ Don't forget to use GD library
         sudo adduser <userName> sudo
           
 * install git, php7.1, php-mbstring, php-cli, php-xml, apache2, mysql, curl, unzip from distribution
+
+* install GD library 
+
+        sudo apt-get install php-gd 
 
 * install composer : 
 
