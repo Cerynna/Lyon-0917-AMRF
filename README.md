@@ -114,7 +114,7 @@ Don't forget to use GD library
 2. 6 weeks phase for back-end development 
          
  
-## development Team : 
+## Development Team : 
 **[Marie](https://github.com/m4rthiz), [Darin](https://github.com/mateevd), [Simon](https://github.com/syneot), [Jeremy](https://github.com/Cerynna), [Severine](https://github.com/Cverine)**
 
 >A Symfony project created on October 20, 2017, 11:25 am.
