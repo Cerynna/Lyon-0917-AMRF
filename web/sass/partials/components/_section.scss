@@ -2,6 +2,15 @@ section {
   background-color: $bodyColor;
   padding-top: 10px;
   padding-bottom: 10px;
+.col-xs-1{
+  padding-left: 0;
+  padding-right: 0;
+}
+  p{
+    span{
+      font-size: 0.9em !important;
+    }
+  }
   .content {
     margin-top: 30px;
     /*margin-bottom: 50px;*/
@@ -73,6 +82,7 @@ section {
     h3 {
       color: $color5;
       font-size: 1.6em;
+
     }
   }
   h3 {
