@@ -164,6 +164,7 @@ class MayorController extends Controller
             $form->remove('file');
             $form->remove('creationDate');
             $form->remove('updateDate');
+            $form->remove('mayor');
             $form->handleRequest($request);
             $uploaderFile = new Uploader();
             $uplodFileForm = $this->createForm('AppBundle\Form\UploaderType', $uploaderFile);
