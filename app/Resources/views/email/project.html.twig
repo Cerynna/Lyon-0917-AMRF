@@ -1,14 +1,14 @@
 {% extends 'email/baseEmail.html.twig' %}
     {% block body %}
-        Bonjour,<br/>
-        Vous avez complété une fiche projet sur le « Wiki des maires » et nous vous en remercions.<br/>
-        Nous vous informons que cette fiche vient d'être validée par nos services et publiée sur le site.<br/>
+        <h3>Bonjour {{ firstName }} {{ lastName }},</h3>
+       <p>Vous avez complété une fiche projet sur le « Wiki des maires » et nous vous en remercions.</p>
+        <h4>Nous vous informons que la fiche du projet "{{ title }}" vient d'être validée par nos services et publiée sur le site.</h4>
 
-        Bien cordialement.<br/>
+        <p>Bien cordialement.</p>>
         <p class="amrf">L’Association des Maires Ruraux de France<br/>
             "Des maires au service des maires"</p><br/>
-        —<br/>
-        Ceci est un email automatique, merci de ne pas y répondre.
+        <p>—<br/>
+            Ceci est un email automatique, merci de ne pas y répondre.</p>
 
     {% endblock %}
 

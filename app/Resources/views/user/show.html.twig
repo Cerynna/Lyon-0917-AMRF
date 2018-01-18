@@ -18,8 +18,8 @@
             </li>
             <li>
                 {{ form_start(delete_form) }}
-                <button class="fa-admin" data-toggle="tooltip" data-placement="right"
-                        title="Supprimer l'Utilisateur" type="submit" onclick="return ConfirmDelete()"><i
+                <button class="fa-admin btn-suppr" data-toggle="tooltip" data-placement="right"
+                        title="Supprimer l'Utilisateur" type="submit"><i
                             class="fa fa-trash-o"></i></button>
                 {{ form_end(delete_form) }}
 
@@ -27,211 +27,221 @@
         </ul>
     </div>
     <h1>Fiche Utilisateur</h1>
+    <div class="row showTrame">
 
-    <div class="col-sm-6">
-        <div class="col-sm-12">
-            <div class="col-sm-6">
-                <h5>ID</h5>
-                <span>{{ user.id }}</span>
-            </div>
-            <div class="col-sm-6">
-                <h5>Login</h5>
-                <span>{{ user.login }}</span>
-            </div>
-            <div class="col-sm-12">
-                <h5>Mot de Passe</h5>
-                <span>{{ user.password }}</span>
-            </div>
-            <div class="col-sm-12">
-                <h5>Email</h5>
-                <span>{{ user.email }}</span>
-            </div>
-            <div class="col-sm-6">
-                <h5>Role</h5>
-                <span>{{ user.role }}</span>
-            </div>
-            <div class="col-sm-6">
-                <h5>Statut</h5>
-                <span>{{ user.status }}</span>
-            </div>
-            <div class="col-sm-6">
-                <h5>Date de création</h5>
-                <span>{% if user.creationDate %}{{ user.creationDate|date('d-m-Y') }}{% endif %}</span>
-            </div>
-            <div class="col-sm-6">
-                <h5>Dernière connexion</h5>
-                <span>{% if user.lastLogin %}{{ user.lastLogin|date('d-m-Y') }}{% endif %}</span>
+        <div class="col-sm-6">
+            <div class="row">
+                <div class="col-sm-12">
+                    <h2>Informations - User</h2>
+                </div>
+                <div class="col-sm-6">
+                    <h5>ID</h5>
+                    <span>{{ user.id }}</span>
+                </div>
+                <div class="col-sm-6">
+                    <h5>Login</h5>
+                    <span>{{ user.login }}</span>
+                </div>
+                <div class="col-sm-12">
+                    <h5>Mot de Passe</h5>
+                    <span>{{ user.password }}</span>
+                </div>
+                <div class="col-sm-12">
+                    <h5>Email</h5>
+                    <span>{{ user.email }}</span>
+                </div>
+                <div class="col-sm-6">
+                    <h5>Role</h5>
+                    <span>{{ user.role }}</span>
+                </div>
+                <div class="col-sm-6">
+                    <h5>Statut</h5>
+                    <span>{{ user.status }}</span>
+                </div>
+                <div class="col-sm-6">
+                    <h5>Date de création</h5>
+                    <span>{% if user.creationDate %}{{ user.creationDate|date('d-m-Y') }}{% endif %}</span>
+                </div>
+                <div class="col-sm-6">
+                    <h5>Dernière connexion</h5>
+                    <span>{% if user.lastLogin %}{{ user.lastLogin|date('d-m-Y') }}{% endif %}</span>
+                </div>
+
             </div>
         </div>
+        <div class="col-sm-6">
+            {% if user.role == 1 %}
+                <div class="col-sm-12">
+                    <h2 class="text-center">Informations - Maire</h2>
+                </div>
+                <div class="col-sm-6">
+                    <h5>Prénom</h5>
+                    <span>{{ user.mayor.firstName }}</span>
+                </div>
+                <div class="col-sm-6">
+                    <h5>Nom</h5>
+                    <span>{{ user.mayor.lastName }}</span>
+                </div>
+                <div class="col-sm-6">
+                    <h5>Insee</h5>
+                    <span>{{ user.mayor.insee }}</span>
+                </div>
+                <div class="col-sm-6">
+                    <h5>Email</h5>
+                    <span>{{ user.mayor.email }}</span>
+                </div>
+                <div class="col-sm-6">
+                    <h5>Téléphone</h5>
+                    <span>{{ user.mayor.phone }}</span>
+                </div>
+                <div class="col-sm-6">
+                    <h5>Adresse</h5>
+                    <span>{{ user.mayor.address }}</span>
+                </div>
+                <div class="col-sm-6">
+                    <h5>Ville</h5>
+                    <span>{{ user.mayor.town }}</span>
+                </div>
+                <div class="col-sm-6">
+                    <h5>Code postal</h5>
+                    <span>{{ user.mayor.zipCode }}</span>
+                </div>
+                <div class="col-sm-6">
+                    <h5>Département</h5>
+                    <span>{{ user.mayor.department }}</span>
+                </div>
+                <div class="col-sm-6">
+                    <h5>Région</h5>
+                    <span>{{ user.mayor.region }}</span>
+                </div>
+                <div class="col-sm-6">
+                    <h5>Latitude</h5>
+                    <span>{{ user.mayor.latitude }}</span>
+                </div>
+                <div class="col-sm-6">
+                    <h5>Longitude</h5>
+                    <span>{{ user.mayor.longitude }}</span>
+                </div>
+                <div class="col-sm-6">
+                    <h5>Population</h5>
+                    <span>{{ user.mayor.population }}</span>
+                </div>
+                <div class="col-sm-6">
+                    <h5>Site internet</h5>
+                    <span>{{ user.mayor.url }}</span>
+                </div>
+                <div class="col-sm-6">
+                    <h5>Facebook</h5>
+                    <span>{{ user.mayor.facebook }}</span>
+                </div>
+                <div class="col-sm-6">
+                    <h5>Twitter</h5>
+                    <span>{{ user.mayor.twitter }}</span>
+                </div>
+                <div class="col-sm-6">
+                    <h5>Google</h5>
+                    <span>{{ user.mayor.google }}</span>
+                </div>
+            {% endif %}
+
+            {% if user.role == 2 %}
+                <div class="col-sm12">
+                    <h2 class="text-center">Informations - Partenaire</h2>
+                </div>
+                <div class="col-sm-6">
+                    <h5>Prénom</h5>
+                    <span>{{ user.partner.firstName }}</span>
+                </div>
+                <div class="col-sm-6">
+                    <h5>Nom</h5>
+                    <span>{{ user.partner.lastName }}</span>
+                </div>
+                <div class="col-sm-6">
+                    <h5>Fonction</h5>
+                    <span>{{ user.partner.occupation }}</span>
+                </div>
+                <div class="col-sm-6">
+                    <h5>Email</h5>
+                    <span>{{ user.partner.email }}</span>
+                </div>
+                <div class="col-sm-6">
+                    <h5>Téléphone</h5>
+                    <span>{{ user.partner.phone }}</span>
+                </div>
+                <div class="col-sm-12">
+                    <h2 class="text-center">Informations Organisme</h2>
+                </div>
+                <div class="col-sm-12">
+                    <h5>Nom</h5>
+                    <span>{{ user.partner.company.name }}</span>
+                </div>
+                <div class="col-sm-6">
+                    <h5>Address</h5>
+                    <span>{{ user.partner.company.address }}</span>
+                </div>
+                <div class="col-sm-6">
+                    <h5>Code postal</h5>
+                    <span>{{ user.partner.company.zipCode }}</span>
+                </div>
+                <div class="col-sm-6">
+                    <h5>Ville</h5>
+                    <span>{{ user.partner.company.city }}</span>
+                </div>
+                <div class="col-sm-6">
+                    <h5>Présentation</h5>
+                    <span>{{ user.partner.company.presentation }}</span>
+                </div>
+                <div class="col-sm-6">
+                    <h5>Logo</h5>
+                    <span>{{ user.partner.company.logo }}</span>
+                </div>
+                <div class="col-sm-6">
+                    <h5>Url</h5>
+                    <span>{{ user.partner.company.url }}</span>
+                </div>
+                <div class="col-sm-6">
+                    <h5>Facebook</h5>
+                    <span>{{ user.partner.company.facebook }}</span>
+                </div>
+                <div class="col-sm-6">
+                    <h5>Linkedin</h5>
+                    <span>{{ user.partner.company.linkedin }}</span>
+                </div>
+                <div class="col-sm-6">
+                    <h5>Twitter</h5>
+                    <span>{{ user.partner.company.twitter }}</span>
+                </div>
+                <div class="col-sm-12">
+                    <h2 class="text-center">Informations de contact</h2>
+                </div>
+                <div class="col-sm-6">
+                    <h5>Contact Prénom</h5>
+                    <span>{{ user.partner.company.contactFirstName }}</span>
+                </div>
+                <div class="col-sm-6">
+                    <h5>Contact Nom</h5>
+                    <span>{{ user.partner.company.contactLastName }}</span>
+                </div>
+                <div class="col-sm-6">
+                    <h5>Téléphone</h5>
+                    <span>{{ user.partner.company.contactPhone }}</span>
+                </div>
+                <div class="col-sm-6">
+                    <h5>Email</h5>
+                    <span>{{ user.partner.company.contactEmail }}</span>
+                </div>
+
+            {% endif %}
+        </div>
+
     </div>
-    <div class="col-sm-6">
-        {% if user.role == 1 %}
-            <div class="col-sm-12">
-                <h5 class="text-center">Informations - Maire</h5>
-            </div>
-            <div class="col-sm-6">
-                <h5>Prénom</h5>
-                <span>{{ user.mayor.firstName }}</span>
-            </div>
-            <div class="col-sm-6">
-                <h5>Nom</h5>
-                <span>{{ user.mayor.lastName }}</span>
-            </div>
-            <div class="col-sm-6">
-                <h5>Insee</h5>
-                <span>{{ user.mayor.insee }}</span>
-            </div>
-            <div class="col-sm-6">
-                <h5>Email</h5>
-                <span>{{ user.mayor.email }}</span>
-            </div>
-            <div class="col-sm-6">
-                <h5>Téléphone</h5>
-                <span>{{ user.mayor.phone }}</span>
-            </div>
-            <div class="col-sm-6">
-                <h5>Adresse</h5>
-                <span>{{ user.mayor.address }}</span>
-            </div>
-            <div class="col-sm-6">
-                <h5>Ville</h5>
-                <span>{{ user.mayor.town }}</span>
-            </div>
-            <div class="col-sm-6">
-                <h5>Code postal</h5>
-                <span>{{ user.mayor.zipCode }}</span>
-            </div>
-            <div class="col-sm-6">
-                <h5>Département</h5>
-                <span>{{ user.mayor.department }}</span>
-            </div>
-            <div class="col-sm-6">
-                <h5>Région</h5>
-                <span>{{ user.mayor.region }}</span>
-            </div>
-            <div class="col-sm-6">
-                <h5>Latitude</h5>
-                <span>{{ user.mayor.latitude }}</span>
-            </div>
-            <div class="col-sm-6">
-                <h5>Longitude</h5>
-                <span>{{ user.mayor.longitude }}</span>
-            </div>
-            <div class="col-sm-6">
-                <h5>Population</h5>
-                <span>{{ user.mayor.population }}</span>
-            </div>
-            <div class="col-sm-6">
-                <h5>Site internet</h5>
-                <span>{{ user.mayor.url }}</span>
-            </div>
-            <div class="col-sm-6">
-                <h5>Facebook</h5>
-                <span>{{ user.mayor.facebook }}</span>
-            </div>
-            <div class="col-sm-6">
-                <h5>Twitter</h5>
-                <span>{{ user.mayor.twitter }}</span>
-            </div>
-            <div class="col-sm-6">
-                <h5>Google</h5>
-                <span>{{ user.mayor.google }}</span>
-            </div>
-        {% endif %}
-
-        {% if user.role == 2 %}
-            <div class="col-sm-12">
-                <h5 class="text-center">Informations - Partenaire</h5>
-            </div>
-            <div class="col-sm-6">
-                <h5>Prénom</h5>
-                <span>{{ user.partner.firstName }}</span>
-            </div>
-            <div class="col-sm-6">
-                <h5>Nom</h5>
-                <span>{{ user.partner.lastName }}</span>
-            </div>
-            <div class="col-sm-6">
-                <h5>Fonction</h5>
-                <span>{{ user.partner.occupation }}</span>
-            </div>
-            <div class="col-sm-6">
-                <h5>Email</h5>
-                <span>{{ user.partner.email }}</span>
-            </div>
-            <div class="col-sm-6">
-                <h5>Téléphone</h5>
-                <span>{{ user.partner.phone }}</span>
-            </div>
-            <div class="col-sm-12">
-                <h5 class="text-center">Informations Organisme</h5>
-            </div>
-            <div class="col-sm-12">
-                <h5>Nom</h5>
-                <span>{{ user.partner.company.name }}</span>
-            </div>
-            <div class="col-sm-6">
-                <h5>Address</h5>
-                <span>{{ user.partner.company.address }}</span>
-            </div>
-            <div class="col-sm-6">
-                <h5>Code postal</h5>
-                <span>{{ user.partner.company.zipCode }}</span>
-            </div>
-            <div class="col-sm-6">
-                <h5>Ville</h5>
-                <span>{{ user.partner.company.city }}</span>
-            </div>
-            <div class="col-sm-6">
-                <h5>Présentation</h5>
-                <span>{{ user.partner.company.presentation }}</span>
-            </div>
-            <div class="col-sm-6">
-                <h5>Logo</h5>
-                <span>{{ user.partner.company.logo }}</span>
-            </div>
-            <div class="col-sm-6">
-                <h5>Url</h5>
-                <span>{{ user.partner.company.url }}</span>
-            </div>
-            <div class="col-sm-6">
-                <h5>Facebook</h5>
-                <span>{{ user.partner.company.facebook }}</span>
-            </div>
-            <div class="col-sm-6">
-                <h5>Linkedin</h5>
-                <span>{{ user.partner.company.linkedin }}</span>
-            </div>
-            <div class="col-sm-6">
-                <h5>Twitter</h5>
-                <span>{{ user.partner.company.twitter }}</span>
-            </div>
-            <div class="col-sm-12">
-                <h5 class="text-center">Informations de contact</h5>
-            </div>
-            <div class="col-sm-6">
-                <h5>Contact Prénom</h5>
-                <span>{{ user.partner.company.contactFirstName }}</span>
-            </div>
-            <div class="col-sm-6">
-                <h5>Contact Nom</h5>
-                <span>{{ user.partner.company.contactLastName }}</span>
-            </div>
-            <div class="col-sm-6">
-                <h5>Téléphone</h5>
-                <span>{{ user.partner.company.contactPhone }}</span>
-            </div>
-            <div class="col-sm-6">
-                <h5>Email</h5>
-                <span>{{ user.partner.company.contactEmail }}</span>
-            </div>
-
-        {% endif %}
-    </div>
-
+{% endblock %}
+{% block javascripts %}
     <script>
+
         function ConfirmDelete() {
             return confirm("Etes-vous sûr que vous voulez supprimer l'utilisateur?");
         }
+
     </script>
 {% endblock %}

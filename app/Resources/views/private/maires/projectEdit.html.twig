@@ -60,13 +60,14 @@
         'action': path('mayor_project_edit', {'slug' :form.vars.value.slug }) ~ "/" ~ page,
         'method': 'POST',
 
-            'attr': {
+        'attr': {
             'id':'project'
 
         }
     }) }}
     <input id="page" name="page" type="text" class="hidden"/>
     <h2>CREER UNE FICHE PROJET</h2>
+
     <!-- Nav tabs -->
     {{ form_errors(form) }}
     <div class="row tabPannel">
@@ -99,7 +100,9 @@
         {% endif %}
         <div class="tab-content">
             <div role="tabpanel" class="tab-pane {% if page == 1 %} active {% endif %}" id="projet">
-                <div class="star">Le symbole * indique que cette information est nécessaire.</div>
+                <div class="star">
+                    Le symbole * indique que cette information est nécessaire.
+                </div>
                 <h3>Mon projet</h3>
                 <div class="form-group col-sm-12">
 
@@ -120,6 +123,7 @@
                         <div>
                             <input type="checkbox" id="{{ thema.vars.id }}"
                                    name="{{ thema.vars.full_name }}" value="{{ thema.vars.value }}"
+                                    {% if thema.vars.checked > 3 %} disabled="disabled" {% endif %}
                                     {% if thema.vars.checked == true %} checked="checked" {% endif %}
                                    class="check-limit">
                             <label for="{{ thema.vars.id }}">{{ thema.vars.label }}</label>
@@ -168,13 +172,13 @@
 
                         <div class="col-sm-3">
                             <label for="photo" class="uploaderTrue ">Téléchargez jusqu'à 4 images<br/>
-                                <p>le poids d'une image ne doit pas excéder ... ... Mo</p>
+                                <p>le poids d'une image ne doit pas excéder 1.5 Mo</p>
                                 <div class="btn2" data-toggle="modal" data-target="#modalImageUpload">
                                     <i class="fa fa-upload fa-admin"></i> Ajouter des images
                                 </div>
                             </label>
                             <label for="photo" class="submitForm uploaderFalse hidden">Téléchargez jusqu'à 4 images<br/>
-                                <p>le poids d'une image ne doit pas excéder ... ... Mo</p>
+                                <p>le poids d'une image ne doit pas excéder 1.5 Mo</p>
                                 <div class="btn2">
                                     <i class="fa fa-upload fa-admin"></i> Ajouter des images
                                 </div>
@@ -202,14 +206,21 @@
                 <div class="row">
                     <div class="form-group col-sm-6">
                         {{ form_label(form.projectDate, "Date de réalisation *") }}
-                        {{ form_widget(form.projectDate) }}
+                        {{ form_widget(form.projectDate, {
+                            'attr':{
+                                'class': 'hidden'
+                            }
+                        }) }}
+
+                        <input id="month" type="month" class="form-control"
+                               value="{% if form.projectDate.vars.value is defined and  not null  %}{{ form.projectDate.vars.value|date("Y-m") }}{% endif %}">
                     </div>
                     <div class="form-group col-sm-6">
                         {{ form_label(form.projectDuration, "Durée de réalisation *") }}
                         {{ form_widget(form.projectDuration) }}
                     </div>
                     <div class="form-group col-sm-6">
-                        {{ form_label(form.projectCost, "Coût global * (en chiffres, sans le symbole €)") }}
+                        {{ form_label(form.projectCost, "Coût global * (en chiffres)") }}
                         {{ form_widget(form.projectCost) }}
                     </div>
 
@@ -340,14 +351,16 @@
                 <h3>Ajout de fichiers</h3>
                 <div class="form-group col-sm-12">
                     {% if project.file is empty %}
-                        <label class="uploaderTrue">Vous pouvez ajouter un fichier apportant des informations plus détaillées
+                        <label class="uploaderTrue">Vous pouvez ajouter un fichier apportant des informations plus
+                            détaillées
                             (format accepté : PDF ) <br/>
-                            <p>le poids d'un fichier ne doit pas excéder ... ... Mo</p>
+                            <p>le poids d'un fichier ne doit pas excéder 5 Mo</p>
                             <div class="btn2" data-toggle="modal" data-target="#modalFileUpload">Télécharger</div>
                         </label>
-                        <label for="photo" class="submitForm uploaderFalse hidden">Vous pouvez ajouter un fichier apportant des informations plus détaillées
+                        <label for="photo" class="submitForm uploaderFalse hidden">Vous pouvez ajouter un fichier
+                            apportant des informations plus détaillées
                             (format accepté : PDF ) <br/>
-                            <p>le poids d'un fichier ne doit pas excéder ... ... Mo</p>
+                            <p>le poids d'un fichier ne doit pas excéder 5 Mo</p>
                             <div class="btn2">Télécharger</div>
                         </label>
 
@@ -442,18 +455,20 @@
         });
 
         $(".nextStep").click(function () {
-            console.log('next');
             $('#page').val('next');
 
         });
 
         $(".backStep").click(function () {
-            console.log('back');
             $('#page').val('back');
 
         });
 
+        $('#month').change(function () {
+            realdate = new Date($('#month').val()).toISOString().slice(0, 10);
+            $("#projet_projectDate").val(realdate);
 
+        });
         $(document).ready(function () {
             $('#projet_keyWords').select2();
             var i = 0;

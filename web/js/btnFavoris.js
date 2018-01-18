@@ -1,16 +1,17 @@
 $(document).ready(function () {
 
 
-    $('#addFavorite').click(function () {
+    $('.addFavorite').click(function () {
+        console.log('qdghb');
         type = this.getAttribute('name').split('-');
-        $("#addFavorite").addClass("hidden");
-        $("#btnFavorisDel").removeClass("hidden");
+        $(".btn-show-" + type[1]).addClass("hidden");
+        $(".btn-hide-" + type[1]).removeClass("hidden");
         addFavorite(type);
-    })
-    $('#btnFavorisDel').click(function () {
+    });
+    $('.delFavorite').click(function () {
         type = this.getAttribute('name').split('-');
-        $("#btnFavorisDel").addClass("hidden");
-        $("#addFavorite").removeClass("hidden");
+        $(".btn-show-" + type[1]).removeClass("hidden");
+        $(".btn-hide-" + type[1]).addClass("hidden");
         delFavorite(type);
     })
 

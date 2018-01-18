@@ -845,6 +845,11 @@ section {
   background-color: rgba(224, 242, 241, 0.8);
   padding-top: 10px;
   padding-bottom: 10px; }
+  section .col-xs-1 {
+    padding-left: 0;
+    padding-right: 0; }
+  section p span {
+    font-size: 0.9em !important; }
   section .content {
     margin-top: 30px;
     /*margin-bottom: 50px;*/
@@ -1014,12 +1019,19 @@ section {
   section .btnDisabled {
     pointer-events: none !important;
     cursor: default !important; }
+  section .breakLine {
+    word-wrap: break-word;
+    -webkit-hyphens: auto;
+    -moz-hyphens: auto;
+    -ms-hyphens: auto;
+    -o-hyphens: auto;
+    hyphens: auto; }
 
 form {
   /* .cleIcon {
-       width: 200px;
-       height: 200px;
-     }*/ }
+     width: 200px;
+     height: 200px;
+   }*/ }
   form .pagination > li input[type=radio] + label {
     background: #ffffff;
     color: rgba(0, 158, 61, 0.99);
@@ -1145,7 +1157,7 @@ form {
     border-radius: 5px;
     margin-top: 5px;
     padding-left: 10px; }
-  form #login, form #mdp {
+  form #login_M, form #login_P, form #mdp {
     width: 80% !important;
     margin: auto; }
 

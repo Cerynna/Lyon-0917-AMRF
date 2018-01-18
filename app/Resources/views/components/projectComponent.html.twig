@@ -20,11 +20,11 @@
                     <h3>Mettre en favori</h3>
                 </div>
                 <div class="col-sm-3 text-right">
-                    <button type="button" id="addFavorite" name="project-{{ project.id }}" class="btnFavoris {% if favorite == 1 %}hidden{% endif %}">
+                    <button type="button" name="project-{{ project.id }}" class="btnFavoris btn-show-{{ project.id }} addFavorite {% if favorite == 1 %}hidden{% endif %}">
                         <i class="fa fa-star-o"></i>
                     </button>
 
-                    <button type="button" id="btnFavorisDel" name="project-{{ project.id }}" class="btnFavoris {% if favorite == 0 %}hidden{% endif %}">
+                    <button type="button" name="project-{{ project.id }}" class="btnFavoris btn-hide-{{ project.id }} delFavorite {% if favorite == 0 %}hidden{% endif %}">
                         <i class="fa fa-star"></i>
                     </button>
                 </div>
@@ -73,23 +73,23 @@
                 <ul class="list-group text-left">
                     <li class="list-group-item">
                         <div class="row">
-                            <div class="col-xs-2 text-left"><i class="fa fa-user"></i></div>
-                            <div class="col-xs-10 text-right">{{ project.mayor.firstName }} {{ project.mayor.lastName }}</div>
+                            <div class="col-xs-1 text-left"><i class="fa fa-user"></i></div>
+                            <div class="col-xs-11 text-right">{{ project.mayor.firstName }} {{ project.mayor.lastName }}</div>
                         </div>
                     </li>
                     <li class="list-group-item">
                         <div class="row">
-                            <div class="col-xs-2 text-left"><i class="fa fa-phone"></i></div>
-                            <div class="col-xs-10 text-right">{{ project.mayor.phone }}</div>
+                            <div class="col-xs-1 text-left"><i class="fa fa-phone"></i></div>
+                            <div class="col-xs-11 text-right">{{ project.mayor.phone }}</div>
                         </div>
                     </li>
                     <li class="list-group-item">
                         <div class="row">
-                            <div class="col-xs-2 text-left"><i class="fa fa-at"></i></div>
-                            <div class="col-xs-10 text-right">{{ project.mayor.email }}</div>
+                            <div class="col-xs-1 text-left"><i class="fa fa-at"></i></div>
+                            <div class="col-xs-11 text-right">{{ project.mayor.email }}</div>
                         </div>
                     </li>
-                    <li class="list-group-item text-right">
+                    <li class="list-group-item text-center">
                         <a href="{{ project.mayor.url }}"><i class="fa fa-link"></i></a>
                         <a href="{{ project.mayor.google }}"><i class="fa fa-google"></i></a>
                         <a href="{{ project.mayor.facebook }}"><i class="fa fa-facebook-square"></i></a>
@@ -146,7 +146,7 @@
                         <h4>Coût global</h4>
                     </div>
                     <div class="panel-body text-right">
-                        {{ project.projectCost }} €
+                        {{ project.projectCost }}
                     </div>
                 </div>
             </div>

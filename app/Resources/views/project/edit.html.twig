@@ -19,7 +19,8 @@
             <li>
                 {{ form_start(delete_form) }}
                 <button class="fa-admin" data-toggle="tooltip" data-placement="right"
-                        title="Supprimer Project" type="submit" onclick="return ConfirmDelete()"><i class="fa fa-trash-o"></i></button>
+                        title="Supprimer Project" type="submit" onclick="return ConfirmDelete()"><i
+                            class="fa fa-trash-o"></i></button>
                 {{ form_end(delete_form) }}
 
             </li>
@@ -81,6 +82,10 @@
     <div class="form-group row" id="editProject">
         <div class="col-sm-6">
             <div class="col-sm-12">
+                <h4>{{ form_label(edit_form.status, "Statut actuel du projet") }}
+                    {{ form_widget(edit_form.status) }}</h4>
+            </div>
+            <div class="col-sm-12">
                 <h5>{{ form_label(edit_form.title, "Titre du projet *") }}</h5>
                 {{ form_widget(edit_form.title,{
                     'attr': {
@@ -89,17 +94,19 @@
                 }) }}
                 <div id="errorTitle"></div>
             </div>
-            <div class="col-sm-4">
-                <h5>{{ form_label(edit_form.creationDate, "Date de création") }}</h5>
-                {{ form_widget(edit_form.creationDate) }}
+            <div class="col-sm-6">
+                <h5>{{ form_label(edit_form.projectDate, 'Date du projet') }}</h5>
+                {{ form_widget(edit_form.projectDate, {
+                    'attr':{
+                        'class': 'hidden'
+                    }
+                }) }}
+
+                <input id="month" type="month" class="form-control" value="{{ edit_form.projectDate.vars.value|date("Y-m") }}">
             </div>
-            <div class="col-sm-4">
-                <h5>{{ form_label(edit_form.updateDate, "Date de mise à jour") }}</h5>
-                {{ form_widget(edit_form.updateDate) }}
-            </div>
-            <div class="col-sm-4">
-                <h5>{{ form_label(edit_form.status, "Statut") }}</h5>
-                {{ form_widget(edit_form.status) }}
+            <div class="col-sm-6">
+                <h5><label>Commune du projet</label></h5>
+                {{ form_widget(edit_form.mayor) }}
             </div>
             <div class="col-sm-12">
                 <h5><label>Images</label></h5>
@@ -120,23 +127,153 @@
 
             </div>
             <div class="col-sm-12">
-                <div class="col-sm-3">
-                    <h5>{{ form_label(edit_form.projectDate, 'Date du projet') }}</h5>
-                    {{ form_widget(edit_form.projectDate) }}
-                </div>
-                <div class="col-sm-3">
+                <div class="col-sm-4">
                     <h5>{{ form_label(edit_form.projectCoFinance, 'Cofinancements') }}</h5>
                     {{ form_widget(edit_form.projectCoFinance) }}
                 </div>
-                <div class="col-sm-3">
+                <div class="col-sm-4">
                     <h5>{{ form_label(edit_form.projectDuration, 'Durée du projet') }}</h5>
                     {{ form_widget(edit_form.projectDuration) }}
                 </div>
-                <div class="col-sm-3">
+                <div class="col-sm-4">
                     <h5>{{ form_label(edit_form.projectCost, 'Coût du projet') }}</h5>
                     {{ form_widget(edit_form.projectCost) }}
                 </div>
             </div>
+            <div class="col-sm-12">
+
+            </div>
+            <div class="col-sm-12">
+                <h5><label>Liens</label></h5>
+                <div class="row">
+                    <div class="col-sm-1">
+                        <i class="fa fa-link fa-admin-mini"></i>
+                    </div>
+                    <div class="col-sm-11">
+                        {{ form_widget(edit_form.url) }}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-1">
+                        <i class="fa fa-youtube fa-admin-mini"></i>
+                    </div>
+                    <div class="col-sm-11">
+                        {{ form_widget(edit_form.youtube) }}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-1">
+                        <i class="fa fa-facebook fa-admin-mini"></i>
+                    </div>
+                    <div class="col-sm-11">
+                        {{ form_widget(edit_form.facebook) }}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-1">
+                        <i class="fa fa-twitter fa-admin-mini"></i>
+                    </div>
+                    <div class="col-sm-11">
+                        {{ form_widget(edit_form.twitter) }}
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-12">
+                <h5><label>Contact</label></h5>
+                <div class="row">
+                    <div class="col-sm-3">
+                        Nom/Prénom :
+                    </div>
+                    <div class="col-sm-9">
+                        {{ form_widget(edit_form.contactName) }}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-3">
+                        Fonction :
+                    </div>
+                    <div class="col-sm-9">
+                        {{ form_widget(edit_form.contactOccupation) }}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-3">
+                        Email :
+                    </div>
+                    <div class="col-sm-9">
+                        {{ form_widget(edit_form.contactEmail) }}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-3">
+                        Téléphone :
+                    </div>
+                    <div class="col-sm-9">
+                        {{ form_widget(edit_form.contactPhone) }}
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-12">
+                <h5><label>Fichier PDF</label></h5>
+                <div class="row">
+                    {% set pdf = 'upload/project/' ~ project.id ~ '/file/' ~ project.file %}
+                    {% set pdflink = 'upload-project-' ~ project.id ~ '-file-' ~ project.file %}
+
+                    <div class="col-sm-1">
+                        {% if project.file is empty %}
+                            <i class="fa fa-upload fa-admin" data-toggle="modal" data-target="#modalFileUpload"></i>
+                        {% else %}
+                            <i class="fa fa-trash-o fa-admin" onclick="deleteFile('{{ pdflink }}')"></i>
+                            <a href="{{ asset(pdf) }}" target="_blank"><i class="fa fa-eye fa-admin"></i></a>
+                        {% endif %}
+                    </div>
+                    <div class="col-sm-11">
+                        <object data="{{ asset(pdf) }}" type="application/pdf" class="preview-pdf">
+                            <param name="filename" value="{{ asset(pdf) }}"/>
+                            <a href="{{ asset(pdf) }}" target="_parent" title="le fichier">Voir le fichier...</a>
+                        </object>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-12">
+                <h5><label>Thématiques</label></h5>
+                <div class="row">
+                    <div class="col-sm-4">
+                        {% set nbthema = edit_form.themes|length %}
+                        {% set col =  nbthema/3 %}
+                        {% set col = col|round %}
+
+
+                        {% for thema in edit_form.themes %}
+                        {{ form_errors(thema) }}
+                        <div>
+                            <input type="checkbox" id="{{ thema.vars.id }}"
+                                   name="{{ thema.vars.full_name }}" value="{{ thema.vars.value }}"
+                                    {% if thema.vars.checked == true %} checked="checked" {% endif %} >
+                            <label for="{{ thema.vars.id }}">{{ thema.vars.label|slice(0,20) }}</label>
+                        </div>
+                        {% if (loop.index == col) or (loop.index == col*2) %}
+                    </div>
+                    <div class="col-sm-4">
+                        {% endif %}
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-12">
+                <h5><label>Mots Clé</label></h5>
+                <div class="row">
+
+                    {{ form_label(edit_form.keyWords, "Saississez jusqu'à 5 mots-clefs") }}
+                    <i>Ecrivez les premières lettres du mot et vérifiez qu'il apparaît dans la liste.</i>
+                    {{ form_widget(edit_form.keyWords, {'attr': {
+                        'placeholder': 'Ecrivez les premières lettres du mot et vérifiez qu\'il apparaît dans la liste.',
+                    } }) }}
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-6">
             <div class="col-sm-12">
                 <h5>{{ form_label(edit_form.descResume, 'Résumé') }}</h5>
                 {{ form_widget(edit_form.descResume, {'attr': {
@@ -178,134 +315,7 @@
                 {{ form_widget(edit_form.descAdvices, {'attr': {
                     'rows':'4'} }) }}
             </div>
-        </div>
-        <div class="col-sm-6">
-            <h5>
-                <label>Commune du projet</label>
-            </h5>
-            <div class="row">
-                <div class="col-sm-12">
-                    {{ form_widget(edit_form.mayor) }}
-                </div>
-            </div>
-            <h5><label>Liens</label></h5>
-            <div class="row">
-                <div class="col-sm-1">
-                    <i class="fa fa-link fa-admin-mini"></i>
-                </div>
-                <div class="col-sm-11">
-                    {{ form_widget(edit_form.url) }}
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-1">
-                    <i class="fa fa-youtube fa-admin-mini"></i>
-                </div>
-                <div class="col-sm-11">
-                    {{ form_widget(edit_form.youtube) }}
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-1">
-                    <i class="fa fa-facebook fa-admin-mini"></i>
-                </div>
-                <div class="col-sm-11">
-                    {{ form_widget(edit_form.facebook) }}
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-1">
-                    <i class="fa fa-twitter fa-admin-mini"></i>
-                </div>
-                <div class="col-sm-11">
-                    {{ form_widget(edit_form.twitter) }}
-                </div>
-            </div>
-            <h5><label>Contact</label></h5>
-            <div class="row">
-                <div class="col-sm-3">
-                    Nom/Prénom :
-                </div>
-                <div class="col-sm-9">
-                    {{ form_widget(edit_form.contactName) }}
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-3">
-                    Fonction :
-                </div>
-                <div class="col-sm-9">
-                    {{ form_widget(edit_form.contactOccupation) }}
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-3">
-                    Email :
-                </div>
-                <div class="col-sm-9">
-                    {{ form_widget(edit_form.contactEmail) }}
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-3">
-                    Téléphone :
-                </div>
-                <div class="col-sm-9">
-                    {{ form_widget(edit_form.contactPhone) }}
-                </div>
-            </div>
-            <h5><label>Fichier PDF</label></h5>
-            <div class="row">
-                {% set pdf = 'upload/project/' ~ project.id ~ '/file/' ~ project.file %}
-                {% set pdflink = 'upload-project-' ~ project.id ~ '-file-' ~ project.file %}
 
-                <div class="col-sm-1">
-                    {% if project.file is empty %}
-                        <i class="fa fa-upload fa-admin" data-toggle="modal" data-target="#modalFileUpload"></i>
-                    {% else %}
-                        <i class="fa fa-trash-o fa-admin" onclick="deleteFile('{{ pdflink }}')"></i>
-                        <a href="{{ asset(pdf) }}" target="_blank"><i class="fa fa-eye fa-admin"></i></a>
-                    {% endif %}
-                </div>
-                <div class="col-sm-11">
-                    <object data="{{ asset(pdf) }}" type="application/pdf" class="preview-pdf">
-                        <param name="filename" value="{{ asset(pdf) }}"/>
-                        <a href="{{ asset(pdf) }}" target="_parent" title="le fichier">Voir le fichier...</a>
-                    </object>
-                </div>
-            </div>
-            <h5><label>Thématiques</label></h5>
-            <div class="row">
-                <div class="col-sm-4">
-                    {% set nbthema = edit_form.themes|length %}
-                    {% set col =  nbthema/3 %}
-                    {% set col = col|round %}
-
-
-                    {% for thema in edit_form.themes %}
-                    {{ form_errors(thema) }}
-                    <div>
-                        <input type="checkbox" id="{{ thema.vars.id }}"
-                               name="{{ thema.vars.full_name }}" value="{{ thema.vars.value }}"
-                                {% if thema.vars.checked == true %} checked="checked" {% endif %} >
-                        <label for="{{ thema.vars.id }}">{{ thema.vars.label|slice(0,20) }}</label>
-                    </div>
-                    {% if (loop.index == col) or (loop.index == col*2) %}
-                </div>
-                <div class="col-sm-4">
-                    {% endif %}
-                    {% endfor %}
-                </div>
-            </div>
-            <h5><label>Mots Clé</label></h5>
-            <div class="row">
-
-                {{ form_label(edit_form.keyWords, "Saississez jusqu'à 5 mots-clefs") }}
-                <i>Ecrivez les premières lettres du mot et vérifiez qu'il apparaît dans la liste.</i>
-                {{ form_widget(edit_form.keyWords, {'attr': {
-                    'placeholder': 'Ecrivez les premières lettres du mot et vérifiez qu\'il apparaît dans la liste.',
-                } }) }}
-            </div>
         </div>
     </div>
 
@@ -315,11 +325,16 @@
 {% endblock %}
 {% block javascripts %}
     <script>
+
         $(document).ready(function () {
             $('#projet_keyWords').select2();
             $('#projet_mayor').select2();
         });
+        $('#month').change(function () {
+            realdate = new Date($('#month').val()).toISOString().slice(0,10);
+            $("#projet_projectDate").val(realdate);
 
+        });
         $(".submitForm").click(function () {
             var title = $("input[name='projet[title]']").val();
             if (title !== '') {

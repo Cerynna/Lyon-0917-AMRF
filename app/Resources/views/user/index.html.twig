@@ -23,25 +23,32 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-xs-10 col-xs-push-1 jumbotron">
+                <div class="col-xs-12">
                     {{ form_start(filtreMayor, {
                         'attr':{
                             'class' : 'form-inline filter'
                         }
                     }) }}
                     <div class="form-group">
-                        {{ form_row(filtreMayor.CodePostal, {
-                            'attr':{
-                                'class' : 'filter'
-                            }}) }}
+                        <h5>{{ form_label(filtreMayor.CodePostal) }}
+                            {{ form_widget(filtreMayor.CodePostal, {
+                                'attr':{
+                                    'class' : 'filter'
+                                }}) }}</h5>
                     </div>
                     <div class="form-group">
-                        {{ form_row(filtreMayor.CodeInsee, {
-                            'attr':{
-                                'class' : 'filter'
-                            }}) }}
+                        <h5>{{ form_label(filtreMayor.CodeInsee) }}
+                            {{ form_widget(filtreMayor.CodeInsee, {
+                                'attr':{
+                                    'class' : 'filter'
+                                }}) }}</h5>
+                    </div>
+                    <div class="form-group text-right">
+                        <a href="{{ path('admin_user_index') }}" data-toggle="tooltip" data-placement="right"
+                           title="Reset des filtres"><i class="fa fa-refresh fa-admin"></i></a>
                     </div>
                     {{ form_end(filtreMayor) }}
+
 
                 </div>
             </div>
@@ -65,7 +72,22 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-xs-10 col-xs-push-1 jumbotron">
+                <div class="col-xs-10 col-xs-push-1">
+
+                    <form class='form-inline filter'>
+                        <div class="form-group">
+                            <h5>
+                                <label for="nom">Nom : </label>
+                                <input name="nom" class="form-control"/>
+                            </h5>
+                        </div>
+                        <div class="form-group text-right">
+                            <a href="{{ path('admin_user_index') }}" data-toggle="tooltip" data-placement="right"
+                               title="Reset des filtres"><i class="fa fa-refresh fa-admin"></i></a>
+                        </div>
+                    </form>
+
+
                 </div>
             </div>
             <div class="row">
@@ -122,7 +144,6 @@
                             timeout: 3000,
                             success: function (response) {
                                 var mayors = response.data;
-                                //console.log(response.data);
                                 html = "";
                                 for (i = 0; i < mayors.length; i++) {
 
@@ -165,7 +186,6 @@
                             var partners = response.data;
                             html = "";
                             for (i = 0; i < partners.length; i++) {
-                                console.log(partners[i]);
                                 var linkShow = "{{ path('admin_user_show', {'id': "idUser"}) }}".replace('idUser', partners[i].id);
                                 var linkEdit = "{{ path('admin_user_edit', {'id': "idUser"}) }}".replace('idUser', partners[i].id);
                                 var result = {

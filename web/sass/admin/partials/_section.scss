@@ -5,6 +5,7 @@ h2 {
   margin: 10px 0px;
 
 }
+
 h3 {
   @include colorback1($color1, 20%);
   @include colortext1($color1, 100%);
@@ -14,9 +15,11 @@ h3 {
   margin: 2px;
 
 }
+
 .erreur {
   background: #8f1714;
 }
+
 .userMayor {
   .step {
     @include colorback1($color1, 70%);
@@ -87,9 +90,8 @@ h5 {
 }
 
 .jumbotron {
-  @include colorback1($color1, 100%);
   @include borderback1(2px, $color1, 20%);
-  @include colorback1($color1, 70%);
+  @include colorback1($color1, 80%);
   border-radius: 0 !important;
   color: #000;
   padding: 10px !important;
@@ -131,8 +133,45 @@ h5 {
     padding: 7px;
     font-size: 0.8em;
   }
-}
+  .stat-user {
+    padding: 0 10px;
+    h5 {
+      @include colorback1($color1, 30%);
+      padding: 10px 5px;
+      margin: 1px;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      overflow: hidden;
+      i {
+        display: inline;
+      }
+      i:after {
+        content: "\a";
+        white-space: pre;
+      }
+    }
+    [class*="col-"] {
+      padding: 0;
+    }
+  }
+  .stat {
+    @include colortext1($color1, 100%);
+    @include colorback1($color1, 30%);
+    @include borderRadius(5px);
+    margin: 5px 0 0 0 !important;
+    font-size: 1em;
+    .col-sm-1 {
+      padding: 5px;
+    }
+    .col-sm-2{
+      i{
+        font-weight: bold;
+        padding-right: 7px;
+      }
+    }
+  }
 
+}
 
 .hidden {
   display: none;
@@ -203,6 +242,28 @@ h5 {
     @include colorback1($color1, 100%);
 
     /*2f92a8*/
+  }
+}
+
+.showTrame {
+  span {
+    display: table;
+    width: 100%;
+    @include colorback1($color1, 80%);
+    @include borderback1(2px, $color1, 20%);
+    border: 1px dashed;
+    padding: 10px;
+    .themaKey {
+      border-radius: 5px;
+      margin-top: 5px;
+      padding: 5px;
+      font-size: 0.8em;
+      @include colortext1($color1, 100%);
+      @include colorback1($color1, 20%);
+      border: none;
+      text-align: center;
+
+    }
   }
 }
 
