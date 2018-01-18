@@ -1,4 +1,4 @@
-[wikiMaire](http://wikidesmaires.amrf.fr)
+[Wiki des Maires](http://wikidesmaires.amrf.fr)
 =========
 
 Project [Wild Code School](https://wildcodeschool.fr/) for [Association des Maires Ruraux de France](http://www.amrf.fr/). 
