@@ -60,7 +60,7 @@
         'action': path('mayor_project_edit', {'slug' :form.vars.value.slug }) ~ "/" ~ page,
         'method': 'POST',
 
-            'attr': {
+        'attr': {
             'id':'project'
 
         }
@@ -70,38 +70,24 @@
 
     <!-- Nav tabs -->
     {{ form_errors(form) }}
-    <div class="tabPannel">
-        <div class="row">
-            <ul class="list-inline text-center" role="tablist">
-                <li role="presentation" class=" tabLi {% if page == 1 %} active {% endif %}" id="projetMenu">
-                    <a>Mon Projet</a>
-                </li>
-                <li role="presentation" id="realMenu" class="tabLi {% if page == 2 %} active {% endif %}">
-                    <a>Réalisation</a>
-                </li>
-                <li role="presentation" id="descriptionMenu" class="tabLi {% if page == 3 %} active {% endif %}">
-                    <a>Description </a>
-                </li>
-                <li role="presentation" id="infoMenu" class="tabLi {% if page == 4 %} active {% endif %}">
-                    <a>Informations</a>
-                </li>
-                <li role="presentation" id="previewMenu" class="tabLi {% if page == 5 %} active {% endif %}">
-                    <a>Aperçu</a>
-                </li>
-
-            </ul>
-        </div>
-        <div class="row text-center">
-
-                {{ form_start(form_toAdmin) }}
-                {{ form_widget(form_toAdmin) }}
-                <div class="btn submitForm" type="submit">
-                    Soumettre votre fiche
-                </div>
-                {{ form_end(form_toAdmin) }}
-
-        </div>
-
+    <div class="row tabPannel">
+        <ul class="list-inline text-center" role="tablist">
+            <li role="presentation" class=" tabLi {% if page == 1 %} active {% endif %}" id="projetMenu">
+                <a>Mon Projet</a>
+            </li>
+            <li role="presentation" id="realMenu" class="tabLi {% if page == 2 %} active {% endif %}">
+                <a>Réalisation</a>
+            </li>
+            <li role="presentation" id="descriptionMenu" class="tabLi {% if page == 3 %} active {% endif %}">
+                <a>Description </a>
+            </li>
+            <li role="presentation" id="infoMenu" class="tabLi {% if page == 4 %} active {% endif %}">
+                <a>Informations</a>
+            </li>
+            <li role="presentation" id="previewMenu" class="tabLi {% if page == 5 %} active {% endif %}">
+                <a>Aperçu</a>
+            </li>
+        </ul>
         {% if erreurs is defined %}
             <div class="erreur">
                 <h3>Votre projet ne peut pas être envoyé en modération</h3>
@@ -137,7 +123,7 @@
                         <div>
                             <input type="checkbox" id="{{ thema.vars.id }}"
                                    name="{{ thema.vars.full_name }}" value="{{ thema.vars.value }}"
-                                   {% if thema.vars.checked > 3 %} disabled="disabled" {% endif %}
+                                    {% if thema.vars.checked > 3 %} disabled="disabled" {% endif %}
                                     {% if thema.vars.checked == true %} checked="checked" {% endif %}
                                    class="check-limit">
                             <label for="{{ thema.vars.id }}">{{ thema.vars.label }}</label>
@@ -220,7 +206,14 @@
                 <div class="row">
                     <div class="form-group col-sm-6">
                         {{ form_label(form.projectDate, "Date de réalisation *") }}
-                        {{ form_widget(form.projectDate) }}
+                        {{ form_widget(form.projectDate, {
+                            'attr':{
+                                'class': 'hidden'
+                            }
+                        }) }}
+
+                        <input id="month" type="month" class="form-control"
+                               value="{% if edit_form.projectDate.vars.value is defined and  not null  %}{{ edit_form.projectDate.vars.value|date("Y-m") }}{% endif %}">
                     </div>
                     <div class="form-group col-sm-6">
                         {{ form_label(form.projectDuration, "Durée de réalisation *") }}
@@ -358,12 +351,14 @@
                 <h3>Ajout de fichiers</h3>
                 <div class="form-group col-sm-12">
                     {% if project.file is empty %}
-                        <label class="uploaderTrue">Vous pouvez ajouter un fichier apportant des informations plus détaillées
+                        <label class="uploaderTrue">Vous pouvez ajouter un fichier apportant des informations plus
+                            détaillées
                             (format accepté : PDF ) <br/>
                             <p>le poids d'un fichier ne doit pas excéder 5 Mo</p>
                             <div class="btn2" data-toggle="modal" data-target="#modalFileUpload">Télécharger</div>
                         </label>
-                        <label for="photo" class="submitForm uploaderFalse hidden">Vous pouvez ajouter un fichier apportant des informations plus détaillées
+                        <label for="photo" class="submitForm uploaderFalse hidden">Vous pouvez ajouter un fichier
+                            apportant des informations plus détaillées
                             (format accepté : PDF ) <br/>
                             <p>le poids d'un fichier ne doit pas excéder 5 Mo</p>
                             <div class="btn2">Télécharger</div>
@@ -437,7 +432,15 @@
 
                         {{ form_end(form, {'render_rest': false}) }}
                     </div>
+                    <div class="form-group col-sm-4" align="right">
+                        {{ form_start(form_toAdmin) }}
+                        {{ form_widget(form_toAdmin) }}
+                        <button class="btn" type="submit"><i class="fa fa-envelope-o" aria-hidden="true"></i>
+                            Soumettre votre fiche
+                        </button>
+                        {{ form_end(form_toAdmin) }}
 
+                    </div>
                 </div>
                 {% include 'components/projectComponent.html.twig' %}
             </div>
@@ -461,7 +464,11 @@
 
         });
 
+        $('#month').change(function () {
+            realdate = new Date($('#month').val()).toISOString().slice(0, 10);
+            $("#projet_projectDate").val(realdate);
 
+        });
         $(document).ready(function () {
             $('#projet_keyWords').select2();
             var i = 0;
