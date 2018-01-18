@@ -18,12 +18,14 @@
                 <div class="form-group">
                     {{ form_label(form.lastName, "Nom *") }}
                     {{ form_widget(form.lastName) }}
+                    <div class="errorForm">{{ form_errors(form.lastName) | striptags }}</div>
                 </div>
             </div>
             <div class="col-lg-6 col-sm-6">
                 <div class="form-group">
                     {{ form_label(form.firstName, "Prénom *") }}
                     {{ form_widget(form.firstName) }}
+                    <div class="errorForm">{{ form_errors(form.firstName) | striptags }}</div>
                 </div>
             </div>
         </div>
@@ -32,6 +34,7 @@
                 <div class="form-group">
                     {{ form_label(form.occupation, "Fonction *") }}
                     {{ form_widget(form.occupation) }}
+                    <div class="errorForm">{{ form_errors(form.occupation) | striptags }}</div>
                 </div>
             </div>
         </div>
@@ -40,12 +43,14 @@
                 <div class="form-group">
                     {{ form_label(form.phone, "Téléphone *") }}
                     {{ form_widget(form.phone) }}
+                    <div class="errorForm">{{ form_errors(form.phone) | striptags }}</div>
                 </div>
             </div>
             <div class="col-lg-6 col-sm-6">
                 <div class="form-group">
                     {{ form_label(form.email, "Email *") }}
                     {{ form_widget(form.email) }}
+                    <div class="errorForm">{{ form_errors(form.email) | striptags }}</div>
                 </div>
             </div>
         </div>

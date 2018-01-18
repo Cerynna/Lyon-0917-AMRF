@@ -21,149 +21,169 @@
             <li>
                 {{ form_start(delete_form) }}
                 <button class="fa-admin" data-toggle="tooltip" data-placement="right"
-                        title="Supprimer Projet" type="submit" onclick="return ConfirmDelete()"><i class="fa fa-trash-o"></i></button>
+                        title="Supprimer Projet" type="submit" onclick="return ConfirmDelete()"><i
+                            class="fa fa-trash-o"></i></button>
                 {{ form_end(delete_form) }}
 
             </li>
         </ul>
     </div>
     <h1>Fiche du projet</h1>
-
-    <div class="col-sm-6">
-        <div class="col-sm-4">
-            <h5>Id</h5>
-            <span>{{ project.id }}</span>
-        </div>
-        <div class="col-sm-4">
-            <h5>Titre</h5>
-            <span>{{ project.title }}</span>
-        </div>
-        <div class="col-sm-4">
-            <h5>Slug</h5>
-            <span>{{ project.slug }}</span>
-        </div>
-        <div class="col-sm-4">
-            <h5>Thème</h5>
-            <span>
+    <div class="row showTrame">
+        <div class="col-sm-6">
+            <div class="col-sm-4">
+                <h5>Id</h5>
+                <span>{{ project.id }}</span>
+            </div>
+            <div class="col-sm-4">
+                <h5>Titre</h5>
+                <span>{{ project.title }}</span>
+            </div>
+            <div class="col-sm-4">
+                <h5>Slug</h5>
+                <span>{{ project.slug }}</span>
+            </div>
+            <div class="col-sm-4">
+                <h5>Thème</h5>
+                <span>
                     {% for theme in project.themes %}
-                        <span class="label label-primary">{{ theme.name }}</span>
+                        <span class="themaKey">{{ theme.name }}</span>
                     {% endfor %}
                 </span>
-        </div>
-        <div class="col-sm-4">
-            <h5>Date de création</h5>
-            <span>{% if project.creationDate %}{{ project.creationDate|date('d-m-Y') }}{% endif %}</span>
-        </div>
-        <div class="col-sm-4">
-            <h5>Date de mise à jour</h5>
-            <span>{% if project.updateDate %}{{ project.updateDate|date('d-m-Y') }}{% endif %}</span>
-        </div>
-        <div class="col-sm-12">
-            <h5>Images</h5>
-            <span>
+            </div>
+            <div class="col-sm-4">
+                <h5>Date de création</h5>
+                <span>{% if project.creationDate %}{{ project.creationDate|date('d-m-Y') }}{% endif %}</span>
+            </div>
+            <div class="col-sm-4">
+                <h5>Date de mise à jour</h5>
+                <span>{% if project.updateDate %}{{ project.updateDate|date('d-m-Y') }}{% endif %}</span>
+            </div>
+            <div class="col-sm-12">
+                <h5>Images</h5>
+                <span>
                     {% for image in project.images %}
                         {% set img = 'upload/project/' ~ project.id ~ '/photos/' ~ image %}
-                        <img src="{{ asset(img) }}" alt="" width="150px">
+                        <div style="background-image : url('{{ asset(img) }}')"
+                             class="adminImageProject col-sm-3"></div>
                     {% endfor %}
                 </span>
-        </div>
-        <div class="col-sm-6">
-            <h5>Date du projet</h5>
-            <span>{% if project.projectDate %}{{ project.projectDate|date('Y-m-d') }}{% endif %}</span>
-        </div>
-        <div class="col-sm-6">
-            <h5>Durée du projet</h5>
-            <span>{{ project.projectDuration }}</span>
-        </div>
-        <div class="col-sm-6">
-            <h5>Coût du projet</h5>
-            <span>{{ project.projectCost }}</span>
-        </div>
-        <div class="col-sm-6">
-            <h5>Financement</h5>
-            <span>{{ project.projectCoFinance }}</span>
-        </div>
-        <div class="col-sm-12">
-            <h5>Résumé</h5>
-            <span>{{ project.descResume }}</span>
-        </div>
+            </div>
+            <div class="col-sm-6">
+                <h5>Date du projet</h5>
+                <span>{% if project.projectDate %}{{ project.projectDate|date('Y-m-d') }}{% endif %}</span>
+            </div>
+            <div class="col-sm-6">
+                <h5>Durée du projet</h5>
+                <span>{{ project.projectDuration }}</span>
+            </div>
+            <div class="col-sm-6">
+                <h5>Coût du projet</h5>
+                <span>{{ project.projectCost }}</span>
+            </div>
+            <div class="col-sm-6">
+                <h5>Financement</h5>
+                <span>{{ project.projectCoFinance }}</span>
+            </div>
+            <div class="col-sm-4">
+                <h5>Nom du contact</h5>
+                <span>{{ project.contactName }}</span>
+            </div>
+            <div class="col-sm-4">
+                <h5>Fonction du contact</h5>
+                <span>{{ project.contactOccupation }}</span>
+            </div>
+            <div class="col-sm-4">
+                <h5>Email du contact</h5>
+                <span>{{ project.contactEmail }}</span>
+            </div>
+            <div class="col-sm-4">
+                <h5>Téléphone du contact</h5>
+                <span>{{ project.contactPhone }}</span>
+            </div>
+            <div class="col-sm-12">
+                <h5>Fichiers</h5>
+                {% set pdf = 'upload/project/' ~ project.id ~ '/file/' ~ project.file %}
+                {% set pdflink = 'upload-project-' ~ project.id ~ '-file-' ~ project.file %}
+                <span>
+            <object data="{{ asset(pdf) }}" type="application/pdf" class="preview-pdf">
+                <param name="filename" value="{{ asset(pdf) }}"/>
+                <a href="{{ asset(pdf) }}" target="_parent" title="le fichier">Voir le fichier...</a>
+            </object>
+                    <a href="{{ asset(pdf) }}" target="_blank"><i class="fa fa-eye fa-admin"></i></a>
+            </span>
 
-        <div class="col-sm-12">
-            <h5>Contexte</h5>
-            <span>{{ project.descContext }}</span>
-        </div>
-        <div class="col-sm-12">
-            <h5>Objectifs</h5>
-            <span>{{ project.descGoal }}</span>
-        </div>
-        <div class="col-sm-12">
-            <h5>Déroulement</h5>
-            <span>{{ project.descProgress }}</span>
-        </div>
-        <div class="col-sm-12">
-            <h5>Partenaires mobilisés</h5>
-            <span>{{ project.descPartners }}</span>
-        </div>
-        <div class="col-sm-12">
-            <h5>Résultats obtenus</h5>
-            <span>{{ project.descResults }}</span>
-        </div>
-        <div class="col-sm-12">
-            <h5>Difficultés rencontrées</h5>
-            <span>{{ project.descDifficulties }}</span>
-        </div>
-        <div class="col-sm-12">
-            <h5>Conseils</h5>
-            <span>{{ project.descAdvices }}</span>
-        </div>
-    </div>
-    <div class="col-sm-6">
-        <div class="col-sm-4">
-            <h5>Nom du contact</h5>
-            <span>{{ project.contactName }}</span>
-        </div>
-        <div class="col-sm-4">
-            <h5>Fonction du contact</h5>
-            <span>{{ project.contactOccupation }}</span>
-        </div>
-        <div class="col-sm-4">
-            <h5>Email du contact</h5>
-            <span>{{ project.contactEmail }}</span>
-        </div>
-        <div class="col-sm-4">
-            <h5>Téléphone du contact</h5>
-            <span>{{ project.contactPhone }}</span>
-        </div>
-        <div class="col-sm-4">
-            <h5>Fichiers</h5>
-            <span>{{ project.file }}</span>
-        </div>
-        <div class="col-sm-4">
-            <h5>Site internet</h5>
-            <span>{{ project.url }}</span>
-        </div>
-        <div class="col-sm-4">
-            <h5>Youtube</h5>
-            <span>{{ project.youtube }}</span>
-        </div>
-        <div class="col-sm-4">
-            <h5>Facebook</h5>
-            <span>{{ project.facebook }}</span>
-        </div>
-        <div class="col-sm-4">
-            <h5>Twitter</h5>
-            <span>{{ project.twitter }}</span>
-        </div>
-        <div class="col-sm-12">
-            <h5>Mots clés</h5>
-            <span>
+
+            </div>
+            <div class="col-sm-4">
+                <h5>Site internet</h5>
+                <span>{{ project.url }}</span>
+            </div>
+            <div class="col-sm-4">
+                <h5>Youtube</h5>
+                <span>{{ project.youtube }}</span>
+            </div>
+            <div class="col-sm-4">
+                <h5>Facebook</h5>
+                <span>{{ project.facebook }}</span>
+            </div>
+            <div class="col-sm-4">
+                <h5>Twitter</h5>
+                <span>{{ project.twitter }}</span>
+            </div>
+            <div class="col-sm-12">
+                <h5>Mots clés</h5>
+                <span>
                     {% for keyword in project.keywords %}
-                        <span class="label label-primary">{{ keyword.name }}</span>
+                        <span class="themaKey">{{ keyword.name }}</span>
                     {% endfor %}
                 </span>
+            </div>
+
+
+        </div>
+
+
+        <div class="col-sm-6">
+
+
+            <div class="col-sm-12">
+                <h5>Résumé</h5>
+                <span>{{ project.descResume|raw }}</span>
+            </div>
+
+            <div class="col-sm-12">
+                <h5>Contexte</h5>
+                <span>{{ project.descContext|raw }}</span>
+            </div>
+            <div class="col-sm-12">
+                <h5>Objectifs</h5>
+                <span>{{ project.descGoal|raw }}</span>
+            </div>
+            <div class="col-sm-12">
+                <h5>Déroulement</h5>
+                <span>{{ project.descProgress|raw }}</span>
+            </div>
+            <div class="col-sm-12">
+                <h5>Partenaires mobilisés</h5>
+                <span>{{ project.descPartners|raw }}</span>
+            </div>
+            <div class="col-sm-12">
+                <h5>Résultats obtenus</h5>
+                <span>{{ project.descResults|raw }}</span>
+            </div>
+            <div class="col-sm-12">
+                <h5>Difficultés rencontrées</h5>
+                <span>{{ project.descDifficulties |raw }}</span>
+            </div>
+            <div class="col-sm-12">
+                <h5>Conseils</h5>
+                <span>{{ project.descAdvices|raw }}</span>
+            </div>
+
+
         </div>
     </div>
-
     <script>
         function ConfirmDelete() {
             return confirm("Etes-vous sûr que vous voulez supprimer le projet?");

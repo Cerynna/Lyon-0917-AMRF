@@ -1,7 +1,7 @@
 {% extends 'private/admin/baseAdmin.html.twig' %}
 {% block title %}Admin home{% endblock %}
 {% block body %}
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.js"></script>
+
     <div class="menu-admin menu-project">
         <ul>
             <li>
@@ -38,31 +38,93 @@
         <div class="col-xs-3">
             <h5>Derniers utilisateurs connectés</h5>
             <div class="jumbotron">
-                <div class="row">
-                    <div class="col-xs-4 bg-info text-center">Maire</div>
-                    <div class="col-xs-4 bg-success text-center">Partenaire</div>
-                    <div class="col-xs-4  bg-warning text-center">Admin</div>
-                </div>
-                <br/>
-                {% for user in stats.lastLogin %}
-                {% if user.mayor is defined and user.mayor is not null and user.role == 1 %}
-                {% set name = user.mayor.town %}
-                <div class="row bg-info">
-                    {% elseif user.partner is defined and user.partner is not null  and user.role == 2 %}
-                    {% set name = user.partner.company.name %}
-                    <div class="row bg-success">
-                        {% else %}
-                        {% set name = user.login %}
-                        <div class="row bg-warning">
-                            {% endif %}
-                            <div class="col-xs-6">{{ name|slice(0,20) }}</div>
-                            <div class="col-xs-6 text-right">{{ user.lastLogin|date("d/m/Y H:i:s") }}</div>
-                        </div>
-                        {% endfor %}
+                <ul class="row stat-user">
+                    <li class="col-xs-4 text-center"><h5><i class="fa fa-male"></i> Maire</h5></li>
+                    <li class="col-xs-4 text-center"><h5><i class="fa fa-briefcase"></i> Partenaire</h5></li>
+                    <li class="col-xs-4 text-center"><h5><i class="fa fa-certificate"></i> Admin</h5></li>
+                </ul>
 
+                {% for user in stats.lastLogin %}
+                    <div class="row stat">
+                        <div class="col-sm-1">
+                            {% if user.mayor is defined and user.mayor is not null and user.role == 1 %}
+                                {% set name = user.mayor.town %}
+                                <a href="{{ path('admin_user_show', {'id': user.id }) }}">
+                                    <i class="fa fa-male fa-admin-mini"></i>
+                                </a>
+                            {% elseif user.partner is defined and user.partner is not null  and user.role == 2 %}
+                                {% set name = user.partner.company.name %}
+                                <a href="{{ path('admin_user_show', {'id': user.id }) }}">
+                                    <i class="fa fa-briefcase fa-admin-mini"></i>
+                                </a>
+                            {% else %}
+                                {% set name = user.login %}
+                                <a href="{{ path('admin_user_show', {'id': user.id }) }}">
+                                    <i class="fa fa-certificate fa-admin-mini"></i>
+                                </a>
+                            {% endif %}
+                        </div>
+                        <div class="col-sm-10">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    {{ name }}
+                                </div>
+                                <div class="col-sm-12">
+                                    {{ user.lastLogin|date("d/m") }}
+                                </div>
+                            </div>
+                        </div>
                     </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    <div class="row">
+
+        {% if stats.bestProject is defined %}
+            <div class="col-sm-3">
+                <h5>Projet les plus mis en favorie</h5>
+                <div class="jumbotron">
+                    {% for project in stats.bestProject %}
+                        <h5 class="row stat">
+                            <div class="col-sm-10">{{ project.project.title }}</div>
+                            <div class="col-sm-2">
+                                <a href="{{ path('admin_project_show', {
+                                    'slug' : project.project.slug
+                                }) }}">
+                                    <i class="fa-admin-mini">{{ project.count }}</i>
+                                </a>
+                            </div>
+                        </h5>
+                    {% endfor %}
                 </div>
             </div>
+        {% endif %}
+
+
+        {% if stats.bestTheme is defined %}
+            <div class="col-sm-3">
+                <h5>Thematique les plus utilisé</h5>
+                <div class="jumbotron">
+                    {% for theme in stats.bestTheme %}
+                        <h5 class="row stat">
+                            <div class="col-sm-10">
+                                {{ theme.theme.name|slice(0,20) }}
+                            </div>
+                            <div class="col-sm-2">
+                                <i class="fa-admin-mini">{{ theme.count }}</i>
+                            </div>
+                        </h5>
+                    {% endfor %}
+                </div>
+            </div>
+        {% endif %}
+
+
+    </div>
+
+{% endblock %}
+        {% block javascripts %}
             <script>
                 new Chart(document.getElementById("project-pie"), {
                     "type": "pie",
@@ -130,5 +192,4 @@
                 });
 
             </script>
-
-{% endblock %}
+        {% endblock %}

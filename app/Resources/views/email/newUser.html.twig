@@ -1,27 +1,28 @@
 {% extends 'email/baseEmail.html.twig' %}
     {% block body %}
-        Bonjour,<br/>
-        Nous avons bien créé votre compte sur le «  Wiki des maires ».<br/>
-        Vos identifiants sont les suivants :<br/>
+        <h3>Bonjour,</h3>
+        <h4>Nous avons bien créé votre compte sur le «  Wiki des maires ».</h4>
+        <p>Vos identifiants sont les suivants :</p>
 
-        <br/>
-        Identifiant : {{ login }}<br/>
 
-        <br/>
-        Mot de passe : <br/>
+        <p>Identifiant : {{ login }}</p>
+
+        <p>Mot de passe :
         {% if role == 1 %}
             - votre code INSEE suivi de CODE POSTAL (10 chiffres au total) <br/>
         {% else %}
             - les 14 chiffres de votre SIRET <br/>
-            <br/>
+
         {% endif %}
-        Veuillez les conserver, ils seront nécessaires lors de votre première connexion. Le changement de votre mot de passe sera exigé lors de votre première visite sur le site.
+        </p>
+
+        <p>Veuillez les conserver, ils seront nécessaires lors de votre première connexion. Le changement de votre mot de passe sera exigé lors de votre première visite sur le site.</p>
         <br/>
         Bien cordialement.<br/>
         <p class="amrf">L’Association des Maires Ruraux de France<br/>
-        "Des maires au service des maires"</p><br/>
+        "Des maires au service des maires"</p>
 
-        —<br/>
-        Ceci est un email automatique, merci de ne pas y répondre.
+       <p>—<br/>
+        Ceci est un email automatique, merci de ne pas y répondre.</p>
     {% endblock %}
 

@@ -87,7 +87,7 @@ class User implements UserInterface, \Serializable
      * )
      * @Assert\Email(
      *     message = "Veuillez entrer une adresse email valide",
-     *     checkMX = true
+     *     checkMX = false
      * )
      *
      */
