@@ -9,6 +9,7 @@ use function array_unique;
 use function intval;
 use function is_array;
 use function is_object;
+use function key_exists;
 
 /**
  * ProjectRepository
@@ -167,21 +168,67 @@ class ProjectRepository extends \Doctrine\ORM\EntityRepository
             ->andWhere('u.status = :status')
             ->getQuery()
             ->getResult());
-        $result['user']['Supprimer'] = count($this->getEntityManager()
-            ->getRepository('AppBundle:User')
-            ->createQueryBuilder('u')
-            ->setParameter('status', User::USER_STATUS_DELETE)
-            ->andWhere('u.status = :status')
-            ->getQuery()
-            ->getResult());
         $result['lastLogin'] = $this->getEntityManager()
             ->getRepository('AppBundle:User')
             ->createQueryBuilder('u')
             ->orderBy('u.lastLogin', 'DESC')
-            ->setMaxResults(14)
+            ->setMaxResults(5)
             ->getQuery()
             ->getResult();
 
+
+        $sql = "SELECT project_id as id FROM favorite";
+        $em = $this->getEntityManager();
+        $stmt = $em->getConnection()->prepare($sql);
+        $stmt->execute();
+        $arrays = $stmt->fetchAll();
+
+        $countFavorite = [];
+        foreach ($arrays as $idfav) {
+            if (key_exists($idfav["id"], $countFavorite)) {
+                $countFavorite[$idfav["id"]] = $countFavorite[$idfav["id"]] + 1;
+            } else {
+                $countFavorite[$idfav["id"]] = 1;
+            }
+        }
+        arsort($countFavorite);
+        $i = 0;
+
+        foreach ($countFavorite as $idproject => $counter) {
+            if ($i < 5) {
+                $result['bestProject'][$i]["count"] = $counter;
+                $result['bestProject'][$i]["project"] = $this->getEntityManager()
+                    ->getRepository('AppBundle:Project')
+                    ->projectById($idproject)[0];
+            }
+            $i++;
+        }
+
+        $sql = "SELECT themes as id FROM project_theme";
+        $em = $this->getEntityManager();
+        $stmt = $em->getConnection()->prepare($sql);
+        $stmt->execute();
+        $arrays = $stmt->fetchAll();
+
+        $countTheme = [];
+        foreach ($arrays as $idtheme) {
+            if (key_exists($idtheme["id"], $countTheme)) {
+                $countTheme[$idtheme["id"]] = $countTheme[$idtheme["id"]] + 1;
+            } else {
+                $countTheme[$idtheme["id"]] = 1;
+            }
+        }
+        arsort($countTheme);
+        $i = 0;
+        foreach ($countTheme as $idproject => $counter) {
+            if ($i < 5) {
+                $result['bestTheme'][$i]["count"] = $counter;
+                $result['bestTheme'][$i]["theme"] = $this->getEntityManager()
+                    ->getRepository('AppBundle:Dictionary')
+                    ->getThemebyId($idproject)[0];
+            }
+            $i++;
+        }
 
         return $result;
     }
@@ -488,25 +535,25 @@ class ProjectRepository extends \Doctrine\ORM\EntityRepository
             //dump($resultThemes);
             array_push($results['themes'], $resultThemes);
         }
-        if (!empty($results['postal']) && empty($results['themes']) && empty($results['title'])){
+        if (!empty($results['postal']) && empty($results['themes']) && empty($results['title'])) {
             $results = $results['postal'][0];
         }
-        if (empty($results['postal']) && !empty($results['themes']) && empty($results['title'])){
+        if (empty($results['postal']) && !empty($results['themes']) && empty($results['title'])) {
             $results = $results['themes'][0];
         }
-        if (empty($results['postal']) && empty($results['themes']) && !empty($results['title'])){
+        if (empty($results['postal']) && empty($results['themes']) && !empty($results['title'])) {
             $results = $results['title'][0];
         }
-        if (!empty($results['postal']) && !empty($results['themes']) && empty($results['title'])){
+        if (!empty($results['postal']) && !empty($results['themes']) && empty($results['title'])) {
             $results = array_intersect($results['themes'][0], $results['postal'][0]);
         }
-        if (!empty($results['postal']) && empty($results['themes']) && !empty($results['title'])){
+        if (!empty($results['postal']) && empty($results['themes']) && !empty($results['title'])) {
             $results = array_intersect($results['postal'][0], $results['title'][0]);
         }
-        if (empty($results['postal']) && !empty($results['themes']) && !empty($results['title'])){
+        if (empty($results['postal']) && !empty($results['themes']) && !empty($results['title'])) {
             $results = array_intersect($results['themes'][0], $results['title'][0]);
         }
-        if (!empty($results['postal']) && !empty($results['themes']) && !empty($results['title'])){
+        if (!empty($results['postal']) && !empty($results['themes']) && !empty($results['title'])) {
             $results = array_intersect($results['themes'][0], $results['postal'][0], $results['title'][0]);
         }
 

@@ -12,13 +12,25 @@ use AppBundle\Entity\Dictionary;
  */
 class DictionaryRepository extends \Doctrine\ORM\EntityRepository
 {
-	public function getTheme(){
-		$qb = $this->createQueryBuilder('d')
-			->setParameter('type', Dictionary::TYPE_THEME)
-			->where('d.type = :type')
-			->getQuery();
-		return $qb->getResult();
-	}
+    public function getTheme()
+    {
+        $qb = $this->createQueryBuilder('d')
+            ->setParameter('type', Dictionary::TYPE_THEME)
+            ->where('d.type = :type')
+            ->getQuery();
+        return $qb->getResult();
+    }
+
+    public function getThemebyId($idTheme)
+    {
+        $qb = $this->createQueryBuilder('d')
+            ->setParameter('type', Dictionary::TYPE_THEME)
+            ->where('d.type = :type')
+            ->setParameter('id', $idTheme)
+            ->andWhere('d.id = :id')
+            ->getQuery();
+        return $qb->getResult();
+    }
 
     public function findByType($type)
     {
