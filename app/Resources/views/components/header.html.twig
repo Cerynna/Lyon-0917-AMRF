@@ -6,9 +6,6 @@
             </div>
             <div class="col-md-6">
                 <div id="search" class="hidden-t-l">
-                    {#
-                    A Voir si on met la bar de recherche en active même sur ce page et plutôt gérer la sessions
-                    #}
                     {% if is_granted('IS_AUTHENTICATED_REMEMBERED') == true %}
                         {{ render(controller(
                         'AppBundle:Layout:searchHeader'

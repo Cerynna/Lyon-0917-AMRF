@@ -165,7 +165,7 @@
                 var zipCode = $('#mayor_zipCode').val();
                 var population = $('#mayor_population').val();
                 var email = $('#mayor_email').val();
-       
+
                 messageError = "";
                 if (firstName.length < 2) {
                     messageFirstName = "Votre prénom doit comporter au moins 2 caractères. ";
@@ -226,7 +226,6 @@
             //verif firstname
             if (firstName.value.length < 2) {
                 messageFirstName += "Votre prénom doit comporter au moins 2 caractères. ";
-
             }
             if (firstName.validity.patternMismatch) {
                 messageFirstName += "Votre prénom ne peut contenir de chiffre.";
@@ -246,7 +245,6 @@
             if (address.validity.length < 1) {
                 messageAddress += "Vous devez entrer l'adresse de votre mairie";
             }
-
             if (zipCode.validity.patternMismatch) {
                 messageZipCode += "Veuillez entrer un code postal à 5 chiffres";
             }
@@ -261,10 +259,6 @@
             address.setCustomValidity(messageAddress);
             zipCode.setCustomValidity(messageZipCode);
             population.setCustomValidity(messagePopulation);
-
-        })
-        ;
-
-
+        });
     </script>
 {% endblock %}

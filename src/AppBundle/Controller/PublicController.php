@@ -7,8 +7,10 @@ use AppBundle\Entity\Company;
 use AppBundle\Entity\Contact;
 use AppBundle\Entity\Dictionary;
 use AppBundle\Entity\Favorite;
+use AppBundle\Entity\Partner;
 use AppBundle\Entity\Project;
 use AppBundle\Entity\Search;
+use AppBundle\Entity\User;
 use AppBundle\Service\EmailService;
 use AppBundle\Service\SearchService;
 
@@ -20,6 +22,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 use Symfony\Component\Filesystem\Filesystem;
@@ -139,6 +142,27 @@ class PublicController extends Controller
     }
 
     /**
+     * @param $recaptcha
+     * @return mixed
+     */
+    public function captchaverify($recaptcha)
+    {
+        $url = "https://www.google.com/recaptcha/api/siteverify";
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_HEADER, 0);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
+        curl_setopt($ch, CURLOPT_POST, true);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, array(
+            "secret" => "6LfGgDYUAAAAAJw5_bYZMgSV1S5zhy4SZByMZ9G0", "response" => $recaptcha));
+        $response = curl_exec($ch);
+        curl_close($ch);
+        $data = json_decode($response);
+
+        return $data->success;
+    }
+
+    /**
      * @Route("/confidential", name="confidential")
      * @return Response
      */
@@ -184,8 +208,7 @@ class PublicController extends Controller
     {
         // get the login error if there is one
         $error = $authUtils->getLastAuthenticationError();
-        if (!empty($error))
-        {
+        if (!empty($error)) {
             $this->addFlash(
                 'notice',
                 'Votre login ou votre mot de passe est invalide'
@@ -199,25 +222,59 @@ class PublicController extends Controller
         ));
     }
 
-
     /**
-     * @param $recaptcha
-     * @return mixed
+     * @Route("/parser", name="parser_partner")
      */
-    public function captchaverify($recaptcha)
+    public function parserPartnerAction(UserPasswordEncoderInterface $passwordEncoder)
     {
-        $url = "https://www.google.com/recaptcha/api/siteverify";
-        $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, $url);
-        curl_setopt($ch, CURLOPT_HEADER, 0);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
-        curl_setopt($ch, CURLOPT_POST, true);
-        curl_setopt($ch, CURLOPT_POSTFIELDS, array(
-            "secret" => "6LfGgDYUAAAAAJw5_bYZMgSV1S5zhy4SZByMZ9G0", "response" => $recaptcha));
-        $response = curl_exec($ch);
-        curl_close($ch);
-        $data = json_decode($response);
+        $csv = array_map('str_getcsv', file('partner.csv'));
+        $em = $this->getDoctrine()->getManager();
 
-        return $data->success;
+        unset($csv[0]);
+        foreach ($csv as $userCsv) {
+
+            if (!empty ($userCsv[4])) {
+                $user = new User;
+                $partner = new Partner;
+                $company = new Company;
+
+                $userCsv[4] = str_replace(' ', '', $userCsv[4]);
+                $userSiren = substr($userCsv[4], 0, 9);
+
+                $user->setLogin($userSiren);
+                $user->setCreationDate(new \DateTime('now'));
+                $user->setLastLogin(new \DateTime('now'));
+                $password = $passwordEncoder->encodePassword($user, $userCsv[4]);
+                $user->setPassword($password);
+                $user->setStatus(User::USER_STATUS_INACTIF);
+                $user->setRole(User::USER_ROLE_PARTNER);
+                $user->setEmail($userCsv[3]);
+                $partner->setFirstName($userCsv[2]);
+                $partner->setLastName($userCsv[1]);
+                if (!empty($userCsv[6])) {
+                    $partner->setOccupation($userCsv[6]);
+                }
+                if (!empty($userCsv[5])) {
+                    $partner->setPhone(str_replace(' ', '', $userCsv[5]));
+                }
+
+                $partner->setEmail($userCsv[3]);
+                $company->setName($userCsv[0]);
+
+                $partner->setCompany($company);
+                $user->setPartner($partner);
+
+                $em->persist($user);
+                $em->persist($partner);
+                $em->persist($company);
+                $em->flush();
+            } else {
+                $fp = fopen('errorPartner.csv', 'a');
+                fputcsv($fp, $userCsv);
+                fclose($fp);
+            }
+        }
+
+        return new Response('<html><body>hello</body></html>');
     }
 }
