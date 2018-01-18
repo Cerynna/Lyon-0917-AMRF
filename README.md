@@ -1,6 +1,8 @@
 [Wiki des Maires](http://wikidesmaires.amrf.fr)
 =========
 
+![test](https://github.com/favicon.ico){:height="24px" width="48px"}
+
 Project [Wild Code School](https://wildcodeschool.fr/) for [Association des Maires Ruraux de France](http://www.amrf.fr/). 
 
 ## Instructions :
@@ -17,7 +19,7 @@ Project [Wild Code School](https://wildcodeschool.fr/) for [Association des Mair
 * Symfony 3.4
 * PHP 7.1 :  
 
-## Installation
+## Installation :
 * create your user (never use root)
 
         sudo adduser <userName>
