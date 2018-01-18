@@ -2,7 +2,10 @@ section {
   background-color: $bodyColor;
   padding-top: 10px;
   padding-bottom: 10px;
-
+.col-xs-1{
+  padding-left: 0;
+  padding-right: 0;
+}
   p{
     span{
       font-size: 0.9em !important;

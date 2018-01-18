@@ -177,7 +177,7 @@ class ProjectRepository extends \Doctrine\ORM\EntityRepository
             ->getResult();
 
 
-        $sql = "SELECT project_id as id FROM favorite";
+        $sql = "SELECT project_id as id FROM favorite WHERE project_id != ''";
         $em = $this->getEntityManager();
         $stmt = $em->getConnection()->prepare($sql);
         $stmt->execute();

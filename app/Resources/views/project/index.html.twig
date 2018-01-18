@@ -127,8 +127,8 @@
                             hmtl_waiting = "";
                             hmtl_publish = "";
                             for (i = 0; i < project.length; i++) {
-                                var linkShow = "".replace('idProject', project[i].slug);
-                                var linkEdit = "".replace('idProject', project[i].slug);
+                                var linkShow = "{{ path('admin_project_show', {'slug': "idProject"}) }}".replace('idProject', project[i].slug);
+                                var linkEdit = "{{ path('admin_project_edit', {'slug': "idProject"}) }}".replace('idProject', project[i].slug);
                                 var result = {
                                     'linkShow': linkShow,
                                     'linkEdit': linkEdit,

@@ -126,6 +126,7 @@ class AdminProjectController extends Controller
 	 */
 	public function editAction(Request $request, Project $project, UploadService $uploadService, SlugService $slugService, EmailService $emailService)
 	{
+        $em = $this->getDoctrine()->getManager();
         $user = $this->getUser();
 		$deleteForm = $this->createDeleteForm($project);
 		$editForm = $this->createForm('AppBundle\Form\ProjectType', $project);
@@ -144,9 +145,6 @@ class AdminProjectController extends Controller
 			$fileNewDB = $uploadService->fileUpload($file, '/project/' . $project->getId() . '/file', "file");
 			$project->setFile($fileNewDB);
 			$this->getDoctrine()->getManager()->flush();
-			return $this->redirectToRoute('admin_project_edit', array(
-				'slug' => $project->getSlug(),
-			));
 		}
 		if ($uplodImageForm->isSubmitted() && $uplodImageForm->isValid()) {
 			$files = $uploaderImage->getPath();
@@ -154,16 +152,11 @@ class AdminProjectController extends Controller
 			$images[] = $uploadService->fileUpload($files, '/project/' . $project->getId() . '/photos', "img");
 			$project->setImages($images);
 			$this->getDoctrine()->getManager()->flush();
-			/*return $this->redirectToRoute('admin_project_edit', array(
-				'slug' => $project->getSlug(),
-			));*/
 		}
 		if ($editForm->isSubmitted() && $editForm->isValid()) {
-			$em = $this->getDoctrine()->getManager();
 			$project->setSlug($slugService->slug($project->getTitle()));
-			$em->persist($project);
-			$em->flush();
             if ($project->setStatus(Project::STATUS_PUBLISH)) {
+                $project->setUpdateDate(new \DateTime("now"));
                 $message = [
                     'to' => $user->getEmail(),
                     'type' => EmailService::TYPE_MAIL_PROJECT_VALID['key'],
@@ -175,6 +168,9 @@ class AdminProjectController extends Controller
                 ];
                 $emailService->sendEmail($message);
             }
+            $em->persist($project);
+            $em->flush();
+
 			return $this->redirectToRoute('admin_project_edit', array('slug' => $project->getSlug()));
 		}
 		return $this->render('project/edit.html.twig', array(
