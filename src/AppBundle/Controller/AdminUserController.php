@@ -5,7 +5,6 @@ namespace AppBundle\Controller;
 use AppBundle\Entity\Mayor;
 use AppBundle\Entity\User;
 use AppBundle\Service\EmailService;
-use function is_null;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -171,12 +170,6 @@ class AdminUserController extends Controller
 				$user->setMayor(null);
 			}
 
-            if ($user->getRole() === User::USER_ROLE_MAYOR) {
-                $user->setPartner(null);
-            }
-            if ($user->getRole() === User::USER_ROLE_PARTNER) {
-                $user->setMayor(null);
-            }
             $this->getDoctrine()->getManager()->flush();
             $this->addFlash(
                 'notice',
