@@ -1024,9 +1024,9 @@ section {
 
 form {
   /* .cleIcon {
-       width: 200px;
-       height: 200px;
-     }*/ }
+     width: 200px;
+     height: 200px;
+   }*/ }
   form .pagination > li input[type=radio] + label {
     background: #ffffff;
     color: rgba(0, 158, 61, 0.99);
@@ -1152,7 +1152,7 @@ form {
     border-radius: 5px;
     margin-top: 5px;
     padding-left: 10px; }
-  form #login, form #mdp {
+  form #login_M, form #login_P, form #mdp {
     width: 80% !important;
     margin: auto; }
 

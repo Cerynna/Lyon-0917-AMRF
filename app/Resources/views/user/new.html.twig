@@ -616,7 +616,6 @@ tter') }}</h3>
 
 
                     where = $(".S-nav")[0].getAttribute("class").split(" ")[1];
-                    console.log(where);
 
                     id = parseInt((link[1]));
                     if (arrow[2] === "right") {
@@ -635,22 +634,14 @@ tter') }}</h3>
                         email = document.forms[0].elements["amrf_publicrooterbundle_user[email]"].value;
                         insee = document.forms[0].elements["amrf_publicrooterbundle_user[mayor][insee]"].value;
                         name = document.forms[0].elements["amrf_publicrooterbundle_user[partner][company][name]"].value;
-                        console.log(login);
-                        console.log(email);
-                        console.log(insee);
-                        console.log(name);
                         switch (where) {
                             case "mayor":
-                                console.log("Dans les Mayor");
                                 if (login.length >= 5 && email.length >= 5 && insee.length >= 5) {
-                                    console.log("Remove");
                                     $("#valid").removeClass("hidden");
                                 }
                                 break;
                             case "partner":
-                                console.log("Dans les part" + name);
                                 if (login.length >= 5 && email.length >= 5 && name.length >= 5) {
-                                    console.log("Remove");
                                     $("#valid").removeClass("hidden");
                                 }
                                 break;
@@ -688,7 +679,6 @@ tter') }}</h3>
                 });
 
                 $('#siret').change(function () {
-                    console.log("Change Siret")
                     var siret = $(this).val();
                     if (siret.length >= 9) {
                         $(".S-1-2").removeClass("hidden");
@@ -797,10 +787,8 @@ tter') }}</h3>
                     success: function (response) {
 
                         result = response.results[0].doc;
-                        console.log(result);
                         if (result.length !== 0) {
                             var zipcode = result.CODPOS;
-                            console.log(zipcode);
                             var city = result.LIBCOM;
                             var name = result.L1_DECLAREE;
                             var adresse = result.L4_DECLAREE;

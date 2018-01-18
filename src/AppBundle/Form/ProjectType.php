@@ -61,9 +61,8 @@ class ProjectType extends AbstractType
             ->add('images', FileType::class, [
                 'multiple' => true])
             ->add('projectDate', DateType::class, array(
-               'widget' => 'choice',
-                'format' => 'dd-MM-yyyy',
-                'years' => range(2008, 2030)
+               'widget' => 'single_text',
+                'format' => 'yyyy-MM-dd',
             ))
             ->add('projectDuration')
             ->add('projectCost')

@@ -95,12 +95,18 @@
                 <div id="errorTitle"></div>
             </div>
             <div class="col-sm-6">
-                <h5>{{ form_label(edit_form.creationDate, "Date de création") }}</h5>
-                {{ form_widget(edit_form.creationDate) }}
+                <h5>{{ form_label(edit_form.projectDate, 'Date du projet') }}</h5>
+                {{ form_widget(edit_form.projectDate, {
+                    'attr':{
+                        'class': 'hidden'
+                    }
+                }) }}
+
+                <input id="month" type="month" class="form-control" value="{{ edit_form.projectDate.vars.value|date("Y-m") }}">
             </div>
             <div class="col-sm-6">
-                <h5>{{ form_label(edit_form.updateDate, "Date de mise à jour") }}</h5>
-                {{ form_widget(edit_form.updateDate) }}
+                <h5><label>Commune du projet</label></h5>
+                {{ form_widget(edit_form.mayor) }}
             </div>
             <div class="col-sm-12">
                 <h5><label>Images</label></h5>
@@ -121,33 +127,21 @@
 
             </div>
             <div class="col-sm-12">
-                <div class="col-sm-3">
-                    <h5>{{ form_label(edit_form.projectDate, 'Date du projet') }}</h5>
-                    {{ form_widget(edit_form.projectDate) }}
-                    <input id="month" type="month">
-                </div>
-                <div class="col-sm-3">
+                <div class="col-sm-4">
                     <h5>{{ form_label(edit_form.projectCoFinance, 'Cofinancements') }}</h5>
                     {{ form_widget(edit_form.projectCoFinance) }}
                 </div>
-                <div class="col-sm-3">
+                <div class="col-sm-4">
                     <h5>{{ form_label(edit_form.projectDuration, 'Durée du projet') }}</h5>
                     {{ form_widget(edit_form.projectDuration) }}
                 </div>
-                <div class="col-sm-3">
+                <div class="col-sm-4">
                     <h5>{{ form_label(edit_form.projectCost, 'Coût du projet') }}</h5>
                     {{ form_widget(edit_form.projectCost) }}
                 </div>
             </div>
             <div class="col-sm-12">
-                <h5>
-                    <label>Commune du projet</label>
-                </h5>
-                <div class="row">
-                    <div class="col-sm-12">
-                        {{ form_widget(edit_form.mayor) }}
-                    </div>
-                </div>
+
             </div>
             <div class="col-sm-12">
                 <h5><label>Liens</label></h5>
@@ -331,11 +325,16 @@
 {% endblock %}
 {% block javascripts %}
     <script>
+
         $(document).ready(function () {
             $('#projet_keyWords').select2();
             $('#projet_mayor').select2();
         });
+        $('#month').change(function () {
+            realdate = new Date($('#month').val()).toISOString().slice(0,10);
+            $("#projet_projectDate").val(realdate);
 
+        });
         $(".submitForm").click(function () {
             var title = $("input[name='projet[title]']").val();
             if (title !== '') {
