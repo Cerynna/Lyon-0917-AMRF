@@ -448,7 +448,6 @@ class ProjectRepository extends \Doctrine\ORM\EntityRepository
         $i = 0;
         $return = [];
         foreach ($projects as $project) {
-            dump($project);
             $return[$i]['id'] = $project->getId();
             $return[$i]['slug'] = $project->getSlug();
             $return[$i]['status'] = $project->getStatus();
@@ -467,7 +466,7 @@ class ProjectRepository extends \Doctrine\ORM\EntityRepository
 
     public function ListProjectFilter($data)
     {
-        //dump($data);
+
 
         $results['postal'] = [];
         $results['title'] = [];
