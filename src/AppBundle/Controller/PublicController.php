@@ -162,6 +162,21 @@ class PublicController extends Controller
         return $data->success;
     }
 
+    /**
+     * @Route("/CGU", name="GCU")
+     * @return Response
+     */
+    public function confidentialAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+        $array = ["cgu"];
+        $contents = $em->getRepository('AppBundle:PublicPage')->getContentIndex($array);
+
+        return $this->render('public/CGU.html.twig', array(
+            'contents' => $contents,
+        ));
+    }
+
 
     /**
      * @Route("/mentions", name="mentions")
