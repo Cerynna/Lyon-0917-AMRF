@@ -378,6 +378,8 @@ textarea {
       overflow-y: scroll; }
     section .jumbotron {
       padding: 10px 5px !important; }
+      section .jumbotron span {
+        font-size: 1.2em !important; }
     section .bck-maire .search {
       width: 300px;
       padding-right: 0;
@@ -1133,7 +1135,6 @@ form {
     position: absolute;
     background: #ffffff;
     max-height: 200px;
-    overflow-y: scroll;
     width: 300px;
     overflow-x: hidden;
     z-index: 200;

@@ -154,7 +154,7 @@ class PublicController extends Controller
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
         curl_setopt($ch, CURLOPT_POST, true);
         curl_setopt($ch, CURLOPT_POSTFIELDS, array(
-            "secret" => "6LfGgDYUAAAAAJw5_bYZMgSV1S5zhy4SZByMZ9G0", "response" => $recaptcha));
+            "secret" => "6Lf0NkEUAAAAAIGuCo2QgYbg8QUiVfpPbuRQfiah", "response" => $recaptcha));
         $response = curl_exec($ch);
         curl_close($ch);
         $data = json_decode($response);
@@ -162,20 +162,6 @@ class PublicController extends Controller
         return $data->success;
     }
 
-    /**
-     * @Route("/confidential", name="confidential")
-     * @return Response
-     */
-    public function confidentialAction()
-    {
-        $em = $this->getDoctrine()->getManager();
-        $array = ["cgu"];
-        $contents = $em->getRepository('AppBundle:PublicPage')->getContentIndex($array);
-
-        return $this->render('public/confidential.html.twig', array(
-            'contents' => $contents,
-        ));
-    }
 
     /**
      * @Route("/mentions", name="mentions")
