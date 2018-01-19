@@ -38,7 +38,7 @@
                             <input type="checkbox" id="{{ thema.vars.id }}"
                                    name="{{ thema.vars.full_name }}" value="{{ thema.vars.value }}"
                                     {% if thema.vars.checked == true %} checked="checked" {% endif %} >
-                            <label for="{{ thema.vars.id }}">{{ thema.vars.label|slice(0,20) }}</label>
+                            <label for="{{ thema.vars.id }}">{{ thema.vars.label }}</label>
                         </div>
                         {% if (loop.index == col) or (loop.index == col*2) %}
                     </div>
@@ -129,6 +129,60 @@
         {% endfor %}
     {% endif %}
 
+    <p dir="ltr"
+       style="line-height:1.2;margin-top:0pt;margin-bottom:0pt;"><span
+                style="font-size: 12pt; background-color: transparent; font-variant-numeric: normal; font-variant-east-asian: normal; vertical-align: baseline; white-space: pre-wrap;">MENTIONS LÉGALES</span>
+    </p><br><p
+        dir="ltr" style="line-height:1.2;margin-top:0pt;margin-bottom:0pt;"><span
+            style="font-size: 12pt; background-color: transparent; font-variant-numeric: normal; font-variant-east-asian: normal; vertical-align: baseline; white-space: pre-wrap;">AMRF, Association des maires ruraux de France</span>
+</p><p
+        dir="ltr" style="line-height:1.2;margin-top:0pt;margin-bottom:0pt;"><span
+            style="font-size: 12pt; background-color: transparent; font-variant-numeric: normal; font-variant-east-asian: normal; vertical-align: baseline; white-space: pre-wrap;">Association Loi 1901 - N°SIRET 328 116 280 00061</span>
+</p><br><p
+        dir="ltr" style="line-height:1.2;margin-top:0pt;margin-bottom:0pt;"><span
+            style="font-size: 12pt; background-color: transparent; font-variant-numeric: normal; font-variant-east-asian: normal; vertical-align: baseline; white-space: pre-wrap;">52 Avenue Maréchal Foch – 69006 Lyon</span>
+</p><p
+        dir="ltr" style="line-height:1.2;margin-top:0pt;margin-bottom:0pt;"><span
+            style="font-size: 12pt; background-color: transparent; font-variant-numeric: normal; font-variant-east-asian: normal; vertical-align: baseline; white-space: pre-wrap;">Téléphone&nbsp;: 04 37 43 39 80 – </span><a
+            href="mailto:amrf@amrf.fr"><span
+                style="font-size: 12pt;  background-color: transparent; font-variant-numeric: normal; font-variant-east-asian: normal; text-decoration-line: underline; vertical-align: baseline; white-space: pre-wrap;">amrf@amrf.fr</span></a><span
+            style="font-size: 12pt; background-color: transparent; font-variant-numeric: normal; font-variant-east-asian: normal; vertical-align: baseline; white-space: pre-wrap;"> </span>
+</p><br><p
+        dir="ltr" style="line-height:1.2;margin-top:0pt;margin-bottom:0pt;"><a
+            href="http://www.amrf.fr"><span
+                style="font-size: 12pt;  background-color: transparent; font-variant-numeric: normal; font-variant-east-asian: normal; text-decoration-line: underline; vertical-align: baseline; white-space: pre-wrap;">www.amrf.fr</span></a>
+</p><br><p
+        dir="ltr" style="line-height:1.2;margin-top:0pt;margin-bottom:0pt;"><span
+            style="font-size: 12pt; background-color: transparent; font-variant-numeric: normal; font-variant-east-asian: normal; vertical-align: baseline; white-space: pre-wrap;">Directeur de publication : Cédric Szabo, Directeur</span>
+</p><p
+        dir="ltr" style="line-height:1.2;margin-top:0pt;margin-bottom:0pt;"><span
+            style="font-size: 12pt; background-color: transparent; font-variant-numeric: normal; font-variant-east-asian: normal; vertical-align: baseline; white-space: pre-wrap;">Conception et développement : Wild Code School – 17 rue Delandine – 69002 Lyon - </span><a
+            href="https://www.google.fr/search?client=safari&amp;rls=en&amp;q=WILD+CODE+SCHOOL&amp;ie=UTF-8&amp;oe=UTF-8&amp;gfe_rd=cr&amp;dcr=0&amp;ei=5sxcWqDRCI7Z8AeotI2wAw"><span
+                style="font-size: 12pt; color: rgb(0, 0, 0); background-color: transparent; font-variant-numeric: normal; font-variant-east-asian: normal; vertical-align: baseline; white-space: pre-wrap;">06 58 46 83 32</span></a>
+</p><br><p
+        dir="ltr" style="line-height:1.2;margin-top:0pt;margin-bottom:0pt;"><span
+            style="font-size: 12pt; background-color: transparent; font-variant-numeric: normal; font-variant-east-asian: normal; vertical-align: baseline; white-space: pre-wrap;">Responsable de la rédaction : Service communication AMRF</span>
+</p><p
+        dir="ltr" style="line-height:1.2;margin-top:0pt;margin-bottom:0pt;"><span
+            style="font-size: 12pt; background-color: transparent; font-variant-numeric: normal; font-variant-east-asian: normal; vertical-align: baseline; white-space: pre-wrap;">Hébergement : OVH - 2 rue Kellermann BP 80157 - 59100 Roubaix – 0972101007</span>
+</p><p
+        dir="ltr" style="line-height:1.2;margin-top:0pt;margin-bottom:0pt;"><span
+            style="font-size: 12pt; background-color: transparent; font-variant-numeric: normal; font-variant-east-asian: normal; vertical-align: baseline; white-space: pre-wrap;">Numéro de déclaration normale Cnil&nbsp;: 2111500v0</span>
+</p><p
+        dir="ltr" style="line-height:1.2;margin-top:0pt;margin-bottom:0pt;"><span
+            style="font-size: 12pt; background-color: transparent; font-variant-numeric: normal; font-variant-east-asian: normal; vertical-align: baseline; white-space: pre-wrap;">Crédit photo première page : Pixabay</span>
+</p><br><p
+        dir="ltr" style="line-height:1.2;margin-top:0pt;margin-bottom:0pt;"><span
+            style="font-size: 12pt; background-color: transparent; font-variant-numeric: normal; font-variant-east-asian: normal; vertical-align: baseline; white-space: pre-wrap;">Les contenus de ce&nbsp;site peuvent inclure des inexactitudes ou des erreurs. L’AMRF se réserve le droit d’apporter des modifications, des améliorations et des changements sur les informations décrites sur son site à tout moment.</span>
+</p><br><p
+        dir="ltr" style="line-height:1.2;margin-top:0pt;margin-bottom:0pt;"><span
+            style="font-size: 12pt; background-color: transparent; font-variant-numeric: normal; font-variant-east-asian: normal; vertical-align: baseline; white-space: pre-wrap;">Conformément à l’article 34 de la loi « Informatique et Libertés » du 6 janvier 1978, vous disposez d’un droit d’accès, de modification, de rectification et de suppression des données qui vous concernent. Pour exercer ce droit, adressez un courrier à AMRF &nbsp;- Wiki des maires – 52 Avenue Maréchal Foch 69006 LYON ou formulez votre demande par mail à&nbsp;</span><span
+            style="font-size: 12pt;  background-color: transparent; font-variant-numeric: normal; font-variant-east-asian: normal; text-decoration-line: underline; vertical-align: baseline; white-space: pre-wrap;"><a
+                href="mailto:amrf@amrf.fr">amrf@amrf.fr</a>
+    </span>
+</p>
+
+    
 {% endblock %}
 {% block javascripts %}
     <script async defer
@@ -143,7 +197,7 @@
             var map = new google.maps.Map(document.getElementById('map'), {
                 zoom: 5,
                 center: france,
-                mapTypeId:'roadmap'
+                mapTypeId: 'roadmap'
             });
             for (i = 0; i < locations.length; i++) {
                 marker = new google.maps.Marker({
