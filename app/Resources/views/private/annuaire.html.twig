@@ -51,8 +51,7 @@
         </div>
     </form>
     <!-- results -->
-    <h3>{{ companies.getTotalItemCount }} partenaire{% if companies.getTotalItemCount > 1 %}s{% endif %} pour votre
-        recherche</h3>
+    <h3>{{ companies.getTotalItemCount }} partenaire{% if companies.getTotalItemCount > 1 %}s{% endif %}</h3>
     {% for company in companies %}
         <div class="row jumbotron">
             <div class="panel-group" id="{{ company.id }}" role="tablist" aria-multiselectable="true">

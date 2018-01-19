@@ -405,7 +405,6 @@ class ProjectRepository extends \Doctrine\ORM\EntityRepository
 
             $i++;
         }
-        dump($sql);
 
         $em = $this->getEntityManager();
         $stmt = $em->getConnection()->prepare($sql);
@@ -521,7 +520,6 @@ class ProjectRepository extends \Doctrine\ORM\EntityRepository
                 $resultpostal[] = intval($array['id']);
             }
             $resultpostal = array_unique($resultpostal);
-            //dump($resultThemes);
             array_push($results['postal'], $resultpostal);
 
         }

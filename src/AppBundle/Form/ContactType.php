@@ -27,9 +27,9 @@ class ContactType extends AbstractType
             ->add('subject', ChoiceType::class, array(
                 'choices' => array(
                     'Demande de renseignements' => 'Renseignements',
-                    'Demande d\'Adhésion' => 'Adhésion',
+                    'Demande d\'adhésion' => 'Adhésion',
                     'Problème de connexion' => 'Connexion',
-                    'Question fiche Projet' => 'Projet',
+                    'Question sur une fiche Projet' => 'Projet',
                     'Autre' => 'Autre',
                 )
             ))
@@ -38,7 +38,7 @@ class ContactType extends AbstractType
                     'Maire' => 'Maire',
                     'Partenaire' => 'Partenaire',
                     'Journaliste' => 'Journaliste',
-                    'Autres' => 'Autres',
+                    'Autre' => 'Autre',
                 )
             ))
             ->add('message', TextareaType::class);
