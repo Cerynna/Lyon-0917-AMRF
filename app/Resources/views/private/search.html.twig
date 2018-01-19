@@ -38,7 +38,7 @@
                             <input type="checkbox" id="{{ thema.vars.id }}"
                                    name="{{ thema.vars.full_name }}" value="{{ thema.vars.value }}"
                                     {% if thema.vars.checked == true %} checked="checked" {% endif %} >
-                            <label for="{{ thema.vars.id }}">{{ thema.vars.label|slice(0,20) }}</label>
+                            <label for="{{ thema.vars.id }}">{{ thema.vars.label }}</label>
                         </div>
                         {% if (loop.index == col) or (loop.index == col*2) %}
                     </div>
@@ -128,7 +128,7 @@
 
         {% endfor %}
     {% endif %}
-
+    
 {% endblock %}
 {% block javascripts %}
     <script async defer
@@ -143,7 +143,7 @@
             var map = new google.maps.Map(document.getElementById('map'), {
                 zoom: 5,
                 center: france,
-                mapTypeId:'roadmap'
+                mapTypeId: 'roadmap'
             });
             for (i = 0; i < locations.length; i++) {
                 marker = new google.maps.Marker({

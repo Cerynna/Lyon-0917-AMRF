@@ -100,7 +100,7 @@
             </div>
             <div role="tabpanel" class="tab-pane" id="reseau">
                 <div class="star">Le symbole * indique que cette information est nécessaire.</div>
-                <h3>Reseaux Sociaux</h3>
+                <h3>Réseaux Sociaux</h3>
                 <div class="row>">
                     <div class="col-lg-6 col-sm-6">
                         <div class="form-group">
@@ -162,19 +162,19 @@
                     messageError += "<li>" + messageLastName + "</li>";
                 }
                 if (population > 9999) {
-                    messagePopulation = "La population ne peut pas excéder 9999 habitants";
+                    messagePopulation = "La population ne peut pas excéder 9999 habitants.";
                     messageError += "<li>" + messagePopulation + "</li>";
                 }
                 if (phone.length < 10) {
-                    messagePhone = "Veuillez entrer un numéro au format 0X XX XX XX XX";
+                    messagePhone = "Veuillez entrer un numéro au format 0X XX XX XX XX.";
                     messageError += "<li>" + messagePhone + "</li>";
                 }
                 if (email.length < 1) {
-                    messageEmail = "Votre email ne peut pas être vide. ";
+                    messageEmail = "Veuillez indiquer votre email. ";
                     messageError += "<li>" + messageEmail + "</li>";
                 }
                 if (town.length < 1) {
-                    messageVille = "Votre ville ne peut pas être vide. ";
+                    messageVille = "Veuillez indiquer votre commune. ";
                     messageError += "<li>" + messageVille + "</li>";
                 }
                 if (address.length < 1) {
@@ -182,7 +182,7 @@
                     messageError += "<li>" + messageAddress + "</li>";
                 }
                 if (zipCode.length < 5) {
-                    messageZipCode = "Veuillez entrer un code postal à 5 chiffres";
+                    messageZipCode = "Veuillez entrer un code postal à 5 chiffres.";
                     messageError += "<li>" + messageZipCode + "</li>";
                 }
                 if (messageError.length >= 3) {
@@ -229,10 +229,10 @@
                 messageTown += "Le nom de votre ville ne peut contenir de chiffre";
             }
             if (address.validity.length < 1) {
-                messageAddress += "Vous devez entrer l'adresse de votre mairie";
+                messageAddress += "L'adresse de votre mairie ne peut pas être vide. ";
             }
             if (zipCode.validity.patternMismatch) {
-                messageZipCode += "Veuillez entrer un code postal à 5 chiffres";
+                messageZipCode += "Veuillez entrer un code postal à 5 chiffres.";
             }
             if (population.value > 9999) {
                 messagePopulation += "La population ne peut pas excéder 9999 habitants";
