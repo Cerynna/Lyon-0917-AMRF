@@ -1133,7 +1133,6 @@ form {
     position: absolute;
     background: #ffffff;
     max-height: 200px;
-    overflow-y: scroll;
     width: 300px;
     overflow-x: hidden;
     z-index: 200;
