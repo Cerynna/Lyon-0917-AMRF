@@ -48,7 +48,7 @@ class PartnerController extends Controller
 		$em = $this->getDoctrine()->getManager();
 
 		if ($form->isSubmitted() && $form->isValid()) {
-			dump($user);
+			dump($partner);
 			$em->persist($user);
 			$em->persist($partner);
 			$em->flush();
