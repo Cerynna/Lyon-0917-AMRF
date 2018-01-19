@@ -908,6 +908,8 @@ section {
   section .jumbotron h3 {
     color: #2a2a2a;
     font-size: 1.6em; }
+  section .jumbotron a {
+    color: rgba(0, 158, 61, 0.99); }
   section h3 {
     color: rgba(0, 158, 61, 0.99);
     font-family: "ERASDEMI", sans-serif;
