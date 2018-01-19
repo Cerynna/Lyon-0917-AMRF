@@ -1806,46 +1806,12 @@ form {
 .project .list-group-item i {
   font-size: 20px; }
 
-.swiper-container {
-  width: 100%;
-  height: 100%;
-  border-radius: 5px; }
-
-.swiper-slide {
-  text-align: center;
-  font-size: 18px;
-  background: #fff;
-  /* Center slide text vertically */
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: -webkit-flex;
-  display: inline-block;
-  -webkit-box-pack: center;
-  -ms-flex-pack: center;
-  -webkit-justify-content: center;
-  justify-content: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  -webkit-align-items: center;
-  align-items: center; }
-
-.swiper-pagination {
-  bottom: 0 !important; }
-  .swiper-pagination .swiper-pagination-bullet {
-    text-align: center;
-    line-height: 20px;
-    font-size: 12px;
-    color: #000;
-    opacity: 1;
-    background: rgba(0, 0, 0, 0.2);
-    position: relative; }
-  .swiper-pagination .swiper-pagination-bullet-active {
-    color: #fff;
-    background: rgba(0, 158, 61, 0.99) !important; }
-
-.swiper-button-next, .swiper-button-prev {
-  top: 8%;
-  background-size: 15px 30px; }
+.carousel-control {
+  font-size: 3em;
+  background-image: none !important;
+  z-index: 190; }
+  .carousel-control span {
+    margin-top: 50%; }
 
 /**
 ** node-sass --watch web/sass/main.scss web/css/main.css
