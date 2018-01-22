@@ -84,6 +84,7 @@ a:hover, a:active {
   border: 2px solid $color1;
   @include boxShadow(1px, rgba(0, 0, 0, 0.4));
   outline: none;
+  z-index: 200;
 }
 
 .btn:hover {

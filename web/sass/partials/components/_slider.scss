@@ -1,14 +1,29 @@
 .carousel {
-  min-height: 380px;
-    .carousel-control {
-      width: 60px;
-      font-size: 3em;
-      background-image: none !important;
-      z-index: 190;
-      color: $color2 !important;
+  .carousel-inner {
+
+    min-height: 380px;
+  }
+  .carousel-control {
+    width: 60px;
+    font-size: 3em;
+    background-image: none !important;
+    z-index: 10 !important;
+    color: $color2 !important;
+    opacity: 1 !important;
+    &.left {
       span {
-        position: absolute;
-        bottom: 20px;
+        left: 20px;
+      }
+    }
+    &.right {
+      span {
+        right: 20px;
+      }
+    }
+    span {
+      margin: 0 !important;
+      position: absolute;
+      bottom: 20px;
     }
   }
 }

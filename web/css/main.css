@@ -353,6 +353,8 @@ textarea {
     padding: 0 !important; }
   .content {
     padding: 20px 10px !important; }
+    .content .carousel-inner {
+      min-height: 90vh !important; }
     .content .search {
       font-size: 1.2em !important; }
   .row {
@@ -443,7 +445,8 @@ header {
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
-    background-size: cover; }
+    background-size: cover;
+    z-index: 200; }
   header #stickHeader {
     background: url("../img/bck-2.jpg") no-repeat fixed;
     -webkit-background-size: cover;
@@ -454,7 +457,7 @@ header {
     position: fixed;
     top: 0;
     height: 100px;
-    z-index: 100; }
+    z-index: 200; }
   header .form-control {
     font-size: 1em;
     color: #2a2a2a;
@@ -1160,7 +1163,7 @@ form {
     border-radius: 5px;
     margin-top: 5px;
     padding-left: 10px; }
-  form #login_M, form #login_P, form #mdp {
+  form #login_M, form #login_P, form #mdp_M, form #mdp_P {
     width: 80% !important;
     margin: auto; }
 
@@ -1806,17 +1809,24 @@ form {
 .project .list-group-item i {
   font-size: 20px; }
 
-.carousel {
+.carousel .carousel-inner {
   min-height: 380px; }
-  .carousel .carousel-control {
-    width: 60px;
-    font-size: 3em;
-    background-image: none !important;
-    z-index: 190;
-    color: #ffffff !important; }
-    .carousel .carousel-control span {
-      position: absolute;
-      bottom: 20px; }
+
+.carousel .carousel-control {
+  width: 60px;
+  font-size: 3em;
+  background-image: none !important;
+  z-index: 10 !important;
+  color: #ffffff !important;
+  opacity: 1 !important; }
+  .carousel .carousel-control.left span {
+    left: 20px; }
+  .carousel .carousel-control.right span {
+    right: 20px; }
+  .carousel .carousel-control span {
+    margin: 0 !important;
+    position: absolute;
+    bottom: 20px; }
 
 /**
 ** node-sass --watch web/sass/main.scss web/css/main.css
@@ -1860,7 +1870,8 @@ a:hover, a:active {
   border: 2px solid rgba(0, 158, 61, 0.99);
   box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.4);
   /*box-shadow: 5px 5px  rgba(0, 0, 0, 0.6);*/
-  outline: none; }
+  outline: none;
+  z-index: 200; }
 
 .btn:hover {
   color: #ffffff;
