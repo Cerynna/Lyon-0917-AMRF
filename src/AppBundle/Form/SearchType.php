@@ -17,64 +17,62 @@ use Symfony\Component\Form\FormBuilderInterface;
 class SearchType extends AbstractType
 {
 
-    /**
-     * @var Router
-     */
-    private $router;
+	/**
+	 * @var Router
+	 */
+	private $router;
 
-    public function __construct(Router $router)
-    {
-        $this->router = $router;
-    }
+	public function __construct(Router $router)
+	{
+		$this->router = $router;
+	}
 
-    /**
-     * {@inheritdoc}
-     */
-    public function buildForm(FormBuilderInterface $builder, array $options)
-    {
-        $builder->add('texts')
-            ->add('keywords', EntityType::class, array(
-                'class' => 'AppBundle:Dictionary',
-                'query_builder' => function (EntityRepository $er) {
-                    return $er->createQueryBuilder('u')
-                        ->setParameter('type', Dictionary::TYPE_KEYWORD)
-                        ->where('u.type = :type')
-                        ->orderBy('u.type', 'ASC');
-                },
-                'expanded' => false,
-                'multiple' => true,
-                'choice_label' => 'name',
-                'label_attr' => ['class' => 'style_checkbox'],
-                'required' => false,
+	/**
+	 * {@inheritdoc}
+	 */
+	public function buildForm(FormBuilderInterface $builder, array $options)
+	{
+		$builder->add('texts')
+			->add('keywords', EntityType::class, array(
+				'class' => 'AppBundle:Dictionary',
+				'query_builder' => function (EntityRepository $er) {
+					return $er->createQueryBuilder('u')
+						->setParameter('type', Dictionary::TYPE_KEYWORD)
+						->where('u.type = :type')
+						->orderBy('u.type', 'ASC');
+				},
+				'expanded' => false,
+				'multiple' => true,
+				'choice_label' => 'name',
+				'label_attr' => ['class' => 'style_checkbox'],
+				'required' => false,
 
-            ))
-            ->add('themas', EntityType::class, array(
-                'class' => 'AppBundle:Dictionary',
-                /*'mapped' => false,*/
-                'query_builder' => function (EntityRepository $er) {
-                    return $er->createQueryBuilder('u')
-                        ->setParameter('type', Dictionary::TYPE_THEME)
-                        ->where('u.type = :type')
-                        ->orderBy('u.type', 'ASC');
-                },
-                'expanded' => true,
-                'multiple' => true,
-                'choice_label' => 'name',
-                'label_attr' => ['class' => 'style_checkbox'],
-                'required' => false,
+			))
+			->add('themas', EntityType::class, array(
+				'class' => 'AppBundle:Dictionary',
+				/*'mapped' => false,*/
+				'query_builder' => function (EntityRepository $er) {
+					return $er->createQueryBuilder('u')
+						->setParameter('type', Dictionary::TYPE_THEME)
+						->where('u.type = :type')
+						->orderBy('u.type', 'ASC');
+				},
+				'expanded' => true,
+				'multiple' => true,
+				'choice_label' => 'name',
+				'label_attr' => ['class' => 'style_checkbox'],
+				'required' => false,
 
-            ))
-            ->add('commune')
-            ->add('region')
-            ->add('departement')
-            ->setAction($this->router->generate('search'))
-            ->setMethod("GET")
-        ;
+			))
+			->add('commune')
+			->add('region')
+			->add('departement')
+			->setAction($this->router->generate('search'))
+			->setMethod("GET");
+	}
 
-    }
-
-    public function getBlockPrefix()
-    {
-        return null;
-    }
+	public function getBlockPrefix()
+	{
+		return null;
+	}
 }

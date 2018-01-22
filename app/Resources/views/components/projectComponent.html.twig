@@ -20,11 +20,13 @@
                     <h3>Mettre en favori</h3>
                 </div>
                 <div class="col-sm-3 text-right">
-                    <button type="button" name="project-{{ project.id }}" class="btnFavoris btn-show-{{ project.id }} addFavorite {% if favorite == 1 %}hidden{% endif %}">
+                    <button type="button" name="project-{{ project.id }}"
+                            class="btnFavoris btn-show-{{ project.id }} addFavorite {% if favorite == 1 %}hidden{% endif %}">
                         <i class="fa fa-star-o"></i>
                     </button>
 
-                    <button type="button" name="project-{{ project.id }}" class="btnFavoris btn-hide-{{ project.id }} delFavorite {% if favorite == 0 %}hidden{% endif %}">
+                    <button type="button" name="project-{{ project.id }}"
+                            class="btnFavoris btn-hide-{{ project.id }} delFavorite {% if favorite == 0 %}hidden{% endif %}">
                         <i class="fa fa-star"></i>
                     </button>
                 </div>

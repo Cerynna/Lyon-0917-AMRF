@@ -8,31 +8,29 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class FavoriteType extends AbstractType
 {
-    /**
-     * {@inheritdoc}
-     */
-    public function buildForm(FormBuilderInterface $builder, array $options)
-    {
-        $builder->add('user')->add('project')->add('company');
-    }
-    
-    /**
-     * {@inheritdoc}
-     */
-    public function configureOptions(OptionsResolver $resolver)
-    {
-        $resolver->setDefaults(array(
-            'data_class' => 'AppBundle\Entity\Favorite'
-        ));
-    }
+	/**
+	 * {@inheritdoc}
+	 */
+	public function buildForm(FormBuilderInterface $builder, array $options)
+	{
+		$builder->add('user')->add('project')->add('company');
+	}
 
-    /**
-     * {@inheritdoc}
-     */
-    public function getBlockPrefix()
-    {
-        return 'favorite';
-    }
+	/**
+	 * {@inheritdoc}
+	 */
+	public function configureOptions(OptionsResolver $resolver)
+	{
+		$resolver->setDefaults(array(
+			'data_class' => 'AppBundle\Entity\Favorite'
+		));
+	}
 
-
+	/**
+	 * {@inheritdoc}
+	 */
+	public function getBlockPrefix()
+	{
+		return 'favorite';
+	}
 }

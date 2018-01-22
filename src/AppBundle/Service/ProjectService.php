@@ -75,6 +75,4 @@ class ProjectService
 	{
 		return $this->theme;
 	}
-
-
 }

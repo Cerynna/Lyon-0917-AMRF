@@ -59,12 +59,8 @@ class PrivateController extends Controller
             }
         }
 
-
         if ($form->isSubmitted() && $form->isValid()) {
-
-            dump($search);
             $result = $searchService->findByPertinence($search);
-            dump($result);
             if (!empty($result)) {
                 $paginator = $this->get('knp_paginator');
                 $results = $paginator->paginate(
@@ -197,5 +193,4 @@ class PrivateController extends Controller
             "filter" => $filter,
         ]);
     }
-
 }

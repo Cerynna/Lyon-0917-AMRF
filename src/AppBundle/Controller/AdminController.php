@@ -19,22 +19,17 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class AdminController extends Controller
 {
-    /**
-     * @Route("/admin/", name="admin_index")
-     * @return Response
-     */
-    public function adminIndexAction()
-    {
-        $em = $this->getDoctrine()->getManager();
-        $reposCompany = $em->getRepository("AppBundle:Project");
-        $stats = $reposCompany->statProject();
-        return $this->render('private/admin/adminIndex.html.twig', [
-            'stats' => $stats,
-        ]);
-    }
-
-
-
-
-
+	/**
+	 * @Route("/admin/", name="admin_index")
+	 * @return Response
+	 */
+	public function adminIndexAction()
+	{
+		$em = $this->getDoctrine()->getManager();
+		$reposCompany = $em->getRepository("AppBundle:Project");
+		$stats = $reposCompany->statProject();
+		return $this->render('private/admin/adminIndex.html.twig', [
+			'stats' => $stats,
+		]);
+	}
 }

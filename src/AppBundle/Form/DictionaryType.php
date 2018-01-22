@@ -10,37 +10,37 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class DictionaryType extends AbstractType
 {
-    /**
-     * {@inheritdoc}
-     */
-    public function buildForm(FormBuilderInterface $builder, array $options)
-    {
-        $builder
-            ->add('type', ChoiceType::class, array(
-                'choices' => array(
-                    'Thématique' => Dictionary::TYPE_THEME,
-                    "Secteur d'activité" => Dictionary::TYPE_ACTIVITY,
-                    'Mot clé' => Dictionary::TYPE_KEYWORD,
-                )))
-            ->add('name')
-            ->add('value');
-    }
+	/**
+	 * {@inheritdoc}
+	 */
+	public function buildForm(FormBuilderInterface $builder, array $options)
+	{
+		$builder
+			->add('type', ChoiceType::class, array(
+				'choices' => array(
+					'Thématique' => Dictionary::TYPE_THEME,
+					"Secteur d'activité" => Dictionary::TYPE_ACTIVITY,
+					'Mot clé' => Dictionary::TYPE_KEYWORD,
+				)))
+			->add('name')
+			->add('value');
+	}
 
-    /**
-     * {@inheritdoc}
-     */
-    public function configureOptions(OptionsResolver $resolver)
-    {
-        $resolver->setDefaults(array(
-            'data_class' => 'AppBundle\Entity\Dictionary'
-        ));
-    }
+	/**
+	 * {@inheritdoc}
+	 */
+	public function configureOptions(OptionsResolver $resolver)
+	{
+		$resolver->setDefaults(array(
+			'data_class' => 'AppBundle\Entity\Dictionary'
+		));
+	}
 
-    /**
-     * {@inheritdoc}
-     */
-    public function getBlockPrefix()
-    {
-        return 'dictionary';
-    }
+	/**
+	 * {@inheritdoc}
+	 */
+	public function getBlockPrefix()
+	{
+		return 'dictionary';
+	}
 }

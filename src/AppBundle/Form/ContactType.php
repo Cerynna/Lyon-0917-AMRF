@@ -15,32 +15,32 @@ use Symfony\Component\Form\FormBuilderInterface;
 
 class ContactType extends AbstractType
 {
-    /**
-     * {@inheritdoc}
-     */
-    public function buildForm(FormBuilderInterface $builder, array $options)
-    {
-        $builder->add('name')
-            ->add('firstName')
-            ->add('email')
-            ->add('phone')
-            ->add('subject', ChoiceType::class, array(
-                'choices' => array(
-                    'Demande de renseignements' => 'Renseignements',
-                    'Demande d\'Adhésion' => 'Adhésion',
-                    'Problème de connexion' => 'Connexion',
-                    'Question fiche Projet' => 'Projet',
-                    'Autre' => 'Autre',
-                )
-            ))
-            ->add('statut', ChoiceType::class, array(
-                'choices' => array(
-                    'Maire' => 'Maire',
-                    'Partenaire' => 'Partenaire',
-                    'Journaliste' => 'Journaliste',
-                    'Autres' => 'Autres',
-                )
-            ))
-            ->add('message', TextareaType::class);
-    }
+	/**
+	 * {@inheritdoc}
+	 */
+	public function buildForm(FormBuilderInterface $builder, array $options)
+	{
+		$builder->add('name')
+			->add('firstName')
+			->add('email')
+			->add('phone')
+			->add('subject', ChoiceType::class, array(
+				'choices' => array(
+					'Demande de renseignements' => 'Renseignements',
+					'Demande d\'adhésion' => 'Adhésion',
+					'Problème de connexion' => 'Connexion',
+					'Question sur une fiche Projet' => 'Projet',
+					'Autre' => 'Autre',
+				)
+			))
+			->add('statut', ChoiceType::class, array(
+				'choices' => array(
+					'Maire' => 'Maire',
+					'Partenaire' => 'Partenaire',
+					'Journaliste' => 'Journaliste',
+					'Autre' => 'Autre',
+				)
+			))
+			->add('message', TextareaType::class);
+	}
 }

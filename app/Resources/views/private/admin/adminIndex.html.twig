@@ -80,10 +80,9 @@
         </div>
     </div>
     <div class="row">
-
         {% if stats.bestProject is defined %}
             <div class="col-sm-3">
-                <h5>Projet les plus mis en favorie</h5>
+                <h5>Projets les plus mis en favoris</h5>
                 <div class="jumbotron">
                     {% for project in stats.bestProject %}
                         <h5 class="row stat">
@@ -101,10 +100,9 @@
             </div>
         {% endif %}
 
-
         {% if stats.bestTheme is defined %}
             <div class="col-sm-3">
-                <h5>Thematique les plus utilisé</h5>
+                <h5>Thématiques les plus utilisées</h5>
                 <div class="jumbotron">
                     {% for theme in stats.bestTheme %}
                         <h5 class="row stat">
@@ -119,10 +117,7 @@
                 </div>
             </div>
         {% endif %}
-
-
     </div>
-
 {% endblock %}
         {% block javascripts %}
             <script>

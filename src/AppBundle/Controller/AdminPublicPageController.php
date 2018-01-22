@@ -12,142 +12,140 @@ use Symfony\Component\HttpFoundation\Request;
  * Publicpage controller.
  *
  * @Route("admin/publicpage")
-
  * Class AdminPublicPageController
  * @package AppBundle\Controller
  */
 class AdminPublicPageController extends Controller
 {
-    /**
-     * Lists all publicPage entities.
-     *
-     * @Route("/", name="admin_publicpage_index")
-     * @Method("GET")
-     * @return \Symfony\Component\HttpFoundation\Response
-     */
-    public function indexAction()
-    {
-        $em = $this->getDoctrine()->getManager();
+	/**
+	 * Lists all publicPage entities.
+	 *
+	 * @Route("/", name="admin_publicpage_index")
+	 * @Method("GET")
+	 * @return \Symfony\Component\HttpFoundation\Response
+	 */
+	public function indexAction()
+	{
+		$em = $this->getDoctrine()->getManager();
 
-        $publicPages = $em->getRepository('AppBundle:PublicPage')->findAll();
+		$publicPages = $em->getRepository('AppBundle:PublicPage')->findAll();
 
-        return $this->render('publicpage/index.html.twig', array(
-            'publicPages' => $publicPages,
-        ));
-    }
+		return $this->render('publicpage/index.html.twig', array(
+			'publicPages' => $publicPages,
+		));
+	}
 
-    /**
-     * Creates a new publicPage entity.
-     *
-     * @Route("/new", name="admin_publicpage_new")
-     * @Method({"GET", "POST"})
-     * @param Request $request
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
-     */
-    public function newAction(Request $request)
-    {
-        $publicPage = new Publicpage();
-        $form = $this->createForm('AppBundle\Form\PublicPageType', $publicPage);
-        $form->handleRequest($request);
+	/**
+	 * Creates a new publicPage entity.
+	 *
+	 * @Route("/new", name="admin_publicpage_new")
+	 * @Method({"GET", "POST"})
+	 * @param Request $request
+	 * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
+	 */
+	public function newAction(Request $request)
+	{
+		$publicPage = new Publicpage();
+		$form = $this->createForm('AppBundle\Form\PublicPageType', $publicPage);
+		$form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($publicPage);
-            $em->flush();
+		if ($form->isSubmitted() && $form->isValid()) {
+			$em = $this->getDoctrine()->getManager();
+			$em->persist($publicPage);
+			$em->flush();
 
-            return $this->redirectToRoute('admin_publicpage_show', array('id' => $publicPage->getId()));
-        }
+			return $this->redirectToRoute('admin_publicpage_show', array('id' => $publicPage->getId()));
+		}
 
-        return $this->render('publicpage/new.html.twig', array(
-            'publicPage' => $publicPage,
-            'form' => $form->createView(),
-        ));
-    }
+		return $this->render('publicpage/new.html.twig', array(
+			'publicPage' => $publicPage,
+			'form' => $form->createView(),
+		));
+	}
 
-    /**
-     * Finds and displays a publicPage entity.
-     *
-     * @Route("/{id}", name="admin_publicpage_show")
-     * @Method("GET")
-     * @param PublicPage $publicPage
-     * @return \Symfony\Component\HttpFoundation\Response
-     */
-    public function showAction(PublicPage $publicPage)
-    {
-        $deleteForm = $this->createDeleteForm($publicPage);
+	/**
+	 * Finds and displays a publicPage entity.
+	 *
+	 * @Route("/{id}", name="admin_publicpage_show")
+	 * @Method("GET")
+	 * @param PublicPage $publicPage
+	 * @return \Symfony\Component\HttpFoundation\Response
+	 */
+	public function showAction(PublicPage $publicPage)
+	{
+		$deleteForm = $this->createDeleteForm($publicPage);
 
-        return $this->render('publicpage/show.html.twig', array(
-            'publicPage' => $publicPage,
-            'delete_form' => $deleteForm->createView(),
-        ));
-    }
+		return $this->render('publicpage/show.html.twig', array(
+			'publicPage' => $publicPage,
+			'delete_form' => $deleteForm->createView(),
+		));
+	}
 
-    /**
-     * Displays a form to edit an existing publicPage entity.
-     *
-     * @Route("/{id}/edit", name="admin_publicpage_edit")
-     * @Method({"GET", "POST"})
-     * @param Request $request
-     * @param PublicPage $publicPage
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
-     */
-    public function editAction(Request $request, PublicPage $publicPage)
-    {
-        $deleteForm = $this->createDeleteForm($publicPage);
-        $editForm = $this->createForm('AppBundle\Form\PublicPageType', $publicPage);
-        $editForm->handleRequest($request);
+	/**
+	 * Displays a form to edit an existing publicPage entity.
+	 *
+	 * @Route("/{id}/edit", name="admin_publicpage_edit")
+	 * @Method({"GET", "POST"})
+	 * @param Request $request
+	 * @param PublicPage $publicPage
+	 * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
+	 */
+	public function editAction(Request $request, PublicPage $publicPage)
+	{
+		$deleteForm = $this->createDeleteForm($publicPage);
+		$editForm = $this->createForm('AppBundle\Form\PublicPageType', $publicPage);
+		$editForm->handleRequest($request);
 
-        if ($editForm->isSubmitted() && $editForm->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
+		if ($editForm->isSubmitted() && $editForm->isValid()) {
+			$this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('admin_publicpage_edit', array('id' => $publicPage->getId()));
-        }
+			return $this->redirectToRoute('admin_publicpage_edit', array('id' => $publicPage->getId()));
+		}
 
-        return $this->render('publicpage/edit.html.twig', array(
-            'publicPage' => $publicPage,
-            'edit_form' => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
-        ));
-    }
+		return $this->render('publicpage/edit.html.twig', array(
+			'publicPage' => $publicPage,
+			'edit_form' => $editForm->createView(),
+			'delete_form' => $deleteForm->createView(),
+		));
+	}
 
-    /**
-     * Deletes a publicPage entity.
-     *
-     * @Route("/{id}", name="admin_publicpage_delete")
-     * @Method("DELETE")
-     * @param Request $request
-     * @param PublicPage $publicPage
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse
-     */
-    public function deleteAction(Request $request, PublicPage $publicPage)
-    {
-        $form = $this->createDeleteForm($publicPage);
-        $form->handleRequest($request);
+	/**
+	 * Deletes a publicPage entity.
+	 *
+	 * @Route("/{id}", name="admin_publicpage_delete")
+	 * @Method("DELETE")
+	 * @param Request $request
+	 * @param PublicPage $publicPage
+	 * @return \Symfony\Component\HttpFoundation\RedirectResponse
+	 */
+	public function deleteAction(Request $request, PublicPage $publicPage)
+	{
+		$form = $this->createDeleteForm($publicPage);
+		$form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->remove($publicPage);
-            $em->flush();
-        }
+		if ($form->isSubmitted() && $form->isValid()) {
+			$em = $this->getDoctrine()->getManager();
+			$em->remove($publicPage);
+			$em->flush();
+		}
 
-        return $this->redirectToRoute('admin_publicpage_index');
-    }
+		return $this->redirectToRoute('admin_publicpage_index');
+	}
 
-    /**
-     * Creates a form to delete a publicPage entity.
-     *
-     * @param PublicPage $publicPage The publicPage entity
-     *
-     * @return \Symfony\Component\Form\Form The form
-     * @param PublicPage $publicPage
-     * @return \Symfony\Component\Form\FormInterface
-     */
-    private function createDeleteForm(PublicPage $publicPage)
-    {
-        return $this->createFormBuilder()
-            ->setAction($this->generateUrl('admin_publicpage_delete', array('id' => $publicPage->getId())))
-            ->setMethod('DELETE')
-            ->getForm()
-        ;
-    }
+	/**
+	 * Creates a form to delete a publicPage entity.
+	 *
+	 * @param PublicPage $publicPage The publicPage entity
+	 *
+	 * @return \Symfony\Component\Form\Form The form
+	 * @param PublicPage $publicPage
+	 * @return \Symfony\Component\Form\FormInterface
+	 */
+	private function createDeleteForm(PublicPage $publicPage)
+	{
+		return $this->createFormBuilder()
+			->setAction($this->generateUrl('admin_publicpage_delete', array('id' => $publicPage->getId())))
+			->setMethod('DELETE')
+			->getForm();
+	}
 }

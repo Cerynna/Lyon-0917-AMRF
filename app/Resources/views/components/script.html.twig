@@ -17,6 +17,10 @@
 <script src="{{ asset('js/main.js') }}"></script>
 <script>
     $(document).ready(function () {
+
+        $('.flash').click(function () {
+            $('.flash').addClass('hidden');
+        });
         $('.summernote').summernote({
             height: 150,
             toolbar: [
