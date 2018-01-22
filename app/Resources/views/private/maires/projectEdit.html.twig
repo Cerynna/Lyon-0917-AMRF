@@ -213,7 +213,7 @@
                         }) }}
 
                         <input id="month" type="month" class="form-control"
-                               value="{% if form.projectDate.vars.value is defined and  not null  %}{{ form.projectDate.vars.value|date("Y-m") }}{% endif %}">
+                               value="{% if form.projectDate.vars.value is defined and  not null %}{{ form.projectDate.vars.value|date("Y-m") }}{% endif %}">
                     </div>
                     <div class="form-group col-sm-6">
                         {{ form_label(form.projectDuration, "Durée de réalisation *") }}
@@ -481,6 +481,7 @@
             });
 
             document.getElementById("projet_keyWords").removeAttribute("required");
+            document.getElementById("projet_projectDate").removeAttribute("required");
             document.getElementById('projet_projectCoFinance').style.display = "none";
 
         });

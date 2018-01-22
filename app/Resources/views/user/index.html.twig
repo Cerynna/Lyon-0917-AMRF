@@ -48,8 +48,6 @@
                            title="Reset des filtres"><i class="fa fa-refresh fa-admin"></i></a>
                     </div>
                     {{ form_end(filtreMayor) }}
-
-
                 </div>
             </div>
             <div class="row">
@@ -86,8 +84,6 @@
                                title="Reset des filtres"><i class="fa fa-refresh fa-admin"></i></a>
                         </div>
                     </form>
-
-
                 </div>
             </div>
             <div class="row">
@@ -101,11 +97,8 @@
                     <ul class="pagination-partner"></ul>
                 </div>
             </div>
-
         </div>
     </div>
-
-
 
 {% endblock %}
 {% block javascripts %}
@@ -168,7 +161,6 @@
                 }
 
             });
-
 
             $('.pagination-partner').twbsPagination({
                 totalPages: {{ totalPagePart }},
@@ -269,7 +261,6 @@
                 '</div>' +
                 '</h5>';
             return return_html;
-
         }
     </script>
 {% endblock %}

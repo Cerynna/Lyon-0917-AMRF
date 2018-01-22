@@ -48,6 +48,12 @@
   }
   .content {
     padding: 20px 10px !important;
+
+    .carousel-inner{
+      min-height: 90vh !important;
+    }
+
+
     .search {
       font-size: 1.2em !important;
     }

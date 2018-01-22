@@ -26,6 +26,7 @@ header {
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
+    z-index: 200;
   }
   #stickHeader {
     background: url('../img/bck-2.jpg') no-repeat fixed;
@@ -37,7 +38,7 @@ header {
     position: fixed;
     top: 0;
     height: 100px;
-    z-index: 100;
+    z-index: 200;
   }
   .form-control {
     font-size: 1em;
