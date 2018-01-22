@@ -62,7 +62,19 @@
                     </a>
                 {% endif %}
             </div>
-            <div class="col-md-3 col-xs-6 text-right">
+
+            <div class="col-xs-12 hidden-lg hidden-md hidden-md text-center">
+                {% if options.more == "true" %}
+                    <a href="{{ path('sheet_project', {'slug': project.slug }) }}">
+                        <div class="btn" role="button">
+                            Voir la fiche
+                        </div>
+                    </a>
+                {% endif %}
+
+            </div>
+
+            <div class="col-md-3 text-right hidden-xs">
                 {% if options.more == "true" %}
                     <a href="{{ path('sheet_project', {'slug': project.slug }) }}">
                         <div class="btn" role="button">
@@ -71,6 +83,9 @@
                     </a>
                 {% endif %}
             </div>
+
+
+
         </div>
     </div>
 </div>
