@@ -26,11 +26,8 @@
             {% endif %}
         {% endfor %}
 
-
     </div>
     <div role="tabpanel" class="tab-pane" id="partenaires">
-
-
         {% for favorite in myFavorites %}
             {% if  favorite.company is not empty %}
                 {% set company = favorite.company %}
@@ -64,18 +61,11 @@
                             {% include 'components/partComponent.html.twig' %}
                         </div>
                     </div>
-
                 </div>
-
-
-
             {% endif %}
         {% endfor %}
 
-
     </div>
     </div>{#end tabContent#}
-
-
     </div>{#end tabPannel #}
 {% endblock %}

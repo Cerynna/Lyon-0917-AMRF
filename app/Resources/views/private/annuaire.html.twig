@@ -25,14 +25,12 @@
             </div>
             <h3>Choisir par secteur d'activité</h3>
             <div class="col-md-12">
-
                 <div class="row scroll-in">
                     <div class="col-sm-3">
                         {% set nbthema = activities|length %}
                         {% set col =  nbthema/4 %}
                         {% set col = col|round %}
                         {% for activity in activities %}
-
                         <div>
                             <input type="checkbox" id="{{ activity.id }}"
                                    name="activity[]"

@@ -1,4 +1,4 @@
-    {% extends 'private/admin/baseAdmin.html.twig' %}
+{% extends 'private/admin/baseAdmin.html.twig' %}
 
 {% block body %}
     <div class="menu-admin menu-user">
@@ -16,7 +16,6 @@
     </div>
     <h1>Nouvel utilisateur</h1>
 
-
     <div id="steps">
         <div class="step S-1 active" data-desc="Information Utilisateur">1</div>
 
@@ -27,9 +26,6 @@
         <div class="step S-Mayor S-4 " data-desc="Valider">4</div>
         <div class="step S-Partner S-4 hidden" data-desc="Valider">4</div>
     </div>
-
-
-
 
     {{ form_start(form) }}
     <div class="row jumbotron">
@@ -100,7 +96,6 @@
                         <i class="fa fa-question fa-admin-mini" data-toggle="tooltip" data-placement="right"
                            title="Si vous laissez ce champ vide le mot de passe généré sera : CODE INSEE+CODE POSTAL"></i>
                     </div>
-
                 </div>
                 <div class="row S-1-2 hidden">
                     <div class="col-sm-4">
@@ -119,7 +114,6 @@
                         }) }}
                     </div>
                 </div>
-
                 <div class="row S-1-2 first hidden">
                     <div class="col-sm-5">
                         <h3><label for="changPass">Obliger l'utilisateur à changer son mot de passe</label></h3>
@@ -131,11 +125,8 @@
                     </div>
                 </div>
                 <div class="S-Partner hidden">
-
                 </div>
-
             </div>
-
             <div id="S-2" class="tab-pane fade">
                 <div class="S-nav mayor">
                     <a data-toggle="tab" class="S-row-left" href="#S-1"><i
@@ -219,8 +210,6 @@
                             {{ form_widget(form.mayor.address) }}
                         </div>
                     </div>
-
-
                     <div class="row first Geoloc hidden">
                         <div class="col-sm-3">
                             <h3>{{ form_label(form.mayor.town, 'Ville') }}</h3>
@@ -310,7 +299,6 @@
                                 'disabled': 'disabled'
                             } }) }}
                         </div>
-
                     </div>
                 </div>
                 <div class="S-Partner hidden">
@@ -322,7 +310,6 @@
                         </div>
                         <div class="col-sm-4">
                             <h3>{{ form_label(form.partner.lastName, 'Prénom') }}</h3>
-
                         </div>
                     </div>
                     <div class="row">
@@ -394,7 +381,6 @@
                             {{ form_widget(form.partner.company.contactPhone) }}
                         </div>
                     </div>
-
                 </div>
             </div>
             <div id="S-3" class="tab-pane fade">
@@ -404,7 +390,6 @@
                     <a data-toggle="tab" class="S-row-right" href="#S-4"><i
                                 class="fa fa-angle-right fa-admin"></i></a>
                 </div>
-
                 <div class="S-Mayor">
                     <h2>Les Réseaux Sociaux</h2>
                     <div class="row first">
@@ -431,7 +416,6 @@
                             {{ form_widget(form.mayor.facebook) }}
                         </div>
                     </div>
-
                     <div class="row first">
                         <div class="col-sm-5">
                             <h3>{{ form_label(form.mayor.twitter, 'Twitter') }}</h3>
@@ -530,8 +514,6 @@
                         </div>
                     </div>
                 </div>
-
-
             </div>
             <div id="S-4" class="tab-pane fade">
                 <div class="S-nav mayor">
@@ -554,7 +536,6 @@
                             <h2>La Commune</h2>
                             <div id="result-Mayor-commune">
                             </div>
-
                         </div>
                         <div class="col-sm-6">
                             <h2>Le Maire</h2>
@@ -583,14 +564,12 @@
                             <h2>Le Contact</h2>
                             <div id="result-Partner-contact">
                             </div>
-
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
 
     {{ form_widget(form._token) }}
     {{ form_end(form, {'render_rest': false}) }}
@@ -604,7 +583,6 @@
                     $(".S-1-2").removeClass("hidden");
                 }
 
-
                 $(".S-nav a").click(function () {
                     $("#valid").addClass("hidden");
                     link = this.getAttribute("href");
@@ -612,7 +590,6 @@
                     arrow = arrow.split("-");
                     link = link.replace("#", "");
                     link = link.split("-");
-
 
                     where = $(".S-nav")[0].getAttribute("class").split(" ")[1];
 
@@ -655,7 +632,6 @@
                     }
                     $(this).tab('show');
                     $('.step').each(function (index, element) {
-                        // element == this
                         $(element).not('.active').addClass('done');
                         $('.done').html('<i class="icon-ok"></i>');
                         if ($(this).is('.active')) {

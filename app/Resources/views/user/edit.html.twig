@@ -24,7 +24,6 @@
                             class="fa fa-trash-o"></i></button>
                 {{ form_end(delete_form) }}
             </li>
-
         </ul>
     </div>
     <h1>Modification de l'utilisateur</h1>
@@ -57,7 +56,6 @@
                 <h5>{{ form_label(edit_form.lastLogin, "Dernière connexion") }}</h5>
                 {{ form_widget(edit_form.lastLogin, { 'attr':{'disabled':'disabled'} }) }}
             </div>
-
         </div>
         {% if user.role == 1 %}
             <div class="col-sm-6">
@@ -159,7 +157,6 @@
                     <h5>{{ form_label(edit_form.partner.phone, "Téléphone") }}</h5>
                     {{ form_widget(edit_form.partner.phone) }}
                 </div>
-
             </div>
             <div class="col-sm-6">
                 <h5 class="text-center">Informations - Organisme</h5>
@@ -170,7 +167,6 @@
                         {% set nbactiv = edit_form.partner.company.activities|length %}
                         {% set col =  nbactiv/3 %}
                         {% set col = col|round %}
-
 
                         {% for activity in edit_form.partner.company.activities %}
                         {{ form_errors(activity) }}
@@ -241,7 +237,6 @@
                 </div>
             </div>
         {% endif %}
-
     </div>
     {{ form_widget(edit_form._token) }}
     {{ form_end(edit_form, {'render_rest': false}) }}
