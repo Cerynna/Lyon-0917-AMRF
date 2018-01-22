@@ -1806,12 +1806,17 @@ form {
 .project .list-group-item i {
   font-size: 20px; }
 
-.carousel-control {
-  font-size: 3em;
-  background-image: none !important;
-  z-index: 190; }
-  .carousel-control span {
-    margin-top: 50%; }
+.carousel {
+  height: 60vh; }
+  .carousel .carousel-control {
+    width: 60px;
+    font-size: 3em;
+    background-image: none !important;
+    z-index: 190;
+    color: #ffffff !important; }
+    .carousel .carousel-control span {
+      position: absolute;
+      bottom: 20px; }
 
 /**
 ** node-sass --watch web/sass/main.scss web/css/main.css
