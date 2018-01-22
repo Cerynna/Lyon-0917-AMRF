@@ -1,8 +1,14 @@
-.carousel-control{
-   font-size: 3em;
-background-image: none !important;
-   z-index: 190;
-  span{
-    margin-top:50%;
+.carousel {
+  min-height: 380px;
+    .carousel-control {
+      width: 60px;
+      font-size: 3em;
+      background-image: none !important;
+      z-index: 190;
+      color: $color2 !important;
+      span {
+        position: absolute;
+        bottom: 20px;
+    }
   }
 }
