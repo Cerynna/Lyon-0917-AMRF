@@ -659,7 +659,7 @@ nav {
     -webkit-box-shadow: 0 0 0 transparent;
     box-shadow: 0 0 0 transparent; }
     nav .dropdown-menu a {
-      font-size: 1.2em;
+      font-size: 1.5em;
       color: #ffffff;
       margin: 0 10px 0 10px; }
     nav .dropdown-menu a:hover {
@@ -669,7 +669,7 @@ nav {
     nav .dropdown-menu .dropdown-submenu a:hover::before {
       content: ''; }
   nav .dropdown-header {
-    font-size: 1.3em;
+    font-size: 1.7em;
     color: rgba(0, 158, 61, 0.99);
     background-color: #ffffff;
     line-height: 1em;
