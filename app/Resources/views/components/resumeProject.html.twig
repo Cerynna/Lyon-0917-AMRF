@@ -7,7 +7,7 @@
                 {% for key, image in options.project.images %}
                     {% if key != 0 %}
                         {% set img = 'upload/project/' ~ options.project.id ~ '/photos/' ~ image %}
-                        <img class="img-mini" src="{{ asset(img) }}"
+                        <img class="img-mini" alt="Photos du projet" src="{{ asset(img) }}"
                              onmouseover="showImg('my-img{{ options.project.id }}','{{ asset(img) }}');"
                              onmouseout="hideImg('my-img{{ options.project.id }}','{{ asset(imgBase) }}');"/>
                     {% endif %}
@@ -15,7 +15,7 @@
             </div>
             <div class="img-preview">
 
-                <img id="my-img{{ options.project.id }}" src="{{ asset(imgBase) }}"
+                <img id="my-img{{ options.project.id }}"alt="Photos du projet" src="{{ asset(imgBase) }}"
                      class="img-big"/>
             </div>
         </div>
@@ -31,12 +31,12 @@
         </div>
         <div class="row">
             {% if options.thema == "true" %}
-                <div class="col-xs-12 text-left hidden-xs" id="city">
+                <div class="col-xs-12 text-left hidden-xs">
                     <span class="label label-commune">{{ options.project.mayor.town }}</span>
                     <span class="label label-commune">{{ options.project.mayor.department }}</span>
 
                 </div>
-                <div class="col-xs-12 text-left hidden-xs" id="theme">
+                <div class="col-xs-12 text-left hidden-xs">
                     {% for thema in options.project.themes %}
                         <span class="label label-themat">{{ thema.name }}</span>
                     {% endfor %}

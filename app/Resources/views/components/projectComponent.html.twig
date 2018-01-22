@@ -1,7 +1,6 @@
 <div class=" project">
     <div class="row">
         <div class="col-sm-4 text-left">
-
             <h3>Thématiques</h3>
             {% for thema in project.themes %}
                 <span class="label label-themat">{{ thema.name }}</span>
@@ -34,7 +33,7 @@
     <div class="row">
         <div class="col-md-4">
             <div class="panel panel-default" id="cityName">
-                <div class="panel-heading text-left" role="tab" id="headingList">
+                <div class="panel-heading text-left" role="tab">
                     <h4>Commune : {{ project.mayor.town }}</h4>
                 </div>
                 <ul class="list-group">
@@ -67,7 +66,7 @@
         </div>
         <div class="col-md-4">
             <div class="panel panel-default" id="contact">
-                <div class="panel-heading text-left" role="tab" id="headingList">
+                <div class="panel-heading text-left" role="tab">
                     <h4>Contact Mairie</h4>
                 </div>
                 <ul class="list-group text-left">
@@ -105,14 +104,14 @@
                     {% for key, image in project.images %}
                         {% if key != 0 %}
                             {% set img = 'upload/project/' ~ project.id ~ '/photos/' ~ image %}
-                            <img class="img-mini" src="{{ asset(img) }}"
+                            <img class="img-mini" alt="Photos du projet" src="{{ asset(img) }}"
                                  onmouseover="showImg('my-img{{ project.id }}','{{ asset(img) }}');"
                                  onmouseout="hideImg('my-img{{ project.id }}','{{ asset(imgBase) }}');"/>
                         {% endif %}
                     {% endfor %}
                 </div>
                 <div class="img-preview">
-                    <img id="my-img{{ project.id }}" src="{{ asset(imgBase) }}"
+                    <img id="my-img{{ project.id }}" alt="Photos du projet" src="{{ asset(imgBase) }}"
                          class="img-big"/>
                 </div>
             {% endif %}
@@ -122,7 +121,7 @@
         <div class="year-budget">
             <div class="col-md-3 col-sm-6">
                 <div class="panel panel-default">
-                    <div class="panel-heading text-left" id="headingList">
+                    <div class="panel-heading text-left">
                         <h4>Date de réalisation</h4>
                     </div>
                     <div class="panel-body text-right">
@@ -132,7 +131,7 @@
             </div>
             <div class="col-md-3 col-sm-6">
                 <div class="panel panel-default">
-                    <div class="panel-heading text-left" id="headingList">
+                    <div class="panel-heading text-left" >
                         <h4>Durée</h4>
                     </div>
                     <div class="panel-body text-right">
@@ -142,7 +141,7 @@
             </div>
             <div class="col-md-3 col-sm-6">
                 <div class="panel panel-default">
-                    <div class="panel-heading text-left" id="headingList">
+                    <div class="panel-heading text-left">
                         <h4>Coût global</h4>
                     </div>
                     <div class="panel-body text-right">
@@ -152,7 +151,7 @@
             </div>
             <div class="col-md-3 col-sm-6">
                 <div class="panel panel-default">
-                    <div class="panel-heading text-left" id="headingList">
+                    <div class="panel-heading text-left">
                         <h4>Cofinancements</h4>
                     </div>
                     <div class="panel-body text-right">
@@ -205,7 +204,7 @@
     </div>
     <div class="row">
         <div class="panel panel-default">
-            <div class="panel-heading text-left" id="headingList">
+            <div class="panel-heading text-left">
                 Pour plus d'informations
             </div>
             <ul class="list-group">
