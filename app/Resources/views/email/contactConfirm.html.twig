@@ -1,8 +1,9 @@
 {% extends 'email/baseEmail.html.twig' %}
     {% block body %}
 
-        <h3>Bonjour  {{ firstName }} {{ name }},</h3>
-        <h4>Vous avez envoyé une demande via le formulaire de contact du « Wiki des maires » et nous vous en remercions.</h4>
+        <h3>Bonjour {{ firstName }} {{ name }},</h3>
+        <h4>Vous avez envoyé une demande via le formulaire de contact du « Wiki des maires » et nous vous en
+            remercions.</h4>
 
         <p>Voici le contenu de votre message :</p>
         <p>Objet : {{ object }}</p>

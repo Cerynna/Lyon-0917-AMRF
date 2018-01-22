@@ -23,15 +23,17 @@ use Symfony\Component\HttpFoundation\Response;
 class AdminProjectController extends Controller
 {
 	public $sort = [
-		'title' 		=> "",
-		'status' 		=> "",
-		'value' 		=> "",
-		'themes'		=> ""
+		'title' => "",
+		'status' => "",
+		'value' => "",
+		'themes' => ""
 	];
+
 	public function getSort()
 	{
 		return $this->sort;
 	}
+
 	/**
 	 * Lists all project entities.
 	 *
@@ -46,7 +48,6 @@ class AdminProjectController extends Controller
 
 		$thematique = $em->getRepository('AppBundle:Dictionary')->getTheme();
 		$maxProject = $em->getRepository('AppBundle:Project')->MaxProject();
-
 
 		return $this->render('project/index.html.twig', [
 			'themes' => $thematique,
@@ -97,6 +98,7 @@ class AdminProjectController extends Controller
 			'upload_file_form' => $uplodFileForm->createView(),
 		));
 	}
+
 	/**
 	 * Finds and displays a project entity.
 	 *
@@ -113,6 +115,7 @@ class AdminProjectController extends Controller
 			'delete_form' => $deleteForm->createView(),
 		));
 	}
+
 	/**
 	 * Displays a form to edit an existing project entity.
 	 *
@@ -126,8 +129,8 @@ class AdminProjectController extends Controller
 	 */
 	public function editAction(Request $request, Project $project, UploadService $uploadService, SlugService $slugService, EmailService $emailService)
 	{
-        $em = $this->getDoctrine()->getManager();
-        $user = $this->getUser();
+		$em = $this->getDoctrine()->getManager();
+		$user = $this->getUser();
 		$deleteForm = $this->createDeleteForm($project);
 		$editForm = $this->createForm('AppBundle\Form\ProjectType', $project);
 		$editForm->remove('slug');
@@ -155,21 +158,20 @@ class AdminProjectController extends Controller
 		}
 		if ($editForm->isSubmitted() && $editForm->isValid()) {
 			$project->setSlug($slugService->slug($project->getTitle()));
-            if ($project->setStatus(Project::STATUS_PUBLISH)) {
-                $project->setUpdateDate(new \DateTime("now"));
-                $message = [
-                    'to' => $user->getEmail(),
-                    'type' => EmailService::TYPE_MAIL_PROJECT_VALID['key'],
-                    'login' => $user->getLogin(),
-                    'firstName'=> $project->getMayor()->getFirstName(),
-                    'lastName'=> $project->getMayor()->getLastName(),
-                    'title'=> $project->getTitle(),
-
-                ];
-                $emailService->sendEmail($message);
-            }
-            $em->persist($project);
-            $em->flush();
+			if ($project->setStatus(Project::STATUS_PUBLISH)) {
+				$project->setUpdateDate(new \DateTime("now"));
+				$message = [
+					'to' => $user->getEmail(),
+					'type' => EmailService::TYPE_MAIL_PROJECT_VALID['key'],
+					'login' => $user->getLogin(),
+					'firstName' => $project->getMayor()->getFirstName(),
+					'lastName' => $project->getMayor()->getLastName(),
+					'title' => $project->getTitle(),
+				];
+				$emailService->sendEmail($message);
+			}
+			$em->persist($project);
+			$em->flush();
 
 			return $this->redirectToRoute('admin_project_edit', array('slug' => $project->getSlug()));
 		}
@@ -181,6 +183,7 @@ class AdminProjectController extends Controller
 			'delete_form' => $deleteForm->createView(),
 		));
 	}
+
 	/**
 	 * Deletes a project entity.
 	 *
@@ -201,6 +204,7 @@ class AdminProjectController extends Controller
 		}
 		return $this->redirectToRoute('admin_project_index');
 	}
+
 	/**
 	 * Creates a form to delete a project entity.
 	 *

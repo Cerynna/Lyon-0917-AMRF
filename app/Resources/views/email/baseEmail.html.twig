@@ -5,7 +5,7 @@
         body {
             margin: 0;
             padding: 0;
-            font-family : sans-serif;
+            font-family: sans-serif;
         }
 
         header {
@@ -28,9 +28,9 @@
         }
 
         .nav a {
-            color : white;
-            text-decoration : underline;
-            font-weight : bold;
+            color: white;
+            text-decoration: underline;
+            font-weight: bold;
         }
 
         ul {
@@ -55,17 +55,18 @@
             width: 80%;
             margin: 50px auto;
             padding: 30px;
-            font-size : 1.2em;
+            font-size: 1.2em;
         }
 
         .content h2 {
-            font-style : normal;
-            color : black;
+            font-style: normal;
+            color: black;
         }
+
         .content a {
-            font-style : normal;
-            text-decoration : none;
-            font-size : 1.2em;
+            font-style: normal;
+            text-decoration: none;
+            font-size: 1.2em;
             color: black;
         }
 
@@ -80,11 +81,11 @@
 
         .footer a {
             margin-left: 30px;
-            color : white;
-            text-decoration : underline;
-            font-weight : bold;
+            color: white;
+            text-decoration: underline;
+            font-weight: bold;
             margin-top: 20px;
-            font-size : 1em;
+            font-size: 1em;
         }
 
         img {
@@ -100,11 +101,11 @@
             text-align: center;
             background: #009E3D;
             border-radius: 5px;
-            color : white;
+            color: white;
             text-decoration: none;
-            font-size : 1.2em;
+            font-size: 1.2em;
             padding: 15px;
-            margin : 20px;
+            margin: 20px;
         }
 
         .amrf {
@@ -123,14 +124,13 @@
 <div class="container">
     <header>
         <h1>Le Wiki des Maires</h1>
-
-    <div class="nav">
-        <h2>" Des maires au service des maires</h2>
-        <ul>
-            <li><a href="{{ url('home') }}">Wiki des Maires</a></li>
-            <li><a href="{{ url('contact') }}">Contactez nous</a></li>
-        </ul>
-    </div>
+        <div class="nav">
+            <h2>" Des maires au service des maires</h2>
+            <ul>
+                <li><a href="{{ url('home') }}">Wiki des Maires</a></li>
+                <li><a href="{{ url('contact') }}">Contactez nous</a></li>
+            </ul>
+        </div>
     </header>
     <div class="content">
         {% block body %}

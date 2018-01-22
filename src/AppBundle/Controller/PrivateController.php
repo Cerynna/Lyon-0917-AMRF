@@ -59,7 +59,6 @@ class PrivateController extends Controller
             }
         }
 
-
         if ($form->isSubmitted() && $form->isValid()) {
             $result = $searchService->findByPertinence($search);
             if (!empty($result)) {
@@ -194,5 +193,4 @@ class PrivateController extends Controller
             "filter" => $filter,
         ]);
     }
-
 }

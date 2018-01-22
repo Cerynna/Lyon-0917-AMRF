@@ -39,6 +39,5 @@ class DictionaryRepository extends \Doctrine\ORM\EntityRepository
             ->where('d.type = :type')
             ->getQuery()
             ->getResult();
-
     }
 }
