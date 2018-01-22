@@ -46,7 +46,7 @@ class MayorRepository extends \Doctrine\ORM\EntityRepository
         $em = $this->getEntityManager();
         $stmt = $em->getConnection()->prepare($sql);
         $stmt->execute();
-        return $stmt->fetchAll()[0]["COUNT(*)"];
+        return $stmt->fetchAll()[0]["COUNT(*)"]+1;
     }
 
     public function ListPartner($offset)

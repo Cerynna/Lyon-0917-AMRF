@@ -25,7 +25,7 @@
     <div class="scrollUp"><i class="fa fa-angle-up"></i></div>
 </a>
 {% for key, message in app.flashes %}
-    <div class="{{ key }}">
+    <div class="flash {{ key }}">
         <div class="notif">
             {{ message.0|raw }}
         </div>
@@ -45,6 +45,7 @@
     )) }}
 </footer>
 {% include 'components/script.html.twig' %}
+
 {% block javascripts %}{% endblock %}
 </body>
 {% include 'components/modalConnect.html.twig' %}

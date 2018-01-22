@@ -58,10 +58,18 @@ class MayorController extends Controller
         $user = $this->getUser();
         $mayor = $user->getMayor();
         $form = $this->createForm('AppBundle\Form\MayorType', $mayor);
+        $form->remove('latitude');
+        $form->remove('longitude');
+        $form->remove('department');
+        $form->remove('region');
+        $form->remove('population');
+        $form->remove('insee');
         $form->handleRequest($request);
         $em = $this->getDoctrine()->getManager();
         if ($form->isSubmitted() && $form->isValid()) {
+
             $em->persist($user);
+            $em->persist($mayor);
             $em->flush();
             $this->addFlash(
                 'notice',

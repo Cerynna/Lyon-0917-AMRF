@@ -378,6 +378,8 @@ textarea {
       overflow-y: scroll; }
     section .jumbotron {
       padding: 10px 5px !important; }
+      section .jumbotron span {
+        font-size: 1.2em !important; }
     section .bck-maire .search {
       width: 300px;
       padding-right: 0;
@@ -906,6 +908,8 @@ section {
   section .jumbotron h3 {
     color: #2a2a2a;
     font-size: 1.6em; }
+  section .jumbotron a {
+    color: rgba(0, 158, 61, 0.99); }
   section h3 {
     color: rgba(0, 158, 61, 0.99);
     font-family: "ERASDEMI", sans-serif;
