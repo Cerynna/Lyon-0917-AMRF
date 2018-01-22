@@ -14,7 +14,7 @@
             </li>
         </ul>
     </div>
-    <h1>Nouvel Utilisateur</h1>
+    <h1>Nouvel utilisateur</h1>
 
 
     <div id="steps">
@@ -22,7 +22,7 @@
 
         <div class="step S-Mayor S-2 " data-desc="Le Maire / La Commune">2</div>
         <div class="step S-Partner S-2 hidden" data-desc="Le partenaire">2</div>
-        <div class="step S-Mayor S-3 " data-desc="Les Résaux Sociaux">3</div>
+        <div class="step S-Mayor S-3 " data-desc="Les Réseaux sociaux">3</div>
         <div class="step S-Partner S-3 hidden" data-desc="Son entreprise">3</div>
         <div class="step S-Mayor S-4 " data-desc="Valider">4</div>
         <div class="step S-Partner S-4 hidden" data-desc="Valider">4</div>
@@ -48,14 +48,14 @@
                     </div>
                     <div class="col-sm-1 text-right">
                         <i class="fa fa-question fa-admin-mini" data-toggle="tooltip" data-placement="right"
-                           title="Message a voir j'ai pas d'idée a 23h37"></i>
+                           title="Choisir le rôle de l'utilisateur"></i>
                     </div>
                     <div class="col-sm-3 S-Mayor">
                         <h3>{{ form_label(form.login, 'Login / Insee') }}</h3>
                     </div>
                     <div class="col-sm-1 text-right S-Mayor">
                         <i class="fa fa-question fa-admin-mini" data-toggle="tooltip" data-placement="right"
-                           title="Message a voir j'ai pas d'idée a 23h37"></i>
+                           title="Saisir le login de l'utilisateur"></i>
                     </div>
                     <div class="col-sm-3 S-Partner hidden">
                         <h3><label for="siret">Siret / Siren</label></h3>
@@ -91,10 +91,10 @@
                     </div>
                     <div class="col-sm-1 text-right">
                         <i class="fa fa-question fa-admin-mini" data-toggle="tooltip" data-placement="right"
-                           title="Message a voir j'ai pas d'idée a 23h37"></i>
+                           title="Email de l'utilisateur du compte"></i>
                     </div>
                     <div class="col-sm-3">
-                        <h3>{{ form_label(form.password, 'Mot de Passe') }}</h3>
+                        <h3>{{ form_label(form.password, 'Mot de passe') }}</h3>
                     </div>
                     <div class="col-sm-1 text-right S-Mayor">
                         <i class="fa fa-question fa-admin-mini" data-toggle="tooltip" data-placement="right"
@@ -113,7 +113,7 @@
                     <div class="col-sm-4">
                         {{ form_widget(form.password, {
                             'attr':{
-                                'placeholder' : 'Mot de passe généré Automatiquement',
+                                'placeholder' : 'Mot de passe généré automatiquement',
                                 'autocomplete': 'off'
                             }
                         }) }}
@@ -122,12 +122,12 @@
 
                 <div class="row S-1-2 first hidden">
                     <div class="col-sm-5">
-                        <h3><label for="changPass">Obliger l'utilisateur a changer son mot de passe</label></h3>
+                        <h3><label for="changPass">Obliger l'utilisateur à changer son mot de passe</label></h3>
                     </div>
                     <div class="col-sm-1 text-right">
                         <input type="checkbox" name="changPass" id="changPass" checked="checked">
                         <i class="fa fa-question fa-admin-mini" data-toggle="tooltip" data-placement="right"
-                           title="Message a voir j'ai pas d'idée a 23h37"></i>
+                           title="Si vous cochez, l'utilisateur devra changer son mot de passe à la 1ère connexion"></i>
                     </div>
                 </div>
                 <div class="S-Partner hidden">
@@ -151,14 +151,14 @@
                         </div>
                         <div class="col-sm-1 text-right">
                             <i class="fa fa-question fa-admin-mini" data-toggle="tooltip" data-placement="right"
-                               title="Message a voir j'ai pas d'idée a 23h37"></i>
+                               title="Nom du maire de la commune"></i>
                         </div>
                         <div class="col-sm-5">
                             <h3>{{ form_label(form.mayor.firstName, 'Prénom') }}</h3>
                         </div>
                         <div class="col-sm-1 text-right">
                             <i class="fa fa-question fa-admin-mini" data-toggle="tooltip" data-placement="right"
-                               title="Message a voir j'ai pas d'idée a 23h37"></i>
+                               title="Prénom du maire de la commune"></i>
                         </div>
                     </div>
                     <div class="row">
@@ -176,14 +176,14 @@
                         </div>
                         <div class="col-sm-1 text-right">
                             <i class="fa fa-question fa-admin-mini" data-toggle="tooltip" data-placement="right"
-                               title="Message a voir j'ai pas d'idée a 23h37"></i>
+                               title="Email de la mairie"></i>
                         </div>
                         <div class="col-sm-5">
                             <h3>{{ form_label(form.mayor.phone, 'Téléphone') }}</h3>
                         </div>
                         <div class="col-sm-1 text-right">
                             <i class="fa fa-question fa-admin-mini" data-toggle="tooltip" data-placement="right"
-                               title="Message a voir j'ai pas d'idée a 23h37"></i>
+                               title="Téléphone de la mairie"></i>
                         </div>
                     </div>
                     <div class="row">
@@ -201,14 +201,14 @@
                         </div>
                         <div class="col-sm-1 text-right">
                             <i class="fa fa-question fa-admin-mini" data-toggle="tooltip" data-placement="right"
-                               title="Message a voir j'ai pas d'idée a 23h37"></i>
+                               title="Si ce champ n'est pas complété automatiquement, vérifiez le numéro insee saisi en 1ère page"></i>
                         </div>
                         <div class="col-sm-7">
                             <h3>{{ form_label(form.mayor.address, 'Adresse') }}</h3>
                         </div>
                         <div class="col-sm-1 text-right">
                             <i class="fa fa-question fa-admin-mini" data-toggle="tooltip" data-placement="right"
-                               title="Message a voir j'ai pas d'idée a 23h37"></i>
+                               title="Adresse de la mairie"></i>
                         </div>
                     </div>
                     <div class="row">
@@ -228,7 +228,7 @@
                         <div class="col-sm-1 text-right">
                             <i class="fa fa-question fa-admin-mini"
                                data-toggle="tooltip" data-placement="right"
-                               title="Message a voir j'ai pas d'idée a 23h37"></i>
+                               title="Si ce champ n'est pas complété automatiquement, vérifiez le numéro insee saisi en 1ère page"></i>
                         </div>
                         <div class="col-sm-2">
                             <h3>{{ form_label(form.mayor.zipCode, 'Code Postal') }}</h3>
@@ -239,7 +239,7 @@
                         <div class="col-sm-1 text-right">
                             <i class="fa fa-question fa-admin-mini"
                                data-toggle="tooltip" data-placement="right"
-                               title="Message a voir j'ai pas d'idée a 23h37"></i>
+                               title="Si ce champ n'est pas complété automatiquement, vérifiez le numéro insee saisi en 1ère page"></i>
                         </div>
                         <div class="col-sm-2">
                             <h3>{{ form_label(form.mayor.region, 'Région') }}</h3>
@@ -247,7 +247,7 @@
                         <div class="col-sm-1 text-right">
                             <i class="fa fa-question fa-admin-mini"
                                data-toggle="tooltip" data-placement="right"
-                               title="Message a voir j'ai pas d'idée a 23h37"></i>
+                               title="Si ce champ n'est pas complété automatiquement, vérifiez le numéro insee saisi en 1ère page"></i>
                         </div>
                     </div>
                     <div class="row Geoloc hidden">
@@ -270,12 +270,12 @@
                     </div>
                     <div class="row first Geoloc hidden">
                         <div class="col-sm-3">
-                            <h3>{{ form_label(form.mayor.latitude, 'Lattitude') }}</h3>
+                            <h3>{{ form_label(form.mayor.latitude, 'Latitude') }}</h3>
                         </div>
                         <div class="col-sm-1 text-right">
                             <i class="fa fa-question fa-admin-mini"
                                data-toggle="tooltip" data-placement="right"
-                               title="Message a voir j'ai pas d'idée a 23h37"></i>
+                               title="Si ce champ n'est pas complété automatiquement, vérifiez le numéro insee saisi en 1ère page"></i>
                         </div>
                         <div class="col-sm-3">
                             <h3>{{ form_label(form.mayor.longitude, 'Longitude') }}</h3>
@@ -283,7 +283,7 @@
                         <div class="col-sm-1 text-right">
                             <i class="fa fa-question fa-admin-mini"
                                data-toggle="tooltip" data-placement="right"
-                               title="Message a voir j'ai pas d'idée a 23h37"></i>
+                               title="Si ce champ n'est pas complété automatiquement, vérifiez le numéro insee saisi en 1ère page"></i>
                         </div>
                         <div class="col-sm-3">
                             <h3>{{ form_label(form.mayor.longitude, 'Population') }}</h3>
@@ -291,7 +291,7 @@
                         <div class="col-sm-1 text-right">
                             <i class="fa fa-question fa-admin-mini"
                                data-toggle="tooltip" data-placement="right"
-                               title="Message a voir j'ai pas d'idée a 23h37"></i>
+                               title="Si ce champ n'est pas complété automatiquement, vérifiez le numéro insee saisi en 1ère page"></i>
                         </div>
                     </div>
                     <div class="row Geoloc hidden">
@@ -321,7 +321,7 @@
 
                         </div>
                         <div class="col-sm-4">
-                            <h3>{{ form_label(form.partner.lastName, 'Prenom') }}</h3>
+                            <h3>{{ form_label(form.partner.lastName, 'Prénom') }}</h3>
 
                         </div>
                     </div>
@@ -366,7 +366,7 @@
 
                         </div>
                         <div class="col-sm-4">
-                            <h3>{{ form_label(form.partner.company.contactLastName, 'Prenom') }}</h3>
+                            <h3>{{ form_label(form.partner.company.contactLastName, 'Prénom') }}</h3>
 
                         </div>
                     </div>
@@ -406,21 +406,21 @@
                 </div>
 
                 <div class="S-Mayor">
-                    <h2>Les Resaux Sociaux</h2>
+                    <h2>Les Réseaux Sociaux</h2>
                     <div class="row first">
                         <div class="col-sm-5">
                             <h3>{{ form_label(form.mayor.url, 'Lien internet') }}</h3>
                         </div>
                         <div class="col-sm-1 text-right">
                             <i class="fa fa-question fa-admin-mini" data-toggle="tooltip" data-placement="right"
-                               title="Message a voir j'ai pas d'idée a 23h37"></i>
+                               title="Site internet de la mairie"></i>
                         </div>
                         <div class="col-sm-5">
                             <h3>{{ form_label(form.mayor.facebook, 'Facebook') }}</h3>
                         </div>
                         <div class="col-sm-1 text-right">
                             <i class="fa fa-question fa-admin-mini" data-toggle="tooltip" data-placement="right"
-                               title="Message a voir j'ai pas d'idée a 23h37"></i>
+                               title="Compte Facebook de la mairie ou du maire"></i>
                         </div>
                     </div>
                     <div class="row">
@@ -434,19 +434,18 @@
 
                     <div class="row first">
                         <div class="col-sm-5">
-                            <h3>{{ form_label(form.mayor.twitter, 'Twi
-tter') }}</h3>
+                            <h3>{{ form_label(form.mayor.twitter, 'Twitter') }}</h3>
                         </div>
                         <div class="col-sm-1 text-right">
                             <i class="fa fa-question fa-admin-mini" data-toggle="tooltip" data-placement="right"
-                               title="Message a voir j'ai pas d'idée a 23h37"></i>
+                               title="Compte Twitter de la mairie ou du maire"></i>
                         </div>
                         <div class="col-sm-5">
                             <h3>{{ form_label(form.mayor.google, 'Google+') }}</h3>
                         </div>
                         <div class="col-sm-1 text-right">
                             <i class="fa fa-question fa-admin-mini" data-toggle="tooltip" data-placement="right"
-                               title="Message a voir j'ai pas d'idée a 23h37"></i>
+                               title="Compte Google+ de la mairie ou du maire"></i>
                         </div>
                     </div>
                     <div class="row">
@@ -522,7 +521,7 @@ tter') }}</h3>
                     </div>
                     <div class="row">
                         <div class="col-sm-6">
-                            <h3>{{ form_label(form.partner.company.presentation, 'Presentation') }}</h3>
+                            <h3>{{ form_label(form.partner.company.presentation, 'Présentation') }}</h3>
                         </div>
                     </div>
                     <div class="row">
@@ -752,7 +751,7 @@ tter') }}</h3>
 
                 result = "";
                 result += trameHtml('Nom', document.forms[0].elements["amrf_publicrooterbundle_user[mayor][lastName]"].value);
-                result += trameHtml('Prenom', document.forms[0].elements["amrf_publicrooterbundle_user[mayor][firstName]"].value);
+                result += trameHtml('Prénom', document.forms[0].elements["amrf_publicrooterbundle_user[mayor][firstName]"].value);
                 result += trameHtml('Email', document.forms[0].elements["amrf_publicrooterbundle_user[mayor][email]"].value);
                 result += trameHtml('Téléphone', document.forms[0].elements["amrf_publicrooterbundle_user[mayor][phone]"].value);
                 $('#result-Mayor-mayor').html(result);
@@ -862,11 +861,11 @@ tter') }}</h3>
                     if (value.length < 5) {
                         html += ' class="erreur" ';
                         tooltip = ' data-toggle="tooltip" data-placement="right"\n' +
-                            'title="Ce champ doit contenir plus de 5 caractère"';
+                            'title="Ce champ doit contenir plus de 5 caractères"';
                     }
                     if (value.length === 0) {
                         tooltip = ' data-toggle="tooltip" data-placement="right"\n' +
-                            'title="Ce champ ne peu pas etre vide"';
+                            'title="Ce champ ne peut pas être vide"';
                     }
                     html += tooltip;
                 }

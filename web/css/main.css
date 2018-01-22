@@ -526,6 +526,10 @@ h5 {
   box-shadow: none;
   background: rgba(196, 255, 190, 0.1); }
 
+#login_M, #login_P, #mdp_P, #mdp_M {
+  width: 80% !important;
+  margin: auto; }
+
 nav {
   color: #ffffff;
   width: 100%;

@@ -9,8 +9,8 @@
     <p>Pour commencer, merci de donner un nom à votre projet. Il pourra être modifié par la suite. (Le titre doit comporter au moins 5 caractères.)</p>
     <div class="row">
         <div class="col-sm-12">
-            {{ form_errors(form) }}
             {{ form_widget(form.title) }}
+        <div class="errorForm">{{ form_errors(form.title) | striptags }}</div>
         </div>
         <div class="col-sm-12 text-right">
             <button type="submit" class="btn">Etape suivante <i class=" fa fa-angle-right"></i></button>
