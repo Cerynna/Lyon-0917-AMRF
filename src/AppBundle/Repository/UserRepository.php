@@ -29,4 +29,9 @@ class UserRepository extends \Doctrine\ORM\EntityRepository
 			->getResult();
 	}
 
+    public function UpdateLastLogin(){
+
+    }
+
+
 }

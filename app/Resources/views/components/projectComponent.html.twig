@@ -91,10 +91,14 @@
                         </div>
                     </li>
                     <li class="list-group-item text-center">
-                        <a href="{{ project.mayor.url }}"><i class="fa fa-link"></i></a>
-                        <a href="{{ project.mayor.google }}"><i class="fa fa-google"></i></a>
-                        <a href="{{ project.mayor.facebook }}"><i class="fa fa-facebook-square"></i></a>
-                        <a href="{{ project.mayor.twitter }}"><i class="fa fa-twitter-square"></i></a>
+                        <a href="{{ project.mayor.url }}" target="_blank"><i
+                                    class="fa fa-link {% if project.mayor.url is empty %} hidden {% endif %}"></i></a>
+                        <a href="{{ project.mayor.google }}" target="_blank"><i
+                                    class="fa fa-google {% if project.mayor.google is empty %} hidden {% endif %}"></i></a>
+                        <a href="{{ project.mayor.facebook }}" target="_blank"><i
+                                    class="fa fa-facebook-square {% if project.mayor.facebook is empty %} hidden {% endif %}"></i></a>
+                        <a href="{{ project.mayor.twitter }}" target="_blank"><i
+                                    class="fa fa-twitter-square {% if project.mayor.twitter is empty %} hidden {% endif %}"></i></a>
                     </li>
                 </ul>
             </div>
@@ -133,7 +137,7 @@
             </div>
             <div class="col-md-3 col-sm-6">
                 <div class="panel panel-default">
-                    <div class="panel-heading text-left" >
+                    <div class="panel-heading text-left">
                         <h4>Durée</h4>
                     </div>
                     <div class="panel-body text-right">
@@ -193,16 +197,23 @@
         <p>
             {{ project.descResults|raw }}
         </p>
-        <div class="divider"></div>
-        <h3>Difficultés rencontrées</h3>
-        <p>
-            {{ project.descDifficulties|raw }}
-        </p>
-        <div class="divider"></div>
-        <h3>Conseils</h3>
-        <p>
-            {{ project.descAdvices|raw }}
-        </p>
+
+        {% if project.descDifficulties|striptags is not empty %}
+            <div class="divider"></div>
+            <h3>Difficultés rencontrées</h3>
+            <p>
+                {{ project.descDifficulties|raw }}
+            </p>
+        {% endif %}
+
+        {% if project.descAdvices|striptags is not empty %}
+            <div class="divider"></div>
+            <h3>Conseils</h3>
+            <p>
+                {{ project.descAdvices|raw }}
+            </p>
+        {% endif %}
+
     </div>
     <div class="row">
         <div class="panel panel-default">
@@ -216,6 +227,14 @@
                 <li class="list-group-item">Fonction : {{ project.contactOccupation }}</li>
                 <li class="list-group-item">Email : {{ project.contactEmail }}</li>
                 <li class="list-group-item">Téléphone : {{ project.contactPhone }}</li>
+                <li class="list-group-item {% if project.url is empty %} hidden {% endif %}">Site internet : <a
+                            href="{{ project.url }}" target="_blank">{{ project.url }}</a></li>
+                <li class="list-group-item {% if project.youtube is empty %} hidden {% endif %}">YouTube : <a
+                            href="{{ project.youtube }}" target="_blank">{{ project.youtube }}</a></li>
+                <li class="list-group-item {% if project.facebook is empty %} hidden {% endif %}">Facebook
+                    : <a href="{{ project.facebook }}" target="_blank">{{ project.facebook }}</a></li>
+                <li class="list-group-item {% if project.twitter is empty %} hidden {% endif %}">Twitter
+                    : <a href="{{ project.twitter }}" target="_blank">{{ project.twitter }}</a></li>
                 <li class="list-group-item">Documents complémentaires : <a href="{{ asset(pdf) }}" target="_parent"
                                                                            title="le fichier">Voir le fichier PDF</a>
                 </li>
