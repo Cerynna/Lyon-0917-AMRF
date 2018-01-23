@@ -91,10 +91,14 @@
                         </div>
                     </li>
                     <li class="list-group-item text-center">
-                        <a href="{{ project.mayor.url }}" target="_blank"><i class="fa fa-link"></i></a>
-                        <a href="{{ project.mayor.google }}" target="_blank"><i class="fa fa-google"></i></a>
-                        <a href="{{ project.mayor.facebook }}" target="_blank"><i class="fa fa-facebook-square"></i></a>
-                        <a href="{{ project.mayor.twitter }}" target="_blank"><i class="fa fa-twitter-square"></i></a>
+                        <a href="{{ project.mayor.url }}" target="_blank"><i
+                                    class="fa fa-link {% if project.mayor.url is empty %} hidden {% endif %}"></i></a>
+                        <a href="{{ project.mayor.google }}" target="_blank"><i
+                                    class="fa fa-google {% if project.mayor.google is empty %} hidden {% endif %}"></i></a>
+                        <a href="{{ project.mayor.facebook }}" target="_blank"><i
+                                    class="fa fa-facebook-square {% if project.mayor.facebook is empty %} hidden {% endif %}"></i></a>
+                        <a href="{{ project.mayor.twitter }}" target="_blank"><i
+                                    class="fa fa-twitter-square {% if project.mayor.twitter is empty %} hidden {% endif %}"></i></a>
                     </li>
                 </ul>
             </div>
