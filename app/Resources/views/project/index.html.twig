@@ -21,7 +21,7 @@
         <div class="col-sm-12 jumbotron">
             <div class="row">
                 <div class="col-sm-4">
-                    <h3><label for="themes">Theme</label></h3>
+                    <h3><label for="themes">Thématique</label></h3>
                     <select name="theme" id="themes" class="filterProject form-control" multiple>
                         {% for theme in themes %}
                             <option value="{{ theme.id }}"
@@ -46,7 +46,7 @@
         <div class="col-sm-6">
             <div class="row">
                 <div class="col-sm-6">
-                    <h2>Projet en Attente</h2>
+                    <h2>Projets en attente</h2>
                 </div>
                 <div class="col-sm-6 text-center">
                     <ul class="pagination-waiting"></ul>
@@ -59,7 +59,7 @@
             </div>
             <div class="row">
                 <div class="col-sm-6">
-                    <h2>Projet en Brouillon</h2>
+                    <h2>Projets en brouillon</h2>
                 </div>
                 <div class="col-sm-6 text-center">
                     <ul class="pagination-draft"></ul>
@@ -74,7 +74,7 @@
         <div class="col-sm-6">
             <div class="row">
                 <div class="col-sm-6">
-                    <h2>Projet Publié</h2>
+                    <h2>Projets publiés</h2>
                 </div>
                 <div class="col-sm-6 text-center">
                     <ul class="pagination-publish"></ul>
