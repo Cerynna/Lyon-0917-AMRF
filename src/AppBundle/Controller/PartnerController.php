@@ -24,11 +24,6 @@ class PartnerController extends Controller
 	 */
 	public function partnerIndexAction()
 	{
-		$user = $this->getUser();
-		$user->setLastLogin(new DateTime('now'));
-		$em = $this->getDoctrine()->getManager();
-		$em->persist($user);
-		$em->flush();
 		return $this->render('private/partenaires/partIndex.html.twig');
 	}
 

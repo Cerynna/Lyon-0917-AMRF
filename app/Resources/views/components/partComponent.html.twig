@@ -1,4 +1,6 @@
 <div class="panel-body row ">
+
+
     <div class="col-xs-12 col-md-8 breakLine">
         <p>{{ company.presentation|raw }}</p>
     </div>
@@ -29,7 +31,6 @@
 
         <h4>Ajouter aux favoris</h4>
         {% if favorites is defined %}
-
             <button type="button" name="company-{{ company.id }}" class="btnFavoris btn-show-{{ company.id }} addFavorite {% if company.id in favorites %} hidden {% endif %}">
                 <i class="fa fa-star-o"></i>
             </button>

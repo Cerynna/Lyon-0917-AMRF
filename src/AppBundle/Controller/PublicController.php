@@ -42,20 +42,6 @@ class PublicController extends Controller
     public function indexAction()
     {
         $em = $this->getDoctrine()->getManager();
-
-        /** Change that is a real code for Update LastLogin */
-        $user = $this->getUser();
-        if (is_object($user)) {
-            $lastloginDB = $user->getLastLogin();
-            $today = new \DateTime('now');
-            $tomorow = $today->modify('+1 day');
-            if ($tomorow <= $lastloginDB) {
-                $user->setLastLogin($today);
-                $em->flush();
-            }
-        }
-        /** ------------------------------------------------ */
-
         $projects = $em->getRepository('AppBundle:Project')->getLastProject();
         $array = ["main-1", "main-2"];
         $contents = $em->getRepository('AppBundle:PublicPage')->getContentIndex($array);

@@ -39,11 +39,6 @@ class MayorController extends Controller
      */
     public function mayorIndexAction()
     {
-        $user = $this->getUser();
-        $user->setLastLogin(new DateTime('now'));
-        $em = $this->getDoctrine()->getManager();
-        $em->persist($user);
-        $em->flush();
         return $this->render('private/maires/maireIndex.html.twig');
     }
 
