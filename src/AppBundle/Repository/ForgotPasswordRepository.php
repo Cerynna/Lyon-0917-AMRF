@@ -19,5 +19,4 @@ class ForgotPasswordRepository extends \Doctrine\ORM\EntityRepository
             ->getQuery()
             ->getResult();
     }
-
 }

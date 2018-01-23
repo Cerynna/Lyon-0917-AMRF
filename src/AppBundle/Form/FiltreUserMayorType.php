@@ -14,21 +14,21 @@ use Symfony\Component\Form\FormBuilderInterface;
 
 class FiltreUserMayorType extends AbstractType
 {
-    /**
-     * {@inheritdoc}
-     */
-    public function buildForm(FormBuilderInterface $builder, array $options)
-    {
-        $builder
-            ->add('CodePostal', TextType::class, [
-                'attr' => [
-                    'required' => false,
-                ]
-            ])
-            ->add('CodeInsee', TextType::class, [
-                'attr' => [
-                    'required' => false,
-                ]
-            ]);
-    }
+	/**
+	 * {@inheritdoc}
+	 */
+	public function buildForm(FormBuilderInterface $builder, array $options)
+	{
+		$builder
+			->add('CodePostal', TextType::class, [
+				'attr' => [
+					'required' => false,
+				]
+			])
+			->add('CodeInsee', TextType::class, [
+				'attr' => [
+					'required' => false,
+				]
+			]);
+	}
 }

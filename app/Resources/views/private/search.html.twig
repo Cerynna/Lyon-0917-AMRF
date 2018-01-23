@@ -25,7 +25,7 @@
                 </div>
             </a>
             <div id="collapseMore" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingMore">
-                <div class="choose">Vous pouvez selectionner de 1 à 3 thématiques</div>
+                <div class="choose">Vous pouvez sélectionner entre 1 et 3 thématiques</div>
                 <div class="row">
                     <div class="col-sm-4">
                         {% set nbthema = form.themas|length %}
@@ -228,7 +228,6 @@
             var nbCarac = valuesInput.length;
             $('.result_commune').text("");
 
-
             if (nbCarac > 2) {
                 if (isNaN(valuesInput)) {
                     $.ajax({
@@ -267,7 +266,6 @@
                 }
             }
         });
-
 
         function completInput(id, value) {
             document.getElementById(id).value = value;

@@ -9,34 +9,34 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class PartnerType extends AbstractType
 {
-    /**
-     * {@inheritdoc}
-     */
-    public function buildForm(FormBuilderInterface $builder, array $options)
-    {
-        $builder->add('firstName')
-            ->add('lastName')
-            ->add('occupation')
-            ->add('phone')
-            ->add('email')
-            ->add('company', CompanyType::class);
-    }
+	/**
+	 * {@inheritdoc}
+	 */
+	public function buildForm(FormBuilderInterface $builder, array $options)
+	{
+		$builder->add('firstName')
+			->add('lastName')
+			->add('occupation')
+			->add('phone')
+			->add('email')
+			->add('company', CompanyType::class);
+	}
 
-    /**
-     * {@inheritdoc}
-     */
-    public function configureOptions(OptionsResolver $resolver)
-    {
-        $resolver->setDefaults(array(
-            'data_class' => 'AppBundle\Entity\Partner'
-        ));
-    }
+	/**
+	 * {@inheritdoc}
+	 */
+	public function configureOptions(OptionsResolver $resolver)
+	{
+		$resolver->setDefaults(array(
+			'data_class' => 'AppBundle\Entity\Partner'
+		));
+	}
 
-    /**
-     * {@inheritdoc}
-     */
-    public function getBlockPrefix()
-    {
-        return 'partner';
-    }
+	/**
+	 * {@inheritdoc}
+	 */
+	public function getBlockPrefix()
+	{
+		return 'partner';
+	}
 }

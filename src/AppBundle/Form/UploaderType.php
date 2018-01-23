@@ -18,42 +18,42 @@ use Symfony\Component\Form\FormView;
 class UploaderType extends AbstractType
 {
 
-    /**
-     * @var string
-     */
-    private $name = "image";
+	/**
+	 * @var string
+	 */
+	private $name = "image";
 
-    /**
-     * @return string
-     */
-    public function getName()
-    {
-        return $this->name;
-    }
+	/**
+	 * @return string
+	 */
+	public function getName()
+	{
+		return $this->name;
+	}
 
-    /**
-     * @param string $name
-     * @return UploaderType
-     */
-    public function setName($name)
-    {
-        $this->name = $name;
-        return $this;
-    }
+	/**
+	 * @param string $name
+	 * @return UploaderType
+	 */
+	public function setName($name)
+	{
+		$this->name = $name;
+		return $this;
+	}
 
 
-    public function getBlockPrefix()
-    {
-        return "uploader_" . $this->name;
-    }
+	public function getBlockPrefix()
+	{
+		return "uploader_" . $this->name;
+	}
 
-    public function buildForm(FormBuilderInterface $builder, array $options)
-    {
-        $this->setName('file');
-        $builder->add('path', FileType::class, [
-            'attr' => [
-                'onchange' => 'this.form.submit();'
-            ]
-        ]);
-    }
+	public function buildForm(FormBuilderInterface $builder, array $options)
+	{
+		$this->setName('file');
+		$builder->add('path', FileType::class, [
+			'attr' => [
+				'onchange' => 'this.form.submit();'
+			]
+		]);
+	}
 }

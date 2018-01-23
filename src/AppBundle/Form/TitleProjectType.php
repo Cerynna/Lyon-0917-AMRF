@@ -16,9 +16,9 @@ use Symfony\Component\Form\FormBuilderInterface;
 
 class TitleProjectType extends AbstractType
 {
-    public function buildForm(FormBuilderInterface $builder, array $options)
-    {
-        $builder->add('title', TextType::class);
-    }
+	public function buildForm(FormBuilderInterface $builder, array $options)
+	{
+		$builder->add('title', TextType::class);
+	}
 
 }

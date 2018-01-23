@@ -40,6 +40,20 @@
                     <a href="#preview" aria-controls="preview" role="tab" data-toggle="tab">Prévisualisation</a>
                 </li>
             </ul>
+            <div class="errorForm">{{ form_errors(form.name) | striptags }}</div>
+            <div class="errorForm">{{ form_errors(form.address) | striptags }}</div>
+            <div class="errorForm">{{ form_errors(form.zipCode) | striptags }}</div>
+            <div class="errorForm">{{ form_errors(form.city) | striptags }}</div>
+            <div class="errorForm">{{ form_errors(form.activities) | striptags }}</div>
+            <div class="errorForm">{{ form_errors(form.presentation) | striptags }}</div>
+            <div class="errorForm">{{ form_errors(form.url) | striptags }}</div>
+            <div class="errorForm">{{ form_errors(form.facebook) | striptags }}</div>
+            <div class="errorForm">{{ form_errors(form.twitter) | striptags }}</div>
+            <div class="errorForm">{{ form_errors(form.linkedin) | striptags }}</div>
+            <div class="errorForm">{{ form_errors(form.contactFirstName) | striptags }}</div>
+            <div class="errorForm">{{ form_errors(form.contactLastName) | striptags }}</div>
+            <div class="errorForm">{{ form_errors(form.contactPhone) | striptags }}</div>
+            <div class="errorForm">{{ form_errors(form.contactEmail) | striptags }}</div>
             <!-- Tab panes -->
             <div class="tab-content">
                 <div role="tabpanel" class="tab-pane active" id="organisme">
@@ -160,7 +174,7 @@
                     <div class="row">
                         <div class="col-lg-6 col-sm-6">
                             <div class="form-group">
-                                {{ form_label(form.url, "Site internet") }}
+                                {{ form_label(form.url, "Site internet (en commençant par http://)") }}
                                 {{ form_widget(form.url) }}
                                 <div class="errorForm">{{ form_errors(form.url) | striptags }}</div>
                             </div>
@@ -303,7 +317,7 @@
                             </a>
                         </div>
                         <div class="form-group col-sm-6" align="right">
-                            <button type="submit" class="btn btnSubmit">Enregistrer votre fiche</button>
+                            <button type="submit" class="btn btnSubmit">Publier votre fiche</button>
                         </div>
                     </div>
                 </div>
@@ -328,7 +342,7 @@
                     location.reload();
                 },
                 error: function () {
-                    alert("la photo ne peu pas être supprimée");
+                    alert("la photo ne peut pas être supprimée");
 
                 }
             })

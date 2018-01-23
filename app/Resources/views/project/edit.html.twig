@@ -48,7 +48,6 @@
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
     {% endif %}
@@ -56,7 +55,6 @@
     {% if project.file|length < 1 %}
         <div id="modalFileUpload" class="modal fade" role="dialog">
             <div class="modal-dialog">
-
                 <div class="modal-content">
                     <div class="modal-body">
                         <div class="row">
@@ -102,7 +100,8 @@
                     }
                 }) }}
 
-                <input id="month" type="month" class="form-control" value="{{ edit_form.projectDate.vars.value|date("Y-m") }}">
+                <input id="month" type="month" class="form-control"
+                       value="{{ edit_form.projectDate.vars.value|date("Y-m") }}">
             </div>
             <div class="col-sm-6">
                 <h5><label>Commune du projet</label></h5>
@@ -124,7 +123,6 @@
                         <i class="fa fa-upload fa-admin" data-toggle="modal" data-target="#modalImageUpload"></i>
                     </div>
                 {% endif %}
-
             </div>
             <div class="col-sm-12">
                 <div class="col-sm-4">
@@ -278,7 +276,6 @@
                 <h5>{{ form_label(edit_form.descResume, 'Résumé') }}</h5>
                 {{ form_widget(edit_form.descResume, {'attr': {
                     'rows':'3'} }) }}
-
             </div>
             <div class="col-sm-12">
                 <h5>{{ form_label(edit_form.descContext, 'Contexte') }}</h5>
@@ -315,7 +312,6 @@
                 {{ form_widget(edit_form.descAdvices, {'attr': {
                     'rows':'4'} }) }}
             </div>
-
         </div>
     </div>
 
@@ -331,7 +327,7 @@
             $('#projet_mayor').select2();
         });
         $('#month').change(function () {
-            realdate = new Date($('#month').val()).toISOString().slice(0,10);
+            realdate = new Date($('#month').val()).toISOString().slice(0, 10);
             $("#projet_projectDate").val(realdate);
 
         });

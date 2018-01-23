@@ -60,7 +60,6 @@ class PartnerController extends Controller
 		));
 	}
 
-
 	/**
 	 * @Route("presentation", name="partner_press")
 	 * @Method({"GET", "POST"})
@@ -116,20 +115,11 @@ class PartnerController extends Controller
 	 */
 	public function partnerFavoriteAction()
 	{
-        $userId = $this->getUser()->getId();
+		$userId = $this->getUser()->getId();
 		$favorites = $this->getDoctrine()->getRepository('AppBundle:Favorite')->getFavoriteByUserId($userId);
 
 		return $this->render('private/favoris.html.twig', [
 			'myFavorites' => $favorites,
 		]);
 	}
-
-/*	public function getDefaultOptions(array $options)
-	{
-		return array(
-			'csrf_protection' => false,
-			// Rest of options omitted
-		);
-	}*/
-
 }

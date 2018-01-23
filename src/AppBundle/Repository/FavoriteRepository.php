@@ -36,7 +36,6 @@ class FavoriteRepository extends \Doctrine\ORM\EntityRepository
 
         foreach ($FavoriteByUserId as $favorite){
             $result[] = $favorite->getCompany()->getId();
-            dump($favorite);
 
         }
         return $result;

@@ -21,7 +21,7 @@
         <div class="col-sm-12 jumbotron">
             <div class="row">
                 <div class="col-sm-4">
-                    <h3><label for="themes">Theme</label></h3>
+                    <h3><label for="themes">Thématique</label></h3>
                     <select name="theme" id="themes" class="filterProject form-control" multiple>
                         {% for theme in themes %}
                             <option value="{{ theme.id }}"
@@ -34,20 +34,19 @@
                     <input type="text" id="postal" class="filterProject form-control" maxlength="5">
                 </div>
                 <div class="col-sm-3">
-                <h3><label for="titre">Titre</label></h3>
+                    <h3><label for="titre">Titre</label></h3>
                     <input type="text" id="titre" class="filterProject form-control">
                 </div>
                 <div class="col-sm-1">
                     <a href="{{ path('admin_project_index') }}" data-toggle="tooltip" data-placement="right"
                        title="Reset des filtres"><i class="fa fa-refresh fa-admin"></i></a>
                 </div>
-
             </div>
         </div>
         <div class="col-sm-6">
             <div class="row">
                 <div class="col-sm-6">
-                    <h2>Projet en Attente</h2>
+                    <h2>Projets en attente</h2>
                 </div>
                 <div class="col-sm-6 text-center">
                     <ul class="pagination-waiting"></ul>
@@ -60,7 +59,7 @@
             </div>
             <div class="row">
                 <div class="col-sm-6">
-                    <h2>Projet en Brouillon</h2>
+                    <h2>Projets en brouillon</h2>
                 </div>
                 <div class="col-sm-6 text-center">
                     <ul class="pagination-draft"></ul>
@@ -75,7 +74,7 @@
         <div class="col-sm-6">
             <div class="row">
                 <div class="col-sm-6">
-                    <h2>Projet Publié</h2>
+                    <h2>Projets publiés</h2>
                 </div>
                 <div class="col-sm-6 text-center">
                     <ul class="pagination-publish"></ul>
@@ -88,7 +87,6 @@
             </div>
         </div>
     </div>
-
 
 {% endblock %}
 {% block javascripts %}
@@ -167,7 +165,6 @@
 
             $('[data-toggle="tooltip"]').tooltip();
 
-
         });
 
         function AjaxNoFilter() {
@@ -240,7 +237,6 @@
                             }
 
                             $('#content-' + tag).html(html);
-
 
                         },
                         error: function () {
