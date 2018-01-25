@@ -34,11 +34,9 @@ class FavoriteRepository extends \Doctrine\ORM\EntityRepository
         $FavoriteByUserId = $this->getFavoriteByUserId($userId);
         $result = [];
 
-        if ($result != null) {
 			foreach ($FavoriteByUserId as $favorite) {
 				$result[] = $favorite->getCompany()->getId();
 			}
-		}
         return $result;
     }
 }
