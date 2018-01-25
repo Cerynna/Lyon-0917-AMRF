@@ -38,7 +38,7 @@ class FavoriteRepository extends \Doctrine\ORM\EntityRepository
             $result[] = $favorite->getCompany()->getId();
             }
         }
-        return $result;
 
+        return $result;
     }
 }
