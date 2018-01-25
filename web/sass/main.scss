@@ -32,8 +32,10 @@
 @import 'partials/components/btnFavoris';
 @import 'partials/components/projet';
 @import 'partials/components/slider';
-/**
-** node-sass --watch web/sass/main.scss web/css/main.css
+/*
+
+ node-sass --watch web/sass/main.scss web/css/main.css
+
 */
 @import url('https://fonts.googleapis.com/css?family=Cabin+Condensed|Source+Sans+Pro');
 @import url('../fonts/ERASDEMI.TTF');

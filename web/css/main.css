@@ -1768,6 +1768,18 @@ form {
   .btnFavoris i, .btnFavorisPart i, .btnFavorisSelect i {
     color: rgba(0, 158, 61, 0.99); }
 
+.project p, .project span {
+  font-size: 1.2em;
+  text-align: justify; }
+
+.project .label {
+  font-size: 0.8em; }
+
+.project .divider {
+  border: 1px solid rgba(0, 158, 61, 0.99) !important;
+  width: 100%;
+  margin: 50px auto 10px auto; }
+
 .project img {
   border: 2px solid #FFF;
   -webkit-border-radius: 5px;
@@ -1833,8 +1845,10 @@ form {
     position: absolute;
     bottom: 20px; }
 
-/**
-** node-sass --watch web/sass/main.scss web/css/main.css
+/*
+
+ node-sass --watch web/sass/main.scss web/css/main.css
+
 */
 @font-face {
   font-family: ERASDEMI;
