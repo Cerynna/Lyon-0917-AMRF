@@ -1,6 +1,7 @@
 <?php
 
 namespace AppBundle\Repository;
+use function is_null;
 
 /**
  * FavoriteRepository
@@ -33,12 +34,12 @@ class FavoriteRepository extends \Doctrine\ORM\EntityRepository
     public function getFavoriteToArray($userId){
         $FavoriteByUserId = $this->getFavoriteByUserId($userId);
         $result = [];
+        foreach ($FavoriteByUserId as $favorite){
+            if (!is_null($favorite->getCompany())){
+            $result[] = $favorite->getCompany()->getId();
+            }
+        }
 
-        if ($result != null) {
-			foreach ($FavoriteByUserId as $favorite) {
-				$result[] = $favorite->getCompany()->getId();
-			}
-		}
         return $result;
     }
 }
