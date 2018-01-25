@@ -25,19 +25,12 @@ class AuthenticationListener
 
     protected $em;
     protected $container;
-    protected $router;
-    protected $httpUtils;
-    protected $request;
 
 
-    public function __construct(EntityManagerInterface $entityManager, ContainerInterface $container, RouterInterface $router, HttpUtils $httpUtils)
+    public function __construct(EntityManagerInterface $entityManager, ContainerInterface $container)
     {
-
         $this->em = $entityManager;
         $this->container = $container;
-        $this->router = $router;
-        $this->httpUtils = $httpUtils;
-        $this->request = $this->container->get('request_stack')->getCurrentRequest();
     }
 
     public function onAuthenticationSuccess(InteractiveLoginEvent $event)
