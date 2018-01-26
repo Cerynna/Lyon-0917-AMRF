@@ -14,6 +14,8 @@ use Symfony\Component\HttpFoundation\Request;
 /**
  * Company controller.
  *
+ * DELETE THIS
+ *
  * @Route("admin/company")
  * Class AdminCompanyController
  * @package AppBundle\Controller

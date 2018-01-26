@@ -10,6 +10,10 @@ use Symfony\Component\Routing\Annotation\Route;
 use AppBundle\Entity\ParserCSV;
 
 /**
+ *
+ *  *
+ * DELETE THIS
+ *
  * Class ParserCSVController
  * @package AppBundle\Controller
  * @Route ("/admin/parser")

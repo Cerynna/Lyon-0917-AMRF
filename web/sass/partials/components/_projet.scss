@@ -1,4 +1,16 @@
 .project {
+  p, span{
+    font-size: 1.2em;
+    text-align: justify;
+  }
+  .label{
+    font-size: 0.8em;
+  }
+  .divider {
+    border: 1px solid $color1 !important;
+    width: 100%;
+    margin: 50px auto 10px auto;
+  }
   img {
     border: 2px solid #FFF;
     @include borderRadius(5px);

@@ -11,6 +11,9 @@ use Symfony\Component\HttpFoundation\Request;
 /**
  * Mayor controller.
  *
+ *  *
+ * DELETE THIS
+ *
  * @Route("admin/mayor")
  */
 class AdminMayorController extends Controller

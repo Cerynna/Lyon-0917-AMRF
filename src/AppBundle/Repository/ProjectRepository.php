@@ -4,12 +4,6 @@ namespace AppBundle\Repository;
 
 use AppBundle\Entity\Project;
 use AppBundle\Entity\User;
-use function array_intersect;
-use function array_unique;
-use function intval;
-use function is_array;
-use function is_object;
-use function key_exists;
 
 /**
  * ProjectRepository
@@ -562,5 +556,7 @@ class ProjectRepository extends \Doctrine\ORM\EntityRepository
 		}
 		return $return;
 	}
+
+
 }
 
