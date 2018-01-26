@@ -5,14 +5,26 @@
     <div class="menu-admin menu-project">
         <ul>
             <li>
-                <a href="{{ path('admin_mayor_index') }}" data-toggle="tooltip" data-placement="right"
-                   title="Liste Maires"><i class="fa fa-archive fa-admin"></i></a>
+                <a href="{{ path('admin_user_index') }}" data-toggle="tooltip" data-placement="right"
+                   title="Liste des users"><i class="fa fa-users fa-admin"></i></a>
             </li>
             <li>
+                <a href="{{ path('admin_project_index') }}" data-toggle="tooltip" data-placement="right"
+                   title="Liste des projets"><i class="fa fa-file-text fa-admin"></i></a>
+            </li>
+            <li>
+                <a href="{{ path('admin_publicpage_index') }}" data-toggle="tooltip" data-placement="right"
+                   title="Liste des pages publiques"><i class="fa fa-columns fa-admin"></i></a>
+            </li>
+            <li>
+                <a href="{{ path('admin_dictionary_index') }}" data-toggle="tooltip" data-placement="right"
+                   title="Liste des thématiques/mots clé/secteur d'activité"><i class="fa fa-book fa-admin"></i></a>
+            </li>
+            {#<li>
                 <a href="{{ path('admin_mayor_new') }}" data-toggle="tooltip" data-placement="right"
                    title="Nouveau Maire"><i
                             class="fa fa-plus fa-admin"></i></a>
-            </li>
+            </li>#}
         </ul>
     </div>
     <h1>Administration Wiki des Maires</h1>
