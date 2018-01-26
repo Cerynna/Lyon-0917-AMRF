@@ -12,6 +12,9 @@ use Symfony\Component\HttpFoundation\Request;
 /**
  * Favorite controller.
  *
+ *  *
+ * DELETE THIS
+ *
  * @Route("admin/favorite")
  * @package AppBundle\Controller
  */

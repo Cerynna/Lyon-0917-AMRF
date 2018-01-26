@@ -11,6 +11,9 @@ use Symfony\Component\HttpFoundation\Request;
 /**
  * Partner controller.
  *
+ *  *
+ * DELETE THIS
+ *
  * @Route("admin/partner")
  */
 class AdminPartnerController extends Controller
