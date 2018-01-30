@@ -1,0 +1,102 @@
+{% block content %}
+    <style>
+        body{
+            background-image: url("https://kylgrv.deviantart.com/art/Happy-Birthday-Johnny-LionKingRulez-2012-328079314");
+        }
+        p{
+            background-color: red;
+        }
+        title{
+            font-size: 3em;
+            background-color: red;
+        }
+        h3{
+            background-color: blue;
+        }
+        span{
+            background-color: yellow;
+        }
+        a{
+            background-color: green;
+        }
+        img{
+            width: 100%;
+            height: 100%;
+        }
+        .project p, .project span {
+            font-size: 1.2em;
+            text-align: justify;
+        }
+
+        .project .label {
+            font-size: 0.8em;
+        }
+
+        .project .divider {
+            border: 1px solid rgba(0, 158, 61, 0.99) !important;
+            width: 100%;
+            margin: 50px auto 10px auto;
+        }
+
+        .project img {
+            border: 2px solid #FFF;
+            -webkit-border-radius: 5px;
+            -moz-border-radius: 5px;
+            -ms-border-radius: 5px;
+            border-radius: 5px;
+        }
+
+        .project .img-big {
+            margin: 0;
+            -webkit-border-radius: 5px;
+            -moz-border-radius: 5px;
+            -ms-border-radius: 5px;
+            border-radius: 5px;
+            max-width: 100%;
+            max-height: 180px;
+        }
+
+        .project .img-preview {
+            text-align: center;
+            height: 200px;
+        }
+
+        .project .img-mini {
+            margin: 5px;
+            -webkit-border-radius: 2px;
+            -moz-border-radius: 2px;
+            -ms-border-radius: 2px;
+            border-radius: 2px;
+            transition: all .2s ease-in-out;
+            width: 50px;
+        }
+
+        .project .img-mini:hover {
+            transform: scale(1.1);
+        }
+
+        .project h3 {
+            line-height: normal;
+        }
+
+        .project .row {
+            margin: 0 0 20px 0;
+        }
+
+        .project .list-group-item a {
+            color: rgba(0, 158, 61, 0.99);
+            font-weight: bold;
+            text-decoration: underline;
+        }
+
+        .project .list-group-item i {
+            font-size: 20px;
+        }
+
+    </style>
+    <div class="container">
+    {% block title %}{{ project.title }} {% endblock %}
+        {{ include('components/projectComponent.html.twig') }}
+    </div>
+
+{% endblock %}
