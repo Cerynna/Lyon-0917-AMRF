@@ -10,6 +10,7 @@ namespace AppBundle\Controller;
 
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -21,7 +22,7 @@ class pdfController extends Controller
 	 *
 	 * @Route("/pdf", name="htmlTOpdf")
 	 */
-	public function indexAction()
+	public function indexAction(Request $request)
 	{
 		$snappy = $this->get('knp_snappy.pdf');
 
@@ -32,6 +33,7 @@ class pdfController extends Controller
 
 		$html = $this->renderView('components/pdf.html.twig', array(
 			'project' => $project[0],
+			'base_dir' => $this->get('kernel')->getRootDir() . '/../web' . $request->getBasePath()
 		));
 
 		$filename = 'myFirstSnappyPDF';

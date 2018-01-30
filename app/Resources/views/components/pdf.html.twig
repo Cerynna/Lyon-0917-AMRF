@@ -1,35 +1,33 @@
 {% block content %}
     <style>
-        body{
-            background-image: url("https://kylgrv.deviantart.com/art/Happy-Birthday-Johnny-LionKingRulez-2012-328079314");
+        body {
+            font-size: 1.5em;
         }
-        p{
-            background-color: red;
-        }
-        title{
-            font-size: 3em;
-            background-color: red;
-        }
-        h3{
-            background-color: blue;
-        }
-        span{
-            background-color: yellow;
-        }
-        a{
-            background-color: green;
-        }
-        img{
-            width: 100%;
-            height: 100%;
-        }
-        .project p, .project span {
+
+        p {
             font-size: 1.2em;
+        }
+
+        .title {
+            font-size: 3em;
+            text-align: center;
+            text-decoration: underline;
+        }
+
+        span {
+            font-size: 1em !important;
+        }
+
+        .project p, .project span {
+            font-size: 1em;
             text-align: justify;
         }
 
         .project .label {
-            font-size: 0.8em;
+            font-size: 0.7em;
+            background-color: green;
+            border: solid 2px green ;
+            border-radius: 15px;
         }
 
         .project .divider {
@@ -38,49 +36,17 @@
             margin: 50px auto 10px auto;
         }
 
-        .project img {
-            border: 2px solid #FFF;
-            -webkit-border-radius: 5px;
-            -moz-border-radius: 5px;
-            -ms-border-radius: 5px;
-            border-radius: 5px;
+        h3 {
+            font-size: 1em;
         }
 
-        .project .img-big {
-            margin: 0;
-            -webkit-border-radius: 5px;
-            -moz-border-radius: 5px;
-            -ms-border-radius: 5px;
-            border-radius: 5px;
-            max-width: 100%;
-            max-height: 180px;
-        }
-
-        .project .img-preview {
-            text-align: center;
-            height: 200px;
-        }
-
-        .project .img-mini {
-            margin: 5px;
-            -webkit-border-radius: 2px;
-            -moz-border-radius: 2px;
-            -ms-border-radius: 2px;
-            border-radius: 2px;
-            transition: all .2s ease-in-out;
-            width: 50px;
-        }
-
-        .project .img-mini:hover {
-            transform: scale(1.1);
-        }
-
-        .project h3 {
-            line-height: normal;
+        h4 {
+            display: inline;
+            line-height: 1em;
         }
 
         .project .row {
-            margin: 0 0 20px 0;
+            margin: 0 0 0 0;
         }
 
         .project .list-group-item a {
@@ -93,10 +59,207 @@
             font-size: 20px;
         }
 
-    </style>
-    <div class="container">
-    {% block title %}{{ project.title }} {% endblock %}
-        {{ include('components/projectComponent.html.twig') }}
-    </div>
+        .textLeft {
+            text-align: left;
+            position: absolute;
+            padding-left: 100px;
+            width: 100%;
+        }
 
+        .textRight {
+            text-align: right;
+            position: relative;
+            padding: 2px 100px 0 0;
+        }
+
+        .textCenter {
+            text-align: center;
+        }
+
+    </style>
+
+    <div class="title">
+        {% block title %}{{ project.title }} {% endblock %}
+    </div>
+    <div class="project">
+        <div class="textLeft">
+            <h3>Thématiques</h3>
+            {% for thema in project.themes %}
+                <span class=" one label label-themat">{{ thema.name }}</span>
+            {% endfor %}
+        </div>
+        <div class="textRight">
+            <h3>Mots-clefs</h3>
+            {% for keyWord in project.keyWords %}
+                <span class="two label label-motCle">{{ keyWord.name }}</span>
+            {% endfor %}
+        </div>
+        <div class="divider"></div>
+        <div class="textCenter">
+            <h3>Commune : {{ project.mayor.town }}</h3>
+        </div>
+        <div class="textLeft">
+            <h4>Département: {{ project.mayor.department }}</h4>
+            <br>
+            <h4>Code Postal: {{ project.mayor.zipCode }}</h4>
+        </div>
+        <div class="textRight">
+            <h4>Population: {{ project.mayor.population }}</h4>
+            <br>
+            <h4>Code INSEE: {{ project.mayor.insee }}</h4>
+        </div>
+        <div class="divider"></div>
+        <div class="textCenter">
+            <h3>Contact Mairie</h3>
+        </div>
+        <ul>
+            {% if project.mayor.firstName is not empty and  project.mayor.lastName is not empty %}
+                <li class="list-group-item">
+                    <div class="row">
+                        <div class="col-xs-1 text-left"><i class="fa fa-user"></i></div>
+                        <div class="col-xs-11 text-right">{{ project.mayor.firstName }} {{ project.mayor.lastName }}</div>
+                    </div>
+                </li>
+            {% endif %}
+            {% if project.mayor.phone is not empty %}
+                <li class="list-group-item">
+                    <div class="row">
+                        <div class="col-xs-1 text-left"><i class="fa fa-phone"></i></div>
+                        <div class="col-xs-11 text-right">{{ project.mayor.phone }}</div>
+                    </div>
+                </li>
+            {% endif %}
+            {% if project.mayor.email is not empty %}
+                <li class="list-group-item">
+                    <div class="row">
+                        <div class="col-xs-1 text-left"><i class="fa fa-at"></i></div>
+                        <div class="col-xs-11 text-right">{{ project.mayor.email }}</div>
+                    </div>
+                </li>
+            {% endif %}
+
+            {% if project.mayor.url is not empty
+            and  project.mayor.google is not empty
+            and project.mayor.facebook is not empty
+            and project.mayor.twitter is not empty %}
+                <li class="list-group-item text-center">
+                    {% if project.mayor.url is not empty %}
+                        <a href="{{ project.mayor.url }}" target="_blank"><i
+                                    class="fa fa-link"></i></a>
+                    {% endif %}
+                    {% if project.mayor.google is not empty %}
+                        <a href="{{ project.mayor.google }}" target="_blank"><i
+                                    class="fa fa-google"></i></a>
+                    {% endif %}
+                    {% if project.mayor.facebook is not empty %}
+                        <a href="{{ project.mayor.facebook }}" target="_blank"><i
+                                    class="fa fa-facebook-square"></i></a>
+                    {% endif %}
+                    {% if project.mayor.twitter is not empty %}
+                        <a href="{{ project.mayor.twitter }}" target="_blank"><i
+                                    class="fa fa-twitter-square"></i></a>
+                    {% endif %}
+                </li>
+            {% endif %}
+        </ul>
+        <div class="divider"></div>
+        <div class="textLeft">
+            <h4>Date de réalisation: </h4>
+            <div>{{ project.projectDate|date('m/Y') }}</div>
+            <br>
+            <h4>Coût global: </h4>
+            <div>{{ project.projectCost }}</div>
+        </div>
+        <div class="textRight">
+            <h4>Durée: </h4>
+            <div>{{ project.projectDuration }}</div>
+            <br>
+            <h4>Cofinancements: </h4>
+            <div>{{ project.projectCoFinance }}</div>
+        </div>
+        <div class="divider"></div>
+        <h3>Résumé</h3>
+        <p>
+            {{ project.descResume|raw }}
+        </p>
+        <div class="col-xs-12 divider"></div>
+        <h3>Contexte</h3>
+        <p>
+            {{ project.descContext|raw }}
+        </p>
+        <div class="col-xs-12 divider"></div>
+        <h3>Objectifs</h3>
+        <p>
+            {{ project.descGoal|raw }}
+        </p>
+        <div class="col-xs-12 divider"></div>
+        <h3>Déroulement</h3>
+        <p>
+            {{ project.descProgress|raw }}
+        </p>
+        <div class="col-xs-12 divider"></div>
+        <h3>Partenaires mobilisés</h3>
+        <p>
+            {{ project.descPartners|raw }}
+        </p>
+        <div class="col-xs-12 divider"></div>
+        <h3>Résultats obtenus</h3>
+        <p>
+            {{ project.descResults|raw }}
+        </p>
+
+        {% if project.descDifficulties|striptags is not empty %}
+            <div class="col-xs-12 divider"></div>
+            <div class="col-xs-12">
+                <h3>Difficultés rencontrées</h3>
+                <p>
+                    {{ project.descDifficulties|raw }}
+                </p>
+            </div>
+        {% endif %}
+
+        {% if project.descAdvices|striptags is not empty %}
+            <div class="col-xs-12 divider"></div>
+            <div class="col-xs-12">
+                <h3>Conseils</h3>
+                <p>
+                    {{ project.descAdvices|raw }}
+                </p>
+            </div>
+        {% endif %}
+
+        <div class="panel-heading text-left">
+            Pour plus d'informations
+        </div>
+        <ul class="list-group">
+            {% set pdf = 'upload/project/' ~ project.id ~ '/file/' ~ project.file %}
+
+            <li class="list-group-item">Personne en charge du projet : {{ project.contactName }}</li>
+            <li class="list-group-item">Fonction : {{ project.contactOccupation }}</li>
+            <li class="list-group-item">Email : {{ project.contactEmail }}</li>
+            <li class="list-group-item">Téléphone : <a
+                        href="tel:{{ project.contactPhone }}">{{ project.contactPhone }}</a></li>
+
+            {% if project.url is not empty %}
+                <li class="list-group-item">
+                    Site internet : <a href="{{ project.url }}" target="_blank">{{ project.url }}</a>
+                </li>
+            {% endif %}
+            {% if project.youtube is not empty %}
+                <li class="list-group-item">
+                    YouTube : <a href="{{ project.youtube }}" target="_blank">{{ project.youtube }}</a>
+                </li>
+            {% endif %}
+            {% if project.facebook is not empty %}
+                <li class="list-group-item">
+                    Facebook : <a href="{{ project.facebook }}" target="_blank">{{ project.facebook }}</a>
+                </li>
+            {% endif %}
+            {% if project.twitter is not empty %}
+                <li class="list-group-item">
+                    Twitter : <a href="{{ project.twitter }}" target="_blank">{{ project.twitter }}</a>
+                </li>
+            {% endif %}
+        </ul>
+    </div>
 {% endblock %}
