@@ -5,19 +5,10 @@ namespace AppBundle\Controller;
 
 use AppBundle\Entity\Company;
 use AppBundle\Entity\Contact;
-use AppBundle\Entity\Dictionary;
-use AppBundle\Entity\Favorite;
 use AppBundle\Entity\Partner;
-use AppBundle\Entity\Project;
-use AppBundle\Entity\Search;
 use AppBundle\Entity\User;
 use AppBundle\Service\EmailService;
-use AppBundle\Service\SearchService;
 
-
-use Doctrine\ORM\EntityManagerInterface;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use SensioLabs\Security\Exception\HttpException;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -25,7 +16,6 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
-use Symfony\Component\Filesystem\Filesystem;
 
 
 /**
@@ -81,7 +71,7 @@ class PublicController extends Controller
 
         if ($form->isSubmitted() && $form->isValid() && $this->captchaverify($request->get('g-recaptcha-response'))) {
             $message = [
-                'to' => 'wcsprojetmaire@gmail.com',
+                'to' => EmailService::MAIL_TO,
                 'from' => $contact->getEmail(),
                 'type' => EmailService::TYPE_MAIL_CONTACT_ADMIN['key'],
                 'name' => $contact->getName(),
@@ -207,61 +197,5 @@ class PublicController extends Controller
             'last_username' => $lastUsername,
             'error' => $error,
         ));
-    }
-
-    /**
-     * @Route("/parser", name="parser_partner")
-     */
-    public function parserPartnerAction(UserPasswordEncoderInterface $passwordEncoder)
-    {
-        $csv = array_map('str_getcsv', file('partner.csv'));
-        $em = $this->getDoctrine()->getManager();
-
-        unset($csv[0]);
-        foreach ($csv as $userCsv) {
-
-            if (!empty ($userCsv[4])) {
-                $user = new User;
-                $partner = new Partner;
-                $company = new Company;
-
-                $userCsv[4] = str_replace(' ', '', $userCsv[4]);
-                $userSiren = substr($userCsv[4], 0, 9);
-
-                $user->setLogin($userSiren);
-                $user->setCreationDate(new \DateTime('now'));
-                $user->setLastLogin(new \DateTime('now'));
-                $password = $passwordEncoder->encodePassword($user, $userCsv[4]);
-                $user->setPassword($password);
-                $user->setStatus(User::USER_STATUS_INACTIF);
-                $user->setRole(User::USER_ROLE_PARTNER);
-                $user->setEmail($userCsv[3]);
-                $partner->setFirstName($userCsv[2]);
-                $partner->setLastName($userCsv[1]);
-                if (!empty($userCsv[6])) {
-                    $partner->setOccupation($userCsv[6]);
-                }
-                if (!empty($userCsv[5])) {
-                    $partner->setPhone(str_replace(' ', '', $userCsv[5]));
-                }
-
-                $partner->setEmail($userCsv[3]);
-                $company->setName($userCsv[0]);
-
-                $partner->setCompany($company);
-                $user->setPartner($partner);
-
-                $em->persist($user);
-                $em->persist($partner);
-                $em->persist($company);
-                $em->flush();
-            } else {
-                $fp = fopen('errorPartner.csv', 'a');
-                fputcsv($fp, $userCsv);
-                fclose($fp);
-            }
-        }
-
-        return new Response('<html><body>hello</body></html>');
     }
 }
