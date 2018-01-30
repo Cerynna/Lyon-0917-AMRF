@@ -19,7 +19,7 @@
                         <div class="row">
                             <div class="col-sm-10">
                                 {{ form_start(upload_image_form) }}
-                                {{ form_label(upload_image_form.path, 'Télécharger un fichier depuis votre ordinateur') }}
+                                {{ form_label(upload_image_form.path, 'Télécharger un fichier depuis votre ordinateur (jusqu\'à 1.5 Mo)') }}
                                 {{ form_widget(upload_image_form.path) }}
 
                                 {{ form_end(upload_image_form) }}
@@ -42,7 +42,7 @@
                         <div class="row">
                             <div class="col-sm-10">
                                 {{ form_start(upload_file_form) }}
-                                {{ form_label(upload_file_form.path, 'Télécharger un fichier depuis votre ordinateur') }}
+                                {{ form_label(upload_file_form.path, 'Télécharger un fichier depuis votre ordinateur (jusqu\'à 5 Mo)') }}
                                 {{ form_widget(upload_file_form.path) }}
 
                                 {{ form_end(upload_file_form) }}

@@ -10,6 +10,7 @@
             {{ form_widget(form.texts, { 'attr' : {
                 'class' : 'search',
                 'autocomplete': 'off',
+                'placeholder': 'Ecrivez un ou plusieurs mots-clés dans la barre de recherche'
             }}) }}
             <span class="input-group-addon">
                       <button type="submit" class="btn btn-search"><i class="fa fa-search"></i></button>
@@ -52,7 +53,7 @@
                         <div class="choose">Et / Ou saisir un ou plusieurs mots-clefs</div>
                         {{ form_widget(form.keywords, {'attr': {
                             'placeholder': 'Ecrivez les premières lettres du mot et vérifiez qu\'il apparaît dans la liste.',
-                            'autocomplete': 'off',
+                            'autocomplete': 'off'
                         } }) }}
                     </div>
                 </div>
