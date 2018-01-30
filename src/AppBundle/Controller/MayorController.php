@@ -207,8 +207,8 @@ class MayorController extends Controller
                         'to' => EmailService::MAIL_TO,
                         'object' => "Nouvelle fiche projet !",
                         'type' => EmailService::TYPE_MAIL_EVENT['key'],
-                        'message' => "Une nouvelle fiche projet a été crée rendez-vous dans l'espace admin pour pouvoir la verifier <br />
-                                        <a href='http://wikidesmaires.amrf.fr/admin'>"
+                        'message' => "Une nouvelle fiche projet a été crée rendez-vous dans l'espace admin pour pouvoir la verifier 
+                                        http://wikidesmaires.amrf.fr/admin"
                     ];
 
                     $emailService->sendEmail($message);

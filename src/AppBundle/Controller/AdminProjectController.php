@@ -158,8 +158,8 @@ class AdminProjectController extends Controller
 		}
 		if ($editForm->isSubmitted() && $editForm->isValid()) {
 			$project->setSlug($slugService->slug($project->getTitle()));
-			if ($project->setStatus(Project::STATUS_PUBLISH)) {
-				$project->setUpdateDate(new \DateTime("now"));
+            $project->setUpdateDate(new \DateTime("now"));
+			if ($project->getStatus() === Project::STATUS_PUBLISH) {
 				$message = [
 					'to' => $user->getEmail(),
 					'type' => EmailService::TYPE_MAIL_PROJECT_VALID['key'],
