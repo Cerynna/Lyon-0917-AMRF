@@ -181,7 +181,7 @@
                     data: {
                         labels: [{% for key, value in stats.user|reverse %}"{{ key }} {{ value }}",{% endfor %} ],
                         datasets: [{
-                            label: '# utilisateur',
+                            label: '#utilisateur',
                             data: [{% for key, value in stats.user|reverse %}{{ value }},{% endfor %}],
                             backgroundColor: [
                                 'rgba(54, 162, 235, 0.2)',
@@ -200,3 +200,4 @@
 
             </script>
         {% endblock %}
+

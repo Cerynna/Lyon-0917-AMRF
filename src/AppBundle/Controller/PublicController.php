@@ -71,7 +71,7 @@ class PublicController extends Controller
 
         if ($form->isSubmitted() && $form->isValid() && $this->captchaverify($request->get('g-recaptcha-response'))) {
             $message = [
-                'to' => 'wcsprojetmaire@gmail.com',
+                'to' => EmailService::MAIL_TO,
                 'from' => $contact->getEmail(),
                 'type' => EmailService::TYPE_MAIL_CONTACT_ADMIN['key'],
                 'name' => $contact->getName(),
