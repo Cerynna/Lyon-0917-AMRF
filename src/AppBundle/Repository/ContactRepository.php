@@ -10,5 +10,4 @@ namespace AppBundle\Repository;
  */
 class ContactRepository extends \Doctrine\ORM\EntityRepository
 {
-
 }
