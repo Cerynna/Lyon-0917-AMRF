@@ -12,7 +12,7 @@
                 </li>
                 <li role="presentation" class="tabLi">
                     <a href="#envoye" aria-controls="projet" role="tab" data-toggle="tab">
-                        Envoyé(s)
+                        En attente de validation
                     </a>
                 </li>
                 <li role="presentation" class="tabLi">
@@ -38,7 +38,7 @@
             </div>
 
             <div role="tabpanel" class="tab-pane" id="envoye">
-                <h3>Mes projets envoyés</h3>
+                <h3>Mes projets en attente de validation</h3>
                 {% for project in projects %}
                     {% if project.status == 2 %}
                         <div class="jumbotron">
