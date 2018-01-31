@@ -60,6 +60,11 @@ body {
   -o-background-size: cover;
   background-size: cover;
   font-family: $font1, sans-serif;
+
+  .project_title {
+    text-transform: none;
+    margin-bottom : 50px;
+  }
 }
 
 textarea {
@@ -193,7 +198,6 @@ a:hover, a:active {
   width: 100%;
   margin: 10px auto 50px auto;
 }
-
 .accordion {
   padding: 0 20px 0 20px;
 }
@@ -385,6 +389,8 @@ a.anchor {
     font-weight: 700;
   }
 }
+
+
 
 
 /*div {

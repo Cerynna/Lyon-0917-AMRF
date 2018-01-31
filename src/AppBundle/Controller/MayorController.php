@@ -18,13 +18,11 @@ use AppBundle\Service\SlugService;
 use AppBundle\Service\TabProjectService;
 use AppBundle\Service\UploadService;
 use AppBundle\Service\ValidProjectService;
-
-use function array_merge;
-use DateTime;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
+use function array_merge;
 
 
 /**
@@ -201,11 +199,20 @@ class MayorController extends Controller
                         'to' => $user->getEmail(),
                         'type' => EmailService::TYPE_MAIL_PROJECT_MODER['key'],
                         'login' => $user->getLogin(),
-                        'firstName'=> $project->getMayor()->getFirstName(),
-                        'lastName'=> $project->getMayor()->getLastName(),
-                        'title'=> $project->getTitle(),
+                        'firstName' => $project->getMayor()->getFirstName(),
+                        'lastName' => $project->getMayor()->getLastName(),
+                        'title' => $project->getTitle(),
                     ];
+                    $messageToAdmin = [
+                        'to' => EmailService::MAIL_TO,
+                        'object' => "Nouvelle fiche projet !",
+                        'type' => EmailService::TYPE_MAIL_EVENT['key'],
+                        'message' => "Une nouvelle fiche projet a été crée rendez-vous dans l'espace admin pour pouvoir la verifier 
+                                        http://wikidesmaires.amrf.fr/admin"
+                    ];
+
                     $emailService->sendEmail($message);
+                    $emailService->sendEmail($messageToAdmin);
 
                     $this->addFlash(
                         'notice',

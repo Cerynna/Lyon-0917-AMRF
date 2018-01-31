@@ -7,7 +7,6 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Contact
  *
- * @ORM\Entity(repositoryClass="AppBundle\Repository\ContactRepository")
  */
 class Contact
 {
