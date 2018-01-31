@@ -33,10 +33,11 @@
         {% endif %}
     </div>
     <div class="row">
-        <div class="col-md-4">
+        <div class="col-md-3">
             <div class="panel panel-default" id="cityName">
                 <div class="panel-heading text-left" role="tab">
-                    <h4>Commune : {{ project.mayor.town }}</h4>
+                    <h4>Commune : </h4>
+                    {{ project.mayor.town }}
                 </div>
                 <ul class="list-group">
                     <li class="list-group-item">
@@ -66,7 +67,7 @@
                 </ul>
             </div>
         </div>
-        <div class="col-md-4">
+        <div class="col-md-5">
             <div class="panel panel-default" id="contact">
                 <div class="panel-heading text-left" role="tab">
                     <h4>Contact Mairie</h4>
@@ -102,7 +103,7 @@
                     and project.mayor.facebook is not empty
                     and project.mayor.twitter is not empty %}
                         <li class="list-group-item text-center">
-                            {% if project.mayor.url is not empty %}
+                            {% if project.mayor.url is not empty %}, { 'attr':{'disabled':'disabled'} }
                                 <a href="{{ project.mayor.url }}" target="_blank"><i
                                             class="fa fa-link"></i></a>
                             {% endif %}
@@ -266,7 +267,7 @@
                 <li class="list-group-item">Fonction : {{ project.contactOccupation }}</li>
                 <li class="list-group-item">Email : {{ project.contactEmail }}</li>
                 <li class="list-group-item">Téléphone : <a
-                            href="tel:{{ project.contactPhone }}">{{ project.contactPhone }}</a></li>
+                            href="tel:{{ project.contactPhone }}" class="visible-xs">{{ project.contactPhone }}</a> <span class="hidden-xs">{{ project.contactPhone }}</span></li>
 
                 {% if project.url is not empty %}
                     <li class="list-group-item">

@@ -14,7 +14,7 @@ class EmailService
 
 	const MAIL_FROM = "noreply@wikidesmaires.amrf.fr";
 
-	const MAIL_TO = "wcsprojetmaire@gmail.com";
+	const MAIL_TO = "wikidesmaires@amrf.fr";
 
 	const TYPE_MAIL_EVENT = [
 		'key' => 1,

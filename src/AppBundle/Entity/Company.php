@@ -109,8 +109,8 @@ class Company
      *     message= "Cette information est obligatoire"
      * )
      * @Assert\Length(
-     *     max= 1200,
-     *     maxMessage="La description ne peut excéder 1200 caractères"
+     *     max= 1600,
+     *     maxMessage="La description ne peut excéder 1600 caractères"
      * )
      *
      */
