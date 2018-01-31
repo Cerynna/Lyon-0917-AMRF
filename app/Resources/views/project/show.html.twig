@@ -19,6 +19,11 @@
                             class="fa fa-pencil fa-admin"></i></a>
             </li>
             <li>
+                <a href="{{ path('htmlTOpdf', { 'idProject': project.id }) }}" data-toggle="tooltip"
+                   data-placement="right"
+                   title="Télécharger PDF"><i class="fa fa-download fa-admin"></i></a>
+            </li>
+            <li>
                 {{ form_start(delete_form) }}
                 <button class="fa-admin" data-toggle="tooltip" data-placement="right"
                         title="Supprimer Projet" type="submit" onclick="return ConfirmDelete()"><i

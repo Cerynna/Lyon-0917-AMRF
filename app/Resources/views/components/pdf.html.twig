@@ -2,16 +2,18 @@
     <style>
         body {
             font-size: 1.5em;
+            font-family: "ERASDEMI", sans-serif;
         }
 
         p {
             font-size: 1.2em;
+            font-family: "ERASDEMI", sans-serif;
         }
 
         .title {
-            font-size: 3em;
+            font-size: 2.7em;
             text-align: center;
-            text-decoration: underline;
+            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif
         }
 
         span {
@@ -25,9 +27,10 @@
 
         .project .label {
             font-size: 0.7em;
-            background-color: green;
-            border: solid 2px green ;
+            background-color: rgba(0, 158, 61, .99);;
+            border: solid 2px rgba(0, 158, 61, .99);;
             border-radius: 15px;
+            padding: 10px;
         }
 
         .project .divider {
@@ -50,7 +53,7 @@
         }
 
         .project .list-group-item a {
-            color: rgba(0, 158, 61, 0.99);
+            color: rgba(0, 158, 61, .99);;
             font-weight: bold;
             text-decoration: underline;
         }
@@ -82,18 +85,19 @@
         {% block title %}{{ project.title }} {% endblock %}
     </div>
     <div class="project">
-        <div class="textLeft">
+        <div class="textCenter">
             <h3>Thématiques</h3>
             {% for thema in project.themes %}
-                <span class=" one label label-themat">{{ thema.name }}</span>
+                <span class="label label-themat">{{ thema.name }}</span>
             {% endfor %}
         </div>
-        <div class="textRight">
+        <div class="textCenter">
             <h3>Mots-clefs</h3>
             {% for keyWord in project.keyWords %}
-                <span class="two label label-motCle">{{ keyWord.name }}</span>
+                <span class="label label-motCle">{{ keyWord.name }}</span>
             {% endfor %}
         </div>
+        <br>
         <div class="divider"></div>
         <div class="textCenter">
             <h3>Commune : {{ project.mayor.town }}</h3>
@@ -227,10 +231,9 @@
                 </p>
             </div>
         {% endif %}
+        <div class="col-xs-12 divider"></div>
 
-        <div class="panel-heading text-left">
-            Pour plus d'informations
-        </div>
+        <h3>Pour plus d'informations</h3>
         <ul class="list-group">
             {% set pdf = 'upload/project/' ~ project.id ~ '/file/' ~ project.file %}
 
