@@ -12,11 +12,16 @@
                    title="Nouveau Projet"><i
                             class="fa fa-plus fa-admin"></i></a>
             </li>
-            <li class="submitForm">
+            <li>
                 <a href="{{ path('admin_project_edit', { 'slug': project.slug }) }}" data-toggle="tooltip"
                    data-placement="right"
                    title="Editer Projet"><i
                             class="fa fa-pencil fa-admin"></i></a>
+            </li>
+            <li>
+                <a href="{{ path('htmlTOpdf', { 'idProject': project.id }) }}" data-toggle="tooltip"
+                   data-placement="right"
+                   title="Télécharger PDF"><i class="fa fa-download fa-admin"></i></a>
             </li>
             <li>
                 {{ form_start(delete_form) }}

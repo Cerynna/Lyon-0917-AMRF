@@ -1,0 +1,268 @@
+{% block content %}
+    <style>
+        body {
+            font-size: 1.5em;
+            font-family: "ERASDEMI", sans-serif;
+        }
+
+        p {
+            font-size: 1.2em;
+            font-family: "ERASDEMI", sans-serif;
+        }
+
+        .title {
+            font-size: 2.7em;
+            text-align: center;
+            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif
+        }
+
+        span {
+            font-size: 1em !important;
+        }
+
+        .project p, .project span {
+            font-size: 1em;
+            text-align: justify;
+        }
+
+        .project .label {
+            font-size: 0.7em;
+            background-color: rgba(0, 158, 61, .99);;
+            border: solid 2px rgba(0, 158, 61, .99);;
+            border-radius: 15px;
+            padding: 10px;
+        }
+
+        .project .divider {
+            border: 1px solid rgba(0, 158, 61, 0.99) !important;
+            width: 100%;
+            margin: 50px auto 10px auto;
+        }
+
+        h3 {
+            font-size: 1em;
+        }
+
+        h4 {
+            display: inline;
+            line-height: 1em;
+        }
+
+        .project .row {
+            margin: 0 0 0 0;
+        }
+
+        .project .list-group-item a {
+            color: rgba(0, 158, 61, .99);;
+            font-weight: bold;
+            text-decoration: underline;
+        }
+
+        .project .list-group-item i {
+            font-size: 20px;
+        }
+
+        .textLeft {
+            text-align: left;
+            position: absolute;
+            padding-left: 100px;
+            width: 100%;
+        }
+
+        .textRight {
+            text-align: right;
+            position: relative;
+            padding: 2px 100px 0 0;
+        }
+
+        .textCenter {
+            text-align: center;
+        }
+
+    </style>
+
+    <div class="title">
+        {% block title %}{{ project.title }} {% endblock %}
+    </div>
+    <div class="project">
+        <div class="textCenter">
+            <h3>Thématiques</h3>
+            {% for thema in project.themes %}
+                <span class="label label-themat">{{ thema.name }}</span>
+            {% endfor %}
+        </div>
+        <div class="textCenter">
+            <h3>Mots-clefs</h3>
+            {% for keyWord in project.keyWords %}
+                <span class="label label-motCle">{{ keyWord.name }}</span>
+            {% endfor %}
+        </div>
+        <br>
+        <div class="divider"></div>
+        <div class="textCenter">
+            <h3>Commune : {{ project.mayor.town }}</h3>
+        </div>
+        <div class="textLeft">
+            <h4>Département: {{ project.mayor.department }}</h4>
+            <br>
+            <h4>Code Postal: {{ project.mayor.zipCode }}</h4>
+        </div>
+        <div class="textRight">
+            <h4>Population: {{ project.mayor.population }}</h4>
+            <br>
+            <h4>Code INSEE: {{ project.mayor.insee }}</h4>
+        </div>
+        <div class="divider"></div>
+        <div class="textCenter">
+            <h3>Contact Mairie</h3>
+        </div>
+        <ul>
+            {% if project.mayor.firstName is not empty and  project.mayor.lastName is not empty %}
+                <li class="list-group-item">
+                    <div class="row">
+                        <div class="col-xs-1 text-left"><i class="fa fa-user"></i></div>
+                        <div class="col-xs-11 text-right">{{ project.mayor.firstName }} {{ project.mayor.lastName }}</div>
+                    </div>
+                </li>
+            {% endif %}
+            {% if project.mayor.phone is not empty %}
+                <li class="list-group-item">
+                    <div class="row">
+                        <div class="col-xs-1 text-left"><i class="fa fa-phone"></i></div>
+                        <div class="col-xs-11 text-right">{{ project.mayor.phone }}</div>
+                    </div>
+                </li>
+            {% endif %}
+            {% if project.mayor.email is not empty %}
+                <li class="list-group-item">
+                    <div class="row">
+                        <div class="col-xs-1 text-left"><i class="fa fa-at"></i></div>
+                        <div class="col-xs-11 text-right">{{ project.mayor.email }}</div>
+                    </div>
+                </li>
+            {% endif %}
+
+            {% if project.mayor.url is not empty
+            and  project.mayor.google is not empty
+            and project.mayor.facebook is not empty
+            and project.mayor.twitter is not empty %}
+                <li class="list-group-item text-center">
+                    {% if project.mayor.url is not empty %}
+                        <a href="{{ project.mayor.url }}" target="_blank"><i
+                                    class="fa fa-link"></i></a>
+                    {% endif %}
+                    {% if project.mayor.google is not empty %}
+                        <a href="{{ project.mayor.google }}" target="_blank"><i
+                                    class="fa fa-google"></i></a>
+                    {% endif %}
+                    {% if project.mayor.facebook is not empty %}
+                        <a href="{{ project.mayor.facebook }}" target="_blank"><i
+                                    class="fa fa-facebook-square"></i></a>
+                    {% endif %}
+                    {% if project.mayor.twitter is not empty %}
+                        <a href="{{ project.mayor.twitter }}" target="_blank"><i
+                                    class="fa fa-twitter-square"></i></a>
+                    {% endif %}
+                </li>
+            {% endif %}
+        </ul>
+        <div class="divider"></div>
+        <div class="textLeft">
+            <h4>Date de réalisation: </h4>
+            <div>{{ project.projectDate|date('m/Y') }}</div>
+            <br>
+            <h4>Coût global: </h4>
+            <div>{{ project.projectCost }}</div>
+        </div>
+        <div class="textRight">
+            <h4>Durée: </h4>
+            <div>{{ project.projectDuration }}</div>
+            <br>
+            <h4>Cofinancements: </h4>
+            <div>{{ project.projectCoFinance }}</div>
+        </div>
+        <div class="divider"></div>
+        <h3>Résumé</h3>
+        <p>
+            {{ project.descResume|raw }}
+        </p>
+        <div class="col-xs-12 divider"></div>
+        <h3>Contexte</h3>
+        <p>
+            {{ project.descContext|raw }}
+        </p>
+        <div class="col-xs-12 divider"></div>
+        <h3>Objectifs</h3>
+        <p>
+            {{ project.descGoal|raw }}
+        </p>
+        <div class="col-xs-12 divider"></div>
+        <h3>Déroulement</h3>
+        <p>
+            {{ project.descProgress|raw }}
+        </p>
+        <div class="col-xs-12 divider"></div>
+        <h3>Partenaires mobilisés</h3>
+        <p>
+            {{ project.descPartners|raw }}
+        </p>
+        <div class="col-xs-12 divider"></div>
+        <h3>Résultats obtenus</h3>
+        <p>
+            {{ project.descResults|raw }}
+        </p>
+
+        {% if project.descDifficulties|striptags is not empty %}
+            <div class="col-xs-12 divider"></div>
+            <div class="col-xs-12">
+                <h3>Difficultés rencontrées</h3>
+                <p>
+                    {{ project.descDifficulties|raw }}
+                </p>
+            </div>
+        {% endif %}
+
+        {% if project.descAdvices|striptags is not empty %}
+            <div class="col-xs-12 divider"></div>
+            <div class="col-xs-12">
+                <h3>Conseils</h3>
+                <p>
+                    {{ project.descAdvices|raw }}
+                </p>
+            </div>
+        {% endif %}
+        <div class="col-xs-12 divider"></div>
+
+        <h3>Pour plus d'informations</h3>
+        <ul class="list-group">
+            {% set pdf = 'upload/project/' ~ project.id ~ '/file/' ~ project.file %}
+
+            <li class="list-group-item">Personne en charge du projet : {{ project.contactName }}</li>
+            <li class="list-group-item">Fonction : {{ project.contactOccupation }}</li>
+            <li class="list-group-item">Email : {{ project.contactEmail }}</li>
+            <li class="list-group-item">Téléphone : <a
+                        href="tel:{{ project.contactPhone }}">{{ project.contactPhone }}</a></li>
+
+            {% if project.url is not empty %}
+                <li class="list-group-item">
+                    Site internet : <a href="{{ project.url }}" target="_blank">{{ project.url }}</a>
+                </li>
+            {% endif %}
+            {% if project.youtube is not empty %}
+                <li class="list-group-item">
+                    YouTube : <a href="{{ project.youtube }}" target="_blank">{{ project.youtube }}</a>
+                </li>
+            {% endif %}
+            {% if project.facebook is not empty %}
+                <li class="list-group-item">
+                    Facebook : <a href="{{ project.facebook }}" target="_blank">{{ project.facebook }}</a>
+                </li>
+            {% endif %}
+            {% if project.twitter is not empty %}
+                <li class="list-group-item">
+                    Twitter : <a href="{{ project.twitter }}" target="_blank">{{ project.twitter }}</a>
+                </li>
+            {% endif %}
+        </ul>
+    </div>
+{% endblock %}

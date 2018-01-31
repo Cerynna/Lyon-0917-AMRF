@@ -87,3 +87,16 @@ knp_paginator:
         pagination: '@KnpPaginator/Pagination/twitter_bootstrap_v3_pagination.html.twig'     # sliding pagination controls template
         sortable: '@KnpPaginator/Pagination/sortable_link.html.twig' # sort link template
         filtration: '@KnpPaginator/Pagination/filtration.html.twig'  # filters template
+
+# app/config/config.yml
+knp_snappy:
+    pdf:
+        enabled:    true
+        binary:     %kernel.root_dir%/../vendor/h4cc/wkhtmltopdf-amd64/bin/wkhtmltopdf-amd64
+        options:
+                    - { name: 'viewport-size', value: ‘1024x768’ }
+                    - { name: 'page-size', value: 'A4' }
+    image:
+        enabled:    true
+        binary:     %kernel.root_dir%/../vendor/h4cc/wkhtmltopdf-amd64/bin/wkhtmltoimage
+        options:    []

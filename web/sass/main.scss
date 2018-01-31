@@ -60,6 +60,11 @@ body {
   -o-background-size: cover;
   background-size: cover;
   font-family: $font1, sans-serif;
+
+  .project_title {
+    text-transform: none;
+    margin-bottom : 50px;
+  }
 }
 
 textarea {
@@ -384,6 +389,8 @@ a.anchor {
     font-weight: 700;
   }
 }
+
+
 
 
 /*div {
