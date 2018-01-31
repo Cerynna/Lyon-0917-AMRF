@@ -140,7 +140,7 @@
                     <div class="row">
                         <div class=" col-xs-12">
                             <div class="form-group">
-                                {{ form_label(form.presentation, "Présentation * (1200 caractères maximum)") }}
+                                {{ form_label(form.presentation, "Présentation * (1600 caractères maximum)") }}
                                 {{ form_widget(form.presentation, {'attr': {
                                     'class': 'summernote',
                                     'placeholder': 'Présentez votre activité.'} }) }}
@@ -295,7 +295,9 @@
                             <div class="row">
                                 <div class="panel-heading" role="tab">
                                     <div class="col-xs-2 text-center">
-                                        <img src="{{ asset("upload/company/1/file/"~ company.logo ) }}" height="70px">
+
+                                        <img src="{{ asset('upload/company/' ~ company.id ~ '/file/' ~ company.logo ) }}" height="70px">
+
                                     </div>
                                     <div class="col-xs-10">
                                         <h3>{{ company.name }}</h3>
