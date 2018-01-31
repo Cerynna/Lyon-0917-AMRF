@@ -99,7 +99,7 @@ class ProjectType extends AbstractType
 			))
 			->add('mayor', EntityType::class, [
 				'class' => 'AppBundle\Entity\Mayor',
-				'choice_label' => 'town',
+				'choice_label' => 'nameSelect',
 			]);
 	}
 
