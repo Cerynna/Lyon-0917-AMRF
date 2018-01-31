@@ -1852,6 +1852,8 @@ body {
   -o-background-size: cover;
   background-size: cover;
   font-family: "Source Sans Pro", sans-serif; }
+  body .project_title {
+    text-transform: none; }
 
 textarea {
   resize: vertical; }

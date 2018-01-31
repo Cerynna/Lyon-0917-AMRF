@@ -58,6 +58,10 @@ body {
   -o-background-size: cover;
   background-size: cover;
   font-family: $font1, sans-serif;
+
+  .project_title {
+    text-transform: none;
+  }
 }
 
 textarea {
@@ -383,6 +387,8 @@ a.anchor {
     font-weight: 700;
   }
 }
+
+
 
 
 /*div {
