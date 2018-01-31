@@ -8,6 +8,7 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Service\SlugService;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -15,14 +16,13 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class pdfController extends Controller
 {
-	const name = '0123456789abcdefghijklmnopqrstuvwxyz';
 
 	/**
 	 * Export to PDF
 	 *
 	 * @Route("/pdf/{idProject}", name="htmlTOpdf")
 	 */
-	public function indexAction(Request $request, $idProject)
+	public function indexAction(Request $request, SlugService $slugService, $idProject)
 	{
 		$snappy = $this->get('knp_snappy.pdf');
 
@@ -30,11 +30,10 @@ class pdfController extends Controller
 			->projectById($idProject);
 
 		$html = $this->renderView('components/pdf.html.twig', array(
-			'project' => $project[0],
-			'base_dir' => $this->get('kernel')->getRootDir() . '/../web' . $request->getBasePath()
+			'project' => $project[0]
 		));
 
-		$filename = str_shuffle(self::name);
+		$filename = sprintf('project-%s.pdf', date('Y-m-d'));
 
 		return new Response(
 			$snappy->getOutputFromHtml($html, array(
@@ -51,7 +50,7 @@ class pdfController extends Controller
 			200,
 			array(
 				'Content-Type'          => 'application/pdf',
-				'Content-Disposition' 	=>  'application; filename="'.$filename.'.pdf"',
+				'Content-Disposition'	=> sprintf('attachment; filename="%s"', $filename),
 			)
 		);
 	}
