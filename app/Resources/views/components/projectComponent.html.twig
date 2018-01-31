@@ -1,13 +1,13 @@
 <div class=" project">
     <div class="row">
         <div class="col-sm-4 text-left">
-            <h3>Thématiques</h3>
+            <h3 class="smallerH3">Thématiques</h3>
             {% for thema in project.themes %}
                 <span class="label label-themat">{{ thema.name }}</span>
             {% endfor %}
         </div>
         <div class="col-sm-4 text-left">
-            <h3>Mots-clefs</h3>
+            <h3 class="smallerH3">Mots-clefs</h3>
             {% for keyWord in project.keyWords %}
                 <span class="label label-motCle">{{ keyWord.name }}</span>
             {% endfor %}
@@ -16,9 +16,9 @@
         {% if favorite is defined %}
             <div class="col-sm-4">
                 <div class="col-sm-9">
-                    <h3>Mettre en favori</h3>
+                    <h3 class="smallerH3">Mettre en favori</h3>
                 </div>
-                <div class="col-sm-3 text-right">
+                <div class="col-sm-3">
                     <button type="button" name="project-{{ project.id }}"
                             class="btnFavoris btn-show-{{ project.id }} addFavorite {% if favorite == 1 %}hidden{% endif %}">
                         <i class="fa fa-star-o"></i>
