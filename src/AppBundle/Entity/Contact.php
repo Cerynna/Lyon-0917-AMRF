@@ -7,14 +7,13 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Contact
  *
- * 
  */
 class Contact
 {
     /**
      * @var int
      *
-     * 
+     *
      */
     private $id;
 

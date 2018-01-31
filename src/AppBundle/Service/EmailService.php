@@ -14,6 +14,8 @@ class EmailService
 
 	const MAIL_FROM = "noreply@wikidesmaires.amrf.fr";
 
+	const MAIL_TO = "wcsprojetmaire@gmail.com";
+
 	const TYPE_MAIL_EVENT = [
 		'key' => 1,
 		'renderHtml' => 'email/event.html.twig',
@@ -70,7 +72,6 @@ class EmailService
 			->setTo(trim($mail['to']))
 			->setCharset('utf-8')
 			->setFrom(self::MAIL_FROM);
-
 
 		switch ($mail['type']) {
 			case self::TYPE_MAIL_EVENT['key']:

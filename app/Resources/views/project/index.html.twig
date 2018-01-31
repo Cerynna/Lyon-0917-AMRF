@@ -5,11 +5,11 @@
     <div class="menu-admin menu-project">
         <ul>
             <li>
-                <a href="{{ path('admin_project_index') }}" data-toggle="tooltip" data-placement="right"
+                <a href="{{ path('admin_project_index') }}" data-toggle="tooltip" data-placement="bottom"
                    title="Liste Projets"><i class="fa fa-archive fa-admin"></i></a>
             </li>
             <li>
-                <a href="{{ path('admin_project_new') }}" data-toggle="tooltip" data-placement="right"
+                <a href="{{ path('admin_project_new') }}" data-toggle="tooltip" data-placement="top"
                    title="Nouveau Projet"><i
                             class="fa fa-plus fa-admin"></i></a>
             </li>
@@ -17,7 +17,7 @@
     </div>
     <h1>Liste des projets</h1>
 
-    <div class="row">
+    <div class="row" style="z-index:1;">
         <div class="col-sm-12 jumbotron">
             <div class="row">
                 <div class="col-sm-4">

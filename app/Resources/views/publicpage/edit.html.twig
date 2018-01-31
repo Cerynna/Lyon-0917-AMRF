@@ -7,22 +7,10 @@
                 <a href="{{ path('admin_publicpage_index') }}" data-toggle="tooltip" data-placement="right"
                    title="Liste Pages publiques"><i class="fa fa-book fa-admin"></i></a>
             </li>
-            <li> <!-- icone à supprimer car pas de création de nouvelle page publique ???? -->
-                <a href="{{ path('admin_publicpage_new') }}" data-toggle="tooltip" data-placement="right"
-                   title="Nouvelle page publique"><i
-                            class="fa fa-plus fa-admin"></i></a>
-            </li>
-            <li>
-                <!-- idem edit user à modifier ???? -->
-                <a onclick="document.amrf_publicrooterbundle_user.submit();" data-toggle="tooltip"
+            <li class="submitForm">
+                <a data-toggle="tooltip"
                    data-placement="right"
-                   title="Nouvel Utilisateur"><i class="fa fa-check fa-admin"></i></a>
-            </li>
-            <li> <!-- icone à supprimer car pas de suppression page publique ???? -->
-                {{ form_start(delete_form) }}
-                <button class="fa-admin" data-toggle="tooltip" data-placement="right"
-                        title="Supprimer la page publique" type="submit"><i class="fa fa-trash-o"></i></button>
-                {{ form_end(delete_form) }}
+                   title="Validé"><i class="fa fa-check fa-admin"></i></a>
             </li>
         </ul>
     </div>
@@ -30,7 +18,13 @@
 
     {{ form_start(edit_form) }}
     {{ form_widget(edit_form) }}
-    <input type="submit" value="Edit"/>
     {{ form_end(edit_form) }}
 
+{% endblock %}
+{% block javascripts %}
+    <script>
+        $(".submitForm").click(function () {
+            $("form[name='{{ edit_form.vars.name }}']").submit();
+        });
+    </script>
 {% endblock %}

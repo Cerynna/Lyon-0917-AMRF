@@ -1,13 +1,13 @@
 <div class=" project">
     <div class="row">
         <div class="col-sm-4 text-left">
-            <h3>Thématiques</h3>
+            <h3 class="smallerH3">Thématiques</h3>
             {% for thema in project.themes %}
                 <span class="label label-themat">{{ thema.name }}</span>
             {% endfor %}
         </div>
         <div class="col-sm-4 text-left">
-            <h3>Mots-clefs</h3>
+            <h3 class="smallerH3">Mots-clefs</h3>
             {% for keyWord in project.keyWords %}
                 <span class="label label-motCle">{{ keyWord.name }}</span>
             {% endfor %}
@@ -16,9 +16,9 @@
         {% if favorite is defined %}
             <div class="col-sm-4">
                 <div class="col-sm-9">
-                    <h3>Mettre en favori</h3>
+                    <h3 class="smallerH3">Mettre en favori</h3>
                 </div>
-                <div class="col-sm-3 text-right">
+                <div class="col-sm-3">
                     <button type="button" name="project-{{ project.id }}"
                             class="btnFavoris btn-show-{{ project.id }} addFavorite {% if favorite == 1 %}hidden{% endif %}">
                         <i class="fa fa-star-o"></i>
@@ -72,30 +72,55 @@
                     <h4>Contact Mairie</h4>
                 </div>
                 <ul class="list-group text-left">
-                    <li class="list-group-item">
-                        <div class="row">
-                            <div class="col-xs-1 text-left"><i class="fa fa-user"></i></div>
-                            <div class="col-xs-11 text-right">{{ project.mayor.firstName }} {{ project.mayor.lastName }}</div>
-                        </div>
-                    </li>
-                    <li class="list-group-item">
-                        <div class="row">
-                            <div class="col-xs-1 text-left"><i class="fa fa-phone"></i></div>
-                            <div class="col-xs-11 text-right">{{ project.mayor.phone }}</div>
-                        </div>
-                    </li>
-                    <li class="list-group-item">
-                        <div class="row">
-                            <div class="col-xs-1 text-left"><i class="fa fa-at"></i></div>
-                            <div class="col-xs-11 text-right">{{ project.mayor.email }}</div>
-                        </div>
-                    </li>
-                    <li class="list-group-item text-center">
-                        <a href="{{ project.mayor.url }}"><i class="fa fa-link"></i></a>
-                        <a href="{{ project.mayor.google }}"><i class="fa fa-google"></i></a>
-                        <a href="{{ project.mayor.facebook }}"><i class="fa fa-facebook-square"></i></a>
-                        <a href="{{ project.mayor.twitter }}"><i class="fa fa-twitter-square"></i></a>
-                    </li>
+                    {% if project.mayor.firstName is not empty and  project.mayor.lastName is not empty %}
+                        <li class="list-group-item">
+                            <div class="row">
+                                <div class="col-xs-1 text-left"><i class="fa fa-user"></i></div>
+                                <div class="col-xs-11 text-right">{{ project.mayor.firstName }} {{ project.mayor.lastName }}</div>
+                            </div>
+                        </li>
+                    {% endif %}
+                    {% if project.mayor.phone is not empty %}
+                        <li class="list-group-item">
+                            <div class="row">
+                                <div class="col-xs-1 text-left"><i class="fa fa-phone"></i></div>
+                                <div class="col-xs-11 text-right">{{ project.mayor.phone }}</div>
+                            </div>
+                        </li>
+                    {% endif %}
+                    {% if project.mayor.email is not empty %}
+                        <li class="list-group-item">
+                            <div class="row">
+                                <div class="col-xs-1 text-left"><i class="fa fa-at"></i></div>
+                                <div class="col-xs-11 text-right">{{ project.mayor.email }}</div>
+                            </div>
+                        </li>
+                    {% endif %}
+
+                    {% if project.mayor.url is not empty
+                    and  project.mayor.google is not empty
+                    and project.mayor.facebook is not empty
+                    and project.mayor.twitter is not empty %}
+                        <li class="list-group-item text-center">
+                            {% if project.mayor.url is not empty %}
+                                <a href="{{ project.mayor.url }}" target="_blank"><i
+                                            class="fa fa-link"></i></a>
+                            {% endif %}
+                            {% if project.mayor.google is not empty %}
+                                <a href="{{ project.mayor.google }}" target="_blank"><i
+                                            class="fa fa-google"></i></a>
+                            {% endif %}
+                            {% if project.mayor.facebook is not empty %}
+                                <a href="{{ project.mayor.facebook }}" target="_blank"><i
+                                            class="fa fa-facebook-square"></i></a>
+                            {% endif %}
+                            {% if project.mayor.twitter is not empty %}
+                                <a href="{{ project.mayor.twitter }}" target="_blank"><i
+                                            class="fa fa-twitter-square"></i></a>
+                            {% endif %}
+                        </li>
+                    {% endif %}
+
                 </ul>
             </div>
         </div>
@@ -133,7 +158,7 @@
             </div>
             <div class="col-md-3 col-sm-6">
                 <div class="panel panel-default">
-                    <div class="panel-heading text-left" >
+                    <div class="panel-heading text-left">
                         <h4>Durée</h4>
                     </div>
                     <div class="panel-body text-right">
@@ -164,45 +189,70 @@
         </div>
     </div>
     <div class="row">
-        <h3>Résumé</h3>
-        <p>
-            {{ project.descResume|raw }}
-        </p>
-        <div class="divider"></div>
-        <h3>Contexte</h3>
-        <p>
-            {{ project.descContext|raw }}
-        </p>
-        <div class="divider"></div>
-        <h3>Objectifs</h3>
-        <p>
-            {{ project.descGoal|raw }}
-        </p>
-        <div class="divider"></div>
-        <h3>Déroulement</h3>
-        <p>
-            {{ project.descProgress|raw }}
-        </p>
-        <div class="divider"></div>
-        <h3>Partenaires mobilisés</h3>
-        <p>
-            {{ project.descPartners|raw }}
-        </p>
-        <div class="divider"></div>
-        <h3>Résultats obtenus</h3>
-        <p>
-            {{ project.descResults|raw }}
-        </p>
-        <div class="divider"></div>
-        <h3>Difficultés rencontrées</h3>
-        <p>
-            {{ project.descDifficulties|raw }}
-        </p>
-        <div class="divider"></div>
-        <h3>Conseils</h3>
-        <p>
-            {{ project.descAdvices|raw }}
-        </p>
+
+        <div class="col-xs-12 divider"></div>
+        <div class="col-xs-12">
+            <h3>Résumé</h3>
+            <p>
+                {{ project.descResume|raw }}
+            </p>
+        </div>
+        <div class="col-xs-12 divider"></div>
+        <div class="col-xs-12">
+            <h3>Contexte</h3>
+            <p>
+                {{ project.descContext|raw }}
+            </p>
+        </div>
+        <div class="col-xs-12 divider"></div>
+        <div class="col-xs-12">
+            <h3>Objectifs</h3>
+            <p>
+                {{ project.descGoal|raw }}
+            </p>
+        </div>
+        <div class="col-xs-12 divider"></div>
+        <div class="col-xs-12">
+            <h3>Déroulement</h3>
+            <p>
+                {{ project.descProgress|raw }}
+            </p>
+        </div>
+        <div class="col-xs-12 divider"></div>
+        <div class="col-xs-12">
+            <h3>Partenaires mobilisés</h3>
+            <p>
+                {{ project.descPartners|raw }}
+            </p>
+        </div>
+        <div class="col-xs-12 divider"></div>
+        <div class="col-xs-12">
+            <h3>Résultats obtenus</h3>
+            <p>
+                {{ project.descResults|raw }}
+            </p>
+        </div>
+
+        {% if project.descDifficulties|striptags is not empty %}
+            <div class="col-xs-12 divider"></div>
+            <div class="col-xs-12">
+                <h3>Difficultés rencontrées</h3>
+                <p>
+                    {{ project.descDifficulties|raw }}
+                </p>
+            </div>
+        {% endif %}
+
+        {% if project.descAdvices|striptags is not empty %}
+            <div class="col-xs-12 divider"></div>
+            <div class="col-xs-12">
+                <h3>Conseils</h3>
+                <p>
+                    {{ project.descAdvices|raw }}
+                </p>
+            </div>
+        {% endif %}
+
     </div>
     <div class="row">
         <div class="panel panel-default">
@@ -215,10 +265,36 @@
                 <li class="list-group-item">Personne en charge du projet : {{ project.contactName }}</li>
                 <li class="list-group-item">Fonction : {{ project.contactOccupation }}</li>
                 <li class="list-group-item">Email : {{ project.contactEmail }}</li>
-                <li class="list-group-item">Téléphone : {{ project.contactPhone }}</li>
-                <li class="list-group-item">Documents complémentaires : <a href="{{ asset(pdf) }}" target="_parent"
-                                                                           title="le fichier">Voir le fichier PDF</a>
-                </li>
+                <li class="list-group-item">Téléphone : <a
+                            href="tel:{{ project.contactPhone }}">{{ project.contactPhone }}</a></li>
+
+                {% if project.url is not empty %}
+                    <li class="list-group-item">
+                        Site internet : <a href="{{ project.url }}" target="_blank">{{ project.url }}</a>
+                    </li>
+                {% endif %}
+                {% if project.youtube is not empty %}
+                    <li class="list-group-item">
+                        YouTube : <a href="{{ project.youtube }}" target="_blank">{{ project.youtube }}</a>
+                    </li>
+                {% endif %}
+                {% if project.facebook is not empty %}
+                    <li class="list-group-item">
+                        Facebook : <a href="{{ project.facebook }}" target="_blank">{{ project.facebook }}</a>
+                    </li>
+                {% endif %}
+                {% if project.twitter is not empty %}
+                    <li class="list-group-item">
+                        Twitter : <a href="{{ project.twitter }}" target="_blank">{{ project.twitter }}</a>
+                    </li>
+                {% endif %}
+                {% if project.file is not empty %}
+                    <li class="list-group-item">Documents complémentaires :
+                        <a href="{{ asset(pdf) }}" target="_parent" title="le fichier">Voir le fichier PDF</a>
+                    </li>
+
+                {% endif %}
+
             </ul>
         </div>
     </div>

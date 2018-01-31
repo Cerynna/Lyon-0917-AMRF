@@ -10,35 +10,35 @@ namespace AppBundle\Repository;
  */
 class FavoriteRepository extends \Doctrine\ORM\EntityRepository
 {
-	public function getFavoriteByUserId($idUser)
-	{
-		return $this->createQueryBuilder('f')
-			->setParameter('idUser', $idUser)
-			->where('f.user = :idUser')
-			->getQuery()
-			->getResult();
-	}
+    public function getFavoriteByUserId($idUser)
+    {
+        return $this->createQueryBuilder('f')
+            ->setParameter('idUser', $idUser)
+            ->where('f.user = :idUser')
+            ->getQuery()
+            ->getResult();
+    }
 
-	public function getFavorite($type, $idType, $idUser)
-	{
-		return $this->createQueryBuilder('f')
-			->setParameter('idUser', $idUser)
-			->setParameter('idType', $idType)
-			->where('f.user = :idUser')
-			->andWhere('f.' . $type . ' = :idType')
-			->getQuery()
-			->getResult();
-	}
+    public function getFavorite($type, $idType, $idUser)
+    {
+        return $this->createQueryBuilder('f')
+            ->setParameter('idUser', $idUser)
+            ->setParameter('idType', $idType)
+            ->where('f.user = :idUser')
+            ->andWhere('f.' . $type . ' = :idType')
+            ->getQuery()
+            ->getResult();
+    }
 
-	public function getFavoriteToArray($userId)
-	{
-		$FavoriteByUserId = $this->getFavoriteByUserId($userId);
-		$result = [];
+    public function getFavoriteToArray($userId){
+        $FavoriteByUserId = $this->getFavoriteByUserId($userId);
+        $result = [];
+        foreach ($FavoriteByUserId as $favorite){
+            if (!is_null($favorite->getCompany())){
+            $result[] = $favorite->getCompany()->getId();
+            }
+        }
 
-		foreach ($FavoriteByUserId as $favorite) {
-			$result[] = $favorite->getUser()->getId();
-
-		}
-		return $result;
-	}
+        return $result;
+    }
 }
