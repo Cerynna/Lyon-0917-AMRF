@@ -57,9 +57,11 @@ class AdminDictionaryController extends Controller
 	{
 		$dictionary = new Dictionary();
 		$form = $this->createForm('AppBundle\Form\DictionaryType', $dictionary);
+		$form->remove("value");
 		$form->handleRequest($request);
 
 		if ($form->isSubmitted() && $form->isValid()) {
+		    $dictionary->setValue($dictionary->getName());
 			$em = $this->getDoctrine()->getManager();
 			$em->persist($dictionary);
 			$em->flush();
@@ -104,9 +106,11 @@ class AdminDictionaryController extends Controller
 	{
 		$deleteForm = $this->createDeleteForm($dictionary);
 		$editForm = $this->createForm('AppBundle\Form\DictionaryType', $dictionary);
+		$editForm->remove("value");
 		$editForm->handleRequest($request);
 
 		if ($editForm->isSubmitted() && $editForm->isValid()) {
+		    $dictionary->setValue($dictionary->getName());
 			$this->getDoctrine()->getManager()->flush();
 
 			return $this->redirectToRoute('admin_dictionary_edit', array('id' => $dictionary->getId()));
