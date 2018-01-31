@@ -1815,6 +1815,9 @@ form {
 .project h3 {
   line-height: normal; }
 
+.project .smallerH3 {
+  font-size: 1.5em; }
+
 .project .row {
   margin: 0 0 20px 0; }
 
@@ -1867,6 +1870,9 @@ body {
   -o-background-size: cover;
   background-size: cover;
   font-family: "Source Sans Pro", sans-serif; }
+  body .project_title {
+    text-transform: none;
+    margin-bottom: 50px; }
 
 textarea {
   resize: vertical; }

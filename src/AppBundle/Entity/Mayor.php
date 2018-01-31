@@ -228,6 +228,8 @@ class Mayor
      */
     private $projects;
 
+    private $nameSelect;
+
 
     /**
      * Get id
@@ -679,6 +681,22 @@ class Mayor
     public function __toString()
     {
         return (string) $this->getId();
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getNameSelect()
+    {
+        return $this->zipCode . " - " . $this->town;
+    }
+
+    /**
+     * @param mixed $nameSelect
+     */
+    public function setNameSelect($nameSelect)
+    {
+        $this->nameSelect = $nameSelect;
     }
 
 

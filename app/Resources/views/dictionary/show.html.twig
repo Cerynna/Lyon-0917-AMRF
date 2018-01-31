@@ -1,39 +1,43 @@
 {% extends 'private/admin/baseAdmin.html.twig' %}
 {% block body %}
+    <div class="menu-admin menu-project">
+        <ul>
+            <li>
+                <a href="{{ path('admin_dictionary_index') }}" data-toggle="tooltip" data-placement="bottom"
+                   title="Liste des mots"><i class="fa fa-archive fa-admin"></i></a>
+            </li>
+            <li>
+                <a href="{{ path('admin_dictionary_new') }}" data-toggle="tooltip" data-placement="top"
+                   title="Nouveau mot"><i
+                            class="fa fa-plus fa-admin"></i></a>
+            </li>
+            <li>
+                <a href="{{ path('admin_dictionary_edit', {'id':dictionary.id}) }}" data-toggle="tooltip" data-placement="top"
+                   title="Modifier le mot" ><i
+                            class="fa fa-pencil fa-admin"></i></a>
+            </li>
+        </ul>
+    </div>
     <h1>Dictionary</h1>
 
     <table>
         <tbody>
         <tr>
-            <th>Id</th>
-            <td>{{ dictionary.id }}</td>
-        </tr>
-        <tr>
             <th>Type</th>
-            <td>{{ dictionary.type }}</td>
+
+            <td>{% if dictionary.type == 1 %}
+                    Thematique
+                {% elseif dictionary.type == 2 %}
+                    Secteur d'activité
+                {% else %}
+                    Mot clé
+                {% endif %}</td>
         </tr>
         <tr>
             <th>Name</th>
             <td>{{ dictionary.name }}</td>
         </tr>
-        <tr>
-            <th>Value</th>
-            <td>{{ dictionary.value }}</td>
-        </tr>
         </tbody>
     </table>
 
-    <ul>
-        <li>
-            <a href="{{ path('admin_dictionary_index') }}">Back to the list</a>
-        </li>
-        <li>
-            <a href="{{ path('admin_dictionary_edit', { 'id': dictionary.id }) }}">Edit</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-            <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
 {% endblock %}
