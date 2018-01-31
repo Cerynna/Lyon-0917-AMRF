@@ -45,7 +45,6 @@ class pdfController extends Controller
 				'dpi' 				=> 500,
 				'image-dpi' 		=> 500,
 				'encoding' 			=> 'utf-8',
-
 			)),
 			200,
 			array(
