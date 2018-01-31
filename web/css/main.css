@@ -1031,6 +1031,7 @@ section {
     pointer-events: none !important;
     cursor: default !important; }
   section .breakLine {
+    padding: 30px 10px;
     word-wrap: break-word;
     -webkit-hyphens: auto;
     -moz-hyphens: auto;
