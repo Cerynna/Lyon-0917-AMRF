@@ -111,7 +111,22 @@ Project [Wild Code School](https://wildcodeschool.fr/) for [Association des Mair
 
         sudo /etc/init.d/apache2 restart
 
-     
+## HTTPS AND SSL :
+For reload you'r ssl certificate 
+* go to letsencrypt
+
+        cd letsencrypt
+        
+* Use this command
+
+        ./letsencrypt-auto renew
+        
+        
+* And restart Apache2
+
+        sudo service apache2 restart
+        
+             
 ## Period : 
 #### 2 phases : 
 1. weeks phase for front-end development (until 11/15) 
