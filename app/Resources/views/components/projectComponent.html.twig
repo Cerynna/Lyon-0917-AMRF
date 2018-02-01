@@ -36,31 +36,31 @@
         <div class="col-md-3">
             <div class="panel panel-default" id="cityName">
                 <div class="panel-heading text-left" role="tab">
-                    <h4>Commune : </h4>
+                    <h4>Commune&nbsp: </h4>
                     {{ project.mayor.town }}
                 </div>
                 <ul class="list-group">
                     <li class="list-group-item">
                         <div class="row">
-                            <div class="col-xs-6 text-left">Département :</div>
+                            <div class="col-xs-6 text-left">Département&nbsp:</div>
                             <div class="col-xs-6 text-right">{{ project.mayor.department }}</div>
                         </div>
                     </li>
                     <li class="list-group-item">
                         <div class="row">
-                            <div class="col-xs-6 text-left">Code Postal :</div>
+                            <div class="col-xs-6 text-left">Code Postal&nbsp:</div>
                             <div class="col-xs-6 text-right">{{ project.mayor.zipCode }}</div>
                         </div>
                     </li>
                     <li class="list-group-item">
                         <div class="row">
-                            <div class="col-xs-6 text-left">Population :</div>
+                            <div class="col-xs-6 text-left">Population&nbsp:</div>
                             <div class="col-xs-6 text-right">{{ project.mayor.population }}</div>
                         </div>
                     </li>
                     <li class="list-group-item">
                         <div class="row">
-                            <div class="col-xs-6 text-left">Code INSEE :</div>
+                            <div class="col-xs-6 text-left">Code INSEE&nbsp:</div>
                             <div class="col-xs-6 text-right">{{ project.mayor.insee }}</div>
                         </div>
                     </li>
@@ -263,34 +263,34 @@
             <ul class="list-group">
                 {% set pdf = 'upload/project/' ~ project.id ~ '/file/' ~ project.file %}
 
-                <li class="list-group-item">Personne en charge du projet : {{ project.contactName }}</li>
-                <li class="list-group-item">Fonction : {{ project.contactOccupation }}</li>
-                <li class="list-group-item">Email : {{ project.contactEmail }}</li>
-                <li class="list-group-item">Téléphone : <a
+                <li class="list-group-item">Personne en charge du projet&nbsp: {{ project.contactName }}</li>
+                <li class="list-group-item">Fonction&nbsp: {{ project.contactOccupation }}</li>
+                <li class="list-group-item">Email&nbsp: {{ project.contactEmail }}</li>
+                <li class="list-group-item">Téléphone&nbsp: <a
                             href="tel:{{ project.contactPhone }}" class="visible-xs">{{ project.contactPhone }}</a> <span class="hidden-xs">{{ project.contactPhone }}</span></li>
 
                 {% if project.url is not empty %}
                     <li class="list-group-item">
-                        Site internet : <a href="{{ project.url }}" target="_blank">{{ project.url }}</a>
+                        Site internet&nbsp: <a href="{{ project.url }}" target="_blank">{{ project.url }}</a>
                     </li>
                 {% endif %}
                 {% if project.youtube is not empty %}
                     <li class="list-group-item">
-                        YouTube : <a href="{{ project.youtube }}" target="_blank">{{ project.youtube }}</a>
+                        YouTube&nbsp: <a href="{{ project.youtube }}" target="_blank">{{ project.youtube }}</a>
                     </li>
                 {% endif %}
                 {% if project.facebook is not empty %}
                     <li class="list-group-item">
-                        Facebook : <a href="{{ project.facebook }}" target="_blank">{{ project.facebook }}</a>
+                        Facebook&nbsp: <a href="{{ project.facebook }}" target="_blank">{{ project.facebook }}</a>
                     </li>
                 {% endif %}
                 {% if project.twitter is not empty %}
                     <li class="list-group-item">
-                        Twitter : <a href="{{ project.twitter }}" target="_blank">{{ project.twitter }}</a>
+                        Twitter&nbsp: <a href="{{ project.twitter }}" target="_blank">{{ project.twitter }}</a>
                     </li>
                 {% endif %}
                 {% if project.file is not empty %}
-                    <li class="list-group-item">Documents complémentaires :
+                    <li class="list-group-item">Documents complémentaires&nbsp:
                         <a href="{{ asset(pdf) }}" target="_parent" title="le fichier">Voir le fichier PDF</a>
                     </li>
 
