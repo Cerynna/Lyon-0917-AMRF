@@ -13,7 +13,7 @@
 /* HTML5 display definitions */
 @import url("https://fonts.googleapis.com/css?family=Cabin+Condensed|Source+Sans+Pro");
 @import url("../fonts/ERASDEMI.TTF");
-@import url("http://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css");
+@import url("https://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css");
 section, nav, article, aside, hgroup,
 header, footer, figure, figcaption, details {
   display: block; }
